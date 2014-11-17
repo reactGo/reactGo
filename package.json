@@ -1,0 +1,18 @@
+{
+  "name": "react-webpack-node",
+  "version": "1.0.0",
+  "description": "A simple Node.js app using Express 4 with Webpack and React",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Choon Ken Ding",
+  "license": "MIT",
+  "devDependencies": {
+    "express": "^4.10.2"
+  },
+  "engines": {
+    "node": "0.10.x"
+  }
+}
