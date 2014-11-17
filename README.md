@@ -12,6 +12,7 @@ Instructions
 Bundling with webpack
 ================
 1. `webpack` will run configurations within webpack.config.js.
+2. `webpack --watch` to watch and recompile for changes.
 
 Deploying to Heroku
 ================
