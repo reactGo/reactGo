@@ -10,12 +10,20 @@
   "author": "Choon Ken Ding",
   "license": "MIT",
   "devDependencies": {
-    "express": "^4.10.2"
+    "express": "^4.10.2",
+    "webpack": "^1.4.13"
   },
   "engines": {
     "node": "0.10.x"
   },
   "dependencies": {
-    "express": "^4.10.2"
+    "css-loader": "^0.9.0",
+    "express": "^4.10.2",
+    "file-loader": "^0.8.1",
+    "jsx-loader": "^0.12.1",
+    "react": "^0.12.0",
+    "style-loader": "^0.8.2",
+    "url-loader": "^0.5.5",
+    "webpack": "^1.4.13"
   }
 }
