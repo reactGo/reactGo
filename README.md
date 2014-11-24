@@ -22,4 +22,4 @@ Deploying to Heroku
 4. `git push heroku master`
 5. `heroku open` to open the link
 
-Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example) and [example-app](https://github.com/webpack/example-app).
+Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app) and [flux-examples](https://github.com/facebook/flux/tree/master/examples).

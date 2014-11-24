@@ -18,7 +18,7 @@ var SideSection = React.createClass({
     var allTopics = this.props.allTopics;
     var topicListItems = [];
     _.forEach(allTopics, function(topic){
-      topicListItems.push(<TopicCountItem title={topic.text} count={topic.count}/>);
+      topicListItems.push(<TopicCountItem key={topic.id} title={topic.text} count={topic.count}/>);
     });
 
   	return (
