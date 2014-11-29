@@ -1,9 +1,69 @@
+body {
+	font-family: 'Roboto';
+}
+
 #header {
-	margin: 5px auto;
-	padding: 5px auto;
+	margin: 8px;
 }
 
 #header h1{
 	text-align: center;
 }
 
+#new-topic {
+	margin: 16px;
+	font-size: 16px;
+	height: 48px;
+	border: none;
+	border-bottom: 1px solid #757575;
+}
+
+#stat-section span {
+	padding: 8px 16px;
+}
+
+#stat-section span.topic{
+	border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+#side-section {
+	width: 40%;
+	float: left;
+	border-radius: 2px;
+	margin: 8px;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+#main-section {
+	width: 50%;
+	float: left;
+	border-radius: 2px;
+	margin: 8px;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+#side-section ul , #main-section ul{
+	list-style: none;
+	padding: 16px;
+}
+
+#side-section h3, #main-section h3 {
+	padding: 16px;
+}
+
+#side-section ul li , #main-section ul li{
+	padding: 16px;
+}
+
+#side-section ul li span {
+	display: inline-block;
+	font-size: 0.8em;
+}
+
+#side-section ul li span.count {
+	float: right;
+	margin-right: 8px;
+	padding: 4px;
+	background: #64B5F6;
+	border-radius: 4px;
+}

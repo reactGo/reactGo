@@ -12,12 +12,12 @@ var Header = React.createClass({
   render: function() {
     return (
       <header id="header">
-        <h1>Trending Topics</h1>
-        <h2>Top Topic</h2>
+        <h1>Trending Burger Places</h1>
+        <h2>Top Burger</h2>
         <Statistics topTopic={this.props.topTopic} topStat={this.props.topStat} />
         <TopicTextInput
           id="new-topic"
-          placeholder="What is your concern?"
+          placeholder="Fav burger?"
           onSave={this._onSave}
         />
       </header>

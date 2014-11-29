@@ -57,7 +57,6 @@ var App = React.createClass({
 	},
 
 	_onChange: function() {
-		console.log(getState());
 		this.setState(getState());
 	}
 });

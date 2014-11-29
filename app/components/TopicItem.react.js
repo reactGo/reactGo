@@ -51,7 +51,7 @@ var TopicItem = React.createClass({
           </label>
           <button className="increment" onClick={this._onIncrement}>+</button>
           <button className="decrement" onClick={this._onDecrement}>-</button>
-          <button className="destroy" onClick={this._onDestroyClick} />
+          <button className="destroy" onClick={this._onDestroyClick}>{String.fromCharCode(215)}</button>
         </div>
         {input}
       </li>

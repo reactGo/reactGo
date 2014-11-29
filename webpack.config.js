@@ -4,7 +4,12 @@ var commonLoaders = [
 	{ test: /\.js$/, loader: "jsx-loader" },
 	{ test: /\.png$/, loader: "url-loader" },
 	{ test: /\.jpg$/, loader: "file-loader" },
-	{ test: /\.css$/, loader: "style!css" }
+	{ test: /\.css$/, loader: "style!css" },
+	{ test: /\.scss$/, loader: "style!css!sass?outputStyle=expanded&" +
+          "includePaths[]=" +
+            (path.resolve(__dirname, "./bower_components")) + "&" +
+          "includePaths[]=" +
+            (path.resolve(__dirname, "./node_modules"))}
 ];
 
 var assetsPath = path.join(__dirname, "public", "assets");

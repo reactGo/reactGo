@@ -28,23 +28,11 @@ var MainSection = React.createClass({
     }
 
     return (
-      <section id="main">
-        <input
-          id="toggle-all"
-          type="checkbox"
-          onChange={this._onToggleCompleteAll}
-          />
-        <label htmlFor="toggle-all">Toggle order</label>
-        <ul id="todo-list">{topics}</ul>
+      <section id="main-section">
+        <h3>Vote</h3>
+        <ul id="topic-list">{topics}</ul>
       </section>
     );
-  },
-
-  /**
-   * Event handler to mark all TODOs as complete
-   */
-  _onToggleCompleteAll: function() {
-    Actions.toggleCompleteAll();
   }
 
 });

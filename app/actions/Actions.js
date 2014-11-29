@@ -74,7 +74,7 @@ var Actions = {
    */
   destroy: function(id) {
     AppDispatcher.handleViewAction({
-      actionType: Constants.TODO_DESTROY,
+      actionType: Constants.TOPIC_DESTROY,
       id: id
     });
   },

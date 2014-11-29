@@ -22,4 +22,11 @@ Deploying to Heroku
 4. `git push heroku master`
 5. `heroku open` to open the link
 
+Todo:
+================
+1. Include an easy set up for database (MongoDB, postgresql).
+2. Include sass stylesheets for components. For good structure.
+Currently it is still a css file in the header. Still not large enough to warrant a warning that the [above-the-fold](https://developers.google.com/speed/docs/insights/PrioritizeVisibleContent) content of the page is too large.
+3. Let me know!
+
 Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app) and [flux-examples](https://github.com/facebook/flux/tree/master/examples).

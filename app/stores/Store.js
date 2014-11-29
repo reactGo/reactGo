@@ -60,15 +60,6 @@ function destroy(id) {
   delete _topics[id];
 }
 
-function isEmpty(obj) {
-    for(var prop in obj) {
-        if(obj.hasOwnProperty(prop))
-            return false;
-    }
-
-    return true;
-}
-
 /**
  * Stores contain the application state and logic. Their role is somewhat similar to a model in a traditional MVC, but 
  * they manage the state of many objects. Nor are they the same as Backbone's collections. More than simply managing a
@@ -83,13 +74,21 @@ function isEmpty(obj) {
  */
 var Store = assign({}, EventEmitter.prototype, {
 
+  /**
+   * Initialize store with topics queried from server.
+   * @param {Object} topics
+   */
+  init: function(rawTopics) {
+    _topics = rawTopics;
+  },
+
 	/**
-	 * Get the entire collection of TODOs.
+	 * Get the entire collection of Topics.
 	 * @return {object}
 	 *
 	 */
 	getAll: function() {
-	 	return _topics;
+    return _topics;
 	},
 
   getTopTopic: function() {
@@ -149,6 +148,14 @@ AppDispatcher.register(function(payload) {
 
     case Constants.TOPIC_DECREMENT:
       updateCount(action.id, -1);
+      break;
+
+    case Constants.TOPIC_DESTROY:
+      destroy(action.id);
+      break;
+
+    case Constants.RECEIVE_RAW_TOPICS:
+      Store.init(action.data);
       break;
 
     default:
