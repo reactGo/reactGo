@@ -16,5 +16,32 @@ module.exports = {
 			}, function(jqXHR, textStatus, errorThrown) {
 				console.log(errorThrown);
 			});
+	},
+	addTopic: function(topic) {
+		$.ajax({
+			url: '/topic',
+			data: JSON.stringify(topic),
+			type: 'POST',
+			contentType: 'application/json;charset=UTF-8'
+		})
+			.then(function(data, textStatus, jqXHR) {
+				console.log(data);
+			}, function(jqXHR, textStatus, errorThrown) {
+				console.log(errorThrown);
+			});
+	},
+
+	updateTopic: function(topic) {
+		$.ajax({
+			url: '/topic',
+			data: JSON.stringify(topic),
+			type: 'PUT',
+			contentType: 'application/json;charset=UTF-8'
+		})
+			.then(function(data, textStatus, jqXHR) {
+				console.log(data);
+			}, function(jqXHR, textStatus, errorThrown) {
+				console.log(errorThrown);
+			});
 	}
 };

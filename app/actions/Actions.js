@@ -16,16 +16,14 @@ var Actions = {
   increment: function(id, text) {
     AppDispatcher.handleViewAction({
       actionType: Constants.TOPIC_INCREMENT,
-      id: id,
-      text: text
+      id: id
     });
   },
 
   decrement: function(id, text) {
     AppDispatcher.handleViewAction({
       actionType: Constants.TOPIC_DECREMENT,
-      id: id,
-      text: text
+      id: id
     });
   },
 

@@ -23,7 +23,6 @@ var TopicItem = React.createClass({
    */
   render: function() {
     var topic = this.props.topic;
-
     var input;
     if (this.state.isEditing) {
       input =
@@ -67,12 +66,11 @@ var TopicItem = React.createClass({
   },
 
   _onIncrement: function() {
-    console.log(this.props.topic);
-    Actions.increment(this.props.topic.id, this.props.topic.text);
+    Actions.increment(this.props.topic.id);
   },
 
   _onDecrement: function() {
-    Actions.decrement(this.props.topic.id, this.props.topic.text);
+    Actions.decrement(this.props.topic.id);
   },
 
   /**

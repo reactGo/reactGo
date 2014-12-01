@@ -1,6 +1,7 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var Constants = require('../constants/Constants');
+var TopicWebAPIUtils = require('../utils/TopicWebAPIUtils');
 var assign = require('object-assign');
 var _ = require('lodash');
 
@@ -20,6 +21,7 @@ function create(text) {
     count: 1,
  		text: text
  	};
+  TopicWebAPIUtils.addTopic(_topics[id]);
 }
 
 /**
@@ -27,6 +29,7 @@ function create(text) {
  */
 function updateCount(id, update) {
   _topics[id].count = _topics[id].count + update;
+  TopicWebAPIUtils.updateTopic(_topics[id]);
 }
 
 /**
@@ -79,7 +82,13 @@ var Store = assign({}, EventEmitter.prototype, {
    * @param {Object} topics
    */
   init: function(rawTopics) {
-    _topics = rawTopics;
+    _topics = _.chain(rawTopics)
+                .map(function(topic){
+                  topic.id = topic.id;
+                  return [topic.id, topic];
+                })
+                .object()
+                .value();
   },
 
 	/**

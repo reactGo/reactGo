@@ -3,6 +3,7 @@ var React = require('react');
 var ReactPropTypes = React.PropTypes;
 var Actions = require('../actions/Actions');
 var TopicItem = require('./TopicItem.react');
+var _ = require('lodash');
 
 var MainSection = React.createClass({
 
@@ -23,9 +24,9 @@ var MainSection = React.createClass({
     var allTopics = this.props.allTopics;
     var topics = [];
 
-    for (var key in allTopics) {
-      topics.push(<TopicItem key={key} topic={allTopics[key]} />);
-    }
+    _.forEach(allTopics, function(value, key){
+      topics.push(<TopicItem id={key} key={key} topic={value} />);
+    });
 
     return (
       <section id="main-section">
