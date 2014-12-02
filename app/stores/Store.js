@@ -15,7 +15,7 @@ var _topics = {}; // Collection of todo items
  */
 function create(text) {
  	// Using the current timestamp in place of a real id.
- 	var id = Date.now();
+ 	var id = Date.now().toString();
  	_topics[id] = {
  		id: id,
     count: 1,
