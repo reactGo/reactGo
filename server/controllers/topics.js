@@ -29,7 +29,10 @@ exports.add = function(req, res) {
  */
 exports.update = function(req, res) {
 	var query = { id: req.body.id };
-	Topic.findOneAndUpdate(query, req.body, function(err, data) {
+	var data = {
+		$set : req.body
+	};
+	Topic.findOneAndUpdate(query, data, function(err, data) {
 		if(err) console.log('Error on save!');
 		res.status(200).send('Updated successfully');
 	});
