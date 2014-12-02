@@ -61,6 +61,7 @@ function updateAll(updates) {
  */
 function destroy(id) {
   delete _topics[id];
+  TopicWebAPIUtils.deleteTopic(id);
 }
 
 /**

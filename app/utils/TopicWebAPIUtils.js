@@ -22,7 +22,7 @@ module.exports = {
 			url: '/topic',
 			data: JSON.stringify(topic),
 			type: 'POST',
-			contentType: 'application/json;charset=UTF-8'
+			contentType: 'application/json'
 		})
 			.then(function(data, textStatus, jqXHR) {
 				console.log(data);
@@ -36,7 +36,21 @@ module.exports = {
 			url: '/topic',
 			data: JSON.stringify(topic),
 			type: 'PUT',
-			contentType: 'application/json;charset=UTF-8'
+			contentType: 'application/json'
+		})
+			.then(function(data, textStatus, jqXHR) {
+				console.log(data);
+			}, function(jqXHR, textStatus, errorThrown) {
+				console.log(errorThrown);
+			});
+	},
+
+	deleteTopic: function(id) {
+		$.ajax({
+			url: '/topic',
+			data: JSON.stringify({id: id}),
+			contentType: 'application/json',
+			type: 'DELETE'
 		})
 			.then(function(data, textStatus, jqXHR) {
 				console.log(data);
