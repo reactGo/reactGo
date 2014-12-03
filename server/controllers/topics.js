@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
+var _ = require('lodash');
 var Topic = mongoose.model('Topic');
+
 
 /**
  * List
@@ -29,9 +31,9 @@ exports.add = function(req, res) {
  */
 exports.update = function(req, res) {
 	var query = { id: req.body.id };
-	var data = {
-		$set : req.body
-	};
+	var omitKeys = ['id', '_id', '_v'];
+	var data = _.omit(req.body, omitKeys);
+	console.log(data);
 	Topic.findOneAndUpdate(query, data, function(err, data) {
 		if(err) {
 			console.log('Error on save!');
