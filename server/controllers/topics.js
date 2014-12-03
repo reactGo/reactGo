@@ -33,7 +33,10 @@ exports.update = function(req, res) {
 		$set : req.body
 	};
 	Topic.findOneAndUpdate(query, data, function(err, data) {
-		if(err) console.log('Error on save!');
+		if(err) {
+			console.log('Error on save!');
+			console.log(err);
+		}
 		res.status(200).send('Updated successfully');
 	});
 };
