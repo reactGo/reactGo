@@ -1,7 +1,7 @@
 react-webpack-node
 ==================
 
-Boilerplate for React application with webpack running on a node express server. Does not have server-side rendering yet.
+Boilerplate for React application with webpack using Facebook's Flux running on a node express server. Does not have server-side rendering yet.
 Includes a Procfile to enable deployment to heroku.
 
 Instructions
