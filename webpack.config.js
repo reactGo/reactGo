@@ -1,4 +1,5 @@
 var path = require("path");
+var webpack = require("webpack");
 
 var commonLoaders = [
 	{ test: /\.js$/, loader: "jsx-loader" },
@@ -18,7 +19,10 @@ var publicPath = "assets/";
 module.exports = {
 	name: "browser",
 	// The entry point of the bundle
-	entry: "./app/app.js",
+	entry: {
+		app: "./app/app.js",
+		vendor: ['jquery', 'lodash', 'react']
+	},
 	output: {
 		// The output directory as absolute path
 		path: assetsPath,
@@ -28,6 +32,9 @@ module.exports = {
 		publicPath: publicPath
 
 	},
+	plugins: [
+		new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* fileName= */"vendor.bundle.js")
+	],
 	module: {
 		loaders: commonLoaders
 	}
