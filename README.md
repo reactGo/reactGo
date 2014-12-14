@@ -35,6 +35,8 @@ Deploying to Heroku
 2. `heroku app:rename newname` if you need to
 3. Run `webpack` . Commit and push the changes (I know, not the best idea).
 4. `git push heroku master`
+
+Note: If you are working from a different machine and get `heroku does not appear to be a remote repository` message, be sure to run `git remote add heroku git@heroku.com:appname.git`.
 5. `heroku open` to open the link
 6. If you wish to have a database setup on Heroku, remember to use `heroku addons:add mongohq` or `heroku addons:add mongolab`. 
 
