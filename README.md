@@ -3,8 +3,15 @@ react-webpack-node
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-Boilerplate for React application with webpack using Facebook's Flux running on a node express server. Does not have server-side rendering yet.
-Includes a Procfile to enable deployment to heroku.
+Boilerplate for React application with webpack using Facebook's Flux running on a node express server. 
+
+Features:
+==========
+1. Uses Flux pattern for Front End
+2. Simple webpack config file ( Includes code splitting )
+3. Running on Express and socket.io
+4. Mongoose for MongoDB
+5. Includes a Procfile to enable deployment to heroku.
 
 Instructions
 ================
@@ -36,6 +43,7 @@ Todo:
 1. Include an easy set up for database (postgresql).
 2. Include sass stylesheets for components. For good structure.
 Currently it is still a css file in the header. Still not large enough to warrant a warning that the [above-the-fold](https://developers.google.com/speed/docs/insights/PrioritizeVisibleContent) content of the page is too large.
-3. Let me know!
+3. Passport auth with express
+4. Let me know!
 
 Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app), [flux-examples](https://github.com/facebook/flux/tree/master/examples) and [node-express-mongo-demo](https://github.com/madhums/node-express-mongoose-demo).

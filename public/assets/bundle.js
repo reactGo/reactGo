@@ -11,6 +11,7 @@ webpackJsonp([0],{
 
 	// Get all topics from server via Ajax call. This will create an action that will be dispatched to the Store.
 	TopicWebAPIUtils.getAllTopics();
+	TopicWebAPIUtils.listenToTopicChanges();
 
 	React.render(
 		React.createElement(Application, {message: "Welcome to Planet Bumi"}),
@@ -40,11 +41,11 @@ webpackJsonp([0],{
 	 * what they need. In addition to keeping the controller-like behavior at the top of the hierarchy, and thus keeping our descendant 
 	 */
 
-	var Header = __webpack_require__(9);
-	var SideSection = __webpack_require__(10);
-	var MainSection = __webpack_require__(11);
+	var Header = __webpack_require__(7);
+	var SideSection = __webpack_require__(8);
+	var MainSection = __webpack_require__(9);
 	var React = __webpack_require__(1);
-	var Store = __webpack_require__(12);
+	var Store = __webpack_require__(10);
 
 	function getState() {
 		return {
@@ -96,7 +97,7 @@ webpackJsonp([0],{
 /***/ function(module, exports, __webpack_require__) {
 
 	var $ = __webpack_require__(2);
-	var ServerActions = __webpack_require__(7);
+	var ServerActions = __webpack_require__(11);
 
 	// Placing configuration here, might consider moving it elsewhere
 	var defaultConfig = {
@@ -154,6 +155,21 @@ webpackJsonp([0],{
 				}, function(jqXHR, textStatus, errorThrown) {
 					console.log(errorThrown);
 				});
+		},
+
+		/**
+		 * Listens to the 'topic change' event emitted by the server
+		 * Whenever another client makes a change. This triggers us to call
+		 * the getAllTopics() function. 
+		 */
+		listenToTopicChanges: function() {
+			var hostname = document.location.hostname;
+			var socket = io.connect('//' + hostname);
+			var _this = this;
+			socket.on('topic change', function() {
+				_this.getAllTopics();
+				console.log('I was called because there was a topic change');
+			});
 		}
 	};
 
@@ -162,33 +178,11 @@ webpackJsonp([0],{
 /***/ 7:
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(42);
-	var Constants = __webpack_require__(43);
-
-	var ServerActions = {
-		/**
-		 * @param {Object} json object
-		 */
-		receiveCreatedTopics: function(data) {
-			AppDispatcher.handleServerAction({
-				actionType: Constants.RECEIVE_RAW_TOPICS,
-				data: data
-			});
-		}
-	};
-
-	module.exports = ServerActions;
-
-/***/ },
-
-/***/ 9:
-/***/ function(module, exports, __webpack_require__) {
-
 	/** @jsx React.DOM */
 	var React = __webpack_require__(1);
 	var Actions = __webpack_require__(37);
-	var TopicTextInput = __webpack_require__(38);
-	var Statistics = __webpack_require__(39);
+	var TopicTextInput = __webpack_require__(39);
+	var Statistics = __webpack_require__(40);
 
 	var Header = React.createClass({displayName: 'Header',
 
@@ -229,14 +223,14 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 10:
+/***/ 8:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
 	var React = __webpack_require__(1);
 	var ReactPropTypes = React.PropTypes;
 	var Actions = __webpack_require__(37);
-	var TopicCountItem = __webpack_require__(40);
+	var TopicCountItem = __webpack_require__(38);
 	var _ = __webpack_require__(3);
 
 	var SideSection = React.createClass({displayName: 'SideSection',
@@ -278,7 +272,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 11:
+/***/ 9:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
@@ -325,12 +319,12 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 12:
+/***/ 10:
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(42);
+	var AppDispatcher = __webpack_require__(43);
 	var EventEmitter = __webpack_require__(103).EventEmitter;
-	var Constants = __webpack_require__(43);
+	var Constants = __webpack_require__(44);
 	var TopicWebAPIUtils = __webpack_require__(5);
 	var assign = __webpack_require__(104);
 	var _ = __webpack_require__(3);
@@ -515,11 +509,33 @@ webpackJsonp([0],{
 
 /***/ },
 
+/***/ 11:
+/***/ function(module, exports, __webpack_require__) {
+
+	var AppDispatcher = __webpack_require__(43);
+	var Constants = __webpack_require__(44);
+
+	var ServerActions = {
+		/**
+		 * @param {Object} json object
+		 */
+		receiveCreatedTopics: function(data) {
+			AppDispatcher.handleServerAction({
+				actionType: Constants.RECEIVE_RAW_TOPICS,
+				data: data
+			});
+		}
+	};
+
+	module.exports = ServerActions;
+
+/***/ },
+
 /***/ 37:
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(42);
-	var Constants = __webpack_require__(43);
+	var AppDispatcher = __webpack_require__(43);
+	var Constants = __webpack_require__(44);
 
 	var Actions = {
 
@@ -617,6 +633,27 @@ webpackJsonp([0],{
 
 	/** @jsx React.DOM */
 	var React = __webpack_require__(1);
+
+	var TopicCountItem = React.createClass({displayName: 'TopicCountItem',
+		render: function(){
+			return (
+				React.createElement("li", {key: this.props.key}, 
+					React.createElement("span", {className: "title"}, this.props.title), 
+					React.createElement("span", {className: "count"}, this.props.count)
+				)
+			);
+		}
+	});
+
+	module.exports = TopicCountItem;
+
+/***/ },
+
+/***/ 39:
+/***/ function(module, exports, __webpack_require__) {
+
+	/** @jsx React.DOM */
+	var React = __webpack_require__(1);
 	var ReactPropTypes = React.PropTypes;
 
 	var ENTER_KEY_CODE = 13;
@@ -691,7 +728,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 39:
+/***/ 40:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
@@ -711,27 +748,6 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 40:
-/***/ function(module, exports, __webpack_require__) {
-
-	/** @jsx React.DOM */
-	var React = __webpack_require__(1);
-
-	var TopicCountItem = React.createClass({displayName: 'TopicCountItem',
-		render: function(){
-			return (
-				React.createElement("li", {key: this.props.key}, 
-					React.createElement("span", {className: "title"}, this.props.title), 
-					React.createElement("span", {className: "count"}, this.props.count)
-				)
-			);
-		}
-	});
-
-	module.exports = TopicCountItem;
-
-/***/ },
-
 /***/ 41:
 /***/ function(module, exports, __webpack_require__) {
 
@@ -739,7 +755,7 @@ webpackJsonp([0],{
 	var React = __webpack_require__(1);
 	var ReactPropTypes = React.PropTypes;
 	var Actions = __webpack_require__(37);
-	var TopicTextInput = __webpack_require__(38);
+	var TopicTextInput = __webpack_require__(39);
 
 	var cx = __webpack_require__(105);
 
@@ -831,7 +847,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 42:
+/***/ 43:
 /***/ function(module, exports, __webpack_require__) {
 
 	var Dispatcher = __webpack_require__(151).Dispatcher;
@@ -863,7 +879,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 43:
+/***/ 44:
 /***/ function(module, exports, __webpack_require__) {
 
 	var keymirror = __webpack_require__(152);

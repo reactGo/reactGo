@@ -57,5 +57,20 @@ module.exports = {
 			}, function(jqXHR, textStatus, errorThrown) {
 				console.log(errorThrown);
 			});
+	},
+
+	/**
+	 * Listens to the 'topic change' event emitted by the server
+	 * Whenever another client makes a change. This triggers us to call
+	 * the getAllTopics() function. 
+	 */
+	listenToTopicChanges: function() {
+		var hostname = document.location.hostname;
+		var socket = io.connect('//' + hostname);
+		var _this = this;
+		socket.on('topic change', function() {
+			_this.getAllTopics();
+			console.log('I was called because there was a topic change');
+		});
 	}
 };
