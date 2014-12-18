@@ -6,6 +6,10 @@ react-webpack-node
 Boilerplate for React application with webpack using Facebook's Flux running on a node express server. Does not have server-side rendering yet.
 Includes a Procfile to enable deployment to heroku.
 
+Mission
+=================
+The aim of this repo is to incorporate the best practices to building a powerful website with Reactjs and Node.
+
 Instructions
 ================
 1. `npm install`
@@ -34,8 +38,16 @@ Deploying to Heroku
 Todo:
 ================
 1. Include an easy set up for database (postgresql).
-2. Include sass stylesheets for components. For good structure.
-Currently it is still a css file in the header. Still not large enough to warrant a warning that the [above-the-fold](https://developers.google.com/speed/docs/insights/PrioritizeVisibleContent) content of the page is too large.
-3. Let me know!
+2. Include sass stylesheets for components.
+Currently it is still an external css file in the header. Still not large enough to warrant a warning that the [above-the-fold](https://developers.google.com/speed/docs/insights/PrioritizeVisibleContent) content of the page is too large.
+3. Improve webpack config for good build and webpack --watch
+4. Perhaps include a gulpfile.js (if webpack functionality does not suffice).
+5. Let me know!
 
-Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app), [flux-examples](https://github.com/facebook/flux/tree/master/examples) and [node-express-mongo-demo](https://github.com/madhums/node-express-mongoose-demo).
+How to Contribute:
+=================
+1. As this repo is still in its baby stages, any suggestions/improvements/bugs can be in the form of Pull Requests, or creating an issue.
+
+
+
+Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app), [flux-examples](https://github.com/facebook/flux/tree/master/examples), [node-express-mongo-demo](https://github.com/madhums/node-express-mongoose-demo) and [web-starter-kit](https://github.com/google/web-starter-kit).
