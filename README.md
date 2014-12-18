@@ -3,8 +3,15 @@ react-webpack-node
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-Boilerplate for React application with webpack using Facebook's Flux running on a node express server. Does not have server-side rendering yet.
-Includes a Procfile to enable deployment to heroku.
+Boilerplate for React application with webpack using Facebook's Flux running on a node express server.
+
+Features:
+==========
+1. Uses Flux pattern for Front End
+2. Simple webpack config file ( Includes code splitting )
+3. Running on Express and socket.io
+4. Mongoose for MongoDB
+5. Includes a Procfile to enable deployment to heroku.
 
 Mission
 =================
@@ -32,6 +39,9 @@ Deploying to Heroku
 2. `heroku app:rename newname` if you need to
 3. Run `webpack` . Commit and push the changes (I know, not the best idea).
 4. `git push heroku master`
+
+  Note: If you are working from a different machine and get `heroku does not appear to be a remote repository`     message, be sure to run `git remote add heroku git@heroku.com:appname.git`.
+
 5. `heroku open` to open the link
 6. If you wish to have a database setup on Heroku, remember to use `heroku addons:add mongohq` or `heroku addons:add mongolab`. 
 
@@ -42,12 +52,11 @@ Todo:
 Currently it is still an external css file in the header. Still not large enough to warrant a warning that the [above-the-fold](https://developers.google.com/speed/docs/insights/PrioritizeVisibleContent) content of the page is too large.
 3. Improve webpack config for good build and webpack --watch
 4. Perhaps include a gulpfile.js (if webpack functionality does not suffice).
-5. Let me know!
+5. Passport auth with express
+6. Let me know!
 
 How to Contribute:
 =================
 1. As this repo is still in its baby stages, any suggestions/improvements/bugs can be in the form of Pull Requests, or creating an issue.
-
-
 
 Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app), [flux-examples](https://github.com/facebook/flux/tree/master/examples), [node-express-mongo-demo](https://github.com/madhums/node-express-mongoose-demo) and [web-starter-kit](https://github.com/google/web-starter-kit).
