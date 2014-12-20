@@ -1,0 +1,233 @@
+/*
+ * HTML5 Boilerplate
+ *
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+html, button, input, select, textarea {
+  color: #222; }
+
+body {
+  font-size: 1em;
+  line-height: 1.4; }
+
+a {
+  color: #00e; }
+
+a:visited {
+  color: #551a8b; }
+
+a:hover {
+  color: #06e; }
+
+/*
+ * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
+ */
+img {
+  vertical-align: middle; }
+
+/*
+ * Remove default fieldset styles.
+ */
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0; }
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+textarea {
+  resize: vertical; }
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+/* Prevent callout */
+.nocallout {
+  -webkit-touch-callout: none; }
+
+.pressed {
+  background-color: rgba(0, 0, 0, 0.7); }
+
+/* A hack for HTML5 contenteditable attribute on mobile */
+textarea[contenteditable] {
+  -webkit-appearance: none; }
+
+/* A workaround for S60 3.x and 5.0 devices which do not animated gif images if
+   they have been set as display: none */
+.gifhidden {
+  position: absolute;
+  left: -100%; }
+
+/*
+ * Image replacement
+ */
+.ir {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: 0;
+  direction: ltr;
+  display: block;
+  overflow: hidden;
+  text-align: left;
+  text-indent: -999em; }
+
+.ir br {
+  display: none; }
+
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+.hidden {
+  display: none !important;
+  visibility: hidden; }
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px; }
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto; }
+
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+.invisible {
+  visibility: hidden; }
+
+/**
+ * Clearfix helper
+ * Used to contain floats: h5bp.com/q
+ */
+.clearfix::before, .clearfix::after {
+  content: "";
+  display: table; }
+
+.clearfix::after {
+  clear: both; }
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   Theses examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+/** Font Face from Google Fonts **/
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 300;
+  src: url(/assets/fonts/RobotoCondensed-Regular.eot);
+  src: local('Roboto Condensed Regular'), local('RobotoCondensed-Regular'), url(/assets/fonts/RobotoCondensed-Regular.eot) format('embedded-opentype'), url(/assets/fonts/RobotoCondensed-Regular.woff) format('woff'); }
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/assets/fonts/RobotoCondensed-Regular.eot);
+  src: local('Roboto Condensed Regular'), local('RobotoCondensed-Regular'), url(/assets/fonts/RobotoCondensed-Regular.eot) format('embedded-opentype'), url(/assets/fonts/RobotoCondensed-Regular.woff) format('woff'); }
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 700;
+  src: url(/assets/fonts/RobotoCondensed-Bold.eot);
+  src: local('Roboto Condensed Regular'), local('RobotoCondensed-Bold'), url(/assets/fonts/RobotoCondensed-Bold.eot) format('embedded-opentype'), url(/assets/fonts/RobotoCondensed-Bold.woff) format('woff'); }
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: italic;
+  font-weight: 300;
+  src: url(/assets/fonts/RobotoCondensed-LightItalic.eot);
+  src: local('Roboto Condensed Light Italic'), local('RobotoCondensed-LightItalic'), url(/assets/fonts/RobotoCondensed-LightItalic.eot) format('embedded-opentype'), url(/assets/fonts/RobotoCondensed-LightItalic.woff) format('woff'); }
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: italic;
+  font-weight: 400;
+  src: url(/assets/fonts/RobotoCondensed-Italic.eot);
+  src: local('Roboto Condensed Italic'), local('RobotoCondensed-Italic'), url(/assets/fonts/RobotoCondensed-Italic.eot) format('embedded-opentype'), url(/assets/fonts/RobotoCondensed-Italic.woff) format('woff'); }
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: italic;
+  font-weight: 700;
+  src: url(/assets/fonts/RobotoCondensed-BoldItalic.eot);
+  src: local('Roboto Condensed Bold Italic'), local('RobotoCondensed-BoldItalic'), url(/assets/fonts/RobotoCondensed-BoldItalic.eot) format('embedded-opentype'), url(/assets/fonts/RobotoCondensed-BoldItalic.woff) format('woff'); }
+
+/*
+Style Guide Lines. Remove if you prefer your own library
+ */
+body {
+  font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
+  font-weight: normal; }
+
+#header {
+  margin: 8px; }
+  #header h1 {
+    text-align: center; }
+
+#new-topic {
+  margin: 16px;
+  font-size: 16px;
+  height: 48px;
+  border: none;
+  border-bottom: 1px solid #757575; }
+
+#stat-section span {
+  padding: 8px 16px; }
+  #stat-section span.topic {
+    border-right: 1px solid rgba(0, 0, 0, 0.12); }
+
+#side-section {
+  width: 40%;
+  float: left;
+  border-radius: 2px;
+  margin: 8px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); }
+
+#main-section {
+  width: 50%;
+  float: left;
+  border-radius: 2px;
+  margin: 8px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); }
+
+#side-section ul, #main-section ul {
+  list-style: none;
+  padding: 16px; }
+  #side-section ul li, #main-section ul li {
+    padding: 16px; }
+    #side-section ul li span, #main-section ul li span {
+      display: inline-block;
+      font-size: 0.8em; }
+      #side-section ul li span.count, #main-section ul li span.count {
+        float: right;
+        margin-right: 8px;
+        padding: 4px;
+        background: #64B5F6;
+        border-radius: 4px; }
+#side-section h3, #main-section h3 {
+  padding: 16px; }

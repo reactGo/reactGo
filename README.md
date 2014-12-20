@@ -15,7 +15,7 @@ Features:
 
 Mission
 =================
-The aim of this repo is to incorporate the best practices to building a powerful website with Reactjs and Node.
+The aim of this repo is to incorporate the best practices to building a powerful apps with Reactjs and Node.
 
 Instructions
 ================
@@ -52,11 +52,13 @@ Todo:
 Currently it is still an external css file in the header. Still not large enough to warrant a warning that the [above-the-fold](https://developers.google.com/speed/docs/insights/PrioritizeVisibleContent) content of the page is too large.
 3. Improve webpack config for good build and webpack --watch
 4. Perhaps include a gulpfile.js (if webpack functionality does not suffice).
-5. Passport auth with express
-6. Let me know!
+5. Passport auth with express.
+6. Making the modules more extendible, so you can reuse them. 
+7. Consider using material-ui library in this repo
+8. Let me know!
 
 How to Contribute:
 =================
 1. As this repo is still in its baby stages, any suggestions/improvements/bugs can be in the form of Pull Requests, or creating an issue.
 
-Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app), [flux-examples](https://github.com/facebook/flux/tree/master/examples), [node-express-mongo-demo](https://github.com/madhums/node-express-mongoose-demo) and [web-starter-kit](https://github.com/google/web-starter-kit).
+Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app), [flux-examples](https://github.com/facebook/flux/tree/master/examples), [node-express-mongo-demo](https://github.com/madhums/node-express-mongoose-demo), [web-starter-kit](https://github.com/google/web-starter-kit) and [material-ui-sass](https://github.com/gpbl/material-ui-sass/).

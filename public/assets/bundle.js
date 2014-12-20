@@ -41,11 +41,12 @@ webpackJsonp([0],{
 	 * what they need. In addition to keeping the controller-like behavior at the top of the hierarchy, and thus keeping our descendant 
 	 */
 
-	var Header = __webpack_require__(7);
-	var SideSection = __webpack_require__(8);
-	var MainSection = __webpack_require__(9);
+	var Header = __webpack_require__(9);
+	var LeftNav = __webpack_require__(177);
+	var SideSection = __webpack_require__(11);
+	var MainSection = __webpack_require__(12);
 	var React = __webpack_require__(1);
-	var Store = __webpack_require__(10);
+	var Store = __webpack_require__(13);
 
 	function getState() {
 		return {
@@ -74,6 +75,7 @@ webpackJsonp([0],{
 		render: function(){
 			return (
 				React.createElement("div", null, 
+					React.createElement(LeftNav, null), 
 					React.createElement(Header, {topTopic: this.state.topTopic.text, topStat: this.state.topTopic.stat}), 
 					React.createElement(SideSection, {allTopics: this.state.allTopics}), 
 					React.createElement(MainSection, {allTopics: this.state.allTopics})
@@ -96,8 +98,8 @@ webpackJsonp([0],{
 /***/ 5:
 /***/ function(module, exports, __webpack_require__) {
 
-	var $ = __webpack_require__(2);
-	var ServerActions = __webpack_require__(11);
+	var $ = __webpack_require__(3);
+	var ServerActions = __webpack_require__(8);
 
 	// Placing configuration here, might consider moving it elsewhere
 	var defaultConfig = {
@@ -175,14 +177,36 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 7:
+/***/ 8:
+/***/ function(module, exports, __webpack_require__) {
+
+	var AppDispatcher = __webpack_require__(103);
+	var Constants = __webpack_require__(104);
+
+	var ServerActions = {
+		/**
+		 * @param {Object} json object
+		 */
+		receiveCreatedTopics: function(data) {
+			AppDispatcher.handleServerAction({
+				actionType: Constants.RECEIVE_RAW_TOPICS,
+				data: data
+			});
+		}
+	};
+
+	module.exports = ServerActions;
+
+/***/ },
+
+/***/ 9:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
 	var React = __webpack_require__(1);
-	var Actions = __webpack_require__(37);
-	var TopicTextInput = __webpack_require__(39);
-	var Statistics = __webpack_require__(40);
+	var Actions = __webpack_require__(40);
+	var TopicTextInput = __webpack_require__(42);
+	var Statistics = __webpack_require__(43);
 
 	var Header = React.createClass({displayName: 'Header',
 
@@ -223,15 +247,15 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 8:
+/***/ 11:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
 	var React = __webpack_require__(1);
 	var ReactPropTypes = React.PropTypes;
-	var Actions = __webpack_require__(37);
-	var TopicCountItem = __webpack_require__(38);
-	var _ = __webpack_require__(3);
+	var Actions = __webpack_require__(40);
+	var TopicCountItem = __webpack_require__(41);
+	var _ = __webpack_require__(2);
 
 	var SideSection = React.createClass({displayName: 'SideSection',
 
@@ -272,15 +296,15 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 9:
+/***/ 12:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
 	var React = __webpack_require__(1);
 	var ReactPropTypes = React.PropTypes;
-	var Actions = __webpack_require__(37);
-	var TopicItem = __webpack_require__(41);
-	var _ = __webpack_require__(3);
+	var Actions = __webpack_require__(40);
+	var TopicItem = __webpack_require__(44);
+	var _ = __webpack_require__(2);
 
 	var MainSection = React.createClass({displayName: 'MainSection',
 
@@ -319,15 +343,15 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 10:
+/***/ 13:
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(43);
-	var EventEmitter = __webpack_require__(103).EventEmitter;
-	var Constants = __webpack_require__(44);
+	var AppDispatcher = __webpack_require__(103);
+	var EventEmitter = __webpack_require__(105).EventEmitter;
+	var Constants = __webpack_require__(104);
 	var TopicWebAPIUtils = __webpack_require__(5);
-	var assign = __webpack_require__(104);
-	var _ = __webpack_require__(3);
+	var assign = __webpack_require__(106);
+	var _ = __webpack_require__(2);
 
 	var CHANGE_EVENT = 'change';
 
@@ -509,33 +533,55 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 11:
+/***/ 39:
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(43);
-	var Constants = __webpack_require__(44);
+	/**
+	 * Copyright 2013-2014, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule cx
+	 */
 
-	var ServerActions = {
-		/**
-		 * @param {Object} json object
-		 */
-		receiveCreatedTopics: function(data) {
-			AppDispatcher.handleServerAction({
-				actionType: Constants.RECEIVE_RAW_TOPICS,
-				data: data
-			});
-		}
-	};
+	/**
+	 * This function is used to mark string literals representing CSS class names
+	 * so that they can be transformed statically. This allows for modularization
+	 * and minification of CSS class names.
+	 *
+	 * In static_upstream, this function is actually implemented, but it should
+	 * eventually be replaced with something more descriptive, and the transform
+	 * that is used in the main stack should be ported for use elsewhere.
+	 *
+	 * @param string|object className to modularize, or an object of key/values.
+	 *                      In the object case, the values are conditions that
+	 *                      determine if the className keys should be included.
+	 * @param [string ...]  Variable list of classNames in the string case.
+	 * @return string       Renderable space-separated CSS className.
+	 */
+	function cx(classNames) {
+	  if (typeof classNames == 'object') {
+	    return Object.keys(classNames).filter(function(className) {
+	      return classNames[className];
+	    }).join(' ');
+	  } else {
+	    return Array.prototype.join.call(arguments, ' ');
+	  }
+	}
 
-	module.exports = ServerActions;
+	module.exports = cx;
+
 
 /***/ },
 
-/***/ 37:
+/***/ 40:
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(43);
-	var Constants = __webpack_require__(44);
+	var AppDispatcher = __webpack_require__(103);
+	var Constants = __webpack_require__(104);
 
 	var Actions = {
 
@@ -628,7 +674,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 38:
+/***/ 41:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
@@ -649,7 +695,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 39:
+/***/ 42:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
@@ -728,7 +774,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 40:
+/***/ 43:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
@@ -748,16 +794,16 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 41:
+/***/ 44:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
 	var React = __webpack_require__(1);
 	var ReactPropTypes = React.PropTypes;
-	var Actions = __webpack_require__(37);
-	var TopicTextInput = __webpack_require__(39);
+	var Actions = __webpack_require__(40);
+	var TopicTextInput = __webpack_require__(42);
 
-	var cx = __webpack_require__(105);
+	var cx = __webpack_require__(39);
 
 	var TopicItem = React.createClass({displayName: 'TopicItem',
 
@@ -847,11 +893,11 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 43:
+/***/ 103:
 /***/ function(module, exports, __webpack_require__) {
 
-	var Dispatcher = __webpack_require__(151).Dispatcher;
-	var assign = __webpack_require__(104);
+	var Dispatcher = __webpack_require__(159).Dispatcher;
+	var assign = __webpack_require__(106);
 
 	var AppDispatcher = assign(new Dispatcher(), {
 		/**
@@ -879,10 +925,10 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 44:
+/***/ 104:
 /***/ function(module, exports, __webpack_require__) {
 
-	var keymirror = __webpack_require__(152);
+	var keymirror = __webpack_require__(167);
 
 	module.exports = keymirror({
 		TOPIC_CREATE: null,
@@ -895,7 +941,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 103:
+/***/ 105:
 /***/ function(module, exports, __webpack_require__) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -1203,7 +1249,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 104:
+/***/ 106:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1247,51 +1293,204 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 105:
+/***/ 154:
 /***/ function(module, exports, __webpack_require__) {
 
-	/**
-	 * Copyright 2013-2014, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule cx
-	 */
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	var stylesInDom = {},
+		memoize = function(fn) {
+			var memo;
+			return function () {
+				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+				return memo;
+			};
+		},
+		isIE9 = memoize(function() {
+			return /msie 9\b/.test(window.navigator.userAgent.toLowerCase());
+		}),
+		getHeadElement = memoize(function () {
+			return document.head || document.getElementsByTagName("head")[0];
+		}),
+		singletonElement = null,
+		singletonCounter = 0;
 
-	/**
-	 * This function is used to mark string literals representing CSS class names
-	 * so that they can be transformed statically. This allows for modularization
-	 * and minification of CSS class names.
-	 *
-	 * In static_upstream, this function is actually implemented, but it should
-	 * eventually be replaced with something more descriptive, and the transform
-	 * that is used in the main stack should be ported for use elsewhere.
-	 *
-	 * @param string|object className to modularize, or an object of key/values.
-	 *                      In the object case, the values are conditions that
-	 *                      determine if the className keys should be included.
-	 * @param [string ...]  Variable list of classNames in the string case.
-	 * @return string       Renderable space-separated CSS className.
-	 */
-	function cx(classNames) {
-	  if (typeof classNames == 'object') {
-	    return Object.keys(classNames).filter(function(className) {
-	      return classNames[className];
-	    }).join(' ');
-	  } else {
-	    return Array.prototype.join.call(arguments, ' ');
-	  }
+	module.exports = function(list, options) {
+		if(false) {
+			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+		}
+
+		options = options || {};
+		// Force single-tag solution on IE9, which has a hard limit on the # of <style>
+		// tags it will allow on a page
+		if (typeof options.singleton === "undefined") options.singleton = isIE9();
+
+		var styles = listToStyles(list);
+		addStylesToDom(styles, options);
+
+		return function update(newList) {
+			var mayRemove = [];
+			for(var i = 0; i < styles.length; i++) {
+				var item = styles[i];
+				var domStyle = stylesInDom[item.id];
+				domStyle.refs--;
+				mayRemove.push(domStyle);
+			}
+			if(newList) {
+				var newStyles = listToStyles(newList);
+				addStylesToDom(newStyles, options);
+			}
+			for(var i = 0; i < mayRemove.length; i++) {
+				var domStyle = mayRemove[i];
+				if(domStyle.refs === 0) {
+					for(var j = 0; j < domStyle.parts.length; j++)
+						domStyle.parts[j]();
+					delete stylesInDom[domStyle.id];
+				}
+			}
+		};
 	}
 
-	module.exports = cx;
+	function addStylesToDom(styles, options) {
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			if(domStyle) {
+				domStyle.refs++;
+				for(var j = 0; j < domStyle.parts.length; j++) {
+					domStyle.parts[j](item.parts[j]);
+				}
+				for(; j < item.parts.length; j++) {
+					domStyle.parts.push(addStyle(item.parts[j], options));
+				}
+			} else {
+				var parts = [];
+				for(var j = 0; j < item.parts.length; j++) {
+					parts.push(addStyle(item.parts[j], options));
+				}
+				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+			}
+		}
+	}
+
+	function listToStyles(list) {
+		var styles = [];
+		var newStyles = {};
+		for(var i = 0; i < list.length; i++) {
+			var item = list[i];
+			var id = item[0];
+			var css = item[1];
+			var media = item[2];
+			var sourceMap = item[3];
+			var part = {css: css, media: media, sourceMap: sourceMap};
+			if(!newStyles[id])
+				styles.push(newStyles[id] = {id: id, parts: [part]});
+			else
+				newStyles[id].parts.push(part);
+		}
+		return styles;
+	}
+
+	function createStyleElement() {
+		var styleElement = document.createElement("style");
+		var head = getHeadElement();
+		styleElement.type = "text/css";
+		head.appendChild(styleElement);
+		return styleElement;
+	}
+
+	function addStyle(obj, options) {
+		var styleElement, update, remove;
+
+		if (options.singleton) {
+			var styleIndex = singletonCounter++;
+			styleElement = singletonElement || (singletonElement = createStyleElement());
+			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+		} else {
+			styleElement = createStyleElement();
+			update = applyToTag.bind(null, styleElement);
+			remove = function () {
+				styleElement.parentNode.removeChild(styleElement);
+			};
+		}
+
+		update(obj);
+
+		return function updateStyle(newObj) {
+			if(newObj) {
+				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+					return;
+				update(obj = newObj);
+			} else {
+				remove();
+			}
+		};
+	}
+
+	function replaceText(source, id, replacement) {
+		var boundaries = ["/** >>" + id + " **/", "/** " + id + "<< **/"];
+		var start = source.lastIndexOf(boundaries[0]);
+		var wrappedReplacement = replacement
+			? (boundaries[0] + replacement + boundaries[1])
+			: "";
+		if (source.lastIndexOf(boundaries[0]) >= 0) {
+			var end = source.lastIndexOf(boundaries[1]) + boundaries[1].length;
+			return source.slice(0, start) + wrappedReplacement + source.slice(end);
+		} else {
+			return source + wrappedReplacement;
+		}
+	}
+
+	function applyToSingletonTag(styleElement, index, remove, obj) {
+		var css = remove ? "" : obj.css;
+
+		if(styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = replaceText(styleElement.styleSheet.cssText, index, css);
+		} else {
+			var cssNode = document.createTextNode(css);
+			var childNodes = styleElement.childNodes;
+			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+			if (childNodes.length) {
+				styleElement.insertBefore(cssNode, childNodes[index]);
+			} else {
+				styleElement.appendChild(cssNode);
+			}
+		}
+	}
+
+	function applyToTag(styleElement, obj) {
+		var css = obj.css;
+		var media = obj.media;
+		var sourceMap = obj.sourceMap;
+
+		if(sourceMap && typeof btoa === "function") {
+			try {
+				css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(JSON.stringify(sourceMap)) + " */";
+				css = "@import url(\"data:stylesheet/css;base64," + btoa(css) + "\")";
+			} catch(e) {}
+		}
+
+		if(media) {
+			styleElement.setAttribute("media", media)
+		}
+
+		if(styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = css;
+		} else {
+			while(styleElement.firstChild) {
+				styleElement.removeChild(styleElement.firstChild);
+			}
+			styleElement.appendChild(document.createTextNode(css));
+		}
+	}
 
 
 /***/ },
 
-/***/ 151:
+/***/ 159:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1303,12 +1502,12 @@ webpackJsonp([0],{
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
 
-	module.exports.Dispatcher = __webpack_require__(164)
+	module.exports.Dispatcher = __webpack_require__(171)
 
 
 /***/ },
 
-/***/ 152:
+/***/ 167:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1368,7 +1567,29 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 164:
+/***/ 168:
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = function() {
+		var list = [];
+		list.toString = function toString() {
+			var result = [];
+			for(var i = 0; i < this.length; i++) {
+				var item = this[i];
+				if(item[2]) {
+					result.push("@media " + item[2] + "{" + item[1] + "}");
+				} else {
+					result.push(item[1]);
+				}
+			}
+			return result.join("");
+		};
+		return list;
+	}
+
+/***/ },
+
+/***/ 171:
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -1385,7 +1606,7 @@ webpackJsonp([0],{
 
 	"use strict";
 
-	var invariant = __webpack_require__(169);
+	var invariant = __webpack_require__(174);
 
 	var _lastID = 1;
 	var _prefix = 'ID_';
@@ -1625,7 +1846,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 169:
+/***/ 174:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1682,6 +1903,190 @@ webpackJsonp([0],{
 
 	module.exports = invariant;
 
+
+/***/ },
+
+/***/ 177:
+/***/ function(module, exports, __webpack_require__) {
+
+	/** @jsx React.DOM */
+
+	var React = __webpack_require__(1);
+	var cx = __webpack_require__(39);
+	var WindowListenable = __webpack_require__(180);
+	var ReactPropTypes = React.PropTypes;
+	var ESC_KEYCODE = 27;
+	__webpack_require__(182);
+
+	var LeftNav = React.createClass({displayName: 'LeftNav',
+		mixins: [WindowListenable],
+
+		propTypes: {
+			docked: ReactPropTypes.bool,
+			onChange: ReactPropTypes.func
+		},
+
+		windowListeners: {
+			'keyup': '_onWindowKeyUp'
+		},
+
+		getDefaultProps: function() {
+			return {
+				docked: true
+			};
+		},
+
+		getInitialState : function() {
+			return {
+				open : this.props.docked
+			};
+		},
+
+		toggle: function() {
+			this.setState({ open: !this.state.open });
+			return this;
+		},
+
+		close: function() {
+			this.setState({ open: false });
+			return this;
+		},
+
+		open: function() {
+			this.setState({ open: true });
+			return this;
+		},
+
+		
+		render : function() {
+			return (
+				React.createElement("div", {className: cx({
+					'mui-left-nav' : true,
+					'mui-left-nav--closed': !this.state.open,
+					'mui-left-nav--shown' : this.state.open
+					})}, 
+					React.createElement("button", {onClick: this._onTopNavButtonClick}, "Menu button")
+				)
+			);
+		},
+
+		_onTopNavButtonClick: function(evt) {
+			if(!this.props.docked) this.close();
+	   	 	this.toggle();
+		},
+
+		_onWindowKeyUp: function(evt) {
+			if(e.keyCode === ESC_KEYCODE && 
+				!this.props.docked && 
+				this.state.open) {
+				this.close();
+			}
+		}
+
+
+	});
+
+	module.exports = LeftNav;
+
+/***/ },
+
+/***/ 180:
+/***/ function(module, exports, __webpack_require__) {
+
+	/* This code was modified from https://github.com/callemall/material-ui/blob/master/src/js/mixins/window-listenable.js */
+
+	/* We are using our the events.js module here, instead of Node's Event Emitter module because this is specific to browser DOM elements */
+	var Events = __webpack_require__(181);
+	var _ = __webpack_require__(2);
+
+	module.exports = {
+
+		componentDidMount: function() {
+			var listeners = this.windowListeners;
+			_.forIn(listeners, function(eventListener, eventName) {
+				var callbackName = eventListener;
+				Events.on(window, eventName, this[callbackName]);
+			});
+		},
+
+		componentWillUnmount: function() {
+			var listeners = this.windowListeners;
+			_.forIn(listeners, function(eventListener, eventName) {
+				var callbackName = eventListener;
+				Events.off(window, eventName, this[callbackName]);
+			});
+		}
+	};
+
+/***/ },
+
+/***/ 181:
+/***/ function(module, exports, __webpack_require__) {
+
+	/* This code was modified from https://github.com/callemall/material-ui/blob/master/src/js/utils/events.js */
+	/* Modified to include IE8+ support */
+	module.exports = {
+		once: function(el, type, callback) {
+			var typeArray = type.split(' ');
+			var recursiveFunction = function(e){
+				e.target.removeEventListener(e.type, recursiveFunction);
+				return callback(e);
+			};
+			for(var i = typeArray.length - 1; i > 0; i--) {
+				on(el, typeArray[i], recursiveFunction);
+			}
+		},
+
+		on: function(el, type, callback) {
+			if(el.addEventListener) {
+				el.addEventListener(type, callback);
+			} else {
+				el.attachEvent('on' + type, function() {
+					callback.call(el);
+				});
+			}
+		},
+
+		off: function(el, type, callback) {
+			if(el.removeEventListener) {
+				el.removeEventListener(type, callback);
+			} else {
+				el.detachEvent('on' + type, callback);
+			}
+		}
+	};
+
+/***/ },
+
+/***/ 182:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(183);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(154)(content, {});
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		module.hot.accept("!!/Users/choonkending/Documents/react-webpack-node/node_modules/css-loader/index.js!/Users/choonkending/Documents/react-webpack-node/node_modules/sass-loader/index.js?outputStyle=expanded&includePaths[]=/Users/choonkending/Documents/react-webpack-node/bower_components&includePaths[]=/Users/choonkending/Documents/react-webpack-node/node_modules!/Users/choonkending/Documents/react-webpack-node/scss/components/_mui-left-nav.scss", function() {
+			var newContent = require("!!/Users/choonkending/Documents/react-webpack-node/node_modules/css-loader/index.js!/Users/choonkending/Documents/react-webpack-node/node_modules/sass-loader/index.js?outputStyle=expanded&includePaths[]=/Users/choonkending/Documents/react-webpack-node/bower_components&includePaths[]=/Users/choonkending/Documents/react-webpack-node/node_modules!/Users/choonkending/Documents/react-webpack-node/scss/components/_mui-left-nav.scss");
+			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
+			update(newContent);
+		});
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 183:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(168)();
+	exports.push([module.id, ".mui-left-nav {\n  position: fixed;\n  height: 100%;\n  width: 250px;\n  z-index: 9;\n  top: 0px;\n  left: 0px;\n  background-color: rgba(0, 0, 0, 0);\n  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; }\n  .mui-left-nav--shown {\n    left: 0px;\n    background-color: #C9F0DD;\n    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; }\n  .mui-left-nav--closed {\n    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; }\n", ""]);
 
 /***/ }
 
