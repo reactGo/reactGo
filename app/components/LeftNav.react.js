@@ -1,17 +1,19 @@
 /** @jsx React.DOM */
 
 var React = require('react');
+var Paper = require('./Paper.react');
 var cx = require('react/lib/cx');
 var WindowListenable = require('../mixins/window-listenable');
 var ReactPropTypes = React.PropTypes;
 var ESC_KEYCODE = 27;
+
+// Requiring component scss for left nav
 require('../../scss/components/_mui-left-nav.scss');
 
 var LeftNav = React.createClass({
 	mixins: [WindowListenable],
 
 	propTypes: {
-		docked: ReactPropTypes.bool,
 		onChange: ReactPropTypes.func
 	},
 
@@ -25,52 +27,59 @@ var LeftNav = React.createClass({
 		};
 	},
 
+	componentWillUpdate: function(nextProps, nextState) {
+		console.log(JSON.stringify(nextProps));
+		console.log(JSON.stringify(nextState));
+	},
+
 	getInitialState : function() {
 		return {
-			open : this.props.docked
+			open : false
 		};
 	},
 
 	toggle: function() {
 		this.setState({ open: !this.state.open });
-		return this;
 	},
 
 	close: function() {
-		this.setState({ open: false });
-		return this;
+		this.setState({ 
+			open: false 
+		});
 	},
 
 	open: function() {
-		this.setState({ open: true });
-		return this;
+		this.setState({ 
+			open: true 
+		});
 	},
 
-	
 	render : function() {
+		
+		var classes = cx({
+				"mui-left-nav" : true,
+				"mui-left-nav--closed": !this.state.open
+				});
+		
 		return (
-			<div className={cx({
-				'mui-left-nav' : true,
-				'mui-left-nav--closed': !this.state.open,
-				'mui-left-nav--shown' : this.state.open
-				})}>
-				<button onClick={this._onTopNavButtonClick}>Menu button</button>
+			<div className={classes}>
+				<button onClick={this._onLeftNavButtonClick}>Click</button>
 			</div>
 		);
 	},
 
-	_onTopNavButtonClick: function(evt) {
-		if(!this.props.docked) this.close();
+	_onLeftNavButtonClick: function(evt) {
+		console.log('I have been clicked');
    	 	this.toggle();
+
 	},
 
-	_onWindowKeyUp: function(evt) {
-		if(e.keyCode === ESC_KEYCODE && 
-			!this.props.docked && 
-			this.state.open) {
-			this.close();
-		}
-	}
+	// _onWindowKeyUp: function(evt) {
+	// 	if(e.keyCode === ESC_KEYCODE && 
+	// 		this.state.open) {
+	// 		this.close();
+	// 	}
+	// }
 
 
 });

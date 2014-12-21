@@ -50,7 +50,7 @@ var App = React.createClass({
 	render: function(){
 		return (
 			<div>
-				<LeftNav />
+				<LeftNav/>
 				<Header topTopic={this.state.topTopic.text} topStat={this.state.topTopic.stat}/>
 				<SideSection allTopics={this.state.allTopics}/>
 				<MainSection allTopics={this.state.allTopics} />
