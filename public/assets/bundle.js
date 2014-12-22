@@ -5,7 +5,7 @@ webpackJsonp([0],{
 
 	/** @jsx React.DOM */
 
-	var React = __webpack_require__(1);
+	var React = __webpack_require__(2);
 	var Application = __webpack_require__(4);
 	var TopicWebAPIUtils = __webpack_require__(5);
 
@@ -45,7 +45,7 @@ webpackJsonp([0],{
 	var LeftNav = __webpack_require__(8);
 	var SideSection = __webpack_require__(9);
 	var MainSection = __webpack_require__(10);
-	var React = __webpack_require__(1);
+	var React = __webpack_require__(2);
 	var Store = __webpack_require__(11);
 
 	function getState() {
@@ -98,7 +98,7 @@ webpackJsonp([0],{
 /***/ 5:
 /***/ function(module, exports, __webpack_require__) {
 
-	var $ = __webpack_require__(2);
+	var $ = __webpack_require__(1);
 	var ServerActions = __webpack_require__(12);
 
 	// Placing configuration here, might consider moving it elsewhere
@@ -181,7 +181,7 @@ webpackJsonp([0],{
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
-	var React = __webpack_require__(1);
+	var React = __webpack_require__(2);
 	var Actions = __webpack_require__(38);
 	var TopicTextInput = __webpack_require__(39);
 	var Statistics = __webpack_require__(40);
@@ -230,10 +230,10 @@ webpackJsonp([0],{
 
 	/** @jsx React.DOM */
 
-	var React = __webpack_require__(1);
+	var React = __webpack_require__(2);
 	var Paper = __webpack_require__(41);
 	var cx = __webpack_require__(42);
-	var WindowListenable = __webpack_require__(46);
+	var WindowListenable = __webpack_require__(45);
 	var ReactPropTypes = React.PropTypes;
 	var ESC_KEYCODE = 27;
 
@@ -255,11 +255,6 @@ webpackJsonp([0],{
 			return {
 				docked: true
 			};
-		},
-
-		componentWillUpdate: function(nextProps, nextState) {
-			console.log(JSON.stringify(nextProps));
-			console.log(JSON.stringify(nextState));
 		},
 
 		getInitialState : function() {
@@ -293,23 +288,27 @@ webpackJsonp([0],{
 			
 			return (
 				React.createElement("div", {className: classes}, 
-					React.createElement("button", {onClick: this._onLeftNavButtonClick}, "Click")
+					React.createElement(Paper, {
+						className: "mui-left-nav-menu", 
+						zDepth: 2, 
+						rounded: false
+					}
+					), 
+					React.createElement("button", {onClick: this._onLeftNavButtonClick}, "Toggle Menu")
 				)
 			);
 		},
 
 		_onLeftNavButtonClick: function(evt) {
-			console.log('I have been clicked');
 	   	 	this.toggle();
-
 		},
 
-		// _onWindowKeyUp: function(evt) {
-		// 	if(e.keyCode === ESC_KEYCODE && 
-		// 		this.state.open) {
-		// 		this.close();
-		// 	}
-		// }
+		_onWindowKeyUp: function(evt) {
+			if(evt.keyCode === ESC_KEYCODE &&
+				this.state.open) {
+				this.close();
+			}
+		}
 
 
 	});
@@ -322,7 +321,7 @@ webpackJsonp([0],{
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
-	var React = __webpack_require__(1);
+	var React = __webpack_require__(2);
 	var ReactPropTypes = React.PropTypes;
 	var Actions = __webpack_require__(38);
 	var TopicCountItem = __webpack_require__(43);
@@ -371,7 +370,7 @@ webpackJsonp([0],{
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
-	var React = __webpack_require__(1);
+	var React = __webpack_require__(2);
 	var ReactPropTypes = React.PropTypes;
 	var Actions = __webpack_require__(38);
 	var TopicItem = __webpack_require__(44);
@@ -417,9 +416,9 @@ webpackJsonp([0],{
 /***/ 11:
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(47);
+	var AppDispatcher = __webpack_require__(46);
 	var EventEmitter = __webpack_require__(107).EventEmitter;
-	var Constants = __webpack_require__(48);
+	var Constants = __webpack_require__(47);
 	var TopicWebAPIUtils = __webpack_require__(5);
 	var assign = __webpack_require__(108);
 	var _ = __webpack_require__(3);
@@ -607,8 +606,8 @@ webpackJsonp([0],{
 /***/ 12:
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(47);
-	var Constants = __webpack_require__(48);
+	var AppDispatcher = __webpack_require__(46);
+	var Constants = __webpack_require__(47);
 
 	var ServerActions = {
 		/**
@@ -629,8 +628,8 @@ webpackJsonp([0],{
 /***/ 38:
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(47);
-	var Constants = __webpack_require__(48);
+	var AppDispatcher = __webpack_require__(46);
+	var Constants = __webpack_require__(47);
 
 	var Actions = {
 
@@ -727,7 +726,7 @@ webpackJsonp([0],{
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
-	var React = __webpack_require__(1);
+	var React = __webpack_require__(2);
 	var ReactPropTypes = React.PropTypes;
 
 	var ENTER_KEY_CODE = 13;
@@ -806,7 +805,7 @@ webpackJsonp([0],{
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
-	var React = __webpack_require__(1);
+	var React = __webpack_require__(2);
 	var Statistics = React.createClass({displayName: 'Statistics',
 		render: function(){
 			return (
@@ -835,7 +834,7 @@ webpackJsonp([0],{
 		(I still like it though, perhaps I will opt for a polyfill)
 		https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
 	 */
-	var React = __webpack_require__(1);
+	var React = __webpack_require__(2);
 	var cx = __webpack_require__(42);
 	var ReactPropTypes = React.PropTypes;
 
@@ -952,7 +951,7 @@ webpackJsonp([0],{
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
-	var React = __webpack_require__(1);
+	var React = __webpack_require__(2);
 
 	var TopicCountItem = React.createClass({displayName: 'TopicCountItem',
 		render: function(){
@@ -973,7 +972,7 @@ webpackJsonp([0],{
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
-	var React = __webpack_require__(1);
+	var React = __webpack_require__(2);
 	var ReactPropTypes = React.PropTypes;
 	var Actions = __webpack_require__(38);
 	var TopicTextInput = __webpack_require__(39);
@@ -1068,7 +1067,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 46:
+/***/ 45:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* This code was modified from https://github.com/callemall/material-ui/blob/master/src/js/mixins/window-listenable.js */
@@ -1082,9 +1081,9 @@ webpackJsonp([0],{
 		componentDidMount: function() {
 			var listeners = this.windowListeners;
 			_.forIn(listeners, function(eventListener, eventName) {
-				var callbackName = eventListener;
+				var callbackName =  eventListener;
 				Events.on(window, eventName, this[callbackName]);
-			});
+			}, this);
 		},
 
 		componentWillUnmount: function() {
@@ -1092,13 +1091,13 @@ webpackJsonp([0],{
 			_.forIn(listeners, function(eventListener, eventName) {
 				var callbackName = eventListener;
 				Events.off(window, eventName, this[callbackName]);
-			});
+			}, this);
 		}
 	};
 
 /***/ },
 
-/***/ 47:
+/***/ 46:
 /***/ function(module, exports, __webpack_require__) {
 
 	var Dispatcher = __webpack_require__(160).Dispatcher;
@@ -1130,7 +1129,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 48:
+/***/ 47:
 /***/ function(module, exports, __webpack_require__) {
 
 	var keymirror = __webpack_require__(161);
@@ -1545,12 +1544,12 @@ webpackJsonp([0],{
 	var content = __webpack_require__(111);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(159)(content, {});
+	var update = __webpack_require__(114)(content, {});
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/ken/Documents/react-webpack-node/node_modules/css-loader/index.js!/home/ken/Documents/react-webpack-node/node_modules/sass-loader/index.js?outputStyle=expanded&includePaths[]=/home/ken/Documents/react-webpack-node/bower_components&includePaths[]=/home/ken/Documents/react-webpack-node/node_modules!/home/ken/Documents/react-webpack-node/scss/components/_mui-left-nav.scss", function() {
-			var newContent = require("!!/home/ken/Documents/react-webpack-node/node_modules/css-loader/index.js!/home/ken/Documents/react-webpack-node/node_modules/sass-loader/index.js?outputStyle=expanded&includePaths[]=/home/ken/Documents/react-webpack-node/bower_components&includePaths[]=/home/ken/Documents/react-webpack-node/node_modules!/home/ken/Documents/react-webpack-node/scss/components/_mui-left-nav.scss");
+		module.hot.accept("!!/Users/choonkending/Documents/react-webpack-node/node_modules/css-loader/index.js!/Users/choonkending/Documents/react-webpack-node/node_modules/sass-loader/index.js?outputStyle=expanded&includePaths[]=/Users/choonkending/Documents/react-webpack-node/bower_components&includePaths[]=/Users/choonkending/Documents/react-webpack-node/node_modules!/Users/choonkending/Documents/react-webpack-node/scss/components/_mui-left-nav.scss", function() {
+			var newContent = require("!!/Users/choonkending/Documents/react-webpack-node/node_modules/css-loader/index.js!/Users/choonkending/Documents/react-webpack-node/node_modules/sass-loader/index.js?outputStyle=expanded&includePaths[]=/Users/choonkending/Documents/react-webpack-node/bower_components&includePaths[]=/Users/choonkending/Documents/react-webpack-node/node_modules!/Users/choonkending/Documents/react-webpack-node/scss/components/_mui-left-nav.scss");
 			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
 			update(newContent);
 		});
@@ -1564,7 +1563,7 @@ webpackJsonp([0],{
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(173)();
-	exports.push([module.id, ".mui-left-nav .mui-left-nav-menu {\n  height: 100%;\n  position: fixed;\n  width: 250px;\n  background-color: rgba(0, 0, 0, 0);\n  z-index: 10;\n  left: 0px;\n  top: 0px;\n  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; }\n.mui-left-nav--closed .mui-left-nav-menu {\n  transform: translate3d(-250px, 0, 0); }\n", ""]);
+	exports.push([module.id, ".mui-left-nav .mui-left-nav-menu {\n  height: 100%;\n  position: fixed;\n  width: 250px;\n  background-color: #44B78B;\n  z-index: 10;\n  left: 0px;\n  top: 0px;\n  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; }\n.mui-left-nav--closed .mui-left-nav-menu {\n  transform: translate3d(-250px, 0, 0); }\n.mui-left-nav button {\n  margin-left: 270px; }\n", ""]);
 
 /***/ },
 
@@ -1577,12 +1576,12 @@ webpackJsonp([0],{
 	var content = __webpack_require__(113);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(159)(content, {});
+	var update = __webpack_require__(114)(content, {});
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/home/ken/Documents/react-webpack-node/node_modules/css-loader/index.js!/home/ken/Documents/react-webpack-node/node_modules/sass-loader/index.js?outputStyle=expanded&includePaths[]=/home/ken/Documents/react-webpack-node/bower_components&includePaths[]=/home/ken/Documents/react-webpack-node/node_modules!/home/ken/Documents/react-webpack-node/scss/components/_paper.scss", function() {
-			var newContent = require("!!/home/ken/Documents/react-webpack-node/node_modules/css-loader/index.js!/home/ken/Documents/react-webpack-node/node_modules/sass-loader/index.js?outputStyle=expanded&includePaths[]=/home/ken/Documents/react-webpack-node/bower_components&includePaths[]=/home/ken/Documents/react-webpack-node/node_modules!/home/ken/Documents/react-webpack-node/scss/components/_paper.scss");
+		module.hot.accept("!!/Users/choonkending/Documents/react-webpack-node/node_modules/css-loader/index.js!/Users/choonkending/Documents/react-webpack-node/node_modules/sass-loader/index.js?outputStyle=expanded&includePaths[]=/Users/choonkending/Documents/react-webpack-node/bower_components&includePaths[]=/Users/choonkending/Documents/react-webpack-node/node_modules!/Users/choonkending/Documents/react-webpack-node/scss/components/_paper.scss", function() {
+			var newContent = require("!!/Users/choonkending/Documents/react-webpack-node/node_modules/css-loader/index.js!/Users/choonkending/Documents/react-webpack-node/node_modules/sass-loader/index.js?outputStyle=expanded&includePaths[]=/Users/choonkending/Documents/react-webpack-node/bower_components&includePaths[]=/Users/choonkending/Documents/react-webpack-node/node_modules!/Users/choonkending/Documents/react-webpack-node/scss/components/_paper.scss");
 			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
 			update(newContent);
 		});
@@ -1600,7 +1599,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 159:
+/***/ 114:
 /***/ function(module, exports, __webpack_require__) {
 
 	/*

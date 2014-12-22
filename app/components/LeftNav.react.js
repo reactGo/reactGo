@@ -27,11 +27,6 @@ var LeftNav = React.createClass({
 		};
 	},
 
-	componentWillUpdate: function(nextProps, nextState) {
-		console.log(JSON.stringify(nextProps));
-		console.log(JSON.stringify(nextState));
-	},
-
 	getInitialState : function() {
 		return {
 			open : false
@@ -63,23 +58,27 @@ var LeftNav = React.createClass({
 		
 		return (
 			<div className={classes}>
-				<button onClick={this._onLeftNavButtonClick}>Click</button>
+				<Paper
+					className="mui-left-nav-menu"
+					zDepth={2}
+					rounded={false}
+				>
+				</Paper>
+				<button onClick={this._onLeftNavButtonClick}>Toggle Menu</button>
 			</div>
 		);
 	},
 
 	_onLeftNavButtonClick: function(evt) {
-		console.log('I have been clicked');
    	 	this.toggle();
-
 	},
 
-	// _onWindowKeyUp: function(evt) {
-	// 	if(e.keyCode === ESC_KEYCODE && 
-	// 		this.state.open) {
-	// 		this.close();
-	// 	}
-	// }
+	_onWindowKeyUp: function(evt) {
+		if(evt.keyCode === ESC_KEYCODE &&
+			this.state.open) {
+			this.close();
+		}
+	}
 
 
 });

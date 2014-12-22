@@ -3,7 +3,7 @@
 		height: 100%;
 		position: fixed;
 		width: 250px;
-		background-color: rgba(0, 0, 0, 0);
+		background-color: #44B78B;
 		z-index: 10;
 		left: 0px;
 		top: 0px;
@@ -14,5 +14,9 @@
 		.mui-left-nav-menu {
 			transform: translate3d(-250px, 0, 0);
 		}
+	}
+	// Adding this in as a POC
+	button {
+		margin-left: 270px;
 	}
 }
