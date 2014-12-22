@@ -9,9 +9,9 @@ module.exports = {
 	componentDidMount: function() {
 		var listeners = this.windowListeners;
 		_.forIn(listeners, function(eventListener, eventName) {
-			var callbackName = eventListener;
+			var callbackName =  eventListener;
 			Events.on(window, eventName, this[callbackName]);
-		});
+		}, this);
 	},
 
 	componentWillUnmount: function() {
@@ -19,6 +19,6 @@ module.exports = {
 		_.forIn(listeners, function(eventListener, eventName) {
 			var callbackName = eventListener;
 			Events.off(window, eventName, this[callbackName]);
-		});
+		}, this);
 	}
 };

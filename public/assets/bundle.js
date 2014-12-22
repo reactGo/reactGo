@@ -5,7 +5,7 @@ webpackJsonp([0],{
 
 	/** @jsx React.DOM */
 
-	var React = __webpack_require__(1);
+	var React = __webpack_require__(2);
 	var Application = __webpack_require__(4);
 	var TopicWebAPIUtils = __webpack_require__(5);
 
@@ -41,12 +41,12 @@ webpackJsonp([0],{
 	 * what they need. In addition to keeping the controller-like behavior at the top of the hierarchy, and thus keeping our descendant 
 	 */
 
-	var Header = __webpack_require__(9);
-	var LeftNav = __webpack_require__(177);
-	var SideSection = __webpack_require__(11);
-	var MainSection = __webpack_require__(12);
-	var React = __webpack_require__(1);
-	var Store = __webpack_require__(13);
+	var Header = __webpack_require__(7);
+	var LeftNav = __webpack_require__(8);
+	var SideSection = __webpack_require__(9);
+	var MainSection = __webpack_require__(10);
+	var React = __webpack_require__(2);
+	var Store = __webpack_require__(11);
 
 	function getState() {
 		return {
@@ -98,8 +98,8 @@ webpackJsonp([0],{
 /***/ 5:
 /***/ function(module, exports, __webpack_require__) {
 
-	var $ = __webpack_require__(3);
-	var ServerActions = __webpack_require__(8);
+	var $ = __webpack_require__(1);
+	var ServerActions = __webpack_require__(12);
 
 	// Placing configuration here, might consider moving it elsewhere
 	var defaultConfig = {
@@ -177,36 +177,14 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 8:
-/***/ function(module, exports, __webpack_require__) {
-
-	var AppDispatcher = __webpack_require__(103);
-	var Constants = __webpack_require__(104);
-
-	var ServerActions = {
-		/**
-		 * @param {Object} json object
-		 */
-		receiveCreatedTopics: function(data) {
-			AppDispatcher.handleServerAction({
-				actionType: Constants.RECEIVE_RAW_TOPICS,
-				data: data
-			});
-		}
-	};
-
-	module.exports = ServerActions;
-
-/***/ },
-
-/***/ 9:
+/***/ 7:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
-	var React = __webpack_require__(1);
-	var Actions = __webpack_require__(40);
-	var TopicTextInput = __webpack_require__(42);
-	var Statistics = __webpack_require__(43);
+	var React = __webpack_require__(2);
+	var Actions = __webpack_require__(38);
+	var TopicTextInput = __webpack_require__(39);
+	var Statistics = __webpack_require__(40);
 
 	var Header = React.createClass({displayName: 'Header',
 
@@ -247,15 +225,107 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 11:
+/***/ 8:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
-	var React = __webpack_require__(1);
+
+	var React = __webpack_require__(2);
+	var Paper = __webpack_require__(41);
+	var cx = __webpack_require__(42);
+	var WindowListenable = __webpack_require__(45);
 	var ReactPropTypes = React.PropTypes;
-	var Actions = __webpack_require__(40);
-	var TopicCountItem = __webpack_require__(41);
-	var _ = __webpack_require__(2);
+	var ESC_KEYCODE = 27;
+
+	// Requiring component scss for left nav
+	__webpack_require__(110);
+
+	var LeftNav = React.createClass({displayName: 'LeftNav',
+		mixins: [WindowListenable],
+
+		propTypes: {
+			onChange: ReactPropTypes.func
+		},
+
+		windowListeners: {
+			'keyup': '_onWindowKeyUp'
+		},
+
+		getDefaultProps: function() {
+			return {
+				docked: true
+			};
+		},
+
+		getInitialState : function() {
+			return {
+				open : false
+			};
+		},
+
+		toggle: function() {
+			this.setState({ open: !this.state.open });
+		},
+
+		close: function() {
+			this.setState({ 
+				open: false 
+			});
+		},
+
+		open: function() {
+			this.setState({ 
+				open: true 
+			});
+		},
+
+		render : function() {
+			
+			var classes = cx({
+					"mui-left-nav" : true,
+					"mui-left-nav--closed": !this.state.open
+					});
+			
+			return (
+				React.createElement("div", {className: classes}, 
+					React.createElement(Paper, {
+						className: "mui-left-nav-menu", 
+						zDepth: 2, 
+						rounded: false
+					}
+					), 
+					React.createElement("button", {onClick: this._onLeftNavButtonClick}, "Toggle Menu")
+				)
+			);
+		},
+
+		_onLeftNavButtonClick: function(evt) {
+	   	 	this.toggle();
+		},
+
+		_onWindowKeyUp: function(evt) {
+			if(evt.keyCode === ESC_KEYCODE &&
+				this.state.open) {
+				this.close();
+			}
+		}
+
+
+	});
+
+	module.exports = LeftNav;
+
+/***/ },
+
+/***/ 9:
+/***/ function(module, exports, __webpack_require__) {
+
+	/** @jsx React.DOM */
+	var React = __webpack_require__(2);
+	var ReactPropTypes = React.PropTypes;
+	var Actions = __webpack_require__(38);
+	var TopicCountItem = __webpack_require__(43);
+	var _ = __webpack_require__(3);
 
 	var SideSection = React.createClass({displayName: 'SideSection',
 
@@ -296,15 +366,15 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 12:
+/***/ 10:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
-	var React = __webpack_require__(1);
+	var React = __webpack_require__(2);
 	var ReactPropTypes = React.PropTypes;
-	var Actions = __webpack_require__(40);
+	var Actions = __webpack_require__(38);
 	var TopicItem = __webpack_require__(44);
-	var _ = __webpack_require__(2);
+	var _ = __webpack_require__(3);
 
 	var MainSection = React.createClass({displayName: 'MainSection',
 
@@ -343,15 +413,15 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 13:
+/***/ 11:
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(103);
-	var EventEmitter = __webpack_require__(105).EventEmitter;
-	var Constants = __webpack_require__(104);
+	var AppDispatcher = __webpack_require__(46);
+	var EventEmitter = __webpack_require__(107).EventEmitter;
+	var Constants = __webpack_require__(47);
 	var TopicWebAPIUtils = __webpack_require__(5);
-	var assign = __webpack_require__(106);
-	var _ = __webpack_require__(2);
+	var assign = __webpack_require__(108);
+	var _ = __webpack_require__(3);
 
 	var CHANGE_EVENT = 'change';
 
@@ -533,55 +603,33 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 39:
+/***/ 12:
 /***/ function(module, exports, __webpack_require__) {
 
-	/**
-	 * Copyright 2013-2014, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule cx
-	 */
+	var AppDispatcher = __webpack_require__(46);
+	var Constants = __webpack_require__(47);
 
-	/**
-	 * This function is used to mark string literals representing CSS class names
-	 * so that they can be transformed statically. This allows for modularization
-	 * and minification of CSS class names.
-	 *
-	 * In static_upstream, this function is actually implemented, but it should
-	 * eventually be replaced with something more descriptive, and the transform
-	 * that is used in the main stack should be ported for use elsewhere.
-	 *
-	 * @param string|object className to modularize, or an object of key/values.
-	 *                      In the object case, the values are conditions that
-	 *                      determine if the className keys should be included.
-	 * @param [string ...]  Variable list of classNames in the string case.
-	 * @return string       Renderable space-separated CSS className.
-	 */
-	function cx(classNames) {
-	  if (typeof classNames == 'object') {
-	    return Object.keys(classNames).filter(function(className) {
-	      return classNames[className];
-	    }).join(' ');
-	  } else {
-	    return Array.prototype.join.call(arguments, ' ');
-	  }
-	}
+	var ServerActions = {
+		/**
+		 * @param {Object} json object
+		 */
+		receiveCreatedTopics: function(data) {
+			AppDispatcher.handleServerAction({
+				actionType: Constants.RECEIVE_RAW_TOPICS,
+				data: data
+			});
+		}
+	};
 
-	module.exports = cx;
-
+	module.exports = ServerActions;
 
 /***/ },
 
-/***/ 40:
+/***/ 38:
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(103);
-	var Constants = __webpack_require__(104);
+	var AppDispatcher = __webpack_require__(46);
+	var Constants = __webpack_require__(47);
 
 	var Actions = {
 
@@ -674,32 +722,11 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 41:
+/***/ 39:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
-	var React = __webpack_require__(1);
-
-	var TopicCountItem = React.createClass({displayName: 'TopicCountItem',
-		render: function(){
-			return (
-				React.createElement("li", {key: this.props.key}, 
-					React.createElement("span", {className: "title"}, this.props.title), 
-					React.createElement("span", {className: "count"}, this.props.count)
-				)
-			);
-		}
-	});
-
-	module.exports = TopicCountItem;
-
-/***/ },
-
-/***/ 42:
-/***/ function(module, exports, __webpack_require__) {
-
-	/** @jsx React.DOM */
-	var React = __webpack_require__(1);
+	var React = __webpack_require__(2);
 	var ReactPropTypes = React.PropTypes;
 
 	var ENTER_KEY_CODE = 13;
@@ -774,11 +801,11 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 43:
+/***/ 40:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
-	var React = __webpack_require__(1);
+	var React = __webpack_require__(2);
 	var Statistics = React.createClass({displayName: 'Statistics',
 		render: function(){
 			return (
@@ -794,16 +821,163 @@ webpackJsonp([0],{
 
 /***/ },
 
+/***/ 41:
+/***/ function(module, exports, __webpack_require__) {
+
+	/** @jsx React.DOM */
+
+	/* Modified from https://github.com/callemall/material-ui */
+	/* For more information about Paper, check out this http://material-ui.com/#/components/paper */
+	/* Modifications by Ken: 
+	 	- Using cx instead of the Classible mixin.
+		- Remove use of Destructuring Assignment because not many browsers support it yet. 
+		(I still like it though, perhaps I will opt for a polyfill)
+		https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+	 */
+	var React = __webpack_require__(2);
+	var cx = __webpack_require__(42);
+	var ReactPropTypes = React.PropTypes;
+
+	// Requiring the scss file for Paper within the module
+	__webpack_require__(112);
+	var Paper = React.createClass({displayName: 'Paper',
+
+		/*
+		 * circle: True if we want to generate a circular container
+		 * innerClassName: The paper container consists of 2 nested divs. 
+		 *	It's sometimes helpful to assign an className to the inner div for styling. 
+		 *	This property is the className for the inner div.
+		 * rounded: By default, the paper container will have a border radius. Set this to false for sharp corners.
+		 * zDepth: This number represents the depth of the paper shadow.
+		 */
+		propTypes: {
+			circle: ReactPropTypes.bool,
+			innerClassName: ReactPropTypes.string,
+			rounded: ReactPropTypes.bool,
+			zDepth: ReactPropTypes.oneOf([0,1,2,3,4,5])
+		},
+
+		getDefaultProps: function() {
+			return {
+				innerClassName: '',
+				rounded: true,
+				zDepth: 1
+			};
+		},
+
+		render: function() {
+			var circle = this.props.circle,
+				innerClassName = this.props.innerClassName,
+				rounded = this.props.rounded,
+				zDepth = this.props.zDepth,
+				className = this.props.className,
+				classes = cx({
+					'mui-paper': true,
+					'mui-paper--rounded': rounded,
+					'mui-paper--circle' : circle
+				}),
+				insideClasses = cx({
+					'mui-paper-container' : true,
+					'mui-z-depth-bottom' : true
+				});
+
+				// Adding z-depth to the classes
+				//'mui-paper--z-depth-' + zDepth,
+				classes = cx(className, classes, 'mui-paper--z-depth-' + zDepth);
+			return (
+				React.createElement("div", {className: classes}, 
+					React.createElement("div", {ref: "innerContainer", className: insideClasses}, 
+						this.props.children
+					)
+				)
+			);
+		},
+
+		getInnerContainer: function() {
+			return this.refs.innerContainer;
+		}
+
+	});
+
+	module.exports = Paper;
+
+/***/ },
+
+/***/ 42:
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2014, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule cx
+	 */
+
+	/**
+	 * This function is used to mark string literals representing CSS class names
+	 * so that they can be transformed statically. This allows for modularization
+	 * and minification of CSS class names.
+	 *
+	 * In static_upstream, this function is actually implemented, but it should
+	 * eventually be replaced with something more descriptive, and the transform
+	 * that is used in the main stack should be ported for use elsewhere.
+	 *
+	 * @param string|object className to modularize, or an object of key/values.
+	 *                      In the object case, the values are conditions that
+	 *                      determine if the className keys should be included.
+	 * @param [string ...]  Variable list of classNames in the string case.
+	 * @return string       Renderable space-separated CSS className.
+	 */
+	function cx(classNames) {
+	  if (typeof classNames == 'object') {
+	    return Object.keys(classNames).filter(function(className) {
+	      return classNames[className];
+	    }).join(' ');
+	  } else {
+	    return Array.prototype.join.call(arguments, ' ');
+	  }
+	}
+
+	module.exports = cx;
+
+
+/***/ },
+
+/***/ 43:
+/***/ function(module, exports, __webpack_require__) {
+
+	/** @jsx React.DOM */
+	var React = __webpack_require__(2);
+
+	var TopicCountItem = React.createClass({displayName: 'TopicCountItem',
+		render: function(){
+			return (
+				React.createElement("li", {key: this.props.key}, 
+					React.createElement("span", {className: "title"}, this.props.title), 
+					React.createElement("span", {className: "count"}, this.props.count)
+				)
+			);
+		}
+	});
+
+	module.exports = TopicCountItem;
+
+/***/ },
+
 /***/ 44:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
-	var React = __webpack_require__(1);
+	var React = __webpack_require__(2);
 	var ReactPropTypes = React.PropTypes;
-	var Actions = __webpack_require__(40);
-	var TopicTextInput = __webpack_require__(42);
+	var Actions = __webpack_require__(38);
+	var TopicTextInput = __webpack_require__(39);
 
-	var cx = __webpack_require__(39);
+	var cx = __webpack_require__(42);
 
 	var TopicItem = React.createClass({displayName: 'TopicItem',
 
@@ -893,11 +1067,41 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 103:
+/***/ 45:
 /***/ function(module, exports, __webpack_require__) {
 
-	var Dispatcher = __webpack_require__(159).Dispatcher;
-	var assign = __webpack_require__(106);
+	/* This code was modified from https://github.com/callemall/material-ui/blob/master/src/js/mixins/window-listenable.js */
+
+	/* We are using our the events.js module here, instead of Node's Event Emitter module because this is specific to browser DOM elements */
+	var Events = __webpack_require__(109);
+	var _ = __webpack_require__(3);
+
+	module.exports = {
+
+		componentDidMount: function() {
+			var listeners = this.windowListeners;
+			_.forIn(listeners, function(eventListener, eventName) {
+				var callbackName =  eventListener;
+				Events.on(window, eventName, this[callbackName]);
+			}, this);
+		},
+
+		componentWillUnmount: function() {
+			var listeners = this.windowListeners;
+			_.forIn(listeners, function(eventListener, eventName) {
+				var callbackName = eventListener;
+				Events.off(window, eventName, this[callbackName]);
+			}, this);
+		}
+	};
+
+/***/ },
+
+/***/ 46:
+/***/ function(module, exports, __webpack_require__) {
+
+	var Dispatcher = __webpack_require__(160).Dispatcher;
+	var assign = __webpack_require__(108);
 
 	var AppDispatcher = assign(new Dispatcher(), {
 		/**
@@ -925,10 +1129,10 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 104:
+/***/ 47:
 /***/ function(module, exports, __webpack_require__) {
 
-	var keymirror = __webpack_require__(167);
+	var keymirror = __webpack_require__(161);
 
 	module.exports = keymirror({
 		TOPIC_CREATE: null,
@@ -941,7 +1145,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 105:
+/***/ 107:
 /***/ function(module, exports, __webpack_require__) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -1249,7 +1453,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 106:
+/***/ 108:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1293,7 +1497,109 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 154:
+/***/ 109:
+/***/ function(module, exports, __webpack_require__) {
+
+	/* This code was modified from https://github.com/callemall/material-ui/blob/master/src/js/utils/events.js */
+	/* Modified to include IE8+ support */
+	module.exports = {
+		once: function(el, type, callback) {
+			var typeArray = type.split(' ');
+			var recursiveFunction = function(e){
+				e.target.removeEventListener(e.type, recursiveFunction);
+				return callback(e);
+			};
+			for(var i = typeArray.length - 1; i > 0; i--) {
+				on(el, typeArray[i], recursiveFunction);
+			}
+		},
+
+		on: function(el, type, callback) {
+			if(el.addEventListener) {
+				el.addEventListener(type, callback);
+			} else {
+				el.attachEvent('on' + type, function() {
+					callback.call(el);
+				});
+			}
+		},
+
+		off: function(el, type, callback) {
+			if(el.removeEventListener) {
+				el.removeEventListener(type, callback);
+			} else {
+				el.detachEvent('on' + type, callback);
+			}
+		}
+	};
+
+/***/ },
+
+/***/ 110:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(111);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(114)(content, {});
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		module.hot.accept("!!/Users/choonkending/Documents/react-webpack-node/node_modules/css-loader/index.js!/Users/choonkending/Documents/react-webpack-node/node_modules/sass-loader/index.js?outputStyle=expanded&includePaths[]=/Users/choonkending/Documents/react-webpack-node/bower_components&includePaths[]=/Users/choonkending/Documents/react-webpack-node/node_modules!/Users/choonkending/Documents/react-webpack-node/scss/components/_mui-left-nav.scss", function() {
+			var newContent = require("!!/Users/choonkending/Documents/react-webpack-node/node_modules/css-loader/index.js!/Users/choonkending/Documents/react-webpack-node/node_modules/sass-loader/index.js?outputStyle=expanded&includePaths[]=/Users/choonkending/Documents/react-webpack-node/bower_components&includePaths[]=/Users/choonkending/Documents/react-webpack-node/node_modules!/Users/choonkending/Documents/react-webpack-node/scss/components/_mui-left-nav.scss");
+			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
+			update(newContent);
+		});
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 111:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(173)();
+	exports.push([module.id, ".mui-left-nav .mui-left-nav-menu {\n  height: 100%;\n  position: fixed;\n  width: 250px;\n  background-color: #44B78B;\n  z-index: 10;\n  left: 0px;\n  top: 0px;\n  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; }\n.mui-left-nav--closed .mui-left-nav-menu {\n  transform: translate3d(-250px, 0, 0); }\n.mui-left-nav button {\n  margin-left: 270px; }\n", ""]);
+
+/***/ },
+
+/***/ 112:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(113);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(114)(content, {});
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		module.hot.accept("!!/Users/choonkending/Documents/react-webpack-node/node_modules/css-loader/index.js!/Users/choonkending/Documents/react-webpack-node/node_modules/sass-loader/index.js?outputStyle=expanded&includePaths[]=/Users/choonkending/Documents/react-webpack-node/bower_components&includePaths[]=/Users/choonkending/Documents/react-webpack-node/node_modules!/Users/choonkending/Documents/react-webpack-node/scss/components/_paper.scss", function() {
+			var newContent = require("!!/Users/choonkending/Documents/react-webpack-node/node_modules/css-loader/index.js!/Users/choonkending/Documents/react-webpack-node/node_modules/sass-loader/index.js?outputStyle=expanded&includePaths[]=/Users/choonkending/Documents/react-webpack-node/bower_components&includePaths[]=/Users/choonkending/Documents/react-webpack-node/node_modules!/Users/choonkending/Documents/react-webpack-node/scss/components/_paper.scss");
+			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
+			update(newContent);
+		});
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 113:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(173)();
+	exports.push([module.id, "/* Styles Modified from : https://github.com/gpbl/material-ui-sass */\n/* Following BEM style */\n.mui-paper--rounded {\n  border-radius: 2px; }\n  .mui-paper--rounded > .mui-paper-container {\n    border-radius: 2px; }\n.mui-paper--circle {\n  border-radius: 50%; }\n  .mui-paper--circle > .mui-paper-container {\n    border-radius: 50%; }\n.mui-paper > .mui-paper-container {\n  height: 100%;\n  width: 100%; }\n.mui-paper--z-depth-1 {\n  /*box shadow: [inset? && [ <offset-x> <offset-y> <blur-radius> <spread-radius> <color>]]; */\n  /* <offset-x> and <offset-y> :If both values are 0, the shadow is placed behind the element \n\t\t(and may generate a blur effect if <blur-radius> and/or <spread-radius> is set). */\n  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.24); }\n  .mui-paper--z-depth-1 > .mui-z-depth-bottom {\n    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12); }\n.mui-paper--z-depth-2 {\n  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23); }\n  .mui-paper--z-depth-2 > .mui-z-depth-bottom {\n    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16); }\n.mui-paper--z-depth-3 {\n  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.23); }\n  .mui-paper--z-depth-3 > .mui-z-depth-bottom {\n    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.19); }\n.mui-paper--z-depth-4 {\n  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.22); }\n  .mui-paper--z-depth-4 > .mui-z-depth-bottom {\n    box-shadow: 0 14px 45px rgba(0, 0, 0, 0.25); }\n.mui-paper--z-depth-5 {\n  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.22); }\n  .mui-paper--z-depth-5 > .mui-z-depth-bottom {\n    box-shadow: 0 19px 60px rgba(0, 0, 0, 0.3); }\n", ""]);
+
+/***/ },
+
+/***/ 114:
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -1490,7 +1796,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 159:
+/***/ 160:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1502,12 +1808,12 @@ webpackJsonp([0],{
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
 
-	module.exports.Dispatcher = __webpack_require__(171)
+	module.exports.Dispatcher = __webpack_require__(174)
 
 
 /***/ },
 
-/***/ 167:
+/***/ 161:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1567,7 +1873,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 168:
+/***/ 173:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function() {
@@ -1589,7 +1895,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 171:
+/***/ 174:
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -1606,7 +1912,7 @@ webpackJsonp([0],{
 
 	"use strict";
 
-	var invariant = __webpack_require__(174);
+	var invariant = __webpack_require__(179);
 
 	var _lastID = 1;
 	var _prefix = 'ID_';
@@ -1846,7 +2152,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 174:
+/***/ 179:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1903,190 +2209,6 @@ webpackJsonp([0],{
 
 	module.exports = invariant;
 
-
-/***/ },
-
-/***/ 177:
-/***/ function(module, exports, __webpack_require__) {
-
-	/** @jsx React.DOM */
-
-	var React = __webpack_require__(1);
-	var cx = __webpack_require__(39);
-	var WindowListenable = __webpack_require__(180);
-	var ReactPropTypes = React.PropTypes;
-	var ESC_KEYCODE = 27;
-	__webpack_require__(182);
-
-	var LeftNav = React.createClass({displayName: 'LeftNav',
-		mixins: [WindowListenable],
-
-		propTypes: {
-			docked: ReactPropTypes.bool,
-			onChange: ReactPropTypes.func
-		},
-
-		windowListeners: {
-			'keyup': '_onWindowKeyUp'
-		},
-
-		getDefaultProps: function() {
-			return {
-				docked: true
-			};
-		},
-
-		getInitialState : function() {
-			return {
-				open : this.props.docked
-			};
-		},
-
-		toggle: function() {
-			this.setState({ open: !this.state.open });
-			return this;
-		},
-
-		close: function() {
-			this.setState({ open: false });
-			return this;
-		},
-
-		open: function() {
-			this.setState({ open: true });
-			return this;
-		},
-
-		
-		render : function() {
-			return (
-				React.createElement("div", {className: cx({
-					'mui-left-nav' : true,
-					'mui-left-nav--closed': !this.state.open,
-					'mui-left-nav--shown' : this.state.open
-					})}, 
-					React.createElement("button", {onClick: this._onTopNavButtonClick}, "Menu button")
-				)
-			);
-		},
-
-		_onTopNavButtonClick: function(evt) {
-			if(!this.props.docked) this.close();
-	   	 	this.toggle();
-		},
-
-		_onWindowKeyUp: function(evt) {
-			if(e.keyCode === ESC_KEYCODE && 
-				!this.props.docked && 
-				this.state.open) {
-				this.close();
-			}
-		}
-
-
-	});
-
-	module.exports = LeftNav;
-
-/***/ },
-
-/***/ 180:
-/***/ function(module, exports, __webpack_require__) {
-
-	/* This code was modified from https://github.com/callemall/material-ui/blob/master/src/js/mixins/window-listenable.js */
-
-	/* We are using our the events.js module here, instead of Node's Event Emitter module because this is specific to browser DOM elements */
-	var Events = __webpack_require__(181);
-	var _ = __webpack_require__(2);
-
-	module.exports = {
-
-		componentDidMount: function() {
-			var listeners = this.windowListeners;
-			_.forIn(listeners, function(eventListener, eventName) {
-				var callbackName = eventListener;
-				Events.on(window, eventName, this[callbackName]);
-			});
-		},
-
-		componentWillUnmount: function() {
-			var listeners = this.windowListeners;
-			_.forIn(listeners, function(eventListener, eventName) {
-				var callbackName = eventListener;
-				Events.off(window, eventName, this[callbackName]);
-			});
-		}
-	};
-
-/***/ },
-
-/***/ 181:
-/***/ function(module, exports, __webpack_require__) {
-
-	/* This code was modified from https://github.com/callemall/material-ui/blob/master/src/js/utils/events.js */
-	/* Modified to include IE8+ support */
-	module.exports = {
-		once: function(el, type, callback) {
-			var typeArray = type.split(' ');
-			var recursiveFunction = function(e){
-				e.target.removeEventListener(e.type, recursiveFunction);
-				return callback(e);
-			};
-			for(var i = typeArray.length - 1; i > 0; i--) {
-				on(el, typeArray[i], recursiveFunction);
-			}
-		},
-
-		on: function(el, type, callback) {
-			if(el.addEventListener) {
-				el.addEventListener(type, callback);
-			} else {
-				el.attachEvent('on' + type, function() {
-					callback.call(el);
-				});
-			}
-		},
-
-		off: function(el, type, callback) {
-			if(el.removeEventListener) {
-				el.removeEventListener(type, callback);
-			} else {
-				el.detachEvent('on' + type, callback);
-			}
-		}
-	};
-
-/***/ },
-
-/***/ 182:
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(183);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(154)(content, {});
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		module.hot.accept("!!/Users/choonkending/Documents/react-webpack-node/node_modules/css-loader/index.js!/Users/choonkending/Documents/react-webpack-node/node_modules/sass-loader/index.js?outputStyle=expanded&includePaths[]=/Users/choonkending/Documents/react-webpack-node/bower_components&includePaths[]=/Users/choonkending/Documents/react-webpack-node/node_modules!/Users/choonkending/Documents/react-webpack-node/scss/components/_mui-left-nav.scss", function() {
-			var newContent = require("!!/Users/choonkending/Documents/react-webpack-node/node_modules/css-loader/index.js!/Users/choonkending/Documents/react-webpack-node/node_modules/sass-loader/index.js?outputStyle=expanded&includePaths[]=/Users/choonkending/Documents/react-webpack-node/bower_components&includePaths[]=/Users/choonkending/Documents/react-webpack-node/node_modules!/Users/choonkending/Documents/react-webpack-node/scss/components/_mui-left-nav.scss");
-			if(typeof newContent === 'string') newContent = [module.id, newContent, ''];
-			update(newContent);
-		});
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 183:
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(168)();
-	exports.push([module.id, ".mui-left-nav {\n  position: fixed;\n  height: 100%;\n  width: 250px;\n  z-index: 9;\n  top: 0px;\n  left: 0px;\n  background-color: rgba(0, 0, 0, 0);\n  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; }\n  .mui-left-nav--shown {\n    left: 0px;\n    background-color: #C9F0DD;\n    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; }\n  .mui-left-nav--closed {\n    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; }\n", ""]);
 
 /***/ }
 
