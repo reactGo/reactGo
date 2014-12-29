@@ -64,3 +64,7 @@ How to Contribute:
 Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app), [flux-examples](https://github.com/facebook/flux/tree/master/examples), [node-express-mongo-demo](https://github.com/madhums/node-express-mongoose-demo), [web-starter-kit](https://github.com/google/web-starter-kit), [awesome material-ui](https://github.com/callemall/material-ui), and [material-ui-sass](https://github.com/gpbl/material-ui-sass/).
 
 Please note that if you really wish to use material-ui React Components, you should npm install it into your repo and make it work.
+
+License
+===============
+MIT
