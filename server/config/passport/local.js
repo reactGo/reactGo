@@ -20,4 +20,14 @@ module.exports = new LocalStrategy({
 		select : 'name username email hashed_password salt'
 	};
 	// Define a load method
+	User.load(options, function(err, user) {
+		if(err) return done(err);
+		if(!user) {
+			return done(null, false, { message: 'Unknown user'});
+		}
+		if(!user.authenticated(password)) {
+			return done(null, false, { message: 'Invalid password' });
+		}
+		return done(null, user);
+	});
 });
