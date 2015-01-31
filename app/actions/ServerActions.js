@@ -6,7 +6,7 @@ var ServerActions = {
 	 * @param {Object} json object
 	 */
 	receiveCreatedTopics: function(data) {
-		AppDispatcher.handleServerAction({
+		AppDispatcher.dispatch({
 			actionType: Constants.RECEIVE_RAW_TOPICS,
 			data: data
 		});

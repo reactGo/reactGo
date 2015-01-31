@@ -65,15 +65,15 @@ function destroy(id) {
 }
 
 /**
- * Stores contain the application state and logic. Their role is somewhat similar to a model in a traditional MVC, but 
+ * Stores contain the application state and logic. Their role is somewhat similar to a model in a traditional MVC, but
  * they manage the state of many objects. Nor are they the same as Backbone's collections. More than simply managing a
  * collection of ORM-style objects, stores manage the application state for a particular domain within the application.
  *
- * A store registers itself with the dispatcher and provides it with a callback. This callback receives a data payload 
+ * A store registers itself with the dispatcher and provides it with a callback. This callback receives a data payload
  * as a parameter. The payload contains an action with an attribute identifying the action's type. Within the store's
  * registered callback, a switch statement based on the action's type is used to interpret the payload and to provide the
  * proper hooks into the store's internal methods. This allows an action to result in an update to the state of the store,
- * via the dispatcher. After all the stores are updated, they broadcast an event declaring that their state has changed, 
+ * via the dispatcher. After all the stores are updated, they broadcast an event declaring that their state has changed,
  * so the views may query the new state and update themselves.
  */
 var Store = assign({}, EventEmitter.prototype, {
@@ -140,8 +140,7 @@ var Store = assign({}, EventEmitter.prototype, {
 
 
 // Register to handle all updates
-AppDispatcher.register(function(payload) {
-  var action = payload.action;
+AppDispatcher.register(function(action) {
   var text;
 
   switch(action.actionType) {
@@ -150,35 +149,32 @@ AppDispatcher.register(function(payload) {
       if (text !== '') {
         create(text);
       }
+        Store.emitChange();
       break;
 
     case Constants.TOPIC_INCREMENT:
       updateCount(action.id, 1);
+        Store.emitChange();
       break;
 
     case Constants.TOPIC_DECREMENT:
       updateCount(action.id, -1);
+        Store.emitChange();
       break;
 
     case Constants.TOPIC_DESTROY:
       destroy(action.id);
+        Store.emitChange();
       break;
 
     case Constants.RECEIVE_RAW_TOPICS:
       Store.init(action.data);
+        Store.emitChange();
       break;
 
     default:
-      return true;
   }
 
-  // This often goes in each case that should trigger a UI change. This store
-  // needs to trigger a UI change after every view action, so we can make the
-  // code less repetitive by putting it here.  We need the default case,
-  // however, to make sure this only gets called after one of the cases above.
-  Store.emitChange();
-
-  return true; // No errors.  Needed by promise in Dispatcher.
 });
 
 module.exports = Store;

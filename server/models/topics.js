@@ -13,6 +13,6 @@
 
  // Compiles the schema into a model, opening (or creating, if
 //	nonexistent) the 'Topic' collection in the MongoDB database
-var Topic = mongoose.model('Topic', TopicSchema);
+Topic = mongoose.model('Topic', TopicSchema);
 
 // Topic.find({}).remove().exec();

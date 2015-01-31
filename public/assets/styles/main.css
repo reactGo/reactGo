@@ -177,12 +177,14 @@ textarea[contenteditable] {
   src: url(/assets/fonts/RobotoCondensed-BoldItalic.eot);
   src: local('Roboto Condensed Bold Italic'), local('RobotoCondensed-BoldItalic'), url(/assets/fonts/RobotoCondensed-BoldItalic.eot) format('embedded-opentype'), url(/assets/fonts/RobotoCondensed-BoldItalic.woff) format('woff'); }
 
+/* From: https://github.com/gpbl/material-ui-sass */
 /*
 Style Guide Lines. Remove if you prefer your own library
  */
 body {
   font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
-  font-weight: normal; }
+  font-weight: normal;
+  margin: 0; }
 
 #header {
   margin: 8px; }

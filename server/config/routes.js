@@ -3,8 +3,18 @@
  */
 
  var topics = require('../controllers/topics');
+ var users = require('../controllers/users');
 
  module.exports = function(app, io, passport) {
+
+    app.get('/', function(req, res) {
+        res.render('index');
+    });
+
+    // user routes
+    app.get('/login', users.login);
+
+
  	// topic routes
  	app.get('/topic', topics.all);
  	app.post('/topic', function(req, res) {

@@ -7,21 +7,21 @@ var Actions = {
    * @param  {string} text
    */
   create: function(text) {
-    AppDispatcher.handleViewAction({
+    AppDispatcher.dispatch({
       actionType: Constants.TOPIC_CREATE,
       text: text
     });
   },
 
   increment: function(id, text) {
-    AppDispatcher.handleViewAction({
+    AppDispatcher.dispatch({
       actionType: Constants.TOPIC_INCREMENT,
       id: id
     });
   },
 
   decrement: function(id, text) {
-    AppDispatcher.handleViewAction({
+    AppDispatcher.dispatch({
       actionType: Constants.TOPIC_DECREMENT,
       id: id
     });
@@ -32,7 +32,7 @@ var Actions = {
    * @param  {string} text
    */
   updateText: function(id, text) {
-    AppDispatcher.handleViewAction({
+    AppDispatcher.dispatch({
       actionType: Constants.TODO_UPDATE_TEXT,
       id: id,
       text: text
@@ -46,12 +46,12 @@ var Actions = {
   toggleComplete: function(todo) {
     var id = todo.id;
     if (todo.complete) {
-      AppDispatcher.handleViewAction({
+      AppDispatcher.dispatch({
         actionType: Constants.TODO_UNDO_COMPLETE,
         id: id
       });
     } else {
-      AppDispatcher.handleViewAction({
+      AppDispatcher.dispatch({
         actionType: Constants.TODO_COMPLETE,
         id: id
       });
@@ -62,7 +62,7 @@ var Actions = {
    * Mark all ToDos as complete
    */
   toggleCompleteAll: function() {
-    AppDispatcher.handleViewAction({
+    AppDispatcher.dispatch({
       actionType: Constants.TODO_TOGGLE_COMPLETE_ALL
     });
   },
@@ -71,7 +71,7 @@ var Actions = {
    * @param  {string} id
    */
   destroy: function(id) {
-    AppDispatcher.handleViewAction({
+    AppDispatcher.dispatch({
       actionType: Constants.TOPIC_DESTROY,
       id: id
     });
@@ -81,7 +81,7 @@ var Actions = {
    * Delete all the completed ToDos
    */
   destroyCompleted: function() {
-    AppDispatcher.handleViewAction({
+    AppDispatcher.dispatch({
       actionType: Constants.TODO_DESTROY_COMPLETED
     });
   }
