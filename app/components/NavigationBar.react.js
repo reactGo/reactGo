@@ -1,23 +1,21 @@
 /** jsx@React.DOM */
 var React = require('react');
 
-// First attempt at inling styles
-var navStyle = {
-    color: '#fff',
-    backgroundColor: '#ee6e73',
-    width: '100%',
-    height: 56,
-    lineHeight: 56,
-    boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)'
-};
+// First attempt at inlining styles
 
 
+//requiring nav styles
+require('../../scss/components/_navbar.scss');
 
 var NavigationBar = React.createClass({
     render: function() {
         return (
-            <nav style={navStyle}>
-                <div>
+            <nav>
+                <div className='div-navwrapper'>
+                    <a href='#' className='div-navwrapper__logo'>Ninja Ocean</a>
+                    <ul>
+                        <li><a href="/login">Login</a></li>
+                    </ul>
                 </div>
             </nav>
         );
