@@ -23,12 +23,14 @@ var SideSection = require('./SideSection.react');
 var MainSection = require('./MainSection.react');
 var NavigationBar = require('./NavigationBar.react');
 var React = require('react');
-var Store = require('../stores/Store');
+var TopicStore = require('../stores/TopicStore');
+var UserStore = require('../stores/UserStore');
 
 function getState() {
 	return {
-		allTopics: Store.getAll(),
-		topTopic : Store.getTopTopic()
+		allTopics: TopicStore.getAll(),
+		topTopic : TopicStore.getTopTopic(),
+		user: UserStore.getUserData()
 	};
 }
 
@@ -39,11 +41,13 @@ var App = React.createClass({
 	},
 
 	componentDidMount: function() {
-		Store.addChangeListener(this._onChange);
+        TopicStore.addChangeListener(this._onTopicChange);
+        UserStore.addChangeListener(this._onUserChange);
 	},
 
 	componentWillUnmount: function() {
-		Store.removeChangeListener(this._onChange);
+        TopicStore.removeChangeListener(this._onTopicChange);
+        UserStore.removeChangeListener(this._onUserChange);
 	},
 
 	/**
@@ -60,8 +64,17 @@ var App = React.createClass({
 		);
 	},
 
-	_onChange: function() {
-		this.setState(getState());
+    _onTopicChange: function() {
+		this.setState({
+            allTopics: TopicStore.getAll(),
+            topTopic : TopicStore.getTopTopic()
+        });
+	},
+
+	_onUserChange: function() {
+		this.setState({
+			user: UserStore.getUserData()
+		});
 	}
 });
 

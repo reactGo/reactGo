@@ -1,16 +1,26 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var Constants = require('../constants/Constants');
+var TopicStore = require('../stores/TopicStore');
+var TopicWebAPIUtils = require('../utils/TopicWebAPIUtils');
 
-var Actions = {
+module.exports = {
 
   /**
    * @param  {string} text
    */
   create: function(text) {
     AppDispatcher.dispatch({
-      actionType: Constants.TOPIC_CREATE,
+      actionType: Constants.CREATE_TOPIC,
       text: text
     });
+
+    if(text.trim().length > 0) {
+      // This feels very much like we are doing twice the work here. Dispatching which will be sent to the store,
+      // and then calling the store to return you have done already. This might be the downside of flux?
+      var topic = TopicStore.getCreatedTopicData(text);
+      TopicWebAPIUtils.addTopic(topic);
+    }
+
   },
 
   increment: function(id, text) {
@@ -87,5 +97,3 @@ var Actions = {
   }
 
 };
-
-module.exports = Actions;

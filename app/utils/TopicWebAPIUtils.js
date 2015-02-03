@@ -1,5 +1,5 @@
 var $ = require('jquery');
-var ServerActions = require('../actions/ServerActions');
+var TopicServerActionCreators = require('../actions/TopicServerActionCreators');
 
 // Placing configuration here, might consider moving it elsewhere
 var defaultConfig = {
@@ -12,7 +12,7 @@ module.exports = {
 	getAllTopics: function() {
 		$.ajax(defaultConfig)
 			.then(function(data, textStatus, jqXHR) {
-				ServerActions.receiveCreatedTopics(data);
+				TopicServerActionCreators.receiveAllTopics(data);
 			}, function(jqXHR, textStatus, errorThrown) {
 				console.log(errorThrown);
 			});
@@ -24,11 +24,13 @@ module.exports = {
 			type: 'POST',
 			contentType: 'application/json'
 		})
-			.then(function(data, textStatus, jqXHR) {
-				console.log(data);
-			}, function(jqXHR, textStatus, errorThrown) {
-				console.log(errorThrown);
-			});
+            .then(function(data, textStatus, jqXHR) {
+            	// Currently this dispatches an event, but it is not required
+                TopicServerActionCreators.receiveCreatedTopic(data);
+            }, function(jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+                TopicServerActionCreators.failedToCreateTopic(topic, errorThrown);
+            });
 	},
 
 	updateTopic: function(topic) {
@@ -70,7 +72,6 @@ module.exports = {
 		var _this = this;
 		socket.on('topic change', function() {
 			_this.getAllTopics();
-			console.log('I was called because there was a topic change');
 		});
 	}
 };

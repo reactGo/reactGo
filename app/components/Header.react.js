@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
-var Actions = require('../actions/Actions');
+var TopicActionCreators = require('../actions/TopicActionCreators');
 var TopicTextInput = require('./TopicTextInput.react');
 var Statistics = require('./Statistics.react');
 
@@ -32,7 +32,7 @@ var Header = React.createClass({
    */
   _onSave: function(text) {
     if (text.trim()){
-      Actions.create(text);
+      TopicActionCreators.create(text);
     }
 
   }

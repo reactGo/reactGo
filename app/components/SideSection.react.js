@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 var React = require('react');
 var ReactPropTypes = React.PropTypes;
-var Actions = require('../actions/Actions');
+var TopicActionCreators = require('../actions/TopicActionCreators');
 var TopicCountItem = require('./TopicCountItem.react');
 var _ = require('lodash');
 
@@ -35,7 +35,7 @@ var SideSection = React.createClass({
    * Event handler to delete all completed TODOs
    */
   _onClearCompletedClick: function() {
-    Actions.destroyCompleted();
+    TopicActionCreators.destroyCompleted();
   }
 
 });
