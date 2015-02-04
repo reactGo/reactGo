@@ -17,11 +17,10 @@
  */
 
 var Header = require('./Header.react');
-// Commented because LeftNav and other components can be worked on seperately
-// var LeftNav = require('./LeftNav.react');
 var SideSection = require('./SideSection.react');
 var MainSection = require('./MainSection.react');
 var NavigationBar = require('./NavigationBar.react');
+var LoginApp = require('./Login/Login.app.react');
 var React = require('react');
 var TopicStore = require('../stores/TopicStore');
 var UserStore = require('../stores/UserStore');
@@ -57,6 +56,7 @@ var App = React.createClass({
 		return (
 			<div>
                 <NavigationBar />
+                <LoginApp modal={this.state.user.modal} />
 				<Header topTopic={this.state.topTopic.text} topStat={this.state.topTopic.stat}/>
 				<SideSection allTopics={this.state.allTopics}/>
 				<MainSection allTopics={this.state.allTopics} />
