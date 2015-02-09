@@ -5,29 +5,23 @@
 
 var mongoose = require('mongoose');
 var LocalStrategy = require('passport-local').Strategy;
-var User = mongoose.model('User');
+var User = require('../../models/user');
 
 /*
 By default, LocalStrategy expects to find credentials in parameters named username and password.
 If your site prefers to name these fields differently, options are available to change the defaults.
 */
 module.exports = new LocalStrategy({
-	usernameField = 'email',
-	passwordField = 'password'
+	usernameField : 'email'
 }, function(email, password, done) {
-	var options = {
-		criteria : { email: email },
-		select : 'name username email hashed_password salt'
-	};
-	// Define a load method
-	User.load(options, function(err, user) {
-		if(err) return done(err);
-		if(!user) {
-			return done(null, false, { message: 'Unknown user'});
-		}
-		if(!user.authenticated(password)) {
-			return done(null, false, { message: 'Invalid password' });
-		}
-		return done(null, user);
-	});
+	User.findOne({ email: email}, function(err, user) {
+    if(!user) return done(null, false, { message: 'Email ' + email + ' not found'});
+    user.comparePassword(password, function(err, isMatch) {
+      if(isMatch) {
+        return done(null, user);
+      } else {
+        return done(null, false, { message: 'Invalid email or password'});
+      }
+    });
+  });
 });

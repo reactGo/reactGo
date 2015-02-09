@@ -7,12 +7,13 @@
 
  module.exports = function(app, io, passport) {
 
-    app.get('/', function(req, res) {
-        res.render('index');
-    });
+  app.get('/', function(req, res) {
+      res.render('index');
+  });
 
-    // user routes
-    app.get('/login', users.login);
+  // user routes
+  app.post('/login', users.postLogin);
+  app.post('/signup', users.postSignUp);
 
 
  	// topic routes

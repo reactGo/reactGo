@@ -11,7 +11,7 @@
       &--show {
         position: absolute;
         width: 500px;
-        height: 300px;
+        height: 400px;
         border-radius: 4px;
         top: 0;
         bottom: 0;
@@ -27,6 +27,12 @@
         left: -9999px;
         bottom: -9999px;
       }
+  }
+
+  &__logintoggle {
+    cursor: pointer;
+    text-align: center;
+    color: #2196F3;
   }
 
 }

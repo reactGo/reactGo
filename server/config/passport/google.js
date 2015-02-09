@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var GoogleStrategy = require('pasport-google-oauth').OAuth2Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var User = mongoose.model('User');
 
 /*
@@ -13,23 +13,5 @@ module.exports = new GoogleStrategy({
 	var options = {
 		criteria:  { 'google.id' : profile.id }
 	};
-	User.load(options, function(err, user) {
-		if(err) return done(err);
-		if(!user) {
-			user = new User({
-				name: profile.displayName,
-				email: profile.emails[0].value,
-				username: profile.username,
-				provider: 'google',
-				google: profile._json
-			});
-			user.save(function(err) {
-				if(err) console.log(err);
-				return done(err);
-
-			});
-		} else {
-			return done(err, user);
-		}
-	});
+  // Todo: add the proper function
 });

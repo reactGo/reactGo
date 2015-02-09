@@ -55,8 +55,8 @@ var App = React.createClass({
 	render: function(){
 		return (
 			<div>
-                <NavigationBar />
-                <LoginApp modal={this.state.user.modal} />
+        <NavigationBar isLoggedIn={this.state.user.isLoggedIn} email={this.state.user.email}/>
+        <LoginApp modal={this.state.user.modal} />
 				<Header topTopic={this.state.topTopic.text} topStat={this.state.topTopic.stat}/>
 				<SideSection allTopics={this.state.allTopics}/>
 				<MainSection allTopics={this.state.allTopics} />

@@ -35,12 +35,22 @@ var UserStore = assign({}, EventEmitter.prototype, {
     }
 });
 
+UserStore.init();
+
+
 AppDispatcher.register(function(action) {
     switch(action.actionType) {
         case Constants.TOGGLE_MODAL:
+            console.log('Converting' + _user.modal);
             _user.modal = !_user.modal;
             UserStore.emitChange();
             break;
+        case Constants.SUCCESSFUL_LOGIN:
+        case Constants.SUCCESSFUL_SIGNUP:
+            _user.email = action.data;
+            _user.isLoggedIn = true;
+            _user.modal = false;
+            UserStore.emitChange();
         default:
     }
 });

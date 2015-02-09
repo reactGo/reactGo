@@ -8,7 +8,7 @@ require('../../scss/components/_forms.scss');
 var InputFormField = React.createClass({
     render: function() {
         return(
-            <input placeholder={this.props.placeholder}/>
+            <input type={this.props.type} placeholder={this.props.placeholder} ref={this.props.ref}/>
         );
     }
 });
