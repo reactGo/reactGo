@@ -13,15 +13,10 @@ module.exports = {
   },
 
   signUp: function(data) {
-    $.ajax({
+    return $.ajax({
       url: '/signup',
       type: 'POST',
       data: data
-    })
-      .then(function(data, textStatus, jqXHR) {
-        console.log(data);
-      }, function(jqXHR, textStatus, errorThrown) {
-        console.log(errorThrown);
-      })
+    });
   }
 };
