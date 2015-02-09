@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 var React = require('react');
 var ReactPropTypes = React.PropTypes;
-var Actions = require('../actions/Actions');
+var TopicActionCreators = require('../actions/TopicActionCreators');
 var TopicTextInput = require('./TopicTextInput.react');
 
 var cx = require('react/lib/cx');
@@ -58,7 +58,7 @@ var TopicItem = React.createClass({
   },
 
   _onToggleComplete: function() {
-    Actions.toggleComplete(this.props.topic);
+    TopicActionCreators.toggleComplete(this.props.topic);
   },
 
   _onDoubleClick: function() {
@@ -66,11 +66,11 @@ var TopicItem = React.createClass({
   },
 
   _onIncrement: function() {
-    Actions.increment(this.props.topic.id);
+    TopicActionCreators.increment(this.props.topic.id);
   },
 
   _onDecrement: function() {
-    Actions.decrement(this.props.topic.id);
+    TopicActionCreators.decrement(this.props.topic.id);
   },
 
   /**
@@ -80,12 +80,12 @@ var TopicItem = React.createClass({
    * @param  {string} text
    */
   _onSave: function(text) {
-    Actions.updateText(this.props.topic.id, text);
+    TopicActionCreators.updateText(this.props.topic.id, text);
     this.setState({isEditing: false});
   },
 
   _onDestroyClick: function() {
-    Actions.destroy(this.props.topic.id);
+    TopicActionCreators.destroy(this.props.topic.id);
   }
 
 });

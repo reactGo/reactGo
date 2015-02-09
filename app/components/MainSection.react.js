@@ -1,7 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
 var ReactPropTypes = React.PropTypes;
-var Actions = require('../actions/Actions');
 var TopicItem = require('./TopicItem.react');
 var _ = require('lodash');
 

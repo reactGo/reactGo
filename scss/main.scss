@@ -10,13 +10,16 @@ Style Guide Lines. Remove if you prefer your own library
 body {
 	font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
   	font-weight: normal;
+    margin: 0;
+}
+
+h1 {
+  text-align: center;
 }
 
 #header {
 	margin: 8px;
-	h1 {
-		text-align: center;
-	}
+
 }
 
 #new-topic {

@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block styles %}
+<link rel="stylesheet" href="assets/styles/main.css" />
+{% endblock %}
+
+{% block content %}
+<!-- Add your site or app content here -->
+<div id="app"></div>
+
+<!-- Any additional javascript goes here -->
+<!-- Socket.io servers automatically serve the client for our convenience! -->
+<script type="text/javascript" charset="utf-8" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" charset="utf-8" src="assets/vendor.bundle.js"></script>
+<script type="text/javascript" charset="utf-8" src="assets/app.js"></script>
+{% endblock %}

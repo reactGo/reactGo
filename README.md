@@ -48,14 +48,12 @@ Deploying to Heroku
 
 Todo:
 ================
-1. Include an easy set up for database (postgresql).
-2. Include sass stylesheets for components.
-Currently it is still an external css file in the header. Still not large enough to warrant a warning that the [above-the-fold](https://developers.google.com/speed/docs/insights/PrioritizeVisibleContent) content of the page is too large.
-3. Improve webpack config for good build and webpack --watch
-4. Perhaps include a gulpfile.js (if webpack functionality does not suffice).
-5. Passport auth with express.
-6. Making the modules more extendible, so you can reuse them. 
-7. Let me know!
+1. Include an easy set up for database (postgresql). [ Highest priority ]
+2. Improve webpack config for good build and webpack --watch
+3. Passport auth with express - IN PROGRESS.
+- [ ] Fetching correct state on refresh.
+4. Making the modules more extendible, so you can reuse them.
+5. Let me know!
 
 How to Contribute:
 =================
@@ -64,3 +62,7 @@ How to Contribute:
 Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app), [flux-examples](https://github.com/facebook/flux/tree/master/examples), [node-express-mongo-demo](https://github.com/madhums/node-express-mongoose-demo), [web-starter-kit](https://github.com/google/web-starter-kit), [awesome material-ui](https://github.com/callemall/material-ui), and [material-ui-sass](https://github.com/gpbl/material-ui-sass/).
 
 Please note that if you really wish to use material-ui React Components, you should npm install it into your repo and make it work.
+
+License
+===============
+MIT
