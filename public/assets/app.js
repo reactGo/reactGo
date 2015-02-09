@@ -42,14 +42,14 @@ webpackJsonp([0],{
 	 * what they need. In addition to keeping the controller-like behavior at the top of the hierarchy, and thus keeping our descendant
 	 */
 
-	var Header = __webpack_require__(8);
-	var SideSection = __webpack_require__(9);
-	var MainSection = __webpack_require__(10);
-	var NavigationBar = __webpack_require__(11);
-	var LoginApp = __webpack_require__(12);
+	var Header = __webpack_require__(7);
+	var SideSection = __webpack_require__(8);
+	var MainSection = __webpack_require__(9);
+	var NavigationBar = __webpack_require__(10);
+	var LoginApp = __webpack_require__(11);
 	var React = __webpack_require__(1);
-	var TopicStore = __webpack_require__(13);
-	var UserStore = __webpack_require__(14);
+	var TopicStore = __webpack_require__(12);
+	var UserStore = __webpack_require__(13);
 
 	function getState() {
 		return {
@@ -115,7 +115,7 @@ webpackJsonp([0],{
 /***/ function(module, exports, __webpack_require__) {
 
 	var $ = __webpack_require__(2);
-	var TopicServerActionCreators = __webpack_require__(15);
+	var TopicServerActionCreators = __webpack_require__(14);
 
 	// Placing configuration here, might consider moving it elsewhere
 	var defaultConfig = {
@@ -194,7 +194,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 8:
+/***/ 7:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
@@ -242,14 +242,14 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 9:
+/***/ 8:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
 	var React = __webpack_require__(1);
 	var ReactPropTypes = React.PropTypes;
 	var TopicActionCreators = __webpack_require__(40);
-	var TopicCountItem = __webpack_require__(43);
+	var TopicCountItem = __webpack_require__(44);
 	var _ = __webpack_require__(3);
 
 	var SideSection = React.createClass({displayName: 'SideSection',
@@ -291,13 +291,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 10:
+/***/ 9:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
 	var React = __webpack_require__(1);
 	var ReactPropTypes = React.PropTypes;
-	var TopicItem = __webpack_require__(45);
+	var TopicItem = __webpack_require__(43);
 	var _ = __webpack_require__(3);
 
 	var MainSection = React.createClass({displayName: 'MainSection',
@@ -337,12 +337,12 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 11:
+/***/ 10:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** jsx@React.DOM */
 	var React = __webpack_require__(1);
-	var UserActionCreators = __webpack_require__(44);
+	var UserActionCreators = __webpack_require__(45);
 
 	// Experimenting with inline styles
 	var buttonStyle = {
@@ -389,15 +389,15 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 12:
+/***/ 11:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
 
 	var React = __webpack_require__(1);
-	var cx = __webpack_require__(48);
-	var InputFormField = __webpack_require__(49);
-	var UserActionCreators = __webpack_require__(44);
+	var cx = __webpack_require__(47);
+	var InputFormField = __webpack_require__(48);
+	var UserActionCreators = __webpack_require__(45);
 
 	__webpack_require__(114);
 
@@ -480,14 +480,14 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 13:
+/***/ 12:
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(50);
-	var EventEmitter = __webpack_require__(110).EventEmitter;
-	var Constants = __webpack_require__(51);
+	var AppDispatcher = __webpack_require__(49);
+	var EventEmitter = __webpack_require__(52).EventEmitter;
+	var Constants = __webpack_require__(50);
 	var TopicWebAPIUtils = __webpack_require__(5);
-	var assign = __webpack_require__(111);
+	var assign = __webpack_require__(74);
 	var _ = __webpack_require__(3);
 
 	var CHANGE_EVENT = 'change';
@@ -683,14 +683,14 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 14:
+/***/ 13:
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(50);
-	var EventEmitter = __webpack_require__(110).EventEmitter;
-	var Constants = __webpack_require__(51);
+	var AppDispatcher = __webpack_require__(49);
+	var EventEmitter = __webpack_require__(52).EventEmitter;
+	var Constants = __webpack_require__(50);
 	var UserWebAPIUtils = __webpack_require__(46);
-	var assign = __webpack_require__(111);
+	var assign = __webpack_require__(74);
 	var _ = __webpack_require__(3);
 
 	var CHANGE_EVENT = 'change';
@@ -748,11 +748,11 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 15:
+/***/ 14:
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(50);
-	var Constants = __webpack_require__(51);
+	var AppDispatcher = __webpack_require__(49);
+	var Constants = __webpack_require__(50);
 
 	module.exports = {
 		/**
@@ -787,9 +787,9 @@ webpackJsonp([0],{
 /***/ 40:
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(50);
-	var Constants = __webpack_require__(51);
-	var TopicStore = __webpack_require__(13);
+	var AppDispatcher = __webpack_require__(49);
+	var Constants = __webpack_require__(50);
+	var TopicStore = __webpack_require__(12);
 	var TopicWebAPIUtils = __webpack_require__(5);
 
 	module.exports = {
@@ -994,90 +994,11 @@ webpackJsonp([0],{
 
 	/** @jsx React.DOM */
 	var React = __webpack_require__(1);
-
-	var TopicCountItem = React.createClass({displayName: 'TopicCountItem',
-		render: function(){
-			return (
-				React.createElement("li", {key: this.props.key}, 
-					React.createElement("span", {className: "title"}, this.props.title), 
-					React.createElement("span", {className: "count"}, this.props.count)
-				)
-			);
-		}
-	});
-
-	module.exports = TopicCountItem;
-
-/***/ },
-
-/***/ 44:
-/***/ function(module, exports, __webpack_require__) {
-
-	var AppDispatcher = __webpack_require__(50);
-	var Constants = __webpack_require__(51);
-	var UserWebAPIUtils = __webpack_require__(46);
-
-	module.exports = {
-		toggleModal: function() {
-			AppDispatcher.dispatch({
-				actionType: Constants.TOGGLE_MODAL
-			});
-		},
-
-	  submitLoginCredentials: function(data) {
-	    // Leaving this action here, as we might want some UI changes
-	    AppDispatcher.dispatch({
-	      actionType: Constants.SUBMIT_LOGIN_CREDENTIALS,
-	      data: data
-	    });
-
-	    UserWebAPIUtils.login(data)
-	      .then(function(response, textStatus, jqXHR) {
-	        if(textStatus === 'success') {
-	          // Dispatch another event for successful login
-	          AppDispatcher.dispatch({
-	            actionType: Constants.SUCCESSFUL_LOGIN,
-	            data: data.email
-	          });
-	        }
-	      }, function(jqXHR, textStatus, errorThrown) {
-	        // Dispatch another event for a bad login
-	      });
-	  },
-
-	  submitSignUpCredentials: function(data) {
-	    AppDispatcher.dispatch({
-	      actionType: Constants.SUBMIT_SIGNUP_CREDENTIALS,
-	      data: data
-	    });
-	    UserWebAPIUtils.signUp(data)
-	      .then(function(response, textStatus, jqXHR) {
-	        if(textStatus === 'success') {
-	          // Dispatch an app
-	           // Dispatch another event for successful login
-	          AppDispatcher.dispatch({
-	            actionType: Constants.SUCCESSFUL_SIGNUP,
-	            data: data.email
-	          });
-	        }
-	      }, function(jqXHR, textStatus, errorThrown) {
-
-	      });
-	  }
-	};
-
-/***/ },
-
-/***/ 45:
-/***/ function(module, exports, __webpack_require__) {
-
-	/** @jsx React.DOM */
-	var React = __webpack_require__(1);
 	var ReactPropTypes = React.PropTypes;
 	var TopicActionCreators = __webpack_require__(40);
 	var TopicTextInput = __webpack_require__(41);
 
-	var cx = __webpack_require__(48);
+	var cx = __webpack_require__(47);
 
 	var TopicItem = React.createClass({displayName: 'TopicItem',
 
@@ -1167,6 +1088,85 @@ webpackJsonp([0],{
 
 /***/ },
 
+/***/ 44:
+/***/ function(module, exports, __webpack_require__) {
+
+	/** @jsx React.DOM */
+	var React = __webpack_require__(1);
+
+	var TopicCountItem = React.createClass({displayName: 'TopicCountItem',
+		render: function(){
+			return (
+				React.createElement("li", {key: this.props.key}, 
+					React.createElement("span", {className: "title"}, this.props.title), 
+					React.createElement("span", {className: "count"}, this.props.count)
+				)
+			);
+		}
+	});
+
+	module.exports = TopicCountItem;
+
+/***/ },
+
+/***/ 45:
+/***/ function(module, exports, __webpack_require__) {
+
+	var AppDispatcher = __webpack_require__(49);
+	var Constants = __webpack_require__(50);
+	var UserWebAPIUtils = __webpack_require__(46);
+
+	module.exports = {
+		toggleModal: function() {
+			AppDispatcher.dispatch({
+				actionType: Constants.TOGGLE_MODAL
+			});
+		},
+
+	  submitLoginCredentials: function(data) {
+	    // Leaving this action here, as we might want some UI changes
+	    AppDispatcher.dispatch({
+	      actionType: Constants.SUBMIT_LOGIN_CREDENTIALS,
+	      data: data
+	    });
+
+	    UserWebAPIUtils.login(data)
+	      .then(function(response, textStatus, jqXHR) {
+	        if(textStatus === 'success') {
+	          // Dispatch another event for successful login
+	          AppDispatcher.dispatch({
+	            actionType: Constants.SUCCESSFUL_LOGIN,
+	            data: data.email
+	          });
+	        }
+	      }, function(jqXHR, textStatus, errorThrown) {
+	        // Dispatch another event for a bad login
+	      });
+	  },
+
+	  submitSignUpCredentials: function(data) {
+	    AppDispatcher.dispatch({
+	      actionType: Constants.SUBMIT_SIGNUP_CREDENTIALS,
+	      data: data
+	    });
+	    UserWebAPIUtils.signUp(data)
+	      .then(function(response, textStatus, jqXHR) {
+	        if(textStatus === 'success') {
+	          // Dispatch an app
+	           // Dispatch another event for successful login
+	          AppDispatcher.dispatch({
+	            actionType: Constants.SUCCESSFUL_SIGNUP,
+	            data: data.email
+	          });
+	        }
+	      }, function(jqXHR, textStatus, errorThrown) {
+
+	      });
+	  }
+	};
+
+/***/ },
+
 /***/ 46:
 /***/ function(module, exports, __webpack_require__) {
 
@@ -1200,7 +1200,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 48:
+/***/ 47:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1244,7 +1244,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 49:
+/***/ 48:
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @jsx React.DOM */
@@ -1266,7 +1266,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 50:
+/***/ 49:
 /***/ function(module, exports, __webpack_require__) {
 
 	var Dispatcher = __webpack_require__(164).Dispatcher;
@@ -1276,7 +1276,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 51:
+/***/ 50:
 /***/ function(module, exports, __webpack_require__) {
 
 	var keymirror = __webpack_require__(165);
@@ -1300,7 +1300,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 110:
+/***/ 52:
 /***/ function(module, exports, __webpack_require__) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -1608,7 +1608,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 111:
+/***/ 74:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1661,7 +1661,7 @@ webpackJsonp([0],{
 	var content = __webpack_require__(113);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(163)(content, {});
+	var update = __webpack_require__(118)(content, {});
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
@@ -1679,7 +1679,7 @@ webpackJsonp([0],{
 /***/ 113:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(177)();
+	exports = module.exports = __webpack_require__(166)();
 	exports.push([module.id, "nav {\n  color: #fff;\n  background-color: #ee6e73;\n  width: 100%;\n  height: 56px;\n  line-height: 56px;\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); }\n  nav .div-navwrapper {\n    padding: 0 10px;\n    position: relative;\n    height: 100%; }\n    nav .div-navwrapper a {\n      text-decoration: none;\n      color: #fff; }\n    nav .div-navwrapper__logo {\n      position: absolute;\n      display: inline-block;\n      font-size: 2.1rem;\n      padding: 0; }\n      @media only screen and (max-width: 992px) {\n        nav .div-navwrapper__logo {\n          left: 0;\n          width: 100%;\n          text-align: center;\n          z-index: 0; } }\n    nav .div-navwrapper ul {\n      margin: 0;\n      float: right;\n      list-style: none; }\n", ""]);
 
 /***/ },
@@ -1693,7 +1693,7 @@ webpackJsonp([0],{
 	var content = __webpack_require__(115);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(163)(content, {});
+	var update = __webpack_require__(118)(content, {});
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
@@ -1711,7 +1711,7 @@ webpackJsonp([0],{
 /***/ 115:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(177)();
+	exports = module.exports = __webpack_require__(166)();
 	exports.push([module.id, ".div-modal__overlay {\n  background-color: rgba(0, 0, 0, 0.5);\n  position: fixed;\n  left: 0;\n  right: 0;\n  top: 0;\n  bottom: 0; }\n.div-modal__content--show {\n  position: absolute;\n  width: 500px;\n  height: 400px;\n  border-radius: 4px;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  margin: auto;\n  background-color: #fff;\n  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; }\n.div-modal__content--hide {\n  position: absolute;\n  visibility: hidden;\n  left: -9999px;\n  bottom: -9999px; }\n.div-modal__logintoggle {\n  cursor: pointer;\n  text-align: center;\n  color: #2196F3; }\n\n.mui-button__login {\n  display: block;\n  margin: 15px auto;\n  font-size: 1rem;\n  line-height: 1rem;\n  width: 12rem;\n  height: 2rem;\n  border: none;\n  background-color: #d23f31;\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);\n  border-radius: 2px;\n  font-family: 'Roboto Condensed';\n  color: #fff; }\n", ""]);
 
 /***/ },
@@ -1725,7 +1725,7 @@ webpackJsonp([0],{
 	var content = __webpack_require__(117);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(163)(content, {});
+	var update = __webpack_require__(118)(content, {});
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
@@ -1743,12 +1743,12 @@ webpackJsonp([0],{
 /***/ 117:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(177)();
+	exports = module.exports = __webpack_require__(166)();
 	exports.push([module.id, "input {\n  line-height: 16px;\n  width: 480px;\n  border: 1px solid #d2d2d2;\n  padding: 0;\n  display: block;\n  margin: 0 10px;\n  height: 48px; }\n", ""]);
 
 /***/ },
 
-/***/ 163:
+/***/ 118:
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -1957,7 +1957,7 @@ webpackJsonp([0],{
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
 
-	module.exports.Dispatcher = __webpack_require__(180)
+	module.exports.Dispatcher = __webpack_require__(178)
 
 
 /***/ },
@@ -2022,7 +2022,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 177:
+/***/ 166:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function() {
@@ -2044,7 +2044,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 180:
+/***/ 178:
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -2061,7 +2061,7 @@ webpackJsonp([0],{
 
 	"use strict";
 
-	var invariant = __webpack_require__(181);
+	var invariant = __webpack_require__(183);
 
 	var _lastID = 1;
 	var _prefix = 'ID_';
@@ -2301,7 +2301,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 181:
+/***/ 183:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
