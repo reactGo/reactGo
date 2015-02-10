@@ -8,7 +8,8 @@
  module.exports = function(app, io, passport) {
 
   app.get('/', function(req, res) {
-      res.render('index');
+      //console.log(req.isAuthenticated);
+      res.render('index', { user: req.user });
   });
 
   // user routes

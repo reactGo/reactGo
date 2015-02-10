@@ -12,10 +12,20 @@ var _user = {};
 var UserStore = assign({}, EventEmitter.prototype, {
 
     init: function() {
-        _user.email = '';
         _user.password = '';
         // Currently the modal is placed here. Ideally there should be a UI store too.
         _user.modal = false;
+        // There might be a better way of doing this, currently we are grabbing context provided for the server
+        if(ninja && ninja.email) {
+          _user.email = ninja.email;
+
+          _user.isLoggedIn = true;
+        } else {
+          _user.email = '';
+          _user.modal = false;
+          _user.isLoggedIn = false;
+        }
+
     },
 
     getUserData: function() {

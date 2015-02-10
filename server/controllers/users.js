@@ -12,9 +12,6 @@ exports.postLogin = function(req, res, next) {
     if(!user) {
       req.flash('errors', {msg: info.message});
     }
-    console.log(err);
-    console.log(user);
-    console.log(info);
     // Passport exposes a login() function on req (also aliased as logIn()) that can be used to establish a login session
     req.logIn(user, function(err) {
       if(err) return next(err);
