@@ -11,11 +11,11 @@ var crypto = require('crypto');
 
 /*
  User Schema
-*/
+ */
 
 var UserSchema = new mongoose.Schema({
-	email: { type: String, unique: true, lowercase: true},
-	password: String,
+  email: { type: String, unique: true, lowercase: true},
+  password: String,
   tokens: Array,
   profile: {
     name: { type: String, default: ''},
@@ -47,7 +47,7 @@ UserSchema.pre('save', function(next) {
 
 /*
  Defining our own custom document instance method
-*/
+ */
 UserSchema.methods = {
   comparePassword: function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {

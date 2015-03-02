@@ -5,6 +5,8 @@ var TopicActionCreators = require('../actions/TopicActionCreators');
 var TopicCountItem = require('./TopicCountItem.react');
 var _ = require('lodash');
 
+require('../../scss/components/_side-section.scss');
+
 var SideSection = React.createClass({
 
   propTypes: {
@@ -22,9 +24,9 @@ var SideSection = React.createClass({
     });
 
   	return (
-      <div id="side-section">
-        <h3>Tally</h3>
-        <ul>
+      <div id="side-section" className="card">
+        <h3 className="card-content">Tally</h3>
+        <ul className="card-content">
           {topicListItems}
         </ul>
       </div>

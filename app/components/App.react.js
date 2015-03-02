@@ -26,58 +26,58 @@ var TopicStore = require('../stores/TopicStore');
 var UserStore = require('../stores/UserStore');
 
 function getState() {
-	return {
-		allTopics: TopicStore.getAll(),
-		topTopic : TopicStore.getTopTopic(),
-		user: UserStore.getUserData()
-	};
+  return {
+    allTopics: TopicStore.getAll(),
+    topTopic : TopicStore.getTopTopic(),
+    user: UserStore.getUserData()
+  };
 }
 
 var App = React.createClass({
 
-	getInitialState: function() {
-		return getState();
-	},
+  getInitialState: function() {
+    return getState();
+  },
 
-	componentDidMount: function() {
-        TopicStore.addChangeListener(this._onTopicChange);
-        UserStore.addChangeListener(this._onUserChange);
-	},
+  componentDidMount: function() {
+    TopicStore.addChangeListener(this._onTopicChange);
+    UserStore.addChangeListener(this._onUserChange);
+  },
 
-	componentWillUnmount: function() {
-        TopicStore.removeChangeListener(this._onTopicChange);
-        UserStore.removeChangeListener(this._onUserChange);
-	},
+  componentWillUnmount: function() {
+    TopicStore.removeChangeListener(this._onTopicChange);
+    UserStore.removeChangeListener(this._onUserChange);
+  },
 
-	/**
-	 * @return {object}
-	 */
-	render: function(){
-		return (
-			<div>
+  /**
+   * @return {object}
+   */
+  render: function(){
+    return (
+      <div>
         <NavigationBar isLoggedIn={this.state.user.isLoggedIn} email={this.state.user.email}/>
         <LoginApp modal={this.state.user.modal} />
-				<Header topTopic={this.state.topTopic.text} topStat={this.state.topTopic.stat}/>
-				<SideSection allTopics={this.state.allTopics}/>
-				<MainSection allTopics={this.state.allTopics} />
-			</div>
-		);
-	},
+        <Header topTopic={this.state.topTopic.text} topStat={this.state.topTopic.stat}/>
+        <SideSection allTopics={this.state.allTopics}/>
+        <MainSection allTopics={this.state.allTopics} />
+      </div>
+    );
+  },
 
-    _onTopicChange: function() {
-		this.setState({
-            allTopics: TopicStore.getAll(),
-            topTopic : TopicStore.getTopTopic()
-        });
-	},
+  _onTopicChange: function() {
+    this.setState({
+      allTopics: TopicStore.getAll(),
+      topTopic : TopicStore.getTopTopic()
+    });
+  },
 
-	_onUserChange: function() {
-		this.setState({
-			user: UserStore.getUserData()
-		});
-	}
+  _onUserChange: function() {
+    this.setState({
+      user: UserStore.getUserData()
+    });
+  }
 });
-
+`
 module.exports = App;
 
 

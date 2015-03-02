@@ -9,7 +9,7 @@ var cx = require('react/lib/cx');
 var TopicItem = React.createClass({
 
   propTypes: {
-   topic: ReactPropTypes.object.isRequired
+    topic: ReactPropTypes.object.isRequired
   },
 
   getInitialState: function() {

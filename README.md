@@ -48,12 +48,15 @@ Deploying to Heroku
 
 Todo:
 ================
-1. Include an easy set up for database (postgresql). [ Highest priority ]
-2. Improve webpack config for good build and webpack --watch
-3. Passport auth with express - IN PROGRESS.
-- [ ] Fetching correct state on refresh.
-4. Making the modules more extendible, so you can reuse them.
-5. Let me know!
+1. Use React Router [ Highest priority ]
+2. Include an easy set up for database (postgresql).
+3. Use of PureRenderComponent mixin for performance
+4. Immutable JS
+5. Improve webpack config for good build and webpack --watch
+6. Passport auth with express - IN PROGRESS.
+- [x] Fetching correct state on refresh.
+7. Making the modules more extendible, so you can reuse them.
+8. Let me know!
 
 How to Contribute:
 =================

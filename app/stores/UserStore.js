@@ -11,58 +11,58 @@ var _user = {};
 
 var UserStore = assign({}, EventEmitter.prototype, {
 
-    init: function() {
-        _user.password = '';
-        // Currently the modal is placed here. Ideally there should be a UI store too.
-        _user.modal = false;
-        // There might be a better way of doing this, currently we are grabbing context provided for the server
-        if(ninja && ninja.email) {
-          _user.email = ninja.email;
+  init: function() {
+    _user.password = '';
+    // Currently the modal is placed here. Ideally there should be a UI store too.
+    _user.modal = false;
+    // There might be a better way of doing this, currently we are grabbing context provided for the server
+    if(ninja && ninja.email) {
+      _user.email = ninja.email;
 
-          _user.isLoggedIn = true;
-        } else {
-          _user.email = '';
-          _user.modal = false;
-          _user.isLoggedIn = false;
-        }
-
-    },
-
-    getUserData: function() {
-        return _user;
-    },
-
-    emitChange: function() {
-        this.emit(CHANGE_EVENT);
-    },
-
-    addChangeListener: function(callback) {
-        this.on(CHANGE_EVENT, callback);
-    },
-
-    removeChangeListener: function(callback) {
-        this.removeListener(CHANGE_EVENT, callback);
+      _user.isLoggedIn = true;
+    } else {
+      _user.email = '';
+      _user.modal = false;
+      _user.isLoggedIn = false;
     }
+
+  },
+
+  getUserData: function() {
+    return _user;
+  },
+
+  emitChange: function() {
+    this.emit(CHANGE_EVENT);
+  },
+
+  addChangeListener: function(callback) {
+    this.on(CHANGE_EVENT, callback);
+  },
+
+  removeChangeListener: function(callback) {
+    this.removeListener(CHANGE_EVENT, callback);
+  }
 });
 
 UserStore.init();
 
 
 AppDispatcher.register(function(action) {
-    switch(action.actionType) {
-        case Constants.TOGGLE_MODAL:
-            console.log('Converting' + _user.modal);
-            _user.modal = !_user.modal;
-            UserStore.emitChange();
-            break;
-        case Constants.SUCCESSFUL_LOGIN:
-        case Constants.SUCCESSFUL_SIGNUP:
-            _user.email = action.data;
-            _user.isLoggedIn = true;
-            _user.modal = false;
-            UserStore.emitChange();
-        default:
-    }
+  switch(action.actionType) {
+    case Constants.TOGGLE_MODAL:
+      console.log('Converting' + _user.modal);
+      _user.modal = !_user.modal;
+      UserStore.emitChange();
+      break;
+    case Constants.SUCCESSFUL_LOGIN:
+    case Constants.SUCCESSFUL_SIGNUP:
+      _user.email = action.data;
+      _user.isLoggedIn = true;
+      _user.modal = false;
+      UserStore.emitChange();
+    default:
+  }
 });
 
 module.exports = UserStore;

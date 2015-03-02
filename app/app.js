@@ -10,6 +10,6 @@ TopicWebAPIUtils.getAllTopics();
 //TopicWebAPIUtils.listenToTopicChanges();
 
 React.render(
-	<Application message='Welcome to Planet Bumi' />,
-	document.getElementById('app')
+  <Application message='Welcome to Planet Bumi' />,
+  document.getElementById('app')
 );

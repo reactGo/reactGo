@@ -5,9 +5,9 @@ var local = require('./passport/local');
 /*
  * Expose
  */
- module.exports = function(app, passport, config) {
- 	// serialize sessions
- 	passport.serializeUser(function(user, done) {
+module.exports = function(app, passport, config) {
+  // serialize sessions
+  passport.serializeUser(function(user, done) {
     done(null, user.id);
   });
 
@@ -17,6 +17,6 @@ var local = require('./passport/local');
     });
   });
 
- 	//use the following strategies
+  //use the following strategies
   passport.use(local);
- };
+};

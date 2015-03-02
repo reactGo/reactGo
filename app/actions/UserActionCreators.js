@@ -3,11 +3,11 @@ var Constants = require('../constants/Constants');
 var UserWebAPIUtils = require('../utils/UserWebAPIUtils');
 
 module.exports = {
-	toggleModal: function() {
-		AppDispatcher.dispatch({
-			actionType: Constants.TOGGLE_MODAL
-		});
-	},
+  toggleModal: function() {
+    AppDispatcher.dispatch({
+      actionType: Constants.TOGGLE_MODAL
+    });
+  },
 
   submitLoginCredentials: function(data) {
     // Leaving this action here, as we might want some UI changes
@@ -39,7 +39,7 @@ module.exports = {
       .then(function(response, textStatus, jqXHR) {
         if(textStatus === 'success') {
           // Dispatch an app
-           // Dispatch another event for successful login
+          // Dispatch another event for successful login
           AppDispatcher.dispatch({
             actionType: Constants.SUCCESSFUL_SIGNUP,
             data: data.email

@@ -177,7 +177,6 @@ textarea[contenteditable] {
   src: url(/assets/fonts/RobotoCondensed-BoldItalic.eot);
   src: local('Roboto Condensed Bold Italic'), local('RobotoCondensed-BoldItalic'), url(/assets/fonts/RobotoCondensed-BoldItalic.eot) format('embedded-opentype'), url(/assets/fonts/RobotoCondensed-BoldItalic.woff) format('woff'); }
 
-/* From: https://github.com/gpbl/material-ui-sass */
 /*
 Style Guide Lines. Remove if you prefer your own library
  */
@@ -186,10 +185,22 @@ body {
   font-weight: normal;
   margin: 0; }
 
+* {
+  box-sizing: border-box; }
+
+h1 {
+  text-align: center; }
+
+.card {
+  border-radius: 3px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.23);
+  position: relative;
+  background: #fff;
+  display: block;
+  color: #212121; }
+
 #header {
   margin: 8px; }
-  #header h1 {
-    text-align: center; }
 
 #new-topic {
   margin: 16px;
@@ -202,13 +213,6 @@ body {
   padding: 8px 16px; }
   #stat-section span.topic {
     border-right: 1px solid rgba(0, 0, 0, 0.12); }
-
-#side-section {
-  width: 40%;
-  float: left;
-  border-radius: 2px;
-  margin: 8px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); }
 
 #main-section {
   width: 50%;

@@ -14,21 +14,21 @@ var _topics = {}; // Collection of todo items
  * @param {string} text The context of the TODO
  */
 function create(text) {
-    // Using the current timestamp in place of a real id.
-    var id = Date.now().toString();
-    return {
-        id: id,
-        count: 1,
-        text: text
-    };
+  // Using the current timestamp in place of a real id.
+  var id = Date.now().toString();
+  return {
+    id: id,
+    count: 1,
+    text: text
+  };
 }
 
 /**
  * Update the count of Topic
  */
 function updateCount(id, update) {
-    _topics[id].count = _topics[id].count + update;
-    TopicWebAPIUtils.updateTopic(_topics[id]);
+  _topics[id].count = _topics[id].count + update;
+  TopicWebAPIUtils.updateTopic(_topics[id]);
 }
 
 /**
@@ -38,7 +38,7 @@ function updateCount(id, update) {
  *     updated.
  */
 function update(id, updates) {
-    _topics[id] = assign({}, _topics[id], updates);
+  _topics[id] = assign({}, _topics[id], updates);
 }
 
 /**
@@ -48,10 +48,10 @@ function update(id, updates) {
  *     updated.
  */
 function updateAll(updates) {
-    // This is inefficient
-    for (var id in _topics) {
-        update(id, updates);
-    }
+  // This is inefficient
+  for (var id in _topics) {
+    update(id, updates);
+  }
 }
 
 /**
@@ -59,8 +59,8 @@ function updateAll(updates) {
  * @param  {string} id
  */
 function destroy(id) {
-    delete _topics[id];
-    TopicWebAPIUtils.deleteTopic(id);
+  delete _topics[id];
+  TopicWebAPIUtils.deleteTopic(id);
 }
 
 /**
@@ -77,119 +77,119 @@ function destroy(id) {
  */
 var TopicStore = assign({}, EventEmitter.prototype, {
 
-    /**
-     * Initialize store with topics queried from server.
-     * @param {Object} topics
-     */
-    init: function(rawTopics) {
-        _topics = _.chain(rawTopics)
-            .map(function(topic){
-                topic.id = topic.id;
-                return [topic.id, topic];
-            })
-            .object()
-            .value();
-    },
+  /**
+   * Initialize store with topics queried from server.
+   * @param {Object} topics
+   */
+  init: function(rawTopics) {
+    _topics = _.chain(rawTopics)
+      .map(function(topic){
+        topic.id = topic.id;
+        return [topic.id, topic];
+      })
+      .object()
+      .value();
+  },
 
-    /**
-     * Get the entire collection of Topics.
-     * @return {object}
-     *
-     */
-    getAll: function() {
-        return _topics;
-    },
+  /**
+   * Get the entire collection of Topics.
+   * @return {object}
+   *
+   */
+  getAll: function() {
+    return _topics;
+  },
 
-    getTopTopic: function() {
-        var sum, topTopic, stat;
+  getTopTopic: function() {
+    var sum, topTopic, stat;
 
-        sum = _.reduce(_topics, function(sum, topic) {
-            return sum + topic.count;
-        }, 0);
+    sum = _.reduce(_topics, function(sum, topic) {
+      return sum + topic.count;
+    }, 0);
 
-        topTopic = _.max(_topics, function(topic) {
-            return topic.count;
-        });
+    topTopic = _.max(_topics, function(topic) {
+      return topic.count;
+    });
 
-        // Make sure this is accepted in Node
-        stat = isNaN(topTopic.count /sum) ? 0 : topTopic.count/ sum * 100;
+    // Make sure this is accepted in Node
+    stat = isNaN(topTopic.count /sum) ? 0 : topTopic.count/ sum * 100;
 
-        return assign({}, topTopic, {'stat': stat});
-    },
+    return assign({}, topTopic, {'stat': stat});
+  },
 
-    getCreatedTopicData: function(text) {
-        var timeStamp = Date.now();
+  getCreatedTopicData: function(text) {
+    var timeStamp = Date.now();
 
-        return {
-            id: timeStamp,
-            count: 1,
-            text: text
-        };
+    return {
+      id: timeStamp,
+      count: 1,
+      text: text
+    };
 
-    },
+  },
 
-    emitChange: function() {
-        this.emit(CHANGE_EVENT);
-    },
+  emitChange: function() {
+    this.emit(CHANGE_EVENT);
+  },
 
-    /**
-     * @param {function} callback
-     */
-    addChangeListener: function(callback) {
-        this.on(CHANGE_EVENT, callback);
-    },
+  /**
+   * @param {function} callback
+   */
+  addChangeListener: function(callback) {
+    this.on(CHANGE_EVENT, callback);
+  },
 
-    /**
-     * @param {function} callback
-     */
-    removeChangeListener: function(callback) {
-        this.removeListener(CHANGE_EVENT, callback);
-    }
+  /**
+   * @param {function} callback
+   */
+  removeChangeListener: function(callback) {
+    this.removeListener(CHANGE_EVENT, callback);
+  }
 
 });
 
 
 // Register to handle all updates
 AppDispatcher.register(function(action) {
-    var text;
+  var text;
 
-    switch(action.actionType) {
-        case Constants.CREATE_TOPIC:
-            text = action.text.trim();
-            if( text.length > 0 ) {
-                var topic = TopicStore.getCreatedTopicData(text);
-                _topics[topic.id] = topic;
-                TopicStore.emitChange();
-            }
-            break;
+  switch(action.actionType) {
+    case Constants.CREATE_TOPIC:
+      text = action.text.trim();
+      if( text.length > 0 ) {
+        var topic = TopicStore.getCreatedTopicData(text);
+        _topics[topic.id] = topic;
+        TopicStore.emitChange();
+      }
+      break;
 
-        case Constants.TOPIC_INCREMENT:
-            updateCount(action.id, 1);
-            TopicStore.emitChange();
-            break;
+    case Constants.TOPIC_INCREMENT:
+      updateCount(action.id, 1);
+      TopicStore.emitChange();
+      break;
 
-        case Constants.TOPIC_DECREMENT:
-            updateCount(action.id, -1);
-            TopicStore.emitChange();
-            break;
+    case Constants.TOPIC_DECREMENT:
+      updateCount(action.id, -1);
+      TopicStore.emitChange();
+      break;
 
-        case Constants.TOPIC_DESTROY:
-            destroy(action.id);
-            TopicStore.emitChange();
-            break;
+    case Constants.TOPIC_DESTROY:
+      destroy(action.id);
+      TopicStore.emitChange();
+      break;
 
-        case Constants.RECEIVE_RAW_TOPICS:
-            TopicStore.init(action.data);
-            TopicStore.emitChange();
-            break;
+    case Constants.RECEIVE_RAW_TOPICS:
+      TopicStore.init(action.data);
+      TopicStore.emitChange();
+      break;
 
-        case Constants.FAILED_TO_CREATE_TOPIC:
-            destroy(action.id);
-            // Tell the notifier the reason
-            TopicStore.emitChange();
-            break;
-        default:
-    }
+    case Constants.FAILED_TO_CREATE_TOPIC:
+      destroy(action.id);
+      // Tell the notifier the reason
+      TopicStore.emitChange();
+      break;
+    default:
+  }
 
 });
 

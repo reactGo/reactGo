@@ -2,7 +2,7 @@ var $ = require('jquery');
 
 module.exports = {
   /*
-    @param {Promise}
+   @param {Promise}
    */
   login: function(data) {
     return $.ajax({

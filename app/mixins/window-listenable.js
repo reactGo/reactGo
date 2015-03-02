@@ -6,19 +6,19 @@ var _ = require('lodash');
 
 module.exports = {
 
-	componentDidMount: function() {
-		var listeners = this.windowListeners;
-		_.forIn(listeners, function(eventListener, eventName) {
-			var callbackName =  eventListener;
-			Events.on(window, eventName, this[callbackName]);
-		}, this);
-	},
+  componentDidMount: function() {
+    var listeners = this.windowListeners;
+    _.forIn(listeners, function(eventListener, eventName) {
+      var callbackName =  eventListener;
+      Events.on(window, eventName, this[callbackName]);
+    }, this);
+  },
 
-	componentWillUnmount: function() {
-		var listeners = this.windowListeners;
-		_.forIn(listeners, function(eventListener, eventName) {
-			var callbackName = eventListener;
-			Events.off(window, eventName, this[callbackName]);
-		}, this);
-	}
+  componentWillUnmount: function() {
+    var listeners = this.windowListeners;
+    _.forIn(listeners, function(eventListener, eventName) {
+      var callbackName = eventListener;
+      Events.off(window, eventName, this[callbackName]);
+    }, this);
+  }
 };

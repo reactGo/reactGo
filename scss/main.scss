@@ -2,8 +2,6 @@
 
 @import '_fonts';
 
-@import 'mixins/_transitions';
-
 /*
 Style Guide Lines. Remove if you prefer your own library
  */
@@ -13,8 +11,21 @@ body {
     margin: 0;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 h1 {
   text-align: center;
+}
+
+.card {
+  border-radius: 3px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.23);
+  position: relative;
+  background: #fff;
+  display: block;
+  color: #212121;
 }
 
 #header {
@@ -37,14 +48,6 @@ h1 {
 			border-right: 1px solid rgba(0, 0, 0, 0.12);
 		}
 	}
-}
-
-#side-section {
-	width: 40%;
-	float: left;
-	border-radius: 2px;
-	margin: 8px;
-	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 
 #main-section {
