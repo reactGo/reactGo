@@ -39,7 +39,7 @@ module.exports = {
      * ]
      */
     entry: {
-        app: "./app/app.js",
+        app: "./app/App.react.js",
         vendor: ['jquery', 'lodash', 'react']
     },
     output: {

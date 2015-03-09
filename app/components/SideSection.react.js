@@ -5,8 +5,6 @@ var TopicActionCreators = require('../actions/TopicActionCreators');
 var TopicCountItem = require('./TopicCountItem.react');
 var _ = require('lodash');
 
-require('../../scss/components/_side-section.scss');
-
 var SideSection = React.createClass({
 
   propTypes: {

@@ -96,7 +96,7 @@ var TopicStore = assign({}, EventEmitter.prototype, {
    * @return {object}
    *
    */
-  getAll: function() {
+  getAllTopics: function() {
     return _topics;
   },
 

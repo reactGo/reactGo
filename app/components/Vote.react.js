@@ -1,4 +1,11 @@
 /** @jsx React.DOM */
+var React = require('react');
+var Header = require('./Header.react');
+var MainSection = require('./MainSection.react');
+var SideSection = require('./SideSection.react');
+var TopicStore = require('../stores/TopicStore');
+
+require('../../scss/components/_vote.scss');
 
 /*
  * This component operates as a "Controller-View". It listens for changes in the
@@ -15,67 +22,44 @@
  * We often pass the entire state of the store down the chain of views in a single object, allowing different descendants to use
  * what they need. In addition to keeping the controller-like behavior at the top of the hierarchy, and thus keeping our descendant
  */
-
-var Header = require('./Header.react');
-var SideSection = require('./SideSection.react');
-var MainSection = require('./MainSection.react');
-var NavigationBar = require('./NavigationBar.react');
-var LoginApp = require('./Login/Login.app.react');
-var React = require('react');
-var TopicStore = require('../stores/TopicStore');
-var UserStore = require('../stores/UserStore');
-
-function getState() {
-  return {
-    allTopics: TopicStore.getAll(),
-    topTopic : TopicStore.getTopTopic(),
-    user: UserStore.getUserData()
-  };
-}
-
-var App = React.createClass({
-
+var Vote = React.createClass({
+  /*
+   Todo: refactor TopicStore to just return one object. I don't see a point trying to return two separate objects
+         from the same store
+   */
   getInitialState: function() {
-    return getState();
+    return {
+      topTopic: TopicStore.getTopTopic(),
+      allTopics: TopicStore.getAllTopics()
+    };
   },
 
   componentDidMount: function() {
     TopicStore.addChangeListener(this._onTopicChange);
-    UserStore.addChangeListener(this._onUserChange);
   },
 
   componentWillUnmount: function() {
     TopicStore.removeChangeListener(this._onTopicChange);
-    UserStore.removeChangeListener(this._onUserChange);
-  },
-
-  /**
-   * @return {object}
-   */
-  render: function(){
-    return (
-      <div>
-        <NavigationBar isLoggedIn={this.state.user.isLoggedIn} email={this.state.user.email}/>
-        <LoginApp modal={this.state.user.modal} />
-        <Header topTopic={this.state.topTopic.text} topStat={this.state.topTopic.stat}/>
-        <SideSection allTopics={this.state.allTopics}/>
-        <MainSection allTopics={this.state.allTopics} />
-      </div>
-    );
   },
 
   _onTopicChange: function() {
     this.setState({
-      allTopics: TopicStore.getAll(),
-      topTopic : TopicStore.getTopTopic()
+      topTopic: TopicStore.getTopTopic(),
+      allTopics: TopicStore.getAllTopics()
     });
   },
 
-  _onUserChange: function() {
-    this.setState({
-      user: UserStore.getUserData()
-    });
+  render: function() {
+    return(
+      <div className="vote">
+        <Header topTopic={this.state.topTopic.text} topStat={this.state.topTopic.stat}/>
+        <div className="vote__body">
+          <MainSection allTopics={this.state.allTopics} />
+          <SideSection allTopics={this.state.allTopics} />
+        </div>
+      </div>
+    );
   }
 });
 
-module.exports = App;
+module.exports = Vote;

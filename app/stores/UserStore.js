@@ -19,11 +19,11 @@ var UserStore = assign({}, EventEmitter.prototype, {
     if(ninja && ninja.email) {
       _user.email = ninja.email;
 
-      _user.isLoggedIn = true;
+      _user.loggedIn = true;
     } else {
       _user.email = '';
       _user.modal = false;
-      _user.isLoggedIn = false;
+      _user.loggedIn = false;
     }
 
   },
@@ -58,7 +58,7 @@ AppDispatcher.register(function(action) {
     case Constants.SUCCESSFUL_LOGIN:
     case Constants.SUCCESSFUL_SIGNUP:
       _user.email = action.data;
-      _user.isLoggedIn = true;
+      _user.loggedIn = true;
       _user.modal = false;
       UserStore.emitChange();
     default:

@@ -1,0 +1,52 @@
+.vote {
+  &__body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+#header {
+	margin: 8px;
+
+}
+
+#new-topic {
+	margin: 16px;
+	font-size: 16px;
+	height: 48px;
+	border: none;
+	border-bottom: 1px solid #757575;
+}
+
+#stat-section {
+	span {
+		padding: 8px 16px;
+		&.topic {
+			border-right: 1px solid rgba(0, 0, 0, 0.12);
+		}
+	}
+}
+#side-section , #main-section {
+	ul {
+		padding: 16px;
+        list-style: none;
+		li {
+			padding: 16px;
+			span {
+				display: inline;
+				font-size: 0.8em;
+				&.count {
+					float: right;
+					margin-right: 8px;
+					padding: 4px;
+					background: #64B5F6;
+					border-radius: 4px;
+				}
+			}
+		}
+	}
+	h3 {
+		padding: 16px;
+	}
+}

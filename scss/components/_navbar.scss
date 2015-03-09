@@ -7,7 +7,7 @@ nav {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 
   // nav.div-navwrapper
-  .div-navwrapper {
+  .navwrapper {
     padding: 0 10px;
     position: relative;
     height: 100%;
@@ -32,9 +32,13 @@ nav {
     }
 
     ul {
-      margin:0;
       float:right;
+      margin: 0;
       list-style: none;
+    }
+    li {
+      display: inline;
+      padding-right: 8px;
     }
   }
 }

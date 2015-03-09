@@ -1,44 +1,52 @@
 /** jsx@React.DOM */
 var React = require('react');
-var UserActionCreators = require('../actions/UserActionCreators');
-
-// Experimenting with inline styles
-var buttonStyle = {
-  color: '#fff',
-  backgroundColor: 'transparent',
-  cursor: 'pointer',
-  border: 'none',
-  fontSize: '1rem',
-  fontFamily: 'Roboto Condensed'
-};
+var Router = require('react-router');
+var Link = Router.Link;
+var UserStore = require('../stores/UserStore');
 
 //requiring nav styles
-require('../../scss/components/_navbar.scss');
+require('../..//scss/components/_navbar.scss');
 
 var NavigationBar = React.createClass({
+  getInitialState: function() {
+    return {
+      user: UserStore.getUserData()
+    };
+  },
+
+  componentDidMount: function() {
+    UserStore.addChangeListener(this._onUserChange);
+  },
+
+  componentWillUnmount: function() {
+    UserStore.removeChangeListener(this._onUserChange);
+  },
+
+  _onUserChange: function() {
+    this.setState({
+      user: UserStore.getUserData()
+    });
+  },
+
+
   render: function() {
-    var userBtn;
-    if(this.props.isLoggedIn) {
-      userBtn =   <span style={buttonStyle}>{this.props.email}</span>;
-    }else {
-      userBtn =   <span style={buttonStyle} onClick={this._toggleModal}>Login | Register</span>;
-    }
+    var loginOrOut = this.state.user.loggedIn ?
+      <Link to="logout">Logout</Link> :
+      <Link to="login">Sign in</Link>;
     return (
       <nav>
-        <div className='div-navwrapper'>
-          <a href='#' className='div-navwrapper__logo'>Ninja Ocean</a>
+        <div className='navwrapper'>
+          <Link to="/" className="navwrapper__logo">Ninja Ocean</Link>
           <ul>
             <li>
-                        {userBtn}
+              {loginOrOut}
             </li>
+            <li><Link to="about">About</Link></li>
+            <li><Link to="dashboard">Dashboard</Link></li>
           </ul>
         </div>
       </nav>
     );
-  },
-
-  _toggleModal: function(evt) {
-    UserActionCreators.toggleModal();
   }
 });
 

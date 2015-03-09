@@ -25,8 +25,8 @@ Instructions
 
 Bundling with webpack
 ================
-1. `webpack` will run configurations within webpack.config.js.
-2. `webpack --watch` to watch and recompile for changes.
+1. `npm run build` runs `webpack` will run configurations within webpack.config.js.
+2. `npm run watch` runs `webpack --watch` to watch and recompile for changes.
 
 Setting up your Database
 ================
@@ -46,17 +46,31 @@ Deploying to Heroku
 5. `heroku open` to open the link
 6. If you wish to have a database setup on Heroku, remember to use `heroku addons:add mongohq` or `heroku addons:add mongolab`. 
 
+Deploying to Digital Ocean
+=====================
+1. Create a Droplet
+2. Follow [this](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-14-04) or
+[this](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-an-ubuntu-14-04-server) tutorial
+to set up nodejs
+3. Follow [this](https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-12-04) tutorial to install mongodb
+4. git clone this repo
+5. `npm install`
+6. `sudo npm install pm2 -g`
+7. `pm2 start server/index.js`
+8. `pm2 startup ubuntu`
+9. `sudo env PATH=$PATH:/usr/local/bin pm2 startup ubuntu -u sammy`
+
+
 Todo:
 ================
-1. Use React Router [ Highest priority ]
+1. Immutable JS
 2. Include an easy set up for database (postgresql).
 3. Use of PureRenderComponent mixin for performance
-4. Immutable JS
-5. Improve webpack config for good build and webpack --watch
-6. Passport auth with express - IN PROGRESS.
+4. Improve webpack config for good build and webpack --watch
+5. Passport auth with express - IN PROGRESS.
 - [x] Fetching correct state on refresh.
-7. Making the modules more extendible, so you can reuse them.
-8. Let me know!
+6. Making the modules more extendible, so you can reuse them.
+7. Let me know!
 
 How to Contribute:
 =================
