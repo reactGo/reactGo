@@ -2,12 +2,15 @@
 var React = require('react');
 var Router = require('react-router');
 var Link = Router.Link;
+var Navigation = Router.Navigation;
 var UserStore = require('../stores/UserStore');
 
 //requiring nav styles
 require('../..//scss/components/_navbar.scss');
 
 var NavigationBar = React.createClass({
+  mixins: [Navigation],
+
   getInitialState: function() {
     return {
       user: UserStore.getUserData()
@@ -26,6 +29,11 @@ var NavigationBar = React.createClass({
     this.setState({
       user: UserStore.getUserData()
     });
+    // if loggedIn, transition to '/'
+    // This might need to be moved to an outer router
+    if(this.state.user.loggedIn) {
+      this.transitionTo('/');
+    }
   },
 
 

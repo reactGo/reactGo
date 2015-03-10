@@ -46,6 +46,7 @@ var Login = React.createClass({
             <InputFormField type="password" placeholder="Password" ref="passwordForm"/>
             <button className="mui-button__login" onClick={this._loginSubmit}>Login</button>
           </fieldset>
+          <p>Hint: username &amp; password: ken</p>
         </div>
       </div>
     );

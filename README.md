@@ -63,14 +63,15 @@ to set up nodejs
 
 Todo:
 ================
-1. Immutable JS
-2. Include an easy set up for database (postgresql).
-3. Use of PureRenderComponent mixin for performance
-4. Improve webpack config for good build and webpack --watch
-5. Passport auth with express - IN PROGRESS.
+1. Isomorphic React
+2. Immutable JS
+3. Include an easy set up for database (postgresql).
+4. Use of PureRenderComponent mixin for performance
+5. Improve webpack config for good build and webpack --watch
+6. Passport auth with express - IN PROGRESS.
 - [x] Fetching correct state on refresh.
-6. Making the modules more extendible, so you can reuse them.
-7. Let me know!
+7. Making the modules more extendible, so you can reuse them.
+8. Let me know!
 
 How to Contribute:
 =================
