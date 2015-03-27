@@ -20,12 +20,17 @@ var About = React.createClass({
   render: function() {
   	var text = 'About Ninja Ocean';
     return (
-      <h1 className={cx({
-      	'opaque--true': this.state.opaque,
-      	'opaque--false': !this.state.opaque
-      })}>
-          {this.createTextTransition(text)}
-      </h1>
+      <div>
+        <h1 className={cx({
+        	'opaque--true': this.state.opaque,
+        	'opaque--false': !this.state.opaque
+        })}>
+            {this.createTextTransition(text)}
+        </h1>
+        <p className={cx({
+          'move': this.state.opaque
+        })}>Ninja Ocean has is comprised of a team of passionate technology experts, aimed to do good.</p>
+      </div>
     );
   }
 });

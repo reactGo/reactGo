@@ -5,3 +5,18 @@
 .opaque--true > span {
 	opacity: 1;
 }
+
+@-webkit-keyframes move {
+	from {
+		transfrom: translateY(0px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(20px);
+		opacity: 1;
+	}
+}
+
+.move {
+	-webkit-animation: move 1s ease 2.5s;
+}
