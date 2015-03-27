@@ -3,7 +3,7 @@ var webpack = require("webpack");
 var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 
 var commonLoaders = [
-    { test: /\.js$/, loader: "jsx-loader" },
+    { test: /\.js$/, loader: "jsx-loader?harmony" },
     { test: /\.png$/, loader: "url-loader" },
     { test: /\.jpg$/, loader: "file-loader" },
     { test: /\.css$/, loader: "style!css" },
