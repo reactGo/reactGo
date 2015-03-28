@@ -43,6 +43,8 @@ var routes = (
   </Route>
 );
 
+// enable touch events
+React.initializeTouchEvents(true);
 Router.run(routes, Router.HistoryLocation, function (Handler) {
   React.render(<Handler/>, document.body);
 });

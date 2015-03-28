@@ -22,13 +22,6 @@ nav {
       display: inline-block;
       font-size: 2.1rem;
       padding:0;
-
-      @media only screen and (max-width: 992px) {
-        left: 0;
-        width: 100%;
-        text-align: center;
-        z-index: 0;
-      }
     }
 
     ul {
