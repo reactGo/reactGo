@@ -2,6 +2,7 @@
   "name": "react-webpack-node",
   "version": "1.0.0",
   "description": "A simple Node.js app using Express 4 with Webpack and React",
+  "repository": "https://github.com/choonkending/react-webpack-node",
   "main": "index.js",
   "scripts": {
     "start": "node server/index.js",
