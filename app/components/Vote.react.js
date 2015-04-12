@@ -1,11 +1,11 @@
 /** @jsx React.DOM */
 var React = require('react');
-var Header = require('./Header.react');
-var MainSection = require('./MainSection.react');
-var SideSection = require('./SideSection.react');
+//var EntryBox = require('./EntryBox.react');
+// var MainSection = require('./MainSection.react');
+// var SideSection = require('./SideSection.react');
 var TopicStore = require('../stores/TopicStore');
 
-require('../../scss/components/_vote.scss');
+// require('../../scss/components/_vote.scss');
 
 /*
  * This component operates as a "Controller-View". It listens for changes in the
@@ -23,40 +23,40 @@ require('../../scss/components/_vote.scss');
  * what they need. In addition to keeping the controller-like behavior at the top of the hierarchy, and thus keeping our descendant
  */
 var Vote = React.createClass({
-  /*
-   Todo: refactor TopicStore to just return one object. I don't see a point trying to return two separate objects
-         from the same store
-   */
+  
   getInitialState: function() {
+    // topTopic: TopicStore.getTopTopic(),
     return {
-      topTopic: TopicStore.getTopTopic(),
-      allTopics: TopicStore.getAllTopics()
+      allTopics: TopicStore.getState().topics
     };
   },
 
   componentDidMount: function() {
-    TopicStore.addChangeListener(this._onTopicChange);
+    TopicStore.listen(this.onChange);
   },
 
   componentWillUnmount: function() {
-    TopicStore.removeChangeListener(this._onTopicChange);
+    TopicStore.unlisten(this.onChange);
   },
 
-  _onTopicChange: function() {
+  onChange: function() {
+    // topTopic: TopicStore.getTopTopic(),
     this.setState({
-      topTopic: TopicStore.getTopTopic(),
-      allTopics: TopicStore.getAllTopics()
+      allTopics: TopicStore.getState().topics
     });
   },
 
   render: function() {
+    /*
+    <div className="vote__body">
+          <MainSection topics={this.state.allTopics.topics} />
+          <SideSection topics={this.state.allTopics.topics} />
+        </div>
+    */
+    console.log(this.state.allTopics);
     return(
       <div className="vote">
-        <Header topTopic={this.state.topTopic.text} topStat={this.state.topTopic.stat}/>
-        <div className="vote__body">
-          <MainSection allTopics={this.state.allTopics} />
-          <SideSection allTopics={this.state.allTopics} />
-        </div>
+        <h1>Ken</h1>
       </div>
     );
   }

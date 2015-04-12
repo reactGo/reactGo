@@ -60,6 +60,20 @@ to set up nodejs
 8. `pm2 startup ubuntu`
 9. `sudo env PATH=$PATH:/usr/local/bin pm2 startup ubuntu -u sammy`
 
+Component Hierarchy
+===================
+App 
+- NavigationBar
+- RouteHandler
+	- Vote
+		- EntryBox
+		- MainSection
+		- SideSection
+	- Login
+	- About
+	- Dashboard
+
+
 
 Todo:
 ================

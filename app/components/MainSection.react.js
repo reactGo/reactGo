@@ -2,31 +2,17 @@
 var React = require('react');
 var ReactPropTypes = React.PropTypes;
 var TopicItem = require('./TopicItem.react');
-var _ = require('lodash');
 
 var MainSection = React.createClass({
-
-  propTypes: {
-    allTopics: ReactPropTypes.object.isRequired
-  },
-
   /**
    * @return {object}
    */
   render: function() {
-    // This section should be hidden by default
-    // and shown when there are todos.
-    if (Object.keys(this.props.allTopics).length < 1) {
-      return null;
-    }
-
-    var allTopics = this.props.allTopics;
     var topics = [];
-
-    _.forEach(allTopics, function(value, key){
-      topics.push(<TopicItem id={key} key={key} topic={value} />);
+    // Using forEach with side effects, I much rather use map
+    this.props.topics.forEach(function(topic, key) {
+      topics.push(<TopicItem id={topic.id} key={topic.id} text={topic.text} />);
     });
-
     return (
       <section id="main-section">
         <h3>Vote</h3>

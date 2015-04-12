@@ -1,14 +1,14 @@
 /** @jsx React.DOM */
 var React = require('react');
-var TopicActionCreators = require('../actions/TopicActionCreators');
+var TopicActions = require('../actions/TopicActions');
 var TopicTextInput = require('./TopicTextInput.react');
 var Statistics = require('./Statistics.react');
 var AnimationMixin = require('../mixins/AnimationMixin');
-var cx = require('react/lib/cx');
+var classnames = require('classnames');
 
-require('../../scss/components/_animations.scss');
+// require('../../scss/components/_animations.scss');
 
-var Header = React.createClass({
+var EntryBox = React.createClass({
   mixins: [AnimationMixin],
   getInitialState: function() {
     return {
@@ -25,16 +25,17 @@ var Header = React.createClass({
    */
   render: function() {
     var text = 'Trending Burger Places';
+    // <Statistics topTopic={this.props.topTopic} topStat={this.props.topStat} />
     return (
       <header id="header">
-        <h1 className={cx({
+        <h1 className={classnames({
           'opaque--true': this.state.opaque,
           'opaque--false': !this.state.opaque
         })}>
             {this.createTextTransition(text)}
         </h1>
         <h2>Top Burger</h2>
-        <Statistics topTopic={this.props.topTopic} topStat={this.props.topStat} />
+        
         <TopicTextInput
           id="new-topic"
           placeholder="Fav burger?"
@@ -52,11 +53,11 @@ var Header = React.createClass({
    */
   _onSave: function(text) {
     if (text.trim()){
-      TopicActionCreators.create(text);
+      TopicActions.create(text);
     }
 
   }
 
 });
 
-module.exports = Header;
+module.exports = EntryBox;

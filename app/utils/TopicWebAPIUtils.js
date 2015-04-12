@@ -1,5 +1,5 @@
 var $ = require('jquery');
-var TopicServerActionCreators = require('../actions/TopicServerActionCreators');
+var TopicServerActions = require('../actions/TopicServerActions');
 
 // Placing configuration here, might consider moving it elsewhere
 var defaultConfig = {
@@ -10,27 +10,25 @@ var defaultConfig = {
 
 module.exports = {
   getAllTopics: function() {
-    $.ajax(defaultConfig)
-      .then(function(data, textStatus, jqXHR) {
-        TopicServerActionCreators.receiveAllTopics(data);
-      }, function(jqXHR, textStatus, errorThrown) {
-        console.log(errorThrown);
-      });
+    // $.ajax(defaultConfig)
+    //   .then(function(data, textStatus, jqXHR) {
+    //     TopicServerActions.receiveAllTopics(data);
+    //   }, function(jqXHR, textStatus, errorThrown) {
+    //     console.log(errorThrown);
+    //   });
   },
+
+  /*
+   * @param topic provide a topic object {id: String, count: Number, text: String}
+   * @return jqXHR object (which implements the Promise interface)
+   */
   addTopic: function(topic) {
-    $.ajax({
+    return $.ajax({
       url: '/topic',
       data: JSON.stringify(topic),
       type: 'POST',
       contentType: 'application/json'
-    })
-      .then(function(data, textStatus, jqXHR) {
-        // Currently this dispatches an event, but it is not required
-        TopicServerActionCreators.receiveCreatedTopic(data);
-      }, function(jqXHR, textStatus, errorThrown) {
-        console.log(errorThrown);
-        TopicServerActionCreators.failedToCreateTopic(topic, errorThrown);
-      });
+    });
   },
 
   updateTopic: function(topic) {
@@ -48,17 +46,12 @@ module.exports = {
   },
 
   deleteTopic: function(id) {
-    $.ajax({
+    return $.ajax({
       url: '/topic',
       data: JSON.stringify({id: id}),
       contentType: 'application/json',
       type: 'DELETE'
-    })
-      .then(function(data, textStatus, jqXHR) {
-        console.log(data);
-      }, function(jqXHR, textStatus, errorThrown) {
-        console.log(errorThrown);
-      });
+    });
   },
 
   /**
@@ -72,6 +65,18 @@ module.exports = {
     var _this = this;
     socket.on('topic change', function() {
       _this.getAllTopics();
+    });
+  },
+
+  /*
+   * @param
+   */
+  updateCountForTopicID: function(id) {
+    return $.ajax({
+      url: '/topic',
+      data: JSON.stringify({id: id}),
+      type: 'PUT',
+      contentType: 'application/json'
     });
   }
 };

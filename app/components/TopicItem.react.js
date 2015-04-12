@@ -1,16 +1,12 @@
 /** @jsx React.DOM */
 var React = require('react');
 var ReactPropTypes = React.PropTypes;
-var TopicActionCreators = require('../actions/TopicActionCreators');
+var TopicActions = require('../actions/TopicActions');
 var TopicTextInput = require('./TopicTextInput.react');
 
-var cx = require('react/lib/cx');
+var classnames = require('classnames');
 
 var TopicItem = React.createClass({
-
-  propTypes: {
-    topic: ReactPropTypes.object.isRequired
-  },
 
   getInitialState: function() {
     return {
@@ -22,14 +18,13 @@ var TopicItem = React.createClass({
    * @return {object}
    */
   render: function() {
-    var topic = this.props.topic;
     var input;
     if (this.state.isEditing) {
       input =
         <TopicTextInput
           className="edit"
           onSave={this._onSave}
-          value={topic.text}
+          value={this.props.text}
         />;
     }
 
@@ -40,13 +35,13 @@ var TopicItem = React.createClass({
     // in the naming of view actions toggleComplete() vs. destroyCompleted().
     return (
       <li
-        className={cx({
+        className={classnames({
           'editing': this.state.isEditing
         })}
-        key={topic.id}>
+        key={this.props.id}>
         <div className="view">
           <label onDoubleClick={this._onDoubleClick}>
-            {topic.text}
+            {this.props.text}
           </label>
           <button className="increment" onClick={this._onIncrement}>+</button>
           <button className="decrement" onClick={this._onDecrement}>-</button>
@@ -57,20 +52,16 @@ var TopicItem = React.createClass({
     );
   },
 
-  _onToggleComplete: function() {
-    TopicActionCreators.toggleComplete(this.props.topic);
-  },
-
   _onDoubleClick: function() {
     this.setState({isEditing: true});
   },
 
   _onIncrement: function() {
-    TopicActionCreators.increment(this.props.topic.id);
+    TopicActions.increment(this.props.id);
   },
 
   _onDecrement: function() {
-    TopicActionCreators.decrement(this.props.topic.id);
+    TopicActions.decrement(this.props.id);
   },
 
   /**
@@ -80,12 +71,12 @@ var TopicItem = React.createClass({
    * @param  {string} text
    */
   _onSave: function(text) {
-    TopicActionCreators.updateText(this.props.topic.id, text);
+    TopicActions.updateText(this.props.id, text);
     this.setState({isEditing: false});
   },
 
   _onDestroyClick: function() {
-    TopicActionCreators.destroy(this.props.topic.id);
+    TopicActions.destroy(this.props.id);
   }
 
 });

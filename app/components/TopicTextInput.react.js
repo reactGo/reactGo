@@ -7,14 +7,6 @@ var ENTER_KEY_CODE = 13;
 // Code modified from https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/components/TopicTextInput.react.js
 var TopicTextInput = React.createClass({
 
-  propTypes: {
-    className: ReactPropTypes.string,
-    id: ReactPropTypes.string,
-    placeholder: ReactPropTypes.string,
-    onSave: ReactPropTypes.func.isRequired,
-    value: ReactPropTypes.string
-  },
-
   getInitialState: function() {
     return {
       value: this.props.value || ''

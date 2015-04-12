@@ -1,11 +1,10 @@
 /** @jsx React.DOM */
 
 var React = require('react');
-var cx = require('react/lib/cx');
 var InputFormField = require('./InputFormField.react');
 var UserActionCreators = require('../actions/UserActionCreators');
 
-require('../../scss/components/_login.scss');
+// require('../../scss/components/_login.scss');
 
 var Login = React.createClass({
 

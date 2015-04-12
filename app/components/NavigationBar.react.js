@@ -6,7 +6,7 @@ var Navigation = Router.Navigation;
 var UserStore = require('../stores/UserStore');
 
 //requiring nav styles
-require('../..//scss/components/_navbar.scss');
+// require('../..//scss/components/_navbar.scss');
 
 var NavigationBar = React.createClass({
   mixins: [Navigation],
