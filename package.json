@@ -13,10 +13,6 @@
   "author": "Choon Ken Ding",
   "license": "MIT",
   "devDependencies": {
-    "express": "^4.10.2",
-    "gulp": "^3.8.10",
-    "gulp-sass": "^1.2.4",
-    "webpack": "^1.4.13"
   },
   "engines": {
     "node": "0.10.x"
