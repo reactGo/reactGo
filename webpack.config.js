@@ -59,8 +59,7 @@ module.exports = [
     // The configuration for the server-side rendering
     name: "server-side rendering",
     entry: {
-      vote: "./app/components/Vote.react.js",
-      alt: ["./app/alt.js"], //https://github.com/webpack/webpack/issues/300
+      vote: "./app/components/Vote.react.js"
     },
     target: "node",
     output: {

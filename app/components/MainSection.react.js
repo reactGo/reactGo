@@ -1,6 +1,5 @@
 /** @jsx React.DOM */
 var React = require('react');
-var ReactPropTypes = React.PropTypes;
 var TopicItem = require('./TopicItem.react');
 
 var MainSection = React.createClass({
@@ -8,10 +7,9 @@ var MainSection = React.createClass({
    * @return {object}
    */
   render: function() {
-    var topics = [];
-    // Using forEach with side effects, I much rather use map
-    this.props.topics.forEach(function(topic, key) {
-      topics.push(<TopicItem id={topic.id} key={topic.id} text={topic.text} />);
+    
+    var topics = this.props.topics.map(function(topic) {
+      return (<TopicItem id={topic.get('id')} key={topic.get('id')} text={topic.get('text')} />);
     });
     return (
       <section id="main-section">

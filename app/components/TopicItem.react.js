@@ -3,30 +3,14 @@ var React = require('react');
 var ReactPropTypes = React.PropTypes;
 var TopicActions = require('../actions/TopicActions');
 var TopicTextInput = require('./TopicTextInput.react');
-
 var classnames = require('classnames');
 
 var TopicItem = React.createClass({
-
-  getInitialState: function() {
-    return {
-      isEditing: false
-    };
-  },
-
   /**
    * @return {object}
    */
   render: function() {
     var input;
-    if (this.state.isEditing) {
-      input =
-        <TopicTextInput
-          className="edit"
-          onSave={this._onSave}
-          value={this.props.text}
-        />;
-    }
 
     // List items should get the class 'editing' when editing
     // and 'completed' when marked as completed.
@@ -34,11 +18,7 @@ var TopicItem = React.createClass({
     // This differentiation between classification and state becomes important
     // in the naming of view actions toggleComplete() vs. destroyCompleted().
     return (
-      <li
-        className={classnames({
-          'editing': this.state.isEditing
-        })}
-        key={this.props.id}>
+      <li key={this.props.id}>
         <div className="view">
           <label onDoubleClick={this._onDoubleClick}>
             {this.props.text}
@@ -47,7 +27,6 @@ var TopicItem = React.createClass({
           <button className="decrement" onClick={this._onDecrement}>-</button>
           <button className="destroy" onClick={this._onDestroyClick}>{String.fromCharCode(215)}</button>
         </div>
-        {input}
       </li>
     );
   },
@@ -61,7 +40,7 @@ var TopicItem = React.createClass({
   },
 
   _onDecrement: function() {
-    TopicActions.decrement(this.props.id);
+    //TopicActions.decrement(this.props.id);
   },
 
   /**

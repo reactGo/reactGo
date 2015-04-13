@@ -1,41 +1,30 @@
 /**
  * Routes for express app
  */
-// require('node-jsx').install({ extension: '.jsx', harmony: true })
+require('node-jsx').install({ extension: '.js', harmony: true })
 var topics = require('../controllers/topics');
 var users = require('../controllers/users');
 var mongoose = require('mongoose');
 var Topic = mongoose.model('Topic');
 var Iso = require('iso');
 var React = require('react');
-var Vote = require('../../public/assets/vote.server');
-// var Vote = require('../../app/components/Vote.react');
-// var alt = require('../../app/alt');
-var alt = require('../../public/assets/alt.server');
-
+var Vote = require('../../app/components/Vote.react');
+var alt = require('../../app/alt');
 
 /**
  * Problem: webpack bundles the component into one version with alt that already has the stores initialized within it
  *          Problem with this is that when we require alt again, it does not have the TopicStore created within it already
  * We could try something like module.exports = { alt, Vote}, and access the same one
  * Or we could try creating an alt Instance that contains the component?
+ * Quick fix is to use iso/react-router-flux 's requiring modules (entry points) without webpack at all
  */
 module.exports = function(app, io, passport) {
 
   app.get('/', function(req, res, next) {
     Topic.find({}).exec(function(err, topics) {
       if(!err) {
-        //console.log('Once more into the fray');
         res.locals.data =  { TopicStore: { topics: topics} };
-        alt.bootstrap(JSON.stringify(res.locals.data || {}));
-        console.log(alt);
-        var iso = new Iso();
-        var content = React.renderToString(React.createElement(Vote));
-        iso.add(content, alt.flush());
-        res.render('index', { 
-          isomorphic: iso.render()
-         });
-        // next();
+        next();
       }else {
         console.log('Error in first query');
       }
@@ -67,17 +56,17 @@ module.exports = function(app, io, passport) {
   // fetched and seed our stores with data.
   // Then we use iso in order to render this content so it picks it back up
   // on the client side and bootstraps the stores.
-  // app.use(function(req, res) {
-  //   console.log('local data'  + res.locals.data);
-  //   alt.bootstrap(JSON.stringify(res.locals.data || {}));
-  //   var iso = new Iso();
-  //   var content = React.renderToString(React.createElement(Vote));
-  //   iso.add(content, alt.flush());
+  app.use(function(req, res) {
+    console.log('local data'  + res.locals.data);
+    alt.bootstrap(JSON.stringify(res.locals.data || {}));
+    var iso = new Iso();
+    var content = React.renderToString(React.createElement(Vote));
+    iso.add(content, alt.flush());
     
-  //   res.render('index', { 
-  //     isomorphic: iso.render()
-  //    });
-  // });
+    res.render('index', { 
+      isomorphic: iso.render()
+     });
+  });
 
   // Adding this in as an example
   io.on('connection', function(socket) {

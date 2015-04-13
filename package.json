@@ -44,6 +44,7 @@
     "lusca": "^1.0.2",
     "method-override": "^2.3.1",
     "mongoose": "^3.8.19",
+    "node-jsx": "^0.12.4",
     "node-sass": "^1.2.3",
     "passport": "^0.2.1",
     "passport-google-oauth": "^0.1.5",

@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 var React = require('react');
 //var EntryBox = require('./EntryBox.react');
-// var MainSection = require('./MainSection.react');
+var MainSection = require('./MainSection.react');
 // var SideSection = require('./SideSection.react');
 var TopicStore = require('../stores/TopicStore');
 
@@ -47,16 +47,9 @@ var Vote = React.createClass({
   },
 
   render: function() {
-    /*
-    <div className="vote__body">
-          <MainSection topics={this.state.allTopics.topics} />
-          <SideSection topics={this.state.allTopics.topics} />
-        </div>
-    */
-    console.log(this.state.allTopics);
     return(
       <div className="vote">
-        <h1>Ken</h1>
+        <MainSection topics={this.state.allTopics} />
       </div>
     );
   }

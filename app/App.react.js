@@ -48,8 +48,6 @@ var Iso = require('iso');
 // });
 
 Iso.bootstrap(function(state, _, container) {
-	console.log(state);
   alt.bootstrap(state);
-
   React.render(<Vote />, document.querySelector('#app'));
 });

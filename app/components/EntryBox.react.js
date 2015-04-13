@@ -55,7 +55,6 @@ var EntryBox = React.createClass({
     if (text.trim()){
       TopicActions.create(text);
     }
-
   }
 
 });
