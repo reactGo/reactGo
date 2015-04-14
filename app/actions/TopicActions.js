@@ -1,5 +1,3 @@
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var Constants = require('../constants/Constants');
 var TopicWebAPIUtils = require('../utils/TopicWebAPIUtils');
 var alt = require('../alt');
 
@@ -54,6 +52,10 @@ class TopicActions {
     this.dispatch(id);
 
     TopicWebAPIUtils.updateCountForTopicID(id);
+  }
+
+  decrement(id) {
+    // Might want to grab data from another util
   }
 }
 

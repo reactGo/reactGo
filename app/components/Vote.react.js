@@ -4,8 +4,8 @@ var React = require('react');
 var MainSection = require('./MainSection.react');
 // var SideSection = require('./SideSection.react');
 var TopicStore = require('../stores/TopicStore');
-
-// require('../../scss/components/_vote.scss');
+var AltIsomorphicRenderer = require('../utils/AltIsomorphicRenderer');
+var alt = require('../alt');
 
 /*
  * This component operates as a "Controller-View". It listens for changes in the
@@ -55,4 +55,4 @@ var Vote = React.createClass({
   }
 });
 
-module.exports = Vote;
+module.exports = AltIsomorphicRenderer(alt, Vote);

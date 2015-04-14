@@ -125,7 +125,6 @@ class TopicStore {
 
 // Export our newly created Store
 module.exports = alt.createStore(TopicStore, 'TopicStore');
-console.log(alt);
 // var TopicStore = assign({}, EventEmitter.prototype, {
 
 //   /**

@@ -33,8 +33,8 @@ module.exports = [
      * ]
      */
     entry: {
-      app: "./app/App.react.js"
-      // vote: "./app/components/Vote.react.js"
+      //app: "./app/App.react.js"
+      vote: "./app/components/Vote.react.js"
     },
     output: {
       // The output directory as absolute path

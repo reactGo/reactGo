@@ -1,5 +1,4 @@
 var $ = require('jquery');
-var TopicServerActions = require('../actions/TopicServerActions');
 
 // Placing configuration here, might consider moving it elsewhere
 var defaultConfig = {

@@ -13,7 +13,7 @@ var MainSection = React.createClass({
     });
     return (
       <section id="main-section">
-        <h3>Vote</h3>
+        <h3>Vote for your favorite burger place</h3>
         <ul id="topic-list">{topics}</ul>
       </section>
     );
