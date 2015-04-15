@@ -12,10 +12,10 @@ var MainSection = React.createClass({
       return (<TopicItem id={topic.get('id')} key={topic.get('id')} text={topic.get('text')} />);
     });
     return (
-      <section id="main-section">
-        <h3>Vote for your favorite burger place</h3>
-        <ul id="topic-list">{topics}</ul>
-      </section>
+      <div className="main-section">
+        <h3 className="main-section__header">Vote for your favorite burger place</h3>
+        <ul className="main-section__list">{topics}</ul>
+      </div>
     );
   }
 

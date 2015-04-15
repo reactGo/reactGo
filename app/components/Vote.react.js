@@ -2,7 +2,7 @@
 var React = require('react');
 //var EntryBox = require('./EntryBox.react');
 var MainSection = require('./MainSection.react');
-// var SideSection = require('./SideSection.react');
+var Scoreboard = require('./Scoreboard.react');
 var TopicStore = require('../stores/TopicStore');
 var AltIsomorphicRenderer = require('../utils/AltIsomorphicRenderer');
 var alt = require('../alt');
@@ -50,6 +50,7 @@ var Vote = React.createClass({
     return(
       <div className="vote">
         <MainSection topics={this.state.allTopics} />
+        <Scoreboard topics={this.state.allTopics} />
       </div>
     );
   }

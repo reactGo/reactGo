@@ -8,10 +8,11 @@ var Topic = mongoose.model('Topic');
 var Vote = require('../../public/assets/vote.server');
 
 module.exports = function(app, io, passport) {
-
+  // main route
   app.get('/', function(req, res, next) {
     Topic.find({}).exec(function(err, topics) {
       if(!err) {
+        // pass in data to be seeded into the TopicStore
         res.locals.data =  { TopicStore: { topics: topics} };
         next();
       }else {
@@ -43,8 +44,7 @@ module.exports = function(app, io, passport) {
 
   // This is where the magic happens. We take the locals data we have already 
   // fetched and seed our stores with data.
-  // Then we use iso in order to render this content so it picks it back up
-  // on the client side and bootstraps the stores.
+  // Vote is a function that requires store data to initialize and return the React-rendered html string
   app.use(function(req, res) {
     var content = Vote(JSON.stringify(res.locals.data || {}));
     res.render('index', { 

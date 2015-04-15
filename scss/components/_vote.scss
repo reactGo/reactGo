@@ -1,52 +1,115 @@
 .vote {
-  &__body {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-  }
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
-#header {
-	margin: 8px;
+.main-section {
+
+	box-shadow: 0 4px 8px rgba(0,0,0,0.16), 0 4px 8px rgba(0,0,0,0.23);
+	border-radius: 4px;
+	border: 2px solid #000;
+	margin: 14.36px;
+	margin: 1vw;
+	width: 60%;
+	
+	// .main-section__header
+	&__header {
+		text-align: center;
+		font-size: 43.08px;
+		font-size: 3vw;
+	}
+
+	// .main-section__list
+	&__list {
+		list-style: none;
+	}
 
 }
 
-#new-topic {
-	margin: 16px;
-	font-size: 16px;
-	height: 48px;
-	border: none;
-	border-bottom: 1px solid #757575;
-}
+.topic-item {
+	
+	// .topic-item__topic
+	&__topic {
+		display: inline-block;
+		min-width: 143.59375px;
+		min-width: 10vw;
+	}
+	
+	// .topic-item__button
+	&__button {
 
-#stat-section {
-	span {
-		padding: 8px 16px;
-		&.topic {
-			border-right: 1px solid rgba(0, 0, 0, 0.12);
+		display: inline-block;
+    position: relative;
+    width: 43.078125px;
+    width: 3vw;
+    height: 43.078125px;
+    height: 3vw;
+    line-height:43.078125px;
+    line-height: 3vw;
+    border-radius: 50%;
+    border: none;
+    margin: 8px;
+    margin: 0.5571273123vw;
+    font-size: 14.3599996566772px;
+    font-size: 1vw;
+    color: #fff;
+
+    // .topic-item__button--increment
+		&--increment {
+			background-color: #0f9d58;
 		}
-	}
-}
-#side-section , #main-section {
-	ul {
-		padding: 16px;
-        list-style: none;
-		li {
-			padding: 16px;
-			span {
-				display: inline;
-				font-size: 0.8em;
-				&.count {
-					float: right;
-					margin-right: 8px;
-					padding: 4px;
-					background: #64B5F6;
-					border-radius: 4px;
-				}
-			}
+
+		// .topic-item__button--decrement
+		&--decrement {
+			background-color: #4285f4;
 		}
+		
+		// .topic-item__button--destroy
+		&--destroy {
+			background-color: #db4437;
+		}
+
 	}
-	h3 {
-		padding: 16px;
+
+}
+
+.scoreboard {
+
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	border-radius: 4px;
+	border: 1px solid #000;
+	margin: 14.36px;
+	margin: 1vw;
+	width: 40%;
+
+	// .scoreboard__header
+	&__header {
+		text-align: center;
+		font-size: 43.08px;
+		font-size: 3vw;
 	}
+	
+	// .scoreboard__list
+	&__list {
+		list-style: none;
+	}
+	
+	// .scoreboard__list-item
+	&__list-item {
+		
+	}
+
+	// .scoreboard__topic
+	&__topic {
+		display: inline-block;
+		min-width: 143.59375px;
+		min-width: 10vw;
+	}
+
+	// .scoreboard__count
+	&__count {
+
+	}
+
 }

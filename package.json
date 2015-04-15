@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/index.js",
-    "build": "gulp styles && webpack --progress",
+    "build": "gulp sass && webpack --progress",
+    "sass-watch": "gulp watch",
     "watch": "webpack --watch --progress",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "gulp styles && webpack"
