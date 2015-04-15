@@ -110,7 +110,17 @@ class TopicStore {
     }
   }
 
-  handleIncrement(data) {
+  handleIncrement(id) {
+    var topic = this.topics.get(id);
+    var count = topic.get('count');
+    this.topics = this.topics.set(id, topic.set('count', count + 1));
+    this.emitChange();
+  }
+
+  handleDecrement(id) {
+    var topic = this.topics.get(id);
+    var count = topic.get('count');
+    this.topics = this.topics.set(id, topic.set('count', count - 1));
     this.emitChange();
   }
 

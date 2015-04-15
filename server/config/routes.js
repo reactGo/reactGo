@@ -4,6 +4,7 @@
 var topics = require('../controllers/topics');
 var users = require('../controllers/users');
 var mongoose = require('mongoose');
+var _ = require('lodash');
 var Topic = mongoose.model('Topic');
 var Vote = require('../../public/assets/vote.server');
 
@@ -12,8 +13,9 @@ module.exports = function(app, io, passport) {
   app.get('/', function(req, res, next) {
     Topic.find({}).exec(function(err, topics) {
       if(!err) {
+        var topicmap = _.indexBy(topics, 'id');
         // pass in data to be seeded into the TopicStore
-        res.locals.data =  { TopicStore: { topics: topics} };
+        res.locals.data =  { TopicStore: { topics: topicmap} };
         next();
       }else {
         console.log('Error in first query');
