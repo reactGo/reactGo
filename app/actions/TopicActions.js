@@ -46,16 +46,31 @@ class TopicActions {
   }
 
   /*
-   * @param id to increment with
+   * @param String topic id to increment with
    */
   increment(id) {
     this.dispatch(id);
 
-    TopicWebAPIUtils.updateCountForTopicID(id);
+    TopicWebAPIUtils.updateTopic({ id: id }, false, true);
   }
 
+  /*
+   * @param String topic id to decrement with
+   */
   decrement(id) {
-    // Might want to grab data from another util
+    this.dispatch(id);
+
+    TopicWebAPIUtils.updateTopic({ id: id }, false, false);
+  }
+
+  /*
+   * @param String topic id to destroy
+   */
+  destroy(id) {
+    this.dispatch(id);
+
+    // Keeping it consistent with the above
+    TopicWebAPIUtils.deleteTopic({id: id});
   }
 }
 
@@ -64,30 +79,6 @@ module.exports = alt.createActions(TopicActions);
 
 // module.exports = {
 
-//   /**
-//    * @param  {string} text
-//    */
-//   create: function(text) {
-//     AppDispatcher.dispatch({
-//       actionType: Constants.CREATE_TOPIC,
-//       text: text
-//     });
-
-//     if(text.trim().length > 0) {
-//       // This feels very much like we are doing twice the work here. Dispatching which will be sent to the store,
-//       // and then calling the store to return you have done already. This might be the downside of flux?
-//       var topic = TopicStore.getCreatedTopicData(text);
-//       TopicWebAPIUtils.addTopic(topic);
-//     }
-
-//   },
-
-//   decrement: function(id, text) {
-//     AppDispatcher.dispatch({
-//       actionType: Constants.TOPIC_DECREMENT,
-//       id: id
-//     });
-//   },
 
 //   /**
 //    * @param  {string} id The ID of the ToDo item
@@ -126,25 +117,6 @@ module.exports = alt.createActions(TopicActions);
 //   toggleCompleteAll: function() {
 //     AppDispatcher.dispatch({
 //       actionType: Constants.TODO_TOGGLE_COMPLETE_ALL
-//     });
-//   },
-
-//   /**
-//    * @param  {string} id
-//    */
-//   destroy: function(id) {
-//     AppDispatcher.dispatch({
-//       actionType: Constants.TOPIC_DESTROY,
-//       id: id
-//     });
-//   },
-
-//   /**
-//    * Delete all the completed ToDos
-//    */
-//   destroyCompleted: function() {
-//     AppDispatcher.dispatch({
-//       actionType: Constants.TODO_DESTROY_COMPLETED
 //     });
 //   }
 

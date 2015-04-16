@@ -20,7 +20,7 @@ var TopicItem = React.createClass({
   },
 
   _onDecrement: function() {
-    //TopicActions.decrement(this.props.id);
+    TopicActions.decrement(this.props.id);
   },
 
   _onDestroyClick: function() {

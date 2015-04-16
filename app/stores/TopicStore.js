@@ -100,7 +100,9 @@ class TopicStore {
     // Remember: alt generates uppercase constants for us to reference
     this.bindListeners({
       handleIncrement: TopicActions.INCREMENT,
-      handleCreate: TopicActions.CREATE
+      handleDecrement: TopicActions.DECREMENT,
+      handleCreate: TopicActions.CREATE,
+      handleDestroy: TopicActions.DESTROY
     });
   }
 
@@ -118,6 +120,7 @@ class TopicStore {
   }
 
   handleDecrement(id) {
+    console.log('I was called');
     var topic = this.topics.get(id);
     var count = topic.get('count');
     this.topics = this.topics.set(id, topic.set('count', count - 1));
@@ -125,10 +128,13 @@ class TopicStore {
   }
 
   handleCreate(data) {
-    // merge(): Returns a new Map resulting from merging the provided Iterables (or JS objects) into this Map.
-    // In other words, this takes each entry of each iterable and sets it on this Map
     var id = data.id;
     this.topics = this.topics.set(id, data);
+    this.emitChange();
+  }
+
+  handleDestroy(id) {
+    this.topics = this.topics.delete(id);
     this.emitChange();
   }
 }

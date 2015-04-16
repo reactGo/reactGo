@@ -34,25 +34,25 @@ exports.add = function(req, res) {
  */
 exports.update = function(req, res) {
   var query = { id: req.body.id };
-  var omitKeys = ['id', '_id', '_v'];
+  var isIncrement = req.body.isIncrement;
+  var isFull = req.body.isFull;
+  var omitKeys = ['id', '_id', '_v', 'isIncrement', 'isFull'];
   var data = _.omit(req.body, omitKeys);
-  if(_.isEmpty(data)) {
-    // This increments the value only
-    
-    Topic.findOneAndUpdate(query, { $inc: { count: 1 } }, function(err, data) {
-      if(err) {
-        console.log('Error on save!');
-        // Not sure if server status is the correct status to return
-        res.status(500).send('We failed to save to due some reasons');
-      }
-      res.status(200).send('Updated successfully');
-    });
-    
-  } else {
+
+  if(isFull) {
     Topic.findOneAndUpdate(query, data, function(err, data) {
       if(err) {
         console.log('Error on save!');
-        res.status(500).send('We failed to save to due some reasons');
+        res.status(500).send('We failed to save to due some reason');
+      }
+      res.status(200).send('Updated successfully');
+    });
+  } else {
+    Topic.findOneAndUpdate(query, { $inc: { count: isIncrement ? 1: -1 } }, function(err, data) {
+      if(err) {
+        console.log('Error on save!');
+        // Not sure if server status is the correct status to return
+        res.status(500).send('We failed to save to due some reason');
       }
       res.status(200).send('Updated successfully');
     });

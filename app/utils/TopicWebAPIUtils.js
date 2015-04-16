@@ -1,4 +1,5 @@
 var $ = require('jquery');
+var _ = require('lodash');
 
 // Placing configuration here, might consider moving it elsewhere
 var defaultConfig = {
@@ -8,15 +9,6 @@ var defaultConfig = {
 };
 
 module.exports = {
-  getAllTopics: function() {
-    // $.ajax(defaultConfig)
-    //   .then(function(data, textStatus, jqXHR) {
-    //     TopicServerActions.receiveAllTopics(data);
-    //   }, function(jqXHR, textStatus, errorThrown) {
-    //     console.log(errorThrown);
-    //   });
-  },
-
   /*
    * @param topic provide a topic object {id: String, count: Number, text: String}
    * @return jqXHR object (which implements the Promise interface)
@@ -30,10 +22,18 @@ module.exports = {
     });
   },
 
-  updateTopic: function(topic) {
+  /*
+   * @param Object - partial topic or id
+   * @param Boolean - if this is a full update then we have to specify it
+   * @param Boolean - true if increment, false if decrement
+   */
+  updateTopic: function(topic, isFull, isIncrement) {
     $.ajax({
       url: '/topic',
-      data: JSON.stringify(topic),
+      data: JSON.stringify(_.extend(topic, {
+        isFull: isFull,
+        isIncrement: isIncrement
+      })),
       type: 'PUT',
       contentType: 'application/json'
     })
@@ -44,10 +44,10 @@ module.exports = {
       });
   },
 
-  deleteTopic: function(id) {
+  deleteTopic: function(topic) {
     return $.ajax({
       url: '/topic',
-      data: JSON.stringify({id: id}),
+      data: JSON.stringify(topic),
       contentType: 'application/json',
       type: 'DELETE'
     });
@@ -65,17 +65,6 @@ module.exports = {
     socket.on('topic change', function() {
       _this.getAllTopics();
     });
-  },
-
-  /*
-   * @param
-   */
-  updateCountForTopicID: function(id) {
-    return $.ajax({
-      url: '/topic',
-      data: JSON.stringify({id: id}),
-      type: 'PUT',
-      contentType: 'application/json'
-    });
   }
+
 };
