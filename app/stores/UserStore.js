@@ -56,7 +56,6 @@ class UserStore {
   bootstrap() {
     if(! Immutable.Map.isMap(this.user)) {
       this.user = Immutable.fromJS(this.user);
-      console.log(this.user);
     }
   }
 
@@ -81,56 +80,6 @@ class UserStore {
   }
 
 }
-
-// var CHANGE_EVENT = 'change';
-
-// var _user = {};
-
-// var UserStore = assign({}, EventEmitter.prototype, {
-
-//   init: function() {
-//     _user.password = '';
-//     // Currently the modal is placed here. Ideally there should be a UI store too.
-//     _user.modal = false;
-
-//   },
-
-//   getUserData: function() {
-//     return _user;
-//   },
-
-//   emitChange: function() {
-//     this.emit(CHANGE_EVENT);
-//   },
-
-//   addChangeListener: function(callback) {
-//     this.on(CHANGE_EVENT, callback);
-//   },
-
-//   removeChangeListener: function(callback) {
-//     this.removeListener(CHANGE_EVENT, callback);
-//   }
-// });
-
-// UserStore.init();
-
-
-// AppDispatcher.register(function(action) {
-//   switch(action.actionType) {
-//     case Constants.TOGGLE_MODAL:
-//       console.log('Converting' + _user.modal);
-//       _user.modal = !_user.modal;
-//       UserStore.emitChange();
-//       break;
-//     case Constants.SUCCESSFUL_LOGIN:
-//     case Constants.SUCCESSFUL_SIGNUP:
-//       _user.email = action.data;
-//       _user.loggedIn = true;
-//       _user.modal = false;
-//       UserStore.emitChange();
-//     default:
-//   }
-// });
 
 // Export our newly created Store
 module.exports = alt.createStore(UserStore, 'UserStore');

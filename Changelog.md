@@ -19,3 +19,4 @@
 - With alt, there won't need to be a dispatcher and constants
 - Using webpack to build client and serverside bundles
 - Removing `/** @jsx React.DOM */`
+- Temporarily commented out AnimationMixin

@@ -53,25 +53,3 @@ class UserActions {
 }
 
 module.exports = alt.createActions(UserActions);
-
-
-
-//   submitSignUpCredentials: function(data) {
-//     AppDispatcher.dispatch({
-//       actionType: Constants.SUBMIT_SIGNUP_CREDENTIALS,
-//       data: data
-//     });
-//     UserWebAPIUtils.signUp(data)
-//       .then(function(response, textStatus, jqXHR) {
-//         if(textStatus === 'success') {
-//           // Dispatch an app
-//           // Dispatch another event for successful login
-//           AppDispatcher.dispatch({
-//             actionType: Constants.SUCCESSFUL_SIGNUP,
-//             data: data.email
-//           });
-//         }
-//       }, function(jqXHR, textStatus, errorThrown) {
-
-//       });
-//   }

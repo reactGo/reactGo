@@ -5,8 +5,6 @@ var TopicTextInput = require('./TopicTextInput.react');
 // var AnimationMixin = require('../mixins/AnimationMixin');
 var classnames = require('classnames');
 
-// require('../../scss/components/_animations.scss');
-
 var EntryBox = React.createClass({
   // mixins: [AnimationMixin],
   // getInitialState: function() {
