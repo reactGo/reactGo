@@ -4,7 +4,7 @@ var Logout = React.createClass({
   render: function() {
     return (
       <div>
-        <h1>Hey m8, you've been logged out</h1>
+        <h1>Hey m8, you have been logged out</h1>
       </div>
     );
   }

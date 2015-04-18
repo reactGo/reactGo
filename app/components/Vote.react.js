@@ -38,7 +38,6 @@ var Vote = React.createClass({
   },
 
   onChange: function() {
-    // topTopic: TopicStore.getTopTopic(),
     this.setState({
       allTopics: TopicStore.getState().topics,
       newTopic: TopicStore.getState().newTopic

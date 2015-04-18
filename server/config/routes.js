@@ -12,7 +12,7 @@ module.exports = function(app, io, passport) {
   // user routes
   app.post('/login', users.postLogin);
   app.post('/signup', users.postSignUp);
-
+  app.get('/logout', users.getLogout);
 
   // topic routes
   app.get('/topic', topics.all);
@@ -36,12 +36,21 @@ module.exports = function(app, io, passport) {
   // This is where the magic happens. We take the locals data we have already 
   // fetched and seed our stores with data.
   // App is a function that requires store data and url to initialize and return the React-rendered html string
-  app.all(/(^\/$)|(^\/about$)/, function (req, res) {
+  app.all(/^\//, function (req, res) {
     Topic.find({}).exec(function(err, topics) {
       if(!err) {
         var topicmap = _.indexBy(topics, 'id');
+        // We don't want to be seeding and generating markup with user information
+        var user = req.user ? { authenticated: true, isWaiting: false } : { authenticated: false, isWaiting: false };
+        // An object that contains response local variables scoped to the request, and therefore available only to the view(s) rendered during
+        // that request/response cycle (if any). Otherwise, this property is identical to app.locals
+        // This property is useful for exposing request-level information such as request path name, authenticated user, user settings, and so on.
         // pass in data to be seeded into the TopicStore
-        res.locals.data =  { TopicStore: { topics: topicmap} };
+        res.locals.data =  {
+          TopicStore: { topics: topicmap},
+          UserStore: { user: user }
+        };
+
         var content = App(JSON.stringify(res.locals.data || {}), req.url);
         res.render('index', { 
           isomorphic: content

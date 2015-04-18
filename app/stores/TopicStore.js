@@ -1,6 +1,6 @@
+var Immutable = require('immutable');
 var TopicWebAPIUtils = require('../utils/TopicWebAPIUtils');
 var TopicActions = require('../actions/TopicActions');
-var Immutable = require('immutable');
 var alt = require('../alt');
 
 /**
@@ -26,6 +26,7 @@ var alt = require('../alt');
  *
  */
 class TopicStore {
+
   /*
    * The constructor of your store definition receives the alt instance as its first and only argument. All instance variables,
    * values assigned to `this`, in any part of the StoreModel will become part of state.
@@ -34,13 +35,14 @@ class TopicStore {
     // Instance variables defined anywhere in the store will become the state. You can initialize these in the constructor and
     // then update them directly in the prototype methods
     this.topics = Immutable.OrderedMap({});
-
     // Do not think we need an immutable object here
     this.newTopic = '';
+    
     // (lifecycleMethod: string, handler: function): undefined
     // on: This method can be used to listen to Lifecycle events. Normally they would set up in the constructor
     this.on('init', this.bootstrap);
     this.on('bootstrap', this.bootstrap);
+    
     // (listenersMap: object): undefined
     // bindListeners accepts an object where the keys correspond to the method in your 
     // StoreModel and the values can either be an array of action symbols or a single action symbol.

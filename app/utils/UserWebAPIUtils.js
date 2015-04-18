@@ -12,6 +12,13 @@ module.exports = {
     });
   },
 
+  logout: function() {
+    return $.ajax({
+      url: '/logout',
+      type: 'GET'
+    });
+  },
+
   signUp: function(data) {
     return $.ajax({
       url: '/signup',

@@ -62,14 +62,5 @@ module.exports = function (app, passport) {
   app.use(passport.session());
 
   app.use(flash());
-
-  // An object that contains response local variables scoped to the request, and therefore available only to the view(s) rendered during
-  // that request/response cycle (if any). Otherwise, this property is identical to app.locals
-  // This property is useful for exposing request-level information such as request path name, authenticated user, user settings, and so on.
-  app.use(function(req, res, next) {
-    res.locals.user = req.user;
-    next();
-  });
-
   
 };

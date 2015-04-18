@@ -80,6 +80,8 @@ app
 			- EntryBox
 			- MainSection
 			- Scoreboard
+		- Login
+		- Logout
 		- About
 
 Todo:

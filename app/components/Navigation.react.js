@@ -1,45 +1,41 @@
 var React = require('react');
 var Link = require('react-router').Link;
-// var Link = Router.Link;
-// var Navigation = Router.Navigation;
-// var UserStore = require('../stores/UserStore');
+var UserActions = require('../actions/UserActions');
+var UserStore = require('../stores/UserStore');
 
 var Navigation = React.createClass({
-  // mixins: [Navigation],
+  getInitialState: function() {
+    return {
+      user: UserStore.getState().user
+    };
+  },
 
-  // getInitialState: function() {
-  //   return {
-  //     user: UserStore.getUserData()
-  //   };
-  // },
+  componentDidMount: function() {
+    UserStore.listen(this.onChange);
+  },
 
-  // componentDidMount: function() {
-  //   UserStore.addChangeListener(this._onUserChange);
-  // },
+  componentWillUnmount: function() {
+    UserStore.unlisten(this.onChange);
+  },
 
-  // componentWillUnmount: function() {
-  //   UserStore.removeChangeListener(this._onUserChange);
-  // },
+  onChange: function() {
+    this.setState({
+      user: UserStore.getState().user
+    });
+  },
 
-  // _onUserChange: function() {
-  //   this.setState({
-  //     user: UserStore.getUserData()
-  //   });
-  //   // if loggedIn, transition to '/'
-  //   // This might need to be moved to an outer router
-  //   if(this.state.user.loggedIn) {
-  //     this.transitionTo('/');
-  //   }
-  // },
-
+  onLogout: function(evt) {
+    UserActions.logout();
+  },
 
   render: function() {
-    // var loginOrOut = this.state.user.loggedIn ?
-    //   <Link to="logout">Logout</Link> :
-    //   <Link to="login">Sign in</Link>;
+    var loginOrOut = this.state.user.get('authenticated') ? 
+      <Link onClick={this.onLogout} className="navigation__item" to="logout">Logout</Link> : 
+      <Link className="navigation__item" to="login">Log in</Link>;
     return (
       <nav className="navigation" role="navigation">
           <Link to="/" className="navigation__item navigation__item--logo" activeClassName="navigation__item--active">Ninja Ocean</Link>
+          { loginOrOut }
           <Link to="about" className="navigation__item" activeClassName="navigation__item--active">About</Link>
       </nav>
     );
