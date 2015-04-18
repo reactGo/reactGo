@@ -32,11 +32,11 @@ Instructions
 1. `npm install`
 2. `npm start` to run locally
 
-Bundling with webpack
+Bundling with webpack and gulp
 ================
 1. `npm run build` runs `webpack` will run configurations within webpack.config.js.
 2. `npm run watch` runs `webpack --watch` to watch and recompile for changes.
-3. `npm run sass-watch` compiles sass using gulp
+3. `npm run sass-watch` compiles sass and watches for changes or `npm run sass` to compile once using gulp.
 
 Setting up your Database
 ================
@@ -72,17 +72,15 @@ to set up nodejs
 
 Component Hierarchy
 ===================
-App 
-- NavigationBar
-- RouteHandler
-	- Vote
-		- EntryBox
-		- MainSection
-		- SideSection
-	- Login
-	- About
-	- Dashboard
-
+app 
+- App.React
+	- NavigationBar
+  - RouteHandler
+		- Vote.react
+			- EntryBox
+			- MainSection
+			- Scoreboard
+		- About
 
 Todo:
 ================

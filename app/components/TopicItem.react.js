@@ -1,7 +1,5 @@
 var React = require('react');
-var ReactPropTypes = React.PropTypes;
 var TopicActions = require('../actions/TopicActions');
-var classnames = require('classnames');
 
 var TopicItem = React.createClass({
   render: function() {

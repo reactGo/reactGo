@@ -6,10 +6,11 @@
   "scripts": {
     "start": "node server/index.js",
     "build": "gulp sass && webpack --progress",
+    "sass": "gulp sass",
     "sass-watch": "gulp watch",
     "watch": "webpack --watch --progress",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "gulp styles && webpack"
+    "postinstall": "gulp sass && webpack"
   },
   "author": "Choon Ken Ding",
   "license": "MIT",

@@ -1,7 +1,5 @@
 var TopicWebAPIUtils = require('../utils/TopicWebAPIUtils');
 var alt = require('../alt');
-
-
 /*
  * Declaring TopicActions using ES2015. This is equivalent to creating
  * function TopicActions() {}

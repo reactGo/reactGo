@@ -3,6 +3,7 @@
 @import '_fonts';
 
 @import 'components/_vote';
+@import 'components/_navigation';
 
 /*
 Style Guide Lines. Remove if you prefer your own library
@@ -19,13 +20,4 @@ body {
 
 h1, p {
   text-align: center;
-}
-
-.card {
-  border-radius: 3px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.23);
-  position: relative;
-  background: #fff;
-  display: block;
-  color: #212121;
 }
