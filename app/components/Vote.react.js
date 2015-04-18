@@ -1,12 +1,9 @@
 /** @jsx React.DOM */
 var React = require('react');
-var Header = require('./Header.react');
+var EntryBox = require('./EntryBox.react');
 var MainSection = require('./MainSection.react');
-var SideSection = require('./SideSection.react');
+var Scoreboard = require('./Scoreboard.react');
 var TopicStore = require('../stores/TopicStore');
-
-require('../../scss/components/_vote.scss');
-
 /*
  * This component operates as a "Controller-View". It listens for changes in the
  * Store and passes the new data to its children.
@@ -23,40 +20,36 @@ require('../../scss/components/_vote.scss');
  * what they need. In addition to keeping the controller-like behavior at the top of the hierarchy, and thus keeping our descendant
  */
 var Vote = React.createClass({
-  /*
-   Todo: refactor TopicStore to just return one object. I don't see a point trying to return two separate objects
-         from the same store
-   */
+  
   getInitialState: function() {
+    // topTopic: TopicStore.getTopTopic(),
     return {
-      topTopic: TopicStore.getTopTopic(),
-      allTopics: TopicStore.getAllTopics()
+      allTopics: TopicStore.getState().topics,
+      newTopic: TopicStore.getState().newTopic
     };
   },
 
   componentDidMount: function() {
-    TopicStore.addChangeListener(this._onTopicChange);
+    TopicStore.listen(this.onChange);
   },
 
   componentWillUnmount: function() {
-    TopicStore.removeChangeListener(this._onTopicChange);
+    TopicStore.unlisten(this.onChange);
   },
 
-  _onTopicChange: function() {
+  onChange: function() {
     this.setState({
-      topTopic: TopicStore.getTopTopic(),
-      allTopics: TopicStore.getAllTopics()
+      allTopics: TopicStore.getState().topics,
+      newTopic: TopicStore.getState().newTopic
     });
   },
 
   render: function() {
     return(
       <div className="vote">
-        <Header topTopic={this.state.topTopic.text} topStat={this.state.topTopic.stat}/>
-        <div className="vote__body">
-          <MainSection allTopics={this.state.allTopics} />
-          <SideSection allTopics={this.state.allTopics} />
-        </div>
+        <EntryBox topic={this.state.newTopic} />
+        <MainSection topics={this.state.allTopics} />
+        <Scoreboard topics={this.state.allTopics} />
       </div>
     );
   }

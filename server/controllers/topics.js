@@ -21,7 +21,10 @@ exports.all = function(req, res) {
  */
 exports.add = function(req, res) {
   Topic.create(req.body, function (err) {
-    if (err) console.log ('Error on save!')
+    if (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
     res.status(200).send('Added successfully');
   });
 };
@@ -31,16 +34,38 @@ exports.add = function(req, res) {
  */
 exports.update = function(req, res) {
   var query = { id: req.body.id };
-  var omitKeys = ['id', '_id', '_v'];
+  var isIncrement = req.body.isIncrement;
+  var isFull = req.body.isFull;
+  var omitKeys = ['id', '_id', '_v', 'isIncrement', 'isFull'];
   var data = _.omit(req.body, omitKeys);
-  console.log(data);
-  Topic.findOneAndUpdate(query, data, function(err, data) {
-    if(err) {
-      console.log('Error on save!');
-      console.log(err);
-    }
-    res.status(200).send('Updated successfully');
-  });
+
+  if(isFull) {
+    Topic.findOneAndUpdate(query, data, function(err, data) {
+      if(err) {
+        console.log('Error on save!');
+        res.status(500).send('We failed to save to due some reason');
+      }
+      res.status(200).send('Updated successfully');
+    });
+  } else {
+    Topic.findOneAndUpdate(query, { $inc: { count: isIncrement ? 1: -1 } }, function(err, data) {
+      if(err) {
+        console.log('Error on save!');
+        // Not sure if server status is the correct status to return
+        res.status(500).send('We failed to save to due some reason');
+      }
+      res.status(200).send('Updated successfully');
+    });
+  }
+  
+};
+
+/**
+ * 
+ */
+exports.increment = function(req, res) {
+  var query = { id: req.body.id };
+  
 };
 
 /**

@@ -1,62 +1,31 @@
-/** @jsx React.DOM */
 var React = require('react');
-var ReactPropTypes = React.PropTypes;
-
+var TopicActions = require('../actions/TopicActions');
 var ENTER_KEY_CODE = 13;
 
 // Code modified from https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/components/TopicTextInput.react.js
 var TopicTextInput = React.createClass({
-
-  propTypes: {
-    className: ReactPropTypes.string,
-    id: ReactPropTypes.string,
-    placeholder: ReactPropTypes.string,
-    onSave: ReactPropTypes.func.isRequired,
-    value: ReactPropTypes.string
-  },
-
-  getInitialState: function() {
-    return {
-      value: this.props.value || ''
-    };
-  },
-
-  /**
-   * @return {object}
-   */
-  render: function() /*object*/ {
+  render: function() {
     return (
-      <input
-        className={this.props.className}
-        id={this.props.id}
-        placeholder={this.props.placeholder}
-        onBlur={this._save}
-        onChange={this._onChange}
-        onKeyDown={this._onKeyDown}
-        value={this.state.value}
-        autoFocus={true}
-      />
+      <input className={this.props.className} placeholder={this.props.placeholder} onChange={this._onChange}
+        onKeyDown={this._onKeyDown} value={this.props.value}
+        autoFocus={true} />
     );
   },
 
   /**
    * Invokes the callback passed in as onSave, allowing this component to be
-   * used in different ways.
+   * used in different ways. I personally think this makes it more reusable.
    */
   _save: function() {
-    this.props.onSave(this.state.value);
-    this.setState({
-      value: ''
-    });
+    this.props.onSave(this.props.value);
   },
 
   /**
-   * @param {object} event
+   * Invokes the callback passed in as onSave, allowing this component to be
+   * used in different ways. I personally think this makes it more reusable.
    */
-  _onChange: function(/*object*/ event) {
-    this.setState({
-      value: event.target.value
-    });
+  _onChange: function(event) {
+    this.props.onChange(event.target.value);
   },
 
   /**

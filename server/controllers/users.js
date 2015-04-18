@@ -21,6 +21,16 @@ exports.postLogin = function(req, res, next) {
   })(req, res, next);
 };
 
+
+/**
+ * GET /logout
+ */
+exports.getLogout = function(req, res, next) {
+  // Do email and password validation for the server
+  req.logout();
+  next();
+};
+
 /**
  * POST /signup
  * Create a new local account

@@ -25,5 +25,9 @@ module.exports = {
       id: failedTopic.id,
       reason: reason
     });
+  },
+
+  failedToUpdateTopic: function(failedTopicId, reason) {
+    
   }
 };

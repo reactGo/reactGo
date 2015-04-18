@@ -1,0 +1,40 @@
+/*
+ * Navigation Menu for the Navigation.react
+ */
+
+.navigation {
+
+  // .navigation__item
+  &__item {
+    
+    display: inline-block;
+    text-decoration: none;
+    padding: 14.3599996566772px 28.7199993133545px;
+    padding: 1vw 1.5vw;
+    color: #000;
+
+    &:visited {
+      color: #000;
+    }
+
+    // .navigation__item--logo
+    &--logo {
+
+      font-size: 24px;
+      font-size: 5vh;
+      line-height: 32px;
+      line-height: 4.8vh;
+
+    }
+    
+    // .navigation__item--active
+    &--active {
+
+      color: #2196F3;
+
+    }
+
+  }
+
+}
+

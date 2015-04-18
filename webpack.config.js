@@ -1,23 +1,17 @@
 var path = require("path");
-var webpack = require("webpack");
-var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 
 var commonLoaders = [
-    { test: /\.js$/, loader: "jsx-loader?harmony" },
-    { test: /\.png$/, loader: "url-loader" },
-    { test: /\.jpg$/, loader: "file-loader" },
-    { test: /\.css$/, loader: "style!css" },
-    { test: /\.scss$/, loader: "style!css!sass?outputStyle=expanded&" +
-    "includePaths[]=" +
-    (path.resolve(__dirname, "./bower_components")) + "&" +
-    "includePaths[]=" +
-    (path.resolve(__dirname, "./node_modules"))}
+  { test: /(\.js$|\.jsx$)/, loader: "jsx-loader?harmony" },
+  { test: /\.png$/, loader: "url-loader" },
+  { test: /\.jpg$/, loader: "file-loader" }
 ];
 
 var assetsPath = path.join(__dirname, "public", "assets");
 var publicPath = "assets/";
 
-module.exports = {
+module.exports = [
+  {
+    // The configuration for the client
     name: "browser",
     /* The entry point of the bundle
      * Entry points for multi page app could be more complex
@@ -39,22 +33,46 @@ module.exports = {
      * ]
      */
     entry: {
-        app: "./app/App.react.js",
-        vendor: ['jquery', 'lodash', 'react']
+      app: "./app/app.js"
     },
     output: {
-        // The output directory as absolute path
-        path: assetsPath,
-        // The filename of the entry chunk as relative path inside the output.path directory
-        filename: "[name].js",
-        // The output path from the view of the Javascript
-        publicPath: publicPath
+      // The output directory as absolute path
+      path: assetsPath,
+      // The filename of the entry chunk as relative path inside the output.path directory
+      filename: "[name].js",
+      // The output path from the view of the Javascript
+      publicPath: publicPath
 
     },
-    plugins: [
-        new CommonsChunkPlugin(/* chunkName= */"vendor", /* fileName= */"vendor.bundle.js")
-    ],
     module: {
-        loaders: commonLoaders
+      loaders: commonLoaders.concat([
+        { test: /\.css$/, loader: "style!css" },
+        { test: /\.scss$/, loader: "style!css!sass?outputStyle=expanded&" +
+        "includePaths[]=" +
+        (path.resolve(__dirname, "./bower_components")) + "&" +
+        "includePaths[]=" +
+        (path.resolve(__dirname, "./node_modules"))}
+      ])
     }
-};
+  }, {
+    // The configuration for the server-side rendering
+    name: "server-side rendering",
+    entry: {
+      app: "./app/app.js"
+    },
+    target: "node",
+    output: {
+      // The output directory as absolute path
+      path: assetsPath,
+      // The filename of the entry chunk as relative path inside the output.path directory
+      filename: "[name].server.js",
+      // The output path from the view of the Javascript
+      publicPath: publicPath,
+      libraryTarget: "commonjs2"
+    },
+    externals: /^[a-z\-0-9]+$/,
+    module: {
+      loaders: commonLoaders
+    }
+  }
+];

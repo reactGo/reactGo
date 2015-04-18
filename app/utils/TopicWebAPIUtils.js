@@ -1,5 +1,5 @@
 var $ = require('jquery');
-var TopicServerActionCreators = require('../actions/TopicServerActionCreators');
+var _ = require('lodash');
 
 // Placing configuration here, might consider moving it elsewhere
 var defaultConfig = {
@@ -9,34 +9,31 @@ var defaultConfig = {
 };
 
 module.exports = {
-  getAllTopics: function() {
-    $.ajax(defaultConfig)
-      .then(function(data, textStatus, jqXHR) {
-        TopicServerActionCreators.receiveAllTopics(data);
-      }, function(jqXHR, textStatus, errorThrown) {
-        console.log(errorThrown);
-      });
-  },
+  /*
+   * @param topic provide a topic object {id: String, count: Number, text: String}
+   * @return jqXHR object (which implements the Promise interface)
+   */
   addTopic: function(topic) {
-    $.ajax({
+    return $.ajax({
       url: '/topic',
       data: JSON.stringify(topic),
       type: 'POST',
       contentType: 'application/json'
-    })
-      .then(function(data, textStatus, jqXHR) {
-        // Currently this dispatches an event, but it is not required
-        TopicServerActionCreators.receiveCreatedTopic(data);
-      }, function(jqXHR, textStatus, errorThrown) {
-        console.log(errorThrown);
-        TopicServerActionCreators.failedToCreateTopic(topic, errorThrown);
-      });
+    });
   },
 
-  updateTopic: function(topic) {
+  /*
+   * @param Object - partial topic or id
+   * @param Boolean - if this is a full update then we have to specify it
+   * @param Boolean - true if increment, false if decrement
+   */
+  updateTopic: function(topic, isFull, isIncrement) {
     $.ajax({
       url: '/topic',
-      data: JSON.stringify(topic),
+      data: JSON.stringify(_.extend(topic, {
+        isFull: isFull,
+        isIncrement: isIncrement
+      })),
       type: 'PUT',
       contentType: 'application/json'
     })
@@ -47,18 +44,13 @@ module.exports = {
       });
   },
 
-  deleteTopic: function(id) {
-    $.ajax({
+  deleteTopic: function(topic) {
+    return $.ajax({
       url: '/topic',
-      data: JSON.stringify({id: id}),
+      data: JSON.stringify(topic),
       contentType: 'application/json',
       type: 'DELETE'
-    })
-      .then(function(data, textStatus, jqXHR) {
-        console.log(data);
-      }, function(jqXHR, textStatus, errorThrown) {
-        console.log(errorThrown);
-      });
+    });
   },
 
   /**
@@ -74,4 +66,5 @@ module.exports = {
       _this.getAllTopics();
     });
   }
+
 };
