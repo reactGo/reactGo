@@ -2,6 +2,7 @@
 /**
  * This is a modified version of https://github.com/goatslacker/alt/blob/master/utils/IsomorphicRenderer.js
  * IsomorphicRenderer(alt: AltInstance, App: ReactElement): mixed
+ * Will work with webpack
  *
  * > The glue that it takes to render a react element isomorphically
  *
@@ -26,12 +27,12 @@
  * module.exports = IsomorphicRenderer(alt, App);
  * ```
  */
-module.exports = AltIsomorphicRenderer;
+module.exports = IsomorphicSingleRenderer;
 
 var Iso = require('iso');
 var React = require('react');
 
-function AltIsomorphicRenderer(alt, App) {
+function IsomorphicSingleRenderer(alt, App) {
   if (typeof window === 'undefined') {
     return function (state) {
       alt.bootstrap(state);

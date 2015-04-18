@@ -33,8 +33,7 @@ module.exports = [
      * ]
      */
     entry: {
-      //app: "./app/App.react.js"
-      vote: "./app/components/Vote.react.js"
+      app: "./app/app.js"
     },
     output: {
       // The output directory as absolute path
@@ -59,7 +58,7 @@ module.exports = [
     // The configuration for the server-side rendering
     name: "server-side rendering",
     entry: {
-      vote: "./app/components/Vote.react.js"
+      app: "./app/app.js"
     },
     target: "node",
     output: {

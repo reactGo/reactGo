@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React = require('react');
 var TopicActions = require('../actions/TopicActions');
 var TopicTextInput = require('./TopicTextInput.react');
