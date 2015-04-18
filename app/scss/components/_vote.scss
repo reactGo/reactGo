@@ -1,7 +1,12 @@
+@import 'entrybox';
+
 .vote {
+
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
+
 }
 
 .main-section {
@@ -11,7 +16,7 @@
 	border: 2px solid #000;
 	margin: 14.36px;
 	margin: 1vw;
-	width: 60%;
+	width: 50%;
 	
 	// .main-section__header
 	&__header {

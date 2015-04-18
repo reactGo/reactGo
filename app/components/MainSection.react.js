@@ -7,7 +7,6 @@ var MainSection = React.createClass({
    * @return {object}
    */
   render: function() {
-    
     var topics = this.props.topics.map(function(topic) {
       return (<TopicItem id={topic.get('id')} key={topic.get('id')} text={topic.get('text')} />);
     });

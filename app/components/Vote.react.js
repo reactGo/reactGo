@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react');
-//var EntryBox = require('./EntryBox.react');
+var EntryBox = require('./EntryBox.react');
 var MainSection = require('./MainSection.react');
 var Scoreboard = require('./Scoreboard.react');
 var TopicStore = require('../stores/TopicStore');
@@ -24,7 +24,8 @@ var Vote = React.createClass({
   getInitialState: function() {
     // topTopic: TopicStore.getTopTopic(),
     return {
-      allTopics: TopicStore.getState().topics
+      allTopics: TopicStore.getState().topics,
+      newTopic: TopicStore.getState().newTopic
     };
   },
 
@@ -39,13 +40,15 @@ var Vote = React.createClass({
   onChange: function() {
     // topTopic: TopicStore.getTopTopic(),
     this.setState({
-      allTopics: TopicStore.getState().topics
+      allTopics: TopicStore.getState().topics,
+      newTopic: TopicStore.getState().newTopic
     });
   },
 
   render: function() {
     return(
       <div className="vote">
+        <EntryBox topic={this.state.newTopic} />
         <MainSection topics={this.state.allTopics} />
         <Scoreboard topics={this.state.allTopics} />
       </div>

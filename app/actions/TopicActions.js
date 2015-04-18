@@ -9,11 +9,10 @@ var alt = require('../alt');
 class TopicActions {
 
   /*
-   * @param text for you to type in
+   * @param text that user wishes to save
    */
   create(text) {
     var id, data;
-
     // Remove whitespace
     if(text.trim().length > 0) {
       // Using the current timestamp in place of a real id.
@@ -70,6 +69,14 @@ class TopicActions {
     // Keeping it consistent with the above
     TopicWebAPIUtils.deleteTopic({id: id});
   }
+
+  /*
+   *  @param String text that user is typing in input field
+   */
+  typing(text) {
+    this.dispatch(text);
+  }
+
 }
 
 module.exports = alt.createActions(TopicActions);

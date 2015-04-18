@@ -1,0 +1,33 @@
+.entrybox {
+	
+	width: 100%;
+	margin-bottom: 71.796875px;
+	margin-bottom: 5vw;
+	align-self: center;
+
+	// .entrybox__header
+	&__header {
+
+		text-align: center;
+
+	}
+
+	// .entrybox__input
+	&__input {
+
+		display: block;
+		margin: 0 auto;
+		width: 718px;
+		width: 50vw;
+		height: 71.796875px;
+  	height: 5vw;
+  	line-height: 71.796875px;
+  	line-height: 5vw;
+  	font-size: 43.0800018310547px;
+  	font-size: 3vw;
+  	border-width: 0 0 2px 0;
+  	border-bottom: 2px solid #000;
+
+	}
+
+}

@@ -10,7 +10,7 @@
     "sass-watch": "gulp watch",
     "watch": "webpack --watch --progress",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "gulp sass && webpack"
+    "postinstall": "gulp sass && webpack -p"
   },
   "author": "Choon Ken Ding",
   "license": "MIT",

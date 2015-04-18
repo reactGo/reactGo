@@ -1,46 +1,38 @@
 var React = require('react');
 var TopicActions = require('../actions/TopicActions');
 var TopicTextInput = require('./TopicTextInput.react');
-var Statistics = require('./Statistics.react');
-var AnimationMixin = require('../mixins/AnimationMixin');
+// var Statistics = require('./Statistics.react');
+// var AnimationMixin = require('../mixins/AnimationMixin');
 var classnames = require('classnames');
 
 // require('../../scss/components/_animations.scss');
 
 var EntryBox = React.createClass({
-  mixins: [AnimationMixin],
-  getInitialState: function() {
-    return {
-      opaque: false
-    };
-  },
-  componentDidMount: function() {
-    this.setState({
-      opaque : true
-    })
-  },
-  /**
-   * @return {object}
-   */
+  // mixins: [AnimationMixin],
+  // getInitialState: function() {
+  //   return {
+  //     opaque: false
+  //   };
+  // },
+  // componentDidMount: function() {
+  //   this.setState({
+  //     opaque : true
+  //   })
+  // },
   render: function() {
     var text = 'Trending Burger Places';
     // <Statistics topTopic={this.props.topTopic} topStat={this.props.topStat} />
+    // <h1 className={classnames({
+    //       'opaque--true': this.state.opaque,
+    //       'opaque--false': !this.state.opaque
+    //     })}>
+    // {this.createTextTransition(text)}
+    // </h1>
     return (
-      <header id="header">
-        <h1 className={classnames({
-          'opaque--true': this.state.opaque,
-          'opaque--false': !this.state.opaque
-        })}>
-            {this.createTextTransition(text)}
-        </h1>
-        <h2>Top Burger</h2>
-        
-        <TopicTextInput
-          id="new-topic"
-          placeholder="Fav burger?"
-          onSave={this._onSave}
-        />
-      </header>
+      <div className="entrybox">
+        <h1 className="entrybox__header">Vote for your top hack idea</h1>
+        <TopicTextInput className="entrybox__input" value={this.props.topic} placeholder="What's yer fav idea?" onChange={this._onChange} onSave={this._onSave} />
+      </div>
     );
   },
 
@@ -51,9 +43,14 @@ var EntryBox = React.createClass({
    * @param {string} text
    */
   _onSave: function(text) {
-    if (text.trim()){
-      TopicActions.create(text);
-    }
+    TopicActions.create(text);
+  },
+
+  /**
+   * @param {object} event
+   */
+  _onChange: function(text) {
+    TopicActions.typing(text);
   }
 
 });
