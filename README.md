@@ -7,11 +7,12 @@ Boilerplate for React application with webpack using alt's Flux running on a nod
 
 Features:
 ==========
-1. Isomorphic flux using alt
-2. Simple webpack config file ( Includes code splitting )
-3. Running on Express
-4. Mongoose for MongoDB
-5. Includes a Procfile to enable deployment to heroku.
+1. Isomorphic flux using [alt](https://github.com/goatslacker/alt) and [react-router](https://github.com/rackt/react-router)
+2. Stores storing data using [ImmutableJS](https://github.com/facebook/immutable-js)
+3. Simple webpack [config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.js) and [gulpfile](https://github.com/choonkending/react-webpack-node/blob/master/gulpfile.js)
+4. Running on Express
+5. Mongoose for MongoDB
+6. Includes a Procfile to enable deployment to Heroku.
 
 Why alt?
 ==========
@@ -72,25 +73,24 @@ to set up nodejs
 
 Component Hierarchy
 ===================
-app 
-- App.React
-	- NavigationBar
-  - RouteHandler
-		- Vote.react
-			- EntryBox
-			- MainSection
-			- Scoreboard
-		- Login
-		- Logout
-		- About
+-app.js
+	- App.react
+		- NavigationBar.react
+	  - RouteHandler
+			- Vote.react
+				- EntryBox.react
+				- MainSection.react
+				- Scoreboard.react
+			- Login.react
+			- Logout.react
+			- About.react
 
 Todo:
 ================
 1. Include an easy set up for database (postgresql).
-2. Use of PureRenderComponent mixin for performance
-3. Passport auth with express - IN PROGRESS.
-- [x] Fetching correct state on refresh.
-4. Making the modules more extendible, so you can reuse them.
+2. Passport auth with google-auth
+3. Figure out the best way to serve css (inline, radium, webpack or global main.css as is)
+4. Use of PureRenderComponent mixin for performance
 5. Let me know!
 
 How to Contribute:
@@ -98,8 +98,6 @@ How to Contribute:
 1. As this repo is still in its baby stages, any suggestions/improvements/bugs can be in the form of Pull Requests, or creating an issue.
 
 Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app), [flux-examples](https://github.com/facebook/flux/tree/master/examples), [node-express-mongo-demo](https://github.com/madhums/node-express-mongoose-demo), [web-starter-kit](https://github.com/google/web-starter-kit), [awesome material-ui](https://github.com/callemall/material-ui), [alt and iso](https://github.com/goatslacker/iso/tree/master/examples/react-router-flux).
-
-Please note that if you really wish to use material-ui React Components, you should npm install it into your repo and make it work.
 
 License
 ===============
