@@ -73,7 +73,7 @@ to set up nodejs
 
 Component Hierarchy
 ===================
--app.js
+- app.js
 	- App.react
 		- NavigationBar.react
 	  - RouteHandler
