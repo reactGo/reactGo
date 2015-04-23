@@ -6,6 +6,10 @@
 
 Boilerplate for React application with webpack using alt's Flux running on a node express server.
 
+## Demo site:
+
+[http://react-webpack-node.herokuapp.com/](http://react-webpack-node.herokuapp.com/)
+
 ## Features:
 
 1. Isomorphic flux using [alt](https://github.com/goatslacker/alt) and [react-router](https://github.com/rackt/react-router)
@@ -22,7 +26,7 @@ I found alt's implementation to be clean and simple, and like the option to allo
 
 ## Mission
 
-The aim of this repo is to incorporate the best practices to building a powerful apps with Reactjs and Node.
+The aim of this repo is to incorporate the best practices to building a non-trivial apps with Reactjs and Node.
 I am working to document this repo extensively so it would be easy for both beginners and experts to begin dev-ing on it without pulling your hair out.
 
 ## Instructions
@@ -88,8 +92,8 @@ This is a modified version of alt's IsomorphicRenderer. I wished to use webpack 
 
 ## Todo:
 
-1. Include an easy set up for database (postgresql).
-2. Passport auth with google-auth
+1. Passport auth with google-auth
+2. Include an easy set up for database (postgresql).
 3. Figure out the best way to serve css (inline, radium, webpack or global main.css as is)
 4. Use of PureRenderComponent mixin for performance
 5. Let me know!
