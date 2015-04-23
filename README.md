@@ -8,7 +8,7 @@ Boilerplate for React application with webpack using alt's Flux running on a nod
 
 ## Demo site:
 
-<a href="https://react-webpack-node.herokuapp.com/" target="_blank">https://react-webpack-node.herokuapp.com/</a>
+[https://react-webpack-node.herokuapp.com/](https://react-webpack-node.herokuapp.com/)
 
 ## Features:
 
