@@ -15,8 +15,7 @@
   },
   "author": "Choon Ken Ding",
   "license": "MIT",
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "engines": {
     "node": "0.10.x"
   },
@@ -43,11 +42,11 @@
     "lodash": "^2.4.1",
     "lusca": "^1.0.2",
     "method-override": "^2.3.1",
-    "mongoose": "^3.8.19",
+    "mongoose": "^4.0.2",
     "node-jsx": "^0.12.4",
     "node-sass": "^1.2.3",
     "passport": "^0.2.1",
-    "passport-google-oauth": "^0.1.5",
+    "passport-google": "^0.3.0",
     "passport-local": "^1.0.0",
     "react": "^0.13.1",
     "react-router": "^0.13.2",

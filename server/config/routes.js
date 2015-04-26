@@ -14,6 +14,21 @@ module.exports = function(app, io, passport) {
   app.post('/signup', users.postSignUp);
   app.get('/logout', users.getLogout);
 
+  // google auth
+  // Redirect the user to Google for authentication. When complete, Google
+  // will redirect the user back to the application at
+  // /auth/google/return
+  app.get('/auth/google', passport.authenticate('google'));
+
+  // Google will redirect the user to this URL after authentication. Finish the
+  // process by verifying the assertion. If valid, the user will be logged in.
+  // Otherwise, the authentication has failed.
+  app.get('/auth/google/return',
+    passport.authenticate('google', {
+      successRedirect: '/',
+      failureRedirect: '/login'
+    }));
+
   // topic routes
   app.get('/topic', topics.all);
 
