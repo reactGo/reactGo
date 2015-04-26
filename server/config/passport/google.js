@@ -1,20 +1,37 @@
 var mongoose = require('mongoose');
-var GoogleStrategy = require('passport-google').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var User = require('../../models/user');
+var secrets = require('../secrets');
 
 /*
- * When using Google for sign in, your application must implement a return URL, to which Google will redirect users
- * after they are authenticated. The `realm` indicates the part of the URL-space for which authentication is valid.
- * Typically this will be the root URL of your website.
- *
- * The verifier callback for Google authentication accepts `identifier` and `profile` arguments. `profile` will contai
- * user profile information provided by Google.
+ * The Google OAuth 2.0 authentication strategy authenticates users using a Google account and OAuth 2.0 tokens. 
+ * The strategy requires a verify callback, which accepts these credentials and calls done providing a user, as well
+ * as options specifying a client ID, client secret, and callback URL.
  */
 module.exports = new GoogleStrategy({
-	returnURL: 'http://localhost:3000/auth/google/return',
-	realm: 'http://localhost:3000'
-}, function(identifier, profile, done) {
-	User.findOrCreate({ openID: identifier}, function(err, user) {
-		done(err, user);
-	});
+	clientID: secrets.google.clientID,
+	clientSecret: secrets.google.clientSecret,
+	callbackURL: secrets.google.callbackURL
+}, function(accessToken, refreshToken, profile, done) {
+	var options = {
+		criteria: { 'google.id': profile.id }
+	};
+	User.load(options, function(err, user) {
+		if (err) return done(err);
+		if (!err) {
+			console.log(profile);
+			user = new User({
+				name: profile.displayName,
+				username: profile.username,
+				provider: 'google',
+				google: profile._json
+			});
+			user.save(function(err) {
+				if(err) console.log(err);
+				return done(err, user);
+			});
+		} else {
+			return done(err, user);
+		}
+	})
 });
