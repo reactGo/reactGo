@@ -54,26 +54,26 @@ var Login = React.createClass({
     if(this.state.user.get('authenticated')) {
       return (
         <div className="login">
-          <h1>You are logged in amigo</h1>
+          <h1 className="login__header">You are logged in amigo</h1>
         </div>
       );
     } else {
       if(this.state.user.get('isWaiting')) {
         return (
           <div className="login">
-            <h1>Waiting ...</h1>
+            <h1 className="login__header">Waiting ...</h1>
           </div>
         );
       } else {
         return (
           <div className="login">
             <h1 className="login__header">Login Demo</h1>
-            <fieldset>
+            <fieldset className="login__fieldset">
               <input className="login__input" type="email" ref="email" placeholder="email" />
               <input className="login__input" type="password" ref="password" placeholder="password" />
-              <button className="login__button" onClick={this.loginSubmit}>Login</button>
+              <button className="login__button login__button--green" onClick={this.loginSubmit}>Login</button>
+              <p className="login__hint">Hint: email: example@ninja.com password: ninja</p>
             </fieldset>
-            <p>Hint: email: example@ninja.com password: ninja</p>
            </div>
         );
       }
