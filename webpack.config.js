@@ -1,5 +1,6 @@
 var path = require("path");
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var webpack = require('webpack');
 
 var commonLoaders = [
   { test: /(\.js$|\.jsx$)/, loader: "jsx-loader?harmony" },
@@ -78,6 +79,9 @@ module.exports = [
     externals: /^[a-z\-0-9]+$/,
     module: {
       loaders: commonLoaders
-    }
+    },
+    plugins: [
+      new webpack.IgnorePlugin(/\.(css|scss)$/)
+    ]
   }
 ];
