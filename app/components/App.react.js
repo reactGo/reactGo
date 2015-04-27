@@ -2,6 +2,8 @@ var React = require('react');
 var RouteHandler = require('react-router').RouteHandler;
 var Navigation = require('../components/Navigation.react');
 
+var css = require('../scss/main.scss');
+
 var App = React.createClass({
 
   render: function(){
