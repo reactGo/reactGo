@@ -28,7 +28,7 @@ var Login = React.createClass({
     var email, pswd;
     email = this.refs.email.getDOMNode().value;
     pswd = this.refs.password.getDOMNode().value;
-    UserActions.login({
+    UserActions.manuallogin({
       email: email,
       password: pswd
     });
@@ -67,12 +67,16 @@ var Login = React.createClass({
       } else {
         return (
           <div className="login">
-            <h1 className="login__header">Login Demo</h1>
+            <h1 className="login__header">Email Login Demo</h1>
             <fieldset className="login__fieldset">
               <input className="login__input" type="email" ref="email" placeholder="email" />
               <input className="login__input" type="password" ref="password" placeholder="password" />
               <button className="login__button login__button--green" onClick={this.loginSubmit}>Login</button>
               <p className="login__hint">Hint: email: example@ninja.com password: ninja</p>
+            </fieldset>
+            <h1 className="login__header">Google Login Demo</h1>
+            <fieldset className="login__fieldset">
+              <a className="login__button login__button--green" href="/auth/google">Login with Google</a>
             </fieldset>
            </div>
         );

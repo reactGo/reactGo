@@ -4,7 +4,7 @@ module.exports = {
   /*
    @param {Promise}
    */
-  login: function(data) {
+  manuallogin: function(data) {
     return $.ajax({
       url: '/login',
       type: 'POST',
