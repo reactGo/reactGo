@@ -41,6 +41,7 @@
     "method-override": "^2.3.1",
     "mongoose": "^4.0.2",
     "node-jsx": "^0.13.2",
+    "node-noop": "0.0.1",
     "node-sass": "^3.0.0-alpha.7",
     "passport": "^0.2.1",
     "passport-google-oauth": "^0.2.0",

@@ -81,7 +81,7 @@ module.exports = [
       loaders: commonLoaders
     },
     plugins: [
-      new webpack.IgnorePlugin(/\.(css|scss)$/)
+      new NormalModuleReplacementPlugin(/\.(css|scss)$/, 'node-noop')
     ]
   }
 ];
