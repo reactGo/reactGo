@@ -1,4 +1,6 @@
 var path = require("path");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var webpack = require('webpack');
 
 var commonLoaders = [
   { test: /(\.js$|\.jsx$)/, loader: "jsx-loader?harmony" },
@@ -47,13 +49,17 @@ module.exports = [
     module: {
       loaders: commonLoaders.concat([
         { test: /\.css$/, loader: "style!css" },
-        { test: /\.scss$/, loader: "style!css!sass?outputStyle=expanded&" +
-        "includePaths[]=" +
-        (path.resolve(__dirname, "./bower_components")) + "&" +
-        "includePaths[]=" +
-        (path.resolve(__dirname, "./node_modules"))}
+        { test: /\.scss$/,
+          loader: ExtractTextPlugin.extract('css?sourceMap!sass?sourceMap&outputStyle=expanded' +
+            '&includePaths[]=' + (path.resolve(__dirname, './bower_components')) +
+            '&includePaths[]=' + (path.resolve(__dirname, './node_modules')))
+        }
       ])
-    }
+    },
+    plugins: [
+        // extract inline css from modules into separate files
+        new ExtractTextPlugin('styles/main.css')
+    ]
   }, {
     // The configuration for the server-side rendering
     name: "server-side rendering",
@@ -73,6 +79,9 @@ module.exports = [
     externals: /^[a-z\-0-9]+$/,
     module: {
       loaders: commonLoaders
-    }
+    },
+    plugins: [
+      new webpack.NormalModuleReplacementPlugin(/\.(css|scss)$/, 'node-noop')
+    ]
   }
 ];

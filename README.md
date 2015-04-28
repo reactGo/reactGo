@@ -14,7 +14,7 @@ Boilerplate for React application with webpack using alt's Flux running on a nod
 
 1. Isomorphic flux using [alt](https://github.com/goatslacker/alt) and [react-router](https://github.com/rackt/react-router)
 2. Stores storing data using [ImmutableJS](https://github.com/facebook/immutable-js)
-3. Simple webpack [config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.js) and [gulpfile](https://github.com/choonkending/react-webpack-node/blob/master/gulpfile.js)
+3. Simple webpack [config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.js)
 4. Running on Express
 5. Mongoose for MongoDB
 6. Includes a Procfile to enable deployment to Heroku.
@@ -34,11 +34,13 @@ I am working to document this repo extensively so it would be easy for both begi
 1. `npm install`
 2. `npm start` to run locally
 
-### Bundling with webpack and gulp
+### Bundling with webpack
 
 1. `npm run build` runs `webpack` will run configurations within webpack.config.js.
 2. `npm run watch` runs `webpack --watch` to watch and recompile for changes.
-3. `npm run sass-watch` compiles sass and watches for changes or `npm run sass` to compile once using gulp.
+
+#### Where do you compile your scss?
+We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugin) to extract compiled css in our [webpack config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.js)
 
 ### Setting up your Database
 
