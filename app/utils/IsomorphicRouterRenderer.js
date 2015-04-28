@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 /**
  * This is a modified version of https://github.com/goatslacker/alt/blob/master/utils/IsomorphicRenderer.js
  * IsomorphicRenderer(alt: AltInstance, App: ReactElement): mixed
@@ -34,7 +34,7 @@ var React = require('react');
 var Router = require('react-router');
 var routes = require('../routes');
 
-function IsomorphicRouterRenderer(alt, App) {
+function IsomorphicRouterRenderer(alt) {
   if (typeof window === 'undefined') {
     return function (state, url) {
       var markup;
@@ -43,17 +43,16 @@ function IsomorphicRouterRenderer(alt, App) {
         var content = React.renderToString(React.createElement(Handler));
         markup = Iso.render(content, alt.takeSnapshot());
         alt.flush();
-        
       });
       return markup;
-    }
+    };
   } else {
     Iso.bootstrap(function (state, _, container) {
       alt.bootstrap(state);
       Router.run(routes, Router.HistoryLocation, function (Handler) {
-        var node = React.createElement(Handler)
-        React.render(node, container)
+        var node = React.createElement(Handler);
+        React.render(node, container);
       });
-    })
+    });
   }
 }

@@ -3,9 +3,12 @@ var TopicActions = require('../actions/TopicActions');
 var TopicTextInput = require('./TopicTextInput.react');
 // var Statistics = require('./Statistics.react');
 // var AnimationMixin = require('../mixins/AnimationMixin');
-var classnames = require('classnames');
 
 var EntryBox = React.createClass({
+  displayName: 'EntryBox',
+  propTypes: {
+    topic: React.PropTypes.string
+  },
   // mixins: [AnimationMixin],
   // getInitialState: function() {
   //   return {
@@ -18,7 +21,6 @@ var EntryBox = React.createClass({
   //   })
   // },
   render: function() {
-    var text = 'Trending Burger Places';
     // <Statistics topTopic={this.props.topTopic} topStat={this.props.topStat} />
     // <h1 className={classnames({
     //       'opaque--true': this.state.opaque,

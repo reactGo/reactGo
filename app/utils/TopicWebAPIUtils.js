@@ -66,5 +66,4 @@ module.exports = {
       _this.getAllTopics();
     });
   }
-
 };
