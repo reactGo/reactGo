@@ -1,5 +1,4 @@
 var Immutable = require('immutable');
-var UserWebAPIUtils = require('../utils/UserWebAPIUtils');
 var UserActions = require('../actions/UserActions');
 var alt = require('../alt');
 
@@ -19,7 +18,7 @@ var alt = require('../alt');
  * Alt Implementation of Stores:
  * These are the stores returned by alt.createStore, they will not have the methods defined in your StoreModel because flux
  * stores do not have direct setters. However, any static methods defined in your StoreModel will be transferred to this object.
- * 
+ *
  * Please note: Static methods defined on a store model are nothing more than synthetic sugar for exporting the method as a public
  * method of your alt instance. This means that `this` will be bound to the store instance. It is recommended to explicitly export
  * the methods in the constructor using StoreModel#exportPublicMethods.
@@ -42,7 +41,7 @@ class UserStore {
     this.on('bootstrap', this.bootstrap);
 
     // (listenersMap: object): undefined
-    // bindListeners accepts an object where the keys correspond to the method in your 
+    // bindListeners accepts an object where the keys correspond to the method in your
     // StoreModel and the values can either be an array of action symbols or a single action symbol.
     // Remember: alt generates uppercase constants for us to reference
     this.bindListeners({
@@ -54,7 +53,7 @@ class UserStore {
   }
 
   bootstrap() {
-    if(! Immutable.Map.isMap(this.user)) {
+    if (!Immutable.Map.isMap(this.user)) {
       this.user = Immutable.fromJS(this.user);
     }
   }

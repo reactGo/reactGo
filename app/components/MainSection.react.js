@@ -3,6 +3,9 @@ var React = require('react');
 var TopicItem = require('./TopicItem.react');
 
 var MainSection = React.createClass({
+  propTypes: {
+    topics: React.PropTypes.string
+  },
   /**
    * @return {object}
    */

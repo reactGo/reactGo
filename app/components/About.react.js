@@ -5,28 +5,28 @@ var classnames = require('classnames');
 var About = React.createClass({
   mixins: [AnimationMixin],
   getInitialState: function() {
-  	return {
-  		opaque: false
-  	};
+    return {
+      opaque: false
+    };
   },
-  componentDidMount: function() {
-  	this.setState({
-  		opaque : true
-  	})
+  componentWillMount: function() {
+    this.setState({
+      opaque: true
+    });
   },
 
   render: function() {
-  	var text = 'About Ninja Ocean';
+    var text = 'About Ninja Ocean';
     return (
       <div>
         <h1 className={classnames({
-        	'opaque--true': this.state.opaque,
-        	'opaque--false': !this.state.opaque
+          'opaque--true': this.state.opaque,
+          'opaque--false': !this.state.opaque
         })}>
             {this.createTextTransition(text)}
         </h1>
         <p className={classnames({
-          'move': this.state.opaque
+          move: this.state.opaque
         })}>Ninja Ocean has is comprised of a team of passionate technology experts, aimed to do good.</p>
       </div>
     );

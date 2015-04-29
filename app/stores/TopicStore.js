@@ -1,5 +1,4 @@
 var Immutable = require('immutable');
-var TopicWebAPIUtils = require('../utils/TopicWebAPIUtils');
 var TopicActions = require('../actions/TopicActions');
 var alt = require('../alt');
 
@@ -19,7 +18,7 @@ var alt = require('../alt');
  * Alt Implementation of Stores:
  * These are the stores returned by alt.createStore, they will not have the methods defined in your StoreModel because flux
  * stores do not have direct setters. However, any static methods defined in your StoreModel will be transferred to this object.
- * 
+ *
  * Please note: Static methods defined on a store model are nothing more than synthetic sugar for exporting the method as a public
  * method of your alt instance. This means that `this` will be bound to the store instance. It is recommended to explicitly export
  * the methods in the constructor using StoreModel#exportPublicMethods.
@@ -35,16 +34,15 @@ class TopicStore {
     // Instance variables defined anywhere in the store will become the state. You can initialize these in the constructor and
     // then update them directly in the prototype methods
     this.topics = Immutable.OrderedMap({});
-    // Do not think we need an immutable object here
+    // Do not think we need an Immutable object here
     this.newTopic = '';
-    
+
     // (lifecycleMethod: string, handler: function): undefined
     // on: This method can be used to listen to Lifecycle events. Normally they would set up in the constructor
     this.on('init', this.bootstrap);
     this.on('bootstrap', this.bootstrap);
-    
     // (listenersMap: object): undefined
-    // bindListeners accepts an object where the keys correspond to the method in your 
+    // bindListeners accepts an object where the keys correspond to the method in your
     // StoreModel and the values can either be an array of action symbols or a single action symbol.
     // Remember: alt generates uppercase constants for us to reference
     this.bindListeners({
@@ -57,7 +55,7 @@ class TopicStore {
   }
 
   bootstrap() {
-    if(! Immutable.OrderedMap.isOrderedMap(this.topics)) {
+    if (!Immutable.OrderedMap.isOrderedMap(this.topics)) {
       this.topics = Immutable.fromJS(this.topics);
     }
     this.newTopic = '';
