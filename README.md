@@ -117,12 +117,11 @@ Fret not! Heroku's covered [this](https://devcenter.heroku.com/articles/config-v
 
 ## Todo:
 
-1. Passport auth with google-auth [ IN PROGRESS ]
-2. Include an easy set up for database (postgresql).
-3. react-hot-loader
-4. Figure out the best way to serve css (inline, radium, webpack or global main.css as is)
-5. Use of PureRenderComponent mixin for performance
-6. Let me know!
+1. Include an easy set up for database (postgresql).
+2. react-hot-loader
+3. Figure out the best way to serve css (inline, radium, webpack or global main.css as is)
+4. Use of PureRenderComponent mixin for performance
+5. Let me know!
 
 ## How to Contribute:
 
