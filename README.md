@@ -113,7 +113,7 @@ Fret not! Heroku's covered [this](https://devcenter.heroku.com/articles/config-v
 
 `heroku config:set GOOGLE_CLIENTID=YOUR_CLIENTID`
 `heroku config:set GOOGLE_SECRET=YOUR_SECRET`
-
+`heroku config:set GOOGLE_CALLBACK=YOUR_CALLBACK`
 
 ## Todo:
 
