@@ -1,9 +1,10 @@
 var React = require('react');
 var TopicCountItem = require('./TopicCountItem.react');
+var PropTypes = React.PropTypes;
 
 var Scoreboard = React.createClass({
   propTypes: {
-    topics: React.PropTypes.string
+    topics: PropTypes.object
   },
   /**
    * @return {object}

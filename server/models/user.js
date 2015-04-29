@@ -25,7 +25,8 @@ var UserSchema = new mongoose.Schema({
     picture: { type: String, default: ''}
   },
   resetPasswordToken: String,
-  resetPasswordExpires: Date
+  resetPasswordExpires: Date,
+  google: {}
 });
 
 
@@ -61,23 +62,7 @@ UserSchema.methods = {
  * Statics
  */
 
-UserSchema.statics = {
-
-  /**
-   * Load
-   *
-   * @param {Object} options
-   * @param {Function} cb
-   * @api private
-   */
-
-  load: function (options, cb) {
-    options.select = options.select || 'name username';
-    this.findOne(options.criteria)
-      .select(options.select)
-      .exec(cb);
-  }
-}
+UserSchema.statics = {}
 
 
 
