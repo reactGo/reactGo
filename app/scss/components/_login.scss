@@ -50,11 +50,17 @@
 		margin: 0.8356546161vw auto;
 		border-radius: 2px;
 		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+		text-decoration: none;
+		color: #fff;
+
+		// .login__button:hover, .login__button:visited
+		&:hover, &:visited {
+			color: #fff;
+		}
 
 		// .login__button--green
 		&--green {
 
-			color: #fff;
 			background-color: #0f9d58;
 
 		}

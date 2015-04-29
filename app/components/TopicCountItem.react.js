@@ -1,7 +1,12 @@
 var React = require('react');
 
 var TopicCountItem = React.createClass({
-  render: function(){
+  propTypes: {
+    key: React.PropTypes.string,
+    title: React.PropTypes.string,
+    count: React.PropTypes.number
+  },
+  render: function() {
     return (
       <li className="scoreboard__list-item" key={this.props.key}>
         <span className="scoreboard__topic">{this.props.title}</span>

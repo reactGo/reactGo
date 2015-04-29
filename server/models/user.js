@@ -25,7 +25,8 @@ var UserSchema = new mongoose.Schema({
     picture: { type: String, default: ''}
   },
   resetPasswordToken: String,
-  resetPasswordExpires: Date
+  resetPasswordExpires: Date,
+  google: {}
 });
 
 
@@ -56,6 +57,13 @@ UserSchema.methods = {
     })
   }
 };
+
+/**
+ * Statics
+ */
+
+UserSchema.statics = {}
+
 
 
 module.exports = mongoose.model('User', UserSchema);

@@ -20,7 +20,6 @@ var TopicStore = require('../stores/TopicStore');
  * what they need. In addition to keeping the controller-like behavior at the top of the hierarchy, and thus keeping our descendant
  */
 var Vote = React.createClass({
-  
   getInitialState: function() {
     // topTopic: TopicStore.getTopTopic(),
     return {
@@ -45,7 +44,7 @@ var Vote = React.createClass({
   },
 
   render: function() {
-    return(
+    return (
       <div className="vote">
         <EntryBox topic={this.state.newTopic} />
         <MainSection topics={this.state.allTopics} />

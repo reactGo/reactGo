@@ -24,13 +24,13 @@ var Navigation = React.createClass({
     });
   },
 
-  onLogout: function(evt) {
+  onLogout: function() {
     UserActions.logout();
   },
 
   render: function() {
-    var loginOrOut = this.state.user.get('authenticated') ? 
-      <Link onClick={this.onLogout} className="navigation__item" to="logout">Logout</Link> : 
+    var loginOrOut = this.state.user.get('authenticated') ?
+      <Link onClick={this.onLogout} className="navigation__item" to="logout">Logout</Link> :
       <Link className="navigation__item" to="login">Log in</Link>;
     return (
       <nav className="navigation" role="navigation">

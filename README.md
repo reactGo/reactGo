@@ -14,7 +14,7 @@ Boilerplate for React application with webpack using alt's Flux running on a nod
 
 1. Isomorphic flux using [alt](https://github.com/goatslacker/alt) and [react-router](https://github.com/rackt/react-router)
 2. Stores storing data using [ImmutableJS](https://github.com/facebook/immutable-js)
-3. Simple webpack [config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.js) and [gulpfile](https://github.com/choonkending/react-webpack-node/blob/master/gulpfile.js)
+3. Simple webpack [config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.js)
 4. Running on Express
 5. Mongoose for MongoDB
 6. Includes a Procfile to enable deployment to Heroku.
@@ -34,11 +34,13 @@ I am working to document this repo extensively so it would be easy for both begi
 1. `npm install`
 2. `npm start` to run locally
 
-### Bundling with webpack and gulp
+### Bundling with webpack
 
 1. `npm run build` runs `webpack` will run configurations within webpack.config.js.
 2. `npm run watch` runs `webpack --watch` to watch and recompile for changes.
-3. `npm run sass-watch` compiles sass and watches for changes or `npm run sass` to compile once using gulp.
+
+#### Where do you compile your scss?
+We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugin) to extract compiled css in our [webpack config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.js)
 
 ### Setting up your Database
 
@@ -57,6 +59,8 @@ I am working to document this repo extensively so it would be easy for both begi
 
 5. `heroku open` to open the link
 6. If you wish to have a database setup on Heroku, remember to use `heroku addons:add mongohq` or `heroku addons:add mongolab`. 
+
+Note: For Google Auth, read [Setting up Google Authentication](https://github.com/choonkending/react-webpack-node/tree/feature/passport_google_auth#setting-up-google-authentication) below
 
 ### Deploying to Digital Ocean
 
@@ -90,20 +94,40 @@ to set up nodejs
 
 This is a modified version of alt's IsomorphicRenderer. I wished to use webpack to build my server and client side code, but wanted to easily bootstrap data into the stores, and render the correct component using react-router. This takes into account the fact that we're using a singleton store and flushing it everytime (as opposed to creating an instance everytime).
 
+## Questions:
+### 1. Google Authentication does not work locally or on heroku!
+
+#### Setting up Google Authentication
+
+1. Follow [these steps from Google](https://developers.google.com/identity/protocols/OpenIDConnect) to create your API  keys on [Google Developers Console](https://console.developers.google.com/)
+2. Under APIs & Auth, Copy your Client ID and Client Secret
+
+#### Dev
+For Google Auth to work locally, you need to do the following in your terminal before starting the server:
+`export GOOGLE_CLIENTID=YOUR_CLIENTID`
+`export GOOGLE_SECRET=YOUR_SECRET`
+
+#### Heroku
+
+Fret not! Heroku's covered [this](https://devcenter.heroku.com/articles/config-vars) pretty well.
+
+`heroku config:set GOOGLE_CLIENTID=YOUR_CLIENTID`
+`heroku config:set GOOGLE_SECRET=YOUR_SECRET`
+`heroku config:set GOOGLE_CALLBACK=YOUR_CALLBACK`
+
 ## Todo:
 
-1. Passport auth with google-auth [ IN PROGRESS ]
-2. Include an easy set up for database (postgresql).
-3. react-hot-loader
-4. Figure out the best way to serve css (inline, radium, webpack or global main.css as is)
-5. Use of PureRenderComponent mixin for performance
-6. Let me know!
+1. Include an easy set up for database (postgresql).
+2. react-hot-loader
+3. Figure out the best way to serve css (inline, radium, webpack or global main.css as is)
+4. Use of PureRenderComponent mixin for performance
+5. Let me know!
 
 ## How to Contribute:
 
 1. As this repo is still in its baby stages, any suggestions/improvements/bugs can be in the form of Pull Requests, or creating an issue.
 
-Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app), [flux-examples](https://github.com/facebook/flux/tree/master/examples), [node-express-mongo-demo](https://github.com/madhums/node-express-mongoose-demo), [web-starter-kit](https://github.com/google/web-starter-kit), [awesome material-ui](https://github.com/callemall/material-ui), [alt and iso](https://github.com/goatslacker/iso/tree/master/examples/react-router-flux).
+Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app), [flux-examples](https://github.com/facebook/flux/tree/master/examples), [node-express-mongo-demo](https://github.com/madhums/node-express-mongoose-demo), [hackathon-starter](https://github.com/sahat/hackathon-starter/), [web-starter-kit](https://github.com/google/web-starter-kit), [awesome material-ui](https://github.com/callemall/material-ui), [alt and iso](https://github.com/goatslacker/iso/tree/master/examples/react-router-flux).
 
 License
 ===============
