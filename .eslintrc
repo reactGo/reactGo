@@ -19,7 +19,6 @@
     "no-unused-vars": 1,
     "no-undef": 1,
 
-    "react/display-name": 1,
     "react/jsx-boolean-value": 2,
     "react/jsx-quotes": 2,
     "react/jsx-no-undef": 2,

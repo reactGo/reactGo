@@ -5,7 +5,6 @@ var TopicTextInput = require('./TopicTextInput.react');
 // var AnimationMixin = require('../mixins/AnimationMixin');
 
 var EntryBox = React.createClass({
-  displayName: 'EntryBox',
   propTypes: {
     topic: React.PropTypes.string
   },

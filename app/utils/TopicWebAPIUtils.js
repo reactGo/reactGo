@@ -1,13 +1,6 @@
 var $ = require('jquery');
 var _ = require('lodash');
 
-// Placing configuration here, might consider moving it elsewhere
-var defaultConfig = {
-  url: '/topic',
-  type: 'GET',
-  dataType: 'json'
-};
-
 module.exports = {
   /*
    * @param topic provide a topic object {id: String, count: Number, text: String}
@@ -37,7 +30,7 @@ module.exports = {
       type: 'PUT',
       contentType: 'application/json'
     })
-      .then(function(data, textStatus, jqXHR) {
+      .then(function(data) {
         console.log(data);
       }, function(jqXHR, textStatus, errorThrown) {
         console.log(errorThrown);

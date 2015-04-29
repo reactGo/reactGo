@@ -53,7 +53,7 @@ class UserStore {
   }
 
   bootstrap() {
-    if(!Immutable.Map.isMap(this.user)) {
+    if (!Immutable.Map.isMap(this.user)) {
       this.user = Immutable.fromJS(this.user);
     }
   }

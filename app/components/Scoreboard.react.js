@@ -2,7 +2,6 @@ var React = require('react');
 var TopicCountItem = require('./TopicCountItem.react');
 
 var Scoreboard = React.createClass({
-  displayName: 'Scoreboard',
   propTypes: {
     topics: React.PropTypes.string
   },
@@ -10,7 +9,7 @@ var Scoreboard = React.createClass({
    * @return {object}
    */
   render: function() {
-    var topicListItems = this.props.topics.map(function(topic){
+    var topicListItems = this.props.topics.map(function(topic) {
       return (<TopicCountItem key={topic.get('id')} title={topic.get('text')} count={topic.get('count')}/>);
     });
 

@@ -4,7 +4,6 @@ var UserActions = require('../actions/UserActions');
 var UserStore = require('../stores/UserStore');
 
 var Navigation = React.createClass({
-  displayName: 'Navigation',
   getInitialState: function() {
     return {
       user: UserStore.getState().user

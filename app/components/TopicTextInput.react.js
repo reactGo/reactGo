@@ -1,10 +1,8 @@
 var React = require('react');
-var TopicActions = require('../actions/TopicActions');
 var ENTER_KEY_CODE = 13;
 
 // Code modified from https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/components/TopicTextInput.react.js
 var TopicTextInput = React.createClass({
-  displayName: 'TopicTextInput',
   propTypes: {
     className: React.PropTypes.string,
     placeholder: React.PropTypes.string,

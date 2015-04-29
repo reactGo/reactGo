@@ -3,7 +3,6 @@ var AnimationMixin = require('../mixins/AnimationMixin');
 var classnames = require('classnames');
 
 var About = React.createClass({
-  displayName: 'About',
   mixins: [AnimationMixin],
   getInitialState: function() {
     return {
@@ -27,7 +26,7 @@ var About = React.createClass({
             {this.createTextTransition(text)}
         </h1>
         <p className={classnames({
-          'move': this.state.opaque
+          move: this.state.opaque
         })}>Ninja Ocean has is comprised of a team of passionate technology experts, aimed to do good.</p>
       </div>
     );

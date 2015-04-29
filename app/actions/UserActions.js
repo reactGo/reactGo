@@ -13,12 +13,12 @@ class UserActions {
     this.dispatch();
     var _this = this;
     UserWebAPIUtils.login(data)
-      .then(function(response, textStatus, jqXHR) {
-        if(textStatus === 'success') {
+      .then(function(response, textStatus) {
+        if (textStatus === 'success') {
           // Dispatch another event for successful login
           _this.actions.loginsuccess(data.email);
         }
-      }, function(jqXHR, textStatus, errorThrown) {
+      }, function() {
         // Dispatch another event for a bad login
       });
   }
@@ -36,12 +36,12 @@ class UserActions {
     this.dispatch();
     var _this = this;
     UserWebAPIUtils.logout()
-      .then(function(response, textStatus, jqXHR) {
-        if(textStatus === 'success') {
+      .then(function(response, textStatus) {
+        if (textStatus === 'success') {
           // Dispatch another event for successful login
           _this.actions.logoutsuccess();
         }
-      }, function(jqXHR, textStatus, errorThrown) {
+      }, function() {
         // Dispatch another event for a bad login
       });
   }

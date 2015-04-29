@@ -2,7 +2,6 @@ var React = require('react');
 var TopicActions = require('../actions/TopicActions');
 
 var TopicItem = React.createClass({
-  displayName: 'TopicItem',
   propTypes: {
     id: React.PropTypes.number,
     text: React.PropTypes.string

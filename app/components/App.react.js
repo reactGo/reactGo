@@ -5,8 +5,7 @@ var Navigation = require('../components/Navigation.react');
 require('../scss/main.scss');
 
 var App = React.createClass({
-  displayName: 'App',
-  render: function(){
+  render: function() {
     return (
       <div>
         <Navigation />

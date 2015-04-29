@@ -34,7 +34,7 @@ class TopicStore {
     // Instance variables defined anywhere in the store will become the state. You can initialize these in the constructor and
     // then update them directly in the prototype methods
     this.topics = Immutable.OrderedMap({});
-    // Do not think we need an immutable object here
+    // Do not think we need an Immutable object here
     this.newTopic = '';
 
     // (lifecycleMethod: string, handler: function): undefined
@@ -55,7 +55,7 @@ class TopicStore {
   }
 
   bootstrap() {
-    if(!Immutable.OrderedMap.isOrderedMap(this.topics)) {
+    if (!Immutable.OrderedMap.isOrderedMap(this.topics)) {
       this.topics = Immutable.fromJS(this.topics);
     }
     this.newTopic = '';

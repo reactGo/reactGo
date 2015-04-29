@@ -3,7 +3,6 @@ var UserActions = require('../actions/UserActions');
 var UserStore = require('../stores/UserStore');
 
 var Login = React.createClass({
-  displayName: 'Login',
   getInitialState: function() {
     return {
       user: UserStore.getState().user
@@ -25,7 +24,8 @@ var Login = React.createClass({
   },
 
   loginSubmit: function() {
-    var email, pswd;
+    var email;
+    var pswd;
     email = this.refs.email.getDOMNode().value;
     pswd = this.refs.password.getDOMNode().value;
     UserActions.login({
@@ -51,14 +51,14 @@ var Login = React.createClass({
   // },
 
   render: function() {
-    if(this.state.user.get('authenticated')) {
+    if (this.state.user.get('authenticated')) {
       return (
         <div className="login">
           <h1 className="login__header">You are logged in amigo</h1>
         </div>
       );
     } else {
-      if(this.state.user.get('isWaiting')) {
+      if (this.state.user.get('isWaiting')) {
         return (
           <div className="login">
             <h1 className="login__header">Waiting ...</h1>
