@@ -60,7 +60,7 @@ We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugi
 5. `heroku open` to open the link
 6. If you wish to have a database setup on Heroku, remember to use `heroku addons:add mongohq` or `heroku addons:add mongolab`. 
 
-Note: For Google Auth, read [Setting up Google Authentication](#### Setting up Google Authentication) below
+Note: For Google Auth, read [Setting up Google Authentication](https://github.com/choonkending/react-webpack-node/tree/feature/passport_google_auth#setting-up-google-authentication) below
 
 ### Deploying to Digital Ocean
 
@@ -111,8 +111,8 @@ For Google Auth to work locally, you need to do the following in your terminal b
 
 Fret not! Heroku's covered [this](https://devcenter.heroku.com/articles/config-vars) pretty well.
 
-`heroku config set GOOGLE_CLIENTID=YOUR_CLIENTID`
-`heroku config set GOOGLE_SECRET=YOUR_SECRET`
+`heroku config:set GOOGLE_CLIENTID=YOUR_CLIENTID`
+`heroku config:set GOOGLE_SECRET=YOUR_SECRET`
 
 
 ## Todo:
