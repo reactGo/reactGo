@@ -9,10 +9,10 @@ var UserWebAPIUtils = require('../utils/UserWebAPIUtils');
  */
 class UserActions {
 
-  login(data) {
+  manuallogin(data) {
     this.dispatch();
     var _this = this;
-    UserWebAPIUtils.login(data)
+    UserWebAPIUtils.manuallogin(data)
       .then(function(response, textStatus) {
         if (textStatus === 'success') {
           // Dispatch another event for successful login

@@ -45,7 +45,7 @@ class UserStore {
     // StoreModel and the values can either be an array of action symbols or a single action symbol.
     // Remember: alt generates uppercase constants for us to reference
     this.bindListeners({
-      handleLoginAttempt: UserActions.LOGIN,
+      handleLoginAttempt: UserActions.MANUALLOGIN,
       handleLoginSuccess: UserActions.LOGINSUCCESS,
       handleLogoutAttempt: UserActions.LOGOUT,
       handleLogoutSuccess: UserActions.LOGOUTSUCCESS

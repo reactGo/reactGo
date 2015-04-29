@@ -1,10 +1,11 @@
 var React = require('react');
 var TopicActions = require('../actions/TopicActions');
+var PropTypes = React.PropTypes;
 
 var TopicItem = React.createClass({
   propTypes: {
-    id: React.PropTypes.number,
-    text: React.PropTypes.string
+    id: PropTypes.string,
+    text: PropTypes.string
   },
 
   render: function() {

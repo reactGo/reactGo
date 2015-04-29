@@ -60,6 +60,8 @@ We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugi
 5. `heroku open` to open the link
 6. If you wish to have a database setup on Heroku, remember to use `heroku addons:add mongohq` or `heroku addons:add mongolab`. 
 
+Note: For Google Auth, read [Setting up Google Authentication](https://github.com/choonkending/react-webpack-node/tree/feature/passport_google_auth#setting-up-google-authentication) below
+
 ### Deploying to Digital Ocean
 
 1. Create a Droplet
@@ -92,6 +94,27 @@ to set up nodejs
 
 This is a modified version of alt's IsomorphicRenderer. I wished to use webpack to build my server and client side code, but wanted to easily bootstrap data into the stores, and render the correct component using react-router. This takes into account the fact that we're using a singleton store and flushing it everytime (as opposed to creating an instance everytime).
 
+## Questions:
+### 1. Google Authentication does not work locally or on heroku!
+
+#### Setting up Google Authentication
+
+1. Follow [these steps from Google](https://developers.google.com/identity/protocols/OpenIDConnect) to create your API  keys on [Google Developers Console](https://console.developers.google.com/)
+2. Under APIs & Auth, Copy your Client ID and Client Secret
+
+#### Dev
+For Google Auth to work locally, you need to do the following in your terminal before starting the server:
+`export GOOGLE_CLIENTID=YOUR_CLIENTID`
+`export GOOGLE_SECRET=YOUR_SECRET`
+
+#### Heroku
+
+Fret not! Heroku's covered [this](https://devcenter.heroku.com/articles/config-vars) pretty well.
+
+`heroku config:set GOOGLE_CLIENTID=YOUR_CLIENTID`
+`heroku config:set GOOGLE_SECRET=YOUR_SECRET`
+`heroku config:set GOOGLE_CALLBACK=YOUR_CALLBACK`
+
 ## Todo:
 
 1. Passport auth with google-auth [ IN PROGRESS ]
@@ -105,7 +128,7 @@ This is a modified version of alt's IsomorphicRenderer. I wished to use webpack 
 
 1. As this repo is still in its baby stages, any suggestions/improvements/bugs can be in the form of Pull Requests, or creating an issue.
 
-Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app), [flux-examples](https://github.com/facebook/flux/tree/master/examples), [node-express-mongo-demo](https://github.com/madhums/node-express-mongoose-demo), [web-starter-kit](https://github.com/google/web-starter-kit), [awesome material-ui](https://github.com/callemall/material-ui), [alt and iso](https://github.com/goatslacker/iso/tree/master/examples/react-router-flux).
+Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app), [flux-examples](https://github.com/facebook/flux/tree/master/examples), [node-express-mongo-demo](https://github.com/madhums/node-express-mongoose-demo), [hackathon-starter](https://github.com/sahat/hackathon-starter/), [web-starter-kit](https://github.com/google/web-starter-kit), [awesome material-ui](https://github.com/callemall/material-ui), [alt and iso](https://github.com/goatslacker/iso/tree/master/examples/react-router-flux).
 
 License
 ===============
