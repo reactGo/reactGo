@@ -11,7 +11,6 @@ class UserActions {
 
   login(data) {
     this.dispatch();
-    
     var _this = this;
     UserWebAPIUtils.login(data)
       .then(function(response, textStatus, jqXHR) {
@@ -26,7 +25,7 @@ class UserActions {
 
   loginsuccess(email) {
     this.dispatch(email);
-  } 
+  }
 
   // Leaving this here for future use
   register(data) {

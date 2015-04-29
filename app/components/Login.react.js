@@ -3,7 +3,7 @@ var UserActions = require('../actions/UserActions');
 var UserStore = require('../stores/UserStore');
 
 var Login = React.createClass({
-
+  displayName: 'Login',
   getInitialState: function() {
     return {
       user: UserStore.getState().user
@@ -24,7 +24,7 @@ var Login = React.createClass({
     });
   },
 
-  loginSubmit: function(evt) {
+  loginSubmit: function() {
     var email, pswd;
     email = this.refs.email.getDOMNode().value;
     pswd = this.refs.password.getDOMNode().value;
@@ -38,7 +38,7 @@ var Login = React.createClass({
   //  * Keeping this function here for reference purposes. Will refactor this later to work with registering
   //  * @param evt
   //  * @private
-   
+
   // _registerSubmit: function(evt) {
   //   var email, pswd;
   //   email = this.refs.emailForm.getDOMNode().value;
@@ -77,7 +77,6 @@ var Login = React.createClass({
            </div>
         );
       }
-      
     }
   }
 });

@@ -3,25 +3,26 @@ var AnimationMixin = require('../mixins/AnimationMixin');
 var classnames = require('classnames');
 
 var About = React.createClass({
+  displayName: 'About',
   mixins: [AnimationMixin],
   getInitialState: function() {
-  	return {
-  		opaque: false
-  	};
+    return {
+      opaque: false
+    };
   },
-  componentDidMount: function() {
-  	this.setState({
-  		opaque : true
-  	})
+  componentWillMount: function() {
+    this.setState({
+      opaque: true
+    });
   },
 
   render: function() {
-  	var text = 'About Ninja Ocean';
+    var text = 'About Ninja Ocean';
     return (
       <div>
         <h1 className={classnames({
-        	'opaque--true': this.state.opaque,
-        	'opaque--false': !this.state.opaque
+          'opaque--true': this.state.opaque,
+          'opaque--false': !this.state.opaque
         })}>
             {this.createTextTransition(text)}
         </h1>
