@@ -60,6 +60,8 @@ We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugi
 5. `heroku open` to open the link
 6. If you wish to have a database setup on Heroku, remember to use `heroku addons:add mongohq` or `heroku addons:add mongolab`. 
 
+Note: For Google Auth, read [Setting up Google Authentication](#### Setting up Google Authentication) below
+
 ### Deploying to Digital Ocean
 
 1. Create a Droplet
@@ -91,6 +93,27 @@ to set up nodejs
 ## IsomorphicRouterRenderer
 
 This is a modified version of alt's IsomorphicRenderer. I wished to use webpack to build my server and client side code, but wanted to easily bootstrap data into the stores, and render the correct component using react-router. This takes into account the fact that we're using a singleton store and flushing it everytime (as opposed to creating an instance everytime).
+
+## Questions:
+### 1. Google Authentication does not work locally or on heroku!
+
+#### Setting up Google Authentication
+
+1. Follow [these steps from Google](https://developers.google.com/identity/protocols/OpenIDConnect) to create your API  keys on [Google Developers Console](https://console.developers.google.com/)
+2. Under APIs & Auth, Copy your Client ID and Client Secret
+
+#### Dev
+For Google Auth to work locally, you need to do the following in your terminal before starting the server:
+`export GOOGLE_CLIENTID=YOUR_CLIENTID`
+`export GOOGLE_SECRET=YOUR_SECRET`
+
+#### Heroku
+
+Fret not! Heroku's covered [this](https://devcenter.heroku.com/articles/config-vars) pretty well.
+
+`heroku config set GOOGLE_CLIENTID=YOUR_CLIENTID`
+`heroku config set GOOGLE_SECRET=YOUR_SECRET`
+
 
 ## Todo:
 
