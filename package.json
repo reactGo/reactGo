@@ -18,7 +18,7 @@
     "node": "0.10.x"
   },
   "dependencies": {
-    "alt": "^0.15.6",
+    "alt": "^0.16.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.9.3",
     "classnames": "^1.2.0",
