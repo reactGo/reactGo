@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React = require('react');
 var EntryBox = require('./EntryBox.react');
 var MainSection = require('./MainSection.react');
