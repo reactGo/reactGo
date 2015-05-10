@@ -37,6 +37,7 @@ var Navigation = React.createClass({
           <Link to="/" className="navigation__item navigation__item--logo" activeClassName="navigation__item--active">Ninja Ocean</Link>
           { loginOrOut }
           <Link to="about" className="navigation__item" activeClassName="navigation__item--active">About</Link>
+          <Link to="dashboard" className="navigation__item" activeClassName="navigation__item--active">Dashboard</Link>
       </nav>
     );
   }

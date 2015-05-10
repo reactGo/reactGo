@@ -44,9 +44,16 @@ We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugi
 
 ### Setting up your Database
 
+#### MongoDB
+
 1. `brew update`
 2. `brew install mongodb`
 3. `mongod` (Make sure you have the permissions to the directory /data/db)
+
+#### Postgresql
+
+1. `npm install --save sequelize`
+2. `npm install --save pg pg-hstore`
 
 ### Deploying to Heroku
 
