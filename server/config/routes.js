@@ -56,7 +56,12 @@ module.exports = function(app, io, passport) {
   // This is where the magic happens. We take the locals data we have already 
   // fetched and seed our stores with data.
   // App is a function that requires store data and url to initialize and return the React-rendered html string
-  app.all(/^\//, function (req, res) {
+  // Exclude any image files or map files
+  app.all(/(?!(\.png$|\.jpg$|\.map$))/, function (req, res, next) {
+    if(req.url.indexOf('.png') > 0) {
+      console.log('yo');
+      next();
+    }
     Topic.find({}).exec(function(err, topics) {
       if(!err) {
         var topicmap = _.indexBy(topics, 'id');
