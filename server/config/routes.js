@@ -58,10 +58,6 @@ module.exports = function(app, io, passport) {
   // App is a function that requires store data and url to initialize and return the React-rendered html string
   // Exclude any image files or map files
   app.all(/(?!(\.png$|\.jpg$|\.map$))/, function (req, res, next) {
-    if(req.url.indexOf('.png') > 0) {
-      console.log('yo');
-      next();
-    }
     Topic.find({}).exec(function(err, topics) {
       if(!err) {
         var topicmap = _.indexBy(topics, 'id');
