@@ -2,14 +2,16 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpack = require('webpack');
 
+var assetsPath = path.join(__dirname, 'public', 'assets');
+var publicPath = 'assets/';
+
 var commonLoaders = [
   { test: /(\.js$|\.jsx$)/, loader: 'jsx-loader?harmony' },
   { test: /\.png$/, loader: 'url-loader' },
+    // Copy precomposed image files over to assets path
+  { test: /.*precomposed\.png$/, loader: 'file-loader?name=images/[name].[ext]'},
   { test: /\.jpg$/, loader: 'file-loader' }
 ];
-
-var assetsPath = path.join(__dirname, 'public', 'assets');
-var publicPath = 'assets/';
 
 module.exports = [
   {
