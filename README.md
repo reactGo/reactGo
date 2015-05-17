@@ -117,11 +117,10 @@ Fret not! Heroku's covered [this](https://devcenter.heroku.com/articles/config-v
 
 ## Todo:
 
-1. Include an easy set up for database (postgresql).
+1. Include an easy set up for database (postgresql) [ In Progress ].
 2. react-hot-loader
-3. Figure out the best way to serve css (inline, radium, webpack or global main.css as is)
-4. Use of PureRenderComponent mixin for performance
-5. Let me know!
+3. Use of PureRenderComponent mixin for performance
+4. Let me know!
 
 ## How to Contribute:
 
