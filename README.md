@@ -12,7 +12,7 @@ Boilerplate for React application with webpack using alt's Flux running on a nod
 
 ## Features:
 
-1. Isomorphic flux using [alt](https://github.com/goatslacker/alt) and [react-router](https://github.com/rackt/react-router)
+1. Isomorphic flux using [alt](https://github.com/goatslacker/alt), [iso](https://github.com/goatslacker/iso) and [react-router](https://github.com/rackt/react-router)
 2. Stores storing data using [ImmutableJS](https://github.com/facebook/immutable-js)
 3. Simple webpack [config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.js)
 4. Running on Express
