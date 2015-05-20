@@ -1,6 +1,6 @@
 var React = require('react');
 var TopicActions = require('../actions/TopicActions');
-var TopicTextInput = require('./TopicTextInput.react');
+var TopicTextInput = require('./TextInput.react');
 // var Statistics = require('./Statistics.react');
 // var AnimationMixin = require('../mixins/AnimationMixin');
 

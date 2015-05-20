@@ -2,7 +2,7 @@ var React = require('react');
 var ENTER_KEY_CODE = 13;
 
 // Code modified from https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/components/TopicTextInput.react.js
-var TopicTextInput = React.createClass({
+var TextInput = React.createClass({
   propTypes: {
     className: React.PropTypes.string,
     placeholder: React.PropTypes.string,
@@ -45,4 +45,4 @@ var TopicTextInput = React.createClass({
 
 });
 
-module.exports = TopicTextInput;
+module.exports = TextInput;
