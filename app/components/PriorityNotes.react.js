@@ -28,7 +28,8 @@ var PriorityNotes = React.createClass({
 
   render: function() {
     return (
-      <div className="priority-list">
+      <div className="priority-note">
+        <h1>Add a note for your day m8</h1>
         <Note />
       </div>
     );
