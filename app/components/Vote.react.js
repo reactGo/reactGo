@@ -20,7 +20,6 @@ var TopicStore = require('../stores/TopicStore');
  */
 var Vote = React.createClass({
   getInitialState: function() {
-    // topTopic: TopicStore.getTopTopic(),
     return {
       allTopics: TopicStore.getState().topics,
       newTopic: TopicStore.getState().newTopic

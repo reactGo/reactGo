@@ -7,7 +7,7 @@ var Login = require('./components/Login.react');
 var Logout = require('./components/Logout.react');
 var Dashboard = require('./components/Dashboard.react');
 var Profile = require('./components/Profile.react');
-var PriorityList = require('./components/PriorityList.react');
+var PriorityNotes = require('./components/PriorityNotes.react');
 
 var routes = (
   <Route name="app" path="/" handler={App}>
@@ -17,7 +17,7 @@ var routes = (
     <Route name="about" handler={About} />
     <Route name="dashboard" handler={Dashboard}>
       <Route name="profile" handler={Profile} />
-      <Route name="list" handler={PriorityList} />
+      <Route name="list" handler={PriorityNotes} />
     </Route>
     <DefaultRoute handler={Vote} />
   </Route>

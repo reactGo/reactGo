@@ -1,0 +1,50 @@
+// .dashboard
+.dashboard {
+  
+  display: table;
+  height: 100%;
+  width: 100%;
+
+  // .dashboard__header
+  &__header {
+    
+    text-align: center;
+
+  }
+
+  // .dashboard__navigation
+  &__navigation {
+    
+    display: table-cell;
+    
+    // .dashboard__navigation--left-bar
+    &--left-bar {
+
+      width: 25%;
+
+    }
+
+  }
+
+  // .dashboard__list
+  &__list {
+
+    list-style: none;
+
+  }
+
+  // .dashboard__list-item
+  &__list-item {
+    
+    text-align: center;
+
+  }
+  
+  // .dashboard__main
+  &__main {
+    
+    display: table-cell;
+
+  }
+
+}
