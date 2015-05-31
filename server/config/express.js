@@ -55,7 +55,7 @@ module.exports = function (app, passport) {
     resave: true,
     saveUninitialized: true,
     secret: secrets.sessionSecret,
-    store: new MongoStore({ url: secrets.db, autoReconnect: true})
+    store: new MongoStore({ url: secrets.db.mongo, autoReconnect: true})
   }));
 
   app.use(passport.initialize());

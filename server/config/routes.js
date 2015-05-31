@@ -1,9 +1,10 @@
 /**
  * Routes for express app
  */
-var topics = require('../controllers/topics');
 var express = require('express');
+var topics = require('../controllers/topics');
 var users = require('../controllers/users');
+var notes = require('../controllers/notes');
 var mongoose = require('mongoose');
 var _ = require('lodash');
 var Topic = mongoose.model('Topic');
@@ -48,6 +49,8 @@ module.exports = function(app, io, passport) {
     topics.update(req, res);
     io.sockets.emit('topic change');
   });
+
+  app.post('/note', notes.create);
 
   app.delete('/topic', function(req, res) {
     topics.remove(req, res);

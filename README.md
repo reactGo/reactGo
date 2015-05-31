@@ -55,6 +55,7 @@ We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugi
 1. `npm install --save sequelize`
 2. `npm install --save pg pg-hstore`
 
+
 ### Deploying to Heroku
 
 1. `heroku create`
@@ -65,7 +66,11 @@ We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugi
   Note: If you are working from a different machine and get `heroku does not appear to be a remote repository`     message, be sure to run `git remote add heroku git@heroku.com:appname.git`.
 
 5. `heroku open` to open the link
-6. If you wish to have a database setup on Heroku, remember to use `heroku addons:add mongohq` or `heroku addons:add mongolab`. 
+6. If you wish to have a database setup on Heroku, remember to use the commands below for the following databases:
+MongoDB:
+- `heroku addons:add mongohq` or `heroku addons:add mongolab`
+Postgresql:
+- `heroku addons:create heroku-postgresql`
 
 Note: For Google Auth, read [Setting up Google Authentication](https://github.com/choonkending/react-webpack-node/tree/feature/passport_google_auth#setting-up-google-authentication) below
 

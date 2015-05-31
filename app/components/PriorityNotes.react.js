@@ -6,8 +6,7 @@ var NoteStore = require('../stores/NoteStore');
 var PriorityNotes = React.createClass({
   getInitialState: function() {
     return {
-      list: NoteStore.getState().list,
-      listItem: NoteStore.getState().listItem
+      notes: NoteStore.getState().notes
     };
   },
 
@@ -21,16 +20,21 @@ var PriorityNotes = React.createClass({
 
   onChange: function() {
     this.setState({
-      list: NoteStore.getState().list,
-      listItem: NoteStore.getState().listItem
+      notes: NoteStore.getState().notes
     });
   },
 
   render: function() {
+    // Optionally we can order the notes based on note.order
+    var savedNotes = this.state.notes.map(function(note) {
+      return <Note key={note.get('id')} isEdit={note.get('isEdit')} title={note.get('title')} desc={note.get('desc')}/>;
+    });
+    var newNote = <Note isEdit={true} />;
     return (
       <div className="priority-note">
         <h1>Add a note for your day m8</h1>
-        <Note />
+        {newNote}
+        {savedNotes}
       </div>
     );
   }

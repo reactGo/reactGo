@@ -1,6 +1,7 @@
 var Immutable = require('immutable');
 var NoteActions = require('../actions/NoteActions');
 var alt = require('../alt');
+var _ = require('lodash');
 
 /**
  * Flux Explanation of Store:
@@ -33,9 +34,8 @@ class NoteStore {
   constructor() {
     // Instance variables defined anywhere in the store will become the state. You can initialize these in the constructor and
     // then update them directly in the prototype methods
-    this.list = Immutable.OrderedMap({});
+    this.notes = Immutable.OrderedMap({});
     // Do not think we need an Immutable object here
-    this.newListItem = '';
 
     // (lifecycleMethod: string, handler: function): undefined
     // on: This method can be used to listen to Lifecycle events. Normally they would set up in the constructor
@@ -46,22 +46,25 @@ class NoteStore {
     // StoreModel and the values can either be an array of action symbols or a single action symbol.
     // Remember: alt generates uppercase constants for us to reference
     this.bindListeners({
-      handleTyping: NoteActions.TYPING
+      handleSaveNote: NoteActions.SAVENOTE
     });
   }
 
   bootstrap() {
-    if (!Immutable.OrderedMap.isOrderedMap(this.list)) {
-      this.list = Immutable.fromJS(this.list);
+    if (!Immutable.OrderedMap.isOrderedMap(this.notes)) {
+      this.notes = Immutable.fromJS(this.notes);
     }
-    this.newListItem = '';
   }
 
-  handleTyping(text) {
-    // Check if it already exists
-    this.newListItem = text;
+  handleSaveNote(data) {
+    var id = data.id;
+    var length = this.notes.size;
+    // Adding order so we can easily sort the order
+    _.merge(data, {
+      order: length
+    });
+    this.notes = this.notes.set(id, Immutable.fromJS(data));
     this.emitChange();
-    // otherwise, it is unchanged.
   }
 
 }

@@ -6,26 +6,32 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var passport = require('passport');
 var secrets = require('./config/secrets');
-
+var sequelize = require('./config/sequelize');
 
 // Find the appropriate database to connect to, default to localhost if not found.
-var connect = function() {
-	mongoose.connect(secrets.db, function(err, res) {
-		if(err) {
-			console.log('Error connecting to: ' + secrets.db + '. ' + err);
-		}else {
-			console.log('Succeeded connected to: ' + secrets.db);
-		}
-	});
+var mongoConnect = function() {
+  // Connecting to MongoDB
+  mongoose.connect(secrets.db.mongo, function(err, res) {
+    if(err) {
+      console.log('Error connecting to: ' + secrets.db.mongo + '. ' + err);
+    }else {
+      console.log('Succeeded connected to: ' + secrets.db.mongo);
+    }
+  });
 };
-connect();
+mongoConnect();
+// Requiring sequelize also creates a connection to postgres
 
 mongoose.connection.on('error', console.log);
-mongoose.connection.on('disconnected', connect);
+mongoose.connection.on('disconnected', mongoConnect);
+
+
 
 // Bootstrap models
 fs.readdirSync(__dirname + '/models').forEach(function(file) {
-	if(~file.indexOf('.js')) require(__dirname + '/models/' + file);
+  // Not all of the models require sequelize
+  // Currently still leaving mongoose models and postgresql models within the same folder
+  if(~file.indexOf('.js')) require(__dirname + '/models/' + file);
 });
 
 // Bootstrap passport config
