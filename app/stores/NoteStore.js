@@ -46,7 +46,8 @@ class NoteStore {
     // StoreModel and the values can either be an array of action symbols or a single action symbol.
     // Remember: alt generates uppercase constants for us to reference
     this.bindListeners({
-      handleSaveNote: NoteActions.SAVENOTE
+      handleSaveNote: NoteActions.SAVENOTE,
+      handleGetNotes: NoteActions.GETNOTES
     });
   }
 
@@ -64,6 +65,19 @@ class NoteStore {
       order: length
     });
     this.notes = this.notes.set(id, Immutable.fromJS(data));
+    this.emitChange();
+  }
+
+  handleGetNotes(data) {
+    var newNotes = _.chain(data)
+                    .map(function(note) {
+                      return [note.id, note];
+                    })
+                    .zipObject()
+                    .value();
+    console.log(newNotes);
+    this.notes = Immutable.fromJS(newNotes);
+
     this.emitChange();
   }
 

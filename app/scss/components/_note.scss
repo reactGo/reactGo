@@ -1,67 +1,97 @@
 .note {
 
-	// .note__title
-	&__title {
-		
-		display: block;
-		margin: 0 auto;
-		width: 718px;
-		width: 50vw;
-		height: 32px;
-  	height: 2.228vw;
-  	line-height: 32px;
-  	line-height: 2.228vw;
-  	font-size: 43.0800018310547px;
-  	font-size: 3vw;
+  // .note--tile
+  &--tile {
 
-	}
+    display: block;
+    width: 300px;
+    width: 20.8875vw;
+    border: 1px solid black;
+    border-radius: 4px;
+    box-shadow: 0px 2px 5px 0px rgb(0, 0, 0);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.26);
 
-	// .note__description
-	&__description {
-		
-		display: block;
-		margin: 0 auto;
-		width: 718px;
-		width: 50vw;
-  	font-size: 43.0800018310547px;
-  	font-size: 3vw;
+  }
 
-	}
+  // .note__title
+  &__title {
 
+    font-size: 24px;
+    font-size: 1.671vw;
+    font-weight: 500;
 
-	// .note__button
-	&__button {
-		
-		display: block;
-		width: 240px;
-		width: 15vw;
-		height: 48px;
-  	height: 3.3426184643vw;
-		font-size: 24px;
-		font-size: 1.6713092322vw;
-		line-height: 48px;
-		line-height: 3.3426184643vw;
-		border: none;
-		text-align: center;
-		margin: 12px auto;
-		margin: 0.8356546161vw auto;
-		border-radius: 2px;
-		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-		text-decoration: none;
-		color: #fff;
+    // .note__title--edit
+    &--edit {
 
-		// .note__button:hover, .note__button:visited
-		&:hover, &:visited {
-			color: #fff;
-		}
+      display: block;
+      margin: 0 auto;
+      width: 718px;
+      width: 50vw;
+      height: 48px;
+      height: 3.342vw;
+      line-height: 32px;
+      line-height: 2.228vw;
+      font-size: 32px;
+      font-size: 2.228vw;
 
-		// .note__button--green
-		&--green {
+    }
 
-			background-color: #0f9d58;
+  }
 
-		}
+  // .note__description
+  &__description {
 
-	}
+    font-size: 16px;
+    font-size: 1.114vw;
+    font-weight: 500;
+
+    // .note__description--edit
+    &--edit {
+
+      display: block;
+      margin: 0 auto;
+      width: 718px;
+      width: 50vw;
+      font-size: 43.0800018310547px;
+      font-size: 3vw;
+
+    }
+
+  }
+
+  // .note__button
+  &__button {
+
+    display: block;
+    width: 240px;
+    width: 15vw;
+    height: 48px;
+    height: 3.3426184643vw;
+    font-size: 24px;
+    font-size: 1.6713092322vw;
+    line-height: 48px;
+    line-height: 3.3426184643vw;
+    border: none;
+    text-align: center;
+    margin: 12px auto;
+    margin: 0.8356546161vw auto;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    text-decoration: none;
+    color: #fff;
+
+    // .note__button:hover, .note__button:visited
+    &:hover, &:visited {
+      color: #fff;
+    }
+
+    // .note__button--green
+    &--green {
+
+      background-color: #0f9d58;
+
+    }
+
+  }
 
 }

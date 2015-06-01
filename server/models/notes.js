@@ -6,6 +6,8 @@ var Note = sequelize.define('Note', {
   id: Sequelize.STRING,
   title: Sequelize.STRING,
   description: Sequelize.STRING
+}, {
+	freezeTableName: true // model tableName will be the same as the model name
 });
 
 module.exports = Note;

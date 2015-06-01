@@ -54,7 +54,7 @@ We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugi
 
 1. `npm install --save sequelize`
 2. `npm install --save pg pg-hstore`
-
+3. Note: You have to create the database beforehand locally. Either by using pgadmin.
 
 ### Deploying to Heroku
 

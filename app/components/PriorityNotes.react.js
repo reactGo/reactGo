@@ -12,6 +12,7 @@ var PriorityNotes = React.createClass({
 
   componentDidMount: function() {
     NoteStore.listen(this.onChange);
+    NoteActions.getnotes();
   },
 
   componentWillUnmount: function() {
@@ -27,7 +28,10 @@ var PriorityNotes = React.createClass({
   render: function() {
     // Optionally we can order the notes based on note.order
     var savedNotes = this.state.notes.map(function(note) {
-      return <Note key={note.get('id')} isEdit={note.get('isEdit')} title={note.get('title')} desc={note.get('desc')}/>;
+      return (<Note key={note.get('id')}
+              isEdit={note.get('isEdit')}
+              title={note.get('title')}
+              description={note.get('description')}/>);
     });
     var newNote = <Note isEdit={true} />;
     return (

@@ -10,6 +10,13 @@ module.exports = {
       type: 'POST',
       data: data
     });
+  },
+
+  getAll: function() {
+    return $.ajax({
+      url: '/note',
+      type: 'GET'
+    });
   }
 
 };

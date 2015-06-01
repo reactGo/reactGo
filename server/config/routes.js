@@ -52,6 +52,8 @@ module.exports = function(app, io, passport) {
 
   app.post('/note', notes.create);
 
+  app.get('/note', notes.get)
+
   app.delete('/topic', function(req, res) {
     topics.remove(req, res);
     io.sockets.emit('topic change');
