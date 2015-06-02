@@ -12,7 +12,7 @@ Boilerplate for React application with webpack using alt's Flux running on a nod
 
 ## Features:
 
-1. Isomorphic flux using [alt](https://github.com/goatslacker/alt) and [react-router](https://github.com/rackt/react-router)
+1. Isomorphic flux using [alt](https://github.com/goatslacker/alt), [iso](https://github.com/goatslacker/iso) and [react-router](https://github.com/rackt/react-router)
 2. Stores storing data using [ImmutableJS](https://github.com/facebook/immutable-js)
 3. Simple webpack [config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.js)
 4. Running on Express
@@ -52,13 +52,12 @@ We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugi
 
 1. `heroku create`
 2. `heroku app:rename newname` if you need to
-3. Run `webpack` . Commit and push the changes (I know, not the best idea).
-4. `git push heroku master`
+3. `git push heroku master`
 
   Note: If you are working from a different machine and get `heroku does not appear to be a remote repository`     message, be sure to run `git remote add heroku git@heroku.com:appname.git`.
 
-5. `heroku open` to open the link
-6. If you wish to have a database setup on Heroku, remember to use `heroku addons:add mongohq` or `heroku addons:add mongolab`. 
+4. `heroku open` to open the link
+5. If you wish to have a database setup on Heroku, remember to use `heroku addons:add mongohq` or `heroku addons:add mongolab`. 
 
 Note: For Google Auth, read [Setting up Google Authentication](https://github.com/choonkending/react-webpack-node/tree/feature/passport_google_auth#setting-up-google-authentication) below
 
@@ -117,11 +116,10 @@ Fret not! Heroku's covered [this](https://devcenter.heroku.com/articles/config-v
 
 ## Todo:
 
-1. Include an easy set up for database (postgresql).
+1. Include an easy set up for database (postgresql) [ In Progress ].
 2. react-hot-loader
-3. Figure out the best way to serve css (inline, radium, webpack or global main.css as is)
-4. Use of PureRenderComponent mixin for performance
-5. Let me know!
+3. Use of PureRenderComponent mixin for performance
+4. Let me know!
 
 ## How to Contribute:
 

@@ -32,7 +32,7 @@ module.exports = function (app, passport) {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
   app.use(methodOverride());
-  app.use(express.static(path.join(__dirname, '../..', 'public')));
+  app.use('/static', express.static(path.join(__dirname, '../..', 'public')));
 
   // Cookie parser should be above session
   // cookieParser - Parse Cookie header and populate req.cookies with an object keyed by cookie names
