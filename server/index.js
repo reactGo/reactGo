@@ -15,7 +15,7 @@ var mongoConnect = function() {
     if(err) {
       console.log('Error connecting to: ' + secrets.db.mongo + '. ' + err);
     }else {
-      console.log('Succeeded connected to: ' + secrets.db.mongo);
+      console.log('Successfully connected to: ' + secrets.db.mongo);
     }
   });
 };

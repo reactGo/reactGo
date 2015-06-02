@@ -19,15 +19,20 @@ Boilerplate for React application with webpack using alt's Flux running on a nod
 5. Mongoose for MongoDB
 6. Includes a Procfile to enable deployment to Heroku.
 
+## Mission
+
+The aim of this repo is to incorporate the best practices to building a non-trivial apps with Reactjs and Node.
+I am working to document this repo extensively so it would be easy for both beginners and experts to begin dev-ing on it without pulling your hair out.
+
 ## Why alt?
 
 Having isomorphic React was one of my key criteria when choosing a Flux library, which helped narrow down the scope of libraries.
 I found alt's implementation to be clean and simple, and like the option to allow us to create flux instances or using singeltons (and flushing the stores). 
 
-## Mission
+## Why postgresql?
 
-The aim of this repo is to incorporate the best practices to building a non-trivial apps with Reactjs and Node.
-I am working to document this repo extensively so it would be easy for both beginners and experts to begin dev-ing on it without pulling your hair out.
+I am all for using MongoDB for a boilerplate (which is why I am leaving it in). However, I am of the opinion that mongoDB will not satisfy all of a growing app's needs. Hence, postgres (which is a beauty).
+
 
 ## Instructions
 
@@ -54,7 +59,13 @@ We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugi
 
 1. `npm install --save sequelize`
 2. `npm install --save pg pg-hstore`
-3. Note: You have to create the database beforehand locally. Either by using pgadmin.
+
+Note:
+
+For local dev, you have to create your database locally, by following either steps:
+1. `createdb ReactWebpackNode` on command line, read more [here](http://www.postgresql.org/docs/9.3/static/app-createdb.html)
+2. Creating it manually using pgadmin
+3. psql magic
 
 ### Deploying to Heroku
 
@@ -107,7 +118,8 @@ to set up nodejs
 This is a modified version of alt's IsomorphicRenderer. I wished to use webpack to build my server and client side code, but wanted to easily bootstrap data into the stores, and render the correct component using react-router. This takes into account the fact that we're using a singleton store and flushing it everytime (as opposed to creating an instance everytime).
 
 ## Questions:
-### 1. Google Authentication does not work locally or on heroku!
+
+- Google Authentication does not work locally or on heroku!
 
 #### Setting up Google Authentication
 
@@ -126,6 +138,12 @@ Fret not! Heroku's covered [this](https://devcenter.heroku.com/articles/config-v
 `heroku config:set GOOGLE_CLIENTID=YOUR_CLIENTID`
 `heroku config:set GOOGLE_SECRET=YOUR_SECRET`
 `heroku config:set GOOGLE_CALLBACK=YOUR_CALLBACK`
+
+- Postgresql does not work locally. It throws a role "root" does not exist error!
+
+You might not have sufficient permissions for the database. A quick way to fix this is to:
+
+1. `export PGUSER=`whoami`` (secrets.js defaults to process.env.PGUSER)
 
 ## Todo:
 

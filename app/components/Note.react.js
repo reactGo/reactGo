@@ -5,7 +5,7 @@ var Note = React.createClass({
   _onSave: function(evt) {
     var dom = React.findDOMNode(this);
     var title = dom.querySelector('.note__title--edit').value;
-    var desc = dom.querySelector('.note__description--edit').value;
+    var description = dom.querySelector('.note__description--edit').value;
     // Call NoteAction to save it to the database
     NoteActions.savenote({
       title: title,
