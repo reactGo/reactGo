@@ -52,13 +52,12 @@ We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugi
 
 1. `heroku create`
 2. `heroku app:rename newname` if you need to
-3. Run `webpack` . Commit and push the changes (I know, not the best idea).
-4. `git push heroku master`
+3. `git push heroku master`
 
   Note: If you are working from a different machine and get `heroku does not appear to be a remote repository`     message, be sure to run `git remote add heroku git@heroku.com:appname.git`.
 
-5. `heroku open` to open the link
-6. If you wish to have a database setup on Heroku, remember to use `heroku addons:add mongohq` or `heroku addons:add mongolab`. 
+4. `heroku open` to open the link
+5. If you wish to have a database setup on Heroku, remember to use `heroku addons:add mongohq` or `heroku addons:add mongolab`. 
 
 Note: For Google Auth, read [Setting up Google Authentication](https://github.com/choonkending/react-webpack-node/tree/feature/passport_google_auth#setting-up-google-authentication) below
 
