@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var fs = require('fs');
 var mongoose = require('mongoose');
@@ -25,7 +27,9 @@ mongoose.connection.on('disconnected', connect);
 
 // Bootstrap models
 fs.readdirSync(__dirname + '/models').forEach(function(file) {
-	if(~file.indexOf('.js')) require(__dirname + '/models/' + file);
+	if (~file.indexOf('.js')) {
+        require(__dirname + '/models/' + file);
+    }
 });
 
 // Bootstrap passport config
@@ -36,4 +40,6 @@ require('./config/express')(app, passport);
 // Bootstrap routes
 require('./config/routes')(app, io, passport);
 
-server.listen(app.get('port'));
+var port = app.get('port');
+console.log("Serving on port " + port);
+server.listen(port);
