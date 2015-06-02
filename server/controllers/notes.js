@@ -5,7 +5,7 @@ exports.create = function(req, res) {
   // If force: true it will first drop tables before recreating them.
   Note.sync().then(function() {
     return Note.findOrCreate({where: {
-              email: req.user.email,
+              uid: req.user.id,
               id: req.body.id
             }, defaults: {
               title: req.body.title,
@@ -24,7 +24,7 @@ exports.get = function(req, res) {
   Note.sync().then(function() {
     return Note.findAll({
             where: {
-              email: req.user.email
+              uid: req.user.id
             }
           }).then(function(notes) {
             res.json(notes);
@@ -36,7 +36,7 @@ exports.remove = function(req, res) {
   Note.sync().then(function() {
     return Note.destroy({
             where: {
-              email: req.user.email,
+              uid: req.user.id,
               id: req.body.id
             }
           });
