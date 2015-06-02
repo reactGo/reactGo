@@ -21,9 +21,10 @@
   "white": true,
   "newcap": false,
   "globals": {
-    "React": true,
+    "require": true,
     "console": true,
-    "module": true
+    "module": true,
+    "__dirname": true
   }
 }
 
