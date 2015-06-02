@@ -71,13 +71,11 @@ For local dev, you have to create your database locally, by following either ste
 
 1. `heroku create`
 2. `heroku app:rename newname` if you need to
-3. Run `webpack` . Commit and push the changes (I know, not the best idea).
-4. `git push heroku master`
+3. `git push heroku master`
 
   Note: If you are working from a different machine and get `heroku does not appear to be a remote repository`     message, be sure to run `git remote add heroku git@heroku.com:appname.git`.
-
-5. `heroku open` to open the link
-6. If you wish to have a database setup on Heroku, remember to use the commands below for the following databases:
+4. `heroku open` to open the link
+5. If you wish to have a database setup on Heroku, remember to use the commands below for the following databases:
 MongoDB:
 - `heroku addons:add mongohq` or `heroku addons:add mongolab`
 Postgresql:
