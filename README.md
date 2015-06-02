@@ -2,7 +2,10 @@
 
 [![npm version](https://badge.fury.io/js/react-webpack-node.svg)](http://badge.fury.io/js/react-webpack-node)
 
+<img href="https://gratipay.com/~choonkending/" src="https://img.shields.io/gratipay/choonkending.svg">
+
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
 
 Boilerplate for React application with webpack using alt's Flux running on a node express server.
 
