@@ -1,17 +1,20 @@
-# react-webpack-node
+# REAP
 
-[![npm version](https://badge.fury.io/js/react-webpack-node.svg)](http://badge.fury.io/js/react-webpack-node)
+| React + Express + Alt + Postgresql | ... and Mongo
 
 <img href="https://gratipay.com/~choonkending/" src="https://img.shields.io/gratipay/choonkending.svg">
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+Boilerplate for React application with webpack using alt's Flux running on a node express server with sequelize to connect to postgresl and mongoose for mongoDB. That was a mouthful.
 
+This is based off my original [React+Webpack+Node](https://github.com/choonkending/react-webpack-node). Having sequelize with postgresql might seem like a small extra dependency, but I did not wish to overcomplicate the mission of that repo (plus it would be hard for beginners to deal with an extra database). 
 
-Boilerplate for React application with webpack using alt's Flux running on a node express server.
+## Why postgresql?
+
+I am all for using MongoDB for a boilerplate (which is why I am leaving it in). But being a postgres fanboy myself, this repo appeared!
 
 ## Demo site:
 
-[https://react-webpack-node.herokuapp.com/](https://react-webpack-node.herokuapp.com/)
+[https://react-express-alt-postgres.herokuapp.com/](https://react-express-alt-postgres.herokuapp.com/)
 
 ## Features:
 
@@ -20,7 +23,8 @@ Boilerplate for React application with webpack using alt's Flux running on a nod
 3. Simple webpack [config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.js)
 4. Running on Express
 5. Mongoose for MongoDB
-6. Includes a Procfile to enable deployment to Heroku.
+6. Sequelize for Postgresql
+7. Includes a Procfile to enable deployment to Heroku.
 
 ## Mission
 
@@ -31,11 +35,6 @@ I am working to document this repo extensively so it would be easy for both begi
 
 Having isomorphic React was one of my key criteria when choosing a Flux library, which helped narrow down the scope of libraries.
 I found alt's implementation to be clean and simple, and like the option to allow us to create flux instances or using singeltons (and flushing the stores). 
-
-## Why postgresql?
-
-I am all for using MongoDB for a boilerplate (which is why I am leaving it in). However, I am of the opinion that mongoDB will not satisfy all of a growing app's needs. Hence, postgres (which is a beauty).
-
 
 ## Instructions
 
@@ -52,16 +51,16 @@ We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugi
 
 ### Setting up your Database
 
+#### Postgresql
+
+1. `npm install --save sequelize`
+2. `npm install --save pg pg-hstore`
+
 #### MongoDB
 
 1. `brew update`
 2. `brew install mongodb`
 3. `mongod` (Make sure you have the permissions to the directory /data/db)
-
-#### Postgresql
-
-1. `npm install --save sequelize`
-2. `npm install --save pg pg-hstore`
 
 Note:
 
@@ -113,6 +112,9 @@ to set up nodejs
 			- Login.react
 			- Logout.react
 			- About.react
+			- Dashboard.react
+			  - PriorityNotes.react
+			  - Profile.react
 
 ## IsomorphicRouterRenderer
 
@@ -136,9 +138,9 @@ For Google Auth to work locally, you need to do the following in your terminal b
 
 Fret not! Heroku's covered [this](https://devcenter.heroku.com/articles/config-vars) pretty well.
 
-`heroku config:set GOOGLE_CLIENTID=YOUR_CLIENTID`
-`heroku config:set GOOGLE_SECRET=YOUR_SECRET`
-`heroku config:set GOOGLE_CALLBACK=YOUR_CALLBACK`
+1. `heroku config:set GOOGLE_CLIENTID=YOUR_CLIENTID`
+2. `heroku config:set GOOGLE_SECRET=YOUR_SECRET`
+3. `heroku config:set GOOGLE_CALLBACK=YOUR_CALLBACK`
 
 - Postgresql does not work locally. It throws a role "root" does not exist error!
 
@@ -148,16 +150,13 @@ You might not have sufficient permissions for the database. A quick way to fix t
 
 ## Todo:
 
-1. Include an easy set up for database (postgresql) [ In Progress ].
-2. react-hot-loader
-3. Use of PureRenderComponent mixin for performance
-4. Let me know!
+1. My efforts will be focused primarily on [React+Webpack+Node](https://github.com/choonkending/react-webpack-node). However, so if you have any questions/issues with this repo, feel free to create an issue!
 
 ## How to Contribute:
 
 1. As this repo is still in its baby stages, any suggestions/improvements/bugs can be in the form of Pull Requests, or creating an issue.
 
-Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app), [flux-examples](https://github.com/facebook/flux/tree/master/examples), [node-express-mongo-demo](https://github.com/madhums/node-express-mongoose-demo), [hackathon-starter](https://github.com/sahat/hackathon-starter/), [web-starter-kit](https://github.com/google/web-starter-kit), [awesome material-ui](https://github.com/callemall/material-ui), [alt and iso](https://github.com/goatslacker/iso/tree/master/examples/react-router-flux).
+Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app), [flux-examples](https://github.com/facebook/flux/tree/master/examples), [node-express-mongo-demo](https://github.com/madhums/node-express-mongoose-demo), [hackathon-starter](https://github.com/sahat/hackathon-starter/), [web-starter-kit](https://github.com/google/web-starter-kit), [awesome material-ui](https://github.com/callemall/material-ui), [alt and iso](https://github.com/goatslacker/iso/tree/master/examples/react-router-flux), and [React+Webpack+Node](https://github.com/choonkending/react-webpack-node)
 
 License
 ===============
