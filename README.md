@@ -50,6 +50,9 @@ I am working to document this repo extensively so it would be easy for both begi
 #### Where do you compile your scss?
 We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugin) to extract compiled css in our [webpack config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.js)
 
+#### What loaders do you use for ES6?
+[babel-loader](https://github.com/babel/babel-loader). Seriously, try it!
+
 ### Setting up your Database
 
 Install MongoDB:
@@ -139,6 +142,9 @@ Fret not! Heroku's covered [this](https://devcenter.heroku.com/articles/config-v
 ## How to Contribute:
 
 1. As this repo is still in its baby stages, any suggestions/improvements/bugs can be in the form of Pull Requests, or creating an issue.
+2. Coding guidelines:
+- [Airbnb's Style Guide](https://github.com/airbnb/javascript)
+- [bendc's frontend guidelines](https://github.com/bendc/frontend-guidelines)
 
 Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app), [flux-examples](https://github.com/facebook/flux/tree/master/examples), [node-express-mongo-demo](https://github.com/madhums/node-express-mongoose-demo), [hackathon-starter](https://github.com/sahat/hackathon-starter/), [web-starter-kit](https://github.com/google/web-starter-kit), [awesome material-ui](https://github.com/callemall/material-ui), [alt and iso](https://github.com/goatslacker/iso/tree/master/examples/react-router-flux), [reap](https://github.com/choonkending/reap).
 
