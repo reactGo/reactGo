@@ -5,8 +5,8 @@ import Navigation from '../components/Navigation.react';
 import '../utils/initInitialImages';
 import '../scss/main.scss';
 
-var App = React.createClass({
-  render: function() {
+export class App extends React.Component {
+  render() {
     return (
       <div>
         <Navigation />
@@ -14,6 +14,5 @@ var App = React.createClass({
       </div>
     );
   }
-});
+}
 
-module.exports = App;

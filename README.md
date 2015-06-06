@@ -50,7 +50,7 @@ I am working to document this repo extensively so it would be easy for both begi
 #### Where do you compile your scss?
 We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugin) to extract compiled css in our [webpack config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.js)
 
-#### What loaders do you use for ES6?
+#### What loaders do you use for ES6/ ES2015?
 [babel-loader](https://github.com/babel/babel-loader). Seriously, try it!
 
 ### Setting up your Database
@@ -74,7 +74,7 @@ If you're interested in a boilerplate example with postgresql, check [reap](http
 4. `heroku open` to open the link
 5. If you wish to have a database setup on Heroku, remember to use `heroku addons:add mongohq` or `heroku addons:add mongolab`. 
 
-Note: For Google Auth, read [Setting up Google Authentication](https://github.com/choonkending/react-webpack-node/tree/feature/passport_google_auth#setting-up-google-authentication) below
+Note: For Google Auth, read [Setting up Google Authentication](https://github.com/choonkending/react-webpack-node/blob/master#setting-up-google-authentication) below
 
 ### Deploying to Digital Ocean
 
@@ -130,6 +130,12 @@ Fret not! Heroku's covered [this](https://devcenter.heroku.com/articles/config-v
 `heroku config:set GOOGLE_SECRET=YOUR_SECRET`
 
 `heroku config:set GOOGLE_CALLBACK=YOUR_CALLBACK`
+
+### 2. I do not know how to write React Components/anything in ES6. Help!
+
+Don't you worry child. Read [this](https://github.com/choonkending/react-webpack-node/blob/master/docs/ReactInES6.md).
+
+You can learn more about ES6 (or ES2015) [here](http://babeljs.io/docs/learn-es2015/).
 
 ## Todo:
 
