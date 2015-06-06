@@ -18,23 +18,28 @@ I am all for using MongoDB for a boilerplate (which is why I am leaving it in). 
 
 ## Features:
 
-1. Isomorphic flux using [alt](https://github.com/goatslacker/alt), [iso](https://github.com/goatslacker/iso) and [react-router](https://github.com/rackt/react-router)
-2. Stores storing data using [ImmutableJS](https://github.com/facebook/immutable-js)
-3. Simple webpack [config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.js)
-4. Running on Express
+1. Isomorphic Flux using:
+ - [alt](https://github.com/goatslacker/alt) as my Flux implementation
+ - [iso](https://github.com/goatslacker/iso) to help with bootstrapping data for isomorphic Flux
+ - [react-router](https://github.com/rackt/react-router)
+2. Stores storing data using [ImmutableJS](https://github.com/facebook/immutable-js) data structures
+3. Webpack [config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.js)
+4. Express server
 5. Mongoose for MongoDB
 6. Sequelize for Postgresql
 7. Includes a Procfile to enable deployment to Heroku.
+
+## Why alt?
+
+Having isomorphic React was one of my key criteria when choosing a Flux library, which helped narrow down the scope of libraries.
+
+I found alt's implementation to be clean and simple, and like the option of allowing us to create alt instances or using singletons (and flushing the stores). I also like the direction in which alt is heading.
 
 ## Mission
 
 The aim of this repo is to incorporate the best practices to building a non-trivial apps with Reactjs and Node.
 I am working to document this repo extensively so it would be easy for both beginners and experts to begin dev-ing on it without pulling your hair out.
 
-## Why alt?
-
-Having isomorphic React was one of my key criteria when choosing a Flux library, which helped narrow down the scope of libraries.
-I found alt's implementation to be clean and simple, and like the option to allow us to create flux instances or using singeltons (and flushing the stores). 
 
 ## Instructions
 
@@ -139,7 +144,9 @@ For Google Auth to work locally, you need to do the following in your terminal b
 Fret not! Heroku's covered [this](https://devcenter.heroku.com/articles/config-vars) pretty well.
 
 1. `heroku config:set GOOGLE_CLIENTID=YOUR_CLIENTID`
+
 2. `heroku config:set GOOGLE_SECRET=YOUR_SECRET`
+
 3. `heroku config:set GOOGLE_CALLBACK=YOUR_CALLBACK`
 
 - Postgresql does not work locally. It throws a role "root" does not exist error!

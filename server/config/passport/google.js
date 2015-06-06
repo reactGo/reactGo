@@ -46,12 +46,12 @@ module.exports = new GoogleStrategy({
 	} else {
 		User.findOne({ google: profile.id }, function(err, existingUser) {
       if (existingUser) return done(null, existingUser);
-      User.findOne({ email: profile._json.email }, function(err, existingEmailUser) {
+      User.findOne({ email: profile._json.emails[0] }, function(err, existingEmailUser) {
         if (existingEmailUser) {
           return done(null, false, { message: 'There is already an account using this email address. Sign in to that account and link it with Google manually from Account Settings.'});
         } else {
           var user = new User();
-          user.email = profile._json.email;
+          user.email = profile._json.emails[0];
           user.google = profile.id;
           user.tokens.push({ kind: 'google', accessToken: accessToken });
           user.profile.name = profile.displayName;
