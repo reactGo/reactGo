@@ -50,6 +50,9 @@ I am working to document this repo extensively so it would be easy for both begi
 #### Where do you compile your scss?
 We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugin) to extract compiled css in our [webpack config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.js)
 
+#### What loaders do you use for ES6/ ES2015?
+[babel-loader](https://github.com/babel/babel-loader). Seriously, try it!
+
 ### Setting up your Database
 
 Install MongoDB:
@@ -71,7 +74,7 @@ If you're interested in a boilerplate example with postgresql, check [reap](http
 4. `heroku open` to open the link
 5. If you wish to have a database setup on Heroku, remember to use `heroku addons:add mongohq` or `heroku addons:add mongolab`. 
 
-Note: For Google Auth, read [Setting up Google Authentication](https://github.com/choonkending/react-webpack-node/tree/feature/passport_google_auth#setting-up-google-authentication) below
+Note: For Google Auth, read [Setting up Google Authentication](https://github.com/choonkending/react-webpack-node/blob/master#setting-up-google-authentication) below
 
 ### Deploying to Digital Ocean
 
@@ -128,6 +131,12 @@ Fret not! Heroku's covered [this](https://devcenter.heroku.com/articles/config-v
 
 `heroku config:set GOOGLE_CALLBACK=YOUR_CALLBACK`
 
+### 2. I do not know how to write React Components/anything in ES6. Help!
+
+Don't you worry child. Read [this](https://github.com/choonkending/react-webpack-node/blob/master/docs/ReactInES6.md).
+
+You can learn more about ES6 (or ES2015) [here](http://babeljs.io/docs/learn-es2015/).
+
 ## Todo:
 
 1. Begin refactoring into ES6 syntax + bumping up lib versions
@@ -139,6 +148,9 @@ Fret not! Heroku's covered [this](https://devcenter.heroku.com/articles/config-v
 ## How to Contribute:
 
 1. As this repo is still in its baby stages, any suggestions/improvements/bugs can be in the form of Pull Requests, or creating an issue.
+2. Coding guidelines:
+ - [Airbnb's Style Guide](https://github.com/airbnb/javascript)
+ - [bendc's frontend guidelines](https://github.com/bendc/frontend-guidelines)
 
 Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app), [flux-examples](https://github.com/facebook/flux/tree/master/examples), [node-express-mongo-demo](https://github.com/madhums/node-express-mongoose-demo), [hackathon-starter](https://github.com/sahat/hackathon-starter/), [web-starter-kit](https://github.com/google/web-starter-kit), [awesome material-ui](https://github.com/callemall/material-ui), [alt and iso](https://github.com/goatslacker/iso/tree/master/examples/react-router-flux), [reap](https://github.com/choonkending/reap).
 

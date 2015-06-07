@@ -1,16 +1,10 @@
-var React = require('react');
-var TopicItem = require('./TopicItem.react');
-var PropTypes = React.PropTypes;
+import React from 'react';
+import Immutable from 'immutable';
+import TopicItem from './TopicItem.react';
 
-var MainSection = React.createClass({
-  propTypes: {
-    topics: PropTypes.object
-  },
-  /**
-   * @return {object}
-   */
-  render: function() {
-    var topics = this.props.topics.map(function(topic) {
+export default class MainSection extends React.Component {
+  render() {
+    const topics = this.props.topics.map(function(topic) {
       return (<TopicItem id={topic.get('id')} key={topic.get('id')} text={topic.get('text')} />);
     });
     return (
@@ -20,7 +14,6 @@ var MainSection = React.createClass({
       </div>
     );
   }
+}
 
-});
-
-module.exports = MainSection;
+MainSection.propTypes = { topics: React.PropTypes.instanceOf(Immutable.OrderedMap) };

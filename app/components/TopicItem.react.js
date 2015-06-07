@@ -1,14 +1,20 @@
-var React = require('react');
-var TopicActions = require('../actions/TopicActions');
-var PropTypes = React.PropTypes;
+import React from 'react';
+import TopicActions from '../actions/TopicActions';
 
-var TopicItem = React.createClass({
-  propTypes: {
-    id: PropTypes.string,
-    text: PropTypes.string
-  },
+export default class TopicItem extends React.Component {
+  _onIncrement = () => {
+    TopicActions.increment(this.props.id);
+  }
 
-  render: function() {
+  _onDecrement = () => {
+    TopicActions.decrement(this.props.id);
+  }
+
+  _onDestroyClick = () => {
+    TopicActions.destroy(this.props.id);
+  }
+
+  render() {
     return (
       <li className="topic-item" key={this.props.id}>
         <span className="topic-item__topic">{this.props.text}</span>
@@ -17,20 +23,10 @@ var TopicItem = React.createClass({
         <button className="topic-item__button topic-item__button--destroy" onClick={this._onDestroyClick}>{String.fromCharCode(215)}</button>
       </li>
     );
-  },
-
-  _onIncrement: function() {
-    TopicActions.increment(this.props.id);
-  },
-
-  _onDecrement: function() {
-    TopicActions.decrement(this.props.id);
-  },
-
-  _onDestroyClick: function() {
-    TopicActions.destroy(this.props.id);
   }
+}
 
-});
-
-module.exports = TopicItem;
+TopicItem.propTypes = {
+  id: React.PropTypes.string,
+  text: React.PropTypes.string
+};

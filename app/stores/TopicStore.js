@@ -1,6 +1,7 @@
-var Immutable = require('immutable');
-var TopicActions = require('../actions/TopicActions');
-var alt = require('../alt');
+import Immutable from 'immutable';
+import TopicActions from '../actions/TopicActions';
+import { fromJSOrdered } from '../utils/immutableHelpers';
+import alt from '../alt';
 
 /**
  * Flux Explanation of Store:
@@ -56,27 +57,27 @@ class TopicStore {
 
   bootstrap() {
     if (!Immutable.OrderedMap.isOrderedMap(this.topics)) {
-      this.topics = Immutable.fromJS(this.topics);
+      this.topics = fromJSOrdered(this.topics);
     }
     this.newTopic = '';
   }
 
   handleIncrement(id) {
-    var topic = this.topics.get(id);
-    var count = topic.get('count');
+    const topic = this.topics.get(id);
+    const count = topic.get('count');
     this.topics = this.topics.set(id, topic.set('count', count + 1));
     this.emitChange();
   }
 
   handleDecrement(id) {
-    var topic = this.topics.get(id);
-    var count = topic.get('count');
+    const topic = this.topics.get(id);
+    const count = topic.get('count');
     this.topics = this.topics.set(id, topic.set('count', count - 1));
     this.emitChange();
   }
 
   handleCreate(data) {
-    var id = data.id;
+    const id = data.id;
     this.topics = this.topics.set(id, Immutable.fromJS(data));
     this.emitChange();
   }
@@ -96,4 +97,4 @@ class TopicStore {
 }
 
 // Export our newly created Store
-module.exports = alt.createStore(TopicStore, 'TopicStore');
+export default alt.createStore(TopicStore, 'TopicStore');

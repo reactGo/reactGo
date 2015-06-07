@@ -1,3 +1,3 @@
-var Alt = require('alt');
+import Alt from 'alt';
 // This creates the alt variable in a singleton way
-module.exports = new Alt();
+export default new Alt();

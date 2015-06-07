@@ -20,3 +20,9 @@
 - Using webpack to build client and serverside bundles
 - Removing `/** @jsx React.DOM */`
 - Temporarily commented out AnimationMixin
+
+1.1.1
+=======
+
+- React Components in ES6
+- Using babel-loader instead of jsx-loader

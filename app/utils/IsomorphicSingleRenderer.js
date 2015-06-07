@@ -1,4 +1,3 @@
-'use strict'
 /**
  * This is a modified version of https://github.com/goatslacker/alt/blob/master/utils/IsomorphicRenderer.js
  * IsomorphicRenderer(alt: AltInstance, App: ReactElement): mixed
@@ -27,25 +26,23 @@
  * module.exports = IsomorphicRenderer(alt, App);
  * ```
  */
-module.exports = IsomorphicSingleRenderer;
+import Iso from 'iso';
+import React from 'react';
 
-var Iso = require('iso');
-var React = require('react');
-
-function IsomorphicSingleRenderer(alt, App) {
+export default function IsomorphicSingleRenderer(alt, App) {
   if (typeof window === 'undefined') {
     return function (state) {
       alt.bootstrap(state);
-      var app = React.renderToString(React.createElement(App));
-      var markup = Iso.render(app, alt.takeSnapshot());
+      let app = React.renderToString(React.createElement(App));
+      let markup = Iso.render(app, alt.takeSnapshot());
       alt.flush();
       return markup;
-    }
+    };
   } else {
     Iso.bootstrap(function (state, _, node) {
-      var app = React.createElement(App);
+      let app = React.createElement(App);
       alt.bootstrap(state);
       React.render(app, node);
-    })
+    });
   }
 }
