@@ -1,10 +1,11 @@
-var $ = require('jquery');
+import $ from 'jquery';
 
-module.exports = {
+const utils = {
   /*
-   @param {Promise}
+   * @param {Object} payload to be sent to server
+   * @return {Promise}
    */
-  manuallogin: function(data) {
+  manuallogin: (data) => {
     return $.ajax({
       url: '/login',
       type: 'POST',
@@ -12,18 +13,28 @@ module.exports = {
     });
   },
 
-  logout: function() {
+  /*
+   * @return {Promise}
+   */
+  logout: () => {
     return $.ajax({
       url: '/logout',
       type: 'GET'
     });
   },
 
-  signUp: function(data) {
+  /*
+   * @param {Object} payload to be sent to server
+   * @return {Promise}
+   */
+  signup: (data) => {
     return $.ajax({
       url: '/signup',
       type: 'POST',
       data: data
     });
   }
+
 };
+
+export default utils;

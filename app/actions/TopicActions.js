@@ -1,5 +1,6 @@
-var TopicWebAPIUtils = require('../utils/TopicWebAPIUtils');
-var alt = require('../alt');
+import alt from '../alt';
+import TopicWebAPIUtils from '../utils/TopicWebAPIUtils';
+
 /*
  * Declaring TopicActions using ES2015. This is equivalent to creating
  * function TopicActions() {}
@@ -78,4 +79,4 @@ class TopicActions {
 
 }
 
-module.exports = alt.createActions(TopicActions);
+export default alt.createActions(TopicActions);

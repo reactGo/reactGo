@@ -1,5 +1,5 @@
-var alt = require('../alt');
-var UserWebAPIUtils = require('../utils/UserWebAPIUtils');
+import alt from '../alt';
+import UserWebAPIUtils from '../utils/UserWebAPIUtils';
 
 /*
  * Declaring UserActions using ES2015. This is equivalent to creating
@@ -11,14 +11,13 @@ class UserActions {
 
   manuallogin(data) {
     this.dispatch();
-    var _this = this;
     UserWebAPIUtils.manuallogin(data)
-      .then(function(response, textStatus) {
+      .then((response, textStatus) => {
         if (textStatus === 'success') {
           // Dispatch another event for successful login
-          _this.actions.loginsuccess(data.email);
+          this.actions.loginsuccess(data.email);
         }
-      }, function() {
+      }, () => {
         // Dispatch another event for a bad login
       });
   }
@@ -34,14 +33,13 @@ class UserActions {
 
   logout() {
     this.dispatch();
-    var _this = this;
     UserWebAPIUtils.logout()
-      .then(function(response, textStatus) {
+      .then((response, textStatus) => {
         if (textStatus === 'success') {
           // Dispatch another event for successful login
-          _this.actions.logoutsuccess();
+          this.actions.logoutsuccess();
         }
-      }, function() {
+      }, () => {
         // Dispatch another event for a bad login
       });
   }
@@ -51,4 +49,4 @@ class UserActions {
   }
 }
 
-module.exports = alt.createActions(UserActions);
+export default alt.createActions(UserActions);
