@@ -27,22 +27,22 @@
  * module.exports = IsomorphicRenderer(alt, App);
  * ```
  */
-module.exports = IsomorphicRouterRenderer;
+import Iso from 'iso';
+import React from 'react';
+import Router from 'react-router';
 
-var Iso = require('iso');
-var React = require('react');
-var Router = require('react-router');
-var routes = require('../routes');
+import routes from '../routes';
 
-function IsomorphicRouterRenderer(alt) {
+export default function IsomorphicRouterRenderer(alt) {
   if (typeof window === 'undefined') {
     return function (state, url) {
-      var markup;
+      // FIXME: Retaining variable markup outside of Handler function is bad.
+      //        Should be a return value.
+      let markup;
       Router.run(routes, url, function (Handler) {
         alt.bootstrap(state);
-        var content = React.renderToString(React.createElement(Handler));
-        markup = Iso.render(content, alt.takeSnapshot());
-        alt.flush();
+        let content = React.renderToString(React.createElement(Handler));
+        markup = Iso.render(content, alt.flush());
       });
       return markup;
     };
@@ -50,7 +50,7 @@ function IsomorphicRouterRenderer(alt) {
     Iso.bootstrap(function (state, _, container) {
       alt.bootstrap(state);
       Router.run(routes, Router.HistoryLocation, function (Handler) {
-        var node = React.createElement(Handler);
+        let node = React.createElement(Handler);
         React.render(node, container);
       });
     });

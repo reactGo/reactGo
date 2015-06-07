@@ -1,5 +1,5 @@
-var isomorphicRouterRenderer = require('./utils/IsomorphicRouterRenderer');
-var alt = require('./alt');
-var routes = require('./routes');
+import isomorphicRouterRenderer from './utils/IsomorphicRouterRenderer';
+import alt from './alt';
+import routes from './routes';
 
-module.exports = isomorphicRouterRenderer(alt, routes);
+export default isomorphicRouterRenderer(alt, routes);

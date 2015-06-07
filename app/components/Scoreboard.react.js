@@ -1,16 +1,10 @@
-var React = require('react');
-var TopicCountItem = require('./TopicCountItem.react');
-var PropTypes = React.PropTypes;
+import React from 'react';
+import Immutable from 'immutable';
+import TopicCountItem from './TopicCountItem.react';
 
-var Scoreboard = React.createClass({
-  propTypes: {
-    topics: PropTypes.object
-  },
-  /**
-   * @return {object}
-   */
-  render: function() {
-    var topicListItems = this.props.topics.map(function(topic) {
+export default class Scoreboard extends React.Component {
+  render() {
+    const topicListItems = this.props.topics.map(function(topic) {
       return (<TopicCountItem key={topic.get('id')} title={topic.get('text')} count={topic.get('count')}/>);
     });
 
@@ -23,7 +17,6 @@ var Scoreboard = React.createClass({
       </div>
     );
   }
+}
 
-});
-
-module.exports = Scoreboard;
+Scoreboard.propTypes = { topics: React.PropTypes.instanceOf(Immutable.OrderedMap) };

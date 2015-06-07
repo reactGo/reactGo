@@ -44,19 +44,5 @@ module.exports = {
       contentType: 'application/json',
       type: 'DELETE'
     });
-  },
-
-  /**
-   * Listens to the 'topic change' event emitted by the server
-   * Whenever another client makes a change. This triggers us to call
-   * the getAllTopics() function.
-   */
-  listenToTopicChanges: function() {
-    var hostname = document.location.hostname;
-    var socket = io.connect('//' + hostname);
-    var _this = this;
-    socket.on('topic change', function() {
-      _this.getAllTopics();
-    });
   }
 };

@@ -1,12 +1,7 @@
-var React = require('react');
+import React from 'react';
 
-var TopicCountItem = React.createClass({
-  propTypes: {
-    key: React.PropTypes.string,
-    title: React.PropTypes.string,
-    count: React.PropTypes.number
-  },
-  render: function() {
+export default class TopicCountItem extends React.Component {
+  render() {
     return (
       <li className="scoreboard__list-item" key={this.props.key}>
         <span className="scoreboard__topic">{this.props.title}</span>
@@ -14,6 +9,10 @@ var TopicCountItem = React.createClass({
       </li>
     );
   }
-});
+}
 
-module.exports = TopicCountItem;
+TopicCountItem.propTypes = {
+  key: React.PropTypes.string,
+  title: React.PropTypes.string,
+  count: React.PropTypes.number
+};

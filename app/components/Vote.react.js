@@ -1,8 +1,11 @@
-var React = require('react');
-var EntryBox = require('./EntryBox.react');
-var MainSection = require('./MainSection.react');
-var Scoreboard = require('./Scoreboard.react');
-var TopicStore = require('../stores/TopicStore');
+import React from 'react';
+import Immutable from 'immutable';
+
+import EntryBox from './EntryBox.react';
+import MainSection from './MainSection.react';
+import Scoreboard from './Scoreboard.react';
+import TopicStore from '../stores/TopicStore';
+
 /*
  * This component operates as a "Controller-View". It listens for changes in the
  * Store and passes the new data to its children.
@@ -18,39 +21,39 @@ var TopicStore = require('../stores/TopicStore');
  * We often pass the entire state of the store down the chain of views in a single object, allowing different descendants to use
  * what they need. In addition to keeping the controller-like behavior at the top of the hierarchy, and thus keeping our descendant
  */
-var Vote = React.createClass({
-  getInitialState: function() {
-    // topTopic: TopicStore.getTopTopic(),
-    return {
-      allTopics: TopicStore.getState().topics,
-      newTopic: TopicStore.getState().newTopic
-    };
-  },
+export default class Vote extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = TopicStore.getState();
+  }
 
-  componentDidMount: function() {
-    TopicStore.listen(this.onChange);
-  },
+  componentDidMount() {
+    TopicStore.listen(this._onChange);
+  }
 
-  componentWillUnmount: function() {
-    TopicStore.unlisten(this.onChange);
-  },
+  componentWillUnmount() {
+    TopicStore.unlisten(this._onChange);
+  }
 
-  onChange: function() {
+  _onChange = () => {
     this.setState({
-      allTopics: TopicStore.getState().topics,
+      topics: TopicStore.getState().topics,
       newTopic: TopicStore.getState().newTopic
     });
-  },
+  }
 
-  render: function() {
+  render() {
     return (
       <div className="vote">
         <EntryBox topic={this.state.newTopic} />
-        <MainSection topics={this.state.allTopics} />
-        <Scoreboard topics={this.state.allTopics} />
+        <MainSection topics={this.state.topics} />
+        <Scoreboard topics={this.state.topics} />
       </div>
     );
   }
-});
+}
 
-module.exports = Vote;
+Vote.propTypes = {
+  topics: React.PropTypes.instanceOf(Immutable.OrderedMap),
+  newTopic: React.PropTypes.string
+};
