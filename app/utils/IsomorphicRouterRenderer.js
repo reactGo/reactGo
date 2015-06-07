@@ -34,11 +34,11 @@ import routes from '../routes';
 
 export default function IsomorphicRouterRenderer(alt) {
   if (typeof window === 'undefined') {
-    return function(state, url) {
+    return (state, url) => {
       // FIXME: Retaining variable markup outside of Handler function is bad.
       //        Should be a return value.
       let markup;
-      Router.run(routes, url, function(Handler) {
+      Router.run(routes, url, (Handler) => {
         alt.bootstrap(state);
         let content = React.renderToString(React.createElement(Handler));
         markup = Iso.render(content, alt.flush());
@@ -46,9 +46,9 @@ export default function IsomorphicRouterRenderer(alt) {
       return markup;
     };
   } else {
-    Iso.bootstrap(function(state, _, container) {
+    Iso.bootstrap((state, _, container) => {
       alt.bootstrap(state);
-      Router.run(routes, Router.HistoryLocation, function(Handler) {
+      Router.run(routes, Router.HistoryLocation, (Handler) => {
         let node = React.createElement(Handler);
         React.render(node, container);
       });

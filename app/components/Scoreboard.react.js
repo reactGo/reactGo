@@ -4,7 +4,7 @@ import TopicCountItem from './TopicCountItem.react';
 
 export default class Scoreboard extends React.Component {
   render() {
-    const topicListItems = this.props.topics.map(function(topic) {
+    const topicListItems = this.props.topics.map((topic) => {
       return (<TopicCountItem key={topic.get('id')} title={topic.get('text')} count={topic.get('count')}/>);
     });
 

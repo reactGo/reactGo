@@ -124,7 +124,7 @@
         "beforeColon": false,
         "afterColon": true
     }],
-    "new-cap": [2, {                 // http://eslint.org/docs/rules/new-cap
+    "new-cap": [0, {                 // http://eslint.org/docs/rules/new-cap
       "newIsCap": true
     }],
     "no-multiple-empty-lines": [2, { // http://eslint.org/docs/rules/no-multiple-empty-lines
@@ -149,7 +149,6 @@
     "space-infix-ops": 2,            // http://eslint.org/docs/rules/space-infix-ops
     "space-return-throw-case": 2,    // http://eslint.org/docs/rules/space-return-throw-case
     "spaced-line-comment": 2,        // http://eslint.org/docs/rules/spaced-line-comment
-
 /**
  * JSX style
  */
