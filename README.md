@@ -139,7 +139,7 @@ You can learn more about ES6 (or ES2015) [here](http://babeljs.io/docs/learn-es2
 
 ## Todo:
 
-1. Begin refactoring into ES6 syntax + bumping up lib versions
+1. Look into using html-loader and use webpack to assist with isomorphic flux.
 2. Look into using [Alt Container](https://github.com/goatslacker/alt/blob/master/components/AltContainer.js) and other cool utils alt is using.
 3. Experiment with [CSS-loader](https://github.com/webpack/css-loader#local-scope) further to potentially incorporate locally scoped css.
 4. react-hot-loader
