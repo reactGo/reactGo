@@ -9,7 +9,7 @@ export default class TopicTextInput extends React.Component {
    * Invokes the callback passed in as onSave, allowing this component to be
    * used in different ways. I personally think this makes it more reusable.
    */
-  _save = () => {
+  _onSave = () => {
     this.props.onSave(this.props.value);
   }
 
@@ -26,7 +26,7 @@ export default class TopicTextInput extends React.Component {
    */
   _onKeyDown = (event) => {
     if (event.keyCode === ENTER_KEY_CODE) {
-      this._save();
+      this._onSave();
     }
   }
 

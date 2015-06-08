@@ -172,6 +172,7 @@
     "react/sort-comp": [2, {
       "order": [
         "displayName",
+        "constructor",
         "mixins",
         "statics",
         "propTypes",
@@ -183,6 +184,7 @@
         "shouldComponentUpdate",
         "componentWillUpdate",
         "componentWillUnmount",
+        "/^_on.+$/",
         "/^on.+$/",
         "/^get.+$/",
         "/^render.+$/",

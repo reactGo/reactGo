@@ -27,4 +27,4 @@ export default class EntryBox extends React.Component {
   }
 }
 
-EntryBox.PropTypes = { topic: React.PropTypes.string };
+EntryBox.propTypes = { topic: React.PropTypes.string };

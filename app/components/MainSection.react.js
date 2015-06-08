@@ -4,7 +4,7 @@ import TopicItem from './TopicItem.react';
 
 export default class MainSection extends React.Component {
   render() {
-    const topics = this.props.topics.map(function(topic) {
+    const topics = this.props.topics.map((topic) => {
       return (<TopicItem id={topic.get('id')} key={topic.get('id')} text={topic.get('text')} />);
     });
     return (

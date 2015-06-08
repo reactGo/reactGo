@@ -29,7 +29,7 @@ export default class Login extends React.Component {
     });
   }
 
-  _loginSubmit = () => {
+  _onLoginSubmit = () => {
     const email = React.findDOMNode(this.refs.email).value;
     const password = React.findDOMNode(this.refs.password).value;
     UserActions.manuallogin({
@@ -39,37 +39,35 @@ export default class Login extends React.Component {
   }
 
   render() {
+    let renderedResult;
     if (this.state.user.get('authenticated')) {
-      return (
-        <div className="login">
-          <h1 className="login__header">You are logged in amigo</h1>
-        </div>
-      );
+      renderedResult = (<h1 className="login__header">You are logged in amigo</h1>);
     } else {
       if (this.state.user.get('isWaiting')) {
-        return (
-          <div className="login">
-            <h1 className="login__header">Waiting ...</h1>
-          </div>
-        );
+        renderedResult = (<h1 className="login__header">Waiting ...</h1>);
       } else {
-        return (
-          <div className="login">
+        renderedResult = (
+          <div className="login__container">
             <h1 className="login__header">Email Login Demo</h1>
             <fieldset className="login__fieldset">
-              <input className="login__input" type="email" ref="email" placeholder="email" />
-              <input className="login__input" type="password" ref="password" placeholder="password" />
-              <button className="login__button login__button--green" onClick={this._loginSubmit}>Login</button>
-              <p className="login__hint">Hint: email: example@ninja.com password: ninja</p>
+                <input className="login__input" type="email" ref="email" placeholder="email" />
+                <input className="login__input" type="password" ref="password" placeholder="password" />
+                <button className="login__button login__button--green" onClick={this._onLoginSubmit}>Login</button>
+                <p className="login__hint">Hint: email: example@ninja.com password: ninja</p>
             </fieldset>
             <h1 className="login__header">Google Login Demo</h1>
             <fieldset className="login__fieldset">
               <a className="login__button login__button--green" href="/auth/google">Login with Google</a>
             </fieldset>
-           </div>
+          </div>
         );
       }
     }
+    return (
+        <div className="login">
+          {renderedResult}
+        </div>
+    );
   }
 }
 
