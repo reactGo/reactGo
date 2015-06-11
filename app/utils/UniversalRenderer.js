@@ -37,7 +37,7 @@ const renderToMarkup = (alt, routes, state, url) => {
   Router.run(routes, url, (Handler) => {
     alt.bootstrap(state);
     let content = React.renderToString(React.createElement(Handler));
-    markup = Iso.render(content, alt.flush);
+    markup = Iso.render(content, alt.flush());
   });
   return markup;
 };
