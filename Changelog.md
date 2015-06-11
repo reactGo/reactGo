@@ -26,3 +26,9 @@
 
 - React Components in ES6
 - Using babel-loader instead of jsx-loader
+
+1.1.2
+======
+
+- Removed swig
+- Parsing html files using webpack, inspired by [react-starter](https://github.com/webpack/react-starter)
