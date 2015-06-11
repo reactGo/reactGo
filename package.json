@@ -38,6 +38,7 @@
     "express-session": "^1.10.2",
     "extract-text-webpack-plugin": "^0.8.1",
     "file-loader": "^0.8.4",
+    "html-loader": "^0.3.0",
     "immutable": "^3.7.3",
     "iso": "^4.1.0",
     "jquery": "^2.1.4",

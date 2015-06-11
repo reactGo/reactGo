@@ -104,7 +104,7 @@ to set up nodejs
 			- Logout.react
 			- About.react
 
-## IsomorphicRouterRenderer
+## UniversalRenderer
 
 This is a modified version of alt's IsomorphicRenderer. I wished to use webpack to build my server and client side code, but wanted to easily bootstrap data into the stores, and render the correct component using react-router. This takes into account the fact that we're using a singleton store and flushing it everytime (as opposed to creating an instance everytime).
 

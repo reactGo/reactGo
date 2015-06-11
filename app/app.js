@@ -1,5 +1,6 @@
-import isomorphicRouterRenderer from './utils/IsomorphicRouterRenderer';
+import universalRenderer from './utils/UniversalRenderer';
 import alt from './alt';
 import routes from './routes';
+import html from './base.html';
 
-export default isomorphicRouterRenderer(alt, routes);
+export default universalRenderer(alt, routes, html);

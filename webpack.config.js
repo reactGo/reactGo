@@ -21,7 +21,8 @@ var commonLoaders = [
   { test: /\.png$/, loader: "url-loader" },
     // Copy precomposed image files over to assets path
   { test: /.*precomposed\.png$/, loader: "file-loader?name=images/[name].[ext]"},
-  { test: /\.jpg$/, loader: "file-loader" }
+  { test: /\.jpg$/, loader: "file-loader" },
+  { test: /\.html$/, loader: "html-loader"}
 ];
 
 module.exports = [

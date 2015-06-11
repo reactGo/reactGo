@@ -74,10 +74,9 @@ module.exports = function(app, io, passport) {
           UserStore: { user: user }
         };
 
-        var content = App(JSON.stringify(res.locals.data || {}), req.url);
-        res.render('index', { 
-          isomorphic: content
-        });
+        var html = App(JSON.stringify(res.locals.data || {}), req.url);
+        res.contentType = "text/html; charset=utf8";
+        res.end(html);
       }else {
         console.log('Error in first query');
       }
