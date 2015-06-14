@@ -1,57 +1,30 @@
-var React = require('react');
-var TopicActions = require('../actions/TopicActions');
-var TopicTextInput = require('./TopicTextInput.react');
-// var Statistics = require('./Statistics.react');
-// var AnimationMixin = require('../mixins/AnimationMixin');
+import React from 'react';
+import TopicActions from '../actions/TopicActions';
+import TopicTextInput from './TopicTextInput.react';
 
-var EntryBox = React.createClass({
-  propTypes: {
-    topic: React.PropTypes.string
-  },
-  // mixins: [AnimationMixin],
-  // getInitialState: function() {
-  //   return {
-  //     opaque: false
-  //   };
-  // },
-  // componentDidMount: function() {
-  //   this.setState({
-  //     opaque : true
-  //   })
-  // },
-  render: function() {
-    // <Statistics topTopic={this.props.topTopic} topStat={this.props.topStat} />
-    // <h1 className={classnames({
-    //       'opaque--true': this.state.opaque,
-    //       'opaque--false': !this.state.opaque
-    //     })}>
-    // {this.createTextTransition(text)}
-    // </h1>
-    return (
-      <div className="entrybox">
-        <h1 className="entrybox__header">Vote for your top hack idea</h1>
-        <TopicTextInput className="entrybox__input" value={this.props.topic} placeholder="What's yer fav idea?" onChange={this._onChange} onSave={this._onSave} />
-      </div>
-    );
-  },
-
+export default class EntryBox extends React.Component {
   /**
    * Event handler called within TopicTextInput.
    * Defining this here allows TopicTextInput to be used in multiple places
    * in different ways.
    * @param {string} text
    */
-  _onSave: function(text) {
+  _onSave = (text) => {
     TopicActions.create(text);
-  },
+  }
 
-  /**
-   * @param {object} event
-   */
-  _onChange: function(text) {
+  _onChange = (text) => {
     TopicActions.typing(text);
   }
 
-});
+  render() {
+    return (
+      <div className="entrybox">
+        <h1 className="entrybox__header">Vote for your top hack idea</h1>
+        <TopicTextInput className="entrybox__input" value={this.props.topic} placeholder="What's yer fav idea?" onChange={this._onChange} onSave={this._onSave} />
+      </div>
+    );
+  }
+}
 
-module.exports = EntryBox;
+EntryBox.propTypes = { topic: React.PropTypes.string };

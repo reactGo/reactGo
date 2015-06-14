@@ -1,36 +1,42 @@
-var React = require('react');
-var Link = require('react-router').Link;
-var UserActions = require('../actions/UserActions');
-var UserStore = require('../stores/UserStore');
+import React from 'react';
+import { Link } from 'react-router';
+import Immutable from 'immutable';
 
-var Navigation = React.createClass({
-  getInitialState: function() {
-    return {
-      user: UserStore.getState().user
-    };
-  },
+import UserActions from '../actions/UserActions';
+import UserStore from '../stores/UserStore';
 
-  componentDidMount: function() {
-    UserStore.listen(this.onChange);
-  },
+export default class Navigation extends React.Component {
+  /*
+   * This replaces getInitialState. Likewise getDefaultProps and propTypes are just
+   * properties on the constructor
+   * Read more here: https://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#es6-classes
+   */
+  constructor(props) {
+    super(props);
+    this.state = UserStore.getState();
+  }
 
-  componentWillUnmount: function() {
-    UserStore.unlisten(this.onChange);
-  },
+  componentDidMount() {
+    UserStore.listen(this._onChange);
+  }
 
-  onChange: function() {
+  componentWillUnmount() {
+    UserStore.unlisten(this._onChange);
+  }
+
+  _onChange = () => {
     this.setState({
       user: UserStore.getState().user
     });
-  },
+  }
 
-  onLogout: function() {
+  _onLogout = () => {
     UserActions.logout();
-  },
+  }
 
-  render: function() {
-    var loginOrOut = this.state.user.get('authenticated') ?
-      <Link onClick={this.onLogout} className="navigation__item" to="logout">Logout</Link> :
+  render() {
+    const loginOrOut = this.state.user.get('authenticated') ?
+      <Link onClick={this._onLogout} className="navigation__item" to="logout">Logout</Link> :
       <Link className="navigation__item" to="login">Log in</Link>;
     return (
       <nav className="navigation" role="navigation">
@@ -40,6 +46,7 @@ var Navigation = React.createClass({
       </nav>
     );
   }
-});
 
-module.exports = Navigation;
+}
+
+Navigation.propTypes = { user: React.PropTypes.instanceOf(Immutable.Map) };

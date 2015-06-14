@@ -1,4 +1,3 @@
-'use strict';
 /**
  * This is a modified version of https://github.com/goatslacker/alt/blob/master/utils/IsomorphicRenderer.js
  * IsomorphicRenderer(alt: AltInstance, App: ReactElement): mixed
@@ -27,32 +26,35 @@
  * module.exports = IsomorphicRenderer(alt, App);
  * ```
  */
-module.exports = IsomorphicRouterRenderer;
+import Iso from 'iso';
+import React from 'react';
+import Router from 'react-router';
 
-var Iso = require('iso');
-var React = require('react');
-var Router = require('react-router');
-var routes = require('../routes');
+import routes from '../routes';
 
-function IsomorphicRouterRenderer(alt) {
+export default function IsomorphicRouterRenderer(alt) {
+  let renderedMarkup;
   if (typeof window === 'undefined') {
-    return function (state, url) {
-      var markup;
-      Router.run(routes, url, function (Handler) {
+    renderedMarkup = (state, url) => {
+      // FIXME: Retaining variable markup outside of Handler function is bad.
+      //        Should be a return value.
+      let markup;
+      Router.run(routes, url, (Handler) => {
         alt.bootstrap(state);
-        var content = React.renderToString(React.createElement(Handler));
-        markup = Iso.render(content, alt.takeSnapshot());
-        alt.flush();
+        let content = React.renderToString(React.createElement(Handler));
+        markup = Iso.render(content, alt.flush());
       });
       return markup;
     };
   } else {
-    Iso.bootstrap(function (state, _, container) {
+    renderedMarkup = Iso.bootstrap((state, _, container) => {
       alt.bootstrap(state);
-      Router.run(routes, Router.HistoryLocation, function (Handler) {
-        var node = React.createElement(Handler);
+      Router.run(routes, Router.HistoryLocation, (Handler) => {
+        let node = React.createElement(Handler);
         React.render(node, container);
       });
     });
   }
+
+  return renderedMarkup;
 }

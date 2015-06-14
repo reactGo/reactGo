@@ -1,6 +1,6 @@
-var Immutable = require('immutable');
-var UserActions = require('../actions/UserActions');
-var alt = require('../alt');
+import Immutable from 'immutable';
+import UserActions from '../actions/UserActions';
+import alt from '../alt';
 
 /**
  * Flux Explanation of Store:
@@ -81,4 +81,4 @@ class UserStore {
 }
 
 // Export our newly created Store
-module.exports = alt.createStore(UserStore, 'UserStore');
+export default alt.createStore(UserStore, 'UserStore');

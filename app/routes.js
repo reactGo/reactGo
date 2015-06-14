@@ -1,12 +1,13 @@
-var React = require('react');
-var { Route, DefaultRoute } = require('react-router');
-var App = require('./components/App.react');
-var Vote = require('./components/Vote.react');
-var About = require('./components/About.react');
-var Login = require('./components/Login.react');
-var Logout = require('./components/Logout.react');
+import React from 'react';
+import { Route, DefaultRoute } from 'react-router';
 
-var routes = (
+import App from './components/App.react';
+import Vote from './components/Vote.react';
+import About from './components/About.react';
+import Login from './components/Login.react';
+import Logout from './components/Logout.react';
+
+const routes = (
   <Route name="app" path="/" handler={App}>
     <Route name="login" handler={Login} />
     <Route name="logout" handler={Logout} />
@@ -16,4 +17,4 @@ var routes = (
   </Route>
 );
 
-module.exports = routes;
+export default routes;

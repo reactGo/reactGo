@@ -1,88 +1,74 @@
-var React = require('react');
-var UserActions = require('../actions/UserActions');
-var UserStore = require('../stores/UserStore');
+import React from 'react';
+import Immutable from 'immutable';
 
-var Login = React.createClass({
-  getInitialState: function() {
-    return {
-      user: UserStore.getState().user
-    };
-  },
+import UserActions from '../actions/UserActions';
+import UserStore from '../stores/UserStore';
 
-  componentDidMount: function() {
-    UserStore.listen(this.onChange);
-  },
+export default class Login extends React.Component {
+  /*
+   * This replaces getInitialState. Likewise getDefaultProps and propTypes are just
+   * properties on the constructor
+   * Read more here: https://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#es6-classes
+   */
+  constructor(props) {
+    super(props);
+    this.state = UserStore.getState();
+  }
 
-  componentWillUnmount: function() {
-    UserStore.unlisten(this.onChange);
-  },
+  componentDidMount() {
+    UserStore.listen(this._onChange);
+  }
 
-  onChange: function() {
+  componentWillUnmount() {
+    UserStore.unlisten(this._onChange);
+  }
+
+  _onChange = () => {
     this.setState({
       user: UserStore.getState().user
     });
-  },
+  }
 
-  loginSubmit: function() {
-    var email;
-    var pswd;
-    email = this.refs.email.getDOMNode().value;
-    pswd = this.refs.password.getDOMNode().value;
+  _onLoginSubmit = () => {
+    const email = React.findDOMNode(this.refs.email).value;
+    const password = React.findDOMNode(this.refs.password).value;
     UserActions.manuallogin({
       email: email,
-      password: pswd
+      password: password
     });
-  },
+  }
 
-  // *
-  //  * Keeping this function here for reference purposes. Will refactor this later to work with registering
-  //  * @param evt
-  //  * @private
-
-  // _registerSubmit: function(evt) {
-  //   var email, pswd;
-  //   email = this.refs.emailForm.getDOMNode().value;
-  //   pswd = this.refs.passwordForm.getDOMNode().value;
-  //   cpswd = this.refs.passwordConfirmForm.getDOMNode().value;
-  //   UserActionCreators.submitSignUpCredentials({
-  //     email: email,
-  //     password: pswd
-  //   });
-  // },
-
-  render: function() {
+  render() {
+    let renderedResult;
     if (this.state.user.get('authenticated')) {
-      return (
-        <div className="login">
-          <h1 className="login__header">You are logged in amigo</h1>
-        </div>
-      );
+      renderedResult = (<h1 className="login__header">You are logged in amigo</h1>);
     } else {
       if (this.state.user.get('isWaiting')) {
-        return (
-          <div className="login">
-            <h1 className="login__header">Waiting ...</h1>
-          </div>
-        );
+        renderedResult = (<h1 className="login__header">Waiting ...</h1>);
       } else {
-        return (
-          <div className="login">
+        renderedResult = (
+          <div className="login__container">
             <h1 className="login__header">Email Login Demo</h1>
             <fieldset className="login__fieldset">
-              <input className="login__input" type="email" ref="email" placeholder="email" />
-              <input className="login__input" type="password" ref="password" placeholder="password" />
-              <button className="login__button login__button--green" onClick={this.loginSubmit}>Login</button>
-              <p className="login__hint">Hint: email: example@ninja.com password: ninja</p>
+                <input className="login__input" type="email" ref="email" placeholder="email" />
+                <input className="login__input" type="password" ref="password" placeholder="password" />
+                <button className="login__button login__button--green" onClick={this._onLoginSubmit}>Login</button>
+                <p className="login__hint">Hint: email: example@ninja.com password: ninja</p>
             </fieldset>
             <h1 className="login__header">Google Login Demo</h1>
             <fieldset className="login__fieldset">
               <a className="login__button login__button--green" href="/auth/google">Login with Google</a>
             </fieldset>
-           </div>
+          </div>
         );
       }
     }
+    return (
+        <div className="login">
+          {renderedResult}
+        </div>
+    );
   }
-});
+}
 
-module.exports = Login;
+Login.propTypes = { user: React.PropTypes.instanceOf(Immutable.Map) };

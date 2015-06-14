@@ -1,13 +1,11 @@
-var React = require('react');
+import React from 'react';
 
-var Logout = React.createClass({
-  render: function() {
+export default class Logout extends React.Component {
+  render() {
     return (
       <div className="logout">
         <h1 className="logout__header">Hey m8, you have been logged out</h1>
       </div>
     );
   }
-});
-
-module.exports = Logout;
+}
