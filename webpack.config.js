@@ -47,8 +47,9 @@ module.exports = [
      *  new CommonsChunkPlugin("c-commons.js", ["pageC", "adminPageC"]);
      * ]
      */
+    context: path.join(__dirname, '/app'),
     entry: {
-      app: "./app/app.js"
+      app: "./app"
     },
     output: {
       // The output directory as absolute path
@@ -74,6 +75,11 @@ module.exports = [
         }
       ])
     },
+    resolve: {
+      root: [
+        path.join(__dirname, '/app')
+      ]
+    },
     plugins: [
         // extract inline css from modules into separate files
         new ExtractTextPlugin("styles/main.css")
@@ -81,8 +87,9 @@ module.exports = [
   }, {
     // The configuration for the server-side rendering
     name: "server-side rendering",
+    context: path.join(__dirname, '/app'),
     entry: {
-      app: "./app/app.js"
+      app: "./app"
     },
     target: "node",
     output: {
@@ -97,6 +104,11 @@ module.exports = [
     externals: /^[a-z\-0-9]+$/,
     module: {
       loaders: commonLoaders
+    },
+    resolve: {
+      root: [
+        path.join(__dirname, '/app')
+      ]
     },
     plugins: [
       new webpack.NormalModuleReplacementPlugin(/\.(css|scss)$/, "node-noop")

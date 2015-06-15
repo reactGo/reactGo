@@ -1,5 +1,5 @@
-import alt from '../alt';
-import UserWebAPIUtils from '../utils/UserWebAPIUtils';
+import alt from 'alt';
+import UserWebAPIUtils from 'utils/UserWebAPIUtils';
 
 /*
  * Declaring UserActions using ES2015. This is equivalent to creating

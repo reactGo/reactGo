@@ -1,5 +1,5 @@
-import alt from '../alt';
-import TopicWebAPIUtils from '../utils/TopicWebAPIUtils';
+import alt from 'alt';
+import TopicWebAPIUtils from 'utils/TopicWebAPIUtils';
 
 /*
  * Declaring TopicActions using ES2015. This is equivalent to creating

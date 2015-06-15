@@ -1,6 +1,6 @@
 import React from 'react';
 import Immutable from 'immutable';
-import TopicCountItem from './TopicCountItem.react';
+import TopicCountItem from 'components/TopicCountItem.react';
 
 export default class Scoreboard extends React.Component {
   render() {
