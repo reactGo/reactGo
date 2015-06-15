@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 import UserActions from 'actions/UserActions';
-import alt from 'alt';
+import alt from 'altInstance';
 
 /**
  * Flux Explanation of Store:

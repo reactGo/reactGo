@@ -76,8 +76,8 @@ module.exports = [
       ])
     },
     resolve: {
-      root: [
-        path.join(__dirname, '/app')
+      modulesDirectories: [
+        'app', 'node_modules'
       ]
     },
     plugins: [
@@ -106,8 +106,8 @@ module.exports = [
       loaders: commonLoaders
     },
     resolve: {
-      root: [
-        path.join(__dirname, '/app')
+      modulesDirectories: [
+        'app', 'node_modules'
       ]
     },
     plugins: [

@@ -1,4 +1,4 @@
-import alt from 'alt';
+import alt from 'altInstance';
 import UserWebAPIUtils from 'utils/UserWebAPIUtils';
 
 /*

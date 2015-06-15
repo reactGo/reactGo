@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 import TopicActions from 'actions/TopicActions';
 import { fromJSOrdered } from 'utils/immutableHelpers';
-import alt from 'alt';
+import alt from 'altInstance';
 
 /**
  * Flux Explanation of Store:
