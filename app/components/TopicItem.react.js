@@ -1,5 +1,5 @@
 import React from 'react';
-import TopicActions from '../actions/TopicActions';
+import TopicActions from 'actions/TopicActions';
 
 export default class TopicItem extends React.Component {
   _onIncrement = () => {

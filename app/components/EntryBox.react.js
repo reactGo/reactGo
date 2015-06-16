@@ -1,6 +1,6 @@
 import React from 'react';
-import TopicActions from '../actions/TopicActions';
-import TopicTextInput from './TopicTextInput.react';
+import TopicActions from 'actions/TopicActions';
+import TopicTextInput from 'components/TopicTextInput.react';
 
 export default class EntryBox extends React.Component {
   /**
