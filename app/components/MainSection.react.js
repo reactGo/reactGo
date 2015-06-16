@@ -1,6 +1,6 @@
 import React from 'react';
 import Immutable from 'immutable';
-import TopicItem from './TopicItem.react';
+import TopicItem from 'components/TopicItem.react';
 
 export default class MainSection extends React.Component {
   render() {

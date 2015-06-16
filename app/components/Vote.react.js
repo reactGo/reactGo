@@ -1,10 +1,10 @@
 import React from 'react';
 import Immutable from 'immutable';
 
-import EntryBox from './EntryBox.react';
-import MainSection from './MainSection.react';
-import Scoreboard from './Scoreboard.react';
-import TopicStore from '../stores/TopicStore';
+import EntryBox from 'components/EntryBox.react';
+import MainSection from 'components/MainSection.react';
+import Scoreboard from 'components/Scoreboard.react';
+import TopicStore from 'stores/TopicStore';
 
 /*
  * This component operates as a "Controller-View". It listens for changes in the
