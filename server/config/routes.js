@@ -7,6 +7,7 @@ var users = require('../controllers/users');
 var mongoose = require('mongoose');
 var _ = require('lodash');
 var Topic = mongoose.model('Topic');
+var Favicon = require('../../public/assets/favicon.server');
 var App = require('../../public/assets/app.server');
 
 module.exports = function(app, io, passport) {
@@ -75,6 +76,7 @@ module.exports = function(app, io, passport) {
         };
 
         var html = App(JSON.stringify(res.locals.data || {}), req.url);
+        html = html.replace("FAVICON", Favicon);
         res.contentType = "text/html; charset=utf8";
         res.end(html);
       }else {

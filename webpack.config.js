@@ -46,7 +46,7 @@ module.exports = [
      *  new CommonsChunkPlugin("c-commons.js", ["pageC", "adminPageC"]);
      * ]
      */
-    context: path.join(__dirname, 'app'),
+    context: path.join(__dirname, "app"),
     entry: {
       app: "./app"
     },
@@ -76,7 +76,7 @@ module.exports = [
     },
     resolve: {
       modulesDirectories: [
-        'app', 'node_modules'
+        "app", "node_modules"
       ]
     },
     plugins: [
@@ -86,9 +86,10 @@ module.exports = [
   }, {
     // The configuration for the server-side rendering
     name: "server-side rendering",
-    context: path.join(__dirname, 'app'),
+    context: path.join(__dirname, "app"),
     entry: {
-      app: "./app"
+      app: "./app",
+      favicon: "./elements/Favicon.react"
     },
     target: "node",
     output: {
@@ -106,7 +107,7 @@ module.exports = [
     },
     resolve: {
       modulesDirectories: [
-        'app', 'node_modules'
+        "app", "node_modules"
       ]
     },
     plugins: [
