@@ -27,15 +27,11 @@ class TopicActions {
       this.dispatch(data);
       // Makes an additional call to the server API and actually adds the topic
       TopicWebAPIUtils.addTopic(data)
-        .done(function success(res) {
+        .done(function success() {
           // We might not need to do anything it successfully added due to optimistic updates.
-          console.log(res);
         })
-        .fail(function failure(jqXHR, textStatus, errorThrown) {
+        .fail(function failure() {
           // dispatch an event if fails to notify user that it has failed
-          console.log(jqXHR);
-          console.log(textStatus);
-          console.log(errorThrown);
         });
     }
   }
