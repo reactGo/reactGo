@@ -89,7 +89,7 @@ module.exports = [
     context: path.join(__dirname, "app"),
     entry: {
       app: "./app",
-      favicon: "./elements/Favicon.react"
+      favicon: "./utils/FaviconGenerator"
     },
     target: "node",
     output: {
