@@ -42,7 +42,6 @@
     "immutable": "^3.7.3",
     "iso": "^4.1.0",
     "jquery": "^2.1.4",
-    "jscs-loader": "^0.1.0",
     "lodash": "^3.9.3",
     "lusca": "^1.0.2",
     "method-override": "^2.3.1",
