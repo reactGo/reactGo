@@ -72,8 +72,10 @@ module.exports = function(app, passport) {
         };
 
         var html = App(JSON.stringify(res.locals.data || {}), req.url);
-        console.log(Header);
-        html = html.replace("HEAD", Header);
+        html = html.replace("TITLE", Header.title)
+                    .replace("META", Header.meta)
+                    .replace("LINK", Header.link);
+
         res.contentType = "text/html; charset=utf8";
         res.end(html);
       }else {
