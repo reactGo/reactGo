@@ -13,9 +13,7 @@
   },
   "author": "Choon Ken Ding",
   "license": "MIT",
-  "devDependencies": {
-    "he": "^0.5.0"
-  },
+  "devDependencies": {},
   "engines": {
     "node": "0.10.x"
   },
@@ -40,7 +38,7 @@
     "extract-text-webpack-plugin": "^0.8.1",
     "file-loader": "^0.8.4",
     "html-loader": "^0.3.0",
-    "immutable": "^3.7.3",
+    "immutable": "^3.7.4",
     "iso": "^4.1.0",
     "jquery": "^2.1.4",
     "lodash": "^3.9.3",
@@ -54,7 +52,7 @@
     "passport-google-oauth": "^0.2.0",
     "passport-local": "^1.0.0",
     "react": "^0.13.3",
-    "react-helmet": "^1.0.0",
+    "react-helmet": "^1.0.1",
     "react-router": "^0.13.3",
     "sass-loader": "^1.0.2",
     "style-loader": "^0.12.3",
