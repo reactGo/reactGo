@@ -19,9 +19,8 @@ var commonLoaders = [
     include: path.join(__dirname, "app")
   },
   { test: /\.png$/, loader: "url-loader" },
-    // Copy precomposed image files over to assets path
-  { test: /.*precomposed\.png$/, loader: "file-loader?name=images/[name].[ext]"},
-  { test: /\.jpg$/, loader: "file-loader" }
+  { test: /\.jpg$/, loader: "file-loader" },
+  { test: /\.html$/, loader: "html-loader" }
 ];
 
 module.exports = [
@@ -47,7 +46,7 @@ module.exports = [
      *  new CommonsChunkPlugin("c-commons.js", ["pageC", "adminPageC"]);
      * ]
      */
-    context: path.join(__dirname, 'app'),
+    context: path.join(__dirname, "app"),
     entry: {
       app: "./app"
     },
@@ -77,7 +76,7 @@ module.exports = [
     },
     resolve: {
       modulesDirectories: [
-        'app', 'node_modules'
+        "app", "node_modules"
       ]
     },
     plugins: [
@@ -87,9 +86,10 @@ module.exports = [
   }, {
     // The configuration for the server-side rendering
     name: "server-side rendering",
-    context: path.join(__dirname, 'app'),
+    context: path.join(__dirname, "app"),
     entry: {
-      app: "./app"
+      app: "./app",
+      header: "./elements/Header.react"
     },
     target: "node",
     output: {
@@ -107,7 +107,7 @@ module.exports = [
     },
     resolve: {
       modulesDirectories: [
-        'app', 'node_modules'
+        "app", "node_modules"
       ]
     },
     plugins: [

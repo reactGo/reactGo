@@ -7,9 +7,10 @@ var users = require('../controllers/users');
 var mongoose = require('mongoose');
 var _ = require('lodash');
 var Topic = mongoose.model('Topic');
+var Header = require('../../public/assets/header.server');
 var App = require('../../public/assets/app.server');
 
-module.exports = function(app, io, passport) {
+module.exports = function(app, passport) {
   // user routes
   app.post('/login', users.postLogin);
   app.post('/signup', users.postSignUp);
@@ -40,18 +41,14 @@ module.exports = function(app, io, passport) {
 
   app.post('/topic', function(req, res) {
     topics.add(req, res);
-    // Emitting an event so clients will update themselves
-    io.sockets.emit('topic change');
   });
 
   app.put('/topic', function(req, res) {
     topics.update(req, res);
-    io.sockets.emit('topic change');
   });
 
   app.delete('/topic', function(req, res) {
     topics.remove(req, res);
-    io.sockets.emit('topic change');
   });
 
   // This is where the magic happens. We take the locals data we have already 
@@ -74,21 +71,17 @@ module.exports = function(app, io, passport) {
           UserStore: { user: user }
         };
 
-        var content = App(JSON.stringify(res.locals.data || {}), req.url);
-        res.render('index', { 
-          isomorphic: content
-        });
+        var html = App(JSON.stringify(res.locals.data || {}), req.url);
+        html = html.replace("TITLE", Header.title)
+                    .replace("META", Header.meta)
+                    .replace("LINK", Header.link);
+
+        res.contentType = "text/html; charset=utf8";
+        res.end(html);
       }else {
         console.log('Error in first query');
       }
     });
   });
 
-  // Adding this in as an example
-  io.on('connection', function(socket) {
-    socket.emit('news', { hello: 'world'});
-    socket.on('my other event', function(data) {
-      console.log(data);
-    })
-  });
 };;

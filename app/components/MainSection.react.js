@@ -4,9 +4,9 @@ import TopicItem from 'components/TopicItem.react';
 
 export default class MainSection extends React.Component {
   render() {
-    const topics = this.props.topics.map((topic) => {
-      return (<TopicItem id={topic.get('id')} key={topic.get('id')} text={topic.get('text')} />);
-    });
+    const topics = this.props.topics.toKeyedSeq().map((topic, key) => {
+      return (<TopicItem id={key} key={key} text={topic.get('text')} />);
+    }).toArray();
     return (
       <div className="main-section">
         <h3 className="main-section__header">Vote for your favorite hack day idea</h3>

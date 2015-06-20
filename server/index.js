@@ -3,7 +3,6 @@ var fs = require('fs');
 var mongoose = require('mongoose');
 var app = express();
 var server = require('http').Server(app);
-var io = require('socket.io')(server);
 var passport = require('passport');
 var secrets = require('./config/secrets');
 
@@ -34,6 +33,6 @@ require('./config/passport')(app, passport);
 // Bootstrap application settings
 require('./config/express')(app, passport);
 // Bootstrap routes
-require('./config/routes')(app, io, passport);
+require('./config/routes')(app, passport);
 
 server.listen(app.get('port'));

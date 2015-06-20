@@ -1,6 +1,6 @@
 {
   "name": "react-webpack-node",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A simple Node.js app using Express 4 with Webpack, React, alt, ImmutableJS",
   "repository": "https://github.com/choonkending/react-webpack-node",
   "main": "index.js",
@@ -32,13 +32,13 @@
     "eslint": "^0.22.1",
     "eslint-loader": "^0.12.0",
     "eslint-plugin-react": "^2.5.0",
-    "esprima-fb": "^15001.1.0-dev-harmony-fb",
     "express": "^4.12.3",
     "express-flash": "0.0.2",
     "express-session": "^1.10.2",
     "extract-text-webpack-plugin": "^0.8.1",
     "file-loader": "^0.8.4",
-    "immutable": "^3.7.3",
+    "html-loader": "^0.3.0",
+    "immutable": "^3.7.4",
     "iso": "^4.1.0",
     "jquery": "^2.1.4",
     "lodash": "^3.9.3",
@@ -52,12 +52,11 @@
     "passport-google-oauth": "^0.2.0",
     "passport-local": "^1.0.0",
     "react": "^0.13.3",
+    "react-helmet": "^1.0.1",
     "react-router": "^0.13.3",
     "sass-loader": "^1.0.2",
-    "socket.io": "^1.2.1",
     "style-loader": "^0.12.3",
-    "swig": "^1.4.2",
     "url-loader": "^0.5.6",
-    "webpack": "^1.9.10"
+    "webpack": "^1.9.11"
   }
 }
