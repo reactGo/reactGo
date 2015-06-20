@@ -31,4 +31,8 @@
 ======
 
 - Removed swig
-- Parsing html files using webpack, inspired by [react-starter](https://github.com/webpack/react-starter)
+- Parsing html files using webpack's html-loader, inspired by [react-starter](https://github.com/webpack/react-starter)
+- Using react-helmet to manage favicons and links
+- Renamed IsomorphicRouterRenderer to UniversalRenderer
+- Removing views folder from server as we no longer need them
+- Removing socket.io dependency as the examples no longer supports it
