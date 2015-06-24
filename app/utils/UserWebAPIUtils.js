@@ -9,7 +9,8 @@ const utils = {
     return $.ajax({
       url: '/login',
       type: 'POST',
-      data: data
+      contentType: 'application/json',
+      data: JSON.stringify(data)
     });
   },
 
@@ -31,7 +32,8 @@ const utils = {
     return $.ajax({
       url: '/signup',
       type: 'POST',
-      data: data
+      contentType: 'application/json',
+      data: JSON.stringify(data)
     });
   }
 

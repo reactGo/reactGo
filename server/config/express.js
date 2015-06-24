@@ -13,6 +13,10 @@ var lusca = require('lusca');
 module.exports = function (app, passport) {
   app.set('port', (process.env.PORT || 3000));
 
+  // X-Powered-By header has no functional value.
+  // Keeping it makes it easier for an attacker to build the site's profile
+  // It can be removed safely
+  app.disable('x-powered-by');
   app.set('views', path.join(__dirname, '..', 'views'));
 
   app.set('view cache', false);
@@ -39,10 +43,21 @@ module.exports = function (app, passport) {
   //                  usage, or complying with laws that require permission before setting a cookie. Choosing false will also help with
   //                  race conditions where a client makes multiple parallel requests without a session
   //          secret: This is the secret used to sign the session ID cookie.
+  //          name: The name of the session ID cookie to set in the response (and read from in the request).
+  //          cookie: Please note that secure: true is a recommended option.
+  //                  However, it requires an https-enabled website, i.e., HTTPS is necessary for secure cookies.
+  //                  If secure is set, and you access your site over HTTP, the cookie will not be set.
   app.use(session({
     resave: true,
     saveUninitialized: true,
+    // Use generic cookie name for security purposes
+    key: 'sessionId',
     secret: secrets.sessionSecret,
+    // Add HTTPOnly, Secure attributes on Session Cookie
+    cookie: {
+      httpOnly: true,
+      secure: true
+    },
     store: new MongoStore({ url: secrets.db, autoReconnect: true})
   }));
 
