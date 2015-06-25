@@ -42,7 +42,6 @@
     "iso": "^4.1.0",
     "jquery": "^2.1.4",
     "lodash": "^3.9.3",
-    "lusca": "^1.0.2",
     "method-override": "^2.3.1",
     "mongoose": "^4.0.5",
     "node-libs-browser": "^0.5.2",

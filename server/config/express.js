@@ -7,8 +7,6 @@ var path = require('path');
 var secrets = require('./secrets');
 var flash = require('express-flash');
 var methodOverride = require('method-override');
-var lusca = require('lusca');
-
 
 module.exports = function (app, passport) {
   app.set('port', (process.env.PORT || 3000));
