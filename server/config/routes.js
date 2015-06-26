@@ -20,7 +20,7 @@ module.exports = function(app, passport) {
   // Redirect the user to Google for authentication. When complete, Google
   // will redirect the user back to the application at
   // /auth/google/return
-  // Authentication with google requires an additional scope param, for more info go 
+  // Authentication with google requires an additional scope param, for more info go
   // here https://developers.google.com/identity/protocols/OpenIDConnect#scope-param
   app.get('/auth/google', passport.authenticate('google', { scope: [
         'https://www.googleapis.com/auth/userinfo.profile',
@@ -51,17 +51,22 @@ module.exports = function(app, passport) {
     topics.remove(req, res);
   });
 
-  // This is where the magic happens. We take the locals data we have already 
+  app.use(function(req, res, next) {
+    res.locals.csrf = req.csrfToken();
+    next();
+  });
+
+  // This is where the magic happens. We take the locals data we have already
   // fetched and seed our stores with data.
   // App is a function that requires store data and url to initialize and return the React-rendered html string
   // Exclude any image files or map files
-  app.get('*', function (req, res, next) {
+  app.get('*', function(req, res, next) {
     if (/(\.png$|\.map$|\.jpg$)/.test(req.url)) return;
     Topic.find({}).exec(function(err, topics) {
       if(!err) {
         var topicmap = _.indexBy(topics, 'id');
         // We don't want to be seeding and generating markup with user information
-        var user = req.user ? { authenticated: true, isWaiting: false } : { authenticated: false, isWaiting: false };
+        var user = req.user ? { authenticated: true, isWaiting: false, csrf: res.locals.csrf } : { authenticated: false, isWaiting: false, csrf: res.locals.csrf};
         // An object that contains response local variables scoped to the request, and therefore available only to the view(s) rendered during
         // that request/response cycle (if any). Otherwise, this property is identical to app.locals
         // This property is useful for exposing request-level information such as request path name, authenticated user, user settings, and so on.

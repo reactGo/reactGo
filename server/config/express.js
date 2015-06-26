@@ -7,6 +7,7 @@ var path = require('path');
 var secrets = require('./secrets');
 var flash = require('express-flash');
 var methodOverride = require('method-override');
+var csrf = require('csurf');
 
 module.exports = function (app, passport) {
   app.set('port', (process.env.PORT || 3000));
@@ -68,6 +69,8 @@ module.exports = function (app, passport) {
     },
     store: new MongoStore({ url: secrets.db, autoReconnect: true})
   }));
+
+  app.use(csrf());
 
   app.use(passport.initialize());
   app.use(passport.session());

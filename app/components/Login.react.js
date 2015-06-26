@@ -29,12 +29,15 @@ export default class Login extends React.Component {
     });
   }
 
-  _onLoginSubmit = () => {
+  _onLoginSubmit = (evt) => {
+    evt.preventDefault();
     const email = React.findDOMNode(this.refs.email).value;
     const password = React.findDOMNode(this.refs.password).value;
+    const csrf = React.findDOMNode(this.refs.csrf).value;
     UserActions.manuallogin({
       email: email,
-      password: password
+      password: password,
+      csrf: csrf
     });
   }
 
@@ -49,12 +52,15 @@ export default class Login extends React.Component {
         renderedResult = (
           <div className="login__container">
             <h1 className="login__header">Email Login Demo</h1>
-            <fieldset className="login__fieldset">
-                <input className="login__input" type="email" ref="email" placeholder="email" />
-                <input className="login__input" type="password" ref="password" placeholder="password" />
-                <button className="login__button login__button--green" onClick={this._onLoginSubmit}>Login</button>
-                <p className="login__hint">Hint: email: example@ninja.com password: ninja</p>
-            </fieldset>
+            <form>
+              <fieldset className="login__fieldset">
+                  <input className="login__input" type="email" ref="email" placeholder="email" />
+                  <input className="login__input" type="password" ref="password" placeholder="password" />
+                  <button type="submit" className="login__button login__button--green" onClick={this._onLoginSubmit}>Login</button>
+                  <p className="login__hint">Hint: email: example@ninja.com password: ninja</p>
+                  <input type="hidden" name="_csrf" ref="csrf" value={this.state.user.get('csrf')} />
+              </fieldset>
+            </form>
             <h1 className="login__header">Google Login Demo</h1>
             <fieldset className="login__fieldset">
               <a className="login__button login__button--green" href="/auth/google">Login with Google</a>

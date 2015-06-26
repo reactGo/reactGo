@@ -6,6 +6,13 @@ const utils = {
    * @return {Promise}
    */
   manuallogin: (data) => {
+    const CSRF_HEADER = 'X-CSRF-Token';
+    $.ajaxPrefilter((options, _, xhr) => {
+      if (!xhr.crossDomain) {
+        xhr.setRequestHeader(CSRF_HEADER, data.csrf);
+      }
+    });
+
     return $.ajax({
       url: '/login',
       type: 'POST',
