@@ -91,6 +91,8 @@ to set up nodejs
 8. `pm2 startup ubuntu`
 9. `sudo env PATH=$PATH:/usr/local/bin pm2 startup ubuntu -u sammy`
 
+Read more on DO config [here](https://github.com/choonkending/react-webpack-node/blob/master/docs/GettingStartedWithDigitalOcean.md)
+
 ## Component Hierarchy
 
 - app.js
