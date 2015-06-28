@@ -91,6 +91,8 @@ to set up nodejs
 8. `pm2 startup ubuntu`
 9. `sudo env PATH=$PATH:/usr/local/bin pm2 startup ubuntu -u sammy`
 
+Read more on DO config [here](https://github.com/choonkending/react-webpack-node/blob/master/docs/GettingStartedWithDigitalOcean.md)
+
 ## Component Hierarchy
 
 - app.js
@@ -138,9 +140,24 @@ Don't you worry child. Read [this](https://github.com/choonkending/react-webpack
 
 You can learn more about ES6 (or ES2015) [here](http://babeljs.io/docs/learn-es2015/).
 
+### 3. Why do I get `Error: Failed to serialize user into session` when trying to login with email/password locally?
+
+It's because there are no users created in your local DB so it's throwing an error on the server's end. We haven't set up the handling of errors for this yet.  I intend to fix this. If you check [this](https://github.com/choonkending/react-webpack-node/blob/master/server/controllers/users.js), you'll see that there is a `/signup` endpoint for creating a user. In the meantime, a quick and easy way to do this is to paste this in your console log while your server is running:
+
+```javascript
+var http = new XMLHttpRequest();
+var url = "http://localhost:3000/signup";
+var params = "email=example@ninja.com&password=ninja";
+http.open("POST", url, true);http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+http.send(params);
+```
+
+This should create a user in your local database and all will be well!!
+
 ## Todo:
 
-1. Look into using html-loader and use webpack to assist with isomorphic flux.
+1. Use csrf tokens for form login
 2. Look into using [Alt Container](https://github.com/goatslacker/alt/blob/master/components/AltContainer.js) and other cool utils alt is using.
 3. Experiment with [CSS-loader](https://github.com/webpack/css-loader#local-scope) further to potentially incorporate locally scoped css.
 4. react-hot-loader
