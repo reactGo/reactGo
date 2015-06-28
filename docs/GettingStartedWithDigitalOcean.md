@@ -7,6 +7,7 @@
   - Add your SSH key. Read more [here](https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets)
   - Remember to add Private Networking, it will be used later if you follow [this node.js guide](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-14-04) later on
 2. If you wish to secure your droplet and only allow people ssh in, read on:
+
   a. Make sure you can ssh into your droplet without being prompted for a password
   b. Once in, `vim /etc/ssh/sshd_config` and edit the following:
   ```bash
@@ -14,7 +15,7 @@
   PermitRootLogin without-password #password authentication is disabled for root
   ```
   c. It's necessary to restart or rehup the sshd process to have it re-read the new configuration. This can be done via the following:
-  ```bash
+  ```
   # ps auxw | grep ssh
   root       953  0.0  0.6  61364  3064 ?        Ss   08:19   0:00 /usr/sbin/sshd -D
 
