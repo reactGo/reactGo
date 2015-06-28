@@ -9,11 +9,13 @@
 2. If you wish to secure your droplet and only allow people ssh in, read on:
 
   a. Make sure you can ssh into your droplet without being prompted for a password
+  
   b. Once in, `vim /etc/ssh/sshd_config` and edit the following:
   ```bash
   # UsePAM yes
   PermitRootLogin without-password #password authentication is disabled for root
   ```
+  
   c. It's necessary to restart or rehup the sshd process to have it re-read the new configuration. This can be done via the following:
   ```
   # ps auxw | grep ssh
