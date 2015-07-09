@@ -2,6 +2,8 @@ import React from 'react';
 import TopicActions from 'actions/TopicActions';
 import TopicTextInput from 'components/TopicTextInput.react';
 
+import styles from 'scss/components/_entrybox';
+
 export default class EntryBox extends React.Component {
   /**
    * Event handler called within TopicTextInput.
@@ -19,9 +21,9 @@ export default class EntryBox extends React.Component {
 
   render() {
     return (
-      <div className="entrybox">
-        <h1 className="entrybox__header">Vote for your top hack idea</h1>
-        <TopicTextInput className="entrybox__input" value={this.props.topic} placeholder="What's yer fav idea?" onChange={this._onChange} onSave={this._onSave} />
+      <div className={styles.entrybox}>
+        <h1 className={styles.entrybox__header}>Vote for your top hack idea</h1>
+        <TopicTextInput className={styles.entrybox__input} value={this.props.topic} placeholder="What's yer fav idea?" onChange={this._onChange} onSave={this._onSave} />
       </div>
     );
   }

@@ -5,6 +5,8 @@ import Immutable from 'immutable';
 import UserActions from 'actions/UserActions';
 import UserStore from 'stores/UserStore';
 
+import styles from 'scss/components/_navigation';
+
 export default class Navigation extends React.Component {
   /*
    * This replaces getInitialState. Likewise getDefaultProps and propTypes are just
@@ -36,13 +38,13 @@ export default class Navigation extends React.Component {
 
   render() {
     const loginOrOut = this.state.user.get('authenticated') ?
-      <Link onClick={this._onLogout} className="navigation__item" to="logout">Logout</Link> :
-      <Link className="navigation__item" to="login">Log in</Link>;
+      <Link onClick={this._onLogout} className={styles.navigation__item} to="logout">Logout</Link> :
+      <Link className={styles.navigation__item} to="login">Log in</Link>;
     return (
-      <nav className="navigation" role="navigation">
-          <Link to="/" className="navigation__item navigation__item--logo" activeClassName="navigation__item--active">Ninja Ocean</Link>
+      <nav className={styles.navigation} role="navigation">
+          <Link to="/" className={styles.navigation__item + ' ' + styles['navigation__item--logo']} activeClassName={styles['navigation__item--active']}>Ninja Ocean</Link>
           { loginOrOut }
-          <Link to="about" className="navigation__item" activeClassName="navigation__item--active">About</Link>
+          <Link to="about" className={styles.navigation__item} activeClassName={styles['navigation__item--active']}>About</Link>
       </nav>
     );
   }
