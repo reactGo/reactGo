@@ -9,11 +9,15 @@
     "build": "webpack --progress",
     "watch": "webpack --watch --progress",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "webpack -p"
+    "postinstall": "webpack -p",
+    "devserver": "webpack-dev-server --content-base public/assets/ --hot --inline"
   },
   "author": "Choon Ken Ding",
   "license": "MIT",
-  "devDependencies": {},
+  "devDependencies": {
+    "react-hot-loader": "^1.2.8",
+    "webpack-dev-server": "^1.10.1"
+  },
   "engines": {
     "node": "0.10.x"
   },
