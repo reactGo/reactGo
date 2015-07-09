@@ -3,7 +3,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var webpack = require("webpack");
 
 var assetsPath = path.join(__dirname, "public", "assets");
-var publicPath = "assets/";
+var publicPath = "/assets/";
 
 var commonLoaders = [
   {
