@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from 'scss/components/_logout.scss';
+import styles from 'scss/components/_logout';
 
 export default class Logout extends React.Component {
   render() {
