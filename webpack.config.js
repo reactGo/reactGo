@@ -11,7 +11,7 @@ var commonLoaders = [
      * TC39 categorises proposals for babel in 4 stages
      * Read more http://babeljs.io/docs/usage/experimental/
      */
-    test: /\.jsx$/, loader: "babel-loader?stage=0"
+    test: /\.jsx$/, loaders: ["react-hot", "babel-loader?stage=0"]
   },
   {
     test: /\.js$/,
@@ -48,7 +48,7 @@ module.exports = [
      */
     context: path.join(__dirname, "app"),
     entry: {
-      app: "./app"
+      app: ["webpack/hot/dev-server", "./app"]
     },
     output: {
       // The output directory as absolute path
@@ -88,7 +88,7 @@ module.exports = [
     name: "server-side rendering",
     context: path.join(__dirname, "app"),
     entry: {
-      app: "./app",
+      app: ["webpack/hot/dev-server", "./app"],
       header: "./elements/Header.react"
     },
     target: "node",
@@ -111,7 +111,9 @@ module.exports = [
       ]
     },
     plugins: [
-      new webpack.NormalModuleReplacementPlugin(/\.(css|scss)$/, "node-noop")
+      new webpack.NormalModuleReplacementPlugin(/\.(css|scss)$/, "node-noop"),
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoErrorsPlugin()
     ]
   }
 ];
