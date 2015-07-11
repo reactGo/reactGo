@@ -8,6 +8,9 @@ var secrets = require('./secrets');
 var flash = require('express-flash');
 var methodOverride = require('method-override');
 
+var httpProxy = require('http-proxy');
+var proxy = httpProxy.createProxyServer();
+
 module.exports = function (app, passport) {
   app.set('port', (process.env.PORT || 3000));
 
@@ -73,5 +76,31 @@ module.exports = function (app, passport) {
   app.use(passport.session());
 
   app.use(flash());
+
+  // We only run this workflow when not in Production
+  var isProduction = process.env.NODE_ENV === 'production';
+  var port = isProduction ? app.get('port') : 3000;
+
+  if(!isProduction) {
+    // We require the bundle inside the if block because
+    // it is only needed in a development environment.
+    var devServer = require('../dev-server');
+    devServer();
+
+    // Any request to localhost:3000 is proxied to webpack-dev-server
+    app.all('/assets/*', function(req, res) {
+      proxy.web(req, res, {
+          target: 'http://localhost:8080'
+      });
+    });
+
+  }
+
+  // It is important to catch any errors from the proxy or the
+  // server will crash. An example of this is connecting to the
+  // server when webpack is bundling
+  proxy.on('error', function(e) {
+    console.log('Could not connect to proxy, please try again...');
+  });
 
 };

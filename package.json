@@ -5,15 +5,20 @@
   "repository": "https://github.com/choonkending/react-webpack-node",
   "main": "index.js",
   "scripts": {
-    "start": "node server/index.js",
-    "build": "webpack --progress",
-    "watch": "webpack --watch --progress",
+    "start": "NODE_ENV=production node server/index.js",
+    "dev": "NODE_ENV=development node server/index.js",
+    "build": "webpack --progress --colors --config ./webpack/webpack.config.js",
+    "buildDev": "webpack --progress --colors --config ./webpack/webpack-hot-dev-server.config.js",
+    "watch": "webpack --watch --progress --config ./webpack/webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "webpack -p"
+    "postinstall": "webpack -p --config ./webpack/webpack.config.js"
   },
   "author": "Choon Ken Ding",
   "license": "MIT",
-  "devDependencies": {},
+  "devDependencies": {
+    "react-hot-loader": "^1.2.8",
+    "webpack-dev-server": "^1.10.1"
+  },
   "engines": {
     "node": "0.10.x"
   },
@@ -38,6 +43,7 @@
     "extract-text-webpack-plugin": "^0.8.1",
     "file-loader": "^0.8.4",
     "html-loader": "^0.3.0",
+    "http-proxy": "^1.11.1",
     "immutable": "^3.7.4",
     "iso": "^4.1.0",
     "jquery": "^2.1.4",
