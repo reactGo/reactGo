@@ -68,10 +68,11 @@ module.exports = function(app, passport) {
           TopicStore: { topics: topicmap},
           UserStore: { user: user }
         };
+        next();
       }else {
         console.log('Error in first query');
+        res.status(500).send(err);
       }
-      next();
     });
   });
 
