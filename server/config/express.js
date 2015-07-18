@@ -90,7 +90,7 @@ module.exports = function (app, passport) {
     // Any request to localhost:3000 is proxied to webpack-dev-server
     app.all('/assets/*', function(req, res) {
       proxy.web(req, res, {
-          target: 'http://localhost:8080'
+          target: 'http://localhost:3001'
       });
     });
 

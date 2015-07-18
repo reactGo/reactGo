@@ -28,7 +28,7 @@ module.exports = function() {
 
   var bundler = new webpackDevServer(compiler, {
     // Tell webpack to serve our bundled application from the build path. When proxying:
-    // http://localhost:3000/assets -> http://localhost:8080/assets
+    // http://localhost:3000/assets -> http://localhost:3001/assets
     publicPath: '/assets/',
 
     // Enable special support for Hot Module Replacement
@@ -37,24 +37,35 @@ module.exports = function() {
     // Note: this does _not_ add the `HotModuleReplacementPlugin` like the CLI option does.
     hot: true,
 
+    // embed the webpack-dev-server runtime into the bundle
+    inline: true,
+
     // webpack-dev-middleware options
     quiet: false,
     noInfo: false,
+
+    // switch into lazy mode
+    // if true that means there is no watching, but recompilation of every request
+    lazy: false,
+    filename: "app.js",
     watchOptions: {
       aggregateTimeout: 300,
       poll: 1000
     },
-    headers: { "X-Custom-Header": "yes" },
+    headers: {
+      "Access-Control-Allow-Origin": "http://localhost:3000",
+      "Access-Control-Allow-Headers": "X-Requested-With"
+    },
     stats: { colors: true },
 
     // Set this as true if you want to access dev server from arbitrary url.
     // This is handy if you are using a html5 router.
-    historyApiFallback: false
+    historyApiFallback: true
   });
 
   // We fire up the development server and give notice in the terminal
   // that we are starting the initial bundle
-  bundler.listen(8080, 'localhost', function () {
+  bundler.listen(3001, 'localhost', function () {
     console.log('Bundling project, please wait...');
   });
 };

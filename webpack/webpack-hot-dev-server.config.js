@@ -5,13 +5,17 @@ var webpack = require("webpack");
 var assetsPath = path.join(__dirname, "..", "public", "assets");
 var publicPath = "assets/";
 
+var WEBPACK_HOST = "localhost";
+var WEBPACK_PORT = 3001;
+
 var commonLoaders = [
   {
     /*
      * TC39 categorises proposals for babel in 4 stages
      * Read more http://babeljs.io/docs/usage/experimental/
      */
-    test: /\.jsx$/, loaders: ["react-hot", "babel-loader?stage=0"]
+    test: /\.jsx$/,
+    loaders: ["react-hot", "babel-loader?stage=0"]
   },
   {
     test: /\.js$/,
@@ -48,8 +52,8 @@ module.exports = [
      */
     context: path.join(__dirname, "..", "app"),
     entry: {
-      app:[ 'webpack-dev-server/client?http://0.0.0.0:8080', // WebpackDevServer host and port
-       'webpack/hot/dev-server',
+      app:[ 'webpack-dev-server/client?http://' + WEBPACK_HOST + ":" + WEBPACK_PORT,
+       'webpack/hot/only-dev-server',
         "./app" ]
     },
     output: {
