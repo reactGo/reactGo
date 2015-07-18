@@ -83,8 +83,13 @@ module.exports = function(app, passport) {
     if (/(\.png$|\.map$|\.jpg$)/.test(req.url)) return;
     var html = App(JSON.stringify(res.locals.data || {}), req.url);
     html = html.replace("TITLE", Header.title)
-                .replace("META", Header.meta)
-                .replace("LINK", Header.link);
+                .replace("META", Header.meta);
+
+    if(process.env.NODE_ENV === 'development') {
+      html = html.replace("LINK", '');
+    } else {
+      html = html.replace("LINK", Header.link);
+    }
 
     res.contentType = "text/html; charset=utf8";
     res.end(html);

@@ -74,9 +74,9 @@ module.exports = [
       loaders: commonLoaders.concat([
         { test: /\.css$/, loader: "style!css" },
         { test: /\.scss$/,
-          loader: ExtractTextPlugin.extract("css?sourceMap!sass?sourceMap&outputStyle=expanded" +
+          loader: "style!css?sourceMap!sass?sourceMap&outputStyle=expanded" +
             "&includePaths[]=" + (path.resolve(__dirname, "./bower_components")) +
-            "&includePaths[]=" + (path.resolve(__dirname, "./node_modules")))
+            "&includePaths[]=" + (path.resolve(__dirname, "./node_modules"))
         }
       ])
     },
@@ -87,9 +87,7 @@ module.exports = [
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
-        // extract inline css from modules into separate files
-        new ExtractTextPlugin("styles/main.css")
+        new webpack.NoErrorsPlugin()
     ]
   }, {
     // The configuration for the server-side rendering
