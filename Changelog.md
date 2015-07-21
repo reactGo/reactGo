@@ -36,3 +36,9 @@
 - Renamed IsomorphicRouterRenderer to UniversalRenderer
 - Removing views folder from server as we no longer need them
 - Removing socket.io dependency as the examples no longer supports it
+
+1.1.3
+=======
+
+- Added [react-hot-loader](https://github.com/gaearon/react-hot-loader) for development speed
+- Moved webpack config files into the /webpack folder
