@@ -37,21 +37,10 @@ module.exports = function() {
     // Note: this does _not_ add the `HotModuleReplacementPlugin` like the CLI option does.
     hot: true,
 
-    // embed the webpack-dev-server runtime into the bundle
-    inline: true,
-
     // webpack-dev-middleware options
     quiet: false,
     noInfo: false,
 
-    // switch into lazy mode
-    // if true that means there is no watching, but recompilation of every request
-    lazy: false,
-    filename: "app.js",
-    watchOptions: {
-      aggregateTimeout: 300,
-      poll: 1000
-    },
     headers: {
       "Access-Control-Allow-Origin": "http://localhost:3000",
       "Access-Control-Allow-Headers": "X-Requested-With"

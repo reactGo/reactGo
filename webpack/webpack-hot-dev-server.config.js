@@ -15,7 +15,8 @@ var commonLoaders = [
      * Read more http://babeljs.io/docs/usage/experimental/
      */
     test: /\.jsx$/,
-    loaders: ["react-hot", "babel-loader?stage=0"]
+    loaders: ["react-hot", "babel-loader?stage=0"],
+    include: path.join(__dirname, "..", "app")
   },
   {
     test: /\.js$/,
