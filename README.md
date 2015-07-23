@@ -43,12 +43,22 @@ I am working to document this repo extensively so it would be easy for both begi
 1. `npm install`
 2. `npm start` to run locally
 
-### Bundling with webpack
+### Development build
+
+We use [react-hot-loader](https://github.com/gaearon/react-hot-loader), which is about the greatest thing that has ever happened. No browser refreshes needed.
+
+1. `npm run dev` to build with webpack and start the server. We use webpack-dev-server as a proxy server to serve assets. Changes made are not saved to disk, as that is not what webpack-dev-server is for. However, `npm run watchDev` IF you want to reload the page and see the change in the server-rendered React.
+
+### Production build
+
+Run the commands below for a production build, i.e. what is deployed to Heroku.
+
+#### Bundling with webpack
 
 1. `npm run build` runs `webpack` will run configurations within webpack.config.js.
 2. `npm run watch` runs `webpack --watch` to watch and recompile for changes.
 
-#### Where do you compile your scss?
+##### Where do you compile your scss?
 We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugin) to extract compiled css in our [webpack config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.js)
 
 #### What loaders do you use for ES6/ ES2015?
@@ -154,6 +164,10 @@ http.send(params);
 ```
 
 This should create a user in your local database and all will be well!!
+
+### 4. Why do I get a FOUC (Flash Of Unstyled Content) when I run `npm run dev`?
+
+This is because we do not use ExtractTextPlugin in our dev config. It won't happen in production because we extract and serve the css as a separate file. It's something we can all live with, unless you have a better working suggestion, in which case, please create an issue and PR right away!!!
 
 ## Todo:
 
