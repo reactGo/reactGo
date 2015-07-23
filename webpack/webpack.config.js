@@ -59,6 +59,7 @@ module.exports = [
       publicPath: publicPath
 
     },
+    devtool: "source-map",
     module: {
       preLoaders: [{
         test: /\.js$|.jsx$/,
