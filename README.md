@@ -47,8 +47,7 @@ I am working to document this repo extensively so it would be easy for both begi
 
 We use [react-hot-loader](https://github.com/gaearon/react-hot-loader), which is about the greatest thing that has ever happened. No browser refreshes needed.
 
-1. `npm run watchDev` to watch and recompile for changes using the `webpack-hot-dev-server.config.js` file.
-2. `npm run dev` to start the server. We use webpack-dev-server as a proxy server to serve assets. Changes made are not saved to disk, as that is not what webpack-dev-server is for. However, I usually run `npm run watchDev` so it works when I refresh the page as well.
+1. `npm run dev` to build with webpack and start the server. We use webpack-dev-server as a proxy server to serve assets. Changes made are not saved to disk, as that is not what webpack-dev-server is for. However, `npm run watchDev` IF you want to reload the page and see the change in the server-rendered React.
 
 ### Production build
 
