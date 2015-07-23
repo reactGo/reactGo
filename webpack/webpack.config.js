@@ -2,8 +2,8 @@ var path = require("path");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var webpack = require("webpack");
 
-var assetsPath = path.join(__dirname, "public", "assets");
-var publicPath = "/assets/";
+var assetsPath = path.join(__dirname, "..", "public", "assets");
+var publicPath = "assets/";
 
 var commonLoaders = [
   {
@@ -16,7 +16,7 @@ var commonLoaders = [
   {
     test: /\.js$/,
     loader: "babel-loader?stage=0",
-    include: path.join(__dirname, "app")
+    include: path.join(__dirname, "..",  "app")
   },
   { test: /\.png$/, loader: "url-loader" },
   { test: /\.jpg$/, loader: "file-loader" },
@@ -51,7 +51,7 @@ module.exports = [
      *  new CommonsChunkPlugin("c-commons.js", ["pageC", "adminPageC"]);
      * ]
      */
-    context: path.join(__dirname, "app"),
+    context: path.join(__dirname, "..", "app"),
     entry: {
       app: "./app"
     },
@@ -85,7 +85,7 @@ module.exports = [
   }, {
     // The configuration for the server-side rendering
     name: "server-side rendering",
-    context: path.join(__dirname, "app"),
+    context: path.join(__dirname, "..", "app"),
     entry: {
       app: "./app",
       header: "./elements/Header.react"

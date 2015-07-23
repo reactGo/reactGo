@@ -51,11 +51,10 @@ module.exports = function(app, passport) {
     topics.remove(req, res);
   });
 
-  // This is where the magic happens. We take the locals data we have already 
-  // fetched and seed our stores with data.
-  // App is a function that requires store data and url to initialize and return the React-rendered html string
-  // Exclude any image files or map files
-  app.get('*', function (req, res, next) {
+  // Retrieves all topics on any endpoint for demonstration purposes
+  // If you were indeed doing this in production, you should instead only
+  // query the Topics on a page that has topics
+  app.get('*', function(req, res, next) {
     Topic.find({}).exec(function(err, topics) {
       if(!err) {
         var topicmap = _.indexBy(topics, 'id');
@@ -69,18 +68,32 @@ module.exports = function(app, passport) {
           TopicStore: { topics: topicmap},
           UserStore: { user: user }
         };
-
-        var html = App(JSON.stringify(res.locals.data || {}), req.url);
-        html = html.replace("TITLE", Header.title)
-                    .replace("META", Header.meta)
-                    .replace("LINK", Header.link);
-
-        res.contentType = "text/html; charset=utf8";
-        res.end(html);
+        next();
       }else {
         console.log('Error in first query');
+        res.status(500).send(err);
       }
     });
+  });
+
+  // This is where the magic happens. We take the locals data we have already
+  // fetched and seed our stores with data.
+  // App is a function that requires store data and url to initialize and return the React-rendered html string
+  // Exclude any image files or map files
+  app.get('*', function (req, res, next) {
+    if (/(\.png$|\.map$|\.jpg$)/.test(req.url)) return;
+    var html = App(JSON.stringify(res.locals.data || {}), req.url);
+    html = html.replace("TITLE", Header.title)
+                .replace("META", Header.meta);
+
+    if(process.env.NODE_ENV === 'development') {
+      html = html.replace("LINK", '');
+    } else {
+      html = html.replace("LINK", Header.link);
+    }
+
+    res.contentType = "text/html; charset=utf8";
+    res.end(html);
   });
 
 };;
