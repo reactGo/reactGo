@@ -22,9 +22,9 @@ var commonLoaders = [
   { test: /\.jpg$/, loader: "file-loader" },
   { test: /\.html$/, loader: "html-loader" },
   { test: /\.scss$/,
-    loader: ExtractTextPlugin.extract('css?module&localIdentName=[local]__[hash:base64:5]' +
+    loader: ExtractTextPlugin.extract('style', 'css?module&localIdentName=[local]__[hash:base64:5]' +
       '&sourceMap!sass?sourceMap&outputStyle=expanded' +
-      '&includePaths[]=' + (path.resolve(__dirname, './node_modules')))
+      '&includePaths[]=' + (path.resolve(__dirname, '../node_modules')))
   }
 ];
 
@@ -71,14 +71,7 @@ module.exports = [
         exclude: /node_modules/,
         loaders: ["eslint"]
       }],
-      loaders: commonLoaders.concat([
-          { 
-            test: /\.scss$/,
-            loader: 'style!css?module&localIdentName=[local]__[hash:base64:5]' +
-              '&sourceMap!sass?sourceMap&outputStyle=expanded' +
-              '&includePaths[]=' + (path.resolve(__dirname, '../node_modules'))
-          }
-      ])
+      loaders: commonLoaders
     },
     resolve: {
       extensions: ['', '.react.js', '.js', '.jsx', '.scss'],
@@ -110,20 +103,17 @@ module.exports = [
     },
     externals: /^[a-z\-0-9]+$/,
     module: {
-      loaders: commonLoaders.concat([
-          { 
-            test: /\.scss$/,
-            loader: 'css/locals?module&localIdentName=[local]__[hash:base64:5]' +
-              '&sourceMap!sass?sourceMap&outputStyle=expanded' +
-              '&includePaths[]=' + (path.resolve(__dirname, '../node_modules'))
-          }
-      ])
+      loaders: commonLoaders
     },
     resolve: {
       extensions: ['', '.react.js', '.js', '.jsx', '.scss'],
       modulesDirectories: [
         "app", "node_modules"
       ]
-    }
+    },
+    plugins: [
+        // extract inline css from modules into separate files
+        new ExtractTextPlugin("styles/main.css")
+    ]
   }
 ];

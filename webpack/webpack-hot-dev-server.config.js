@@ -25,12 +25,7 @@ var commonLoaders = [
   },
   { test: /\.png$/, loader: "url-loader" },
   { test: /\.jpg$/, loader: "file-loader" },
-  { test: /\.html$/, loader: "html-loader" },
-  { test: /\.scss$/,
-    loader: 'css/locals?module&localIdentName=[local]__[hash:base64:5]' +
-      '&sourceMap!sass?sourceMap&outputStyle=expanded' +
-      '&includePaths[]=' + (path.resolve(__dirname, '../node_modules'))
-  }
+  { test: /\.html$/, loader: "html-loader" }
 ];
 
 module.exports = [
@@ -77,7 +72,13 @@ module.exports = [
         exclude: /node_modules/,
         loaders: ["eslint"]
       }],
-      loaders: commonLoaders
+      loaders: commonLoaders.concat([
+          { test: /\.scss$/,
+            loader: 'style!css?module&localIdentName=[local]__[hash:base64:5]' +
+              '&sourceMap!sass?sourceMap&outputStyle=expanded' +
+              '&includePaths[]=' + (path.resolve(__dirname, '../node_modules'))
+          }
+      ])
     },
     resolve: {
       extensions: ['', '.react.js', '.js', '.jsx', '.scss'],
@@ -109,7 +110,13 @@ module.exports = [
     },
     externals: /^[a-z\-0-9]+$/,
     module: {
-      loaders: commonLoaders
+      loaders: commonLoaders.concat([
+          { test: /\.scss$/,
+            loader: 'css/locals?module&localIdentName=[local]__[hash:base64:5]' +
+              '&sourceMap!sass?sourceMap&outputStyle=expanded' +
+              '&includePaths[]=' + (path.resolve(__dirname, '../node_modules'))
+          }
+      ])
     },
     resolve: {
       extensions: ['', '.react.js', '.js', '.jsx', '.scss'],
