@@ -1,3 +1,29 @@
+1.1.4
+======
+- [Css modules](https://github.com/webpack/css-loader#css-modules) that works with development and production setup
+
+1.1.3
+=======
+
+- Added [react-hot-loader](https://github.com/gaearon/react-hot-loader) for development speed
+- Moved webpack config files into the /webpack folder
+
+1.1.2
+======
+
+- Removed swig
+- Parsing html files using webpack's html-loader, inspired by [react-starter](https://github.com/webpack/react-starter)
+- Using react-helmet to manage favicons and links
+- Renamed IsomorphicRouterRenderer to UniversalRenderer
+- Removing views folder from server as we no longer need them
+- Removing socket.io dependency as the examples no longer supports it
+
+1.1.1
+=======
+
+- React Components in ES6
+- Using babel-loader instead of jsx-loader
+
 1.1.0
 ======
 
@@ -20,25 +46,3 @@
 - Using webpack to build client and serverside bundles
 - Removing `/** @jsx React.DOM */`
 - Temporarily commented out AnimationMixin
-
-1.1.1
-=======
-
-- React Components in ES6
-- Using babel-loader instead of jsx-loader
-
-1.1.2
-======
-
-- Removed swig
-- Parsing html files using webpack's html-loader, inspired by [react-starter](https://github.com/webpack/react-starter)
-- Using react-helmet to manage favicons and links
-- Renamed IsomorphicRouterRenderer to UniversalRenderer
-- Removing views folder from server as we no longer need them
-- Removing socket.io dependency as the examples no longer supports it
-
-1.1.3
-=======
-
-- Added [react-hot-loader](https://github.com/gaearon/react-hot-loader) for development speed
-- Moved webpack config files into the /webpack folder

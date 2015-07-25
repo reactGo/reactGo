@@ -22,10 +22,11 @@ Boilerplate for React application with webpack using alt's Flux running on a nod
  - [iso](https://github.com/goatslacker/iso) to help with bootstrapping data for isomorphic Flux
  - [react-router](https://github.com/rackt/react-router)
 2. Stores storing data using [ImmutableJS](https://github.com/facebook/immutable-js) data structures
-3. Webpack [config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.js)
-4. Express server
-5. Mongoose for MongoDB
-6. Procfile to enable deployment to Heroku.
+3. [Css Modules](https://github.com/webpack/css-loader#css-modules)
+4. Webpack [config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.js)
+5. Express server
+6. Mongoose for MongoDB
+7. Procfile to enable deployment to Heroku.
 
 ## Why alt?
 
