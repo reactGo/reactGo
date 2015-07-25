@@ -1,6 +1,8 @@
 import React from 'react';
 import TopicActions from 'actions/TopicActions';
 
+import styles from 'scss/components/_vote';
+
 export default class TopicItem extends React.Component {
   _onIncrement = () => {
     TopicActions.increment(this.props.id);
@@ -16,11 +18,11 @@ export default class TopicItem extends React.Component {
 
   render() {
     return (
-      <li className="topic-item" key={this.props.id}>
-        <span className="topic-item__topic">{this.props.text}</span>
-        <button className="topic-item__button topic-item__button--increment" onClick={this._onIncrement}>+</button>
-        <button className="topic-item__button topic-item__button--decrement" onClick={this._onDecrement}>-</button>
-        <button className="topic-item__button topic-item__button--destroy" onClick={this._onDestroyClick}>{String.fromCharCode(215)}</button>
+      <li className={styles['topic-item']} key={this.props.id}>
+        <span className={styles['topic-item__topic']}>{this.props.text}</span>
+        <button className={styles['topic-item__button'] + ' ' + styles['topic-item__button--increment']} onClick={this._onIncrement}>+</button>
+        <button className={styles['topic-item__button'] + ' ' + styles['topic-item__button--decrement']} onClick={this._onDecrement}>-</button>
+        <button className={styles['topic-item__button'] + ' ' + styles['topic-item__button--destroy']} onClick={this._onDestroyClick}>{String.fromCharCode(215)}</button>
       </li>
     );
   }

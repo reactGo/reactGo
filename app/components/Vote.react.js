@@ -6,6 +6,7 @@ import MainSection from 'components/MainSection.react';
 import Scoreboard from 'components/Scoreboard.react';
 import TopicStore from 'stores/TopicStore';
 
+import styles from 'scss/components/_vote';
 /*
  * This component operates as a "Controller-View". It listens for changes in the
  * Store and passes the new data to its children.
@@ -44,7 +45,7 @@ export default class Vote extends React.Component {
 
   render() {
     return (
-      <div className="vote">
+      <div className={styles.vote}>
         <EntryBox topic={this.state.newTopic} />
         <MainSection topics={this.state.topics} />
         <Scoreboard topics={this.state.topics} />

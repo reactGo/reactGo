@@ -52,7 +52,6 @@
     "method-override": "^2.3.1",
     "mongoose": "^4.0.5",
     "node-libs-browser": "^0.5.2",
-    "node-noop": "0.0.1",
     "node-sass": "^3.1.2",
     "passport": "^0.2.2",
     "passport-google-oauth": "^0.2.0",
