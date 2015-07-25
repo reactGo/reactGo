@@ -70,7 +70,14 @@ module.exports = [
         exclude: /node_modules/,
         loaders: ["eslint"]
       }],
-      loaders: commonLoaders
+      loaders: commonLoaders.concat([
+          { 
+            test: /\.scss$/,
+            loader: 'style!css?module&localIdentName=[local]__[hash:base64:5]' +
+              '&sourceMap!sass?sourceMap&outputStyle=expanded' +
+              '&includePaths[]=' + (path.resolve(__dirname, '../node_modules'))
+          }
+      ])
     },
     resolve: {
       extensions: ['', '.react.js', '.js', '.jsx', '.scss'],
@@ -102,17 +109,20 @@ module.exports = [
     },
     externals: /^[a-z\-0-9]+$/,
     module: {
-      loaders: commonLoaders
+      loaders: commonLoaders.concat([
+          { 
+            test: /\.scss$/,
+            loader: 'css/locals?module&localIdentName=[local]__[hash:base64:5]' +
+              '&sourceMap!sass?sourceMap&outputStyle=expanded' +
+              '&includePaths[]=' + (path.resolve(__dirname, '../node_modules'))
+          }
+      ])
     },
     resolve: {
       extensions: ['', '.react.js', '.js', '.jsx', '.scss'],
       modulesDirectories: [
         "app", "node_modules"
       ]
-    },
-    plugins: [
-        // extract inline css from modules into separate files
-        new ExtractTextPlugin("styles/main.css")
-    ]
+    }
   }
 ];

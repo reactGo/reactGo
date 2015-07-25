@@ -29,7 +29,7 @@ var commonLoaders = [
   { test: /\.scss$/,
     loader: 'css/locals?module&localIdentName=[local]__[hash:base64:5]' +
       '&sourceMap!sass?sourceMap&outputStyle=expanded' +
-      '&includePaths[]=' + (path.resolve(__dirname, './node_modules'))
+      '&includePaths[]=' + (path.resolve(__dirname, '../node_modules'))
   }
 ];
 
