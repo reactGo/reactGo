@@ -1,43 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router';
-import Immutable from 'immutable';
 
 import UserActions from 'actions/UserActions';
-import UserStore from 'stores/UserStore';
 
 import styles from 'scss/components/_navigation';
 
 export default class Navigation extends React.Component {
-  /*
-   * This replaces getInitialState. Likewise getDefaultProps and propTypes are just
-   * properties on the constructor
-   * Read more here: https://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#es6-classes
-   */
-  constructor(props) {
-    super(props);
-    this.state = UserStore.getState();
-  }
-
-  componentDidMount() {
-    UserStore.listen(this._onChange);
-  }
-
-  componentWillUnmount() {
-    UserStore.unlisten(this._onChange);
-  }
-
-  _onChange = () => {
-    this.setState({
-      user: UserStore.getState().user
-    });
-  }
 
   _onLogout = () => {
     UserActions.logout();
   }
 
   render() {
-    const loginOrOut = this.state.user.get('authenticated') ?
+    const loginOrOut = this.props.UserStore.user.get('authenticated') ?
       <Link onClick={this._onLogout} className={styles.navigation__item} to="logout">Logout</Link> :
       <Link className={styles.navigation__item} to="login">Log in</Link>;
     return (
@@ -51,4 +26,4 @@ export default class Navigation extends React.Component {
 
 }
 
-Navigation.propTypes = { user: React.PropTypes.instanceOf(Immutable.Map) };
+Navigation.propTypes = { UserStore: React.PropTypes.object };
