@@ -1,4 +1,4 @@
-1.1.5
+1.1.6
 ======
 - Breaking Changes:
    - `package.json` now has different commands to run servers locally. This was to fix an initial issue with sessions over HTTPS.
@@ -6,7 +6,7 @@
    - `npm run devHotLoader` to build and develop using react-hot-loader.
    - `npm run build && npm start` to run server for production (with HTTPS).
 
-1.1.4
+1.1.5
 ======
 - [Css modules](https://github.com/webpack/css-loader#css-modules) that works with development and production setup
 
