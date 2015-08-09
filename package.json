@@ -6,11 +6,12 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=production node server/index.js",
-    "dev": "NODE_ENV=development npm run buildDev && node server/index.js",
+    "dev": "NODE_ENV=development node server/index.js",
+    "devHotLoader": "npm run buildHotLoader && NODE_ENV=devhotloader node server/index.js",
     "build": "webpack --progress --colors --config ./webpack/webpack.config.js",
-    "buildDev": "webpack --progress --colors --config ./webpack/webpack-hot-dev-server.config.js",
+    "buildHotLoader": "webpack --progress --colors --config ./webpack/webpack-hot-dev-server.config.js",
     "watch": "webpack --watch --progress --config ./webpack/webpack.config.js",
-    "watchDev": "webpack --watch --progress --config ./webpack/webpack-hot-dev-server.config.js",
+    "watchHotLoader": "webpack --watch --progress --config ./webpack/webpack-hot-dev-server.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "webpack -p --config ./webpack/webpack.config.js"
   },

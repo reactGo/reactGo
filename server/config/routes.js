@@ -84,7 +84,7 @@ module.exports = function(app, passport) {
     html = html.replace("TITLE", Header.title)
                 .replace("META", Header.meta);
 
-    if(process.env.NODE_ENV === 'development') {
+    if(process.env.NODE_ENV === 'devhotloader') {
       html = html.replace("LINK", '');
     } else {
       html = html.replace("LINK", Header.link);
