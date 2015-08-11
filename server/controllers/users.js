@@ -56,3 +56,16 @@ exports.postSignUp = function(req, res, next) {
   });
 };
 
+/**
+ * GET /logout
+ */
+exports.getLoggedIn = function(req, res, next) {
+  // Do email and password validation for the server
+  console.log(req);
+  if(req.user) {
+    res.json({ authenticated: true });
+  } else {
+    res.json({ authenticated: false });
+  }
+  next();
+};
