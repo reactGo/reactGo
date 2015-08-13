@@ -1,5 +1,4 @@
 import React from 'react';
-import { RouteHandler } from 'react-router';
 import Navigation from 'components/Navigation.react';
 
 import 'scss/main';
@@ -9,7 +8,7 @@ export default class App extends React.Component {
     return (
       <div>
         <Navigation />
-        <RouteHandler />
+        {this.props.children}
       </div>
     );
   }

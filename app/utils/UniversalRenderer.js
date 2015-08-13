@@ -24,21 +24,25 @@
 import Iso from 'iso';
 import React from 'react';
 import Router from 'react-router';
+import Location from 'react-router/lib/Location';
+import routes from 'routes.js';
 
 /*
  * @param {AltObject} an instance of the Alt object
  * @param {ReactObject} routes specified in react-router
  * @param {Object} Data to bootstrap our altStores with
- * @param {String} url that react-router should route to
+ * @param {Object} req passed from Express/Koa server
  */
-const renderToMarkup = (alt, routes, state, url) => {
+const renderToMarkup = (alt, state, req) => {
   let markup;
-
-  Router.run(routes, url, (Handler) => {
+  // Does this work?
+  let location = new Location(req.path, req.query);
+  Router.run(routes, location, (error, initialState, transition) => {
     alt.bootstrap(state);
-    let content = React.renderToString(React.createElement(Handler));
+    let content = React.renderToString(<Router {...initialState} />);
     markup = Iso.render(content, alt.flush());
   });
+
   return markup;
 };
 
@@ -48,29 +52,26 @@ const renderToMarkup = (alt, routes, state, url) => {
  * @param {String} HTML template passed in
  * @return render function which can be executed on server/client side
  */
-export default function UniversalRenderer(alt, routes, html) {
+export default function UniversalRenderer(alt, html) {
   let render;
   // if it is not a browser
   if (typeof window === 'undefined') {
     // if there is a html string passed in
     // render the markup and inject it into the html string
     if (html) {
-      render = (state, url) => {
-        const markup = renderToMarkup(alt, routes, state, url);
+      render = (state, req) => {
+        const markup = renderToMarkup(alt, state, req);
         return html.replace('CONTENT', markup);
       };
     } else {
-      render = (state, url) => {
-        return renderToMarkup(alt, routes, state, url);
+      render = (state, req) => {
+        return renderToMarkup(alt, state, req);
       };
     }
   } else {
     render = Iso.bootstrap((state, _, container) => {
       alt.bootstrap(state);
-      Router.run(routes, Router.HistoryLocation, (Handler) => {
-        let node = React.createElement(Handler);
-        React.render(node, container);
-      });
+      React.render(<Router>{routes}</Router>, container);
     });
   }
 

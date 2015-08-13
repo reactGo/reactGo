@@ -41,12 +41,12 @@ export default class Navigation extends React.Component {
       <nav className={styles.navigation} role="navigation">
           <Link to="/" className={styles.navigation__item + ' ' + styles['navigation__item--logo']} activeClassName={styles['navigation__item--active']}>Ninja Ocean</Link>
           { this.state.user.get('authenticated') ? (
-            <Link onClick={this._onLogout} className={styles.navigation__item} to="logout">Logout</Link>
+            <Link onClick={this._onLogout} className={styles.navigation__item} to="/logout">Logout</Link>
           ) : (
-            <Link className={styles.navigation__item} to="login">Log in</Link>
+            <Link className={styles.navigation__item} to="/login">Log in</Link>
           )}
-          <Link className={styles.navigation__item} to="dashboard">Dashboard</Link>
-          <Link to="about" className={styles.navigation__item} activeClassName={styles['navigation__item--active']}>About</Link>
+          <Link className={styles.navigation__item} to="/dashboard">Dashboard</Link>
+          <Link to="/about" className={styles.navigation__item} activeClassName={styles['navigation__item--active']}>About</Link>
       </nav>
     );
   }
