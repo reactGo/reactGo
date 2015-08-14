@@ -35,7 +35,6 @@ import routes from 'routes.js';
  */
 const renderToMarkup = (alt, state, req) => {
   let markup;
-  // Does this work?
   let location = new Location(req.path, req.query);
   Router.run(routes, location, (error, initialState, transition) => {
     alt.bootstrap(state);
@@ -71,7 +70,7 @@ export default function UniversalRenderer(alt, html) {
   } else {
     render = Iso.bootstrap((state, _, container) => {
       alt.bootstrap(state);
-      React.render(<Router>{routes}</Router>, container);
+      React.render(<Router children={routes} />, container);
     });
   }
 

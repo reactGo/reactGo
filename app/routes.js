@@ -8,16 +8,16 @@ import Login from 'components/Login.react';
 import Logout from 'components/Logout.react';
 import Dashboard from 'components/Dashboard.react';
 
-const requireAuth = (nextState, redirectTo) => {
-  redirectTo('/login', null, { nextPathName: nextState.location.pathname });
-};
+// const requireAuth = (nextState, redirectTo) => {
+//   redirectTo('/login', null, { nextPathName: nextState.location.pathname });
+// };
 
 export default (
   <Route component={App}>
+    <Route path="/" component={Vote} />
     <Route path="login" component={Login} />
     <Route path="logout" component={Logout} />
-    <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
-    <Route path="vote" component={Vote} />
+    <Route path="dashboard" component={Dashboard} />
     <Route path="about" component={About} />
   </Route>
 );
