@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, DefaultRoute } from 'react-router';
 
-import App from 'components/App.react';
-import Vote from 'components/Vote.react';
-import About from 'components/About.react';
-import Login from 'components/Login.react';
-import Logout from 'components/Logout.react';
+import App from 'components/App';
+import Vote from 'components/Vote';
+import About from 'components/About';
+import Login from 'components/Login';
+import Logout from 'components/Logout';
 
 const routes = (
   <Route name="app" path="/" handler={App}>

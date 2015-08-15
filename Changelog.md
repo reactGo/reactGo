@@ -1,3 +1,8 @@
+1.1.7
+======
+- Renaming .react.js files into .jsx files. Now I feel like a weight has been lifted off my chest.
+- Removing AnimationMixin (no longer in use and serves to be confusing)
+
 1.1.6
 ======
 - Breaking Changes:
