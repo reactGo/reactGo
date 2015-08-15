@@ -1,12 +1,12 @@
 import React from 'react';
 import Route from 'react-router';
 
-import App from 'components/App.react';
-import Vote from 'components/Vote.react';
-import About from 'components/About.react';
-import Login from 'components/Login.react';
-import Logout from 'components/Logout.react';
-import Dashboard from 'components/Dashboard.react';
+import App from 'components/App';
+import Vote from 'components/Vote';
+import About from 'components/About';
+import Login from 'components/Login';
+import Logout from 'components/Logout';
+import Dashboard from 'components/Dashboard';
 
 // const requireAuth = (nextState, redirectTo) => {
 //   redirectTo('/login', null, { nextPathName: nextState.location.pathname });

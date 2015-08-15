@@ -1,6 +1,6 @@
 import React from 'react';
 import Immutable from 'immutable';
-import TopicCountItem from 'components/TopicCountItem.react';
+import TopicCountItem from 'components/TopicCountItem';
 
 import styles from 'scss/components/_vote';
 

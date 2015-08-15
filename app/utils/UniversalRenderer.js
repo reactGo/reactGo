@@ -25,7 +25,7 @@ import Iso from 'iso';
 import React from 'react';
 import Router from 'react-router';
 import Location from 'react-router/lib/Location';
-import routes from 'routes.js';
+import routes from 'routes.jsx';
 
 /*
  * @param {AltObject} an instance of the Alt object
