@@ -1,6 +1,6 @@
 import React from 'react';
 import TopicActions from 'actions/TopicActions';
-import TopicTextInput from 'components/TopicTextInput.react';
+import TopicTextInput from 'components/TopicTextInput';
 
 import styles from 'scss/components/_entrybox';
 

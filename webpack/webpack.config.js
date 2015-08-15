@@ -11,10 +11,7 @@ var commonLoaders = [
      * TC39 categorises proposals for babel in 4 stages
      * Read more http://babeljs.io/docs/usage/experimental/
      */
-    test: /\.jsx$/, loader: "babel-loader?stage=0"
-  },
-  {
-    test: /\.js$/,
+    test: /\.js$|\.jsx$/,
     loader: "babel-loader?stage=0",
     include: path.join(__dirname, "..",  "app")
   },
@@ -89,7 +86,7 @@ module.exports = [
     context: path.join(__dirname, "..", "app"),
     entry: {
       app: "./app",
-      header: "./elements/Header.react"
+      header: "./elements/Header"
     },
     target: "node",
     output: {
