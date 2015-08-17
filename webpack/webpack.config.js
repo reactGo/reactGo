@@ -50,7 +50,7 @@ module.exports = [
      */
     context: path.join(__dirname, "..", "app"),
     entry: {
-      app: "./app"
+      app: "./client"
     },
     output: {
       // The output directory as absolute path
@@ -64,7 +64,7 @@ module.exports = [
     devtool: "source-map",
     module: {
       preLoaders: [{
-        test: /\.js$|.jsx$/,
+        test: /\.js$|\.jsx$/,
         exclude: /node_modules/,
         loaders: ["eslint"]
       }],
@@ -85,7 +85,7 @@ module.exports = [
     name: "server-side rendering",
     context: path.join(__dirname, "..", "app"),
     entry: {
-      app: "./app",
+      app: "./server",
       header: "./elements/Header"
     },
     target: "node",
