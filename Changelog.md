@@ -1,4 +1,4 @@
-1.1.8
+1.2
 ======
 - Breaking Changes (Apologize for the breaking changes):
   - react-router bumped up to react-router beta3
