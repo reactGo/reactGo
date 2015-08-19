@@ -13,11 +13,14 @@ import html from 'base.html';
  * @param {Object} Data to bootstrap our altStores with
  * @param {Object} req passed from Express/Koa server
  */
-const renderToMarkup = (alt, state, req) => {
+const renderToMarkup = (alt, state, req, res) => {
   let markup;
   let location = new Location(req.path, req.query);
   Router.run(routes, location, (error, initialState, transition) => {
     alt.bootstrap(state);
+    if (transition.isCancelled) {
+      return res.redirect(302, transition.redirectInfo.pathname);
+    }
     let content = React.renderToString(<Router {...initialState} />);
     markup = Iso.render(content, alt.flush());
   });
@@ -30,7 +33,7 @@ const renderToMarkup = (alt, state, req) => {
  * We grab the state passed in from the server and the req object from Express/Koa
  * and pass it into the Router.run function.
  */
-export default function render(state, req) {
-  const markup = renderToMarkup(alt, state, req);
+export default function render(state, req, res) {
+  const markup = renderToMarkup(alt, state, req, res);
   return html.replace('CONTENT', markup);
 };
