@@ -16,8 +16,8 @@ import html from 'base.html';
 const renderToMarkup = (alt, state, req, res) => {
   let markup;
   let location = new Location(req.path, req.query);
+  alt.bootstrap(state);
   Router.run(routes, location, (error, initialState, transition) => {
-    alt.bootstrap(state);
     if (transition.isCancelled) {
       return res.redirect(302, transition.redirectInfo.pathname);
     }

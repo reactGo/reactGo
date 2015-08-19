@@ -8,8 +8,12 @@ import Login from 'components/Login';
 import Logout from 'components/Logout';
 import Dashboard from 'components/Dashboard';
 
+import UserStore from 'stores/UserStore';
+
 function requireAuth(nextState, transition) {
-  transition.to('/login', null, { nextPathname: nextState.location.pathname });
+  if (!UserStore.getState().user.get('authenticated')) {
+    transition.to('/login', null, { nextPathname: nextState.location.pathname });
+  }
 }
 
 export default (
