@@ -35,13 +35,6 @@ const utils = {
       contentType: 'application/json',
       data: JSON.stringify(data)
     });
-  },
-
-  loggedin: () => {
-    return $.ajax({
-      url: '/loggedin',
-      type: 'GET'
-    });
   }
 
 };
