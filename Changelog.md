@@ -1,3 +1,11 @@
+1.2
+======
+- Breaking Changes (Apologize for the breaking changes):
+  - react-router bumped up to react-router beta3
+  - Deprecating UniversalRenderer:
+    - Initially the server + client side code was very similar. But the code has evolved now and keeping them as one reusable class just complicates how the isomorphic (sorry, universal) react works.
+    - Separating them now makes it easier to move forward.
+
 1.1.7
 ======
 - Renaming .react.js files into .jsx files. Now I feel like a weight has been lifted off my chest.
