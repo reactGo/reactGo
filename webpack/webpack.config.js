@@ -62,13 +62,6 @@ module.exports = [
 
     },
     devtool: "source-map",
-    externals: [
-      {
-        'alt/AltContainer': true,
-        'react/addons': true
-      },
-      /^[a-z\-0-9]+$/
-    ],
     module: {
       preLoaders: [{
         test: /\.js$|\.jsx$/,
