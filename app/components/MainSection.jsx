@@ -1,6 +1,6 @@
 import React from 'react';
 import Immutable from 'immutable';
-import TopicItem from 'components/TopicItem.react';
+import TopicItem from 'components/TopicItem';
 
 import styles from 'scss/components/_vote';
 

@@ -1,4 +1,25 @@
-1.1.4
+1.2
+======
+- Breaking Changes (Apologize for the breaking changes):
+  - react-router bumped up to react-router beta3
+  - Deprecating UniversalRenderer:
+    - Initially the server + client side code was very similar. But the code has evolved now and keeping them as one reusable class just complicates how the isomorphic (sorry, universal) react works.
+    - Separating them now makes it easier to move forward.
+
+1.1.7
+======
+- Renaming .react.js files into .jsx files. Now I feel like a weight has been lifted off my chest.
+- Removing AnimationMixin (no longer in use and serves to be confusing)
+
+1.1.6
+======
+- Breaking Changes:
+   - `package.json` now has different commands to run servers locally. This was to fix an initial issue with sessions over HTTPS.
+   - `npm run build && npm run dev` to run locally without a hot loader.
+   - `npm run devHotLoader` to build and develop using react-hot-loader.
+   - `npm run build && npm start` to run server for production (with HTTPS).
+
+1.1.5
 ======
 - [Css modules](https://github.com/webpack/css-loader#css-modules) that works with development and production setup
 

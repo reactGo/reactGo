@@ -1,10 +1,8 @@
 import React from 'react';
 import AltContainer from 'alt/AltContainer';
-import { RouteHandler } from 'react-router';
-
 import UserStore from 'stores/UserStore';
 import TopicStore from 'stores/TopicStore';
-import Navigation from 'components/Navigation.react';
+import Navigation from 'components/Navigation';
 
 import 'scss/main';
 
@@ -31,8 +29,10 @@ export default class App extends React.Component {
         TopicStore: TopicStore
       }}>
         <Navigation />
-        <RouteHandler />
+        {this.props.children}
       </AltContainer>
     );
   }
 }
+
+App.propTypes = { children: React.PropTypes.object };

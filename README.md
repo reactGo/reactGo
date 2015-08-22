@@ -42,17 +42,29 @@ I am working to document this repo extensively so it would be easy for both begi
 ## Instructions
 
 1. `npm install`
-2. `npm start` to run locally
+2. `npm run dev` to run locally
 
-### Development build
+There are 3 different "modes" you can develop in:
+1. Development -  without react-hot-loader
+2. Development - with react-hot-loader
+3. Production
+
+### Development build (without Hot loader)
+
+1. `npm run watch` watches and recompiles on file changes
+2. `npm run dev` will run the server locally without a proxy. The difference between `dev` and `npm start` is that `npm start` requires you to access your site over HTTPS, otherwise session cookies will not be set. 
+
+### Development build with Hot Loader
 
 We use [react-hot-loader](https://github.com/gaearon/react-hot-loader), which is about the greatest thing that has ever happened. No browser refreshes needed.
 
-1. `npm run dev` to build with webpack and start the server. We use webpack-dev-server as a proxy server to serve assets. Changes made are not saved to disk, as that is not what webpack-dev-server is for. However, `npm run watchDev` IF you want to reload the page and see the change in the server-rendered React.
+1. `npm run devHotLoader` to build with webpack and start the server. We use webpack-dev-server as a proxy server to serve assets. Changes made are not saved to disk, as that is not what webpack-dev-server is for. However, `npm run watchHotLoader` IF you want to reload the page and see the change in the server-rendered React.
 
 ### Production build
 
-Run the commands below for a production build, i.e. what is deployed to Heroku.
+Run the commands below for a production build, i.e. what is deployed to Heroku. If you are deploying to Heroku or similar, we assume that you serving the pages over HTTPS.
+
+1. `npm run build && npm start`
 
 #### Bundling with webpack
 
@@ -117,10 +129,6 @@ Read more on DO config [here](https://github.com/choonkending/react-webpack-node
 			- Login.react
 			- Logout.react
 			- About.react
-
-## UniversalRenderer
-
-This is a modified version of alt's IsomorphicRenderer. I wished to use webpack to build my server and client side code, but wanted to easily bootstrap data into the stores, and render the correct component using react-router. This takes into account the fact that we're using a singleton store and flushing it everytime (as opposed to creating an instance everytime).
 
 ## Questions:
 ### 1. Google Authentication does not work locally or on heroku!

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import EntryBox from 'components/EntryBox.react';
-import MainSection from 'components/MainSection.react';
-import Scoreboard from 'components/Scoreboard.react';
+import EntryBox from 'components/EntryBox';
+import MainSection from 'components/MainSection';
+import Scoreboard from 'components/Scoreboard';
 
 import styles from 'scss/components/_vote';
 

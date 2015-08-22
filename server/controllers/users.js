@@ -55,4 +55,3 @@ exports.postSignUp = function(req, res, next) {
     });
   });
 };
-

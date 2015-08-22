@@ -58,30 +58,37 @@ module.exports = function (app, passport) {
   //          cookie: Please note that secure: true is a recommended option.
   //                  However, it requires an https-enabled website, i.e., HTTPS is necessary for secure cookies.
   //                  If secure is set, and you access your site over HTTP, the cookie will not be set.
-  app.use(session({
+  var sess = {
     resave: true,
     saveUninitialized: true,
     // Use generic cookie name for security purposes
     key: 'sessionId',
     secret: secrets.sessionSecret,
     // Add HTTPOnly, Secure attributes on Session Cookie
+    // If secure is set, and you access your site over HTTP, the cookie will not be set
     cookie: {
-      httpOnly: true,
-      secure: true
+      httpOnly: true
     },
     store: new MongoStore({ url: secrets.db, autoReconnect: true})
-  }));
+  };
+
+  var node_env = process.env.NODE_ENV;
+  console.log('Environment: ' + node_env);
+  if(node_env === 'production') {
+    sess.cookie.secure = true; // Serve secure cookies
+  }
+
+  app.use(session(sess));
 
   app.use(passport.initialize());
   app.use(passport.session());
 
   app.use(flash());
+  
+  var port = (node_env === 'production') ? app.get('port') : 3000;
 
-  // We only run this workflow when not in Production
-  var isProduction = process.env.NODE_ENV === 'production';
-  var port = isProduction ? app.get('port') : 3000;
-
-  if(!isProduction) {
+  // We only run this workflow when not in Production && require a hot-loader
+  if(node_env === 'devhotloader') {
     // We require the bundle inside the if block because
     // it is only needed in a development environment.
     var devServer = require('../dev-server');

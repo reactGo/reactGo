@@ -80,11 +80,11 @@ module.exports = function(app, passport) {
   // fetched and seed our stores with data.
   // App is a function that requires store data and url to initialize and return the React-rendered html string
   app.get('*', function (req, res, next) {
-    var html = App(JSON.stringify(res.locals.data || {}), req.url);
+    var html = App(JSON.stringify(res.locals.data || {}), req, res);
     html = html.replace("TITLE", Header.title)
                 .replace("META", Header.meta);
 
-    if(process.env.NODE_ENV === 'development') {
+    if(process.env.NODE_ENV === 'devhotloader') {
       html = html.replace("LINK", '');
     } else {
       html = html.replace("LINK", Header.link);
