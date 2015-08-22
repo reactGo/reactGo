@@ -47,6 +47,7 @@ export default class Navigation extends React.Component {
           )}
           <Link className={styles.navigation__item} to="/dashboard">Dashboard</Link>
           <Link to="/about" className={styles.navigation__item} activeClassName={styles['navigation__item--active']}>About</Link>
+          <a>{this.state.user.get('email')}</a>
       </nav>
     );
   }

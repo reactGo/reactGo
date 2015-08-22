@@ -11,19 +11,22 @@ class UserActions {
 
   manuallogin(data) {
     this.dispatch();
-    UserWebAPIUtils.manuallogin(data)
+
+    let { email, password, router } = data;
+
+    UserWebAPIUtils.manuallogin({email: email, password: password})
       .then((response, textStatus) => {
         if (textStatus === 'success') {
           // Dispatch another event for successful login
-          this.actions.loginsuccess(data.email);
+          this.actions.loginsuccess(router);
         }
       }, () => {
         // Dispatch another event for a bad login
       });
   }
 
-  loginsuccess(email) {
-    this.dispatch(email);
+  loginsuccess(router) {
+    this.dispatch(router);
   }
 
   // Leaving this here for future use
