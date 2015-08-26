@@ -98,7 +98,13 @@ module.exports = [
       publicPath: publicPath,
       libraryTarget: "commonjs2"
     },
-    externals: /^[a-z\-0-9]+$/,
+    externals: [
+      {
+        'alt/AltContainer': true,
+        'react/addons': true
+      },
+      /^[a-z\-0-9]+$/
+    ],
     module: {
       loaders: commonLoaders
     },

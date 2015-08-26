@@ -15,4 +15,3 @@ Iso.bootstrap((state, _, container) => {
   alt.bootstrap(state);
   React.render(<Router history={history} children={routes} />, container);
 });
-
