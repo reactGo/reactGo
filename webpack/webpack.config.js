@@ -116,7 +116,8 @@ module.exports = [
     },
     plugins: [
         // extract inline css from modules into separate files
-        new ExtractTextPlugin("styles/main.css")
+        new ExtractTextPlugin("styles/main.css"),
+        new webpack.optimize.UglifyJsPlugin()
     ]
   }
 ];
