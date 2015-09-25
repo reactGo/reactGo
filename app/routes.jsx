@@ -10,9 +10,9 @@ import Dashboard from 'components/Dashboard';
 
 import UserStore from 'stores/UserStore';
 
-function requireAuth(nextState, transition) {
+function requireAuth(nextState, replaceState) {
   if (!UserStore.getState().user.get('authenticated')) {
-    transition.to('/login', null, { nextPathname: nextState.location.pathname });
+    replaceState({ nextPathname: nextState.location.pathname }, '/login');
   }
 }
 
