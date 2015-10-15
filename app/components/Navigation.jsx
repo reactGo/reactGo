@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router';
-
-import UserActions from 'actions/UserActions';
-
+import { connect } from 'react-redux';
+import { logOut } from 'redux/actions/users';
 import styles from 'scss/components/_navigation';
 
-export default class Navigation extends React.Component {
+class Navigation extends React.Component {
 
   _onLogout = () => {
-    UserActions.logout();
+    this.dispatch(logOut());
   }
 
   render() {
@@ -29,3 +28,11 @@ export default class Navigation extends React.Component {
 }
 
 Navigation.propTypes = { UserStore: React.PropTypes.object };
+
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+}
+
+export default connect(mapStateToProps)(Navigation);

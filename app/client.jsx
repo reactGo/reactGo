@@ -1,15 +1,25 @@
 import React from 'react';
 import Iso from 'iso';
-import createBrowserHistory from 'history/lib/createBrowserHistory';
-import { Router } from 'react-router';
-
-import alt from 'altInstance';
-import routes from 'routes.jsx';
+import { Provider } from 'react-redux';
+import { ReduxRouter } from 'redux-router';
+import configureStore from 'redux/store/configureStore';
 
 /*
- * Client side bootstrap with iso and alt
+ * Client side bootstrap with iso and redux
  */
 Iso.bootstrap((state, _, container) => {
-  alt.bootstrap(state);
-  React.render(<Router history={createBrowserHistory()} children={routes} />, container);
+  let store = configureStore(state);
+
+  React.render(
+  	<Provider store={store}>
+  		{() => <ReduxRouter />}
+		</Provider>, container);
+
+  if (process.env.NODE_ENV !== 'production') {
+  // Use require because imports can't be conditional.
+  // In production, you should ensure process.env.NODE_ENV
+  // is envified so that Uglify can eliminate this
+  // module and its dependencies as dead code.
+		require('./createDevToolsWindow')(store);
+	}
 });

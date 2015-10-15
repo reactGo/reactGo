@@ -1,9 +1,5 @@
 import React from 'react';
-import AltContainer from 'alt/AltContainer';
-import UserStore from 'stores/UserStore';
-import TopicStore from 'stores/TopicStore';
 import Navigation from 'components/Navigation';
-
 import 'scss/main';
 
 /*
@@ -24,13 +20,10 @@ import 'scss/main';
 export default class App extends React.Component {
   render() {
     return (
-      <AltContainer stores={{
-        UserStore: UserStore,
-        TopicStore: TopicStore
-      }}>
+      <div>
         <Navigation />
         {this.props.children}
-      </AltContainer>
+      </div>
     );
   }
 }

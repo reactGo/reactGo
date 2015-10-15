@@ -1,19 +1,19 @@
 import React from 'react';
-import TopicActions from 'actions/TopicActions';
+import { incrementCount, decrementCount, destroyTopic } from 'redux/actions/topics';
 
 import styles from 'scss/components/_vote';
 
-export default class TopicItem extends React.Component {
+class TopicItem extends React.Component {
   _onIncrement = () => {
-    TopicActions.increment(this.props.id);
+    this.props.dispatch(this.props.id, this.props.id);
   }
 
   _onDecrement = () => {
-    TopicActions.decrement(this.props.id);
+    this.props.dispatch(this.props.id, this.props.id);
   }
 
   _onDestroyClick = () => {
-    TopicActions.destroy(this.props.id);
+    this.props.dispatch(this.props.id, this.props.id);
   }
 
   render() {
@@ -29,6 +29,8 @@ export default class TopicItem extends React.Component {
 }
 
 TopicItem.propTypes = {
-  id: React.PropTypes.string,
-  text: React.PropTypes.string
+  text: React.PropTypes.string,
+  id: React.PropTypes.string
 };
+
+export default connect()(TopicItem);

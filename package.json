@@ -19,7 +19,9 @@
   "license": "MIT",
   "devDependencies": {
     "react-hot-loader": "^1.2.8",
-    "webpack-dev-server": "^1.10.1"
+    "webpack-dev-server": "^1.10.1",
+    "redux-devtools": "^2.1.5",
+    "redux-logger": "^2.0.3"
   },
   "engines": {
     "node": "0.10.x"
@@ -61,7 +63,11 @@
     "passport-local": "^1.0.0",
     "react": "^0.13.3",
     "react-router" : "1.0.0-rc1",
-    "react-helmet": "^1.0.1",
+    "react-helmet": "1.0.1",
+    "react-redux": "^3.1.0",
+    "redux": "^3.0.2",
+    "redux-router": "^1.0.0-beta3",
+    "redux-thunk": "^1.0.0",
     "sass-loader": "^1.0.2",
     "style-loader": "^0.12.3",
     "url-loader": "^0.5.6",

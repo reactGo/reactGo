@@ -6,7 +6,7 @@ import Scoreboard from 'components/Scoreboard';
 
 import styles from 'scss/components/_vote';
 
-export default class Vote extends React.Component {
+class Vote extends React.Component {
 
   render() {
     return (
@@ -20,5 +20,14 @@ export default class Vote extends React.Component {
 }
 
 Vote.propTypes = {
-  TopicStore: React.PropTypes.object
+  topics: React.PropTypes.object, newTopic: React.PropTypes.string
 };
+
+function mapStateToProps(state) {
+  return {
+    topics: state.topics,
+    newTopic: state.topics.newTopic
+  };
+}
+
+export default connect(mapStateToProps)(Vote);
