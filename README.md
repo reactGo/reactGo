@@ -181,7 +181,7 @@ This is because we do not use ExtractTextPlugin in our dev config. It won't happ
 ## Todo:
 
 1. Use csrf tokens for form login
-2. Look into using [Alt Container](https://github.com/goatslacker/alt/blob/master/components/AltContainer.js) and other cool utils alt is using.
+2. Look into using [Alt Container](http://alt.js.org/docs/components/altContainer/) and other cool utils alt is using.
 3. Experiment with [CSS-loader](https://github.com/webpack/css-loader#local-scope) further to potentially incorporate locally scoped css.
 4. react-hot-loader
 4. Let me know!
