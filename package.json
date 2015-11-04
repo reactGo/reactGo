@@ -25,7 +25,8 @@
     "node": "0.10.x"
   },
   "dependencies": {
-    "alt": "^0.17.1",
+    "alt": "^0.17.8",
+    "alt-container": "^1.0.0",
     "babel-core": "^5.5.4",
     "babel-eslint": "^3.1.14",
     "babel-loader": "^5.1.4",
@@ -61,8 +62,8 @@
     "passport-local": "^1.0.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
-    "react-router" : "1.0.0-rc1",
     "react-helmet": "^1.0.1",
+    "react-router": "1.0.0-rc1",
     "sass-loader": "^1.0.2",
     "style-loader": "^0.12.3",
     "url-loader": "^0.5.6",

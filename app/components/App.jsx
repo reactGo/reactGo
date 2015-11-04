@@ -1,5 +1,5 @@
 import React from 'react';
-import AltContainer from 'alt/AltContainer';
+import AltContainer from 'alt-container';
 import UserStore from 'stores/UserStore';
 import TopicStore from 'stores/TopicStore';
 import Navigation from 'components/Navigation';
