@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from 'scss/components/_login';
 import { manualLogin } from 'redux/actions/users';
+import { connect } from 'react-redux';
 class Login extends React.Component {
   /*
    * This replaces getInitialState. Likewise getDefaultProps and propTypes are just
@@ -18,10 +19,6 @@ class Login extends React.Component {
       email: email,
       password: password
     });
-  }
-
-  manuallogin = (data) => {
-    this.props.dispatch(manualLogin(data));
   }
 
   render() {
@@ -55,9 +52,13 @@ class Login extends React.Component {
         </div>
     );
   }
+
+  manuallogin = (data) => {
+    this.props.dispatch(manualLogin(data));
+  }
 }
 
-Login.propTypes = { user: React.PropTypes.object };
+Login.propTypes = { user: React.PropTypes.object, dispatch: React.PropTypes.func };
 
 function mapStateToProps(state) {
   return {

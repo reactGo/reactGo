@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createTopic, typing } from 'redux/actions/topics';
 import styles from 'scss/components/_entrybox';
+import TopicTextInput from 'components/TopicTextInput';
 
-export default class EntryBox extends React.Component {
+class EntryBox extends React.Component {
   /**
    * Event handler called within TopicTextInput.
    * Defining this here allows TopicTextInput to be used in multiple places
@@ -28,6 +29,6 @@ export default class EntryBox extends React.Component {
   }
 }
 
-EntryBox.propTypes = { topic: React.PropTypes.string };
+EntryBox.propTypes = { topic: React.PropTypes.string, dispatch: React.PropTypes.func  };
 
-export default connect()(App);
+export default connect()(EntryBox);

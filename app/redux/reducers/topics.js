@@ -1,19 +1,19 @@
-import { 
-  TYPING, 
+import {
+  TYPING,
   CREATE_TOPIC,
   DESTROY_TOPIC,
   INCREMENT_COUNT,
   DECREMENT_COUNT } from '../constants/actionTypes';
-import _ from 'lodash';
+
 
 export default function topics(state = [], action) {
   switch (action.type) {
   case TYPING:
-    return Object.assign({}, state, 
+    return Object.assign({}, state,
       { newTopic: action.newTopic }
     );
   case CREATE_TOPIC:
-    return  [...state, { id: action.id, count: action.count, text: action.text } ]
+    return [...state, { id: action.id, count: action.count, text: action.text } ];
   case DESTROY_TOPIC:
     return [...state.splice(action.index, 1)];
   case INCREMENT_COUNT:

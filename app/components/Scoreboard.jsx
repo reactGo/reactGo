@@ -6,7 +6,7 @@ import styles from 'scss/components/_vote';
 export default class Scoreboard extends React.Component {
   render() {
     const topicListItems = this.props.topics.map((topic, key) => {
-      return (<TopicCountItem key={key} title={topic.text} count={topiccount}/>);
+      return (<TopicCountItem key={key} title={topic.text} count={topic.count}/>);
     }).toArray();
     return (
       <div className={styles.scoreboard}>
