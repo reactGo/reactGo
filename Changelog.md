@@ -1,3 +1,8 @@
+1.2.1
+======
+- React v0.14
+  - Using react-dom to render
+
 1.2
 ======
 - Breaking Changes (Apologize for the breaking changes):
