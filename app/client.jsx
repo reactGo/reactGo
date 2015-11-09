@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Iso from 'iso';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import { Router } from 'react-router';
@@ -11,5 +12,5 @@ import routes from 'routes.jsx';
  */
 Iso.bootstrap((state, _, container) => {
   alt.bootstrap(state);
-  React.render(<Router history={createBrowserHistory()} children={routes} />, container);
+  ReactDOM.render(<Router history={createBrowserHistory()} children={routes} />, container);
 });

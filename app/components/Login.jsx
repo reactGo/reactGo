@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Immutable from 'immutable';
 
 import UserActions from 'actions/UserActions';
@@ -32,8 +33,8 @@ export default class Login extends React.Component {
   }
 
   _onLoginSubmit = () => {
-    const email = React.findDOMNode(this.refs.email).value;
-    const password = React.findDOMNode(this.refs.password).value;
+    const email = ReactDOM.findDOMNode(this.refs.email).value;
+    const password = ReactDOM.findDOMNode(this.refs.password).value;
     UserActions.manuallogin({
       email: email,
       password: password

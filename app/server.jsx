@@ -1,7 +1,8 @@
-import Iso from 'iso';
 import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 import { RoutingContext, match } from 'react-router'
 import createLocation from 'history/lib/createLocation';
+import Iso from 'iso';
 
 import alt from 'altInstance';
 import routes from 'routes.jsx';
@@ -17,7 +18,6 @@ const renderToMarkup = (alt, state, req, res) => {
   let markup, content;
   let location = new createLocation(req.url);
   alt.bootstrap(state);
-
   match({ routes, location }, (error, redirectLocation, renderProps) => {
     if (redirectLocation)
       res.redirect(301, redirectLocation.pathname + redirectLocation.search)
@@ -26,7 +26,7 @@ const renderToMarkup = (alt, state, req, res) => {
     else if (renderProps == null)
       res.send(404, 'Not found')
     else
-      content = React.renderToString(<RoutingContext {...renderProps} />);
+      content = ReactDOMServer.renderToString(<RoutingContext {...renderProps} />);
       markup = Iso.render(content, alt.flush());
   });
 
