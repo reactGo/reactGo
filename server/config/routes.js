@@ -20,7 +20,7 @@ module.exports = function(app, passport) {
   // Redirect the user to Google for authentication. When complete, Google
   // will redirect the user back to the application at
   // /auth/google/return
-  // Authentication with google requires an additional scope param, for more info go 
+  // Authentication with google requires an additional scope param, for more info go
   // here https://developers.google.com/identity/protocols/OpenIDConnect#scope-param
   app.get('/auth/google', passport.authenticate('google', { scope: [
         'https://www.googleapis.com/auth/userinfo.profile',
@@ -59,7 +59,7 @@ module.exports = function(app, passport) {
       if(!err) {
         var topicmap = _.indexBy(topics, 'id');
         // We don't want to be seeding and generating markup with user information
-        var user = req.user ? { authenticated: true, isWaiting: false } : { authenticated: false, isWaiting: false };
+        var user = req.user ? { authenticated: true, isWaiting: false, email: req.user.email } : { authenticated: false, isWaiting: false };
         // An object that contains response local variables scoped to the request, and therefore available only to the view(s) rendered during
         // that request/response cycle (if any). Otherwise, this property is identical to app.locals
         // This property is useful for exposing request-level information such as request path name, authenticated user, user settings, and so on.

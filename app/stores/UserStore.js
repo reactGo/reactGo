@@ -63,9 +63,11 @@ class UserStore {
     this.emitChange();
   }
 
-  handleLoginSuccess() {
+  handleLoginSuccess(router) {
     this.user = this.user.merge({ isWaiting: false, authenticated: true });
     this.emitChange();
+
+    router.replaceWith('/dashboard'); // This needs to be made dynamic
   }
 
   handleLogoutAttempt() {

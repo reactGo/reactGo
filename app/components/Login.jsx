@@ -37,7 +37,8 @@ export default class Login extends React.Component {
     const password = ReactDOM.findDOMNode(this.refs.password).value;
     UserActions.manuallogin({
       email: email,
-      password: password
+      password: password,
+      router: this.context.router
     });
   }
 
@@ -75,3 +76,4 @@ export default class Login extends React.Component {
 }
 
 Login.propTypes = { user: React.PropTypes.instanceOf(Immutable.Map) };
+Login.contextTypes = { router: React.PropTypes.object };
