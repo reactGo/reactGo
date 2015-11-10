@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import styles from 'scss/components/_login';
 import { manualLogin } from 'redux/actions/users';
 import { connect } from 'react-redux';
@@ -13,8 +14,8 @@ class Login extends React.Component {
   }
 
   _onLoginSubmit = () => {
-    const email = React.findDOMNode(this.refs.email).value;
-    const password = React.findDOMNode(this.refs.password).value;
+    const email = ReactDOM.findDOMNode(this.refs.email).value;
+    const password = ReactDOM.findDOMNode(this.refs.password).value;
     this.manuallogin({
       email: email,
       password: password

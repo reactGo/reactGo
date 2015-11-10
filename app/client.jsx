@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Iso from 'iso';
 import { Provider } from 'react-redux';
 import { ReduxRouter } from 'redux-router';
@@ -10,7 +11,7 @@ import configureStore from 'redux/store/configureStore';
 Iso.bootstrap((state, _, container) => {
   let store = configureStore(state);
 
-  React.render(
+  ReactDOM.render(
   	<Provider store={store}>
   		{() => <ReduxRouter />}
 		</Provider>, container);

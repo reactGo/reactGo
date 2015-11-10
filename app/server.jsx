@@ -1,8 +1,9 @@
-import Iso from 'iso';
 import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 import { RoutingContext, match } from 'react-router'
 import createLocation from 'history/lib/createLocation';
 import { Provider } from 'react-redux';
+import Iso from 'iso';
 import routes from 'routes.jsx';
 import html from 'base.html';
 import configureStore from 'redux/store/configureStore'
@@ -25,7 +26,7 @@ const renderToMarkup = (store, req, res) => {
     else if (renderProps == null)
       res.send(404, 'Not found')
     else
-      content = React.renderToString(
+      content = ReactDOMServer.renderToString(
         <Provider store={store}>
           { () => <RoutingContext {...renderProps} /> }
         </Provider> );
