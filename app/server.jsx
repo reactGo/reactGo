@@ -28,7 +28,7 @@ const renderToMarkup = (store, req, res) => {
     else
       content = ReactDOMServer.renderToString(
         <Provider store={store}>
-          { () => <RoutingContext {...renderProps} /> }
+          <RoutingContext {...renderProps} />
         </Provider> );
       markup = Iso.render(content, store.getState());
   });

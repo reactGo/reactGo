@@ -7,7 +7,7 @@ export default class Scoreboard extends React.Component {
   render() {
     const topicListItems = this.props.topics.map((topic, key) => {
       return (<TopicCountItem key={key} title={topic.text} count={topic.count}/>);
-    }).toArray();
+    });
     return (
       <div className={styles.scoreboard}>
         <h3 className={styles.scoreboard__header}>Vote count</h3>

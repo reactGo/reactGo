@@ -29,6 +29,6 @@ class EntryBox extends React.Component {
   }
 }
 
-EntryBox.propTypes = { topic: React.PropTypes.string, dispatch: React.PropTypes.func  };
+EntryBox.propTypes = { topic: React.PropTypes.string, dispatch: React.PropTypes.func };
 
 export default connect()(EntryBox);

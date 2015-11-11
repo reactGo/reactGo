@@ -6,7 +6,11 @@ import routes from 'routes.jsx';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import { devTools } from 'redux-devtools';
-import { canUseDOM } from '../../../node_modules/react/lib/ExecutionEnvironment';
+
+const canUseDOM = !!(
+  (typeof window !== 'undefined' &&
+  window.document && window.document.createElement)
+);
 
 let createStoreWithMiddleware;
 if (canUseDOM) {

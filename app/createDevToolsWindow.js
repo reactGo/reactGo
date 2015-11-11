@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 
 /*
@@ -23,7 +24,7 @@ export default function createDevToolsWindow(store) {
   win.document.title = name;
 
   // Wait a little bit for it to reload, then render.
-  setTimeout(() => React.render(
+  setTimeout(() => ReactDOM.render(
     <DebugPanel top right bottom left>
       <DevTools store={store} monitor={LogMonitor} />
     </DebugPanel>,

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import EntryBox from 'components/EntryBox';
 import MainSection from 'components/MainSection';
 import Scoreboard from 'components/Scoreboard';
@@ -25,8 +24,8 @@ Vote.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    topics: state.topics,
-    newTopic: state.topics.newTopic
+    topics: state.topic.topics,
+    newTopic: state.topic.newTopic
   };
 }
 

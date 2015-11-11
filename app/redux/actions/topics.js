@@ -1,21 +1,21 @@
 import * as types from '../constants/actionTypes';
-import TopicWebAPIUtils from 'utils/RestaurantWebAPIUtils';
+import TopicWebAPIUtils from 'utils/TopicWebAPIUtils';
 
 
 export function typing(text) {
-  return { 
-  	type: types.TYPING,
-  	newTopic: text
-  	 };
+	return {
+		type: types.TYPING,
+		newTopic: text
+	};
 }
 
 function create(data) {
-  return { 
-  	type: types.CREATE_TOPIC,
+	return {
+		type: types.CREATE_TOPIC,
 		id: data.id,
 		count: data.count,
 		text: data.text
-  	};
+		};
 }
 
 function increment(index) {
@@ -27,28 +27,29 @@ function decrement(index) {
 }
 
 function destroy(index) {
-	return { type: types.DESTROY_TOPIC, index: index  };
+	return { type: types.DESTROY_TOPIC, index: index};
 }
 
 export function createTopic(text) {
 	if (text.trim().length > 0) {
-      // Using the current timestamp in place of a real id.
-      const id = Date.now().toString();
-      const data = {
-        id: id,
-        count: 1,
-        text: text
-      };
+			// Using the current timestamp in place of a real id.
+			const id = Date.now().toString();
+			const data = {
+				id: id,
+				count: 1,
+				text: text
+			};
 	return dispatch => {
 		dispatch(create(data));
 		return TopicWebAPIUtils.addTopic(data)
-		.done((response) => {
+		.done(() => {
 			// Dispatch another event for successful login
-		}) 
-		.fail(err => {
-        // dispatch an event if fails to notify user that it has failed
-    });
+		})
+		.fail(() => {
+				// dispatch an event if fails to notify user that it has failed
+		});
 	};
+	}
 }
 
 export function incrementCount(id, index) {

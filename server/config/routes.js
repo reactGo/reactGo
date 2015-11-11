@@ -66,7 +66,7 @@ module.exports = function(app, passport) {
         // This property is useful for exposing request-level information such as request path name, authenticated user, user settings, and so on.
         // pass in data to be seeded into the TopicStore
         res.locals.data =  {
-          topics: topics,
+          topic: { topics: topics || [], newTopic: '' },
           user: user 
         };
         next();

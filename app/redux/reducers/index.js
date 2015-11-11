@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import user from './user';
-import topics from './topics';
+import topic from './topic';
 import { routerStateReducer as router } from 'redux-router';
 
 const rootReducer = combineReducers({
   user,
-  topics,
+  topic,
   router
 });
 

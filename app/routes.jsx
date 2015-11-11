@@ -8,20 +8,14 @@ import Login from 'components/Login';
 import Logout from 'components/Logout';
 import Dashboard from 'components/Dashboard';
 
-import UserStore from 'stores/UserStore';
-
-function requireAuth(nextState, replaceState) {
-  if (!UserStore.getState().user.get('authenticated')) {
-    replaceState({ nextPathname: nextState.location.pathname }, '/login');
-  }
-}
+import { requireAuthentication } from 'components/authenticateComponent';
 
 export default (
   <Route component={App}>
     <Route path="/" component={Vote} />
     <Route path="login" component={Login} />
     <Route path="logout" component={Logout} />
-    <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
+    <Route path="dashboard" component={requireAuthentication(Dashboard)} />
     <Route path="about" component={About} />
   </Route>
 );

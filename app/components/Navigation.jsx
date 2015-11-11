@@ -14,7 +14,7 @@ class Navigation extends React.Component {
     return (
       <nav className={styles.navigation} role="navigation">
           <Link to="/" className={styles.navigation__item + ' ' + styles['navigation__item--logo']} activeClassName={styles['navigation__item--active']}>Ninja Ocean</Link>
-          { this.props.UserStore.user.get('authenticated') ? (
+          { this.props.user.authenticated ? (
             <Link onClick={this._onLogout} className={styles.navigation__item} to="/logout">Logout</Link>
           ) : (
             <Link className={styles.navigation__item} to="/login">Log in</Link>
@@ -27,7 +27,7 @@ class Navigation extends React.Component {
 
 }
 
-Navigation.propTypes = { UserStore: React.PropTypes.object };
+Navigation.propTypes = { user: React.PropTypes.object };
 
 function mapStateToProps(state) {
   return {

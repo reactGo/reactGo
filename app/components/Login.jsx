@@ -27,7 +27,7 @@ class Login extends React.Component {
     if (this.props.user.authenticated) {
       renderedResult = (<h1 className={styles.login__header}>You are logged in amigo</h1>);
     } else {
-      if (this.props.user.get.isWaiting) {
+      if (this.props.user.isWaiting) {
         renderedResult = (<h1 className={styles.login__header}>Waiting ...</h1>);
       } else {
         renderedResult = (

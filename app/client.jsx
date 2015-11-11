@@ -12,8 +12,8 @@ Iso.bootstrap((state, _, container) => {
   let store = configureStore(state);
 
   ReactDOM.render(
-  	<Provider store={store}>
-  		{() => <ReduxRouter />}
+    <Provider store={store}>
+      <ReduxRouter />
 		</Provider>, container);
 
   if (process.env.NODE_ENV !== 'production') {
