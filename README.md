@@ -17,19 +17,25 @@ Boilerplate for React application with webpack using alt's Flux running on a nod
 
 ## Features:
 ### We now have two Flux implementations in this repository:
-1. Isomorphic Flux using:
+Isomorphic Flux using:
+
 On master branch:
- - [redux](https://github.com/rackt)
+ - [redux](https://github.com/rackt/redux)
+ - [react-router](https://github.com/rackt/react-router)
+
 On [flux/alt](https://github.com/choonkending/react-webpack-node/tree/flux/alt) branch:
  - [alt](https://github.com/goatslacker/alt) as my Flux implementation
  - [iso](https://github.com/goatslacker/iso) to help with bootstrapping data for isomorphic Flux
  - [react-router](https://github.com/rackt/react-router)
-2. Stores storing data using [ImmutableJS](https://github.com/facebook/immutable-js) data structures - currently only on [flux/alt](https://github.com/choonkending/react-webpack-node/tree/flux/alt)
-3. [Css Modules](https://github.com/webpack/css-loader#css-modules)
-4. Webpack [config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack/webpack.config.js)
-5. Express server
-6. Mongoose for MongoDB
-7. Procfile to enable deployment to Heroku.
+
+Note: If you have previously used an alt implementation of this repository, please refer to this branch. I will not be updating it as frequently as master, but definitely welcome suggestions!
+
+1. Stores storing data using [ImmutableJS](https://github.com/facebook/immutable-js) data structures - currently only on [flux/alt](https://github.com/choonkending/react-webpack-node/tree/flux/alt)
+2. [Css Modules](https://github.com/webpack/css-loader#css-modules)
+3. Webpack [config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack/webpack.config.js)
+4. Express server
+5. Mongoose for MongoDB
+6. Procfile to enable deployment to Heroku.
 
 ## Why redux?
 I'm really a fan of this implementation. The main principles of having:
