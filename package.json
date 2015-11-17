@@ -20,8 +20,7 @@
   "devDependencies": {
     "react-hot-loader": "^1.2.8",
     "webpack-dev-server": "^1.10.1",
-    "redux-devtools": "^2.1.5",
-    "redux-logger": "^2.0.3"
+    "redux-devtools": "^2.1.5"
   },
   "engines": {
     "node": "0.10.x"
@@ -70,6 +69,7 @@
     "react-redux": "^3.1.0",
     "react-router": "1.0.0-rc1",
     "redux": "^3.0.2",
+    "redux-logger": "^2.0.3",
     "redux-router": "^1.0.0-beta3",
     "redux-thunk": "^1.0.0",
     "sass-loader": "^1.0.2",
