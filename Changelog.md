@@ -1,3 +1,9 @@
+1.3
+=====
+- Breaking changes (at least for master):
+  - We will be using Redux in our master branch. We know a lot more work needs to be done to make this more boilerplate-y.
+  - alt is now on the [flux/alt](https://github.com/choonkending/react-webpack-node/tree/flux/alt) branch.
+
 1.2.1
 ======
 - React v0.14
