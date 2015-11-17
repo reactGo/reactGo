@@ -1,13 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Immutable from 'immutable';
-
-import UserActions from 'actions/UserActions';
-import UserStore from 'stores/UserStore';
-
 import styles from 'scss/components/_login';
-
-export default class Login extends React.Component {
+import { manualLogin } from 'redux/actions/users';
+import { connect } from 'react-redux';
+class Login extends React.Component {
   /*
    * This replaces getInitialState. Likewise getDefaultProps and propTypes are just
    * properties on the constructor
@@ -15,27 +11,12 @@ export default class Login extends React.Component {
    */
   constructor(props) {
     super(props);
-    this.state = UserStore.getState();
-  }
-
-  componentDidMount() {
-    UserStore.listen(this._onChange);
-  }
-
-  componentWillUnmount() {
-    UserStore.unlisten(this._onChange);
-  }
-
-  _onChange = () => {
-    this.setState({
-      user: UserStore.getState().user
-    });
   }
 
   _onLoginSubmit = () => {
     const email = ReactDOM.findDOMNode(this.refs.email).value;
     const password = ReactDOM.findDOMNode(this.refs.password).value;
-    UserActions.manuallogin({
+    this.manuallogin({
       email: email,
       password: password
     });
@@ -43,10 +24,10 @@ export default class Login extends React.Component {
 
   render() {
     let renderedResult;
-    if (this.state.user.get('authenticated')) {
+    if (this.props.user.authenticated) {
       renderedResult = (<h1 className={styles.login__header}>You are logged in amigo</h1>);
     } else {
-      if (this.state.user.get('isWaiting')) {
+      if (this.props.user.isWaiting) {
         renderedResult = (<h1 className={styles.login__header}>Waiting ...</h1>);
       } else {
         renderedResult = (
@@ -72,6 +53,19 @@ export default class Login extends React.Component {
         </div>
     );
   }
+
+  manuallogin = (data) => {
+    this.props.dispatch(manualLogin(data));
+  }
 }
 
-Login.propTypes = { user: React.PropTypes.instanceOf(Immutable.Map) };
+Login.propTypes = { user: React.PropTypes.object, dispatch: React.PropTypes.func };
+
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+}
+
+export default connect(mapStateToProps)(Login);
+

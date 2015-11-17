@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { RoutingContext, match } from 'react-router'
 import createLocation from 'history/lib/createLocation';
+import { Provider } from 'react-redux';
 import Iso from 'iso';
-
-import alt from 'altInstance';
 import routes from 'routes.jsx';
 import html from 'base.html';
+import configureStore from 'redux/store/configureStore'
 
 /*
  * @param {AltObject} an instance of the Alt object
@@ -14,10 +14,10 @@ import html from 'base.html';
  * @param {Object} Data to bootstrap our altStores with
  * @param {Object} req passed from Express/Koa server
  */
-const renderToMarkup = (alt, state, req, res) => {
+const renderToMarkup = (store, req, res) => {
   let markup, content;
   let location = new createLocation(req.url);
-  alt.bootstrap(state);
+
   match({ routes, location }, (error, redirectLocation, renderProps) => {
     if (redirectLocation)
       res.redirect(301, redirectLocation.pathname + redirectLocation.search)
@@ -26,8 +26,11 @@ const renderToMarkup = (alt, state, req, res) => {
     else if (renderProps == null)
       res.send(404, 'Not found')
     else
-      content = ReactDOMServer.renderToString(<RoutingContext {...renderProps} />);
-      markup = Iso.render(content, alt.flush());
+      content = ReactDOMServer.renderToString(
+        <Provider store={store}>
+          <RoutingContext {...renderProps} />
+        </Provider> );
+      markup = Iso.render(content, store.getState());
   });
 
   return markup;
@@ -39,6 +42,7 @@ const renderToMarkup = (alt, state, req, res) => {
  * and pass it into the Router.run function.
  */
 export default function render(state, req, res) {
-  const markup = renderToMarkup(alt, state, req, res);
+  let store = configureStore(state);
+  const markup = renderToMarkup(store, req, res);
   return html.replace('CONTENT', markup);
 };

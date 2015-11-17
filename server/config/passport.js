@@ -9,10 +9,12 @@ var google = require('./passport/google');
 module.exports = function(app, passport, config) {
   // serialize sessions
   passport.serializeUser(function(user, done) {
+    console.log('serialize')
     done(null, user.id);
   });
 
   passport.deserializeUser(function(id, done) {
+    console.log('deserializeUser')
     User.findById(id, function(err, user) {
       done(err, user);
     });
