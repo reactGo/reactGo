@@ -9,24 +9,37 @@
 
 Boilerplate for React application with webpack using alt's Flux running on a node express server.
 
-| React + alt + Immutable + Express + mongoose + MongoDB |
+| React + Redux / alt + Immutable + Express + mongoose + MongoDB |
 
 ## Demo site:
 
 [https://react-webpack-node.herokuapp.com/](https://react-webpack-node.herokuapp.com/)
 
 ## Features:
-
+### We now have two Flux implementations in this repository:
 1. Isomorphic Flux using:
+On master branch:
+ - [redux](https://github.com/rackt)
+On [flux/alt](https://github.com/choonkending/react-webpack-node/tree/flux/alt) branch:
  - [alt](https://github.com/goatslacker/alt) as my Flux implementation
  - [iso](https://github.com/goatslacker/iso) to help with bootstrapping data for isomorphic Flux
  - [react-router](https://github.com/rackt/react-router)
-2. Stores storing data using [ImmutableJS](https://github.com/facebook/immutable-js) data structures
+2. Stores storing data using [ImmutableJS](https://github.com/facebook/immutable-js) data structures - currently only on [flux/alt](https://github.com/choonkending/react-webpack-node/tree/flux/alt)
 3. [Css Modules](https://github.com/webpack/css-loader#css-modules)
 4. Webpack [config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack/webpack.config.js)
 5. Express server
 6. Mongoose for MongoDB
 7. Procfile to enable deployment to Heroku.
+
+## Why redux?
+I'm really a fan of this implementation. The main principles of having:
+
+- a single store
+- state being read-only (you have to express an intent to mutate being creating actions)
+- mutations are written as pure functions
+
+make it very fun and easy to write predictable code! Redux also has a really good ecosystem and strong support from the community.
+
 
 ## Why alt?
 
@@ -181,10 +194,7 @@ This is because we do not use ExtractTextPlugin in our dev config. It won't happ
 ## Todo:
 
 1. Use csrf tokens for form login
-2. Look into using [Alt Container](http://alt.js.org/docs/components/altContainer/) and other cool utils alt is using.
-3. Experiment with [CSS-loader](https://github.com/webpack/css-loader#local-scope) further to potentially incorporate locally scoped css.
-4. react-hot-loader
-4. Let me know!
+2. Let me know!
 
 ## How to Contribute:
 

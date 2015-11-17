@@ -5,7 +5,7 @@ import styles from 'scss/components/_vote';
 export default class MainSection extends React.Component {
   render() {
     const topics = this.props.topics ? this.props.topics.map((topic, key) => {
-      return (<TopicItem id={key} key={key} text={topic.text} />);
+      return (<TopicItem index={key} id={topic.id} key={key} text={topic.text} />);
     })
     : null;
     return (

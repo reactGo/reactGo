@@ -19,10 +19,11 @@ class Vote extends React.Component {
 }
 
 Vote.propTypes = {
-  topics: React.PropTypes.object, newTopic: React.PropTypes.string
+  topics: React.PropTypes.array, newTopic: React.PropTypes.string
 };
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
     topics: state.topic.topics,
     newTopic: state.topic.newTopic
