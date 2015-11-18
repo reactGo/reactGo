@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createTopic, typing } from 'redux/actions/topics';
+import { createTopic, typing } from 'actions/topics';
 import styles from 'scss/components/_entrybox';
 import TopicTextInput from 'components/TopicTextInput';
 

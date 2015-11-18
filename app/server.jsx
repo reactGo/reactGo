@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import Iso from 'iso';
 import routes from 'routes.jsx';
 import html from 'base.html';
-import configureStore from 'redux/store/configureStore'
+import configureStore from 'store/configureStore'
 
 /*
  * @param {AltObject} an instance of the Alt object

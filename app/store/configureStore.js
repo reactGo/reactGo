@@ -1,5 +1,5 @@
 import { createStore, compose, applyMiddleware } from 'redux';
-import rootReducer from '../reducers';
+import rootReducer from 'reducers';
 import { reduxReactRouter } from 'redux-router';
 import createHistory from 'history/lib/createBrowserHistory';
 import routes from 'routes.jsx';
@@ -33,8 +33,8 @@ export default function configureStore(initialState) {
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept('../reducers', () => {
-      const nextReducer = require('../reducers');
+    module.hot.accept('reducers', () => {
+      const nextReducer = require('reducers');
       store.replaceReducer(nextReducer);
     });
   }

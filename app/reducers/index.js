@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import user from './user';
-import topic from './topic';
+import user from 'reducers/user';
+import topic from 'reducers/topic';
 import { routerStateReducer as router } from 'redux-router';
 
 const rootReducer = combineReducers({

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Iso from 'iso';
 import { Provider } from 'react-redux';
 import { ReduxRouter } from 'redux-router';
-import configureStore from 'redux/store/configureStore';
+import configureStore from 'store/configureStore';
 
 /*
  * Client side bootstrap with iso and redux

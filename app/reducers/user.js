@@ -7,7 +7,7 @@ import {
   SIGNUP_ERROR_USER,
   LOGOUT_USER,
   LOGOUT_SUCCESS_USER,
-  LOGOUT_ERROR_USER } from '../constants/actionTypes';
+  LOGOUT_ERROR_USER } from 'constants/actionTypes';
 
 export default function user(state = { isWaiting: false, authenticated: false }, action) {
   switch (action.type) {

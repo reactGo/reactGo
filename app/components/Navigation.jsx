@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { logOut } from 'redux/actions/users';
+import { logOut } from 'actions/users';
 import styles from 'scss/components/_navigation';
 
 class Navigation extends React.Component {

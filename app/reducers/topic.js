@@ -3,7 +3,7 @@ import {
   CREATE_TOPIC,
   DESTROY_TOPIC,
   INCREMENT_COUNT,
-  DECREMENT_COUNT } from '../constants/actionTypes';
+  DECREMENT_COUNT } from 'constants/actionTypes';
 
 
 export default function topic(state = {}, action) {

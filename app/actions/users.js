@@ -1,4 +1,4 @@
-import * as types from '../constants/actionTypes';
+import * as types from 'constants/actionTypes';
 import UserWebAPIUtils from 'utils/UserWebAPIUtils';
 
 // Log In Action Creators
