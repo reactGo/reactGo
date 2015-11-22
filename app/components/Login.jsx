@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styles from 'scss/components/_login';
-import { manualLogin } from 'redux/actions/users';
+import { manualLogin } from 'actions/users';
 import { connect } from 'react-redux';
 class Login extends React.Component {
   /*

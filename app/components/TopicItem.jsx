@@ -1,5 +1,5 @@
 import React from 'react';
-import { incrementCount, decrementCount, destroyTopic } from 'redux/actions/topics';
+import { incrementCount, decrementCount, destroyTopic } from 'actions/topics';
 import { connect } from 'react-redux';
 import styles from 'scss/components/_vote';
 
@@ -31,7 +31,8 @@ class TopicItem extends React.Component {
 TopicItem.propTypes = {
   text: React.PropTypes.string,
   id: React.PropTypes.string,
-  dispatch: React.PropTypes.fun
+  dispatch: React.PropTypes.fun,
+  index: React.PropTypes.string
 };
 
 export default connect()(TopicItem);

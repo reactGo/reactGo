@@ -15,6 +15,7 @@ var commonLoaders = [
     loader: "babel-loader?stage=0",
     include: path.join(__dirname, "..",  "app")
   },
+  { test: /\.json$/, loader: "json-loader" },
   { test: /\.png$/, loader: "url-loader" },
   { test: /\.jpg$/, loader: "file-loader" },
   { test: /\.html$/, loader: "html-loader" },
@@ -76,10 +77,12 @@ module.exports = [
         "app", "node_modules"
       ]
     },
+
     plugins: [
         // extract inline css from modules into separate files
         new ExtractTextPlugin("styles/main.css"),
-        new webpack.optimize.UglifyJsPlugin()
+        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.IgnorePlugin(/vertx/)
     ]
   }, {
     // The configuration for the server-side rendering
@@ -111,7 +114,8 @@ module.exports = [
     plugins: [
         // extract inline css from modules into separate files
         new ExtractTextPlugin("styles/main.css"),
-        new webpack.optimize.UglifyJsPlugin()
+        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.IgnorePlugin(/vertx/)
     ]
   }
 ];
