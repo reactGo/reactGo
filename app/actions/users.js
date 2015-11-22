@@ -1,5 +1,30 @@
+// Including es6-promise so isomorphic fetch will work
+import 'es6-promise';
+import fetch from 'isomorphic-fetch';
+
 import * as types from 'constants/actionTypes';
-import UserWebAPIUtils from 'utils/UserWebAPIUtils';
+
+// Note this can be extracted out later
+/*
+ * Utility function to make AJAX requests using isomorphic fetch.
+ * You can also use jquery's $.ajax({}) if you do not want to use the
+ * /fetch API.
+ * @param Object Data you wish to pass to the server
+ * @param String HTTP method, e.g. post, get, put, delete
+ * @param String endpoint - defaults to /login
+ * @return Promise
+ */
+function makeUserRequest(method, data, api='/login') {
+  return fetch(api, {
+    method: method,
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+}
+
 
 // Log In Action Creators
 function beginLogin() {
@@ -14,7 +39,7 @@ function loginError() {
   return { type: types.LOGIN_ERROR_USER };
 }
 
-// Sign Uo Action Creators
+// Sign Up Action Creators
 function signUpError() {
   return { type: types.SIGNUP_ERROR_USER };
 }
@@ -43,31 +68,29 @@ function logoutError() {
 export function manualLogin(data) {
   return dispatch => {
     dispatch(beginLogin());
-    return UserWebAPIUtils.manuallogin(data)
-    .then((response, textStatus) => {
-      if (textStatus === 'success') {
-        // Dispatch another event for successful login
-        dispatch(loginSuccess());
-      }
-    }, () => {
-      // Dispatch another event for a bad login
-      dispatch(loginError());
-    });
+
+    return makeUserRequest('post', data, '/login')
+      .then( response => {
+        if (response.status === 200) {
+          dispatch(loginSuccess());
+        } else {
+          dispatch(loginError());
+        }
+      });
   };
 }
 
-export function signUp() {
+export function signUp(data) {
   return dispatch => {
     dispatch(beginSignUp());
-    return UserWebAPIUtils.signUp()
-      .then((response, textStatus) => {
-        if (textStatus === 'success') {
-          // Dispatch another event for successful login
+
+    return makeUserRequest('post', data, '/signup')
+      .then( response => {
+        if (response.status === 200) {
           dispatch(signUpSuccess());
-        }
-      }, () => {
-        // Dispatch another event for a bad login
+        } else {
           dispatch(signUpError());
+        }
       });
   };
 }
@@ -75,15 +98,20 @@ export function signUp() {
 export function logOut() {
   return dispatch => {
     dispatch(beginLogout());
-    return UserWebAPIUtils.logout()
-      .then((response, textStatus) => {
-        if (textStatus === 'success') {
-          // Dispatch another event for successful login
+
+    return fetch('/logout', {
+      method: 'get',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      }
+    })
+      .then( response => {
+        if (response.status === 200) {
           dispatch(logoutSuccess());
-        }
-      }, () => {
-        // Dispatch another event for a bad login
+        } else {
           dispatch(logoutError());
+        }
       });
   };
 }

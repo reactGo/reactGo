@@ -6,16 +6,14 @@ import styles from 'scss/components/_navigation';
 
 class Navigation extends React.Component {
 
-  _onLogout = () => {
-    this.dispatch(logOut());
-  }
-
   render() {
+    const { dispatch } = this.props;
     return (
       <nav className={styles.navigation} role="navigation">
           <Link to="/" className={styles.navigation__item + ' ' + styles['navigation__item--logo']} activeClassName={styles['navigation__item--active']}>Ninja Ocean</Link>
           { this.props.user.authenticated ? (
-            <Link onClick={this._onLogout} className={styles.navigation__item} to="/logout">Logout</Link>
+            <Link onClick={()=> dispatch(logOut())} 
+              className={styles.navigation__item} to="/logout">Logout</Link>
           ) : (
             <Link className={styles.navigation__item} to="/login">Log in</Link>
           )}

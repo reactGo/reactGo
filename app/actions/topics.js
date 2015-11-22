@@ -4,13 +4,13 @@ import fetch from 'isomorphic-fetch';
 import * as types from 'constants/actionTypes';
 
 /*
- * Utility function to make AJAX requests using isomorphic fetch. 
+ * Utility function to make AJAX requests using isomorphic fetch.
  * You can also use jquery's $.ajax({}) if you do not want to use the
  * /fetch API.
  * @param Object Data you wish to pass to the server
  * @param String HTTP method, e.g. post, get, put, delete
  * @param String endpoint
- * @return Promise 
+ * @return Promise
  */
 function makeTopicRequest(method, data, api='/topic') {
   return fetch(api, {
@@ -61,7 +61,6 @@ function create(data) {
 // This function does not need to be pure, and thus allowed
 // to have side effects, including executing asynchronous API calls.
 export function createTopic(text) {
-  
   return dispatch => {
     if (text.trim().length <= 0) return;
     const data = {
@@ -77,13 +76,11 @@ export function createTopic(text) {
       .then(response => {
         // do something with the ajax response
         // You can also dispatch here
-    });
+      });
   };
-  
 }
 
 export function incrementCount(id, index) {
-
   return dispatch => {
     dispatch(increment(index));
 
@@ -96,7 +93,6 @@ export function incrementCount(id, index) {
         // do something with the ajax response
         // You can also dispatch here
       });
-
   };
 }
 
