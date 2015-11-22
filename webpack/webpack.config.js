@@ -81,9 +81,7 @@ module.exports = [
     plugins: [
         // extract inline css from modules into separate files
         new ExtractTextPlugin("styles/main.css"),
-        // new webpack.optimize.UglifyJsPlugin(),
-        // ignoring vertx for es6-promise
-        // https://github.com/jakearchibald/es6-promise/issues/100
+        new webpack.optimize.UglifyJsPlugin(),
         new webpack.IgnorePlugin(/vertx/)
     ]
   }, {
@@ -116,9 +114,7 @@ module.exports = [
     plugins: [
         // extract inline css from modules into separate files
         new ExtractTextPlugin("styles/main.css"),
-        // new webpack.optimize.UglifyJsPlugin(),
-        // ignoring vertx for es6-promise
-        // https://github.com/jakearchibald/es6-promise/issues/100
+        new webpack.optimize.UglifyJsPlugin(),
         new webpack.IgnorePlugin(/vertx/)
     ]
   }
