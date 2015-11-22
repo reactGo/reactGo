@@ -15,6 +15,7 @@ var commonLoaders = [
     loader: "babel-loader?stage=0",
     include: path.join(__dirname, "..",  "app")
   },
+  { test: /\.json$/, loader: "json-loader" },
   { test: /\.png$/, loader: "url-loader" },
   { test: /\.jpg$/, loader: "file-loader" },
   { test: /\.html$/, loader: "html-loader" },
