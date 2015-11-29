@@ -24,7 +24,7 @@ render(
     <Router history={history}>
       {routes}
     </Router>
-	</Provider>, document.getElementById('app'));
+  </Provider>, document.getElementById('app'));
 
 if (process.env.NODE_ENV !== 'production') {
 // Use require because imports can't be conditional.

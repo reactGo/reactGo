@@ -1,11 +1,10 @@
 import React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import { renderToString } from 'react-dom/server';
 import { RoutingContext, match } from 'react-router'
 import createLocation from 'history/lib/createLocation';
 import { Provider } from 'react-redux';
-import Iso from 'iso';
 import routes from 'routes.jsx';
-import html from 'base.html';
+import template from 'base.html';
 import configureStore from 'store/configureStore'
 
 /*
@@ -26,11 +25,10 @@ const renderToMarkup = (store, req, res) => {
     else if (renderProps == null)
       res.send(404, 'Not found')
     else
-      content = ReactDOMServer.renderToString(
+      content = renderToString(
         <Provider store={store}>
           <RoutingContext {...renderProps} />
         </Provider> );
-      markup = Iso.render(content, store.getState());
   });
 
   return markup;
@@ -41,8 +39,30 @@ const renderToMarkup = (store, req, res) => {
  * We grab the state passed in from the server and the req object from Express/Koa
  * and pass it into the Router.run function.
  */
-export default function render(state, req, res) {
-  let store = configureStore(state);
-  const markup = renderToMarkup(store, req, res);
-  return html.replace('CONTENT', markup);
+export default function render(req, res) {
+  // let store = configureStore(state);
+  // const markup = renderToMarkup(store, req, res);
+  // return html.replace('CONTENT', markup);
+  // Note that req.url here should be the full URL path from
+  // the original request, including the query string.
+  match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
+    if (error) {
+      res.status(500).send(error.message);
+    } else if (redirectLocation) {
+      res.redirect(302, redirectLocation.pathname + redirectLocation.search);
+    } else if (renderProps) {
+      // Please change this later
+      const initialState = undefined;
+      const html = renderToString(
+      <Provider store={store}>
+        <RoutingContext {...renderProps} />
+      </Provider>);
+      const renderedPage = `html`;
+
+      res.status(200).send();
+    } else {
+      res.status(404).send('Not Found');
+    }
+    
+  });
 };
