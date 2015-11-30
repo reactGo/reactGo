@@ -22,7 +22,7 @@
     "webpack-dev-server": "^1.10.1"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": "5.x"
   },
   "dependencies": {
     "alt": "^0.17.8",
