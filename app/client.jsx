@@ -1,14 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router';
-import { syncReduxAndRouter, routeReducer } from 'redux-simple-router';
+import { Router } from 'react-router';
+import { syncReduxAndRouter } from 'redux-simple-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import routes from 'routes.jsx';
-import rootReducer from 'reducers';
 import configureStore from 'store/configureStore';
 
-// Grab the state from a global injected into 
+// Grab the state from a global injected into
 // server-generated HTML
 const initialState = window.__INITIAL_STATE__;
 

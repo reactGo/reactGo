@@ -23,7 +23,6 @@ Vote.propTypes = {
 };
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     topics: state.topic.topics,
     newTopic: state.topic.newTopic
