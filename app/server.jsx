@@ -73,8 +73,12 @@ export default function render(req, res) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
       fetchTopics(apiResult => {
-        // Please change this later
-        const store = configureStore(undefined);
+        const store = configureStore({
+          // reducer: {initialState}
+          topic: {
+            topics: apiResult
+          }
+        });
         const initialState = store.getState();
         const renderedContent = renderToString(
         <Provider store={store}>
