@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import { incrementCount, decrementCount, destroyTopic } from 'actions/topics';
 import { connect } from 'react-redux';
 import styles from 'scss/components/_vote';
 
-class TopicItem extends React.Component {
+class TopicItem extends Component {
   _onIncrement = () => {
     this.props.dispatch(incrementCount(this.props.id, this.props.index));
   }
@@ -29,10 +29,10 @@ class TopicItem extends React.Component {
 }
 
 TopicItem.propTypes = {
-  text: React.PropTypes.string,
-  id: React.PropTypes.string,
-  dispatch: React.PropTypes.fun,
-  index: React.PropTypes.string
+  text: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired
 };
 
 export default connect()(TopicItem);

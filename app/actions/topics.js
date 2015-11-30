@@ -72,11 +72,11 @@ export function createTopic(text) {
     // First dispatch an optimistic update
     dispatch(create(data));
 
-    return makeTopicRequest('post', data)
-      .then(response => {
-        // do something with the ajax response
-        // You can also dispatch here
-      });
+    return makeTopicRequest('post', data);
+    // do something with the ajax response
+    // You can also dispatch here
+    // E.g.
+    // .then(response => {});
   };
 }
 
@@ -88,11 +88,11 @@ export function incrementCount(id, index) {
         id: id,
         isFull: false,
         isIncrement: true
-      })
-      .then(response => {
-        // do something with the ajax response
-        // You can also dispatch here
       });
+    // do something with the ajax response
+    // You can also dispatch here
+    // E.g.
+    // .then(response => {});
   };
 }
 
@@ -103,11 +103,11 @@ export function decrementCount(id, index) {
         id: id,
         isFull: false,
         isIncrement: false
-      })
-      .then(response => {
-        // do something with the ajax response
-        // You can also dispatch here
       });
+    // do something with the ajax response
+    // You can also dispatch here
+    // E.g.
+    // .then(response => {});
   };
 }
 
@@ -116,11 +116,11 @@ export function destroyTopic(id, index) {
     dispatch(destroy(index));
     return makeTopicRequest('delete', {
         id: id
-      })
-      .then(response => {
-        // do something with the ajax response
-        // You can also dispatch here
       });
+    // do something with the ajax response
+    // You can also dispatch here
+    // E.g.
+    // .then(response => {});
   };
 }
 
