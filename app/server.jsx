@@ -73,7 +73,7 @@ export default function render(req, res) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
       fetchTopics(apiResult => {
-        const authenticated = req.user ? true: false;
+        const authenticated = req.isAuthenticated();
         const store = configureStore({
           // reducer: {initialState}
           topic: {
