@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 import user from 'reducers/user';
 import topic from 'reducers/topic';
-import { routerStateReducer as router } from 'redux-router';
+import { routeReducer as routing } from 'redux-simple-router';
 
+// Combine reducers with routeReducer which keeps track of
+// router state
 const rootReducer = combineReducers({
   user,
   topic,
-  router
+  routing
 });
 
 export default rootReducer;

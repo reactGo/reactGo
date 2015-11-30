@@ -22,7 +22,7 @@
     "webpack-dev-server": "^1.10.1"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": "5.x"
   },
   "dependencies": {
     "alt": "^0.17.8",
@@ -47,15 +47,15 @@
     "express-session": "^1.10.2",
     "extract-text-webpack-plugin": "^0.8.1",
     "file-loader": "^0.8.4",
-    "history": "^1.9.1",
+    "history": "^1.13.1",
     "html-loader": "^0.3.0",
     "http-proxy": "^1.11.1",
     "immutable": "^3.7.4",
     "invariant": "^2.1.2",
-    "iso": "^4.1.0",
     "isomorphic-fetch": "^2.2.0",
     "jquery": "^2.1.4",
     "json-loader": "^0.5.3",
+    "kerberos": "0.0.17",
     "keymirror": "^0.1.1",
     "lodash": "^3.9.3",
     "method-override": "^2.3.1",
@@ -69,11 +69,11 @@
     "react-dom": "^0.14.2",
     "react-helmet": "2.1.1",
     "react-redux": "^3.1.0",
-    "react-router": "1.0.0-rc1",
+    "react-router": "^1.0.0",
     "redux": "^3.0.2",
     "redux-devtools": "^2.1.5",
     "redux-logger": "^2.0.3",
-    "redux-router": "^1.0.0-beta3",
+    "redux-simple-router": "0.0.10",
     "redux-thunk": "^1.0.0",
     "sass-loader": "^1.0.2",
     "style-loader": "^0.12.3",

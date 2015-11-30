@@ -9,59 +9,53 @@ import {
   LOGOUT_SUCCESS_USER,
   LOGOUT_ERROR_USER } from 'constants/actionTypes';
 
-export default function user(state = { isWaiting: false, authenticated: false }, action) {
+export default function user(state={
+  isWaiting: false,
+  authenticated: false }, action={}) {
   switch (action.type) {
-  case MANUAL_LOGIN_USER:
-    return Object.assign({}, state,
-      { isWaiting: true }
-    );
-  case LOGIN_SUCCESS_USER:
-    return Object.assign({}, state,
-      {
+    case MANUAL_LOGIN_USER:
+      return Object.assign({}, state, {
+        isWaiting: true
+      });
+    case LOGIN_SUCCESS_USER:
+      return Object.assign({}, state, {
         isWaiting: false,
-        authenticated: true }
-    );
-  case LOGIN_ERROR_USER:
-    return Object.assign({}, state,
-      {
+        authenticated: true
+      });
+    case LOGIN_ERROR_USER:
+      return Object.assign({}, state, {
         isWaiting: false,
-        authenticated: false }
-    );
-  case SIGNUP_USER:
-    return Object.assign({}, state,
-     {
-        isWaiting: true}
-    );
-  case SIGNUP_SUCCESS_USER:
-    return Object.assign({}, state,
-     {
+        authenticated: false
+      });
+    case SIGNUP_USER:
+      return Object.assign({}, state, {
+        isWaiting: true
+      });
+    case SIGNUP_SUCCESS_USER:
+      return Object.assign({}, state, {
         isWaiting: false,
-        authenticated: true }
-    );
-  case SIGNUP_ERROR_USER:
-    return Object.assign({}, state,
-     {
+        authenticated: true
+      });
+    case SIGNUP_ERROR_USER:
+      return Object.assign({}, state, {
         isWaiting: false,
-        authenticated: false }
-    );
-  case LOGOUT_USER:
-    return Object.assign({}, state,
-     {
-       isWaiting: true }
-    );
-  case LOGOUT_SUCCESS_USER:
-    return Object.assign({}, state,
-     {
+        authenticated: false
+      });
+    case LOGOUT_USER:
+      return Object.assign({}, state, {
+        isWaiting: true
+      });
+    case LOGOUT_SUCCESS_USER:
+      return Object.assign({}, state, {
         isWaiting: false,
-        authenticated: false }
-    );
-  case LOGOUT_ERROR_USER:
-    return Object.assign({}, state,
-     {
+        authenticated: false
+      });
+    case LOGOUT_ERROR_USER:
+      return Object.assign({}, state, {
         isWaiting: false,
-        authenticated: true }
-    );
-  default:
-    return state;
+        authenticated: true
+      });
+    default:
+      return state;
   }
 }

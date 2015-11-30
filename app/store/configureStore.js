@@ -1,8 +1,5 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import rootReducer from 'reducers';
-import { reduxReactRouter } from 'redux-router';
-import createHistory from 'history/lib/createBrowserHistory';
-import routes from 'routes.jsx';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import { devTools } from 'redux-devtools';
@@ -16,7 +13,6 @@ let createStoreWithMiddleware;
 if (canUseDOM) {
   createStoreWithMiddleware = compose(
     applyMiddleware(thunk),
-    reduxReactRouter({ routes, createHistory }),
     applyMiddleware(createLogger()),
     devTools()
   )(createStore);

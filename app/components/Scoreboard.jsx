@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import TopicCountItem from 'components/TopicCountItem';
 
 import styles from 'scss/components/_vote';
 
-export default class Scoreboard extends React.Component {
+export default class Scoreboard extends Component {
   render() {
     const topicListItems = this.props.topics.map((topic, key) => {
       return (<TopicCountItem key={key} title={topic.text} count={topic.count}/>);
@@ -19,4 +19,6 @@ export default class Scoreboard extends React.Component {
   }
 }
 
-Scoreboard.propTypes = { topics: React.PropTypes.object };
+Scoreboard.propTypes = {
+  topics: PropTypes.array.isRequired
+};

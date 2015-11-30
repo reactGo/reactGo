@@ -6,7 +6,10 @@ import {
   DECREMENT_COUNT } from 'constants/actionTypes';
 
 
-export default function topic(state = {}, action) {
+export default function topic(state = {
+  topics: [],
+  newTopic: ''
+}, action) {
   switch (action.type) {
     case TYPING:
       return Object.assign({}, state,

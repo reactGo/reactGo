@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import TopicItem from 'components/TopicItem';
 import styles from 'scss/components/_vote';
 
-export default class MainSection extends React.Component {
+export default class MainSection extends Component {
   render() {
     const topics = this.props.topics ? this.props.topics.map((topic, key) => {
       return (<TopicItem index={key} id={topic.id} key={key} text={topic.text} />);
@@ -17,4 +17,6 @@ export default class MainSection extends React.Component {
   }
 }
 
-MainSection.propTypes = { topics: React.PropTypes.object };
+MainSection.propTypes = {
+  topics: PropTypes.array.isRequired
+};
