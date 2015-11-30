@@ -4,35 +4,42 @@ import { RoutingContext, match } from 'react-router'
 import createLocation from 'history/lib/createLocation';
 import { Provider } from 'react-redux';
 import routes from 'routes.jsx';
-import template from 'base.html';
-import configureStore from 'store/configureStore'
+import configureStore from 'store/configureStore';
 
 /*
- * @param {AltObject} an instance of the Alt object
- * @param {ReactObject} routes specified in react-router
- * @param {Object} Data to bootstrap our altStores with
- * @param {Object} req passed from Express/Koa server
+ * Our html template file
+ * @param {String} renderedContent
+ * @param initial state of the store, so that the client can be hydrated with the same state as the server
+ * @param head - optional arguments to be placed into the head
  */
-const renderToMarkup = (store, req, res) => {
-  let markup, content;
-  let location = new createLocation(req.url);
+function renderFullPage(renderedContent, initialState, head={
+  title: '<title>React Webpack Node</title>',
+  meta: '<meta name="viewport" content="width=device-width, initial-scale=1" />',
+  link: '<link rel="stylesheet" href="/assets/styles/main.css"/>'
+}) {
+  return `
+  <!doctype html>
+    <html lang="">
 
-  match({ routes, location }, (error, redirectLocation, renderProps) => {
-    if (redirectLocation)
-      res.redirect(301, redirectLocation.pathname + redirectLocation.search)
-    else if (error)
-      res.send(500, error.message)
-    else if (renderProps == null)
-      res.send(404, 'Not found')
-    else
-      content = renderToString(
-        <Provider store={store}>
-          <RoutingContext {...renderProps} />
-        </Provider> );
-  });
+    <head>
+        ${head.title}
 
-  return markup;
-};
+        ${head.meta}
+
+        ${head.link}
+    </head>
+
+    <div id="app">${renderedContent}</div>
+
+    <script>
+      window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
+    </script>
+    <script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>
+    </body>
+    </html>
+
+  `;  
+}
 
 /* 
  * Export render function to be used in server/config/routes.js
@@ -52,14 +59,15 @@ export default function render(req, res) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
       // Please change this later
-      const initialState = undefined;
-      const html = renderToString(
+      const store = configureStore(undefined);
+      const initialState = store.getState();
+      const renderedContent = renderToString(
       <Provider store={store}>
         <RoutingContext {...renderProps} />
       </Provider>);
-      const renderedPage = `html`;
 
-      res.status(200).send();
+      const renderedPage = renderFullPage(renderedContent, initialState);
+      res.status(200).send(renderedPage);
     } else {
       res.status(404).send('Not Found');
     }
