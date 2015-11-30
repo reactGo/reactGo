@@ -7,7 +7,6 @@ var users = require('../controllers/users');
 var mongoose = require('mongoose');
 var _ = require('lodash');
 var Topic = mongoose.model('Topic');
-var Header = require('../../public/assets/header.server');
 var App = require('../../public/assets/app.server');
 
 module.exports = function(app, passport) {
@@ -55,7 +54,6 @@ module.exports = function(app, passport) {
   // fetched and seed our stores with data.
   // App is a function that requires store data and url to initialize and return the React-rendered html string
   app.get('*', function (req, res, next) {
-    console.log(req.isAuthenticated());
     App(req, res);
   });
 

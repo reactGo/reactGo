@@ -6,6 +6,7 @@ import fetch from 'isomorphic-fetch';
 import { Provider } from 'react-redux';
 import routes from 'routes.jsx';
 import configureStore from 'store/configureStore';
+import headconfig from 'elements/Header';
 
 const clientConfig = {
   host: process.env.HOSTNAME || 'localhost',
@@ -90,7 +91,11 @@ export default function render(req, res) {
           <RoutingContext {...renderProps} />
         </Provider>);
 
-        const renderedPage = renderFullPage(renderedContent, initialState);
+        const renderedPage = renderFullPage(renderedContent, initialState, {
+          title: headconfig.title,
+          meta: headconfig.meta,
+          link: headconfig.link
+        });
         res.status(200).send(renderedPage);
       });
     } else {
