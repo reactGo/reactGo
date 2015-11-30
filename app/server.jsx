@@ -2,9 +2,25 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { RoutingContext, match } from 'react-router'
 import createLocation from 'history/lib/createLocation';
+import fetch from 'isomorphic-fetch';
 import { Provider } from 'react-redux';
 import routes from 'routes.jsx';
 import configureStore from 'store/configureStore';
+
+const clientConfig = {
+  host: process.env.HOSTNAME || 'localhost',
+  port: process.env.PORT || '3000'
+};
+
+
+// Fetch and call the callback function after the response
+// is converted to returned and converted to json
+function fetchTopics(callback, api='topic') {
+  fetch(`http://${clientConfig.host}:${clientConfig.port}/${api}`)
+    .then(res => res.json())
+    .then(json => callback(json));
+};
+
 
 /*
  * Our html template file
@@ -47,9 +63,7 @@ function renderFullPage(renderedContent, initialState, head={
  * and pass it into the Router.run function.
  */
 export default function render(req, res) {
-  // let store = configureStore(state);
-  // const markup = renderToMarkup(store, req, res);
-  // return html.replace('CONTENT', markup);
+
   // Note that req.url here should be the full URL path from
   // the original request, including the query string.
   match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
@@ -58,16 +72,18 @@ export default function render(req, res) {
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
-      // Please change this later
-      const store = configureStore(undefined);
-      const initialState = store.getState();
-      const renderedContent = renderToString(
-      <Provider store={store}>
-        <RoutingContext {...renderProps} />
-      </Provider>);
+      fetchTopics(apiResult => {
+        // Please change this later
+        const store = configureStore(undefined);
+        const initialState = store.getState();
+        const renderedContent = renderToString(
+        <Provider store={store}>
+          <RoutingContext {...renderProps} />
+        </Provider>);
 
-      const renderedPage = renderFullPage(renderedContent, initialState);
-      res.status(200).send(renderedPage);
+        const renderedPage = renderFullPage(renderedContent, initialState);
+        res.status(200).send(renderedPage);
+      });
     } else {
       res.status(404).send('Not Found');
     }
