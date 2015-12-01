@@ -5,6 +5,7 @@
   "repository": "https://github.com/choonkending/react-webpack-node",
   "main": "index.js",
   "scripts": {
+    "clean": "rimraf public",
     "start": "NODE_ENV=production node server/index.js",
     "dev": "NODE_ENV=development node server/index.js",
     "devHotLoader": "npm run buildHotLoader && NODE_ENV=devhotloader node server/index.js",
