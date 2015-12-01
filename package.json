@@ -17,17 +17,15 @@
   },
   "author": "Choon Ken Ding",
   "license": "MIT",
-  "devDependencies": {
-    "react-hot-loader": "^1.2.8",
-    "webpack-dev-server": "^1.10.1"
-  },
+  "devDependencies": {},
   "engines": {
     "node": "5.x"
   },
   "dependencies": {
-    "babel-core": "^5.5.4",
+    "babel-core": "^5.8.34",
     "babel-eslint": "^3.1.14",
     "babel-loader": "^5.1.4",
+    "babel-plugin-react-transform": "^1.1.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.9.3",
     "classnames": "^2.1.2",
@@ -39,7 +37,7 @@
     "es6-promise": "^3.0.2",
     "eslint": "^0.22.1",
     "eslint-loader": "^0.12.0",
-    "eslint-plugin-react": "^2.5.0",
+    "eslint-plugin-react": "^2.7.1",
     "express": "^4.12.3",
     "express-flash": "0.0.2",
     "express-session": "^1.10.2",
@@ -67,6 +65,8 @@
     "react-helmet": "2.1.1",
     "react-redux": "^3.1.0",
     "react-router": "^1.0.0",
+    "react-transform-catch-errors": "^1.0.0",
+    "react-transform-hmr": "^1.0.1",
     "redux": "^3.0.2",
     "redux-devtools": "^2.1.5",
     "redux-logger": "^2.0.3",
@@ -76,6 +76,8 @@
     "style-loader": "^0.12.3",
     "url-loader": "^0.5.6",
     "warning": "^2.0.0",
-    "webpack": "^1.9.11"
+    "webpack": "^1.9.11",
+    "webpack-dev-middleware": "^1.4.0",
+    "webpack-hot-middleware": "^2.6.0"
   }
 }
