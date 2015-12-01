@@ -12,13 +12,12 @@ var commonLoaders = [
      * Read more http://babeljs.io/docs/usage/experimental/
      */
     test: /\.js$|\.jsx$/,
-    loader: "babel-loader?stage=0",
+    loaders: ['babel'],
     include: path.join(__dirname, "..",  "app")
   },
   { test: /\.json$/, loader: "json-loader" },
   { test: /\.png$/, loader: "url-loader" },
   { test: /\.jpg$/, loader: "file-loader" },
-  { test: /\.html$/, loader: "html-loader" },
   { test: /\.scss$/,
     loader: ExtractTextPlugin.extract('style', 'css?module&localIdentName=[local]__[hash:base64:5]' +
       '&sourceMap!sass?sourceMap&outputStyle=expanded' +
@@ -49,6 +48,7 @@ module.exports = [
      *  new CommonsChunkPlugin("c-commons.js", ["pageC", "adminPageC"]);
      * ]
      */
+    devtool: "source-map",
     context: path.join(__dirname, "..", "app"),
     entry: {
       app: "./client"
@@ -62,7 +62,7 @@ module.exports = [
       publicPath: publicPath
 
     },
-    devtool: "source-map",
+    
     module: {
       preLoaders: [{
         test: /\.js$|\.jsx$/,
@@ -72,16 +72,28 @@ module.exports = [
       loaders: commonLoaders
     },
     resolve: {
-      extensions: ['', '.react.js', '.js', '.jsx', '.scss'],
+      extensions: ['', '.js', '.jsx', '.scss'],
       modulesDirectories: [
         "app", "node_modules"
       ]
     },
-
     plugins: [
+        // Order the modules and chunks by occurrence.
+        // This saves space, because often referenced modules
+        // and chunks get smaller ids.
+        new webpack.optimize.OccurenceOrderPlugin(),
         // extract inline css from modules into separate files
         new ExtractTextPlugin("styles/main.css"),
-        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+          compressor: {
+            warnings: false
+          }
+        }),
+        new webpack.DefinePlugin({
+          'process.env': {
+            'NODE_ENV': JSON.stringify('production')
+          }
+        }),
         new webpack.IgnorePlugin(/vertx/)
     ]
   }, {
@@ -105,15 +117,28 @@ module.exports = [
       loaders: commonLoaders
     },
     resolve: {
-      extensions: ['', '.react.js', '.js', '.jsx', '.scss'],
+      extensions: ['', '.js', '.jsx', '.scss'],
       modulesDirectories: [
         "app", "node_modules"
       ]
     },
     plugins: [
+        // Order the modules and chunks by occurrence.
+        // This saves space, because often referenced modules
+        // and chunks get smaller ids.
+        new webpack.optimize.OccurenceOrderPlugin(),
         // extract inline css from modules into separate files
         new ExtractTextPlugin("styles/main.css"),
-        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+          compressor: {
+            warnings: false
+          }
+        }),
+        new webpack.DefinePlugin({
+          'process.env': {
+            'NODE_ENV': JSON.stringify('production')
+          }
+        }),
         new webpack.IgnorePlugin(/vertx/)
     ]
   }
