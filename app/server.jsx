@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { RoutingContext, match } from 'react-router'
+import { RoutingContext, match } from 'react-router';
 import createLocation from 'history/lib/createLocation';
 import Iso from 'iso';
 
@@ -15,19 +15,20 @@ import html from 'base.html';
  * @param {Object} req passed from Express/Koa server
  */
 const renderToMarkup = (alt, state, req, res) => {
-  let markup, content;
+  let markup;
   let location = new createLocation(req.url);
   alt.bootstrap(state);
   match({ routes, location }, (error, redirectLocation, renderProps) => {
-    if (redirectLocation)
-      res.redirect(301, redirectLocation.pathname + redirectLocation.search)
-    else if (error)
-      res.send(500, error.message)
-    else if (renderProps == null)
-      res.send(404, 'Not found')
-    else
-      content = ReactDOMServer.renderToString(<RoutingContext {...renderProps} />);
+    if (error) {
+      res.status(500).send(error.message);
+    } else if (redirectLocation) {
+      res.redirect(301, redirectLocation.pathname + redirectLocation.search);
+    } else if (renderProps) {
+      let content = ReactDOMServer.renderToString(<RoutingContext {...renderProps} />);
       markup = Iso.render(content, alt.flush());
+    } else {
+      res.status(404).send('Not found');
+    }
   });
 
   return markup;
