@@ -22,6 +22,7 @@ Isomorphic Flux using:
 On master branch:
  - [redux](https://github.com/rackt/redux)
  - [react-router](https://github.com/rackt/react-router)
+ - [redux-simple-router](https://github.com/jlongster/redux-simple-router)
 
 On [flux/alt](https://github.com/choonkending/react-webpack-node/tree/flux/alt) branch:
  - [alt](https://github.com/goatslacker/alt) as my Flux implementation
@@ -73,11 +74,13 @@ There are 3 different "modes" you can develop in:
 1. `npm run watch` watches and recompiles on file changes
 2. `npm run dev` will run the server locally without a proxy. The difference between `dev` and `npm start` is that `npm start` requires you to access your site over HTTPS, otherwise session cookies will not be set. 
 
-### Development build with Hot Loader
+~~### Development build with Hot Loader~~
 
-We use [react-hot-loader](https://github.com/gaearon/react-hot-loader), which is about the greatest thing that has ever happened. No browser refreshes needed.
+~~We use [react-hot-loader](https://github.com/gaearon/react-hot-loader), which is about the greatest thing that has ever happened. No browser refreshes needed.~~
 
-1. `npm run devHotLoader` to build with webpack and start the server. We use webpack-dev-server as a proxy server to serve assets. Changes made are not saved to disk, as that is not what webpack-dev-server is for. However, `npm run watchHotLoader` IF you want to reload the page and see the change in the server-rendered React.
+~~1. `npm run devHotLoader` to build with webpack and start the server. We use webpack-dev-server as a proxy server to serve assets. Changes made are not saved to disk, as that is not what webpack-dev-server is for. However, `npm run watchHotLoader` IF you want to reload the page and see the change in the server-rendered React.~~
+
+Currently I'm working on using [React Transform HMR](https://github.com/gaearon/react-transform-hmr) to replace hot loader and hopefully make dev work easier.
 
 ### Production build
 
