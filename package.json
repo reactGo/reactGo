@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "rimraf public",
     "start": "NODE_ENV=production node server/index.js",
-    "dev": "NODE_ENV=development node server/index.js",
+    "dev": "node server/devServer.js",
     "devHotLoader": "npm run buildHotLoader && NODE_ENV=devhotloader node server/index.js",
     "build:webpack": "NODE_ENV=production webpack --config ./webpack/webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
@@ -26,7 +26,7 @@
   "dependencies": {
     "babel-core": "^5.8.34",
     "babel-eslint": "^3.1.14",
-    "babel-loader": "^5.1.4",
+    "babel-loader": "^5.4.0",
     "babel-plugin-react-transform": "^1.1.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.9.3",

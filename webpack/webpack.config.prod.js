@@ -48,6 +48,7 @@ module.exports = [
      *  new CommonsChunkPlugin("c-commons.js", ["pageC", "adminPageC"]);
      * ]
      */
+    // A SourceMap is emitted.
     devtool: "source-map",
     context: path.join(__dirname, "..", "app"),
     entry: {

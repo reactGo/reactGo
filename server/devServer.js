@@ -7,7 +7,7 @@ var webpackDevServer = require('webpack-dev-server');
 var path = require('path');
 var fs = require('fs');
 
-var webpackConfig = require('../webpack/webpack-hot-dev-server.config.js');
+var webpackConfig = require('../webpack/webpack.config.dev.js');
 
 module.exports = function() {
   // Fire up webpack and pass in the configuration file we created
