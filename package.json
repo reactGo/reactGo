@@ -7,13 +7,9 @@
   "scripts": {
     "clean": "rimraf public",
     "start": "NODE_ENV=production node server/index.js",
-    "dev": "node server/devServer.js",
-    "devHotLoader": "npm run buildHotLoader && NODE_ENV=devhotloader node server/index.js",
+    "dev": "NODE_ENV=development node server/index.js",
     "build:webpack": "NODE_ENV=production webpack --config ./webpack/webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
-    "buildHotLoader": "webpack --progress --colors --config ./webpack/webpack-hot-dev-server.config.js",
-    "watch": "webpack --watch --progress --config ./webpack/webpack.config.js",
-    "watchHotLoader": "webpack --watch --progress --config ./webpack/webpack-hot-dev-server.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "npm run build"
   },
@@ -45,6 +41,7 @@
     "express-session": "^1.10.2",
     "extract-text-webpack-plugin": "^0.8.1",
     "file-loader": "^0.8.4",
+    "helmet": "^0.15.0",
     "history": "^1.13.1",
     "html-loader": "^0.3.0",
     "http-proxy": "^1.11.1",

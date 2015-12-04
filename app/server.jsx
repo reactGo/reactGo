@@ -30,7 +30,7 @@ function fetchTopics(callback, api='topic') {
  * @param head - optional arguments to be placed into the head
  */
 function renderFullPage(renderedContent, initialState, head={
-  title: '<title>React Webpack Node</title>',
+  title: 'React Webpack Node',
   meta: '<meta name="viewport" content="width=device-width, initial-scale=1" />',
   link: '<link rel="stylesheet" href="/assets/styles/main.css"/>'
 }) {
@@ -39,7 +39,7 @@ function renderFullPage(renderedContent, initialState, head={
     <html lang="">
 
     <head>
-        ${head.title}
+        <title>${head.title}</title>
 
         ${head.meta}
 
@@ -90,7 +90,6 @@ export default function render(req, res) {
         <Provider store={store}>
           <RoutingContext {...renderProps} />
         </Provider>);
-
         const renderedPage = renderFullPage(renderedContent, initialState, {
           title: headconfig.title,
           meta: headconfig.meta,
