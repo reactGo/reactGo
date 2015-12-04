@@ -10,7 +10,6 @@
     "dev": "NODE_ENV=development node server/index.js",
     "build:webpack": "NODE_ENV=production webpack --config ./webpack/webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "npm run build"
   },
   "author": "Choon Ken Ding",

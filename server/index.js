@@ -3,8 +3,10 @@ var fs = require('fs');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var secrets = require('./config/secrets');
-
+var webpack = require('webpack');
+var config = require('../webpack/webpack.config.dev.js');
 var app = express();
+var compiler = webpack(config);
 
 // Find the appropriate database to connect to, default to localhost if not found.
 var connect = function() {
@@ -26,13 +28,27 @@ fs.readdirSync(__dirname + '/models').forEach(function(file) {
   if(~file.indexOf('.js')) require(__dirname + '/models/' + file);
 });
 
+var isDev = process.env.NODE_ENV === 'development';
+
+if (isDev) {
+  app.use(require('webpack-dev-middleware')(compiler, {
+    noInfo: true,
+    publicPath: config.output.publicPath
+  }));
+
+  app.use(require('webpack-hot-middleware')(compiler, {
+    log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000
+  }));
+}
+
+
 // Bootstrap passport config
 require('./config/passport')(app, passport);
 
 // Bootstrap application settings
 require('./config/express')(app, passport);
+
 // Bootstrap routes
 require('./config/routes')(app, passport);
-
 
 app.listen(app.get('port'));
