@@ -94,8 +94,7 @@ module.exports = [
           'process.env': {
             'NODE_ENV': JSON.stringify('production')
           }
-        }),
-        new webpack.IgnorePlugin(/vertx/)
+        })
     ]
   }, {
     // The configuration for the server-side rendering
@@ -139,8 +138,7 @@ module.exports = [
           'process.env': {
             'NODE_ENV': JSON.stringify('production')
           }
-        }),
-        new webpack.IgnorePlugin(/vertx/)
+        })
     ]
   }
 ];
