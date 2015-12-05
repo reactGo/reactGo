@@ -61,40 +61,24 @@ I am working to document this repo extensively so it would be easy for both begi
 
 ## Instructions
 
-1. `npm install`
-2. `npm run dev` to run locally
-
-There are 3 different "modes" you can develop in:
-1. Development -  without react-hot-loader
-2. Development - with react-hot-loader
-3. Production
-
-### Development build (without Hot loader)
-
-1. `npm run watch` watches and recompiles on file changes
-2. `npm run dev` will run the server locally without a proxy. The difference between `dev` and `npm start` is that `npm start` requires you to access your site over HTTPS, otherwise session cookies will not be set. 
-
-~~### Development build with Hot Loader~~
-
-~~We use [react-hot-loader](https://github.com/gaearon/react-hot-loader), which is about the greatest thing that has ever happened. No browser refreshes needed.~~
-
-~~1. `npm run devHotLoader` to build with webpack and start the server. We use webpack-dev-server as a proxy server to serve assets. Changes made are not saved to disk, as that is not what webpack-dev-server is for. However, `npm run watchHotLoader` IF you want to reload the page and see the change in the server-rendered React.~~
-
-Currently I'm working on using [React Transform HMR](https://github.com/gaearon/react-transform-hmr) to replace hot loader and hopefully make dev work easier.
+1. First run your mongo server
+2. `mongod`
 
 ### Production build
 
 Run the commands below for a production build, i.e. what is deployed to Heroku. If you are deploying to Heroku or similar, we assume that you serving the pages over HTTPS.
 
-1. `npm run build && npm start`
+1. `npm run build` to clean the `/public` folder, and then run `webpack` through configurations specified in `webpack.config.prod.js`
+2. `npm start` to start server
 
-#### Bundling with webpack
+### Development build
 
-1. `npm run build` runs `webpack` will run configurations within webpack.config.js.
-2. `npm run watch` runs `webpack --watch` to watch and recompile for changes.
+1. `npm run dev` starts the server with [webpack-hot-middleware](https://github.com/glenjamin/webpack-hot-middleware) and [react-transform-hmr](https://github.com/gaearon/react-transform-hmr)
+	- If you get an error saying file not found, run `npm run build && npm run dev` (because the server relies on the compiled file to exist in order to serve those files).
+	- I am looking into using [webpack isomorphic tools](https://github.com/halt-hammerzeit/webpack-isomorphic-tools) to help with bundling files server side, so we will potentially move away from having two configs for client and server side. 
 
 ##### Where do you compile your scss?
-We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugin) to extract compiled css in our [webpack config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.js)
+We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugin) to extract compiled css in our [webpack config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.prod.js)
 
 #### What loaders do you use for ES6/ ES2015?
 [babel-loader](https://github.com/babel/babel-loader). Seriously, try it!
@@ -141,16 +125,15 @@ Read more on DO config [here](https://github.com/choonkending/react-webpack-node
 ## Component Hierarchy
 
 - app.js
-	- App.react
-		- NavigationBar.react
-	  - RouteHandler
-			- Vote.react
-				- EntryBox.react
-				- MainSection.react
-				- Scoreboard.react
-			- Login.react
-			- Logout.react
-			- About.react
+	- App.jsx
+		- Navigation.jsx
+		- Vote.jsx
+			- EntryBox.jsx
+			- MainSection.jsx
+			- Scoreboard.jsx
+		- Login.jsx
+		- Logout.jsx
+		- About.jsx
 
 ## Questions:
 ### 1. Google Authentication does not work locally or on heroku!
@@ -196,18 +179,19 @@ http.send(params);
 
 This should create a user in your local database and all will be well!!
 
-### 4. Why do I get a FOUC (Flash Of Unstyled Content) when I run `npm run dev`?
-
-This is because we do not use ExtractTextPlugin in our dev config. It won't happen in production because we extract and serve the css as a separate file. It's something we can all live with, unless you have a better working suggestion, in which case, please create an issue and PR right away!!!
-
 ## Todo:
 
-1. Use csrf tokens for form login
-2. Let me know!
+Best way to keep up to date is check the [issues](https://github.com/choonkending/react-webpack-node/issues). 
+
+My priorities are:
+1. Improving the server side rendering
+2. Better dev experience
+3. Auth routing
+4. Unit tests
 
 ## How to Contribute:
 
-1. As this repo is still in its baby stages, any suggestions/improvements/bugs can be in the form of Pull Requests, or creating an issue.
+1. Any suggestions/improvements/bugs can be in the form of Pull Requests, or creating an issue.
 2. Coding guidelines:
  - [Airbnb's Style Guide](https://github.com/airbnb/javascript)
  - [bendc's frontend guidelines](https://github.com/bendc/frontend-guidelines)

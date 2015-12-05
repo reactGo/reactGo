@@ -1,3 +1,12 @@
+1.3.1
+=====
+This was actually a pretty big change!
+- Replace react-hot-loader with react-transform-hmr
+- Clean package.json so we do not have so many confusing commands
+- Refactor bits of webpack
+- Temporarily comment out devtools
+- Use [redux-simple-router](https://github.com/jlongster/redux-simple-router)
+
 1.3
 =====
 - Breaking changes (at least for master):

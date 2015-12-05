@@ -5,9 +5,6 @@ var webpack = require("webpack");
 var assetsPath = path.join(__dirname, "..", "public", "assets");
 var publicPath = "assets/";
 
-var WEBPACK_HOST = "localhost";
-var WEBPACK_PORT = 3001;
-
 var commonLoaders = [
   {
     /*
@@ -15,12 +12,17 @@ var commonLoaders = [
      * Read more http://babeljs.io/docs/usage/experimental/
      */
     test: /\.js$|\.jsx$/,
-    loaders: ["react-hot", "babel-loader?stage=0"],
-    include: path.join(__dirname, "..", "app")
+    loaders: ['babel'],
+    include: path.join(__dirname, "..",  "app")
   },
+  { test: /\.json$/, loader: "json-loader" },
   { test: /\.png$/, loader: "url-loader" },
   { test: /\.jpg$/, loader: "file-loader" },
-  { test: /\.html$/, loader: "html-loader" }
+  { test: /\.scss$/,
+    loader: ExtractTextPlugin.extract('style', 'css?module&localIdentName=[local]__[hash:base64:5]' +
+      '&sourceMap!sass?sourceMap&outputStyle=expanded' +
+      '&includePaths[]=' + (path.resolve(__dirname, '..', 'app')))
+  }
 ];
 
 module.exports = [
@@ -46,11 +48,11 @@ module.exports = [
      *  new CommonsChunkPlugin("c-commons.js", ["pageC", "adminPageC"]);
      * ]
      */
+    // A SourceMap is emitted.
+    devtool: "source-map",
     context: path.join(__dirname, "..", "app"),
     entry: {
-      app:[ 'webpack-dev-server/client?http://' + WEBPACK_HOST + ":" + WEBPACK_PORT,
-       'webpack/hot/only-dev-server',
-        "./client" ]
+      app: "./client"
     },
     output: {
       // The output directory as absolute path
@@ -61,29 +63,33 @@ module.exports = [
       publicPath: publicPath
 
     },
+    
     module: {
       preLoaders: [{
         test: /\.js$|\.jsx$/,
         exclude: /node_modules/,
         loaders: ["eslint"]
       }],
-      loaders: commonLoaders.concat([
-          { test: /\.scss$/,
-            loader: 'style!css?module&localIdentName=[local]__[hash:base64:5]' +
-              '&sourceMap!sass?sourceMap&outputStyle=expanded' +
-              '&includePaths[]=' + (path.resolve(__dirname, '../node_modules'))
-          }
-      ])
+      loaders: commonLoaders
     },
     resolve: {
-      extensions: ['', '.react.js', '.js', '.jsx', '.scss'],
+      extensions: ['', '.js', '.jsx', '.scss'],
       modulesDirectories: [
         "app", "node_modules"
       ]
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        // Order the modules and chunks by occurrence.
+        // This saves space, because often referenced modules
+        // and chunks get smaller ids.
+        new webpack.optimize.OccurenceOrderPlugin(),
+        // extract inline css from modules into separate files
+        new ExtractTextPlugin("styles/main.css"),
+        new webpack.optimize.UglifyJsPlugin({
+          compressor: {
+            warnings: false
+          }
+        })
     ]
   }, {
     // The configuration for the server-side rendering
@@ -102,21 +108,27 @@ module.exports = [
       publicPath: publicPath,
       libraryTarget: "commonjs2"
     },
-    externals: /^[a-z\-0-9]+$/,
     module: {
-      loaders: commonLoaders.concat([
-          { test: /\.scss$/,
-            loader: 'css/locals?module&localIdentName=[local]__[hash:base64:5]' +
-              '&sourceMap!sass?sourceMap&outputStyle=expanded' +
-              '&includePaths[]=' + (path.resolve(__dirname, '../node_modules'))
-          }
-      ])
+      loaders: commonLoaders
     },
     resolve: {
-      extensions: ['', '.react.js', '.js', '.jsx', '.scss'],
+      extensions: ['', '.js', '.jsx', '.scss'],
       modulesDirectories: [
         "app", "node_modules"
       ]
-    }
+    },
+    plugins: [
+        // Order the modules and chunks by occurrence.
+        // This saves space, because often referenced modules
+        // and chunks get smaller ids.
+        new webpack.optimize.OccurenceOrderPlugin(),
+        // extract inline css from modules into separate files
+        new ExtractTextPlugin("styles/main.css"),
+        new webpack.optimize.UglifyJsPlugin({
+          compressor: {
+            warnings: false
+          }
+        })
+    ]
   }
 ];

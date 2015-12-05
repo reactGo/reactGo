@@ -1,22 +1,21 @@
+@import 'scss/settings';
+
 .about {
 
-	padding: 0 48px;
-	padding: 0 3.32871010721496vw;
-
-	// .about__header
-	&__header {
-		
-		font-size: 80.9086380004883px;
-		font-size: 5.61086252235879vw;
-
-	}
-
-	// .about__description
-	&__description {
-		
-		font-size: 25.59995985031128px;
-		font-size: 1.77530927287559vw;
-
-	}
+  padding: 0 48px;
+  padding: 0 3.32871010721496vw;
 
 }
+
+  .about__header {
+    
+    color: $color-black;
+    font-size: $font-x-large;
+
+  }
+
+  .about__description {
+    
+    font-size: 16px;
+
+  }
