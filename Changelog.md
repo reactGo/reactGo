@@ -1,3 +1,10 @@
+1.3.2
+=====
+This was more of a styling convention change.
+- Use classNames.bind(styles) for css modules
+- Clean up some code, and reduce code bloat
+- Instead of nesting classes within scss, indent them for easier readability.
+
 1.3.1
 =====
 This was actually a pretty big change!
