@@ -1,75 +1,51 @@
-.login {
+@import 'settings.scss';
+@import 'mixins.scss';
 
-	// .login__header
-	&__header {
+.login {}
 
-		text-align: center;
+  .login__header {
+    font-size: $font-large;
+    text-align: center;
+  }
 
-	}
+  .login__fieldset {
+    width: 360px;
+    margin: auto;
+    border: none;
+    border-radius: $global-radius;
+    @include simpleBoxShadow;
+  }
 
-	// .login__fieldset
-	&__fieldset {
+  .login__input {
+    display: block;
+    width: 80%;
+    margin: 8px auto;
+    font-size: $font-medium;
+    line-height: 1.5;
+    text-align: center;
+    outline: none;
+  }
 
-		width: 359px;
-		width: 25vw;
-		margin: auto;
+  .login__button {
+    display: block;
+    width: 240px;
+    font-size: $font-medium;
+    line-height: 1.5;
+    border: none;
+    text-align: center;
+    border-radius: 2px;
+    text-decoration: none;
+    color: $color-white;
 
-	}
+    &:hover, &:visited {
+      color: $color-white;
+    }
+  }
 
-	// .login__input
-	&__input {
+    .login__button--green {
+      background-color: $color-salem;
+    }
 
-		display: inline-block;
-		font-size: 24px;
-		font-size: 1.6713092322vw;
-		line-height: 48px;
-		line-height: 3.3426184643vw;
-		width: 100%;
-		height: 48px;
-  	height: 3.3426184643vw;
-		margin: 12px;
-		margin: 0.8356546161vw;
-
-	}
-	
-	// .login__button
-	&__button {
-		
-		display: block;
-		width: 240px;
-		width: 15vw;
-		height: 48px;
-  	height: 3.3426184643vw;
-		font-size: 24px;
-		font-size: 1.6713092322vw;
-		line-height: 48px;
-		line-height: 3.3426184643vw;
-		border: none;
-		text-align: center;
-		margin: 12px auto;
-		margin: 0.8356546161vw auto;
-		border-radius: 2px;
-		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-		text-decoration: none;
-		color: #fff;
-
-		// .login__button:hover, .login__button:visited
-		&:hover, &:visited {
-			color: #fff;
-		}
-
-		// .login__button--green
-		&--green {
-
-			background-color: #0f9d58;
-
-		}
-
-	}
-
-	// .login__hint
-	&__hint {
-		text-align: center;
-	}
-
-}
+  .login__hint {
+    text-align: center;
+  }

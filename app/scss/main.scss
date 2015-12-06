@@ -7,6 +7,7 @@ Style Guide Lines. Remove if you prefer your own library
 body {
   font-family: $font-family;
   font-weight: normal;
+  font-smoothing: antialiased;
   margin: 0;
 }
 

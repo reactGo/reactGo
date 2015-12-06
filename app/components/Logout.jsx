@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styles from 'scss/components/_logout';
 
-export default class Logout extends React.Component {
+export default class Logout extends Component {
   render() {
     return (
-      <div className={styles.logout}>
+      <div>
         <h1 className={styles.logout__header}>Hey m8, you have been logged out</h1>
       </div>
     );

@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import styles from 'scss/components/_login';
-import { manualLogin } from 'actions/users';
+import classNames from 'classnames/bind';
 import { connect } from 'react-redux';
-class Login extends React.Component {
+import { manualLogin } from 'actions/users';
+import styles from 'scss/components/_login';
+
+const cx = classNames.bind(styles);
+
+class Login extends Component {
   /*
    * This replaces getInitialState. Likewise getDefaultProps and propTypes are just
    * properties on the constructor
@@ -11,55 +15,64 @@ class Login extends React.Component {
    */
   constructor(props) {
     super(props);
+    this._onLoginSubmit = this._onLoginSubmit.bind(this);
   }
 
-  _onLoginSubmit = () => {
+  _onLoginSubmit() {
+    const { dispatch } = this.props;
     const email = ReactDOM.findDOMNode(this.refs.email).value;
     const password = ReactDOM.findDOMNode(this.refs.password).value;
-    this.manuallogin({
+    dispatch(manualLogin({
       email: email,
       password: password
-    });
+    }));
   }
 
   render() {
-    let renderedResult;
-    if (this.props.user.authenticated) {
-      renderedResult = (<h1 className={styles.login__header}>You are logged in amigo</h1>);
+    const { authenticated, isWaiting } = this.props.user;
+    if (authenticated) {
+      return (
+        <h1 className={cx('login__header')}>You are logged in amigo</h1>
+      );
     } else {
-      if (this.props.user.isWaiting) {
-        renderedResult = (<h1 className={styles.login__header}>Waiting ...</h1>);
+      if (isWaiting) {
+        return (
+          <h1 className={cx('login__header')}>Waiting ...</h1>
+        );
       } else {
-        renderedResult = (
-          <div className={styles.login__container}>
-            <h1 className={styles.login__header}>Email Login Demo</h1>
-            <fieldset className={styles.login__fieldset}>
-                <input className={styles.login__input} type="email" ref="email" placeholder="email" />
-                <input className={styles.login__input} type="password" ref="password" placeholder="password" />
-                <button className={styles.login__button + ' ' + styles['login__button--green']} onClick={this._onLoginSubmit}>Login</button>
-                <p className={styles.login__hint}>Hint: email: example@ninja.com password: ninja</p>
+        return (
+          <div className={cx('login__container')}>
+            <h1 className={cx('login__header')}>Email Login Demo</h1>
+            <fieldset className={cx('login__fieldset')}>
+                <input className={cx('login__input')}
+                  type="email"
+                  ref="email"
+                  placeholder="email" />
+                <input className={cx('login__input')}
+                  type="password"
+                  ref="password"
+                  placeholder="password" />
+                <button className={cx('login__button', 'login__button--green')}
+                  onClick={this._onLoginSubmit}>Login</button>
+                <p className={cx('login__hint')}>Hint: email: example@ninja.com password: ninja</p>
             </fieldset>
-            <h1 className={styles.login__header}>Google Login Demo</h1>
-            <fieldset className={styles.login__fieldset}>
-              <a className={styles.login__button + ' ' + styles['login__button--green']} href="/auth/google">Login with Google</a>
+            <h1 className={cx('login__header')}>Google Login Demo</h1>
+            <fieldset className={cx('login__fieldset')}>
+              <a className={cx('login__button', 'login__button--green')}
+                href="/auth/google">Login with Google</a>
             </fieldset>
           </div>
         );
       }
     }
-    return (
-        <div className={styles.login}>
-          {renderedResult}
-        </div>
-    );
   }
 
-  manuallogin = (data) => {
-    this.props.dispatch(manualLogin(data));
-  }
 }
 
-Login.propTypes = { user: React.PropTypes.object, dispatch: React.PropTypes.func };
+Login.propTypes = {
+  user: PropTypes.object,
+  dispatch: PropTypes.func
+};
 
 function mapStateToProps(state) {
   return {

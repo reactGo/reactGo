@@ -6,9 +6,10 @@
 
   .about__header {
     color: $color-black;
-    font-size: $font-x-large;
+    font-size: $font-large;
+    text-align: center;
   }
 
   .about__description {
-    font-size: $font-large;
+    font-size: $font-medium;
   }
