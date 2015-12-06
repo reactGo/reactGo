@@ -34,39 +34,38 @@ class Login extends Component {
       return (
         <h1 className={cx('login__header')}>You are logged in amigo</h1>
       );
-    } else {
-      if (isWaiting) {
-        return (
-          <h1 className={cx('login__header')}>Waiting ...</h1>
-        );
-      } else {
-        return (
-          <div className={cx('login__container')}>
-            <h1 className={cx('login__header')}>Email Login Demo</h1>
-            <fieldset className={cx('login__fieldset')}>
-                <input className={cx('login__input')}
-                  type="email"
-                  ref="email"
-                  placeholder="email" />
-                <input className={cx('login__input')}
-                  type="password"
-                  ref="password"
-                  placeholder="password" />
-                <button className={cx('login__button', 'login__button--green')}
-                  onClick={this._onLoginSubmit}>Login</button>
-                <p className={cx('login__hint')}>Hint: email: example@ninja.com password: ninja</p>
-            </fieldset>
-            <h1 className={cx('login__header')}>Google Login Demo</h1>
-            <fieldset className={cx('login__fieldset')}>
-              <a className={cx('login__button', 'login__button--green')}
-                href="/auth/google">Login with Google</a>
-            </fieldset>
-          </div>
-        );
-      }
     }
-  }
 
+    if (isWaiting) {
+      return (
+        <h1 className={cx('login__header')}>Waiting ...</h1>
+      );
+    }
+
+    return (
+      <div className={cx('login__container')}>
+        <h1 className={cx('login__header')}>Email Login Demo</h1>
+        <fieldset className={cx('login__fieldset')}>
+            <input className={cx('login__input')}
+              type="email"
+              ref="email"
+              placeholder="email" />
+            <input className={cx('login__input')}
+              type="password"
+              ref="password"
+              placeholder="password" />
+            <button className={cx('login__button', 'login__button--green')}
+              onClick={this._onLoginSubmit}>Login</button>
+            <p className={cx('login__hint')}>Hint: email: example@ninja.com password: ninja</p>
+        </fieldset>
+        <h1 className={cx('login__header')}>Google Login Demo</h1>
+        <fieldset className={cx('login__fieldset')}>
+          <a className={cx('login__button', 'login__button--green')}
+            href="/auth/google">Login with Google</a>
+        </fieldset>
+      </div>
+    );
+  }
 }
 
 Login.propTypes = {
