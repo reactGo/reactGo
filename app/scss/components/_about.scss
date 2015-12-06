@@ -1,21 +1,14 @@
-@import 'scss/settings';
+@import 'settings.scss';
 
 .about {
-
-  padding: 0 48px;
-  padding: 0 3.32871010721496vw;
-
+  padding: 0 24px;
 }
 
   .about__header {
-    
     color: $color-black;
     font-size: $font-x-large;
-
   }
 
   .about__description {
-    
-    font-size: 16px;
-
+    font-size: $font-large;
   }

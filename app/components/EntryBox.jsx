@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createTopic, typing } from 'actions/topics';
-import styles from 'scss/components/_entrybox';
 import TopicTextInput from 'components/TopicTextInput';
+import classNames from 'classnames/bind';
+import styles from 'scss/components/_entrybox';
 
-class EntryBox extends React.Component {
+const cx = classNames.bind(styles);
+
+class EntryBox extends Component {
 
   render() {
     const { dispatch } = this.props;
     return (
-      <div className={styles.entrybox}>
-        <h1 className={styles.entrybox__header}>Vote for your top hack idea</h1>
+      <div className={cx('entrybox')}>
+        <h1 className={cx('entrybox__header')}>Vote for your top hack idea</h1>
         <TopicTextInput
-          className={styles.entrybox__input}
+          className={cx('entrybox__input')}
           value={this.props.topic}
           placeholder="What's yer fav idea?"
           onChange={text => dispatch(typing(text))}
@@ -22,6 +25,9 @@ class EntryBox extends React.Component {
   }
 }
 
-EntryBox.propTypes = { topic: React.PropTypes.string, dispatch: React.PropTypes.func };
+EntryBox.propTypes = {
+  topic: PropTypes.string,
+  dispatch: PropTypes.func
+};
 
 export default connect()(EntryBox);

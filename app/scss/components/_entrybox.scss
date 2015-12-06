@@ -1,36 +1,24 @@
+@import 'settings.scss';
+
 .entrybox {
-	
-	width: 100%;
-	margin-bottom: 71.796875px;
-	margin-bottom: 5vw;
-	align-self: center;
-
-	// .entrybox__header
-	&__header {
-
-		text-align: center;
-		font-size: 50.5679012345679px;
-		font-size: 3.506789248753209vw;
-
-	}
-
-	// .entrybox__input
-	&__input {
-
-		display: block;
-		margin: 0 auto;
-		width: 718px;
-		width: 50vw;
-		height: 71.796875px;
-  	height: 5vw;
-  	line-height: 71.796875px;
-  	line-height: 5vw;
-  	font-size: 37.925925925925924px;
-  	font-size: 2.6300919365649067vw;
-  	border-width: 0 0 2px 0;
-  	border-bottom: 2px solid #000;
-
-	}
-
+  width: 100%;
+  margin-bottom: 72px;
 }
+
+  .entrybox__header {
+    text-align: center;
+    font-size: $font-x-large;
+  }
+
+  .entrybox__input {
+    display: block;
+    margin: 0 auto;
+    width: 718px;
+    height: 72px;
+    line-height: 1.5;
+    font-size: $font-x-large;
+    border-width: 0 0 2px 0;
+    border-bottom: 2px solid $color-black;
+    outline: none;
+  }
 

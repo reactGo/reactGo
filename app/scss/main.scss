@@ -1,10 +1,13 @@
+@import 'settings';
+
 /*
 Style Guide Lines. Remove if you prefer your own library
  */
+
 body {
-	font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
-  	font-weight: normal;
-    margin: 0;
+  font-family: $font-family;
+  font-weight: normal;
+  margin: 0;
 }
 
 * {

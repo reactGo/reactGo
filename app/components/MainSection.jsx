@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import TopicItem from 'components/TopicItem';
-import styles from 'scss/components/_vote';
+import classNames from 'classnames/bind';
+import styles from 'scss/components/_main-section';
+
+const cx = classNames.bind(styles);
 
 export default class MainSection extends Component {
   render() {
@@ -9,9 +12,9 @@ export default class MainSection extends Component {
     })
     : null;
     return (
-      <div className={styles['main-section']}>
-        <h3 className={styles['main-section__header']}>Vote for your favorite hack day idea</h3>
-        <ul className={styles['main-section__list']}>{topics}</ul>
+      <div className={cx('main-section')}>
+        <h3 className={cx('main-section__header')}>Vote for your favorite hack day idea</h3>
+        <ul className={cx('main-section__list')}>{topics}</ul>
       </div>
     );
   }

@@ -1,0 +1,21 @@
+@import 'mixins.scss';
+@import 'settings.scss';
+
+.main-section {
+  width: 50%;
+  @include simpleBoxShadow;
+  
+  margin: 16px;
+  border-radius: $global-radius;
+}
+
+  .main-section__header {
+    font-size: $font-medium;
+    text-align: center;
+  }
+
+  .main-section__list {
+    list-style: none;
+    padding: 16px;
+  }
+

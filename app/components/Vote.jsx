@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import EntryBox from 'components/EntryBox';
 import MainSection from 'components/MainSection';
 import Scoreboard from 'components/Scoreboard';
 import { connect } from 'react-redux';
+import classNames from 'classnames/bind';
 import styles from 'scss/components/_vote';
 
-class Vote extends React.Component {
+const cx = classNames.bind(styles);
+
+class Vote extends Component {
 
   render() {
     return (
-      <div className={styles.vote}>
+      <div className={cx('vote')}>
         <EntryBox topic={this.props.newTopic} />
         <MainSection topics={this.props.topics} />
         <Scoreboard topics={this.props.topics} />
@@ -19,7 +22,7 @@ class Vote extends React.Component {
 }
 
 Vote.propTypes = {
-  topics: React.PropTypes.array, newTopic: React.PropTypes.string
+  topics: PropTypes.array, newTopic: PropTypes.string
 };
 
 function mapStateToProps(state) {

@@ -1,0 +1,29 @@
+@import 'mixins.scss';
+@import 'settings.scss';
+
+.scoreboard {
+  @include simpleBoxShadow;
+  width: 40%;
+  margin: 16px;
+  border-radius: $global-radius;
+}
+
+  .scoreboard__header {
+    text-align: center;
+    font-size: $font-medium;
+  }
+
+  .scoreboard__list {
+    padding: 16px;
+    list-style: none;
+  }
+
+  .scoreboard__list-item {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .scoreboard__topic {
+    display: inline-block;
+    font-size: $font-medium;
+  }

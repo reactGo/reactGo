@@ -39,7 +39,7 @@ function renderFullPage(renderedContent, initialState, head={
     <html lang="">
 
     <head>
-        <title>${head.title}</title>
+        ${head.title}
 
         ${head.meta}
 

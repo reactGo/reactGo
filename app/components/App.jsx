@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import Navigation from 'components/Navigation';
 import 'scss/main';
 
@@ -17,7 +17,7 @@ import 'scss/main';
  * We often pass the entire state of the store down the chain of views in a single object, allowing different descendants to use
  * what they need. In addition to keeping the controller-like behavior at the top of the hierarchy, and thus keeping our descendant
  */
-export default class App extends React.Component {
+export default class App extends Component {
   render() {
     return (
       <div>
@@ -28,4 +28,6 @@ export default class App extends React.Component {
   }
 }
 
-App.propTypes = { children: React.PropTypes.object };
+App.propTypes = {
+  children: PropTypes.object
+};

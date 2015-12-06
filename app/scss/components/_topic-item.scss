@@ -1,0 +1,34 @@
+@import 'settings.scss';
+
+.topic-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+}
+
+  .topic-item__topic {
+    font-size: $font-medium;
+  }
+
+  .topic-item__button {
+    font-size: $font-medium;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    margin: 0 28px;
+    color: $color-white;
+  }
+
+    .topic-item__button--increment {
+      background-color: $color-salem;
+    }
+
+    .topic-item__button--decrement {
+      background-color: $color-dodger-blue;
+    }
+
+    .topic-item__button--destroy {
+      background-color: $color-punch;
+    }
+

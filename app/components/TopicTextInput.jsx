@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 const ENTER_KEY_CODE = 13;
 
-/*
- * Code modified from https://github.com/facebook/flux/blob/master/examples/flux-todomvc/js/components/TopicTextInput.react.js
- */
-export default class TopicTextInput extends React.Component {
+export default class TopicTextInput extends Component {
+  constructor(props) {
+    super(props);
+    this._onSave = this._onSave.bind(this);
+    this._onChange = this._onChange.bind(this);
+    this._onKeyDown = this._onKeyDown.bind(this);
+  }
   /*
    * Invokes the callback passed in as onSave, allowing this component to be
    * used in different ways. I personally think this makes it more reusable.
    */
-  _onSave = () => {
+  _onSave() {
     this.props.onSave(this.props.value);
   }
 
@@ -17,32 +20,36 @@ export default class TopicTextInput extends React.Component {
    * Invokes the callback passed in as onSave, allowing this component to be
    * used in different ways. I personally think this makes it more reusable.
    */
-  _onChange = (event) => {
+  _onChange(event) {
     this.props.onChange(event.target.value);
   }
 
   /*
    * @param  {object} event
    */
-  _onKeyDown = (event) => {
+  _onKeyDown(event) {
     if (event.keyCode === ENTER_KEY_CODE) {
       this._onSave();
     }
   }
 
   render() {
+    const { className, placeholder, value } = this.props;
     return (
-      <input className={this.props.className} placeholder={this.props.placeholder} onChange={this._onChange}
-        onKeyDown={this._onKeyDown} value={this.props.value}
+      <input className={className}
+        placeholder={this.props.placeholder}
+        onChange={this._onChange}
+        onKeyDown={this._onKeyDown}
+        value={value}
         autoFocus={true} />
     );
   }
 }
 
 TopicTextInput.propTypes = {
-  className: React.PropTypes.string,
-  placeholder: React.PropTypes.string,
-  value: React.PropTypes.string,
-  onSave: React.PropTypes.func,
-  onChange: React.PropTypes.func
+  className: PropTypes.string,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  onSave: PropTypes.func,
+  onChange: PropTypes.func
 };
