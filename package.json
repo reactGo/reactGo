@@ -14,7 +14,14 @@
   },
   "author": "Choon Ken Ding",
   "license": "MIT",
-  "devDependencies": {},
+  "devDependencies": {
+    "expect": "^1.13.4",
+    "jsdom": "^7.2.1",
+    "mocha": "^2.3.4",
+    "nock": "^3.5.0",
+    "react-addons-test-utils": "^0.14.3",
+    "redux-mock-store": "0.0.3"
+  },
   "engines": {
     "node": "5.x"
   },
