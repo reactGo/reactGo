@@ -1,7 +1,7 @@
 // Including es6-promise so isomorphic fetch will work
 import 'es6-promise';
 import fetch from 'isomorphic-fetch';
-import * as types from 'constants/actionTypes';
+import * as types from 'constants';
 
 /*
  * Utility function to make AJAX requests using isomorphic fetch.

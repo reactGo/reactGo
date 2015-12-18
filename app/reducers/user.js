@@ -7,7 +7,7 @@ import {
   SIGNUP_ERROR_USER,
   LOGOUT_USER,
   LOGOUT_SUCCESS_USER,
-  LOGOUT_ERROR_USER } from 'constants/actionTypes';
+  LOGOUT_ERROR_USER } from 'constants';
 
 export default function user(state={
   isWaiting: false,
