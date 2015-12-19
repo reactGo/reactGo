@@ -24,15 +24,15 @@ function makeTopicRequest(method, data, api='/topic') {
 }
 
 function increment(index) {
-  return { type: types.INCREMENT_COUNT, index: index };
+  return { type: types.INCREMENT_COUNT, index };
 }
 
 function decrement(index) {
-  return { type: types.DECREMENT_COUNT, index: index };
+  return { type: types.DECREMENT_COUNT, index };
 }
 
 function destroy(index) {
-  return { type: types.DESTROY_TOPIC, index: index};
+  return { type: types.DESTROY_TOPIC, index };
 }
 
 
@@ -47,12 +47,20 @@ export function typing(text) {
  * @param data
  * @return a simple JS object
  */
-function create(data) {
+function createTopicRequest(data) {
   return {
-    type: types.CREATE_TOPIC,
+    type: types.CREATE_TOPIC_REQUEST,
     id: data.id,
     count: data.count,
     text: data.text
+  };
+}
+
+function createTopicFailure(data) {
+  return {
+    type: types.CREATE_TOPIC_FAILURE,
+    id: data.id,
+    ex: data.ex
   };
 }
 
@@ -63,20 +71,34 @@ function create(data) {
 export function createTopic(text) {
   return dispatch => {
     if (text.trim().length <= 0) return;
+    const id = Date.now().toString();
     const data = {
-      id: Date.now().toString(),
+      id,
       count: 1,
-      text: text
+      text
     };
 
     // First dispatch an optimistic update
-    dispatch(create(data));
+    dispatch(createTopicRequest(data));
 
-    return makeTopicRequest('post', data);
-    // do something with the ajax response
-    // You can also dispatch here
-    // E.g.
-    // .then(response => {});
+    return makeTopicRequest('post', data)
+      .then(res => {
+        if (res.ok) {
+          // We can actually dispatch a CREATE_TOPIC_SUCCESS
+          // on success, but I've opted to leave that out
+          // since we already did an optimistic update
+          // We could return res.json();
+          return;
+        } else {
+          throw new Error("Oops! Something went wrong and we couldn't create your topic");
+        }
+      })
+      .catch(ex => {
+        dispatch(createTopicFailure({
+          id,
+          ex: ex.message
+        }));
+      });
   };
 }
 
