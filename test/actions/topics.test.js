@@ -2,7 +2,7 @@ import expect from 'expect';
 import { applyMiddleware } from 'redux';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { md5 } from 'blueimp-md5';
+import md5 from 'spark-md5';
 import nock from 'nock';
 import * as actions from '../../app/actions/topics';
 import * as types from '../../app/constants';  
@@ -18,8 +18,7 @@ describe('Ansynchronous Topic Actions', () => {
 
   it('create CREATE_TOPIC_REQUEST action when a topic is entered successfully', done => {
     const topic = 'A time machine';
-    console.log(md5);
-    const id = md5(topic);
+    const id = md5.hash(topic);
     const data = {
       id: id,
       count: 1,

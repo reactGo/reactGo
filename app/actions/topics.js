@@ -1,7 +1,7 @@
 // Including es6-promise so isomorphic fetch will work
 import 'es6-promise';
 import fetch from 'isomorphic-fetch';
-import { md5 } from 'blueimp-md5';
+import md5 from 'spark-md5';
 import * as types from 'constants';
 
 /*
@@ -72,7 +72,7 @@ function createTopicFailure(data) {
 export function createTopic(text) {
   return dispatch => {
     if (text.trim().length <= 0) return;
-    const id = md5(text);
+    const id = md5.hash(text);
     const data = {
       id,
       count: 1,
