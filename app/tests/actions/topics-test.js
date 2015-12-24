@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import md5 from 'spark-md5';
 import nock from 'nock';
 import * as actions from 'actions/topics';
-import * as types from 'app/constants';  
+import * as types from 'constants';  
 
 const middlewares = [ thunk ];
 const mockStore = configureStore(middlewares);

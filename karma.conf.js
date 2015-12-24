@@ -31,7 +31,7 @@ module.exports = function(config) {
 
     webpack: {
       devtool: 'inline-source-map',
-      context: 'app',
+      context: path.join(__dirname, "app"),
       module: {
         loaders: [
           {
@@ -43,13 +43,15 @@ module.exports = function(config) {
             loader: 'babel'
           }
         ],
-        resolve: {
-          modulesDirectories: [
-            'src',
-            'node_modules'
-          ],
-          extensions: ['', '.jsx', '.js']
-        }
+      },
+      resolve: {
+        extensions: ['', '.js', '.jsx'],
+        modulesDirectories: [
+          'app', 'node_modules'
+        ]
+      },
+      node: {
+        fs: "empty"
       }
     },
 
