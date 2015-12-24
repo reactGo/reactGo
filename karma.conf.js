@@ -31,6 +31,7 @@ module.exports = function(config) {
 
     webpack: {
       devtool: 'inline-source-map',
+      context: 'app',
       module: {
         loaders: [
           {
@@ -41,7 +42,14 @@ module.exports = function(config) {
             include: path.join(__dirname, "app"),
             loader: 'babel'
           }
-        ]
+        ],
+        resolve: {
+          modulesDirectories: [
+            'src',
+            'node_modules'
+          ],
+          extensions: ['', '.jsx', '.js']
+        }
       }
     },
 
@@ -55,5 +63,9 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
     reporters: ['dots'],
+
+    // level of logging
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    logLevel: config.LOG_DEBUG,
   });
 };
