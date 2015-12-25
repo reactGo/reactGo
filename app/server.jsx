@@ -45,7 +45,7 @@ function renderFullPage(renderedContent, initialState, head={
 
         ${head.link}
     </head>
-
+    <body>
     <div id="app">${renderedContent}</div>
 
     <script>
