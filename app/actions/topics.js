@@ -1,9 +1,10 @@
 // Including es6-promise so isomorphic fetch will work
-import 'es6-promise';
+import { polyfill } from 'es6-promise';
 import fetch from 'isomorphic-fetch';
 import md5 from 'spark-md5';
 import * as types from 'constants';
 
+polyfill();
 /*
  * Utility function to make AJAX requests using isomorphic fetch.
  * You can also use jquery's $.ajax({}) if you do not want to use the
@@ -84,18 +85,21 @@ export function createTopic(text) {
 
     return makeTopicRequest('post', data)
       .then(res => {
+        console.log(res.status);
         if (res.ok) {
           // We can actually dispatch a CREATE_TOPIC_SUCCESS
           // on success, but I've opted to leave that out
           // since we already did an optimistic update
           // We could return res.json();
-          return;
+          return dispatch({
+            type: 'CREATE_TOPIC_SUCCESS'
+          });
         } else {
           throw new Error("Oops! Something went wrong and we couldn't create your topic");
         }
       })
       .catch(ex => {
-        dispatch(createTopicFailure({ id, ex: ex.message }));
+        return dispatch(createTopicFailure({ id, ex: ex.message }));
       });
   };
 }

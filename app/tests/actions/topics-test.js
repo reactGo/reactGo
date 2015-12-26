@@ -3,7 +3,7 @@ import { applyMiddleware } from 'redux';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import md5 from 'spark-md5';
-import nock from 'nock';
+import fetchMock from 'fetch-mock';
 import * as actions from 'actions/topics';
 import * as types from 'constants';  
 
@@ -13,7 +13,7 @@ const mockStore = configureStore(middlewares);
 describe('Ansynchronous Topic Actions', () => {
 
   afterEach(() => {
-    nock.cleanAll();
+    fetchMock.restore();
   });
 
   it('create CREATE_TOPIC_REQUEST action when a topic is entered successfully', done => {
@@ -25,18 +25,20 @@ describe('Ansynchronous Topic Actions', () => {
       text: topic
     };
 
-    const expectedAction ={
-      type: types.CREATE_TOPIC_REQUEST,
-      id: id,
-      count: 1,
-      text: data.text
-    };
+    const expectedActions = [
+      {
+        type: types.CREATE_TOPIC_REQUEST,
+        id: id,
+        count: 1,
+        text: data.text
+      }, {
+        type: 'CREATE_TOPIC_SUCCESS'
+      }
+    ];
 
-    nock('http://localhost:3000')
-      .post('/topic', data)
-      .reply(200, 'OK');
+    fetchMock.mock('/post', 200);
 
-    const store = mockStore({ topics: [], newTopic: ''}, expectedAction, done);
+    const store = mockStore({ topics: [], newTopic: ''}, expectedActions, done);
     store.dispatch(actions.createTopic(topic));
   });
 });

@@ -11,12 +11,13 @@ module.exports = function(config) {
     // - Safari (only Mac; has to be installed with `npm install karma-safari-launcher`)
     // - PhantomJS
     // - IE (only Windows; has to be installed with `npm install karma-ie-launcher`)
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
     frameworks: ['mocha'],
 
     // Point karma at the tests.webpack.js
     files: [
+      './node_modules/phantomjs-polyfill/bind-polyfill.js',
       'tests.webpack.js'
     ],
 
@@ -28,6 +29,10 @@ module.exports = function(config) {
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
     singleRun: true,
+
+    // How long will Karma wait for a message from a browser before disconnecting 
+    // from it (in ms).
+    browserNoActivityTimeout: 30000,
 
     webpack: {
       devtool: 'inline-source-map',
@@ -55,16 +60,22 @@ module.exports = function(config) {
       }
     },
 
+    webpackServer: {
+      noInfo: true // Do not spam the console when running in karma
+    },
+
     plugins: [
-      'karma-chrome-launcher',
+      'karma-phantomjs-launcher',
       'karma-mocha',
+      'karma-mocha-reporter',
       'karma-sourcemap-loader',
       'karma-webpack',
     ],
 
     // test results reporter to use
-    // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-    reporters: ['dots'],
+    // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage',
+    // 'mocha' (added in plugins)
+    reporters: ['mocha'],
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
