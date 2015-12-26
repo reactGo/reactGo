@@ -17,7 +17,6 @@ module.exports = function(config) {
 
     // Point karma at the tests.webpack.js
     files: [
-      './node_modules/phantomjs-polyfill/bind-polyfill.js',
       'tests.webpack.js'
     ],
 
@@ -58,7 +57,12 @@ module.exports = function(config) {
       },
       node: {
         fs: "empty"
-      }
+      },
+      plugins: [
+        new webpack.DefinePlugin({
+          __TEST__: JSON.stringify(JSON.parse(process.env.TEST_ENV || 'true'))
+        })
+      ]
     },
 
     webpackMiddleware: {

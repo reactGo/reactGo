@@ -5,17 +5,27 @@ import md5 from 'spark-md5';
 import * as types from 'constants';
 
 polyfill();
+
+let API_ENDPOINT = '/topic';
+
+// If this is a test, we must use an absolute url
+if (__TEST__) {
+  API_ENDPOINT = 'http://localhost:9876/topic';
+}
+
 /*
  * Utility function to make AJAX requests using isomorphic fetch.
  * You can also use jquery's $.ajax({}) if you do not want to use the
  * /fetch API.
+ * Note: this function relies on an external variable `API_ENDPOINT`
+ *        and isn't a pure function
  * @param Object Data you wish to pass to the server
  * @param String HTTP method, e.g. post, get, put, delete
  * @param String endpoint
  * @return Promise
  */
-function makeTopicRequest(method, data, api='/topic') {
-  return fetch('http://localhost:9876/topic', {
+function makeTopicRequest(method, data) {
+  return fetch(API_ENDPOINT, {
     method: method,
     headers: {
         'Accept': 'application/json',

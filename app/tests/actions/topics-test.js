@@ -40,7 +40,7 @@ describe('Ansynchronous Topic Actions', () => {
         count: 1,
         text: data.text
       }, {
-        type: 'CREATE_TOPIC_SUCCESS'
+        type: types.CREATE_TOPIC_SUCCESS
       }
     ];
 

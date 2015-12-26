@@ -88,6 +88,9 @@ module.exports = [
           compressor: {
             warnings: false
           }
+        }),
+        new webpack.DefinePlugin({
+          __TEST__: JSON.stringify(JSON.parse(process.env.TEST_ENV || 'false'))
         })
     ]
   }, {
@@ -127,6 +130,9 @@ module.exports = [
           compressor: {
             warnings: false
           }
+        }),
+        new webpack.DefinePlugin({
+          __TEST__: JSON.stringify(JSON.parse(process.env.TEST_ENV || 'false'))
         })
     ]
   }
