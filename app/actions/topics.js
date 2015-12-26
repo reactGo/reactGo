@@ -15,7 +15,7 @@ polyfill();
  * @return Promise
  */
 function makeTopicRequest(method, data, api='/topic') {
-  return fetch(api, {
+  return fetch('http://localhost:9876/topic', {
     method: method,
     headers: {
         'Accept': 'application/json',
@@ -58,6 +58,12 @@ function createTopicRequest(data) {
   };
 }
 
+function createTopicSuccess() {
+  return {
+    type: types.CREATE_TOPIC_SUCCESS
+  }
+}
+
 function createTopicFailure(data) {
   return {
     type: types.CREATE_TOPIC_FAILURE,
@@ -91,9 +97,7 @@ export function createTopic(text) {
           // on success, but I've opted to leave that out
           // since we already did an optimistic update
           // We could return res.json();
-          return dispatch({
-            type: 'CREATE_TOPIC_SUCCESS'
-          });
+          return dispatch(createTopicSuccess());
         } else {
           throw new Error("Oops! Something went wrong and we couldn't create your topic");
         }

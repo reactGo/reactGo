@@ -11,7 +11,7 @@ module.exports = function(config) {
     // - Safari (only Mac; has to be installed with `npm install karma-safari-launcher`)
     // - PhantomJS
     // - IE (only Windows; has to be installed with `npm install karma-ie-launcher`)
-    browsers: ['PhantomJS'],
+    browsers: ['jsdom'],
 
     frameworks: ['mocha'],
 
@@ -46,7 +46,8 @@ module.exports = function(config) {
             ],
             include: path.join(__dirname, "app"),
             loader: 'babel'
-          }
+          },
+          { test: /\.json$/, loader: "json-loader" }
         ],
       },
       resolve: {
@@ -60,12 +61,18 @@ module.exports = function(config) {
       }
     },
 
+    webpackMiddleware: {
+        // webpack-dev-middleware configuration
+        noInfo: true
+    },
+
     webpackServer: {
       noInfo: true // Do not spam the console when running in karma
     },
 
     plugins: [
       'karma-phantomjs-launcher',
+      'karma-jsdom-launcher',
       'karma-mocha',
       'karma-mocha-reporter',
       'karma-sourcemap-loader',
@@ -79,6 +86,6 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_DEBUG,
+    logLevel: config.LOG_INFO,
   });
 };
