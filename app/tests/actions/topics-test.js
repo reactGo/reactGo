@@ -24,7 +24,7 @@ describe('Ansynchronous Topic Actions', () => {
     nock.cleanAll();
   });
 
-  it('create CREATE_TOPIC_REQUEST action when a topic is entered successfully', done => {
+  it('create request and success actions when a topic is entered successfully', done => {
     const topic = 'A time machine';
     const id = md5.hash(topic);
     const data = {
@@ -44,11 +44,48 @@ describe('Ansynchronous Topic Actions', () => {
       }
     ];
 
+    // This mocks the server response
+    // 200 means it was successful
+    // port:9876 is karma server's default port
     nock('http://localhost:9876')
       .post('/topic', data)
       .reply(200, 'OK');
 
     const store = mockStore({ topics: [], newTopic: ''}, expectedActions, done);
     store.dispatch(actions.createTopic(topic));
+  });
+
+  it('create request and failed actions when server is not working', done => {
+    const topic = 'A time machine';
+    const id = md5.hash(topic);
+    const data = {
+      id: id,
+      count: 1,
+      text: topic
+    };
+
+    const expectedActions = [
+      {
+        type: types.CREATE_TOPIC_REQUEST,
+        id: id,
+        count: 1,
+        text: data.text
+      }, {
+        type: types.CREATE_TOPIC_FAILURE,
+        id: id,
+        ex: 'Oops! Something went wrong and we couldn\'t create your topic'
+      }
+    ];
+
+    // This mocks the server response
+    // 200 means it was successful
+    // port:9876 is karma server's default port
+    nock('http://localhost:9876')
+      .post('/topic', data)
+      .reply(400);
+
+    const store = mockStore({ topics: [], newTopic: ''}, expectedActions, done);
+    store.dispatch(actions.createTopic(topic));
+
   });
 });
