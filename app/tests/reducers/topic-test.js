@@ -37,5 +37,36 @@ describe('Topics reducer', () => {
     });
   });
 
+  it('Should not add duplicate to state', () => {
+    const topic = 'A time machine';
+    const id = md5.hash(topic);
+    expect(
+      reducer({
+        topics: [
+          {
+            id: id,
+            count: 1,
+            text: topic
+          }
+        ],
+        newTopic: ''
+      }, {
+        type: types.CREATE_TOPIC_REQUEST,
+        id: id,
+        count: 1,
+        text: topic
+      })
+    ).toEqual({
+      topics: [
+        {
+          id: id,
+          count: 1,
+          text: topic
+        }
+      ], 
+      newTopic: ''
+    });
+  })
+
 });
 

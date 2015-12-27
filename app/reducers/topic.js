@@ -17,10 +17,14 @@ export default function topic(state = {
         { newTopic: action.newTopic }
       );
     case CREATE_TOPIC_REQUEST:
-      return {
-        topics: [...state.topics, { id: action.id, count: action.count, text: action.text } ],
-        newTopic: ''
-      };
+      // Check if the topic already exists
+      if (state.topics.filter(topic => topic.id === action.id).length === 0) {
+        return {
+          topics: [...state.topics, { id: action.id, count: action.count, text: action.text } ],
+          newTopic: ''
+        };
+      }
+      return state;
     case CREATE_TOPIC_FAILURE:
       return {
         topics: [...state.topics.filter((tp) => tp.id !== action.id)],
