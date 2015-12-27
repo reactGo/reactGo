@@ -26,6 +26,7 @@
     "babel-plugin-react-transform": "^2.0.0",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
     "babel-runtime": "^6.3.19",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.9.3",
