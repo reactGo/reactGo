@@ -33,6 +33,13 @@ describe('Ansynchronous Topic Actions', () => {
       text: topic
     };
 
+    const initialState = {
+      topic: {
+        topics: [],
+        newtopic: ''
+      }
+    };
+
     const expectedActions = [
       {
         type: types.CREATE_TOPIC_REQUEST,
@@ -51,7 +58,7 @@ describe('Ansynchronous Topic Actions', () => {
       .post('/topic', data)
       .reply(200, 'OK');
 
-    const store = mockStore({ topics: [], newTopic: ''}, expectedActions, done);
+    const store = mockStore(initialState, expectedActions, done);
     store.dispatch(actions.createTopic(topic));
   });
 
@@ -62,6 +69,13 @@ describe('Ansynchronous Topic Actions', () => {
       id: id,
       count: 1,
       text: topic
+    };
+
+    const initialState = {
+      topic: {
+        topics: [],
+        newtopic: ''
+      }
     };
 
     const expectedActions = [
@@ -84,7 +98,7 @@ describe('Ansynchronous Topic Actions', () => {
       .post('/topic', data)
       .reply(400);
 
-    const store = mockStore({ topics: [], newTopic: ''}, expectedActions, done);
+    const store = mockStore(initialState, expectedActions, done);
     store.dispatch(actions.createTopic(topic));
 
   });

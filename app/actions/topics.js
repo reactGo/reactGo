@@ -87,21 +87,31 @@ function createTopicFailure(data) {
 // This function does not need to be pure, and thus allowed
 // to have side effects, including executing asynchronous API calls.
 export function createTopic(text) {
-  return dispatch => {
+  return (dispatch, getState) => {
+    // If the text box is empty
     if (text.trim().length <= 0) return;
+
     const id = md5.hash(text);
+    // Redux thunk's middleware receives the store methods `dispatch`
+    // and `getState` as parameters
+    const { topic } = getState();
     const data = {
       id,
       count: 1,
       text
     };
 
+    // Conditional dispatch
+    // If the topic already exists, make sure we emit a dispatch event
+    if (topic.topics.filter(topic => topic.id === id).length > 0) {
+      return;
+    }
+    
     // First dispatch an optimistic update
     dispatch(createTopicRequest(data));
 
     return makeTopicRequest('post', data)
       .then(res => {
-        console.log(res.status);
         if (res.ok) {
           // We can actually dispatch a CREATE_TOPIC_SUCCESS
           // on success, but I've opted to leave that out
