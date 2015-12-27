@@ -62,7 +62,8 @@ module.exports = function(config) {
         new webpack.DefinePlugin({
           __TEST__: JSON.stringify(JSON.parse(process.env.TEST_ENV || 'true'))
         })
-      ]
+      ],
+      watch: true
     },
 
     webpackMiddleware: {
