@@ -19,7 +19,7 @@ module.exports = function(app, passport) {
   // Redirect the user to Google for authentication. When complete, Google
   // will redirect the user back to the application at
   // /auth/google/return
-  // Authentication with google requires an additional scope param, for more info go 
+  // Authentication with google requires an additional scope param, for more info go
   // here https://developers.google.com/identity/protocols/OpenIDConnect#scope-param
   app.get('/auth/google', passport.authenticate('google', { scope: [
         'https://www.googleapis.com/auth/userinfo.profile',
@@ -54,7 +54,7 @@ module.exports = function(app, passport) {
   // fetched and seed our stores with data.
   // App is a function that requires store data and url to initialize and return the React-rendered html string
   app.get('*', function (req, res, next) {
-    App(req, res);
+    App.default(req, res);
   });
 
-};;
+};
