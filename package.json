@@ -11,7 +11,6 @@
     "build:webpack": "NODE_ENV=production webpack --progress --colors --config ./webpack/webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
     "test": "karma start",
-    "test:watch": "npm test -- --watch",
     "postinstall": "npm run build"
   },
   "author": "Choon Ken Ding",
