@@ -1,3 +1,9 @@
+1.3.3
+=====
+- Add unit tests to the repository
+- Add the /containers folder and moved several 'components' to containers
+- Prevent duplicate topics from being added
+
 1.3.2
 =====
 This was more of a styling convention change.
