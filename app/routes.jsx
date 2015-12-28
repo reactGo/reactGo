@@ -1,12 +1,12 @@
 import React from 'react';
 import Route from 'react-router';
 
-import App from 'components/App';
-import Vote from 'components/Vote';
-import About from 'components/About';
-import Login from 'components/Login';
-import Logout from 'components/Logout';
-import Dashboard from 'components/Dashboard';
+import App from 'containers/App';
+import Vote from 'containers/Vote';
+import About from 'containers/About';
+import Login from 'containers/Login';
+import Logout from 'containers/Logout';
+import Dashboard from 'containers/Dashboard';
 
 import { requireAuthentication } from 'components/authenticateComponent';
 

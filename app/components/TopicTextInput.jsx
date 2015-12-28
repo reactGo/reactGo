@@ -4,32 +4,34 @@ const ENTER_KEY_CODE = 13;
 export default class TopicTextInput extends Component {
   constructor(props) {
     super(props);
-    this._onSave = this._onSave.bind(this);
-    this._onChange = this._onChange.bind(this);
-    this._onKeyDown = this._onKeyDown.bind(this);
+    this.onSave = this.onSave.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
   }
   /*
    * Invokes the callback passed in as onSave, allowing this component to be
    * used in different ways. I personally think this makes it more reusable.
    */
-  _onSave() {
-    this.props.onSave(this.props.value);
+  onSave() {
+    const { onEntrySave, value } = this.props;
+    onEntrySave(value);
   }
 
   /*
    * Invokes the callback passed in as onSave, allowing this component to be
    * used in different ways. I personally think this makes it more reusable.
    */
-  _onChange(event) {
-    this.props.onChange(event.target.value);
+  onChange(event) {
+    const { onEntryChange } = this.props;
+    onEntryChange(event.target.value);
   }
 
   /*
    * @param  {object} event
    */
-  _onKeyDown(event) {
+  onKeyDown(event) {
     if (event.keyCode === ENTER_KEY_CODE) {
-      this._onSave();
+      this.onSave();
     }
   }
 
@@ -37,9 +39,9 @@ export default class TopicTextInput extends Component {
     const { className, placeholder, value } = this.props;
     return (
       <input className={className}
-        placeholder={this.props.placeholder}
-        onChange={this._onChange}
-        onKeyDown={this._onKeyDown}
+        placeholder={placeholder}
+        onChange={this.onChange}
+        onKeyDown={this.onKeyDown}
         value={value}
         autoFocus={true} />
     );
@@ -50,6 +52,6 @@ TopicTextInput.propTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string,
   value: PropTypes.string,
-  onSave: PropTypes.func,
-  onChange: PropTypes.func
+  onEntrySave: PropTypes.func,
+  onEntryChange: PropTypes.func
 };

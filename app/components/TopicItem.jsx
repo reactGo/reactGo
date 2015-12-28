@@ -1,31 +1,31 @@
 import React, { Component, PropTypes } from 'react';
-import { incrementCount, decrementCount, destroyTopic } from 'actions/topics';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 import styles from 'scss/components/_topic-item';
 
 const cx = classNames.bind(styles);
 
-class TopicItem extends Component {
+export default class TopicItem extends Component {
   constructor(props) {
     super(props);
-    this._onIncrement = this._onIncrement.bind(this);
-    this._onDecrement = this._onDecrement.bind(this);
-    this._onDestroyClick = this._onDestroyClick.bind(this);
-  }
-  _onIncrement() {
-    const { dispatch, id, index } = this.props;
-    dispatch(incrementCount(id, index));
+    this.onIncrement = this.onIncrement.bind(this);
+    this.onDecrement = this.onDecrement.bind(this);
+    this.onDestroyClick = this.onDestroyClick.bind(this);
   }
 
-  _onDecrement() {
-    const { dispatch, id, index } = this.props;
-    dispatch(decrementCount(id, index));
+  onIncrement() {
+    const { id, index, onIncrement } = this.props;
+    onIncrement(id, index);
   }
 
-  _onDestroyClick() {
-    const { dispatch, id, index } = this.props;
-    dispatch(destroyTopic(id, index));
+  onDecrement() {
+    const { id, index, onDecrement } = this.props;
+    onDecrement(id, index);
+  }
+
+  onDestroyClick() {
+    const { id, index, onDestroy } = this.props;
+    onDestroy(id, index);
   }
 
   render() {
@@ -34,23 +34,20 @@ class TopicItem extends Component {
         <span className={cx('topic-item__topic')}>{this.props.text}</span>
         <button className={
           cx('topic-item__button', 'topic-item__button--increment')
-        } onClick={this._onIncrement}>+</button>
+        } onClick={this.onIncrement}>+</button>
         <button className={
           cx('topic-item__button', 'topic-item__button--decrement')
-        } onClick={this._onDecrement}>-</button>
+        } onClick={this.onDecrement}>-</button>
         <button className={
           cx('topic-item__button', 'topic-item__button--destroy')
-        } onClick={this._onDestroyClick}>{String.fromCharCode(215)}</button>
+        } onClick={this.onDestroyClick}>{String.fromCharCode(215)}</button>
       </li>
     );
   }
-}
+};
 
 TopicItem.propTypes = {
   text: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired
 };
-
-export default connect()(TopicItem);

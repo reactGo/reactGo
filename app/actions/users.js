@@ -2,7 +2,7 @@
 import 'es6-promise';
 import fetch from 'isomorphic-fetch';
 
-import * as types from 'constants/actionTypes';
+import * as types from 'constants';
 
 // Note this can be extracted out later
 /*

@@ -7,8 +7,17 @@ const cx = classNames.bind(styles);
 
 export default class MainSection extends Component {
   render() {
+    // Passing down the callback functions from props to each <TopicItem>
+    const { onIncrement, onDecrement, onDestroy } = this.props;
     const topics = this.props.topics ? this.props.topics.map((topic, key) => {
-      return (<TopicItem index={key} id={topic.id} key={key} text={topic.text} />);
+      return (
+      <TopicItem index={key}
+        id={topic.id}
+        key={key}
+        text={topic.text}
+        onIncrement={onIncrement}
+        onDecrement={onDecrement}
+        onDestroy={onDestroy} />);
     })
     : null;
     return (
@@ -21,5 +30,8 @@ export default class MainSection extends Component {
 }
 
 MainSection.propTypes = {
-  topics: PropTypes.array.isRequired
+  topics: PropTypes.array.isRequired,
+  onIncrement: PropTypes.func.isRequired,
+  onDecrement: PropTypes.func.isRequired,
+  onDestroy: PropTypes.func.isRequired
 };

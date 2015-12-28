@@ -1,9 +1,10 @@
 import {
   TYPING,
-  CREATE_TOPIC,
+  CREATE_TOPIC_REQUEST,
+  CREATE_TOPIC_FAILURE,
   DESTROY_TOPIC,
   INCREMENT_COUNT,
-  DECREMENT_COUNT } from 'constants/actionTypes';
+  DECREMENT_COUNT } from 'constants';
 
 
 export default function topic(state = {
@@ -15,10 +16,15 @@ export default function topic(state = {
       return Object.assign({}, state,
         { newTopic: action.newTopic }
       );
-    case CREATE_TOPIC:
+    case CREATE_TOPIC_REQUEST:
       return {
         topics: [...state.topics, { id: action.id, count: action.count, text: action.text } ],
         newTopic: ''
+      };
+    case CREATE_TOPIC_FAILURE:
+      return {
+        topics: [...state.topics.filter((tp) => tp.id !== action.id)],
+        newTopic: state.newTopic
       };
     case DESTROY_TOPIC:
       return {

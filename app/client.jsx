@@ -18,6 +18,8 @@ const history = createBrowserHistory();
 // store in sync
 syncReduxAndRouter(history, store);
 
+// Router converts <Route> element hierarchy to a route config:
+// Read more https://github.com/rackt/react-router/blob/latest/docs/Glossary.md#routeconfig
 render(
   <Provider store={store}>
     <Router history={history}>
