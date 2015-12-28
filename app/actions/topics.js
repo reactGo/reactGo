@@ -71,7 +71,7 @@ function createTopicRequest(data) {
 function createTopicSuccess() {
   return {
     type: types.CREATE_TOPIC_SUCCESS
-  }
+  };
 }
 
 function createTopicFailure(data) {
@@ -80,6 +80,12 @@ function createTopicFailure(data) {
     id: data.id,
     ex: data.ex
   };
+}
+
+function createTopicDuplicate() {
+  return {
+    type: types.CREATE_TOPIC_DUPLICATE
+  }
 }
 
 // This action creator returns a function,
@@ -104,7 +110,10 @@ export function createTopic(text) {
     // Conditional dispatch
     // If the topic already exists, make sure we emit a dispatch event
     if (topic.topics.filter(topic => topic.id === id).length > 0) {
-      return;
+      // Currently there is no reducer that changes state for this
+      // For production you would ideally have a message reducer that
+      // notifies the user of a duplicate topic
+      return dispatch(createTopicDuplicate());
     }
     
     // First dispatch an optimistic update

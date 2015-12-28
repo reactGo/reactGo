@@ -102,4 +102,32 @@ describe('Ansynchronous Topic Actions', () => {
     store.dispatch(actions.createTopic(topic));
 
   });
+
+  it('Should dispatch a CREATE_TOPIC_DUPLICATE action for a duplicate topic', done => {
+    const topic = 'A time machine';
+    const id = md5.hash(topic);
+    const data = {
+      id: id,
+      count: 1,
+      text: topic
+    };
+
+    const initialState = {
+      topic: {
+        topics: [
+          data
+        ],
+        newtopic: ''
+      }
+    };
+
+    const expectedActions = [
+      {
+        type: types.CREATE_TOPIC_DUPLICATE
+      }
+    ];
+
+    const store = mockStore(initialState, expectedActions, done);
+    store.dispatch(actions.createTopic(topic));
+  });
 });
