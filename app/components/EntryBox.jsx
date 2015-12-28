@@ -30,4 +30,5 @@ EntryBox.propTypes = {
   dispatch: PropTypes.func
 };
 
+// Just inject dispatch and don't listen to store
 export default connect()(EntryBox);
