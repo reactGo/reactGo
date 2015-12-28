@@ -7,10 +7,15 @@ import styles from 'scss/components/_entrybox';
 
 const cx = classNames.bind(styles);
 
-class EntryBox extends Component {
+export default class EntryBox extends Component {
 
   render() {
-    const { dispatch } = this.props;
+    // Takes callback functions from props and passes it down to TopicTextInput
+    // Essentially this is passing the callback function two levels down from parent
+    // to grandchild. To make it cleaner, you could consider:
+    // 1. moving `connect` down to this component so you could mapStateToProps and dispatch
+    // 2. Move TopicTextInput up to EntryBox so it's less confusing
+    const { onEntryChange, onEntrySave } = this.props;
     return (
       <div className={cx('entrybox')}>
         <h1 className={cx('entrybox__header')}>Vote for your top hack idea</h1>
@@ -18,8 +23,8 @@ class EntryBox extends Component {
           className={cx('entrybox__input')}
           value={this.props.topic}
           placeholder="What's yer fav idea?"
-          onChange={text => dispatch(typing(text))}
-          onSave={text => dispatch(createTopic(text))} />
+          onEntryChange={onEntryChange}
+          onEntrySave={onEntrySave} />
       </div>
     );
   }
@@ -27,8 +32,6 @@ class EntryBox extends Component {
 
 EntryBox.propTypes = {
   topic: PropTypes.string,
-  dispatch: PropTypes.func
+  onEntryChange: PropTypes.func.isRequired,
+  onEntrySave: PropTypes.func.isRequired
 };
-
-// Just inject dispatch and don't listen to store
-export default connect()(EntryBox);

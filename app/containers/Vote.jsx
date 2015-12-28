@@ -4,7 +4,9 @@ import classNames from 'classnames/bind';
 import EntryBox from 'components/EntryBox';
 import MainSection from 'components/MainSection';
 import Scoreboard from 'components/Scoreboard';
-import { incrementCount, decrementCount, destroyTopic } from 'actions/topics';
+import { 
+  createTopic, typing, incrementCount,
+  decrementCount, destroyTopic } from 'actions/topics';
 import styles from 'scss/components/_vote';
 
 const cx = classNames.bind(styles);
@@ -13,9 +15,13 @@ class Vote extends Component {
 
   constructor(props) {
     super(props);
+    // event handlers for MainSection component
     this.onIncrement = this.onIncrement.bind(this);
     this.onDecrement = this.onDecrement.bind(this);
     this.onDestroy = this.onDestroy.bind(this);
+    // event handlers for EntryBox component
+    this.onEntryChange = this.onEntryChange.bind(this);
+    this.onEntrySave = this.onEntrySave.bind(this);
   }
 
   onIncrement(id, index) {
@@ -33,10 +39,23 @@ class Vote extends Component {
     dispatch(destroyTopic(id, index));
   }
 
+  onEntryChange(text) {
+    const { dispatch } = this.props;
+    dispatch(typing(text));
+  }
+
+  onEntrySave(text) {
+    const { dispatch } = this.props;
+    dispatch(createTopic(text));
+  }
+
+
   render() {
     return (
       <div className={cx('vote')}>
-        <EntryBox topic={this.props.newTopic} />
+        <EntryBox topic={this.props.newTopic}
+          onEntryChange={this.onEntryChange}
+          onEntrySave={this.onEntrySave} />
         <MainSection topics={this.props.topics}
           onIncrement={this.onIncrement}
           onDecrement={this.onDecrement}

@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 
 export default class MainSection extends Component {
   render() {
-    // Passing down the prop functions from parent component to each TopicItem
+    // Passing down the callback functions from props to each <TopicItem>
     const { onIncrement, onDecrement, onDestroy } = this.props;
     const topics = this.props.topics ? this.props.topics.map((topic, key) => {
       return (
