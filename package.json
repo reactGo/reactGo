@@ -82,7 +82,7 @@
     "redux": "^3.0.2",
     "redux-devtools": "^2.1.5",
     "redux-logger": "^2.0.3",
-    "redux-simple-router": "0.0.10",
+    "redux-simple-router": "^1.0.2",
     "redux-thunk": "^1.0.0",
     "rimraf": "^2.4.4",
     "sass-loader": "^3.1.2",
