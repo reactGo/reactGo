@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { updatePath } from 'redux-simple-router';
+import { pushPath } from 'redux-simple-router';
 
 export function requireAuthentication(Component) {
   class AuthenticateComponent extends React.Component {
@@ -12,7 +12,7 @@ export function requireAuthentication(Component) {
     componentWillMount() {
       const { isAuthenticated, dispatch } = this.props;
       if (!isAuthenticated) {
-        dispatch(updatePath(`/login?next=${this.props.location.pathname}`));
+        dispatch(pushPath(`/login?next=${this.props.location.pathname}`));
       }
     }
 
