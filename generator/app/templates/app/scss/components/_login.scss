@@ -1,0 +1,52 @@
+@import 'settings.scss';
+@import 'mixins.scss';
+
+.login {}
+
+  .login__header {
+    font-size: $font-large;
+    text-align: center;
+  }
+
+  .login__fieldset {
+    width: 360px;
+    margin: auto;
+    border: none;
+    border-radius: $global-radius;
+    @include simpleBoxShadow;
+  }
+
+  .login__input {
+    display: block;
+    width: 80%;
+    margin: 8px auto;
+    font-size: $font-medium;
+    line-height: 1.5;
+    text-align: center;
+    outline: none;
+  }
+
+  .login__button {
+    display: block;
+    width: 240px;
+    margin: 0 auto;
+    font-size: $font-medium;
+    line-height: 1.5;
+    border: none;
+    text-align: center;
+    border-radius: 2px;
+    text-decoration: none;
+    color: $color-white;
+
+    &:hover, &:visited {
+      color: $color-white;
+    }
+  }
+
+    .login__button--green {
+      background-color: $color-salem;
+    }
+
+  .login__hint {
+    text-align: center;
+  }

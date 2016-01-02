@@ -1,0 +1,20 @@
+@import 'settings.scss';
+
+.navigation {
+  padding: 0 28px;
+}
+
+  .navigation__item {
+    display: inline-block;
+    text-decoration: none;
+    padding: 16px 32px;
+    color: $color-black;
+  }
+
+    .navigation__item--logo {
+      font-size: $font-x-large;
+    }
+    
+    .navigation__item--active {
+      color: $color-dodger-blue;
+    }

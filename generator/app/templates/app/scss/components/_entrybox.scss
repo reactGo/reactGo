@@ -1,0 +1,24 @@
+@import 'settings.scss';
+
+.entrybox {
+  width: 100%;
+  margin-bottom: 72px;
+}
+
+  .entrybox__header {
+    text-align: center;
+    font-size: $font-x-large;
+  }
+
+  .entrybox__input {
+    display: block;
+    margin: 0 auto;
+    width: 718px;
+    height: 72px;
+    line-height: 1.5;
+    font-size: $font-x-large;
+    border-width: 0 0 2px 0;
+    border-bottom: 2px solid $color-black;
+    outline: none;
+  }
+
