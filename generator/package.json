@@ -33,7 +33,9 @@
     "alt"
   ],
   "dependencies": {
+    "camelcase": "^2.0.1",
     "chalk": "^1.0.0",
+    "html-wiring": "^1.2.0",
     "underscore.string": "^3.0.2",
     "yeoman-generator": "^0.20.1",
     "yo": ">=1.0.0",

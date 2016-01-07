@@ -2,7 +2,6 @@ var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var MongoStore =  require('connect-mongo')(session);
 var path = require('path');
 var secrets = require('./secrets');
 var flash = require('express-flash');
@@ -69,8 +68,7 @@ module.exports = function (app, passport) {
     cookie: {
       httpOnly: true,
       secure: false
-    },
-    store: new MongoStore({ url: secrets.db, autoReconnect: true})
+    }
   };
 
   var node_env = process.env.NODE_ENV;
@@ -80,9 +78,6 @@ module.exports = function (app, passport) {
   }
 
   app.use(session(sess));
-
-  app.use(passport.initialize());
-  app.use(passport.session());
 
   app.use(flash());
   

@@ -8,21 +8,6 @@ import routes from 'routes.jsx';
 import configureStore from 'store/configureStore';
 import headconfig from 'elements/Header';
 
-const clientConfig = {
-  host: process.env.HOSTNAME || 'localhost',
-  port: process.env.PORT || '3000'
-};
-
-
-// Fetch and call the callback function after the response
-// is converted to returned and converted to json
-function fetchTopics(callback, api='topic') {
-  fetch(`http://${clientConfig.host}:${clientConfig.port}/${api}`)
-    .then(res => res.json())
-    .then(json => callback(json));
-};
-
-
 /*
  * Our html template file
  * @param {String} renderedContent
@@ -73,33 +58,27 @@ export default function render(req, res) {
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
-      fetchTopics(apiResult => {
-        const authenticated = req.isAuthenticated();
-        const store = configureStore({
-          // reducer: {initialState}
-          topic: {
-            topics: apiResult
-          },
-          user: {
-            authenticated: authenticated, 
-            isWaiting: false
-          }
-        });
-        const initialState = store.getState();
-        const renderedContent = renderToString(
-        <Provider store={store}>
-          <RoutingContext {...renderProps} />
-        </Provider>);
-        const renderedPage = renderFullPage(renderedContent, initialState, {
-          title: headconfig.title,
-          meta: headconfig.meta,
-          link: headconfig.link
-        });
-        res.status(200).send(renderedPage);
+      const store = configureStore({
+        // reducer: {initialState}
       });
+      const initialState = store.getState();
+
+      const renderedContent = renderToString(
+      <Provider store={store}>
+        <RoutingContext {...renderProps} />
+      </Provider>);
+
+      const renderedPage = renderFullPage(renderedContent, initialState, {
+        title: headconfig.title,
+        meta: headconfig.meta,
+        link: headconfig.link
+      });
+
+      res.status(200).send(renderedPage);
     } else {
       res.status(404).send('Not Found');
     }
     
   });
+  
 };
