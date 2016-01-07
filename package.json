@@ -57,7 +57,6 @@
     "file-loader": "^0.8.4",
     "helmet": "^0.15.0",
     "history": "^1.13.1",
-    "http-proxy": "^1.11.1",
     "immutable": "^3.7.4",
     "invariant": "^2.1.2",
     "isomorphic-fetch": "^2.2.0",
