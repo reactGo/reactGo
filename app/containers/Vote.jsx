@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import EntryBox from 'components/EntryBox';
 import MainSection from 'components/MainSection';
 import Scoreboard from 'components/Scoreboard';
-import { 
+import {
   createTopic, typing, incrementCount,
   decrementCount, destroyTopic } from 'actions/topics';
 import styles from 'scss/components/_vote';
@@ -67,7 +67,9 @@ class Vote extends Component {
 }
 
 Vote.propTypes = {
-  topics: PropTypes.array, newTopic: PropTypes.string
+  topics: PropTypes.array.isRequired,
+  newTopic: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {

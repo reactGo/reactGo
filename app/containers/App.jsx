@@ -20,7 +20,7 @@ export default class App extends Component {
       </div>
     );
   }
-};
+}
 
 App.propTypes = {
   children: PropTypes.object

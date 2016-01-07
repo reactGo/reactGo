@@ -1,6 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { createTopic, typing } from 'actions/topics';
 import TopicTextInput from 'components/TopicTextInput';
 import classNames from 'classnames/bind';
 import styles from 'scss/components/_entrybox';

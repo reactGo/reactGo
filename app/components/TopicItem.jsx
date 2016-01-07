@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 import styles from 'scss/components/_topic-item';
 
@@ -44,10 +43,13 @@ export default class TopicItem extends Component {
       </li>
     );
   }
-};
+}
 
 TopicItem.propTypes = {
   text: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired
+  index: PropTypes.number.isRequired,
+  onIncrement: PropTypes.func.isRequired,
+  onDecrement: PropTypes.func.isRequired,
+  onDestroy: PropTypes.func.isRequired
 };

@@ -37,4 +37,4 @@ export function requireAuthentication(Component) {
   }
 
   return connect(mapStateToProps)(AuthenticateComponent);
-};
+}
