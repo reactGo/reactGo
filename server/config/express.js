@@ -1,7 +1,6 @@
 var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
 var MongoStore =  require('connect-mongo')(session);
 var path = require('path');
 var secrets = require('./secrets');
@@ -34,11 +33,6 @@ module.exports = function (app, passport) {
   // To enable it, use the values described in the trust proxy options table.
   // The trust proxy setting is implemented using the proxy-addr package. For more information, see its documentation.
   app.enable('trust proxy');
-  // Cookie parser should be above session
-  // cookieParser - Parse Cookie header and populate req.cookies with an object keyed by cookie names
-  // Optionally you may enable signed cookie support by passing a secret string, which assigns req.secret
-  // so it may be used by other middleware
-  app.use(cookieParser());
   // Create a session middleware with the given options
   // Note session data is not saved in the cookie itself, just the session ID. Session data is stored server-side.
   // Options: resave: forces the session to be saved back to the session store, even if the session was never
@@ -58,16 +52,20 @@ module.exports = function (app, passport) {
   var sess = {
     resave: true,
     saveUninitialized: true,
-    // Use generic cookie name for security purposes
-    key: 'sessionId',
     secret: secrets.sessionSecret,
+    name: 'sessionId',
     // Add HTTPOnly, Secure attributes on Session Cookie
     // If secure is set, and you access your site over HTTP, the cookie will not be set
     cookie: {
       httpOnly: true,
-      secure: false
+      secure: false,
     },
-    store: new MongoStore({ url: secrets.db, autoReconnect: true})
+    store: new MongoStore(
+      { 
+        url: secrets.db,
+        autoReconnect: true
+      }
+    )
   };
 
   var node_env = process.env.NODE_ENV;
