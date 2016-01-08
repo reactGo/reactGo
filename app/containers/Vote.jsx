@@ -68,7 +68,7 @@ class Vote extends Component {
 
 Vote.propTypes = {
   topics: PropTypes.array.isRequired,
-  newTopic: PropTypes.string.isRequired,
+  newTopic: PropTypes.string,
   dispatch: PropTypes.func.isRequired
 };
 
