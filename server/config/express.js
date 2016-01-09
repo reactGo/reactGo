@@ -54,6 +54,7 @@ module.exports = function (app, passport) {
     resave: true,
     saveUninitialized: false,
     secret: secrets.sessionSecret,
+    proxy: true, // The "X-Forwarded-Proto" header will be used.
     name: 'sessionId',
     // Add HTTPOnly, Secure attributes on Session Cookie
     // If secure is set, and you access your site over HTTP, the cookie will not be set
