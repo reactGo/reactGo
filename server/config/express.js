@@ -32,7 +32,8 @@ module.exports = function (app, passport) {
   // The req.ips property, then, contains an array of IP addresses the client is connected through.
   // To enable it, use the values described in the trust proxy options table.
   // The trust proxy setting is implemented using the proxy-addr package. For more information, see its documentation.
-  app.enable('trust proxy');
+  // loopback - 127.0.0.1/8, ::1/128
+  app.set('trust proxy', 'loopback');
   // Create a session middleware with the given options
   // Note session data is not saved in the cookie itself, just the session ID. Session data is stored server-side.
   // Options: resave: forces the session to be saved back to the session store, even if the session was never
