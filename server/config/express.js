@@ -51,7 +51,7 @@ module.exports = function (app, passport) {
   //                  If secure is set, and you access your site over HTTP, the cookie will not be set.
   var sess = {
     resave: true,
-    saveUninitialized: true,
+    saveUninitialized: false,
     secret: secrets.sessionSecret,
     name: 'sessionId',
     // Add HTTPOnly, Secure attributes on Session Cookie

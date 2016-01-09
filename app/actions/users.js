@@ -17,6 +17,7 @@ import * as types from 'constants';
 function makeUserRequest(method, data, api='/login') {
   return fetch(api, {
     method: method,
+    credentials: 'same-origin',
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'

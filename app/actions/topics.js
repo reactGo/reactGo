@@ -27,6 +27,7 @@ if (__TEST__) {
 function makeTopicRequest(method, data) {
   return fetch(API_ENDPOINT, {
     method: method,
+    credentials: 'same-origin',
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
