@@ -102,6 +102,7 @@ export function logOut() {
 
     return fetch('/logout', {
       method: 'get',
+      credentials: 'same-origin',
       headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'

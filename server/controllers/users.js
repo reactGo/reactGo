@@ -24,10 +24,10 @@ exports.postLogin = function(req, res, next) {
 /**
  * GET /logout
  */
-exports.getLogout = function(req, res, next) {
+exports.getLogout = function(req, res) {
   // Do email and password validation for the server
   req.logout();
-  next();
+  res.status(200).send('OK');
 };
 
 /**

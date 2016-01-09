@@ -13,7 +13,7 @@ class Navigation extends Component {
           <Link to="/" className={styles.navigation__item + ' ' + styles['navigation__item--logo']} activeClassName={styles['navigation__item--active']}>Ninja Ocean</Link>
           { this.props.user.authenticated ? (
             <Link onClick={()=> dispatch(logOut())}
-              className={styles.navigation__item} to="/logout">Logout</Link>
+              className={styles.navigation__item} to="/">Logout</Link>
           ) : (
             <Link className={styles.navigation__item} to="/login">Log in</Link>
           )}
