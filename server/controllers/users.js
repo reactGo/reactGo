@@ -27,7 +27,7 @@ exports.postLogin = function(req, res, next) {
 exports.getLogout = function(req, res) {
   // Do email and password validation for the server
   req.logout();
-  res.status(200).send('OK');
+  res.redirect('/');
 };
 
 /**
