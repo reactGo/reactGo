@@ -153,6 +153,8 @@ We have unit tests for `/actions` and `/reducers` in place, but none for `/compo
 
 I previously followed the [example for writing tests with redux](http://rackt.org/redux/docs/recipes/WritingTests.html) which used `mocha` and `jsdom`, but I soon encountered problems with `require`-ing files without using a relative path, also a lot issues with `nock`-ing correctly. 
 
+## Yeoman Generator
+If you like using yeoman generators, you could check out [this](https://github.com/iiegor/generator-react-webpack-node) cool yeoman generator by @iiegor!
 
 ## Questions
 1. Google Authentication does not work locally or on heroku!
