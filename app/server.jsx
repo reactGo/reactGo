@@ -6,6 +6,7 @@ import fetch from 'isomorphic-fetch';
 import { Provider } from 'react-redux';
 import routes from 'routes.jsx';
 import configureStore from 'store/configureStore';
+import { NotAuthorizedException } from 'helpers/authHelpers';
 import headconfig from 'elements/Header';
 
 const clientConfig = {
@@ -65,41 +66,47 @@ function renderFullPage(renderedContent, initialState, head={
  */
 export default function render(req, res) {
 
-  // Note that req.url here should be the full URL path from
-  // the original request, including the query string.
-  match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
-    if (error) {
-      res.status(500).send(error.message);
-    } else if (redirectLocation) {
-      res.redirect(302, redirectLocation.pathname + redirectLocation.search);
-    } else if (renderProps) {
-      fetchTopics(apiResult => {
-        const authenticated = req.isAuthenticated();
-        const store = configureStore({
-          // reducer: {initialState}
-          topic: {
-            topics: apiResult
-          },
-          user: {
-            authenticated: authenticated, 
-            isWaiting: false
-          }
+  try {
+    // Note that req.url here should be the full URL path from
+    // the original request, including the query string.
+    match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
+      if (error) {
+        res.status(500).send(error.message);
+      } else if (redirectLocation) {
+        res.redirect(302, redirectLocation.pathname + redirectLocation.search);
+      } else if (renderProps) {
+        fetchTopics(apiResult => {
+          const authenticated = req.isAuthenticated();
+          const store = configureStore({
+            // reducer: {initialState}
+            topic: {
+              topics: apiResult
+            },
+            user: {
+              authenticated: authenticated, 
+              isWaiting: false
+            }
+          });
+          const initialState = store.getState();
+          const renderedContent = renderToString(
+          <Provider store={store}>
+            <RoutingContext {...renderProps} />
+          </Provider>);
+          const renderedPage = renderFullPage(renderedContent, initialState, {
+            title: headconfig.title,
+            meta: headconfig.meta,
+            link: headconfig.link
+          });
+          res.status(200).send(renderedPage);
         });
-        const initialState = store.getState();
-        const renderedContent = renderToString(
-        <Provider store={store}>
-          <RoutingContext {...renderProps} />
-        </Provider>);
-        const renderedPage = renderFullPage(renderedContent, initialState, {
-          title: headconfig.title,
-          meta: headconfig.meta,
-          link: headconfig.link
-        });
-        res.status(200).send(renderedPage);
-      });
-    } else {
-      res.status(404).send('Not Found');
+      } else {
+        res.status(404).send('Not Found');
+      }
+      
+    });
+  } catch (err) {
+    if (err instanceof NotAuthorizedException) {
+      res.status(401).send('Not authorized');
     }
-    
-  });
+  }
 };

@@ -1,9 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router';
-import { syncReduxAndRouter } from 'redux-simple-router';
-import createBrowserHistory from 'history/lib/createBrowserHistory';
+import { Router, browserHistory } from 'react-router';
+import { syncHistory } from 'redux-simple-router';
 import routes from 'routes.jsx';
 import configureStore from 'store/configureStore';
 
@@ -12,11 +11,10 @@ import configureStore from 'store/configureStore';
 const initialState = window.__INITIAL_STATE__;
 
 const store = configureStore(initialState);
-const history = createBrowserHistory();
 
 // Installs hooks that always keep react-router and redux
 // store in sync
-syncReduxAndRouter(history, store);
+syncHistory(browserHistory);
 
 // Router converts <Route> element hierarchy to a route config:
 // Read more https://github.com/rackt/react-router/blob/latest/docs/Glossary.md#routeconfig
