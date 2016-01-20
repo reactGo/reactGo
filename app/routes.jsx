@@ -9,7 +9,6 @@ import Dashboard from 'containers/Dashboard';
 
 import { requireAuth } from 'helpers/authHelpers';
 
-
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Vote} />

@@ -14,6 +14,7 @@ module.exports = function(app, passport) {
   app.post('/login', users.postLogin);
   app.post('/signup', users.postSignUp);
   app.get('/logout', users.getLogout);
+  app.get('/user/authenticated', users.isAuthenticated);
 
   // google auth
   // Redirect the user to Google for authentication. When complete, Google
