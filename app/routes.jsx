@@ -7,20 +7,14 @@ import About from 'containers/About';
 import Login from 'containers/Login';
 import Dashboard from 'containers/Dashboard';
 
-import { requireAuthentication } from 'helpers/authHelpers';
+import { requireAuth } from 'helpers/authHelpers';
 
-function requireAuth(nextState, replace) {
-  replace({
-    pathname: '/login',
-    state: { nextPathname: nextState.location.pathname }
-  });
-}
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Vote} />
     <Route path="login" component={Login} />
-    <Route path="dashboard" component={requireAuthentication(Dashboard)} />
+    <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
     <Route path="about" component={About} />
   </Route>
 );
