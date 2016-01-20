@@ -1,7 +1,6 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { RoutingContext, match } from 'react-router'
-import createLocation from 'history/lib/createLocation';
+import { RouterContext, match, createMemoryHistory } from 'react-router'
 import fetch from 'isomorphic-fetch';
 import { Provider } from 'react-redux';
 import routes from 'routes.jsx';
@@ -65,7 +64,6 @@ function renderFullPage(renderedContent, initialState, head={
  * and pass it into the Router.run function.
  */
 export default function render(req, res) {
-
   try {
     // Note that req.url here should be the full URL path from
     // the original request, including the query string.
@@ -75,6 +73,7 @@ export default function render(req, res) {
       } else if (redirectLocation) {
         res.redirect(302, redirectLocation.pathname + redirectLocation.search);
       } else if (renderProps) {
+        const history = createMemoryHistory();
         fetchTopics(apiResult => {
           const authenticated = req.isAuthenticated();
           const store = configureStore({
@@ -86,11 +85,11 @@ export default function render(req, res) {
               authenticated: authenticated, 
               isWaiting: false
             }
-          });
+          }, history);
           const initialState = store.getState();
           const renderedContent = renderToString(
           <Provider store={store}>
-            <RoutingContext {...renderProps} />
+            <RouterContext {...renderProps} />
           </Provider>);
           const renderedPage = renderFullPage(renderedContent, initialState, {
             title: headconfig.title,
@@ -108,5 +107,6 @@ export default function render(req, res) {
     if (err instanceof NotAuthorizedException) {
       res.status(401).send('Not authorized');
     }
+    res.status(500).send('We just encountered some slight problems with our server. Reason: ' + err.message);
   }
 };
