@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { pushPath } from 'redux-simple-router';
+import { routeActions } from 'redux-simple-router';
 
 export class NotAuthorizedException {
   constructor(to = '/login') {
@@ -26,7 +26,7 @@ export function requireAuthentication(Component) {
       console.log('dewwwd');
       if (!isAuthenticated) {
         if (typeof window !== 'undefined') {
-          dispatch(pushPath(`/login?next=${this.props.location.pathname}`));
+          dispatch(routeActions.push(`/login?next=${this.props.location.pathname}`));
         } else {
           console.log('I was called');
           throw new NotAuthorizedException(`/login?next=${this.props.location.pathname}`);
