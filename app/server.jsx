@@ -3,9 +3,8 @@ import { renderToString } from 'react-dom/server';
 import { RouterContext, match, createMemoryHistory } from 'react-router'
 import fetch from 'isomorphic-fetch';
 import { Provider } from 'react-redux';
-import routes from 'routes.jsx';
+import createRoutes from 'routes.jsx';
 import configureStore from 'store/configureStore';
-import { NotAuthorizedException } from 'helpers/authHelpers';
 import headconfig from 'elements/Header';
 
 const clientConfig = {
@@ -64,6 +63,22 @@ function renderFullPage(renderedContent, initialState, head={
  * and pass it into the Router.run function.
  */
 export default function render(req, res) {
+
+  fetchTopics(apiResult => {
+    const history = createMemoryHistory();
+    const authenticated = req.isAuthenticated();
+    const store = configureStore({
+      // reducer: {initialState}
+      topic: {
+        topics: apiResult
+      },
+      user: {
+        authenticated: authenticated, 
+        isWaiting: false
+      }
+    }, history);
+    const routes = createRoutes(store);
+
     /*
      * From the react-router docs:
      * 
@@ -91,34 +106,22 @@ export default function render(req, res) {
       } else if (redirectLocation) {
         res.redirect(302, redirectLocation.pathname + redirectLocation.search);
       } else if (renderProps) {
-        const history = createMemoryHistory();
-        fetchTopics(apiResult => {
-          const authenticated = req.isAuthenticated();
-          const store = configureStore({
-            // reducer: {initialState}
-            topic: {
-              topics: apiResult
-            },
-            user: {
-              authenticated: authenticated, 
-              isWaiting: false
-            }
-          }, history);
-          const initialState = store.getState();
-          const renderedContent = renderToString(
-          <Provider store={store}>
-            <RouterContext {...renderProps} />
-          </Provider>);
-          const renderedPage = renderFullPage(renderedContent, initialState, {
-            title: headconfig.title,
-            meta: headconfig.meta,
-            link: headconfig.link
-          });
-          res.status(200).send(renderedPage);
+
+        const initialState = store.getState();
+        const renderedContent = renderToString(
+        <Provider store={store}>
+          <RouterContext {...renderProps} />
+        </Provider>);
+        const renderedPage = renderFullPage(renderedContent, initialState, {
+          title: headconfig.title,
+          meta: headconfig.meta,
+          link: headconfig.link
         });
+        res.status(200).send(renderedPage);              
       } else {
         res.status(404).send('Not Found');
       }
-      
+
     });
+  });
 };

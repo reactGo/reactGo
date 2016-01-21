@@ -2,12 +2,6 @@ var _ = require('lodash');
 var User = require('../models/user');
 var passport = require('passport');
 
-exports.isAuthenticated = function(req, res) {
-  res.json({
-    authenticated: req.isAuthenticated()
-  });
-}
-
 /**
  * POST /login
  */
