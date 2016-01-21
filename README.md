@@ -23,6 +23,7 @@ On master branch:
  - [react-router](https://github.com/rackt/react-router)
  - [redux-simple-router](https://github.com/jlongster/redux-simple-router)
  - [react-transform-hmr](https://github.com/gaearon/react-transform-hmr)
+ - universal authentication for react-router
 
 On [flux/alt](https://github.com/choonkending/react-webpack-node/tree/flux/alt) branch:
  - [alt](https://github.com/goatslacker/alt)
@@ -36,7 +37,7 @@ On [flux/alt](https://github.com/choonkending/react-webpack-node/tree/flux/alt) 
 2. Webpack [config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack/webpack.config.prod.js)
 3. Express server
 4. Mongoose for MongoDB
-5. Procfile to enable deployment to Heroku.
+5. Procfile to enable deployment to Heroku
 
 ## Why redux?
 I'm really a fan of this implementation. The main principles of having:
