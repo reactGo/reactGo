@@ -71,8 +71,12 @@ module.exports = function (app, passport) {
   };
 
   var node_env = process.env.NODE_ENV;
-  console.log('Environment: ' + node_env);
+  console.log('--------------------------');
+  console.log('===> 😊  Starting Server . . .');
+  console.log('===>  Environment: ' + node_env);
   if(node_env === 'production') {
+    console.log('===> 🚦  Note: In order for authentication to work in production');
+    console.log('===>           you will need a secure HTTPS connection');
     sess.cookie.secure = true; // Serve secure cookies
   }
 

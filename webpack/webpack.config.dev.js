@@ -75,7 +75,8 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
         new webpack.DefinePlugin({
-          __TEST__: JSON.stringify(JSON.parse(process.env.TEST_ENV || 'false'))
+          __TEST__: JSON.stringify(JSON.parse(process.env.TEST_ENV || 'false')),
+          __DEV__: true
         })
     ]
 };

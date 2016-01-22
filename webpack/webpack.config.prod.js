@@ -90,7 +90,8 @@ module.exports = [
           }
         }),
         new webpack.DefinePlugin({
-          __TEST__: JSON.stringify(JSON.parse(process.env.TEST_ENV || 'false'))
+          __TEST__: JSON.stringify(JSON.parse(process.env.TEST_ENV || 'false')),
+          __DEV__: false
         })
     ]
   }, {
@@ -132,7 +133,8 @@ module.exports = [
           }
         }),
         new webpack.DefinePlugin({
-          __TEST__: JSON.stringify(JSON.parse(process.env.TEST_ENV || 'false'))
+          __TEST__: JSON.stringify(JSON.parse(process.env.TEST_ENV || 'false')),
+          __DEV__: false
         })
     ]
   }

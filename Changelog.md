@@ -1,3 +1,11 @@
+1.4
+=====
+- Bump versions of
+  - redux ^3.0
+  - react-router ^2.0.0-rc5
+  - redux-simple-router ^2.0.3
+- authentication flow for `/dashboard` route now works server side as well.
+
 1.3.3
 =====
 - Add unit tests to the repository
