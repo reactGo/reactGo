@@ -1,3 +1,7 @@
+1.4.1
+======
+- Rename and move `elements/Header.jsx` to `components/Meta.jsx` for better structure and semantic meaning.
+
 1.4
 =====
 - Bump versions of

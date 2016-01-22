@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 
 import config from 'helmconfig.js';
 
-class Header extends React.Component {
+class Meta extends React.Component {
   render() {
     return (
       <Helmet
@@ -16,7 +16,7 @@ class Header extends React.Component {
   }
 }
 
-ReactDOMServer.renderToString(<Header />);
+ReactDOMServer.renderToString(<Meta />);
 let header = Helmet.rewind();
 
 export default header;

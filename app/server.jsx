@@ -5,7 +5,7 @@ import fetch from 'isomorphic-fetch';
 import { Provider } from 'react-redux';
 import createRoutes from 'routes.jsx';
 import configureStore from 'store/configureStore';
-import headconfig from 'elements/Header';
+import headconfig from 'components/Meta';
 
 const clientConfig = {
   host: process.env.HOSTNAME || 'localhost',
