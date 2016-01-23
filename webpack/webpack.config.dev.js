@@ -11,7 +11,8 @@ var commonLoaders = [
      */
     test: /\.js$|\.jsx$/,
     loaders: ['babel'],
-    include: path.join(__dirname, '..', 'app')
+    include: path.join(__dirname, '..', 'app'),
+    exclude: /node_modules/
   },
   { test: /\.png$/, loader: 'url-loader' },
   { test: /\.jpg$/, loader: 'file-loader' },
