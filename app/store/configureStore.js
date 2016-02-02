@@ -2,7 +2,7 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import rootReducer from 'reducers';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
-import { syncHistory } from 'redux-simple-router';
+import { syncHistory } from 'react-router-redux';
 
 /*
  * @param {Object} initial state to bootstrap our stores with for server-side rendering

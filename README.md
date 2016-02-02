@@ -21,7 +21,7 @@ We now have two ~~isomorphic~~ Universal Flux implementations in this repository
 On master branch:
  - [redux](https://github.com/rackt/redux)
  - [react-router](https://github.com/rackt/react-router)
- - [redux-simple-router](https://github.com/jlongster/redux-simple-router)
+ - ~~redux-simple-router~~[react-router-redux](https://github.com/rackt/react-router-redux)
  - [react-transform-hmr](https://github.com/gaearon/react-transform-hmr)
  - universal authentication for react-router
 
