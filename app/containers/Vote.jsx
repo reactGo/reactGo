@@ -51,16 +51,17 @@ class Vote extends Component {
 
 
   render() {
+    const {newTopic, topics} = this.props;
     return (
       <div className={cx('vote')}>
-        <EntryBox topic={this.props.newTopic}
+        <EntryBox topic={newTopic}
           onEntryChange={this.onEntryChange}
           onEntrySave={this.onEntrySave} />
-        <MainSection topics={this.props.topics}
+        <MainSection topics={topics}
           onIncrement={this.onIncrement}
           onDecrement={this.onDecrement}
           onDestroy={this.onDestroy} />
-        <Scoreboard topics={this.props.topics} />
+        <Scoreboard topics={topics} />
       </div>
     );
   }

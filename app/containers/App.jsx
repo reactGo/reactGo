@@ -11,17 +11,17 @@ import 'scss/main';
  * A better explanation of react-router is available here:
  * https://github.com/rackt/react-router/blob/latest/docs/Introduction.md
  */
-export default class App extends Component {
-  render() {
-    return (
-      <div>
-        <Navigation />
-        {this.props.children}
-      </div>
-    );
-  }
-}
+const App = ({children}) => {
+  return (
+    <div>
+      <Navigation />
+        {children}
+    </div>
+  );
+};
 
 App.propTypes = {
   children: PropTypes.object
 };
+
+export default App;
