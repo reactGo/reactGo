@@ -10,8 +10,8 @@
     "dev": "NODE_ENV=development node server/index.js",
     "build:webpack": "NODE_ENV=production webpack --progress --colors --config ./webpack/webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
-    "test": "karma start",
-    "test:watch": "npm test -- --watch --no-single-run",
+    "test": "NODE_ENV=test karma start",
+    "test:watch": "NODE_ENV=test npm test -- --watch --no-single-run",
     "postinstall": "npm run build"
   },
   "author": "Choon Ken Ding",
@@ -26,7 +26,9 @@
     "karma-webpack": "^1.7.0",
     "mocha": "^2.3.4",
     "nock": "^3.6.0",
+    "null-loader": "^0.1.1",
     "react-addons-test-utils": "^0.14.3",
+    "react-stateless-wrapper": "^1.0.2",
     "redux-mock-store": "0.0.3"
   },
   "engines": {

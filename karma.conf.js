@@ -46,11 +46,12 @@ module.exports = function(config) {
             include: path.join(__dirname, "app"),
             loader: 'babel'
           },
-          { test: /\.json$/, loader: "json-loader" }
+          { test: /\.json$/, loader: "json-loader" },
+          { test: /\.scss$/, loader: "null-loader" }
         ],
       },
       resolve: {
-        extensions: ['', '.js', '.jsx'],
+        extensions: ['', '.js', '.jsx', '.scss'],
         modulesDirectories: [
           'app', 'node_modules'
         ]
@@ -76,7 +77,6 @@ module.exports = function(config) {
     },
 
     plugins: [
-      'karma-phantomjs-launcher',
       'karma-jsdom-launcher',
       'karma-mocha',
       'karma-mocha-reporter',
