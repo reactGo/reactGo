@@ -1,8 +1,5 @@
 # React in ES6 / ES2015
 
-Since React [0.13](http://facebook.github.io/react/blog/2015/03/10/react-v0.13.html) landed on our shores, there's been support for ES6 classes, which is fun!
-
-
 ## React Component in ES5:
 ```
 var App = React.createClass({
@@ -129,6 +126,34 @@ export default class Login extends React.Component {
 }
 ```
 
+
+## Stateless Functions
+
+There is also an exciting way to write React Components as stateless functions (provided...you don't handle state). Read more [here](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions).
+
+Instead of writing a loooong component in React that only renders props, as follows:
+
+```javascript
+
+class WATTT extends React.Component {
+  render() {
+    const {props1, props2, props3} = this.props;
+    return (
+      <div>{props1} {prop2} {prop3}</div>
+    );
+  }
+}
+
+```
+
+Choose instead to write it as such:
+
+```javascript
+const WATTT = ({props1, props2, props3}) => <div>{props1} {prop2} {prop3}</div>
+
+```
+
+Much simpler, yeah?
 
 ## Questions
 

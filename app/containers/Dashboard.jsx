@@ -5,10 +5,6 @@ import React from 'react';
  *  i.e. We should keep this as the container that does the data-fetching
  *  and dispatching of actions if you decide to have any sub-components.
  */
-export default class Dashboard extends React.Component {
-  render() {
-    return (
-      <div>Welcome to the Dashboard</div>
-    );
-  }
-}
+const Dashboard = props => <div>Welcome to the Dasboard. Stay tuned...</div>;
+
+export default Dashboard;
