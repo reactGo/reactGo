@@ -1,12 +1,13 @@
 /*eslint consistent-return: 0, no-else-return: 0*/
 
 // Including es6-promise so isomorphic fetch will work
-import { polyfill } from 'es6-promise';
-import fetch from 'isomorphic-fetch';
+// import { polyfill } from 'es6-promise';
+// import fetch from 'isomorphic-fetch';
+import request from 'axios';
 import md5 from 'spark-md5';
-import * as types from 'constants';
+import * as types from 'constants/index';
 
-polyfill();
+// polyfill();
 
 let API_ENDPOINT = '/topic';
 
@@ -27,15 +28,7 @@ if (__TEST__) {
  * @return Promise
  */
 function makeTopicRequest(method, data) {
-  return fetch(API_ENDPOINT, {
-    method: method,
-    credentials: 'same-origin',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  });
+  return request[method](API_ENDPOINT, data);
 }
 
 function increment(index) {
@@ -124,7 +117,7 @@ export function createTopic(text) {
 
     return makeTopicRequest('post', data)
       .then(res => {
-        if (res.ok) {
+        if (res.status === 200) {
           // We can actually dispatch a CREATE_TOPIC_SUCCESS
           // on success, but I've opted to leave that out
           // since we already did an optimistic update
@@ -139,6 +132,15 @@ export function createTopic(text) {
       });
   };
 }
+
+// Fetch posts logic
+export function fetchTopics() {
+  return {
+    type: types.GET_TOPICS,
+    promise: makeTopicRequest('get')
+  }
+}
+
 
 export function incrementCount(id, index) {
   return dispatch => {

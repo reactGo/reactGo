@@ -6,12 +6,18 @@ import MainSection from 'components/MainSection';
 import Scoreboard from 'components/Scoreboard';
 import {
   createTopic, typing, incrementCount,
-  decrementCount, destroyTopic } from 'actions/topics';
+  decrementCount, destroyTopic, fetchTopics } from 'actions/topics';
 import styles from 'scss/components/_vote';
 
 const cx = classNames.bind(styles);
 
 class Vote extends Component {
+
+  //Data that needs to be called before rendering the component
+  //This is used for server side rending via the fetchComponentDataBeforeRending() method
+  static need = [
+    fetchTopics
+  ]
 
   constructor(props) {
     super(props);
