@@ -1,3 +1,5 @@
+/*eslint consistent-return: 0, no-else-return: 0*/
+
 // Including es6-promise so isomorphic fetch will work
 import { polyfill } from 'es6-promise';
 import fetch from 'isomorphic-fetch';
@@ -181,4 +183,3 @@ export function destroyTopic(id, index) {
     // .then(response => {});
   };
 }
-

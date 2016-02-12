@@ -1,4 +1,4 @@
-import { createStore, compose, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import rootReducer from 'reducers';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
@@ -19,7 +19,7 @@ export default function configureStore(initialState, history) {
   } else {
     middleware.push(router);
   }
-  
+
   const finalCreateStore = applyMiddleware(...middleware)(createStore);
 
   const store = finalCreateStore(rootReducer, initialState);

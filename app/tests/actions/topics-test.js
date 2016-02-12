@@ -1,17 +1,16 @@
-import expect from 'expect';
-import { applyMiddleware } from 'redux';
+/*eslint no-unused-vars: 0*/ // since fetch is needed but not used
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import md5 from 'spark-md5';
 import { polyfill } from 'es6-promise';
-// This bit is important. Isomorphic-fetch node will use 
+// This bit is important. Isomorphic-fetch node will use
 // fetch-npm-browserify if we do not use the node-fetch implementation
 // This is the only solution I could come up so that nock could function correctly.
 // If you do have a better implementation, please let me know.
 import fetch from 'isomorphic-fetch/fetch-npm-node';
 import nock from 'nock';
 import * as actions from 'actions/topics';
-import * as types from 'constants';  
+import * as types from 'constants';
 
 polyfill();
 
@@ -19,7 +18,6 @@ const middlewares = [ thunk ];
 const mockStore = configureStore(middlewares);
 
 describe('Ansynchronous Topic Actions', () => {
-
   afterEach(() => {
     nock.cleanAll();
   });
@@ -100,7 +98,6 @@ describe('Ansynchronous Topic Actions', () => {
 
     const store = mockStore(initialState, expectedActions, done);
     store.dispatch(actions.createTopic(topic));
-
   });
 
   it('Should dispatch a CREATE_TOPIC_DUPLICATE action for a duplicate topic', done => {
