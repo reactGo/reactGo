@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { RouterContext, match, createMemoryHistory } from 'react-router'
+import { RouterContext, match, createMemoryHistory } from 'react-router';
 import fetch from 'isomorphic-fetch';
 import { Provider } from 'react-redux';
 import createRoutes from 'routes.jsx';
@@ -19,7 +19,7 @@ function fetchTopics(callback, api='topic') {
   fetch(`http://${clientConfig.host}:${clientConfig.port}/${api}`)
     .then(res => res.json())
     .then(json => callback(json));
-};
+}
 
 
 /*
@@ -54,16 +54,15 @@ function renderFullPage(renderedContent, initialState, head={
     </body>
     </html>
 
-  `;  
+  `;
 }
 
-/* 
+/*
  * Export render function to be used in server/config/routes.js
  * We grab the state passed in from the server and the req object from Express/Koa
  * and pass it into the Router.run function.
  */
 export default function render(req, res) {
-
   fetchTopics(apiResult => {
     const history = createMemoryHistory();
     const authenticated = req.isAuthenticated();
@@ -73,7 +72,7 @@ export default function render(req, res) {
         topics: apiResult
       },
       user: {
-        authenticated: authenticated, 
+        authenticated: authenticated,
         isWaiting: false
       }
     }, history);
@@ -81,7 +80,7 @@ export default function render(req, res) {
 
     /*
      * From the react-router docs:
-     * 
+     *
      * This function is to be used for server-side rendering. It matches a set of routes to
      * a location, without rendering, and calls a callback(error, redirectLocation, renderProps)
      * when it's done.
@@ -89,7 +88,7 @@ export default function render(req, res) {
      * The function will create a `history` for you, passing additional `options` to create it.
      * These options can include `basename` to control the base name for URLs, as well as the pair
      * of `parseQueryString` and `stringifyQuery` to control query string parsing and serializing.
-     * You can also pass in an already instantiated `history` object, which can be constructured 
+     * You can also pass in an already instantiated `history` object, which can be constructured
      * however you like.
      *
      * The three arguments to the callback function you pass to `match` are:
@@ -106,7 +105,6 @@ export default function render(req, res) {
       } else if (redirectLocation) {
         res.redirect(302, redirectLocation.pathname + redirectLocation.search);
       } else if (renderProps) {
-
         const initialState = store.getState();
         const renderedContent = renderToString(
         <Provider store={store}>
@@ -117,11 +115,10 @@ export default function render(req, res) {
           meta: headconfig.meta,
           link: headconfig.link
         });
-        res.status(200).send(renderedPage);              
+        res.status(200).send(renderedPage);
       } else {
         res.status(404).send('Not Found');
       }
-
     });
   });
-};
+}

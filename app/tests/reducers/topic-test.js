@@ -32,10 +32,8 @@ describe('Topics reducer', () => {
           count: 1,
           text: topic
         }
-      ], 
+      ],
       newTopic: ''
     });
   });
-
 });
-
