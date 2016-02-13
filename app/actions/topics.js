@@ -1,8 +1,7 @@
 /*eslint consistent-return: 0, no-else-return: 0*/
 
 // Including es6-promise so isomorphic fetch will work
-// import { polyfill } from 'es6-promise';
-// import fetch from 'isomorphic-fetch';
+import { polyfill } from 'es6-promise';
 import request from 'axios';
 import md5 from 'spark-md5';
 import * as types from 'constants/index';
@@ -27,8 +26,8 @@ if (__TEST__) {
  * @param String endpoint
  * @return Promise
  */
-function makeTopicRequest(method, data) {
-  return request[method](API_ENDPOINT, data);
+function makeTopicRequest(method, id, data) {
+  return request[method](API_ENDPOINT + (id ? ('/' + id) : ''), data);
 }
 
 function increment(index) {
@@ -98,8 +97,8 @@ export function createTopic(text) {
     // and `getState` as parameters
     const { topic } = getState();
     const data = {
-      id,
       count: 1,
+      id: id,
       text
     };
 
@@ -115,7 +114,7 @@ export function createTopic(text) {
     // First dispatch an optimistic update
     dispatch(createTopicRequest(data));
 
-    return makeTopicRequest('post', data)
+    return makeTopicRequest('post', id, data)
       .then(res => {
         if (res.status === 200) {
           // We can actually dispatch a CREATE_TOPIC_SUCCESS
@@ -134,7 +133,7 @@ export function createTopic(text) {
 }
 
 // Fetch posts logic
-export function fetchTopics() {
+export function fetchTopics(params) {
   return {
     type: types.GET_TOPICS,
     promise: makeTopicRequest('get')
@@ -146,8 +145,7 @@ export function incrementCount(id, index) {
   return dispatch => {
     dispatch(increment(index));
 
-    return makeTopicRequest('put', {
-        id: id,
+    return makeTopicRequest('put', id, {
         isFull: false,
         isIncrement: true
       });
@@ -161,8 +159,7 @@ export function incrementCount(id, index) {
 export function decrementCount(id, index) {
   return dispatch => {
     dispatch(decrement(index));
-    return makeTopicRequest('put', {
-        id: id,
+    return makeTopicRequest('put', id, {
         isFull: false,
         isIncrement: false
       });
@@ -176,9 +173,7 @@ export function decrementCount(id, index) {
 export function destroyTopic(id, index) {
   return dispatch => {
     dispatch(destroy(index));
-    return makeTopicRequest('delete', {
-        id: id
-      });
+    return makeTopicRequest('delete', id);
     // do something with the ajax response
     // You can also dispatch here
     // E.g.

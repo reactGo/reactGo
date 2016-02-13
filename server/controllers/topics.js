@@ -33,7 +33,7 @@ exports.add = function(req, res) {
  * Update a topic
  */
 exports.update = function(req, res) {
-  var query = { id: req.body.id };
+  var query = { id: req.params.id };
   var isIncrement = req.body.isIncrement;
   var isFull = req.body.isFull;
   var omitKeys = ['id', '_id', '_v', 'isIncrement', 'isFull'];
@@ -61,18 +61,10 @@ exports.update = function(req, res) {
 };
 
 /**
- * 
- */
-exports.increment = function(req, res) {
-  var query = { id: req.body.id };
-  
-};
-
-/**
  * Remove a topic
  */
 exports.remove = function(req, res) {
-  var query = { id: req.body.id };
+  var query = { id: req.params.id };
   Topic.findOneAndRemove(query, function(err, data) {
     if(err) console.log('Error on delete');
     res.status(200).send('Removed Successfully');

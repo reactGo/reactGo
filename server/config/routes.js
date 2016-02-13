@@ -38,15 +38,15 @@ module.exports = function(app, passport) {
   // topic routes
   app.get('/topic', topics.all);
 
-  app.post('/topic', function(req, res) {
+  app.post('/topic/:id', function(req, res) {
     topics.add(req, res);
   });
 
-  app.put('/topic', function(req, res) {
+  app.put('/topic/:id', function(req, res) {
     topics.update(req, res);
   });
 
-  app.delete('/topic', function(req, res) {
+  app.delete('/topic/:id', function(req, res) {
     topics.remove(req, res);
   });
 

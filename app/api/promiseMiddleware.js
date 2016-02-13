@@ -1,3 +1,7 @@
+/*
+* Redux middleware to handle promises
+* As seen in: https://github.com/caljrimmer/isomorphic-redux-app
+*/
 export default function promiseMiddleware() {
   return next => action => {
     const { promise, type, ...rest } = action;
