@@ -4,7 +4,10 @@ import {
   CREATE_TOPIC_FAILURE,
   DESTROY_TOPIC,
   INCREMENT_COUNT,
-  DECREMENT_COUNT } from 'constants';
+  DECREMENT_COUNT,
+  GET_TOPICS_REQUEST,
+  GET_TOPICS_SUCCESS,
+  GET_TOPICS_FAILURE } from 'constants/index';
 
 
 export default function topic(state = {
@@ -16,6 +19,19 @@ export default function topic(state = {
       return Object.assign({}, state,
         { newTopic: action.newTopic }
       );
+    case GET_TOPICS_REQUEST:
+      return Object.assign({}, state, {
+        isFetching: true
+      });
+    case GET_TOPICS_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        topics: action.req.data
+      });
+    case GET_TOPICS_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false
+      });
     case CREATE_TOPIC_REQUEST:
       return {
         topics: [...state.topics, { id: action.id, count: action.count, text: action.text } ],
