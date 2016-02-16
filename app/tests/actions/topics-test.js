@@ -17,7 +17,7 @@ polyfill();
 const middlewares = [ thunk ];
 const mockStore = configureStore(middlewares);
 
-describe('Ansynchronous Topic Actions', () => {
+describe.skip('Ansynchronous Topic Actions', () => {
   afterEach(() => {
     nock.cleanAll();
   });
