@@ -1,3 +1,11 @@
+1.4.2
+=====
+- Abstract async `fetchTopics` to a more generic `need` method which any component can
+  contain
+- Make endpoints more RESTful
+- Use [axios](https://github.com/mzabriskie/axios) for fetching for topics (only)
+- Use sinonJS for `topics-test.js`
+
 1.4.1
 ======
 - Rename and move `elements/Header.jsx` to `components/Meta.jsx` for better structure and semantic meaning.
