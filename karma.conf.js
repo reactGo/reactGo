@@ -13,7 +13,7 @@ module.exports = function(config) {
     // - IE (only Windows; has to be installed with `npm install karma-ie-launcher`)
     browsers: ['jsdom'],
 
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'sinon'],
 
     // Point karma at the tests.webpack.js
     files: [
@@ -29,7 +29,7 @@ module.exports = function(config) {
     // if true, it capture browsers, run tests and exit
     singleRun: true,
 
-    // How long will Karma wait for a message from a browser before disconnecting 
+    // How long will Karma wait for a message from a browser before disconnecting
     // from it (in ms).
     browserNoActivityTimeout: 30000,
 
@@ -79,6 +79,7 @@ module.exports = function(config) {
     plugins: [
       'karma-jsdom-launcher',
       'karma-mocha',
+      'karma-sinon',
       'karma-mocha-reporter',
       'karma-sourcemap-loader',
       'karma-webpack',
