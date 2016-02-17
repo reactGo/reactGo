@@ -1,19 +1,12 @@
 /*eslint consistent-return: 0, no-else-return: 0*/
-
-// Including es6-promise so isomorphic fetch will work
 import { polyfill } from 'es6-promise';
 import request from 'axios';
 import md5 from 'spark-md5';
 import * as types from 'constants/index';
 
-// polyfill();
+polyfill();
 
 let API_ENDPOINT = '/topic';
-
-// If this is a test, we must use an absolute url
-if (__TEST__) {
-  API_ENDPOINT = 'http://localhost:9876/topic';
-}
 
 /*
  * Utility function to make AJAX requests using isomorphic fetch.
@@ -73,7 +66,7 @@ function createTopicFailure(data) {
   return {
     type: types.CREATE_TOPIC_FAILURE,
     id: data.id,
-    ex: data.ex
+    error: data.error
   };
 }
 
@@ -122,12 +115,10 @@ export function createTopic(text) {
           // since we already did an optimistic update
           // We could return res.json();
           return dispatch(createTopicSuccess());
-        } else {
-          throw new Error("Oops! Something went wrong and we couldn't create your topic");
         }
       })
       .catch(ex => {
-        return dispatch(createTopicFailure({ id, ex: ex.message }));
+        return dispatch(createTopicFailure({ id, error: 'Oops! Something went wrong and we couldn\'t create your topic'}));
       });
   };
 }
