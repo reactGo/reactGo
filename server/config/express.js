@@ -8,7 +8,7 @@ var flash = require('express-flash');
 var methodOverride = require('method-override');
 
 module.exports = function (app, passport) {
-  app.set('port', (process.env.PORT || 3000));
+  app.set('port', (process.env.PORT || 3003));
 
   // X-Powered-By header has no functional value.
   // Keeping it makes it easier for an attacker to build the site's profile
