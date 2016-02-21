@@ -92,6 +92,13 @@ Note: Make sure you have the permissions to the directory `/data/db`
 
 ### Build & Dev
 
+**Installation**
+```bash
+# Install node modules - this includes those for production and development
+# You only need to do this once :)
+npm install
+```
+
 **Development**
 
 ```bash
