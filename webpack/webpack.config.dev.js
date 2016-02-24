@@ -13,8 +13,10 @@ var commonLoaders = [
     loaders: ['babel'],
     include: path.join(__dirname, '..', 'app')
   },
-  { test: /\.png$/, loader: 'url-loader' },
-  { test: /\.jpg$/, loader: 'file-loader' },
+  {
+    test: /\.(png|jpg)$/,
+    loader: 'url?limit=25000'
+  },
   { test: /\.html$/, loader: 'html-loader' }
 ];
 
