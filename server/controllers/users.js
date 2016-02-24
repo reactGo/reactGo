@@ -10,12 +10,12 @@ exports.postLogin = function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if(err) return next(err);
     if(!user) {
-      req.flash('errors', {msg: info.message});
+      return res.status(401).send(info.message);
     }
     // Passport exposes a login() function on req (also aliased as logIn()) that can be used to establish a login session
     req.logIn(user, function(err) {
       if(err) return next(err);
-      res.status(200).send('OK');
+      return res.status(202).send('OK');
     });
   })(req, res, next);
 };
