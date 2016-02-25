@@ -53,7 +53,7 @@ We have two implementations of universal flux:
 
 ## Motivation
 
-The aim of this repo is to incorporate the best practices to building a non-trivial, performant, secure and quality full-stack apps with React.js and Node and Node (hence...react-webpack-node). However, along the way we definitely have had extensive additions to this boilerplate! I am working to document this repo extensively so it would be easy for both beginners and experts to begin dev-ing on it without pulling your hair out.
+The aim of this repo is to incorporate the best practices to building a non-trivial, performant, secure and quality full-stack apps with React.js and Webpack and Node (hence...react-webpack-node). However, along the way we definitely have had extensive additions to this boilerplate! I am working to document this repo extensively so it would be easy for both beginners and experts to begin dev-ing on it without pulling your hair out.
 
 ## Why
 **Redux**
