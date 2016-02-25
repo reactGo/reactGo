@@ -9,7 +9,7 @@
     "clean": "rimraf public",
     "start": "NODE_ENV=production node server/index.js",
     "dev": "NODE_ENV=development node server/index.js",
-    "build:webpack": "NODE_ENV=production webpack --progress --colors --config ./webpack/webpack.config.prod.js",
+    "build:webpack": "NODE_ENV=production webpack --colors --config ./webpack/webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
     "test": "NODE_ENV=test karma start",
     "test:watch": "NODE_ENV=test npm test -- --watch --no-single-run",
@@ -31,7 +31,8 @@
     "null-loader": "^0.1.1",
     "react-addons-test-utils": "^0.14.3",
     "react-stateless-wrapper": "^1.0.2",
-    "redux-mock-store": "0.0.3"
+    "redux-mock-store": "0.0.3",
+    "sinon": "^1.17.3"
   },
   "engines": {
     "node": "5.x"
