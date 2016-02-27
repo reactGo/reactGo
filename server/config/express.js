@@ -64,7 +64,7 @@ module.exports = function (app, passport) {
     },
     store: new MongoStore(
       { 
-        url: secrets.db,
+        url: secrets.db.mongo,
         autoReconnect: true
       }
     )

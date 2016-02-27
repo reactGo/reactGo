@@ -40,7 +40,7 @@ module.exports = new GoogleStrategy({
           user.save(function(err) {
             done(err, user, { message: 'Google account has been linked.' });
           });
-				})
+				});
 			}
 		});
 	} else {

@@ -1,6 +1,8 @@
 var express = require('express');
 var fs = require('fs');
 var mongoose = require('mongoose');
+// Requiring sequelize creates a connection to postgres
+var sequelize = require('./config/sequelize');
 var passport = require('passport');
 var secrets = require('./config/secrets');
 var webpack = require('webpack');
@@ -8,11 +10,11 @@ var app = express();
 
 // Find the appropriate database to connect to, default to localhost if not found.
 var connect = function() {
-  mongoose.connect(secrets.db, function(err, res) {
+  mongoose.connect(secrets.db.mongo, function(err, res) {
     if(err) {
-      console.log('Error connecting to: ' + secrets.db + '. ' + err);
+      console.log('Error connecting to: ' + secrets.db.mongo + '. ' + err);
     }else {
-      console.log('Succeeded connected to: ' + secrets.db);
+      console.log('Succeeded connected to: ' + secrets.db.mongo);
     }
   });
 };

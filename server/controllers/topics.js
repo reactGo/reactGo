@@ -1,7 +1,5 @@
-var mongoose = require('mongoose');
 var _ = require('lodash');
-var Topic = mongoose.model('Topic');
-
+var Topic = require('../models/topics');
 
 /**
  * List
@@ -10,7 +8,7 @@ exports.all = function(req, res) {
   Topic.find({}).exec(function(err, topics) {
     if(!err) {
       res.json(topics);
-    }else {
+    } else {
       console.log('Error in first query');
     }
   });
