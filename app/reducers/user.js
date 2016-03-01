@@ -10,22 +10,26 @@ import {
   LOGOUT_ERROR_USER } from 'constants';
 
 export default function user(state={
+  message: '',
   isWaiting: false,
   authenticated: false }, action={}) {
   switch (action.type) {
     case MANUAL_LOGIN_USER:
       return Object.assign({}, state, {
-        isWaiting: true
+        isWaiting: true,
+        message: ''
       });
     case LOGIN_SUCCESS_USER:
       return Object.assign({}, state, {
         isWaiting: false,
-        authenticated: true
+        authenticated: true,
+        message: ''
       });
     case LOGIN_ERROR_USER:
       return Object.assign({}, state, {
         isWaiting: false,
-        authenticated: false
+        authenticated: false,
+        message: action.message
       });
     case SIGNUP_USER:
       return Object.assign({}, state, {

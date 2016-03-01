@@ -6,8 +6,6 @@ import * as types from 'constants/index';
 
 polyfill();
 
-let API_ENDPOINT = '/topic';
-
 /*
  * Utility function to make AJAX requests using isomorphic fetch.
  * You can also use jquery's $.ajax({}) if you do not want to use the
@@ -19,8 +17,8 @@ let API_ENDPOINT = '/topic';
  * @param String endpoint
  * @return Promise
  */
-function makeTopicRequest(method, id, data) {
-  return request[method](API_ENDPOINT + (id ? ('/' + id) : ''), data);
+function makeTopicRequest(method, id, data, api='/topic') {
+  return request[method](api + (id ? ('/' + id) : ''), data);
 }
 
 function increment(index) {

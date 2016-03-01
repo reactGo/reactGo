@@ -1,10 +1,11 @@
 // Including es6-promise so isomorphic fetch will work
-import 'es6-promise';
-import fetch from 'isomorphic-fetch';
+import { polyfill } from 'es6-promise';
+import request from 'axios';
 
 import * as types from 'constants';
 
-// Note this can be extracted out later
+polyfill();
+
 /*
  * Utility function to make AJAX requests using isomorphic fetch.
  * You can also use jquery's $.ajax({}) if you do not want to use the
@@ -15,14 +16,11 @@ import * as types from 'constants';
  * @return Promise
  */
 function makeUserRequest(method, data, api='/login') {
-  return fetch(api, {
+  return request({
+    url: api,
     method: method,
-    credentials: 'same-origin',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
+    data: data,
+    withCredentials: true
   });
 }
 
@@ -36,8 +34,11 @@ function loginSuccess() {
   return { type: types.LOGIN_SUCCESS_USER };
 }
 
-function loginError() {
-  return { type: types.LOGIN_ERROR_USER };
+function loginError(message) {
+  return {
+    type: types.LOGIN_ERROR_USER,
+    message: message
+  };
 }
 
 // Sign Up Action Creators
@@ -75,8 +76,11 @@ export function manualLogin(data) {
         if (response.status === 200) {
           dispatch(loginSuccess());
         } else {
-          dispatch(loginError());
+          dispatch(loginError('Oops! Something went wrong!'));
         }
+      })
+      .catch(err => {
+        dispatch(loginError(err.data.message));
       });
   };
 }
@@ -100,14 +104,7 @@ export function logOut() {
   return dispatch => {
     dispatch(beginLogout());
 
-    return fetch('/logout', {
-      method: 'get',
-      credentials: 'same-origin',
-      headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-      }
-    })
+    return makeUserRequest('post', null, '/logout')
       .then( response => {
         if (response.status === 200) {
           dispatch(logoutSuccess());

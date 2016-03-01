@@ -1,52 +1,55 @@
 @import 'settings.scss';
 @import 'mixins.scss';
 
-.login {}
+.login {
+  width: 420px;
+  margin: 0 auto;
+  padding: 16px 12px;
+  background-color: $color-athens-gray;
+  border: 2px solid $color-mercury;
+  border-radius: $global-radius;
+}
+
+  .login--waiting {
+    .login__fieldset {
+      display: none;
+    }
+    .login__loading {
+      display: block;
+    }
+  }
+
+  .login__loading {
+    display: none;
+    text-align: center;
+    margin: 24px auto;
+  }
+
+  .login__email-container {
+    padding-bottom: 24px;
+    border-bottom: 2px solid $color-mercury;
+  }
 
   .login__header {
     font-size: $font-large;
+    font-weight: normal;
     text-align: center;
-  }
-
-  .login__fieldset {
-    width: 360px;
-    margin: auto;
-    border: none;
-    border-radius: $global-radius;
-    @include simpleBoxShadow;
   }
 
   .login__input {
-    display: block;
-    width: 80%;
-    margin: 8px auto;
-    font-size: $font-medium;
-    line-height: 1.5;
-    text-align: center;
-    outline: none;
+    @include input;
+  }
+
+  .login__message {
+    color: $color-crimson;
+    font-size: $font-small;
   }
 
   .login__button {
-    display: block;
-    width: 240px;
-    margin: 0 auto;
-    font-size: $font-medium;
-    line-height: 1.5;
-    border: none;
-    text-align: center;
-    border-radius: 2px;
-    text-decoration: none;
-    color: $color-white;
-
-    &:hover, &:visited {
-      color: $color-white;
-    }
+    @include button;
   }
 
-    .login__button--green {
-      background-color: $color-salem;
-    }
-
   .login__hint {
-    text-align: center;
+    color: $color-bombay;
+    font-size: $font-small;
   }

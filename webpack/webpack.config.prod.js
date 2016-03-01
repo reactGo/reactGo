@@ -17,8 +17,8 @@ var commonLoaders = [
   },
   { test: /\.json$/, loader: "json-loader" },
   {
-    test: /\.(png|jpg)$/,
-    loader: 'url?limit=25000'
+    test: /\.(png|jpg|svg)$/,
+    loader: 'url?limit=10000'
   },
   { test: /\.scss$/,
     loader: ExtractTextPlugin.extract('style-loader', 'css-loader?module&localIdentName=[local]__[hash:base64:5]!autoprefixer-loader!sass?includePaths[]='

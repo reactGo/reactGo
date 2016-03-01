@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import { connect } from 'react-redux';
 import { manualLogin } from 'actions/users';
 import styles from 'scss/components/_login';
+import hourGlassSvg from 'images/hourglass.svg';
 
 const cx = classNames.bind(styles);
 
@@ -29,23 +30,21 @@ class Login extends Component {
   }
 
   render() {
-    const { authenticated, isWaiting } = this.props.user;
+    const { authenticated, isWaiting, message } = this.props.user;
     if (authenticated) {
       return (
         <h1 className={cx('login__header')}>You are logged in amigo</h1>
       );
     }
 
-    if (isWaiting) {
-      return (
-        <h1 className={cx('login__header')}>Waiting ...</h1>
-      );
-    }
-
     return (
-      <div className={cx('login__container')}>
-        <h1 className={cx('login__header')}>Email Login Demo</h1>
-        <fieldset className={cx('login__fieldset')}>
+      <div className={cx('login', {
+        'login--waiting': isWaiting
+      })}>
+        <div className={cx('login__container')}>
+          <h1 className={cx('login__header')}>Login with Email</h1>
+          <img className={cx('login__loading')} src={hourGlassSvg} />
+          <div className={cx('login__email-container')}>
             <input className={cx('login__input')}
               type="email"
               ref="email"
@@ -54,15 +53,22 @@ class Login extends Component {
               type="password"
               ref="password"
               placeholder="password" />
-            <button className={cx('login__button', 'login__button--green')}
+            <div className={cx('login__hint')}>
+              <div>Hint</div>
+              <div>email: example@ninja.com password: ninja</div>
+            </div>
+            <p className={cx('login__message', {
+              'login__message-show': message && message.length > 0
+              })}>{message}</p>
+            <button className={cx('login__button')}
               onClick={this._onLoginSubmit}>Login</button>
-            <p className={cx('login__hint')}>Hint: email: example@ninja.com password: ninja</p>
-        </fieldset>
-        <h1 className={cx('login__header')}>Google Login Demo</h1>
-        <fieldset className={cx('login__fieldset')}>
-          <a className={cx('login__button', 'login__button--green')}
-            href="/auth/google">Login with Google</a>
-        </fieldset>
+          </div>
+          <div className={cx('login__google-container')}>
+            <h1 className={cx('login__header')}>Google Login Demo</h1>
+            <a className={cx('login__button')}
+          href="/auth/google">Login with Google</a>
+          </div>
+        </div>
       </div>
     );
   }
