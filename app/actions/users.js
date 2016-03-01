@@ -1,6 +1,6 @@
-// Including es6-promise so isomorphic fetch will work
 import { polyfill } from 'es6-promise';
 import request from 'axios';
+import { push } from 'react-router-redux';
 
 import * as types from 'constants';
 
@@ -75,6 +75,7 @@ export function manualLogin(data) {
       .then( response => {
         if (response.status === 200) {
           dispatch(loginSuccess());
+          dispatch(push('/'));
         } else {
           dispatch(loginError('Oops! Something went wrong!'));
         }

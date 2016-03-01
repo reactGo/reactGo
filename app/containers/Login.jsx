@@ -30,12 +30,7 @@ class Login extends Component {
   }
 
   render() {
-    const { authenticated, isWaiting, message } = this.props.user;
-    if (authenticated) {
-      return (
-        <h1 className={cx('login__header')}>You are logged in amigo</h1>
-      );
-    }
+    const { isWaiting, message } = this.props.user;
 
     return (
       <div className={cx('login', {
