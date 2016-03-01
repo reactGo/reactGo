@@ -19,6 +19,21 @@
     }
   }
 
+  .login__alternative {
+    background: $color-white;
+    padding: 12px 8px;
+    margin: 12px;
+
+    font-size: $font-medium;
+  }
+
+  .login__alternative-link {
+    color: $color-dodger-blue;
+    font-weight: bold;
+
+    cursor: pointer;
+  }
+
   .login__loading {
     display: none;
     text-align: center;
