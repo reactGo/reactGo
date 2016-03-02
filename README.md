@@ -22,7 +22,7 @@ Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring u
 [https://react-webpack-node.herokuapp.com/](https://react-webpack-node.herokuapp.com/)
 
 ## Features:
-- ~~isomorphic~~ **universal** [**Redux**](https://github.com/reactjs/redux) 
+- ~~isomorphic~~ **universal** [**Redux**](https://github.com/reactjs/redux)
 	- Server-side rendering with [**React Router**](https://github.com/reactjs/react-router) 2.x. Having server-side rendering allows you to pre-render the initial state of your components when a user (or search engine crawler) requests a page.
 	- Integrating Redux with React Router with ~~Redux Simple Router~~ [React Router Redux](https://github.com/reactjs/react-router-redux)
 	- Asynchonous Data Fetching on server-side rendering
@@ -147,7 +147,7 @@ heroku open
 
 ```
 
-Note: 
+Note:
 1. If you are working from a different machine and get `heroku does not appear to be a remote repository` message, be sure to run `git remote add heroku git@heroku.com:appname.git`.
 2. For setting up Google Authentication for Heroku and local dev, read the FAQ section
 
@@ -245,20 +245,6 @@ heroku config:set GOOGLE_CALLBACK=YOUR_CALLBACK
 4. I do not know how to write React Components/anything in ES6. Help!
 	- Don't you worry child. Read [this](https://github.com/choonkending/react-webpack-node/blob/master/docs/ReactInES6.md).
 	- You can learn more about ES6 (or ES2015) [here](http://babeljs.io/docs/learn-es2015/).
-5. Why do I get `Error: Failed to serialize user into session` when trying to login with email/password locally?
-It's because there are **no users created in your local DB** so it's throwing an error on the server's end. We haven't set up the handling of errors for this yet. Expect a fix soon! If you check [this](https://github.com/choonkending/react-webpack-node/blob/master/server/controllers/users.js), you'll see that there is a `/signup` endpoint for creating a user. In the meantime, a quick and easy way to do this is to paste this in your console log while your server is running:
-
-```javascript
-var http = new XMLHttpRequest();
-var url = "http://localhost:3000/signup";
-var params = "email=example@ninja.com&password=ninja";
-http.open("POST", url, true);http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-http.send(params);
-```
-
-This should create a user in your local database and all will be well!
-
 
 ## How to Contribute:
 

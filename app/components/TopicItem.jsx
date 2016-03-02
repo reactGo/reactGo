@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames/bind';
-import styles from 'scss/components/_topic-item';
+import styles from 'scss/components/topic-item';
 
 const cx = classNames.bind(styles);
 

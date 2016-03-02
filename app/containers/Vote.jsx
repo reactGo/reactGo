@@ -7,7 +7,7 @@ import Scoreboard from 'components/Scoreboard';
 import {
   createTopic, typing, incrementCount,
   decrementCount, destroyTopic, fetchTopics } from 'actions/topics';
-import styles from 'scss/components/_vote';
+import styles from 'scss/components/vote';
 
 const cx = classNames.bind(styles);
 

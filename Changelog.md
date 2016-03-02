@@ -1,3 +1,12 @@
+1.4.3
+=====
+- Refactor login and sign up flow to work
+- Rename Login.jsx to LoginOrRegister.jsx
+- Add global Message.jsx container
+- Style Login flow a tad bit more :v:
+- Rename scss components (Remove prefixes)
+- Fix a bunch of ugly lint errors
+
 1.4.2
 =====
 - Abstract async `fetchTopics` to a more generic `need` method which any component can

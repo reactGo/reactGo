@@ -1,10 +1,11 @@
-// Including es6-promise so isomorphic fetch will work
-import 'es6-promise';
-import fetch from 'isomorphic-fetch';
+import { polyfill } from 'es6-promise';
+import request from 'axios';
+import { push } from 'react-router-redux';
 
 import * as types from 'constants';
 
-// Note this can be extracted out later
+polyfill();
+
 /*
  * Utility function to make AJAX requests using isomorphic fetch.
  * You can also use jquery's $.ajax({}) if you do not want to use the
@@ -15,14 +16,11 @@ import * as types from 'constants';
  * @return Promise
  */
 function makeUserRequest(method, data, api='/login') {
-  return fetch(api, {
+  return request({
+    url: api,
     method: method,
-    credentials: 'same-origin',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
+    data: data,
+    withCredentials: true
   });
 }
 
@@ -32,25 +30,37 @@ function beginLogin() {
   return { type: types.MANUAL_LOGIN_USER };
 }
 
-function loginSuccess() {
-  return { type: types.LOGIN_SUCCESS_USER };
+function loginSuccess(message) {
+  return {
+    type: types.LOGIN_SUCCESS_USER,
+    message: message
+  };
 }
 
-function loginError() {
-  return { type: types.LOGIN_ERROR_USER };
+function loginError(message) {
+  return {
+    type: types.LOGIN_ERROR_USER,
+    message: message
+  };
 }
 
 // Sign Up Action Creators
-function signUpError() {
-  return { type: types.SIGNUP_ERROR_USER };
+function signUpError(message) {
+  return {
+    type: types.SIGNUP_ERROR_USER,
+    message: message
+  };
 }
 
 function beginSignUp() {
   return { type: types.SIGNUP_USER };
 }
 
-function signUpSuccess() {
-  return { type: types.SIGNUP_SUCCESS_USER };
+function signUpSuccess(message) {
+  return {
+    type: types.SIGNUP_SUCCESS_USER,
+    message: message
+  };
 }
 
 // Log Out Action Creators
@@ -59,11 +69,15 @@ function beginLogout() {
 }
 
 function logoutSuccess() {
-  return { type: types.LOGOUT_SUCCESS_USER};
+  return { type: types.LOGOUT_SUCCESS_USER };
 }
 
 function logoutError() {
-  return { type: types.LOGOUT_ERROR_USER};
+  return { type: types.LOGOUT_ERROR_USER };
+}
+
+export function toggleLoginMode() {
+  return { type: types.TOGGLE_LOGIN_MODE };
 }
 
 export function manualLogin(data) {
@@ -71,12 +85,16 @@ export function manualLogin(data) {
     dispatch(beginLogin());
 
     return makeUserRequest('post', data, '/login')
-      .then( response => {
+      .then(response => {
         if (response.status === 200) {
-          dispatch(loginSuccess());
+          dispatch(loginSuccess(response.data.message));
+          dispatch(push('/'));
         } else {
-          dispatch(loginError());
+          dispatch(loginError('Oops! Something went wrong!'));
         }
+      })
+      .catch(err => {
+        dispatch(loginError(err.data.message));
       });
   };
 }
@@ -86,12 +104,16 @@ export function signUp(data) {
     dispatch(beginSignUp());
 
     return makeUserRequest('post', data, '/signup')
-      .then( response => {
+      .then(response => {
         if (response.status === 200) {
-          dispatch(signUpSuccess());
+          dispatch(signUpSuccess(response.data.message));
+          dispatch(push('/'));
         } else {
-          dispatch(signUpError());
+          dispatch(signUpError('Oops! Something went wrong'));
         }
+      })
+      .catch(err => {
+        dispatch(signUpError(err.data.message));
       });
   };
 }
@@ -100,14 +122,7 @@ export function logOut() {
   return dispatch => {
     dispatch(beginLogout());
 
-    return fetch('/logout', {
-      method: 'get',
-      credentials: 'same-origin',
-      headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-      }
-    })
+    return makeUserRequest('post', null, '/logout')
       .then( response => {
         if (response.status === 200) {
           dispatch(logoutSuccess());

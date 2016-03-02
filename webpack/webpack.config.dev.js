@@ -14,8 +14,8 @@ var commonLoaders = [
     include: path.join(__dirname, '..', 'app')
   },
   {
-    test: /\.(png|jpg)$/,
-    loader: 'url?limit=25000'
+    test: /\.(png|jpg|svg)$/,
+    loader: 'url?limit=10000'
   },
   { test: /\.html$/, loader: 'html-loader' }
 ];

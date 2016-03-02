@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import Navigation from 'containers/Navigation';
+import Message from 'containers/Message';
 import 'scss/main';
 
 /*
@@ -15,6 +16,7 @@ const App = ({children}) => {
   return (
     <div>
       <Navigation />
+      <Message />
         {children}
     </div>
   );

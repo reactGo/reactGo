@@ -15,12 +15,10 @@ module.exports = function(app, passport, config) {
   // serializing, and querying the user record by ID from the database when
   // deserializing.
   passport.serializeUser(function(user, done) {
-    console.log('serialize');
     done(null, user.id);
   });
 
   passport.deserializeUser(function(id, done) {
-    console.log('deserializeUser');
     User.findById(id, function(err, user) {
       done(err, user);
     });

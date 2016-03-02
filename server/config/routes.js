@@ -13,13 +13,13 @@ module.exports = function(app, passport) {
   // user routes
   app.post('/login', users.postLogin);
   app.post('/signup', users.postSignUp);
-  app.get('/logout', users.getLogout);
+  app.post('/logout', users.postLogout);
 
   // google auth
   // Redirect the user to Google for authentication. When complete, Google
   // will redirect the user back to the application at
   // /auth/google/return
-  // Authentication with google requires an additional scope param, for more info go 
+  // Authentication with google requires an additional scope param, for more info go
   // here https://developers.google.com/identity/protocols/OpenIDConnect#scope-param
   app.get('/auth/google', passport.authenticate('google', { scope: [
         'https://www.googleapis.com/auth/userinfo.profile',
