@@ -126,7 +126,7 @@ export function fetchTopics() {
   return {
     type: types.GET_TOPICS,
     promise: makeTopicRequest('get')
-  }
+  };
 }
 
 

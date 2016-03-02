@@ -2,12 +2,18 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { logOut } from 'actions/users';
-import styles from 'scss/components/_navigation';
+
+import classNames from 'classnames/bind';
+import styles from 'scss/components/navigation';
+
+const cx = classNames.bind(styles);
 
 const Navigation = ({user, dispatch}) => {
     return (
       <nav className={styles.navigation} role="navigation">
-          <Link to="/" className={styles.navigation__item + ' ' + styles['navigation__item--logo']} activeClassName={styles['navigation__item--active']}>Ninja Ocean</Link>
+        <Link to="/"
+          className={cx('navigation__item', 'navigation__item--logo')}
+          activeClassName={styles['navigation__item--active']}>Ninja Ocean</Link>
           { user.authenticated ? (
             <Link onClick={()=> dispatch(logOut())}
               className={styles.navigation__item} to="/">Logout</Link>

@@ -63,7 +63,9 @@ export default function render(req, res) {
     const store = configureStore({
       user: {
         authenticated: authenticated,
-        isWaiting: false
+        isWaiting: false,
+        message: '',
+        isLogin: true
       }
     }, history);
 

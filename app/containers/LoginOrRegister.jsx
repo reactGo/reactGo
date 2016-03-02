@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames/bind';
 import { connect } from 'react-redux';
-import { manualLogin, signUp } from 'actions/users';
-import styles from 'scss/components/_login';
+import { manualLogin, signUp, toggleLoginMode } from 'actions/users';
+import styles from 'scss/components/login';
 import hourGlassSvg from 'images/hourglass.svg';
 
 const cx = classNames.bind(styles);
@@ -16,22 +16,13 @@ class LoginOrRegister extends Component {
    */
   constructor(props) {
     super(props);
-    // Determining whether we should display 'login' or 'register'
-    // can be thought of an internal state to this component.
-    // Feel free to store this state in the reducer if you find that other
-    // components need to know this state.
-    this.state = {
-      isLogin: true
-    };
     this.toggleMode = this.toggleMode.bind(this);
     this.onLoginSubmit = this.onLoginSubmit.bind(this);
     this.onRegisterSubmit = this.onRegisterSubmit.bind(this);
   }
 
   toggleMode() {
-    this.setState({
-      isLogin: !this.state.isLogin
-    });
+    this.props.dispatch(toggleLoginMode());
   }
 
   onLoginSubmit() {
@@ -55,7 +46,7 @@ class LoginOrRegister extends Component {
   }
 
   renderHeader() {
-    const { isLogin } = this.state;
+    const { isLogin } = this.props.user;
     if (isLogin) {
       return (
         <div className={cx('login__header')}>
@@ -82,8 +73,7 @@ class LoginOrRegister extends Component {
   }
 
   renderButton() {
-    const { isLogin } = this.state;
-
+    const { isLogin } = this.props.user;
     if (isLogin) {
       return (
         <button className={cx('login__button')}

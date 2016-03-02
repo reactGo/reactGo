@@ -30,8 +30,11 @@ function beginLogin() {
   return { type: types.MANUAL_LOGIN_USER };
 }
 
-function loginSuccess() {
-  return { type: types.LOGIN_SUCCESS_USER };
+function loginSuccess(message) {
+  return {
+    type: types.LOGIN_SUCCESS_USER,
+    message: message
+  };
 }
 
 function loginError(message) {
@@ -53,8 +56,11 @@ function beginSignUp() {
   return { type: types.SIGNUP_USER };
 }
 
-function signUpSuccess() {
-  return { type: types.SIGNUP_SUCCESS_USER };
+function signUpSuccess(message) {
+  return {
+    type: types.SIGNUP_SUCCESS_USER,
+    message: message
+  };
 }
 
 // Log Out Action Creators
@@ -63,11 +69,15 @@ function beginLogout() {
 }
 
 function logoutSuccess() {
-  return { type: types.LOGOUT_SUCCESS_USER};
+  return { type: types.LOGOUT_SUCCESS_USER };
 }
 
 function logoutError() {
-  return { type: types.LOGOUT_ERROR_USER};
+  return { type: types.LOGOUT_ERROR_USER };
+}
+
+export function toggleLoginMode() {
+  return { type: types.TOGGLE_LOGIN_MODE };
 }
 
 export function manualLogin(data) {
@@ -77,7 +87,7 @@ export function manualLogin(data) {
     return makeUserRequest('post', data, '/login')
       .then(response => {
         if (response.status === 200) {
-          dispatch(loginSuccess());
+          dispatch(loginSuccess(response.data.message));
           dispatch(push('/'));
         } else {
           dispatch(loginError('Oops! Something went wrong!'));
@@ -96,7 +106,7 @@ export function signUp(data) {
     return makeUserRequest('post', data, '/signup')
       .then(response => {
         if (response.status === 200) {
-          dispatch(signUpSuccess());
+          dispatch(signUpSuccess(response.data.message));
           dispatch(push('/'));
         } else {
           dispatch(signUpError('Oops! Something went wrong'));

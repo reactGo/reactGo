@@ -1,4 +1,5 @@
 import {
+  TOGGLE_LOGIN_MODE,
   MANUAL_LOGIN_USER,
   LOGIN_SUCCESS_USER,
   LOGIN_ERROR_USER,
@@ -7,13 +8,19 @@ import {
   SIGNUP_ERROR_USER,
   LOGOUT_USER,
   LOGOUT_SUCCESS_USER,
-  LOGOUT_ERROR_USER } from 'constants';
+  LOGOUT_ERROR_USER } from 'constants/index';
 
 export default function user(state={
+  isLogin: true,
   message: '',
   isWaiting: false,
   authenticated: false }, action={}) {
   switch (action.type) {
+    case TOGGLE_LOGIN_MODE:
+      return Object.assign({}, state, {
+        isLogin: !state.isLogin,
+        message: ''
+      });
     case MANUAL_LOGIN_USER:
       return Object.assign({}, state, {
         isWaiting: true,
@@ -60,7 +67,8 @@ export default function user(state={
     case LOGOUT_ERROR_USER:
       return Object.assign({}, state, {
         isWaiting: false,
-        authenticated: true
+        authenticated: true,
+        isLogin: true
       });
     default:
       return state;

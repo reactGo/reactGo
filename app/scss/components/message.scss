@@ -1,0 +1,21 @@
+@import 'settings.scss';
+
+.message {
+  display: none;
+  padding: 12px 0;
+  margin: 0 32px;
+
+  border-radius: $global-radius;
+  color: $color-black;
+  font-size: $font-medium;
+  text-align: center;
+}
+
+  .message--show {
+    display: block;
+  }
+
+  .message--success {
+    background-color: $color-salem;
+    color: $color-white;
+  }
