@@ -2,7 +2,7 @@ var express = require('express');
 var fs = require('fs');
 var mongoose = require('mongoose');
 // Requiring sequelize creates a connection to postgres
-var sequelize = require('./config/sequelize');
+var sequelize = require('./models/index').sequelize;
 var passport = require('passport');
 var secrets = require('./config/secrets');
 var webpack = require('webpack');

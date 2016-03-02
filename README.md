@@ -98,6 +98,26 @@ sudo chown -R `id -u` /data/db
 mongod
 ```
 
+**Install Postgres as your database**:
+
+```bash
+# Update brew formulae
+brew update
+# Install Postgres
+brew install postgres
+```
+
+**Run your postgres server**
+```bash
+postgres -D /usr/local/var/postgres
+```
+
+**Setup your postgres database**
+```bash
+createdb react_webpack_node_development
+sequelize db:migrate
+```
+
 ### Build & Dev
 
 **Installation**

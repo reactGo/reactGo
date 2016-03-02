@@ -5,14 +5,7 @@
 module.exports = {
   // Find the appropriate database to connect to, default to localhost if not found.
   db: {
-    mongo: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost/ReactWebpackNode',
-    postgres: {
-      uri: process.env.DATABASE_URL,
-      name: 'ReactWebpackNode',
-      // TODO: revert to root
-      username: process.env.PGUSER || 'michael.jewell',
-      password: 'password'
-    }
+    mongo: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost/ReactWebpackNode'
   },
   sessionSecret: process.env.SESSION_SECRET || 'Your Session Secret goes here',
   google: {

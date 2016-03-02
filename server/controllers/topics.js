@@ -1,16 +1,16 @@
 var _ = require('lodash');
-var Topic = require('../models/topics');
+var Topic = require('../models').Topic;
+var sequelize = require('../models/index').sequelize;
 
 /**
  * List
  */
 exports.all = function(req, res) {
-  Topic.find({}).exec(function(err, topics) {
-    if(!err) {
-      res.json(topics);
-    } else {
-      console.log('Error in first query');
-    }
+  Topic.findAll().then(function(topics) {
+    res.json(topics);
+  }, function(err) {
+    console.log(err);
+    res.status(500).send('Error in first query');
   });
 };
 
@@ -18,12 +18,11 @@ exports.all = function(req, res) {
  * Add a Topic
  */
 exports.add = function(req, res) {
-  Topic.create(req.body, function (err) {
-    if (err) {
-      console.log(err);
-      res.status(400).send(err);
-    }
+  Topic.create(req.body).then(function (topic) {
     res.status(200).send('OK');
+  }, function(err) {
+    console.log(err);
+    res.status(400).send(err);
   });
 };
 
@@ -38,21 +37,21 @@ exports.update = function(req, res) {
   var data = _.omit(req.body, omitKeys);
 
   if(isFull) {
-    Topic.findOneAndUpdate(query, data, function(err, data) {
-      if(err) {
-        console.log('Error on save!');
-        res.status(500).send('We failed to save to due some reason');
-      }
+    Topic.update(data, { where: query }).then(function(data) {
       res.status(200).send('Updated successfully');
+    }, function(err) {
+      console.log(err);
+      res.status(500).send('We failed to save for some reason');
     });
   } else {
-    Topic.findOneAndUpdate(query, { $inc: { count: isIncrement ? 1: -1 } }, function(err, data) {
-      if(err) {
-        console.log('Error on save!');
-        // Not sure if server status is the correct status to return
-        res.status(500).send('We failed to save to due some reason');
-      }
+    Topic.update({
+      count: sequelize.literal('count' + (isIncrement ? '+' : '-') + 1)
+    }, { where: query }).then(function(topics) {
       res.status(200).send('Updated successfully');
+    }, function(err) {
+      console.log(err);
+      // Not sure if server status is the correct status to return
+      res.status(500).send('We failed to save for some reason');
     });
   }
 
@@ -62,9 +61,10 @@ exports.update = function(req, res) {
  * Remove a topic
  */
 exports.remove = function(req, res) {
-  var query = { id: req.params.id };
-  Topic.findOneAndRemove(query, function(err, data) {
-    if(err) console.log('Error on delete');
+  Topic.destroy({ where: { id: req.params.id } }).then(function(data) {
     res.status(200).send('Removed Successfully');
+  }, function(err) {
+    console.log(err);
+    res.status(500).send('We failed to delete for some reason');
   });
 };
