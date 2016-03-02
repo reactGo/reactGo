@@ -4,7 +4,6 @@
 .login {
   width: 420px;
   margin: 0 auto;
-  padding: 16px 12px;
   background-color: $color-athens-gray;
   border: 2px solid $color-mercury;
   border-radius: $global-radius;
@@ -22,9 +21,9 @@
   .login__alternative {
     background: $color-white;
     padding: 12px 8px;
-    margin: 12px;
 
     font-size: $font-medium;
+    text-align:center;
   }
 
   .login__alternative-link {
@@ -41,11 +40,18 @@
   }
 
   .login__email-container {
-    padding-bottom: 24px;
+    padding: 16px 12px;
     border-bottom: 2px solid $color-mercury;
   }
 
-  .login__header {
+  .login__google-container {
+    padding: 16px 12px;
+  }
+
+  .login__header {}
+
+  .login__heading {
+    padding: 16px 12px;
     font-size: $font-large;
     font-weight: normal;
     text-align: center;

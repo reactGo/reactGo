@@ -46,14 +46,16 @@ exports.postSignUp = function(req, res, next) {
 
   User.findOne({email: req.body.email}, function(err, existingUser) {
     if(existingUser) {
-      req.flash('errors', { msg: 'Account with that email address already exists' });
+      return res.status(409).json({ message: 'Account with this email address already exists!'});
     }
     user.save(function(err) {
       if(err) return next(err);
       req.logIn(user, function(err) {
-        if(err) return next(err);
-        console.log('Successfully created');
-        res.end('Success');
+        if(err) return res.status(401).json({message: err});
+        return res.status(200).json(
+          {
+            message: 'You have been successfully logged in.'
+          });
       });
     });
   });

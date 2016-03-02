@@ -42,8 +42,11 @@ function loginError(message) {
 }
 
 // Sign Up Action Creators
-function signUpError() {
-  return { type: types.SIGNUP_ERROR_USER };
+function signUpError(message) {
+  return {
+    type: types.SIGNUP_ERROR_USER,
+    message: message
+  };
 }
 
 function beginSignUp() {
@@ -72,7 +75,7 @@ export function manualLogin(data) {
     dispatch(beginLogin());
 
     return makeUserRequest('post', data, '/login')
-      .then( response => {
+      .then(response => {
         if (response.status === 200) {
           dispatch(loginSuccess());
           dispatch(push('/'));
@@ -91,12 +94,16 @@ export function signUp(data) {
     dispatch(beginSignUp());
 
     return makeUserRequest('post', data, '/signup')
-      .then( response => {
+      .then(response => {
         if (response.status === 200) {
           dispatch(signUpSuccess());
+          dispatch(push('/'));
         } else {
-          dispatch(signUpError());
+          dispatch(signUpError('Oops! Something went wrong'));
         }
+      })
+      .catch(err => {
+        dispatch(signUpError(err.data.message));
       });
   };
 }

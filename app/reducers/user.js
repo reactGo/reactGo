@@ -33,7 +33,8 @@ export default function user(state={
       });
     case SIGNUP_USER:
       return Object.assign({}, state, {
-        isWaiting: true
+        isWaiting: true,
+        message: ''
       });
     case SIGNUP_SUCCESS_USER:
       return Object.assign({}, state, {
@@ -43,11 +44,13 @@ export default function user(state={
     case SIGNUP_ERROR_USER:
       return Object.assign({}, state, {
         isWaiting: false,
-        authenticated: false
+        authenticated: false,
+        message: action.message
       });
     case LOGOUT_USER:
       return Object.assign({}, state, {
-        isWaiting: true
+        isWaiting: true,
+        message: ''
       });
     case LOGOUT_SUCCESS_USER:
       return Object.assign({}, state, {

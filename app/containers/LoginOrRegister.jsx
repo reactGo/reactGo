@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames/bind';
 import { connect } from 'react-redux';
-import { manualLogin } from 'actions/users';
+import { manualLogin, signUp } from 'actions/users';
 import styles from 'scss/components/_login';
 import hourGlassSvg from 'images/hourglass.svg';
 
@@ -16,10 +16,25 @@ class LoginOrRegister extends Component {
    */
   constructor(props) {
     super(props);
-    this._onLoginSubmit = this._onLoginSubmit.bind(this);
+    // Determining whether we should display 'login' or 'register'
+    // can be thought of an internal state to this component.
+    // Feel free to store this state in the reducer if you find that other
+    // components need to know this state.
+    this.state = {
+      isLogin: true
+    };
+    this.toggleMode = this.toggleMode.bind(this);
+    this.onLoginSubmit = this.onLoginSubmit.bind(this);
+    this.onRegisterSubmit = this.onRegisterSubmit.bind(this);
   }
 
-  _onLoginSubmit() {
+  toggleMode() {
+    this.setState({
+      isLogin: !this.state.isLogin
+    });
+  }
+
+  onLoginSubmit() {
     const { dispatch } = this.props;
     const email = ReactDOM.findDOMNode(this.refs.email).value;
     const password = ReactDOM.findDOMNode(this.refs.password).value;
@@ -27,6 +42,59 @@ class LoginOrRegister extends Component {
       email: email,
       password: password
     }));
+  }
+
+  onRegisterSubmit() {
+    const { dispatch } = this.props;
+    const email = ReactDOM.findDOMNode(this.refs.email).value;
+    const password = ReactDOM.findDOMNode(this.refs.password).value;
+    dispatch(signUp({
+      email: email,
+      password: password
+    }));
+  }
+
+  renderHeader() {
+    const { isLogin } = this.state;
+    if (isLogin) {
+      return (
+        <div className={cx('login__header')}>
+          <h1 className={cx('login__heading')}>Login with Email</h1>
+          <div className={cx('login__alternative')}>
+            Not what you want?
+            <a className={cx('login__alternative-link')}
+              onClick={this.toggleMode}> Register an Account</a>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className={cx('login__header')}>
+      <h1 className={cx('login__heading')}>Register with Email</h1>
+        <div className={cx('login__alternative')}>
+          Already have an account?
+          <a className={cx('login__alternative-link')}
+            onClick={this.toggleMode}> Login</a>
+        </div>
+      </div>
+    );
+  }
+
+  renderButton() {
+    const { isLogin } = this.state;
+
+    if (isLogin) {
+      return (
+        <button className={cx('login__button')}
+          onClick={this.onLoginSubmit}>Login</button>
+      );
+    }
+
+    return (
+      <button className={cx('login__button')}
+        onClick={this.onRegisterSubmit}>Register</button>
+    );
   }
 
   render() {
@@ -37,10 +105,7 @@ class LoginOrRegister extends Component {
         'login--waiting': isWaiting
       })}>
         <div className={cx('login__container')}>
-          <h1 className={cx('login__header')}>Login with Email</h1>
-          <div className={cx('login__alternative')}>
-          Not what you want? <a className={cx('login__alternative-link')}>Register an Account</a>
-          </div>
+          { this.renderHeader() }
           <img className={cx('login__loading')} src={hourGlassSvg} />
           <div className={cx('login__email-container')}>
             <input className={cx('login__input')}
@@ -58,11 +123,10 @@ class LoginOrRegister extends Component {
             <p className={cx('login__message', {
               'login__message-show': message && message.length > 0
               })}>{message}</p>
-            <button className={cx('login__button')}
-              onClick={this._onLoginSubmit}>Login</button>
+            { this.renderButton() }
           </div>
           <div className={cx('login__google-container')}>
-            <h1 className={cx('login__header')}>Google Login Demo</h1>
+            <h1 className={cx('login__heading')}>Google Login Demo</h1>
             <a className={cx('login__button')}
           href="/auth/google">Login with Google</a>
           </div>
