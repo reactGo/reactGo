@@ -84,11 +84,19 @@ brew install mongodb
 
 If you hate MongoDB with a passion and would like to see a postgresql example, check [**reap**](https://github.com/choonkending/reap) out!
 
+
+**Setup your mongoDB directory**
+
+Note: Make sure you have the directory and its permissions setup (i.e. `/data/db`):
+```bash
+sudo mkdir -p /data/db
+sudo chown -R `id -u` /data/db
+```
+
 **Run your mongoDB server**
 ```bash
 mongod
 ```
-Note: Make sure you have the permissions to the directory `/data/db`
 
 ### Build & Dev
 
