@@ -1,5 +1,5 @@
 /* Initializing passport.js */
-var User = require('../models/user');
+var User = require('../models').User;
 var local = require('./passport/local');
 var google = require('./passport/google');
 
@@ -19,8 +19,10 @@ module.exports = function(app, passport, config) {
   });
 
   passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
-      done(err, user);
+    User.findById(id).then(function(user) {
+      done(null, user);
+    }).error(function(err) {
+      done(err, null);
     });
   });
 

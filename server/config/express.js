@@ -1,6 +1,7 @@
 var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
+// TODO: update to use pgstore https://github.com/expressjs/session#compatible-session-stores
 var MongoStore =  require('connect-mongo')(session);
 var path = require('path');
 var secrets = require('./secrets');

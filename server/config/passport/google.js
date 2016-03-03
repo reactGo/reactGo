@@ -1,6 +1,5 @@
-var mongoose = require('mongoose');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var User = require('../../models/user');
+var User = require('../models').User;
 var secrets = require('../secrets');
 
 /*
@@ -25,11 +24,11 @@ module.exports = new GoogleStrategy({
 	clientID: secrets.google.clientID,
 	clientSecret: secrets.google.clientSecret,
 	callbackURL: secrets.google.callbackURL
-},  function(req, accessToken, refreshToken, profile, done) {
+}, function(req, accessToken, refreshToken, profile, done) {
 	if (req.user) {
-		User.findOne({ google: profile.id }, function(err, existingUser) {
+		User.findOne({ where: { google: profile.id } }).then(function(existingUser) {
 			if (existingUser) {
-				return done(null, false, { message: 'There is already a Google account that belongs to you. Sign in with that account or delete it, then link it with your current account.'})
+				return done(null, false, { message: 'There is already a Google account that belongs to you. Sign in with that account or delete it, then link it with your current account.'});
 			} else {
 				User.findById(req.user.id, function(err, user) {
 					user.google = profile.id;
@@ -42,26 +41,36 @@ module.exports = new GoogleStrategy({
           });
 				});
 			}
-		});
+		}).error(function(err) {
+      return done(null, false, { message: 'Something went wrong trying to authenticate'});
+    });
 	} else {
-		User.findOne({ google: profile.id }, function(err, existingUser) {
+		User.findOne({ where: { google: profile.id } }).then(function(existingUser) {
       if (existingUser) return done(null, existingUser);
-      User.findOne({ email: profile._json.emails[0].value }, function(err, existingEmailUser) {
+      User.findOne({ where: { email: profile._json.emails[0].value } }).then(function(existingEmailUser) {
         if (existingEmailUser) {
           return done(null, false, { message: 'There is already an account using this email address. Sign in to that account and link it with Google manually from Account Settings.'});
         } else {
-          var user = new User();
-          user.email = profile._json.emails[0].value;
-          user.google = profile.id;
-          user.tokens.push({ kind: 'google', accessToken: accessToken });
-          user.profile.name = profile.displayName;
-          user.profile.gender = profile._json.gender;
-          user.profile.picture = profile._json.picture;
-          user.save(function(err) {
-            done(err, user);
+          User.create({
+            email: profile._json.emails[0].value,
+            // TODO: inspect this profile.id field and add it to the db
+            google: profile.id,
+            name: profile.displayName,
+            gender: profile._json.gender,
+            picture: profile._json.picture
+          }).then(function(user) {
+            done(null, user);
+          }).error(function(err) {
+            done(err, null);
           });
+          // TODO: have to create a token
+          //user.tokens.push({ kind: 'google', accessToken: accessToken });
         }
+      }).error(function(err) {
+        return done(null, false, { message: 'Something went wrong trying to authenticate'});
       });
+    }).error(function(err) {
+      return done(null, false, { message: 'Something went wrong trying to authenticate'});
     });
 	}
 });

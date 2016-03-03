@@ -115,6 +115,7 @@ postgres -D /usr/local/var/postgres
 **Setup your postgres database**
 ```bash
 createdb react_webpack_node_development
+# from ./server
 sequelize db:migrate
 ```
 

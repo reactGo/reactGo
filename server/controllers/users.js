@@ -2,6 +2,8 @@ var _ = require('lodash');
 var User = require('../models/user');
 var passport = require('passport');
 
+// TODO: update to use sequelize
+
 /**
  * POST /login
  */
