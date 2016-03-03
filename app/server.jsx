@@ -117,7 +117,6 @@ export default function render(req, res) {
         }));
       })
       .catch(err => {
-        console.log(err);
         res.end(renderFullPage("",{}));
       });
     } else {

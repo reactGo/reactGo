@@ -57,7 +57,7 @@ exports.update = function(req, res) {
       res.status(200).send('Updated successfully');
     });
   }
-  
+
 };
 
 /**

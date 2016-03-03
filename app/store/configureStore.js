@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from 'reducers';
 import thunk from 'redux-thunk';
-import promiseMiddleware from '../api/promiseMiddleware';
+import promiseMiddleware from 'api/promiseMiddleware';
 import createLogger from 'redux-logger';
 import { syncHistory } from 'react-router-redux';
 
@@ -15,7 +15,7 @@ export default function configureStore(initialState, history) {
   // Installs hooks that always keep react-router and redux
   // store in sync
   const router = syncHistory(history);
-  if (process.env.NODE_ENV === 'development') {
+  if (__DEV__) {
     middleware.push(router, createLogger());
   } else {
     middleware.push(router);
