@@ -1,3 +1,7 @@
+1.4.4
+=====
+- Use Babel 6
+
 1.4.3
 =====
 - Refactor login and sign up flow to work
