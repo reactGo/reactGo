@@ -11,7 +11,8 @@ var commonLoaders = [
      */
     test: /\.js$|\.jsx$/,
     loaders: ['babel'],
-    include: path.join(__dirname, '..', 'app')
+    include: path.join(__dirname, '..', 'app'),
+    exclude: path.join(__dirname, '/node_modules/')
   },
   {
     test: /\.(png|jpg|svg)$/,
@@ -77,8 +78,9 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
         new webpack.DefinePlugin({
-          __TEST__: JSON.stringify(JSON.parse(process.env.TEST_ENV || 'false')),
-          __DEV__: true
+          "process.env": {
+            NODE_ENV: JSON.stringify("development")
+          }
         })
     ]
 };

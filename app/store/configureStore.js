@@ -15,7 +15,7 @@ export default function configureStore(initialState, history) {
   // Installs hooks that always keep react-router and redux
   // store in sync
   const router = syncHistory(history);
-  if (__DEV__) {
+  if (process.env.NODE_ENV === 'development') {
     middleware.push(router, createLogger());
   } else {
     middleware.push(router);

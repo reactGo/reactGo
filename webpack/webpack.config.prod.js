@@ -13,7 +13,8 @@ var commonLoaders = [
      */
     test: /\.js$|\.jsx$/,
     loaders: ['babel'],
-    include: path.join(__dirname, "..",  "app")
+    include: path.join(__dirname, '..', 'app'),
+    exclude: path.join(__dirname, '/node_modules/')
   },
   { test: /\.json$/, loader: "json-loader" },
   {
@@ -66,11 +67,6 @@ module.exports = [
     },
 
     module: {
-      preLoaders: [{
-        test: /\.js$|\.jsx$/,
-        exclude: /node_modules/,
-        loaders: ["eslint"]
-      }],
       loaders: commonLoaders
     },
     resolve: {
@@ -92,8 +88,9 @@ module.exports = [
           }
         }),
         new webpack.DefinePlugin({
-          __TEST__: JSON.stringify(JSON.parse(process.env.TEST_ENV || 'false')),
-          __DEV__: false
+          "process.env": {
+            NODE_ENV: JSON.stringify("production")
+          }
         })
     ]
   }, {
@@ -135,8 +132,9 @@ module.exports = [
           }
         }),
         new webpack.DefinePlugin({
-          __TEST__: JSON.stringify(JSON.parse(process.env.TEST_ENV || 'false')),
-          __DEV__: false
+          "process.env": {
+            NODE_ENV: JSON.stringify("production")
+          }
         })
     ]
   }
