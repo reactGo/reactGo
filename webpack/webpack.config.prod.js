@@ -1,5 +1,6 @@
 var path = require("path");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var InlineEnviromentVariablesPlugin = require('inline-environment-variables-webpack-plugin');
 var webpack = require("webpack");
 
 var assetsPath = path.join(__dirname, "..", "public", "assets");
@@ -89,7 +90,8 @@ module.exports = [
         }),
         new webpack.DefinePlugin({
           __DEV__: false
-        })
+        }),
+        new InlineEnviromentVariablesPlugin({ NODE_ENV: 'production' })
     ]
   }, {
     // The configuration for the server-side rendering
@@ -131,7 +133,8 @@ module.exports = [
         }),
         new webpack.DefinePlugin({
           __DEV__: false
-        })
+        }),
+        new InlineEnviromentVariablesPlugin({ NODE_ENV: 'production' })
     ]
   }
 ];
