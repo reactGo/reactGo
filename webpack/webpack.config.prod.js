@@ -88,7 +88,10 @@ module.exports = [
           }
         }),
         new webpack.DefinePlugin({
-          __DEV__: false
+          __DEV__: false,
+          'process.env': {
+            NODE_ENV: JSON.stringify('production')
+          }
         })
     ]
   }, {
@@ -130,7 +133,10 @@ module.exports = [
           }
         }),
         new webpack.DefinePlugin({
-          __DEV__: false
+          __DEV__: false,
+          'process.env': {
+            NODE_ENV: JSON.stringify('production')
+          }
         })
     ]
   }
