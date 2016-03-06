@@ -57,7 +57,6 @@ function renderFullPage(renderedContent, initialState, head={
  * and pass it into the Router.run function.
  */
 export default function render(req, res) {
-
     const history = createMemoryHistory();
     const authenticated = req.isAuthenticated();
     const store = configureStore({
