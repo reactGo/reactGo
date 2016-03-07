@@ -13,7 +13,17 @@ var commonLoaders = [
      * Read more http://babeljs.io/docs/usage/experimental/
      */
     test: /\.js$|\.jsx$/,
-    loaders: ['babel'],
+    loader: 'babel',
+    // Reason why we put this here instead of babelrc
+    // https://github.com/gaearon/react-transform-hmr/issues/5#issuecomment-142313637
+    query: {
+      "presets": ["es2015", "react", "stage-0"],
+      "plugins": [
+        "transform-react-remove-prop-types",
+        "transform-react-constant-elements",
+        "transform-react-inline-elements"
+      ]
+    },
     include: path.join(__dirname, '..', 'app'),
     exclude: path.join(__dirname, '/node_modules/')
   },
@@ -98,14 +108,14 @@ module.exports = [
     name: "server-side rendering",
     context: path.join(__dirname, "..", "app"),
     entry: {
-      app: "./server"
+      server: "./server"
     },
     target: "node",
     output: {
       // The output directory as absolute path
       path: assetsPath,
       // The filename of the entry chunk as relative path inside the output.path directory
-      filename: "[name].server.js",
+      filename: "server.js",
       // The output path from the view of the Javascript
       publicPath: publicPath,
       libraryTarget: "commonjs2"

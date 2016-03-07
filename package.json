@@ -9,8 +9,9 @@
     "clean": "rimraf public",
     "start": "NODE_ENV=production node server/index.js",
     "dev": "NODE_ENV=development nodemon",
-    "build:webpack": "NODE_ENV=production webpack --colors --config ./webpack/webpack.config.prod.js",
-    "build": "npm run clean && npm run build:webpack",
+    "build:dev": "NODE_ENV=development webpack --colors --config ./webpack/webpack.config.dev-server.js",
+    "build:prod": "NODE_ENV=production webpack --colors --config ./webpack/webpack.config.prod.js",
+    "build": "npm run clean && npm run build:prod",
     "test": "NODE_ENV=test karma start",
     "test:watch": "NODE_ENV=test npm test -- --watch --no-single-run",
     "postinstall": "npm run build"
