@@ -115,7 +115,6 @@ npm install
 npm run dev
 
 ```
-Note: If you get an error saying file not found, run `npm run build && npm run dev` (because the server relies on the compiled file to exist in order to serve those files).
 
 **Production**
 
