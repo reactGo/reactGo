@@ -7,7 +7,9 @@ var users = require('../controllers/users');
 var mongoose = require('mongoose');
 var _ = require('lodash');
 var Topic = mongoose.model('Topic');
-var App = require('../../public/assets/app.server');
+var path = require('path');
+var compiled_app_module_path = path.resolve(__dirname, '../../', 'public', 'assets', 'server.js');
+var App = require(compiled_app_module_path);
 
 module.exports = function(app, passport) {
   // user routes

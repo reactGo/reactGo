@@ -1,3 +1,10 @@
+1.4.5
+====
+- Begin using `nodemon` so we do not need to run `npm run build` whenever there
+  is a change in `server.jsx` or any files within the `server/` folder
+- Separate `webpack.config.dev.js` into `webpack.config.dev-client.js` and
+  `webpack.config.dev-server.js`. You only need to run `npm run dev` now!!
+
 1.4.4
 =====
 - Use Babel 6
