@@ -14,7 +14,7 @@ const cx = classNames.bind(styles);
 class Vote extends Component {
 
   //Data that needs to be called before rendering the component
-  //This is used for server side rending via the fetchComponentDataBeforeRending() method
+  //This is used for server side rending via the fetchComponentDataBeforeRender() method
   static need = [
     fetchTopics
   ]
