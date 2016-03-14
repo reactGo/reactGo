@@ -1,11 +1,11 @@
-@import 'settings.scss';
+@import 'settings.css';
+@import 'common/colors.css';
 
 .about {
   padding: 0 24px;
 }
 
   .about__header {
-    color: $color-black;
     font-size: $font-large;
     text-align: center;
   }

@@ -1,0 +1,22 @@
+@import 'settings.css';
+
+.main-section {
+  composes: card from '../common/card.css';
+
+  width: 50%;
+  margin: 16px;
+  border-radius: $global-radius;
+}
+
+  .header {
+    composes: title from '../common/card.css';
+    composes: subheading from '../common/typography.css';
+    background: #ed193a;
+    color: #fff;
+  }
+
+  .list {
+    list-style: none;
+    padding: 16px;
+  }
+

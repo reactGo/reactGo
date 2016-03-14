@@ -1,0 +1,11 @@
+.input {
+  composes: normal from './typography.css';
+  padding: 0.75rem 1rem;
+  border: 2px solid #c3c8ce;
+  border-radius: 4px;
+  width: 100%;
+
+  background-color: #fff;
+  color: #333f48;
+  margin-bottom: 0.75rem;
+}

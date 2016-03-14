@@ -1,19 +1,19 @@
-@import 'mixins.scss';
-@import 'settings.scss';
+@import 'settings.css';
 
 .scoreboard {
-  @include simpleBoxShadow;
+  composes: card from '../common/card.css';
   width: 40%;
   margin: 16px;
-  border-radius: $global-radius;
 }
 
-  .scoreboard__header {
-    text-align: center;
-    font-size: $font-medium;
+  .header {
+    composes: title from '../common/card.css';
+    composes: subheading from '../common/typography.css';
+    background: #0F9D58;
+    color: #fff;
   }
 
-  .scoreboard__list {
+  .list {
     padding: 16px;
     list-style: none;
   }

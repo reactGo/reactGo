@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames/bind';
-import styles from 'scss/components/topic-item';
+import styles from 'css/components/topic-item';
 
 const cx = classNames.bind(styles);
 
@@ -30,15 +30,15 @@ export default class TopicItem extends Component {
   render() {
     return (
       <li className={cx('topic-item')} key={this.props.id}>
-        <span className={cx('topic-item__topic')}>{this.props.text}</span>
+        <span className={cx('topic')}>{this.props.text}</span>
         <button className={
-          cx('topic-item__button', 'topic-item__button--increment')
+          cx('button', 'increment')
         } onClick={this.onIncrement}>+</button>
         <button className={
-          cx('topic-item__button', 'topic-item__button--decrement')
+          cx('button', 'decrement')
         } onClick={this.onDecrement}>-</button>
         <button className={
-          cx('topic-item__button', 'topic-item__button--destroy')
+          cx('button', 'destroy')
         } onClick={this.onDestroyClick}>{String.fromCharCode(215)}</button>
       </li>
     );
