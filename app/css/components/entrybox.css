@@ -1,22 +1,19 @@
-@import 'settings.css';
-@import 'common/colors.css';
-
 .entrybox {
   width: 100%;
   margin-bottom: 72px;
 }
 
-  .header {
-    composes: heading from '../common/typography';
+.header {
+  composes: heading from '../common/typography';
 
-    text-align: center;
-  }
+  text-align: center;
+}
 
-  .input {
-    composes: heading from '../common/typography';
-    composes: input from '../common/input';
+.input {
+  composes: heading from '../common/typography';
+  composes: input from '../common/input';
 
-    text-align: center;
-    outline: none;
-  }
+  text-align: center;
+  outline: none;
+}
 

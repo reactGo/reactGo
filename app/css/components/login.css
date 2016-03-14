@@ -1,11 +1,5 @@
-@value global-radius, font-medium, font-small from '../settings.css';
-@value color-athens-gray,
-  color-mercury,
-  color-white,
-  color-dodger-blue,
-  font-large,
-  color-crimson,
-  color-bombay from '../common/colors.css';
+@value global-radius, font-large, font-medium, font-small from '../settings';
+@value color-athens-gray, color-mercury, color-white, color-dodger-blue, color-crimson, color-bombay from '../common/colors.css';
 
 .login {
   width: 420px;
@@ -15,16 +9,13 @@
   border-radius: global-radius;
 }
 
-  .login--waiting {
-    .login__fieldset {
-      display: none;
-    }
-    .login__loading {
+  .waiting {
+    .loading {
       display: block;
     }
   }
 
-  .login__alternative {
+  .alternative {
     background: color-white;
     padding: 12px 8px;
 
@@ -32,51 +23,51 @@
     text-align: center;
   }
 
-  .login__alternative-link {
+  .alternative-link {
     color: color-dodger-blue;
     font-weight: bold;
 
     cursor: pointer;
   }
 
-  .login__loading {
+  .loading {
     display: none;
     text-align: center;
     margin: 24px auto;
   }
 
-  .login__email-container {
+  .email-container {
     padding: 16px 12px;
     border-bottom: 2px solid color-mercury;
   }
 
-  .login__google-container {
+  .google-container {
     padding: 16px 12px;
   }
 
-  .login__header {}
+  .header {}
 
-  .login__heading {
+  .heading {
+    composes: subheading from '../common/typography';
+
     padding: 16px 12px;
-    font-size: font-large;
-    font-weight: normal;
     text-align: center;
   }
 
-  .login__input {
-    composes: input from '../common/input.css';
+  .input {
+    composes: input from '../common/input';
   }
 
-  .login__message {
+  .message {
     color: color-crimson;
     font-size: font-small;
   }
 
-  .login__button {
-    composes: greenButton from '../common/button.css';
+  .button {
+    composes: greenButton from '../common/button';
   }
 
-  .login__hint {
+  .hint {
+    composes: small from '../common/typography';
     color: color-bombay;
-    font-size: font-small;
   }

@@ -1,12 +1,12 @@
 .header {
-  composes: heading from '../common/typography.css';
+  composes: heading from '../common/typography';
   text-align: center;
 }
 
 .description {
-  composes: normal from '../common/typography.css';
+  composes: normal from '../common/typography';
 }
 
 .contribute {
-  composes: small from '../common/typography.css';
+  composes: small from '../common/typography';
 }
