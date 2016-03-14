@@ -1,4 +1,5 @@
-@import 'settings.scss';
+@import 'settings.css';
+@import 'common/colors.css';
 
 .message {
   display: none;

@@ -1,7 +1,11 @@
 import React, { PropTypes } from 'react';
 import Navigation from 'containers/Navigation';
 import Message from 'containers/Message';
-import 'scss/main';
+import classNames from 'classnames/bind';
+import styles from 'css/main';
+
+const cx = classNames.bind(styles);
+
 
 /*
  * React-router's <Router> component renders <Route>'s
@@ -14,7 +18,7 @@ import 'scss/main';
  */
 const App = ({children}) => {
   return (
-    <div>
+    <div className={cx('app')}>
       <Navigation />
       <Message />
         {children}

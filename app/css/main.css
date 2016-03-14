@@ -1,0 +1,13 @@
+/*
+ * Add any global styles here
+ */
+* {
+  box-sizing: border-box;
+}
+
+.app {
+  composes: montserrat from './common/typography.css';
+  font-weight: normal;
+  font-smoothing: antialiased;
+  margin: 0;
+}

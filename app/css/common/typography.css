@@ -1,0 +1,29 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+.montserrat {
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+}
+
+.heading {
+  composes: montserrat;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.subheading {
+  composes: montserrat;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.normal {
+  composes: montserrat;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.small {
+  composes: montserrat;
+  font-size: 12px;
+  font-weight: 400;
+}

@@ -1,4 +1,5 @@
-@import 'settings.scss';
+@import 'settings.css';
+@import 'common/colors.css';
 
 .navigation {
   padding: 0 28px;
@@ -14,7 +15,7 @@
     .navigation__item--logo {
       font-size: $font-x-large;
     }
-    
+
     .navigation__item--active {
       color: $color-dodger-blue;
     }

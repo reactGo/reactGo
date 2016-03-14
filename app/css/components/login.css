@@ -1,5 +1,5 @@
-@import 'settings.scss';
-@import 'mixins.scss';
+@import 'settings.css';
+@import 'common/colors.css';
 
 .login {
   width: 420px;
@@ -58,7 +58,7 @@
   }
 
   .login__input {
-    @include input;
+    composes: input from '../common/input.css';
   }
 
   .login__message {
@@ -67,7 +67,7 @@
   }
 
   .login__button {
-    @include button;
+    composes: greenButton from '../common/button.css';
   }
 
   .login__hint {
