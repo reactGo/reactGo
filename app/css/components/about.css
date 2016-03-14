@@ -1,15 +1,12 @@
-@import 'settings.css';
-@import 'common/colors.css';
-
-.about {
-  padding: 0 24px;
+.header {
+  composes: heading from '../common/typography.css';
+  text-align: center;
 }
 
-  .about__header {
-    font-size: $font-large;
-    text-align: center;
-  }
+.description {
+  composes: normal from '../common/typography.css';
+}
 
-  .about__description {
-    font-size: $font-medium;
-  }
+.contribute {
+  composes: small from '../common/typography.css';
+}

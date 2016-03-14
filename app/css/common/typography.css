@@ -1,29 +1,35 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
-.montserrat {
-  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
-}
+@value montserrat: 'Montserrat', Helvetica, Arial, sans-serif;
 
 .heading {
-  composes: montserrat;
+  font-family: montserrat;
   font-size: 28px;
   font-weight: 700;
+
+  line-height: 48px;
 }
 
 .subheading {
-  composes: montserrat;
+  font-family: montserrat;
   font-size: 21px;
   font-weight: 700;
+
+  line-height: 24px;
 }
 
 .normal {
-  composes: montserrat;
+  font-family: montserrat;
   font-size: 16px;
   font-weight: 400;
+
+  line-height: 24px;
 }
 
 .small {
-  composes: montserrat;
+  font-family: montserrat;
   font-size: 12px;
   font-weight: 400;
+
+  line-height: 24px;
 }

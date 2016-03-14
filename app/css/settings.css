@@ -1,10 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
-$font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+@value font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 
-$font-small: 12px;
-$font-medium: 16px;
-$font-large: 21px;
-$font-x-large: 28px;
+@value font-small: 12px;
+@value font-medium: 16px;
+@value font-large: 21px;
+@value font-x-large: 28px;
 
-$global-radius: 4px;
+@value global-radius: 4px;
 

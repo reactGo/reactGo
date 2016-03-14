@@ -1,3 +1,5 @@
+@value color-white, color-salem, darker-color-salem from './colors.css';
+
 .button {
   composes: small from './typography.css';
 
@@ -19,11 +21,13 @@
 .greenButton {
   composes: button;
 
-  background: #0F9D58;
-  border-color: #0F9D58;
+  background: color-salem;
+  border-color: color-salem;
+
+  color: color-white;
 
   &:hover {
-    background: #0b6e3e;
-    border-color:#0b6e3e;
+    background: darker-color-salem;
+    border-color: darker-color-salem;
   }
 }
