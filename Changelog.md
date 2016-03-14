@@ -1,3 +1,9 @@
+1.5
+====
+- Use CSS modules `composes` and `@value`.
+We know this is still a space with active development. `composes` still does not work with pseudo-classes, which is being solved.
+- Switch entirely to postcss, eliminate Sass from this boilerplate :boom:
+
 1.4.5
 ====
 - Begin using `nodemon` so we do not need to run `npm run build` whenever there
