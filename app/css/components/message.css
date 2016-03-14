@@ -4,7 +4,6 @@
 .message {
   display: none;
   padding: 12px 0;
-  margin: 0 32px;
 
   border-radius: global-radius;
   color: color-black;
@@ -12,11 +11,11 @@
   text-align: center;
 }
 
-  .message--show {
+  .show {
     display: block;
   }
 
-  .message--success {
+  .success {
     background-color: color-salem;
     color: color-white;
   }

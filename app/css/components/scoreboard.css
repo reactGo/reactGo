@@ -1,14 +1,13 @@
 @value font-medium from '../settings.css';
 
 .scoreboard {
-  composes: card from '../common/card.css';
+  composes: card from '../common/card';
   width: 40%;
-  margin: 16px;
 }
 
   .header {
-    composes: title from '../common/card.css';
-    composes: subheading from '../common/typography.css';
+    composes: title from '../common/card';
+    composes: subheading from '../common/typography';
     background: #0F9D58;
     color: #fff;
   }
@@ -18,12 +17,12 @@
     list-style: none;
   }
 
-  .scoreboard__list-item {
+  .item {
     display: flex;
     justify-content: space-between;
   }
 
-  .scoreboard__topic {
-    display: inline-block;
+  .topic {
+    composes: flexNotMoreThan200 from '../common/layout';
     font-size: font-medium;
   }
