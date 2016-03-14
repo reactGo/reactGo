@@ -1,0 +1,21 @@
+@value font-x-large from '../settings.css';
+@value color-black, color-dodger-blue from '../common/colors.css';
+
+.navigation {
+  padding: 0 28px;
+}
+
+.item {
+  display: inline-block;
+  text-decoration: none;
+  padding: 16px 32px;
+  color: color-black;
+}
+
+.logo {
+  font-size: font-x-large;
+}
+
+.active {
+  color: color-dodger-blue;
+}

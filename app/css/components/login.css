@@ -1,0 +1,73 @@
+@value global-radius, font-large, font-medium, font-small from '../settings';
+@value color-athens-gray, color-mercury, color-white, color-dodger-blue, color-crimson, color-bombay from '../common/colors.css';
+
+.login {
+  width: 420px;
+  margin: 0 auto;
+  background-color: color-athens-gray;
+  border: 2px solid color-mercury;
+  border-radius: global-radius;
+}
+
+  .waiting {
+    .loading {
+      display: block;
+    }
+  }
+
+  .alternative {
+    background: color-white;
+    padding: 12px 8px;
+
+    font-size: font-medium;
+    text-align: center;
+  }
+
+  .alternative-link {
+    color: color-dodger-blue;
+    font-weight: bold;
+
+    cursor: pointer;
+  }
+
+  .loading {
+    display: none;
+    text-align: center;
+    margin: 24px auto;
+  }
+
+  .email-container {
+    padding: 16px 12px;
+    border-bottom: 2px solid color-mercury;
+  }
+
+  .google-container {
+    padding: 16px 12px;
+  }
+
+  .header {}
+
+  .heading {
+    composes: subheading from '../common/typography';
+
+    padding: 16px 12px;
+    text-align: center;
+  }
+
+  .input {
+    composes: input from '../common/input';
+  }
+
+  .message {
+    color: color-crimson;
+    font-size: font-small;
+  }
+
+  .button {
+    composes: greenButton from '../common/button';
+  }
+
+  .hint {
+    composes: small from '../common/typography';
+    color: color-bombay;
+  }

@@ -1,0 +1,13 @@
+@value color-limed-spruce, color-loblolly, color-white from './colors.css';
+
+.input {
+  composes: normal from './typography.css';
+  padding: 0.75rem 1rem;
+  border: 2px solid color-loblolly;
+  border-radius: 4px;
+  width: 100%;
+
+  background-color: color-white;
+  color: color-limed-spruce;
+  margin-bottom: 0.75rem;
+}

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames/bind';
 import { connect } from 'react-redux';
 import { manualLogin, signUp, toggleLoginMode } from 'actions/users';
-import styles from 'scss/components/login';
+import styles from 'css/components/login';
 import hourGlassSvg from 'images/hourglass.svg';
 
 const cx = classNames.bind(styles);
@@ -49,11 +49,11 @@ class LoginOrRegister extends Component {
     const { isLogin } = this.props.user;
     if (isLogin) {
       return (
-        <div className={cx('login__header')}>
-          <h1 className={cx('login__heading')}>Login with Email</h1>
-          <div className={cx('login__alternative')}>
+        <div className={cx('header')}>
+          <h1 className={cx('heading')}>Login with Email</h1>
+          <div className={cx('alternative')}>
             Not what you want?
-            <a className={cx('login__alternative-link')}
+            <a className={cx('alternative-link')}
               onClick={this.toggleMode}> Register an Account</a>
           </div>
         </div>
@@ -61,11 +61,11 @@ class LoginOrRegister extends Component {
     }
 
     return (
-      <div className={cx('login__header')}>
-      <h1 className={cx('login__heading')}>Register with Email</h1>
-        <div className={cx('login__alternative')}>
+      <div className={cx('header')}>
+      <h1 className={cx('heading')}>Register with Email</h1>
+        <div className={cx('alternative')}>
           Already have an account?
-          <a className={cx('login__alternative-link')}
+          <a className={cx('alternative-link')}
             onClick={this.toggleMode}> Login</a>
         </div>
       </div>
@@ -76,13 +76,13 @@ class LoginOrRegister extends Component {
     const { isLogin } = this.props.user;
     if (isLogin) {
       return (
-        <button className={cx('login__button')}
+        <button className={cx('button')}
           onClick={this.onLoginSubmit}>Login</button>
       );
     }
 
     return (
-      <button className={cx('login__button')}
+      <button className={cx('button')}
         onClick={this.onRegisterSubmit}>Register</button>
     );
   }
@@ -92,32 +92,32 @@ class LoginOrRegister extends Component {
 
     return (
       <div className={cx('login', {
-        'login--waiting': isWaiting
+        'waiting': isWaiting
       })}>
-        <div className={cx('login__container')}>
+        <div className={cx('container')}>
           { this.renderHeader() }
-          <img className={cx('login__loading')} src={hourGlassSvg} />
-          <div className={cx('login__email-container')}>
-            <input className={cx('login__input')}
+          <img className={cx('loading')} src={hourGlassSvg} />
+          <div className={cx('email-container')}>
+            <input className={cx('input')}
               type="email"
               ref="email"
               placeholder="email" />
-            <input className={cx('login__input')}
+            <input className={cx('input')}
               type="password"
               ref="password"
               placeholder="password" />
-            <div className={cx('login__hint')}>
+            <div className={cx('hint')}>
               <div>Hint</div>
               <div>email: example@ninja.com password: ninja</div>
             </div>
-            <p className={cx('login__message', {
-              'login__message-show': message && message.length > 0
+            <p className={cx('message', {
+              'message-show': message && message.length > 0
               })}>{message}</p>
             { this.renderButton() }
           </div>
-          <div className={cx('login__google-container')}>
-            <h1 className={cx('login__heading')}>Google Login Demo</h1>
-            <a className={cx('login__button')}
+          <div className={cx('google-container')}>
+            <h1 className={cx('heading')}>Google Login Demo</h1>
+            <a className={cx('button')}
           href="/auth/google">Login with Google</a>
           </div>
         </div>

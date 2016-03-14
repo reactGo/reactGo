@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import TopicTextInput from 'components/TopicTextInput';
 import classNames from 'classnames/bind';
-import styles from 'scss/components/entrybox';
+import styles from 'css/components/entrybox';
 
 const cx = classNames.bind(styles);
 
@@ -13,11 +13,11 @@ const cx = classNames.bind(styles);
 const EntryBox = ({onEntryChange, onEntrySave, topic}) => {
   return (
     <div className={cx('entrybox')}>
-      <h1 className={cx('entrybox__header')}>Vote for your top hack idea</h1>
+      <h1 className={cx('header')}>Vote for your top hack idea</h1>
       <TopicTextInput
-        className={cx('entrybox__input')}
+        className={cx('input')}
         value={topic}
-        placeholder="What's yer fav idea?"
+        placeholder="Suggest a hackday idea . . ."
         onEntryChange={onEntryChange}
         onEntrySave={onEntrySave} />
     </div>

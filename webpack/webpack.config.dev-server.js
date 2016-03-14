@@ -1,7 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var assetsPath = path.join(__dirname, '..', 'public', 'assets');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var commonLoaders = [
   {
@@ -21,8 +20,12 @@ var commonLoaders = [
   },
   { test: /\.json$/, loader: "json-loader" },
   {
-    test: /\.(png|jpg|svg)$/,
-    loader: 'url?limit=10000'
+    test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+    loader: 'url',
+    query: {
+        name: '[hash].[ext]',
+        limit: 10000,
+    }
   },
   { test: /\.html$/, loader: 'html-loader' }
 ];
@@ -46,23 +49,22 @@ module.exports = {
     },
     module: {
       loaders: commonLoaders.concat([
-           { test: /\.scss$/,
-             loader: ExtractTextPlugin.extract('style-loader', 'css-loader?module&localIdentName=[local]__[hash:base64:5]!postcss-loader!sass?includePaths[]='
-                                               + encodeURIComponent(path.resolve(__dirname, '..', 'app', 'scss')))
+           {
+              test: /\.css$/,
+              loader: 'css/locals?module&localIdentName=[name]__[local]___[hash:base64:5]'
            }
       ])
     },
     resolve: {
-      extensions: ['', '.js', '.jsx', '.scss'],
+      extensions: ['', '.js', '.jsx', '.css'],
       modulesDirectories: [
         "app", "node_modules"
       ]
     },
     plugins: [
-        // extract inline css from modules into separate files
-        new ExtractTextPlugin("styles/main.css"),
         new webpack.DefinePlugin({
-          __DEV__: true
+          __DEVCLIENT__: false,
+          __DEVSERVER__: true
         })
     ]
 };

@@ -20,11 +20,37 @@ var commonLoaders = [
     exclude: path.join(__dirname, '/node_modules/')
   },
   {
-    test: /\.(png|jpg|svg)$/,
-    loader: 'url?limit=10000'
+    test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+    loader: 'url',
+    query: {
+        name: '[hash].[ext]',
+        limit: 10000,
+    }
   },
   { test: /\.html$/, loader: 'html-loader' }
 ];
+
+var postCSSConfig = function() {
+  return [
+    require('postcss-import')({
+      path: path.join(__dirname, '..', 'app', 'css'),
+      // addDependencyTo is used for hot-reloading in webpack
+      addDependencyTo: webpack
+    }),
+    require('postcss-simple-vars')(),
+    // Unwrap nested rules like how Sass does it
+    require('postcss-nested')(),
+    //  parse CSS and add vendor prefixes to CSS rules
+    require('autoprefixer')({
+      browsers: ['last 2 versions', 'IE > 8']
+    }),
+    // A PostCSS plugin to console.log() the messages registered by other
+    // PostCSS plugins
+    require('postcss-reporter')({
+      clearMessages: true
+    })
+  ];
+};
 
 module.exports = {
     // eval - Each module is executed with eval and //@ sourceURL.
@@ -66,15 +92,13 @@ module.exports = {
     },
     module: {
       loaders: commonLoaders.concat([
-        { test: /\.scss$/,
-          loader: 'style!css?module&localIdentName=[local]__[hash:base64:5]' +
-            '&sourceMap!postcss-loader!sass?sourceMap&outputStyle=expanded' +
-            '&includePaths[]=' + encodeURIComponent(path.resolve(__dirname, '..', 'app', 'scss'))
+        { test: /\.css$/,
+          loader: 'style!css?module&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
         }
       ])
     },
     resolve: {
-      extensions: ['', '.js', '.jsx', '.scss'],
+      extensions: ['', '.js', '.jsx', '.css'],
       modulesDirectories: [
         'app', 'node_modules'
       ]
@@ -83,7 +107,9 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
         new webpack.DefinePlugin({
-          __DEV__: true
+          __DEVCLIENT__: true,
+          __DEVSERVER__: false
         })
-    ]
+    ],
+    postcss: postCSSConfig
 };
