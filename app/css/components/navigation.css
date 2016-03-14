@@ -1,5 +1,5 @@
-@import 'settings.css';
-@import 'common/colors.css';
+@value font-x-large from '../settings.css';
+@value color-black, color-dodger-blue from '../common/colors.css';
 
 .navigation {
   padding: 0 28px;
@@ -9,13 +9,13 @@
     display: inline-block;
     text-decoration: none;
     padding: 16px 32px;
-    color: $color-black;
+    color: color-black;
   }
 
     .navigation__item--logo {
-      font-size: $font-x-large;
+      font-size: font-x-large;
     }
 
     .navigation__item--active {
-      color: $color-dodger-blue;
+      color: color-dodger-blue;
     }

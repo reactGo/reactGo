@@ -1,12 +1,18 @@
-@import 'settings.css';
-@import 'common/colors.css';
+@value global-radius, font-medium, font-small from '../settings.css';
+@value color-athens-gray,
+  color-mercury,
+  color-white,
+  color-dodger-blue,
+  font-large,
+  color-crimson,
+  color-bombay from '../common/colors.css';
 
 .login {
   width: 420px;
   margin: 0 auto;
-  background-color: $color-athens-gray;
-  border: 2px solid $color-mercury;
-  border-radius: $global-radius;
+  background-color: color-athens-gray;
+  border: 2px solid color-mercury;
+  border-radius: global-radius;
 }
 
   .login--waiting {
@@ -19,15 +25,15 @@
   }
 
   .login__alternative {
-    background: $color-white;
+    background: color-white;
     padding: 12px 8px;
 
-    font-size: $font-medium;
-    text-align:center;
+    font-size: font-medium;
+    text-align: center;
   }
 
   .login__alternative-link {
-    color: $color-dodger-blue;
+    color: color-dodger-blue;
     font-weight: bold;
 
     cursor: pointer;
@@ -41,7 +47,7 @@
 
   .login__email-container {
     padding: 16px 12px;
-    border-bottom: 2px solid $color-mercury;
+    border-bottom: 2px solid color-mercury;
   }
 
   .login__google-container {
@@ -52,7 +58,7 @@
 
   .login__heading {
     padding: 16px 12px;
-    font-size: $font-large;
+    font-size: font-large;
     font-weight: normal;
     text-align: center;
   }
@@ -62,8 +68,8 @@
   }
 
   .login__message {
-    color: $color-crimson;
-    font-size: $font-small;
+    color: color-crimson;
+    font-size: font-small;
   }
 
   .login__button {
@@ -71,6 +77,6 @@
   }
 
   .login__hint {
-    color: $color-bombay;
-    font-size: $font-small;
+    color: color-bombay;
+    font-size: font-small;
   }

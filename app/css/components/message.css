@@ -1,14 +1,14 @@
-@import 'settings.css';
-@import 'common/colors.css';
+@value global-radius, font-medium from '../settings.css';
+@value color-black, color-white, color-salem from '../common/colors.css';
 
 .message {
   display: none;
   padding: 12px 0;
   margin: 0 32px;
 
-  border-radius: $global-radius;
-  color: $color-black;
-  font-size: $font-medium;
+  border-radius: global-radius;
+  color: color-black;
+  font-size: font-medium;
   text-align: center;
 }
 
@@ -17,6 +17,6 @@
   }
 
   .message--success {
-    background-color: $color-salem;
-    color: $color-white;
+    background-color: color-salem;
+    color: color-white;
   }

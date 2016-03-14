@@ -1,0 +1,11 @@
+/*
+ * Import all the common css into the file
+ * Until a solution is found for this
+ * https://github.com/css-modules/css-modules/issues/12#issuecomment-165227881;
+ */
+@import './button.css';
+@import './card.css';
+@import './colors.css';
+@import './input.css';
+@import './layout.css';
+@import './typography.css';

@@ -1,11 +1,11 @@
-@import 'settings.css';
+@value global-radius from '../settings.css';
 
 .main-section {
   composes: card from '../common/card.css';
 
   width: 50%;
   margin: 16px;
-  border-radius: $global-radius;
+  border-radius: global-radius;
 }
 
   .header {

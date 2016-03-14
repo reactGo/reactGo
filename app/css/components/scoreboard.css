@@ -1,4 +1,4 @@
-@import 'settings.css';
+@value font-medium from '../settings.css';
 
 .scoreboard {
   composes: card from '../common/card.css';
@@ -25,5 +25,5 @@
 
   .scoreboard__topic {
     display: inline-block;
-    font-size: $font-medium;
+    font-size: font-medium;
   }

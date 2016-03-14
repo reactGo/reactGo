@@ -1,3 +1,5 @@
+@value montserrat from './common/typography.css';
+
 /*
  * Add any global styles here
  */
@@ -6,8 +8,9 @@
 }
 
 .app {
-  composes: montserrat from './common/typography.css';
+  margin: 0;
+
+  font-family: montserrat;
   font-weight: normal;
   font-smoothing: antialiased;
-  margin: 0;
 }
