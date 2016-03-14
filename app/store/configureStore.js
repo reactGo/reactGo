@@ -16,7 +16,7 @@ export default function configureStore(initialState, history) {
   // Installs hooks that always keep react-router and redux
   // store in sync
   const reactRouterReduxMiddleware = routerMiddleware(history);
-  if (__DEV__) {
+  if (__DEVCLIENT__) {
     middleware.push(reactRouterReduxMiddleware, createLogger());
   } else {
     middleware.push(reactRouterReduxMiddleware);
