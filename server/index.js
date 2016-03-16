@@ -1,30 +1,10 @@
 var express = require('express');
-var fs = require('fs');
-var mongoose = require('mongoose');
 var passport = require('passport');
-var secrets = require('./config/secrets');
 var webpack = require('webpack');
 var app = express();
 
-// Find the appropriate database to connect to, default to localhost if not found.
-var connect = function() {
-  mongoose.connect(secrets.db, function(err, res) {
-    if(err) {
-      console.log('Error connecting to: ' + secrets.db + '. ' + err);
-    }else {
-      console.log('Succeeded connected to: ' + secrets.db);
-    }
-  });
-};
-connect();
-
-mongoose.connection.on('error', console.log);
-mongoose.connection.on('disconnected', connect);
-
-// Bootstrap models
-fs.readdirSync(__dirname + '/models').forEach(function(file) {
-  if(~file.indexOf('.js')) require(__dirname + '/models/' + file);
-});
+// Connect to database - you can edit this file to change your db type
+require('./config/connect')();
 
 var isDev = process.env.NODE_ENV === 'development';
 
