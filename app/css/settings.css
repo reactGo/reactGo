@@ -1,0 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+@value font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+
+@value font-small: 12px;
+@value font-medium: 16px;
+@value font-large: 21px;
+@value font-x-large: 28px;
+
+@value global-radius: 4px;

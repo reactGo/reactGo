@@ -40,18 +40,26 @@ module.exports = function(config) {
         loaders: [
           {
             test: /\.js$|\.jsx$/,
-            exclude: [
-              path.resolve('node_modules/')
-            ],
-            include: path.join(__dirname, "app"),
-            loader: 'babel'
+            loader: 'babel',
+            // Reason why we put this here instead of babelrc
+            // https://github.com/gaearon/react-transform-hmr/issues/5#issuecomment-142313637
+            query: {
+              "presets": ["es2015", "react", "stage-0"],
+              "plugins": [
+                "transform-react-remove-prop-types",
+                "transform-react-constant-elements",
+                "transform-react-inline-elements"
+              ]
+            },
+            include: path.join(__dirname, 'app'),
+            exclude: path.join(__dirname, '/node_modules/')
           },
           { test: /\.json$/, loader: "json-loader" },
-          { test: /\.scss$/, loader: "null-loader" }
+          { test: /\.css$/, loader: "null-loader" }
         ],
       },
       resolve: {
-        extensions: ['', '.js', '.jsx', '.scss'],
+        extensions: ['', '.js', '.jsx', '.css'],
         modulesDirectories: [
           'app', 'node_modules'
         ]
@@ -59,11 +67,6 @@ module.exports = function(config) {
       node: {
         fs: "empty"
       },
-      plugins: [
-        new webpack.DefinePlugin({
-          __TEST__: JSON.stringify(JSON.parse(process.env.TEST_ENV || 'true'))
-        })
-      ],
       watch: true
     },
 

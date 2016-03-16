@@ -1,5 +1,12 @@
 {
     "verbose": false,
-    "watch": ["app/server.jsx", "app/routes.jsx", "app/helmconfig.js", "server", "webpack"],
+    "watch": [
+      "app/server.jsx",
+      "app/routes.jsx",
+      "app/helmconfig.js",
+      "app/components/Meta.jsx",
+      "server",
+      "webpack"
+    ],
     "exec": "npm run build:dev && node server/index.js"
 }

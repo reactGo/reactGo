@@ -1,0 +1,33 @@
+@value color-white, color-salem, darker-color-salem from './colors.css';
+
+.button {
+  composes: small from './typography.css';
+
+  display: block;
+  padding: 0.75rem 1.25rem;
+  width: 100%;
+
+  text-decoration: none;
+  text-align: center;
+
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 2px;
+
+  cursor: pointer;
+  transition: 0.1s background-color ease;
+}
+
+.greenButton {
+  composes: button;
+
+  background: color-salem;
+  border-color: color-salem;
+
+  color: color-white;
+
+  &:hover {
+    background: darker-color-salem;
+    border-color: darker-color-salem;
+  }
+}

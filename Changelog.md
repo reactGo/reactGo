@@ -1,3 +1,12 @@
+1.5
+====
+**A bit of a warning**
+- Switch entirely to postcss, eliminate Sass from this boilerplate :boom:
+- Use CSS modules `composes` and `@value` - still does not solve things the way I like.
+We know this is still a space with active development.
+  - `composes` still does not work with pseudo-classes, which is being solved
+  - Having the `Order in extracted chunk undefined` error. Have been looking into this https://github.com/css-modules/css-modules/issues/12#issuecomment-165227881 issue, however, it gets tricky when we use @value.
+
 1.4.5
 ====
 - Begin using `nodemon` so we do not need to run `npm run build` whenever there

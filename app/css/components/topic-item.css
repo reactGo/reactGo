@@ -1,0 +1,35 @@
+@value font-medium from '../settings.css';
+@value color-salem, color-dodger-blue, color-punch from '../common/colors.css';
+
+.topic-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.topic {
+  composes: flexNotMoreThan200 from '../common/layout';
+  font-size: font-medium;
+}
+
+.button {
+  font-size: font-medium;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  margin: 0 28px;
+  color: #fff;
+}
+
+.increment {
+  background-color: color-salem;
+}
+
+.decrement {
+  background-color: color-dodger-blue;
+}
+
+.destroy {
+  background-color: color-punch;
+}
+

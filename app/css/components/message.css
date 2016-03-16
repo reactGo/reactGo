@@ -1,0 +1,21 @@
+@value global-radius, font-medium from '../settings.css';
+@value color-black, color-white, color-salem from '../common/colors.css';
+
+.message {
+  display: none;
+  padding: 12px 0;
+
+  border-radius: global-radius;
+  color: color-black;
+  font-size: font-medium;
+  text-align: center;
+}
+
+  .show {
+    display: block;
+  }
+
+  .success {
+    background-color: color-salem;
+    color: color-white;
+  }
