@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import md5 from 'spark-md5';
 import { polyfill } from 'es6-promise';
 import axios from 'axios';
+import expect from 'expect';
 import * as actions from 'actions/topics';
 import * as types from 'constants';
 
@@ -51,8 +52,13 @@ describe('Topic Actions', () => {
       ];
 
       sandbox.stub(axios, "post").returns(Promise.resolve({status:200}));
-      const store = mockStore(initialState, expectedActions, done);
-      store.dispatch(actions.createTopic(topic));
+
+      const store = mockStore(initialState);
+      store.dispatch(actions.createTopic(topic))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        })
+        .then(done).catch(done);
     });
 
     it('dispatches request and failed actions when status is NOT 200', done => {
@@ -84,11 +90,16 @@ describe('Topic Actions', () => {
         }
       ];
       sandbox.stub(axios, "post").returns(Promise.reject({status:404, data: 'Oops! Something went wrong and we couldn\'t create your topic'}));
-      const store = mockStore(initialState, expectedActions, done);
-      store.dispatch(actions.createTopic(topic));
+
+      const store = mockStore(initialState);
+      store.dispatch(actions.createTopic(topic))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        })
+        .then(done).catch(done);
     });
 
-    it('dispatches a duplicate action for a duplicate topic', done => {
+    it('dispatches a duplicate action for a duplicate topic', () => {
       const topic = 'A time machine';
       const id = md5.hash(topic);
       const data = {
@@ -112,8 +123,9 @@ describe('Topic Actions', () => {
         }
       ];
 
-      const store = mockStore(initialState, expectedActions, done);
+      const store = mockStore(initialState);
       store.dispatch(actions.createTopic(topic));
+      expect(store.getActions()).toEqual(expectedActions);
     });
 
   });
