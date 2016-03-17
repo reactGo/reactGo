@@ -112,7 +112,7 @@ npm install
 ```bash
 # Starts the server with Hot Reloading
 # Run webpack through webpack.config.dev.js
-npm run dev
+npm start
 
 ```
 
