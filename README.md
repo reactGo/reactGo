@@ -127,7 +127,7 @@ npm run build
 
 # Start server
 ## Note: You need MongoDB running
-npm start
+npm prod
 ```
 
 **Deployment**
