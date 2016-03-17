@@ -41,6 +41,7 @@
     "node": "5.x"
   },
   "dependencies": {
+    "autoprefixer": "^6.3.3",
     "axios": "^0.9.1",
     "babel": "^6.5.2",
     "babel-core": "^6.7.2",
@@ -84,8 +85,8 @@
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
-    "postcss-loader": "^0.8.2",
     "postcss-import": "^8.0.2",
+    "postcss-loader": "^0.8.2",
     "postcss-mixins": "^4.0.1",
     "postcss-nested": "^1.0.0",
     "postcss-reporter": "^1.3.3",
