@@ -1,4 +1,5 @@
 var express = require('express');
+var passport = require('passport');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var MongoStore =  require('connect-mongo')(session);
@@ -7,7 +8,7 @@ var secrets = require('./secrets');
 var flash = require('express-flash');
 var methodOverride = require('method-override');
 
-module.exports = function (app, passport) {
+module.exports = function (app) {
   app.set('port', (process.env.PORT || 3000));
 
   // X-Powered-By header has no functional value.
@@ -63,7 +64,7 @@ module.exports = function (app, passport) {
       secure: false,
     },
     store: new MongoStore(
-      { 
+      {
         url: secrets.db,
         autoReconnect: true
       }
@@ -74,7 +75,7 @@ module.exports = function (app, passport) {
   console.log('--------------------------');
   console.log('===> 😊  Starting Server . . .');
   console.log('===>  Environment: ' + node_env);
-  if(node_env === 'production') {
+  if (node_env === 'production') {
     console.log('===> 🚦  Note: In order for authentication to work in production');
     console.log('===>           you will need a secure HTTPS connection');
     sess.cookie.secure = true; // Serve secure cookies

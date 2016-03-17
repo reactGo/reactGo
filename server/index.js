@@ -1,10 +1,24 @@
 var express = require('express');
 var passport = require('passport');
 var webpack = require('webpack');
+var path = require('path');
 var app = express();
+var compiled_app_module_path = path.resolve(__dirname, '..', 'public', 'assets', 'server.js');
+var App = require(compiled_app_module_path);
 
-// Connect to database - you can edit this file to change your db type
+/*
+ * REMOVE if you do not want a DB
+ *
+ * Database-specific setup
+ * - connect to MongoDB using mongoose
+ * - register mongoose Schema
+ */
 require('./config/connect')();
+
+/*
+ * REMOVE if you do not need passport configuration
+ */
+require('./config/passport')(app);
 
 var isDev = process.env.NODE_ENV === 'development';
 
@@ -19,14 +33,19 @@ if (isDev) {
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
-
-// Bootstrap passport config
-require('./config/passport')(app, passport);
-
 // Bootstrap application settings
-require('./config/express')(app, passport);
+require('./config/express')(app);
 
 // Bootstrap routes
 require('./config/routes')(app, passport);
+
+/*
+ * This is where the magic happens. We take the locals data we have already
+ * fetched and seed our stores with data.
+ * App is a function that requires store data and url to initialize and return the React-rendered html string
+ */
+app.get('*', function (req, res, next) {
+  App.default(req, res);
+});
 
 app.listen(app.get('port'));

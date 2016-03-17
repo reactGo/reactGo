@@ -1,12 +1,10 @@
 /* Initializing passport.js */
+var passport = require('passport');
 var User = require('../models/user');
 var local = require('./passport/local');
 var google = require('./passport/google');
 
-/*
- * Expose
- */
-module.exports = function(app, passport, config) {
+module.exports = function() {
   // Configure Passport authenticated session persistence.
   //
   // In order to restore authentication state across HTTP requests, Passport needs
@@ -27,4 +25,6 @@ module.exports = function(app, passport, config) {
   //use the following strategies
   passport.use(local);
   passport.use(google);
+
+
 };
