@@ -1,3 +1,7 @@
+1.5.1
+=====
+- Fix issue #177 - missing module autoprefixer
+
 1.5
 ====
 **A bit of a warning**
