@@ -1,3 +1,7 @@
+1.5.2
+======
+- Fix issue #179 - upgraded redux-mock-store API broke the tests
+
 1.5.1
 =====
 - Fix issue #177 - missing module autoprefixer
