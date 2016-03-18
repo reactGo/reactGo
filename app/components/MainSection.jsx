@@ -6,7 +6,6 @@ import styles from 'css/components/main-section';
 const cx = classNames.bind(styles);
 
 const MainSection = ({onIncrement, onDecrement, onDestroy, topics}) => {
-
   const topicItems = topics.map((topic, key) => {
     return (
       <TopicItem index={key}

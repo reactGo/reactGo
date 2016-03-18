@@ -43,7 +43,7 @@ export default class TopicTextInput extends Component {
         onChange={this.onChange}
         onKeyDown={this.onKeyDown}
         value={value}
-        autoFocus={true} />
+        autoFocus />
     );
   }
 }

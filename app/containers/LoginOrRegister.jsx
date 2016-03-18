@@ -21,17 +21,13 @@ class LoginOrRegister extends Component {
     this.onRegisterSubmit = this.onRegisterSubmit.bind(this);
   }
 
-  toggleMode() {
-    this.props.dispatch(toggleLoginMode());
-  }
-
   onLoginSubmit() {
     const { dispatch } = this.props;
     const email = ReactDOM.findDOMNode(this.refs.email).value;
     const password = ReactDOM.findDOMNode(this.refs.password).value;
     dispatch(manualLogin({
-      email: email,
-      password: password
+      email,
+      password
     }));
   }
 
@@ -40,9 +36,13 @@ class LoginOrRegister extends Component {
     const email = ReactDOM.findDOMNode(this.refs.email).value;
     const password = ReactDOM.findDOMNode(this.refs.password).value;
     dispatch(signUp({
-      email: email,
-      password: password
+      email,
+      password
     }));
+  }
+
+  toggleMode() {
+    this.props.dispatch(toggleLoginMode());
   }
 
   renderHeader() {
@@ -92,7 +92,7 @@ class LoginOrRegister extends Component {
 
     return (
       <div className={cx('login', {
-        'waiting': isWaiting
+        waiting: isWaiting
       })}>
         <div className={cx('container')}>
           { this.renderHeader() }
@@ -143,4 +143,3 @@ function mapStateToProps(state) {
 // It does not modify the component class passed to it
 // Instead, it returns a new, connected component class, for you to use.
 export default connect(mapStateToProps)(LoginOrRegister);
-

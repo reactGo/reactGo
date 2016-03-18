@@ -15,11 +15,11 @@ polyfill();
  * @param String endpoint - defaults to /login
  * @return Promise
  */
-function makeUserRequest(method, data, api='/login') {
+function makeUserRequest(method, data, api = '/login') {
   return request({
     url: api,
-    method: method,
-    data: data,
+    method,
+    data,
     withCredentials: true
   });
 }
@@ -33,14 +33,14 @@ function beginLogin() {
 function loginSuccess(message) {
   return {
     type: types.LOGIN_SUCCESS_USER,
-    message: message
+    message
   };
 }
 
 function loginError(message) {
   return {
     type: types.LOGIN_ERROR_USER,
-    message: message
+    message
   };
 }
 
@@ -48,7 +48,7 @@ function loginError(message) {
 function signUpError(message) {
   return {
     type: types.SIGNUP_ERROR_USER,
-    message: message
+    message
   };
 }
 
@@ -59,7 +59,7 @@ function beginSignUp() {
 function signUpSuccess(message) {
   return {
     type: types.SIGNUP_SUCCESS_USER,
-    message: message
+    message
   };
 }
 
@@ -123,7 +123,7 @@ export function logOut() {
     dispatch(beginLogout());
 
     return makeUserRequest('post', null, '/logout')
-      .then( response => {
+      .then(response => {
         if (response.status === 200) {
           dispatch(logoutSuccess());
         } else {
@@ -132,4 +132,3 @@ export function logOut() {
       });
   };
 }
-

@@ -9,13 +9,15 @@ import styles from 'css/components/navigation';
 const cx = classNames.bind(styles);
 
 const Navigation = ({user, dispatch}) => {
+	const logout = () => dispatch(logOut());
+
     return (
       <nav className={cx('navigation')} role="navigation">
         <Link to="/"
           className={cx('item', 'logo')}
           activeClassName={cx('active')}>Ninja Ocean</Link>
           { user.authenticated ? (
-            <Link onClick={()=> dispatch(logOut())}
+            <Link onClick={logout}
               className={cx('item')} to="/">Logout</Link>
           ) : (
             <Link className={cx('item')} to="/login">Log in</Link>

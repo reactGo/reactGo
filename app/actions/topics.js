@@ -1,4 +1,4 @@
-/*eslint consistent-return: 0, no-else-return: 0*/
+/* eslint consistent-return: 0, no-else-return: 0*/
 import { polyfill } from 'es6-promise';
 import request from 'axios';
 import md5 from 'spark-md5';
@@ -17,7 +17,7 @@ polyfill();
  * @param String endpoint
  * @return Promise
  */
-function makeTopicRequest(method, id, data, api='/topic') {
+function makeTopicRequest(method, id, data, api = '/topic') {
   return request[method](api + (id ? ('/' + id) : ''), data);
 }
 
@@ -89,7 +89,7 @@ export function createTopic(text) {
     const { topic } = getState();
     const data = {
       count: 1,
-      id: id,
+      id,
       text
     };
 
@@ -115,7 +115,7 @@ export function createTopic(text) {
           return dispatch(createTopicSuccess());
         }
       })
-      .catch(ex => {
+      .catch(() => {
         return dispatch(createTopicFailure({ id, error: 'Oops! Something went wrong and we couldn\'t create your topic'}));
       });
   };

@@ -5,7 +5,7 @@ import { wrap } from 'react-stateless-wrapper';
 import MainSection from 'components/MainSection';
 import TopicItem from 'components/TopicItem';
 
-let WrappedMainSection = wrap(MainSection);
+const WrappedMainSection = wrap(MainSection);
 
 describe('MainSection', () => {
   let result;

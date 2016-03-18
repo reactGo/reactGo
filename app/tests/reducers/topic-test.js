@@ -21,14 +21,14 @@ describe('Topics reducer', () => {
     expect(
       reducer(undefined, {
         type: types.CREATE_TOPIC_REQUEST,
-        id: id,
+        id,
         count: 1,
         text: topic
       })
     ).toEqual({
       topics: [
         {
-          id: id,
+          id,
           count: 1,
           text: topic
         }

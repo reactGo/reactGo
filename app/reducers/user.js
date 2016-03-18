@@ -10,11 +10,11 @@ import {
   LOGOUT_SUCCESS_USER,
   LOGOUT_ERROR_USER } from 'constants/index';
 
-export default function user(state={
+export default function user(state = {
   isLogin: true,
   message: '',
   isWaiting: false,
-  authenticated: false }, action={}) {
+  authenticated: false }, action = {}) {
   switch (action.type) {
     case TOGGLE_LOGIN_MODE:
       return Object.assign({}, state, {
