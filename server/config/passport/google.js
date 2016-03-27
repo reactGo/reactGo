@@ -1,6 +1,43 @@
+var sequelize = require('../../models/index').sequelize;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var User = require('../models').User;
+var User = require('../../models').User;
 var secrets = require('../secrets');
+
+function attachGoogleAccount(user, profile, accessToken, done) {
+  user.google = profile.id;
+  user.name = user.name || profile.displayName;
+  user.gender = user.gender || profile._json.gender;
+  user.picture = user.picture || profile._json.picture;
+  return sequelize.transaction(function(transaction) {
+    return user.save({ transaction: transaction }).then(function() {
+      return user.createToken({
+        kind: 'google',
+        accessToken: accessToken
+      }, { transaction: transaction });
+    });
+  }).then(function() {
+    return done(null, user, { message: 'Google account has been linked.' });
+  });
+}
+
+function createUserWithToken(profile, accessToken, done) {
+  return sequelize.transaction(function(transaction) {    
+    return User.create({
+      email: profile._json.emails[0].value,
+      google: profile.id,
+      name: profile.displayName,
+      gender: profile._json.gender,
+      picture: profile._json.picture
+    }, { transaction: transaction }).then(function(user) {
+      return user.createToken({
+        kind: 'google',
+        accessToken: accessToken
+      }, { transaction: transaction }).then(function() {
+        return done(null, user);
+      });
+    });
+  });
+}
 
 /*
  * OAuth Strategy taken modified from https://github.com/sahat/hackathon-starter/blob/master/config/passport.js
@@ -25,52 +62,26 @@ module.exports = new GoogleStrategy({
 	clientSecret: secrets.google.clientSecret,
 	callbackURL: secrets.google.callbackURL
 }, function(req, accessToken, refreshToken, profile, done) {
-	if (req.user) {
-		User.findOne({ where: { google: profile.id } }).then(function(existingUser) {
-			if (existingUser) {
-				return done(null, false, { message: 'There is already a Google account that belongs to you. Sign in with that account or delete it, then link it with your current account.'});
-			} else {
-				User.findById(req.user.id, function(err, user) {
-					user.google = profile.id;
-					user.tokens.push({ kind: 'google', accessToken: accessToken});
-					user.profile.name = user.profile.name || profile.displayName;
-          user.profile.gender = user.profile.gender || profile._json.gender;
-          user.profile.picture = user.profile.picture || profile._json.picture;
-          user.save(function(err) {
-            done(err, user, { message: 'Google account has been linked.' });
-          });
-				});
-			}
-		}).error(function(err) {
-      return done(null, false, { message: 'Something went wrong trying to authenticate'});
-    });
-	} else {
-		User.findOne({ where: { google: profile.id } }).then(function(existingUser) {
+  return User.findOne({ where: { google: profile.id } }).then(function(existingUser) {
+    if (req.user) {
+      if (existingUser) {
+        return done(null, false, { message: 'There is already a Google account that belongs to you. Sign in with that account or delete it, then link it with your current account.'});
+      }
+      return User.findById(req.user.id).then(function(user) {
+        return attachGoogleAccount(user, profile, accessToken, done);
+      });
+    } else {
       if (existingUser) return done(null, existingUser);
-      User.findOne({ where: { email: profile._json.emails[0].value } }).then(function(existingEmailUser) {
+      return User.findOne({ where: { email: profile._json.emails[0].value } }).then(function(existingEmailUser) {
         if (existingEmailUser) {
           return done(null, false, { message: 'There is already an account using this email address. Sign in to that account and link it with Google manually from Account Settings.'});
         } else {
-          User.create({
-            email: profile._json.emails[0].value,
-            // TODO: inspect this profile.id field and add it to the db
-            google: profile.id,
-            name: profile.displayName,
-            gender: profile._json.gender,
-            picture: profile._json.picture
-          }).then(function(user) {
-            done(null, user);
-          }).error(function(err) {
-            done(err, null);
-          });
-          // TODO: have to create a token
-          //user.tokens.push({ kind: 'google', accessToken: accessToken });
+          // TODO: accesstoken was null but req looked like one...?
+          return createUserWithToken(profile, req, done);
         }
-      }).error(function(err) {
-        return done(null, false, { message: 'Something went wrong trying to authenticate'});
       });
-    }).error(function(err) {
-      return done(null, false, { message: 'Something went wrong trying to authenticate'});
-    });
-	}
+    }
+  }).catch(function(err) {
+    return done(null, false, { message: 'Something went wrong trying to authenticate' });
+  });
 });

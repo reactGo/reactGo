@@ -1,17 +1,22 @@
 var bcrypt = require('bcrypt-nodejs');
 var crypto = require('crypto');
+var Q = require('q');
 
 // Other oauthtypes to be added
-// TODO: add migration and has_many relation for tokens
-// TODO: add google field
-// TODO: deserialize some properties into profile object
 
-var User = function(sequelize, DataTypes) {
-  return sequelize.define('User', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true
-    },
+function encryptAndHashPassword(user, options) {
+  if (!user.changed('password')) return;
+  return Q.nfcall(bcrypt.genSalt, 5)
+    .then(function(salt) {
+      return Q.nfcall(bcrypt.hash, user.password, salt, null)
+        .then(function(hash) {
+          user.password = hash;
+        });
+    });
+}
+
+module.exports = function(sequelize, DataTypes) {
+  var User = sequelize.define('User', {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -20,8 +25,7 @@ var User = function(sequelize, DataTypes) {
       }
     },
     password: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.STRING
     },
     name: {
       type: DataTypes.STRING,
@@ -48,9 +52,20 @@ var User = function(sequelize, DataTypes) {
     },
     resetPasswordExpires: {
       type: DataTypes.DATE
+    },
+    google: {
+      type: DataTypes.STRING
     }
   }, {
     timestamps: false,
+    
+    classMethods: {
+      associate: function(models) {
+        User.hasMany(models.Token, {
+          foreignKey: 'userId'
+        });
+      }
+    },
     
     instanceMethods: {
       comparePassword: function(candidatePassword, cb) {
@@ -58,25 +73,26 @@ var User = function(sequelize, DataTypes) {
           if(err) return cb(err);
           cb(null, isMatch);
         });
+      },
+      
+      toJSON: function() {
+        return {
+          id: this.id,
+          email: this.email,
+          profile: {
+            name: this.name,
+            gender: this.gender,
+            location: this.location,
+            website: this.website,
+            picture: this.picture
+          }
+        };
       }
     }
   });
+  
+  User.beforeCreate(encryptAndHashPassword);
+  User.beforeUpdate(encryptAndHashPassword);
+  
+  return User;
 };
-
-function encryptAndHashPassword(next) {
-  var user = this;
-  if (!user.changed('password')) return next();
-  bcrypt.genSalt(5, function(err, salt) {
-    if (err) return next(err);
-    bcrypt.hash(user.password, salt, null, function(err, hash) {
-      if (err) return next(err);
-      user.password = hash;
-      next();
-    });
-  });
-}
-
-User.beforeCreate(encryptAndHashPassword);
-User.beforeUpdate(encryptAndHashPassword);
-
-module.exports = User;

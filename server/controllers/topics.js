@@ -8,7 +8,7 @@ var sequelize = require('../models/index').sequelize;
 exports.all = function(req, res) {
   Topic.findAll().then(function(topics) {
     res.json(topics);
-  }, function(err) {
+  }).catch(function(err) {
     console.log(err);
     res.status(500).send('Error in first query');
   });
@@ -20,7 +20,7 @@ exports.all = function(req, res) {
 exports.add = function(req, res) {
   Topic.create(req.body).then(function (topic) {
     res.status(200).send('OK');
-  }, function(err) {
+  }).catch(function(err) {
     console.log(err);
     res.status(400).send(err);
   });
@@ -39,7 +39,7 @@ exports.update = function(req, res) {
   if(isFull) {
     Topic.update(data, { where: query }).then(function(data) {
       res.status(200).send('Updated successfully');
-    }, function(err) {
+    }).catch(function(err) {
       console.log(err);
       res.status(500).send('We failed to save for some reason');
     });
@@ -48,13 +48,12 @@ exports.update = function(req, res) {
       count: sequelize.literal('count' + (isIncrement ? '+' : '-') + 1)
     }, { where: query }).then(function(topics) {
       res.status(200).send('Updated successfully');
-    }, function(err) {
+    }).catch(function(err) {
       console.log(err);
       // Not sure if server status is the correct status to return
       res.status(500).send('We failed to save for some reason');
     });
   }
-
 };
 
 /**
@@ -63,7 +62,7 @@ exports.update = function(req, res) {
 exports.remove = function(req, res) {
   Topic.destroy({ where: { id: req.params.id } }).then(function(data) {
     res.status(200).send('Removed Successfully');
-  }, function(err) {
+  }).catch(function(err) {
     console.log(err);
     res.status(500).send('We failed to delete for some reason');
   });

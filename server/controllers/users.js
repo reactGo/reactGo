@@ -1,8 +1,6 @@
 var _ = require('lodash');
-var User = require('../models/user');
+var User = require('../models').User;
 var passport = require('passport');
-
-// TODO: update to use sequelize
 
 /**
  * POST /login
@@ -41,17 +39,16 @@ exports.postLogout = function(req, res) {
  * Create a new local account
  */
 exports.postSignUp = function(req, res, next) {
-  var user =  new User({
+  var user = User.build({
     email: req.body.email,
     password: req.body.password
   });
 
-  User.findOne({email: req.body.email}, function(err, existingUser) {
+  User.findOne({ where: { email: req.body.email } }).then(function(existingUser) {
     if(existingUser) {
       return res.status(409).json({ message: 'Account with this email address already exists!'});
     }
-    user.save(function(err) {
-      if(err) return next(err);
+    return user.save().then(function() {
       req.logIn(user, function(err) {
         if(err) return res.status(401).json({message: err});
         return res.status(200).json(
@@ -60,5 +57,7 @@ exports.postSignUp = function(req, res, next) {
           });
       });
     });
+  }).catch(function(err) {
+    return next(err);
   });
 };

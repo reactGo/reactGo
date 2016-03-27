@@ -14,8 +14,7 @@ module.exports = {
           allowNull: false
         },
         password: {
-          type: DataTypes.STRING,
-          allowNull: false
+          type: DataTypes.STRING
         },
         name: {
           type: DataTypes.STRING,

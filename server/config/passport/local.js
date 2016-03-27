@@ -4,7 +4,7 @@
  */
 
 var LocalStrategy = require('passport-local').Strategy;
-var User = require('../models').User;
+var User = require('../../models').User;
 
 /*
  By default, LocalStrategy expects to find credentials in parameters named username and password.
@@ -22,7 +22,7 @@ module.exports = new LocalStrategy({
         return done(null, false, { message: 'Your email or password combination is not correct.' });
       }
     });
-  }).error(function(err) {
+  }).catch(function(err) {
     return done(null, false, { message: 'Something went wrong trying to authenticate' });
   });
 });
