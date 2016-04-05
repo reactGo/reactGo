@@ -42,16 +42,17 @@ module.exports = {
         resetPasswordExpires: {
           type: DataTypes.DATE
         }
-      }, {
-        indexes: [
-          {
-            name: 'unique_email',
-            unique: true,
-            fields: [DataTypes.fn('lower', DataTypes.col('email'))]
-          }
-        ]
       }
-    );
+    ).then(function() {
+      return queryInterface.addIndex(
+        'Users',
+        [DataTypes.fn('lower', DataTypes.col('email'))],
+        {
+          indexName: 'users_email',
+          indicesType: 'unique'
+        }
+      );
+    });
   },
 
   down: function (queryInterface, DataTypes) {

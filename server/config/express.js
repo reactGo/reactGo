@@ -1,8 +1,8 @@
 var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
-// TODO: update to use pgstore https://github.com/expressjs/session#compatible-session-stores
-var MongoStore =  require('connect-mongo')(session);
+var PGStore = require('connect-pg-simple')(session);
+var pg = require('pg');
 var path = require('path');
 var secrets = require('./secrets');
 var flash = require('express-flash');
@@ -63,10 +63,10 @@ module.exports = function (app, passport) {
       httpOnly: true,
       secure: false,
     },
-    store: new MongoStore(
+    store: new PGStore(
       { 
-        url: secrets.db.mongo,
-        autoReconnect: true
+        pg: pg,
+        conString: secrets.db.postgres
       }
     )
   };
