@@ -5,7 +5,7 @@
 module.exports = {
   // Find the appropriate database to connect to, default to localhost if not found.
   db: {
-    postgres: process.env.POSTGRES_DB || 'postgres://root:@localhost/react_webpack_node_' + process.env.NODE_ENV
+    postgres: process.env.POSTGRES_DB_URL || 'postgres://root:@localhost/react_webpack_node_' + process.env.NODE_ENV
   },
   sessionSecret: process.env.SESSION_SECRET || 'Your Session Secret goes here',
   google: {

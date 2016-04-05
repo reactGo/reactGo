@@ -1,14 +1,13 @@
-var bcrypt = require('bcrypt-nodejs');
-var crypto = require('crypto');
-var Q = require('q');
+var Promise = require('bluebird');
+var bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
 
 // Other oauthtypes to be added
 
-function encryptAndHashPassword(user, options) {
+function hashPassword(user, options) {
   if (!user.changed('password')) return;
-  return Q.nfcall(bcrypt.genSalt, 5)
+  return bcrypt.genSaltAsync(5)
     .then(function(salt) {
-      return Q.nfcall(bcrypt.hash, user.password, salt, null)
+      return bcrypt.hashAsync(user.password, salt, null)
         .then(function(hash) {
           user.password = hash;
         });
@@ -91,8 +90,8 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
   
-  User.beforeCreate(encryptAndHashPassword);
-  User.beforeUpdate(encryptAndHashPassword);
+  User.beforeCreate(hashPassword);
+  User.beforeUpdate(hashPassword);
   
   return User;
 };

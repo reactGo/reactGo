@@ -138,6 +138,12 @@ git push heroku master
 # https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-the-add-on
 heroku addons:create heroku-postgresql:<PLANNAME> --as POSTGRES_DB
 
+heroku run bash
+# once in bash
+cd server
+sequelize db:migrate
+# exit heroku bash
+
 # OPTIONAL:
 
 # Rename if you need to
