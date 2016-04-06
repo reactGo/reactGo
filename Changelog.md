@@ -1,3 +1,7 @@
+1.5.3
+=====
+- Fix eslint warnings and fully lint project
+
 1.5.2
 ======
 - Fix issue #179 - upgraded redux-mock-store API broke the tests
