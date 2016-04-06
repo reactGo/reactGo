@@ -1,5 +1,5 @@
 /server/**
 /webpack/**
 karma.conf.js
-test.webpack.js
+tests.webpack.js
 /api/promiseMiddleware.js
