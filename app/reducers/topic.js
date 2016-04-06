@@ -34,7 +34,7 @@ export default function topic(state = {
       });
     case CREATE_TOPIC_REQUEST:
       return {
-        topics: [...state.topics, { id: action.id, count: action.count, text: action.text } ],
+        topics: [...state.topics, { id: action.id, count: action.count, text: action.text }],
         newTopic: ''
       };
     case CREATE_TOPIC_FAILURE:

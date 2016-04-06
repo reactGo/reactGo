@@ -5,14 +5,33 @@
         "node": true,
         "mocha": true
     },
-    "ecmaFeatures": {
-        "forOf": true,
-        "jsx": true,
-        "es6": true
+ "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "forOf": true,
+            "jsx": true,
+            "es6": true,
+            "experimentalObjectRestSpread" : true
+        },
     },
     "rules": {
         "comma-dangle": 0,
-        "indent": [2, 2, {"SwitchCase": 1}],
-        "react/prop-types": 0
-    }
+        "indent": 0,
+        "react/prop-types": 0,
+        "react/jsx-indent-props" : 0,
+        "react/jsx-closing-bracket-location" : 0,
+        "object-curly-spacing" : 0,
+        "arrow-body-style": 0,
+        "no-console": 0,
+        "max-len": 0,
+        "prefer-template": 0
+    },
+    "plugins": [
+        "react"
+      ],
+     "globals": {
+        "__DEVSERVER__": true,
+        "__DEVCLIENT__": true
+  }
 }

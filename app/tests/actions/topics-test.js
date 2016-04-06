@@ -1,4 +1,4 @@
-/*eslint no-unused-vars: 0*/ // since fetch is needed but not used
+/* eslint no-unused-vars: 0 */ // since fetch is needed but not used
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import md5 from 'spark-md5';
@@ -10,14 +10,14 @@ import * as types from 'constants';
 
 polyfill();
 
-const middlewares = [ thunk ];
+const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
 describe('Topic Actions', () => {
   describe('Asynchronous actions', () => {
     let sandbox;
     beforeEach(() => {
-      sandbox = sinon.sandbox.create();
+      sandbox = sinon.sandbox.create(); // eslint-disable-line
     });
 
     afterEach(() => {
@@ -28,7 +28,7 @@ describe('Topic Actions', () => {
       const topic = 'A time machine';
       const id = md5.hash(topic);
       const data = {
-        id: id,
+        id,
         count: 1,
         text: topic
       };
@@ -43,7 +43,7 @@ describe('Topic Actions', () => {
       const expectedActions = [
         {
           type: types.CREATE_TOPIC_REQUEST,
-          id: id,
+          id,
           count: 1,
           text: data.text
         }, {
@@ -51,7 +51,7 @@ describe('Topic Actions', () => {
         }
       ];
 
-      sandbox.stub(axios, "post").returns(Promise.resolve({status:200}));
+      sandbox.stub(axios, 'post').returns(Promise.resolve({ status: 200 }));
 
       const store = mockStore(initialState);
       store.dispatch(actions.createTopic(topic))
@@ -65,7 +65,7 @@ describe('Topic Actions', () => {
       const topic = 'A time machine';
       const id = md5.hash(topic);
       const data = {
-        id: id,
+        id,
         count: 1,
         text: topic
       };
@@ -80,16 +80,16 @@ describe('Topic Actions', () => {
       const expectedActions = [
         {
           type: types.CREATE_TOPIC_REQUEST,
-          id: id,
+          id,
           count: 1,
           text: data.text
         }, {
           type: types.CREATE_TOPIC_FAILURE,
-          id: id,
+          id,
           error: 'Oops! Something went wrong and we couldn\'t create your topic'
         }
       ];
-      sandbox.stub(axios, "post").returns(Promise.reject({status:404, data: 'Oops! Something went wrong and we couldn\'t create your topic'}));
+      sandbox.stub(axios, 'post').returns(Promise.reject({status: 404, data: 'Oops! Something went wrong and we couldn\'t create your topic'}));
 
       const store = mockStore(initialState);
       store.dispatch(actions.createTopic(topic))
@@ -103,7 +103,7 @@ describe('Topic Actions', () => {
       const topic = 'A time machine';
       const id = md5.hash(topic);
       const data = {
-        id: id,
+        id,
         count: 1,
         text: topic
       };
@@ -127,6 +127,5 @@ describe('Topic Actions', () => {
       store.dispatch(actions.createTopic(topic));
       expect(store.getActions()).toEqual(expectedActions);
     });
-
   });
  });

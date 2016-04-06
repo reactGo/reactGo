@@ -15,7 +15,7 @@ class Vote extends Component {
 
   //Data that needs to be called before rendering the component
   //This is used for server side rending via the fetchComponentDataBeforeRender() method
-  static need = [
+  static need = [  // eslint-disable-line
     fetchTopics
   ]
 
