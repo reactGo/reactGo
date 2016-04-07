@@ -7,8 +7,8 @@
   "scripts": {
     "lint": "eslint app",
     "clean": "rimraf public",
-    "start": "cross-env NODE_ENV=production node server/index.js",
-    "dev": "cross-env NODE_ENV=development nodemon",
+    "prod": "cross-env NODE_ENV=production node server/index.js",
+    "start": "cross-env NODE_ENV=development nodemon",
     "build:dev": "cross-env NODE_ENV=development webpack --colors --config ./webpack/webpack.config.dev-server.js",
     "build:prod": "cross-env NODE_ENV=production webpack --colors --config ./webpack/webpack.config.prod.js",
     "build": "npm run clean && npm run build:prod",
