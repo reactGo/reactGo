@@ -18,9 +18,10 @@ module.exports = function() {
     var connect = function() {
       mongoose.connect(secrets.db, function(err, res) {
         if(err) {
-          console.log('Error connecting to: ' + secrets.db + '. ' + err);
+          console.log('===>  Error connecting to  ' + secrets.db);
+          console.log('Reason: ' + err);
         }else {
-          console.log('Succeeded connected to: ' + secrets.db);
+          console.log('===>  Succeeded in connecting to  ' + secrets.db);
         }
       });
     };

@@ -79,11 +79,13 @@ module.exports = function (app) {
   console.log('--------------------------');
   console.log('===> 😊  Starting Server . . .');
   console.log('===>  Environment: ' + appConfig.ENV);
+  console.log('===>  Listening on port: ' + app.get('port'));
   if (appConfig.ENV === 'production') {
     console.log('===> 🚦  Note: In order for authentication to work in production');
     console.log('===>           you will need a secure HTTPS connection');
     sess.cookie.secure = true; // Serve secure cookies
   }
+  console.log('--------------------------');
 
   app.use(session(sess));
 
