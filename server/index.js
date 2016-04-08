@@ -2,6 +2,7 @@ var express = require('express');
 var passport = require('passport');
 var webpack = require('webpack');
 var path = require('path');
+var appConfig = require('./config/appConfig');
 var app = express();
 var compiled_app_module_path = path.resolve(__dirname, '..', 'public', 'assets', 'server.js');
 var App = require(compiled_app_module_path);
@@ -20,9 +21,7 @@ require('./config/connect')();
  */
 require('./config/passport')(app);
 
-var isDev = process.env.NODE_ENV === 'development';
-
-if (isDev) {
+if (appConfig.ENV === 'development') {
   var config = require('../webpack/webpack.config.dev-client.js');
   var compiler = webpack(config);
   app.use(require('webpack-dev-middleware')(compiler, {
@@ -33,11 +32,17 @@ if (isDev) {
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
-// Bootstrap application settings
+/*
+ * Bootstrap application settings
+ */
 require('./config/express')(app);
 
-// Bootstrap routes
-require('./config/routes')(app, passport);
+/*
+ * REMOVE if you do not need any routes
+ *
+ * Note: Some of these routes have passport and database model dependencies
+ */
+require('./config/routes')(app);
 
 /*
  * This is where the magic happens. We take the locals data we have already

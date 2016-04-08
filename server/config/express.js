@@ -2,11 +2,12 @@ var express = require('express');
 var passport = require('passport');
 var session = require('express-session');
 var bodyParser = require('body-parser');
-var MongoStore =  require('connect-mongo')(session);
 var path = require('path');
 var secrets = require('./secrets');
 var flash = require('express-flash');
 var methodOverride = require('method-override');
+var appConfig = require('./appConfig');
+var DB_TYPE = require('./constants').DB_TYPE;
 
 module.exports = function (app) {
   app.set('port', (process.env.PORT || 3000));
@@ -62,20 +63,23 @@ module.exports = function (app) {
     cookie: {
       httpOnly: true,
       secure: false,
-    },
-    store: new MongoStore(
+    }
+  };
+
+  if (appConfig.DB_TYPE === DB_TYPE.MONGO) {
+    var MongoStore =  require('connect-mongo')(session);
+    sess.store =  new MongoStore(
       {
         url: secrets.db,
         autoReconnect: true
       }
-    )
-  };
+    );
+  }
 
-  var node_env = process.env.NODE_ENV;
   console.log('--------------------------');
   console.log('===> 😊  Starting Server . . .');
-  console.log('===>  Environment: ' + node_env);
-  if (node_env === 'production') {
+  console.log('===>  Environment: ' + appConfig.ENV);
+  if (appConfig.ENV === 'production') {
     console.log('===> 🚦  Note: In order for authentication to work in production');
     console.log('===>           you will need a secure HTTPS connection');
     sess.cookie.secure = true; // Serve secure cookies
