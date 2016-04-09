@@ -5,7 +5,7 @@
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring universal Redux, React Router, React Router Redux Hot reloading, CSS modules, Express 4.x, mongoose.
+Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring universal Redux, React Router, React Router Redux Hot reloading, CSS modules, Express 4.x, sequelize.
 
 [dep-status-img]: https://david-dm.org/choonkending/react-webpack-node.svg
 [dep-status-link]: https://david-dm.org/choonkending/react-webpack-node
@@ -35,7 +35,7 @@ Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring u
 	- Components
 	- Synchronous and Asynchronous Actions
 - Express 4.x server with a ton of middleware
-- Mongoose for MongoDB
+- Sequelize for Postgres
 - Procfile to enable deployment to Heroku & Docs on Salt configurations + Deployment for Digital Ocean
 
 **Easter Eggs** :egg:
@@ -72,30 +72,25 @@ Having isomorphic React was one of my key criteria when choosing a Flux library,
 ## Instructions
 
 ### Prerequisites
-
-**Install MongoDB as your database**:
+**Install Postgres as your database**:
 
 ```bash
 # Update brew formulae
 brew update
-# Install MongoDB
-brew install mongodb
+# Install Postgres
+brew install postgres
 ```
 
-If you hate MongoDB with a passion and would like to see a postgresql example, check [**reap**](https://github.com/choonkending/reap) out!
-
-
-**Setup your mongoDB directory**
-
-Note: Make sure you have the directory and its permissions setup (i.e. `/data/db`):
+**Run your postgres server**
 ```bash
-sudo mkdir -p /data/db
-sudo chown -R `id -u` /data/db
+postgres -D /usr/local/var/postgres
 ```
 
-**Run your mongoDB server**
+**Setup your postgres database**
 ```bash
-mongod
+createdb react_webpack_node_development
+# from ./server
+sequelize db:migrate
 ```
 
 ### Build & Dev
@@ -126,7 +121,7 @@ Run the commands below for a production build, i.e. what is deployed to Heroku. 
 npm run build
 
 # Start server
-## Note: You need MongoDB running
+## Note: You need Postgres running
 npm start
 ```
 
@@ -140,9 +135,14 @@ heroku create
 git push heroku master
 
 # Database on Heroku
-heroku addons:add mongohq
-# or
-heroku addons:add mongolab
+# https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-the-add-on
+heroku addons:create heroku-postgresql:<PLANNAME> --as POSTGRES_DB
+
+heroku run bash
+# once in bash
+cd server
+sequelize db:migrate
+# exit heroku bash
 
 # OPTIONAL:
 
@@ -267,5 +267,4 @@ Best way to keep up to date is check the [issues](https://github.com/choonkendin
 Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app), [flux-examples](https://github.com/facebook/flux/tree/master/examples), [node-express-mongo-demo](https://github.com/madhums/node-express-mongoose-demo), [hackathon-starter](https://github.com/sahat/hackathon-starter/), [web-starter-kit](https://github.com/google/web-starter-kit), [awesome material-ui](https://github.com/callemall/material-ui), [alt and iso](https://github.com/goatslacker/iso/tree/master/examples/react-router-flux), [react-starter](https://github.com/webpack/react-starter), [reap](https://github.com/choonkending/reap), [isomorphic-redux-app](https://github.com/caljrimmer/isomorphic-redux-app) and [mxstbr/react-boilerplate](https://github.com/mxstbr/react-boilerplate/blob/master/README.md)
 
 License
-===============
 MIT

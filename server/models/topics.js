@@ -1,17 +1,20 @@
-/**
- * Schema Definitions
- *
- */
-var mongoose = require('mongoose');
-
-var TopicSchema = new mongoose.Schema({
-  id: String,
-  text: String,
-  count: { type: Number, min: 0 },
-  date: { type: Date, default: Date.now }
-});
-
-// Compiles the schema into a model, opening (or creating, if
-//	nonexistent) the 'Topic' collection in the MongoDB database
-Topic = mongoose.model('Topic', TopicSchema);
-
+module.exports = (sequelize, DataTypes) =>
+  sequelize.define('Topic', {
+    id: {
+      type: DataTypes.STRING,
+      primaryKey: true
+    },
+    text: DataTypes.STRING,
+    count: {
+      type: DataTypes.INTEGER,
+      validate: {
+        min: 0
+      }
+    },
+    date: {
+      type: DataTypes.DATE,
+      defaultValue: sequelize.fn('NOW')
+    }
+  }, {
+    timestamps: false
+  });

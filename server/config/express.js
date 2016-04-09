@@ -1,7 +1,8 @@
 var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
-var MongoStore =  require('connect-mongo')(session);
+var PGStore = require('connect-pg-simple')(session);
+var pg = require('pg');
 var path = require('path');
 var secrets = require('./secrets');
 var flash = require('express-flash');
@@ -62,10 +63,10 @@ module.exports = function (app, passport) {
       httpOnly: true,
       secure: false,
     },
-    store: new MongoStore(
+    store: new PGStore(
       { 
-        url: secrets.db,
-        autoReconnect: true
+        pg: pg,
+        conString: secrets.db.postgres
       }
     )
   };

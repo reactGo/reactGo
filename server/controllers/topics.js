@@ -1,72 +1,70 @@
-var mongoose = require('mongoose');
-var _ = require('lodash');
-var Topic = mongoose.model('Topic');
-
+const _ = require('lodash');
+const Topic = require('../models').Topic;
+const sequelize = require('../models/index').sequelize;
 
 /**
  * List
  */
-exports.all = function(req, res) {
-  Topic.find({}).exec(function(err, topics) {
-    if(!err) {
-      res.json(topics);
-    }else {
-      console.log('Error in first query');
-    }
+exports.all = (req, res) => {
+  Topic.findAll().then((topics) => {
+    res.json(topics);
+  }).catch((err) => {
+    console.log(err);
+    res.status(500).send('Error in first query');
   });
 };
 
 /**
  * Add a Topic
  */
-exports.add = function(req, res) {
-  Topic.create(req.body, function (err) {
-    if (err) {
-      console.log(err);
-      res.status(400).send(err);
-    }
+exports.add = (req, res) => {
+  Topic.create(req.body).then(() => {
     res.status(200).send('OK');
+  }).catch((err) => {
+    console.log(err);
+    res.status(400).send(err);
   });
 };
 
 /**
  * Update a topic
  */
-exports.update = function(req, res) {
-  var query = { id: req.params.id };
-  var isIncrement = req.body.isIncrement;
-  var isFull = req.body.isFull;
-  var omitKeys = ['id', '_id', '_v', 'isIncrement', 'isFull'];
-  var data = _.omit(req.body, omitKeys);
+exports.update = (req, res) => {
+  const query = { id: req.params.id };
+  const isIncrement = req.body.isIncrement;
+  const isFull = req.body.isFull;
+  const omitKeys = ['id', '_id', '_v', 'isIncrement', 'isFull'];
+  const data = _.omit(req.body, omitKeys);
 
-  if(isFull) {
-    Topic.findOneAndUpdate(query, data, function(err, data) {
-      if(err) {
-        console.log('Error on save!');
-        res.status(500).send('We failed to save to due some reason');
-      }
+  if (isFull) {
+    Topic.update(data, { where: query }).then(() => {
       res.status(200).send('Updated successfully');
+    }).catch((err) => {
+      console.log(err);
+      res.status(500).send('We failed to save for some reason');
     });
   } else {
-    Topic.findOneAndUpdate(query, { $inc: { count: isIncrement ? 1: -1 } }, function(err, data) {
-      if(err) {
-        console.log('Error on save!');
-        // Not sure if server status is the correct status to return
-        res.status(500).send('We failed to save to due some reason');
-      }
+    const sign = isIncrement ? '+' : '-';
+    Topic.update({
+      count: sequelize.literal(`count${sign}1`)
+    }, { where: query }).then(() => {
       res.status(200).send('Updated successfully');
+    }).catch((err) => {
+      console.log(err);
+      // Not sure if server status is the correct status to return
+      res.status(500).send('We failed to save for some reason');
     });
   }
-
 };
 
 /**
  * Remove a topic
  */
-exports.remove = function(req, res) {
-  var query = { id: req.params.id };
-  Topic.findOneAndRemove(query, function(err, data) {
-    if(err) console.log('Error on delete');
+exports.remove = (req, res) => {
+  Topic.destroy({ where: { id: req.params.id } }).then(() => {
     res.status(200).send('Removed Successfully');
+  }).catch((err) => {
+    console.log(err);
+    res.status(500).send('We failed to delete for some reason');
   });
 };
