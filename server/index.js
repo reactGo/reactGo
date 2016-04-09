@@ -7,11 +7,6 @@ var secrets = require('./config/secrets');
 var webpack = require('webpack');
 var app = express();
 
-// Bootstrap models
-fs.readdirSync(__dirname + '/models').forEach(function(file) {
-  if(~file.indexOf('.js')) require(__dirname + '/models/' + file);
-});
-
 var isDev = process.env.NODE_ENV === 'development';
 
 if (isDev) {

@@ -1,5 +1,5 @@
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Topic', {
+module.exports = (sequelize, DataTypes) =>
+  sequelize.define('Topic', {
     id: {
       type: DataTypes.STRING,
       primaryKey: true
@@ -18,4 +18,3 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     timestamps: false
   });
-};

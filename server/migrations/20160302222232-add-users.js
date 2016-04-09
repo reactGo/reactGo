@@ -1,7 +1,5 @@
-'use strict';
-
 module.exports = {
-  up: function (queryInterface, DataTypes) {
+  up(queryInterface, DataTypes) {
     return queryInterface.createTable(
       'Users', {
         id: {
@@ -43,19 +41,19 @@ module.exports = {
           type: DataTypes.DATE
         }
       }
-    ).then(function() {
-      return queryInterface.addIndex(
+    ).then(() =>
+      queryInterface.addIndex(
         'Users',
         [DataTypes.fn('lower', DataTypes.col('email'))],
         {
           indexName: 'users_email',
           indicesType: 'unique'
         }
-      );
-    });
+      )
+    );
   },
 
-  down: function (queryInterface, DataTypes) {
+  down(queryInterface) {
     return queryInterface.dropTable('Users');
   }
 };

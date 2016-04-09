@@ -1,5 +1,5 @@
-module.exports = function(sequelize, DataTypes) {
-  var Token = sequelize.define('Token', {
+module.exports = (sequelize, DataTypes) => {
+  const Token = sequelize.define('Token', {
     kind: {
       type: DataTypes.STRING,
       allowNull: false
@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
 
     classMethods: {
-      associate: function(models) {
+      associate(models) {
         Token.belongsTo(models.User, {
           foreignKey: 'userId'
         });

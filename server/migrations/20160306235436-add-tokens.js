@@ -1,7 +1,5 @@
-'use strict';
-
 module.exports = {
-  up: function (queryInterface, DataTypes) {
+  up(queryInterface, DataTypes) {
     return queryInterface.createTable(
       'Tokens', {
         id: {
@@ -28,7 +26,7 @@ module.exports = {
     );
   },
 
-  down: function (queryInterface, DataTypes) {
+  down(queryInterface) {
     return queryInterface.dropTable('Tokens');
   }
 };

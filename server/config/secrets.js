@@ -1,15 +1,16 @@
 /** Important **/
 /** You should not be committing this file to GitHub **/
 /** Repeat: DO! NOT! COMMIT! THIS! FILE! TO! YOUR! REPO! **/
+const googleClientId = '62351010161-eqcnoa340ki5ekb9gvids4ksgqt9hf48.apps.googleusercontent.com';
 
 module.exports = {
   // Find the appropriate database to connect to, default to localhost if not found.
   db: {
-    postgres: process.env.POSTGRES_DB_URL || 'postgres://root:@localhost/react_webpack_node_' + process.env.NODE_ENV
+    postgres: process.env.POSTGRES_DB_URL || `postgres://root:@localhost/react_webpack_node_${process.env.NODE_ENV}`
   },
   sessionSecret: process.env.SESSION_SECRET || 'Your Session Secret goes here',
   google: {
-    clientID: process.env.GOOGLE_CLIENTID || '62351010161-eqcnoa340ki5ekb9gvids4ksgqt9hf48.apps.googleusercontent.com',
+    clientID: process.env.GOOGLE_CLIENTID || googleClientId,
     clientSecret: process.env.GOOGLE_SECRET || '6cKCWD75gHgzCvM4VQyR5_TU',
     callbackURL: process.env.GOOGLE_CALLBACK || '/auth/google/callback'
   }

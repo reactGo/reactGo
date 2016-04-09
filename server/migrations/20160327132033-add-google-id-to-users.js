@@ -1,11 +1,9 @@
-'use strict';
-
 module.exports = {
-  up: function (queryInterface, DataTypes) {
+  up(queryInterface, DataTypes) {
     queryInterface.addColumn('Users', 'google', DataTypes.STRING);
   },
 
-  down: function (queryInterface, DataTypes) {
+  down(queryInterface) {
     queryInterface.removeColumn('Users', 'google');
   }
 };

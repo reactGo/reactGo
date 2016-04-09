@@ -1,21 +1,21 @@
-var Promise = require('bluebird');
-var bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
+const Promise = require('bluebird');
+const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
 
 // Other oauthtypes to be added
 
-function hashPassword(user, options) {
-  if (!user.changed('password')) return;
-  return bcrypt.genSaltAsync(5)
-    .then(function(salt) {
-      return bcrypt.hashAsync(user.password, salt, null)
-        .then(function(hash) {
-          user.password = hash;
-        });
-    });
+/* eslint-disable no-param-reassign */
+function hashPassword(user) {
+  if (!user.changed('password')) return null;
+  return bcrypt.genSaltAsync(5).then((salt) =>
+    bcrypt.hashAsync(user.password, salt, null).then((hash) => {
+      user.password = hash;
+    })
+  );
 }
+/* eslint-enable no-param-reassign */
 
-module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define('User', {
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define('User', {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -57,24 +57,21 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     timestamps: false,
-    
+
     classMethods: {
-      associate: function(models) {
+      associate(models) {
         User.hasMany(models.Token, {
           foreignKey: 'userId'
         });
       }
     },
-    
+
     instanceMethods: {
-      comparePassword: function(candidatePassword, cb) {
-        bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-          if(err) return cb(err);
-          cb(null, isMatch);
-        });
+      comparePassword(candidatePassword) {
+        return bcrypt.compareAsync(candidatePassword, this.password);
       },
-      
-      toJSON: function() {
+
+      toJSON() {
         return {
           id: this.id,
           email: this.email,
@@ -89,9 +86,9 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  
+
   User.beforeCreate(hashPassword);
   User.beforeUpdate(hashPassword);
-  
+
   return User;
 };

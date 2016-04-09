@@ -1,14 +1,14 @@
-var _ = require('lodash');
-var Topic = require('../models').Topic;
-var sequelize = require('../models/index').sequelize;
+const _ = require('lodash');
+const Topic = require('../models').Topic;
+const sequelize = require('../models/index').sequelize;
 
 /**
  * List
  */
-exports.all = function(req, res) {
-  Topic.findAll().then(function(topics) {
+exports.all = (req, res) => {
+  Topic.findAll().then((topics) => {
     res.json(topics);
-  }).catch(function(err) {
+  }).catch((err) => {
     console.log(err);
     res.status(500).send('Error in first query');
   });
@@ -17,10 +17,10 @@ exports.all = function(req, res) {
 /**
  * Add a Topic
  */
-exports.add = function(req, res) {
-  Topic.create(req.body).then(function (topic) {
+exports.add = (req, res) => {
+  Topic.create(req.body).then(() => {
     res.status(200).send('OK');
-  }).catch(function(err) {
+  }).catch((err) => {
     console.log(err);
     res.status(400).send(err);
   });
@@ -29,26 +29,27 @@ exports.add = function(req, res) {
 /**
  * Update a topic
  */
-exports.update = function(req, res) {
-  var query = { id: req.params.id };
-  var isIncrement = req.body.isIncrement;
-  var isFull = req.body.isFull;
-  var omitKeys = ['id', '_id', '_v', 'isIncrement', 'isFull'];
-  var data = _.omit(req.body, omitKeys);
+exports.update = (req, res) => {
+  const query = { id: req.params.id };
+  const isIncrement = req.body.isIncrement;
+  const isFull = req.body.isFull;
+  const omitKeys = ['id', '_id', '_v', 'isIncrement', 'isFull'];
+  const data = _.omit(req.body, omitKeys);
 
-  if(isFull) {
-    Topic.update(data, { where: query }).then(function(data) {
+  if (isFull) {
+    Topic.update(data, { where: query }).then(() => {
       res.status(200).send('Updated successfully');
-    }).catch(function(err) {
+    }).catch((err) => {
       console.log(err);
       res.status(500).send('We failed to save for some reason');
     });
   } else {
+    const sign = isIncrement ? '+' : '-';
     Topic.update({
-      count: sequelize.literal('count' + (isIncrement ? '+' : '-') + 1)
-    }, { where: query }).then(function(topics) {
+      count: sequelize.literal(`count${sign}1`)
+    }, { where: query }).then(() => {
       res.status(200).send('Updated successfully');
-    }).catch(function(err) {
+    }).catch((err) => {
       console.log(err);
       // Not sure if server status is the correct status to return
       res.status(500).send('We failed to save for some reason');
@@ -59,10 +60,10 @@ exports.update = function(req, res) {
 /**
  * Remove a topic
  */
-exports.remove = function(req, res) {
-  Topic.destroy({ where: { id: req.params.id } }).then(function(data) {
+exports.remove = (req, res) => {
+  Topic.destroy({ where: { id: req.params.id } }).then(() => {
     res.status(200).send('Removed Successfully');
-  }).catch(function(err) {
+  }).catch((err) => {
     console.log(err);
     res.status(500).send('We failed to delete for some reason');
   });

@@ -1,43 +1,56 @@
-var sequelize = require('../../models/index').sequelize;
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var User = require('../../models').User;
-var secrets = require('../secrets');
+const sequelize = require('../../models/index').sequelize;
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const User = require('../../models').User;
+const secrets = require('../secrets');
 
+/* eslint-disable no-param-reassign */
 function attachGoogleAccount(user, profile, accessToken, done) {
   user.google = profile.id;
   user.name = user.name || profile.displayName;
   user.gender = user.gender || profile._json.gender;
   user.picture = user.picture || profile._json.picture;
-  return sequelize.transaction(function(transaction) {
-    return user.save({ transaction: transaction }).then(function() {
-      return user.createToken({
+
+  return sequelize.transaction((transaction) =>
+    user.save({ transaction }).then(() =>
+      user.createToken({
         kind: 'google',
-        accessToken: accessToken
-      }, { transaction: transaction });
-    });
-  }).then(function() {
-    return done(null, user, { message: 'Google account has been linked.' });
-  });
+        accessToken
+      }, { transaction })
+    )
+  ).then(() =>
+    done(null, user, { message: 'Google account has been linked.' })
+  );
 }
+/* eslint-enable no-param-reassign */
 
 function createUserWithToken(profile, accessToken, done) {
-  return sequelize.transaction(function(transaction) {    
-    return User.create({
+  return sequelize.transaction((transaction) =>
+    User.create({
       email: profile._json.emails[0].value,
       google: profile.id,
       name: profile.displayName,
       gender: profile._json.gender,
       picture: profile._json.picture
-    }, { transaction: transaction }).then(function(user) {
-      return user.createToken({
+    }, { transaction }).then((user) =>
+      user.createToken({
         kind: 'google',
-        accessToken: accessToken
-      }, { transaction: transaction }).then(function() {
-        return done(null, user);
-      });
-    });
-  });
+        accessToken
+      }, { transaction }).then(() =>
+        done(null, user)
+      )
+    )
+  );
 }
+
+const existingGoogleAccountMessage = [
+  'There is already a Google account that belongs to you.',
+  'Sign in with that account or delete it, then link it with your current account.'
+].join(' ');
+
+const existingEmailUserMessage = [
+  'There is already an account using this email address.',
+  'Sign in to that account and link it with Google manually from Account Settings.'
+].join(' ');
 
 /*
  * OAuth Strategy taken modified from https://github.com/sahat/hackathon-starter/blob/master/config/passport.js
@@ -53,35 +66,41 @@ function createUserWithToken(profile, accessToken, done) {
  *       - If there is, return an error message.
  *       - Else create a new account.
  *
- * The Google OAuth 2.0 authentication strategy authenticates users using a Google account and OAuth 2.0 tokens. 
- * The strategy requires a verify callback, which accepts these credentials and calls done providing a user, as well
- * as options specifying a client ID, client secret, and callback URL.
+ * The Google OAuth 2.0 authentication strategy authenticates users using a Google account and
+ * OAuth 2.0tokens.
+ * The strategy requires a verify callback, which accepts these credentials and calls done providing
+ * a user, as well as options specifying a client ID, client secret, and callback URL.
  */
 module.exports = new GoogleStrategy({
-	clientID: secrets.google.clientID,
-	clientSecret: secrets.google.clientSecret,
-	callbackURL: secrets.google.callbackURL
-}, function(req, accessToken, refreshToken, profile, done) {
-  return User.findOne({ where: { google: profile.id } }).then(function(existingUser) {
+  clientID: secrets.google.clientID,
+  clientSecret: secrets.google.clientSecret,
+  callbackURL: secrets.google.callbackURL
+}, (req, accessToken, refreshToken, profile, done) =>
+  User.findOne({
+    where: { google: profile.id }
+  }).then((existingUser) => {
     if (req.user) {
       if (existingUser) {
-        return done(null, false, { message: 'There is already a Google account that belongs to you. Sign in with that account or delete it, then link it with your current account.'});
+        return done(null, false, { message: existingGoogleAccountMessage });
       }
-      return User.findById(req.user.id).then(function(user) {
-        return attachGoogleAccount(user, profile, accessToken, done);
-      });
-    } else {
-      if (existingUser) return done(null, existingUser);
-      return User.findOne({ where: { email: profile._json.emails[0].value } }).then(function(existingEmailUser) {
-        if (existingEmailUser) {
-          return done(null, false, { message: 'There is already an account using this email address. Sign in to that account and link it with Google manually from Account Settings.'});
-        } else {
-          // TODO: accesstoken was null but req looked like one...?
-          return createUserWithToken(profile, req, done);
-        }
-      });
+      return User.findById(req.user.id).then((user) =>
+        attachGoogleAccount(user, profile, accessToken, done)
+      );
     }
-  }).catch(function(err) {
+
+    if (existingUser) return done(null, existingUser);
+
+    return User.findOne({
+      where: { email: profile._json.emails[0].value }
+    }).then((existingEmailUser) => {
+      if (existingEmailUser) {
+        return done(null, false, { message: existingEmailUserMessage });
+      }
+      // TODO: accesstoken was null but req looked like one...?
+      return createUserWithToken(profile, req, done);
+    });
+  }).catch((err) => {
+    console.log(err);
     return done(null, false, { message: 'Something went wrong trying to authenticate' });
-  });
-});
+  })
+);
