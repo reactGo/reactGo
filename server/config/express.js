@@ -7,7 +7,7 @@ var secrets = require('./secrets');
 var flash = require('express-flash');
 var methodOverride = require('method-override');
 var appConfig = require('./appConfig');
-var DB_TYPE = require('./constants').DB_TYPE;
+var DB_TYPES = require('./constants').DB_TYPES;
 
 module.exports = function (app) {
   app.set('port', (process.env.PORT || 3000));
@@ -63,18 +63,9 @@ module.exports = function (app) {
     cookie: {
       httpOnly: true,
       secure: false,
-    }
+    },
+    store: require('./sessions')[appConfig.DB_TYPE]()
   };
-
-  if (appConfig.DB_TYPE === DB_TYPE.MONGO) {
-    var MongoStore =  require('connect-mongo')(session);
-    sess.store =  new MongoStore(
-      {
-        url: secrets.db,
-        autoReconnect: true
-      }
-    );
-  }
 
   console.log('--------------------------');
   console.log('===> 😊  Starting Server . . .');

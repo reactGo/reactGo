@@ -8,13 +8,11 @@ var compiled_app_module_path = path.resolve(__dirname, '..', 'public', 'assets',
 var App = require(compiled_app_module_path);
 
 /*
- * REMOVE if you do not want a DB
- *
  * Database-specific setup
  * - connect to MongoDB using mongoose
  * - register mongoose Schema
  */
-require('./config/connect')();
+require('./config/connect')[appConfig.DB_TYPE]();
 
 /*
  * REMOVE if you do not need passport configuration

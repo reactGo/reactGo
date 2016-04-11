@@ -1,8 +1,8 @@
 module.exports = {
-  DB_TYPE: {
+  DB_TYPES: {
     MONGO: 'MONGO',
     POSTGRES: 'POSTGRES',
-    EMPTY: null
+    NONE: 'NONE'
   }
 };
 
