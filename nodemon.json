@@ -8,5 +8,5 @@
       "server",
       "webpack"
     ],
-    "exec": "npm run build:dev && node server/index.js"
+    "exec": "npm run build:dev && babel-node -- server/index.js"
 }

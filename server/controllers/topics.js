@@ -2,11 +2,12 @@ var mongoose = require('mongoose');
 var _ = require('lodash');
 var Topic = mongoose.model('Topic');
 
+let topicsController = {};
 
 /**
  * List
  */
-exports.all = function(req, res) {
+export function all(req, res) {
   Topic.find({}).exec(function(err, topics) {
     if(!err) {
       res.json(topics);
@@ -16,10 +17,12 @@ exports.all = function(req, res) {
   });
 };
 
+topicsController.all = all;
+
 /**
  * Add a Topic
  */
-exports.add = function(req, res) {
+export function add(req, res) {
   Topic.create(req.body, function (err) {
     if (err) {
       console.log(err);
@@ -29,10 +32,12 @@ exports.add = function(req, res) {
   });
 };
 
+topicsController.add = add;
+
 /**
  * Update a topic
  */
-exports.update = function(req, res) {
+export function update(req, res) {
   var query = { id: req.params.id };
   var isIncrement = req.body.isIncrement;
   var isFull = req.body.isFull;
@@ -57,16 +62,21 @@ exports.update = function(req, res) {
       res.status(200).send('Updated successfully');
     });
   }
-
 };
+
+topicsController.update = update;
 
 /**
  * Remove a topic
  */
-exports.remove = function(req, res) {
+export function remove(req, res) {
   var query = { id: req.params.id };
   Topic.findOneAndRemove(query, function(err, data) {
     if(err) console.log('Error on delete');
     res.status(200).send('Removed Successfully');
   });
 };
+
+topicsController.remove = remove;
+
+export default topicsController;

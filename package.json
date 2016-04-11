@@ -6,12 +6,13 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint app",
-    "clean": "rimraf public",
-    "start": "cross-env NODE_ENV=production node server/index.js",
+    "clean": "rimraf public && rimraf compiled",
+    "start": "cross-env NODE_ENV=production node compiled/index.js",
     "dev": "cross-env NODE_ENV=development nodemon",
     "build:dev": "cross-env NODE_ENV=development webpack --colors --config ./webpack/webpack.config.dev-server.js",
     "build:prod": "cross-env NODE_ENV=production webpack --colors --config ./webpack/webpack.config.prod.js",
-    "build": "npm run clean && npm run build:prod",
+    "build:node": "cross-env NODE_ENV=production babel ./server -d ./compiled",
+    "build": "npm run clean && npm run build:prod && npm run build:node",
     "test": "cross-env NODE_ENV=test karma start",
     "test:watch": "cross-env NODE_ENV=test npm test -- --watch --no-single-run",
     "postinstall": "npm run build"
@@ -43,7 +44,7 @@
   "dependencies": {
     "autoprefixer": "^6.3.3",
     "axios": "^0.9.1",
-    "babel": "^6.5.2",
+    "babel-cli": "^6.7.5",
     "babel-core": "^6.7.2",
     "babel-eslint": "^5.0.0",
     "babel-loader": "^6.2.4",
