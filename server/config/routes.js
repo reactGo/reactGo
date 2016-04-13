@@ -1,17 +1,15 @@
 /**
  * Routes for express app
  */
-var topics = require('../controllers/topics');
 var express = require('express');
-var users = require('../controllers/users');
 var mongoose = require('mongoose');
-var _ = require('lodash');
-var Topic = mongoose.model('Topic');
+var passport = require('passport');
 var path = require('path');
-var compiled_app_module_path = path.resolve(__dirname, '../../', 'public', 'assets', 'server.js');
-var App = require(compiled_app_module_path);
+var topics = require('../controllers/topics');
+var users = require('../controllers/users');
+var Topic = mongoose.model('Topic');
 
-module.exports = function(app, passport) {
+module.exports = function(app) {
   // user routes
   app.post('/login', users.postLogin);
   app.post('/signup', users.postSignUp);
@@ -50,13 +48,6 @@ module.exports = function(app, passport) {
 
   app.delete('/topic/:id', function(req, res) {
     topics.remove(req, res);
-  });
-
-  // This is where the magic happens. We take the locals data we have already
-  // fetched and seed our stores with data.
-  // App is a function that requires store data and url to initialize and return the React-rendered html string
-  app.get('*', function (req, res, next) {
-    App.default(req, res);
   });
 
 };

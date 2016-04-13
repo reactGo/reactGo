@@ -1,34 +1,25 @@
 var express = require('express');
-var fs = require('fs');
-var mongoose = require('mongoose');
 var passport = require('passport');
-var secrets = require('./config/secrets');
 var webpack = require('webpack');
+var path = require('path');
+var appConfig = require('./config/appConfig');
 var app = express();
+var compiled_app_module_path = path.resolve(__dirname, '..', 'public', 'assets', 'server.js');
+var App = require(compiled_app_module_path);
 
-// Find the appropriate database to connect to, default to localhost if not found.
-var connect = function() {
-  mongoose.connect(secrets.db, function(err, res) {
-    if(err) {
-      console.log('Error connecting to: ' + secrets.db + '. ' + err);
-    }else {
-      console.log('Succeeded connected to: ' + secrets.db);
-    }
-  });
-};
-connect();
+/*
+ * Database-specific setup
+ * - connect to MongoDB using mongoose
+ * - register mongoose Schema
+ */
+require('./config/connect')[appConfig.DB_TYPE]();
 
-mongoose.connection.on('error', console.log);
-mongoose.connection.on('disconnected', connect);
+/*
+ * REMOVE if you do not need passport configuration
+ */
+require('./config/passport')(app);
 
-// Bootstrap models
-fs.readdirSync(__dirname + '/models').forEach(function(file) {
-  if(~file.indexOf('.js')) require(__dirname + '/models/' + file);
-});
-
-var isDev = process.env.NODE_ENV === 'development';
-
-if (isDev) {
+if (appConfig.ENV === 'development') {
   var config = require('../webpack/webpack.config.dev-client.js');
   var compiler = webpack(config);
   app.use(require('webpack-dev-middleware')(compiler, {
@@ -39,14 +30,25 @@ if (isDev) {
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
+/*
+ * Bootstrap application settings
+ */
+require('./config/express')(app);
 
-// Bootstrap passport config
-require('./config/passport')(app, passport);
+/*
+ * REMOVE if you do not need any routes
+ *
+ * Note: Some of these routes have passport and database model dependencies
+ */
+require('./config/routes')(app);
 
-// Bootstrap application settings
-require('./config/express')(app, passport);
-
-// Bootstrap routes
-require('./config/routes')(app, passport);
+/*
+ * This is where the magic happens. We take the locals data we have already
+ * fetched and seed our stores with data.
+ * App is a function that requires store data and url to initialize and return the React-rendered html string
+ */
+app.get('*', function (req, res, next) {
+  App.default(req, res);
+});
 
 app.listen(app.get('port'));
