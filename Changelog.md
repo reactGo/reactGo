@@ -1,3 +1,11 @@
+1.5.4
+=====
+- Addresses issue #156
+- Abstract Database type into `appConfig.js`
+- Move main route `all` to `server/index.js` from `server/config/routes.js`
+- Use `DB_TYPE` value from `appConfig.js` to conditionally require DB-specific files in `config/connect` and `config/sessions`
+- Read more about how to easily NOT use a DB within this repo [here](https://github.com/choonkending/react-webpack-node/blob/master/docs/databases.md)
+
 1.5.3
 =====
 - Fix eslint warnings and fully lint project

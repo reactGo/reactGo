@@ -73,6 +73,8 @@ Having isomorphic React was one of my key criteria when choosing a Flux library,
 
 ### Prerequisites
 
+> If you wish to run this app **without installing/running a database**, you can easily do so. Read more [here](https://github.com/choonkending/react-webpack-node/blob/master/docs/databases.md).
+
 **Install MongoDB as your database**:
 
 ```bash
@@ -155,6 +157,7 @@ heroku open
 ```
 
 Note:
+
 1. If you are working from a different machine and get `heroku does not appear to be a remote repository` message, be sure to run `git remote add heroku git@heroku.com:appname.git`.
 2. For setting up Google Authentication for Heroku and local dev, read the FAQ section
 
