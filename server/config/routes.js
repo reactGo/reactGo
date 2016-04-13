@@ -4,9 +4,6 @@
 import topics from '../controllers/topics';
 var passport = require('passport');
 var users = require('../controllers/users');
-var path = require('path');
-var compiledAppModulePath = path.resolve(__dirname, '../../', 'public', 'assets', 'server.js');
-var App = require(compiledAppModulePath);
 
 module.exports = function(app) {
   // user routes
