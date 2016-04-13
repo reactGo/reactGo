@@ -1,13 +1,9 @@
 /**
  * Routes for express app
  */
-var express = require('express');
-var mongoose = require('mongoose');
+import topics from '../controllers/topics';
 var passport = require('passport');
-var path = require('path');
-var topics = require('../controllers/topics');
 var users = require('../controllers/users');
-var Topic = mongoose.model('Topic');
 
 module.exports = function(app) {
   // user routes

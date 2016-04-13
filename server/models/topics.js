@@ -13,5 +13,5 @@ var TopicSchema = new mongoose.Schema({
 
 // Compiles the schema into a model, opening (or creating, if
 //	nonexistent) the 'Topic' collection in the MongoDB database
-Topic = mongoose.model('Topic', TopicSchema);
+module.exports = mongoose.model('Topic', TopicSchema);
 
