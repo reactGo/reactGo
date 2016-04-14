@@ -1,3 +1,19 @@
+1.6
+====
+- Addresses issue #26
+- Allow ES6 syntax in javascript/nodeJS scripts in `server/` folder
+**Important**
+If you have an error such as
+
+> You have mistakenly installed the babel package, which is a no-op
+
+Remember to uninstall babel and instead install babel-cli as follows:
+
+```javascript
+npm uninstall babel
+npm install babel-cli
+```
+
 1.5.4
 =====
 - Addresses issue #156
