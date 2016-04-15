@@ -6,8 +6,9 @@ var path = require('path');
 var secrets = require('./secrets');
 var flash = require('express-flash');
 var methodOverride = require('method-override');
+const unsupportedMessage = require('../db/unsupportedMessage');
 var appConfig = require('./appConfig');
-var DB_TYPES = require('./constants').DB_TYPES;
+const dbConfig = require('../db');
 
 module.exports = function (app) {
   app.set('port', (process.env.PORT || 3000));
@@ -52,6 +53,13 @@ module.exports = function (app) {
   //          cookie: Please note that secure: true is a recommended option.
   //                  However, it requires an https-enabled website, i.e., HTTPS is necessary for secure cookies.
   //                  If secure is set, and you access your site over HTTP, the cookie will not be set.
+  let sessionStore = null;
+  if (!dbConfig.session) {
+    console.warn(unsupportedMessage('session'));
+  } else {
+    sessionStore = dbConfig.session();
+  }
+
   var sess = {
     resave: true,
     saveUninitialized: false,
@@ -64,13 +72,14 @@ module.exports = function (app) {
       httpOnly: true,
       secure: false,
     },
-    store: require('./sessions')[appConfig.DB_TYPE]()
+    store: sessionStore
   };
 
   console.log('--------------------------');
   console.log('===> 😊  Starting Server . . .');
   console.log('===>  Environment: ' + appConfig.ENV);
   console.log('===>  Listening on port: ' + app.get('port'));
+  console.log(`===>  Using DB TYPE: ${appConfig.DB_TYPE}`);
   if (appConfig.ENV === 'production') {
     console.log('===> 🚦  Note: In order for authentication to work in production');
     console.log('===>           you will need a secure HTTPS connection');

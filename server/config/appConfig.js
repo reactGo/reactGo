@@ -1,4 +1,4 @@
-var DB_TYPES = require('./constants').DB_TYPES;
+const DB_TYPES = require('./constants').DB_TYPES;
 
 /*
  * Set DB_TYPE to a database of your choice:

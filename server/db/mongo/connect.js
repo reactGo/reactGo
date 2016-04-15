@@ -1,8 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var mongoose = require('mongoose');
-var secrets = require('../secrets');
-var appConfig = require('../appConfig');
+var secrets = require('../../config/secrets');
 
 module.exports = function() {
   // Find the appropriate database to connect to, default to localhost if not found.
@@ -22,7 +21,7 @@ module.exports = function() {
   mongoose.connection.on('disconnected', connect);
 
   // Register schema as mongoose model
-  var modelPath = path.join(__dirname, '..', '..', 'models');
+  var modelPath = path.join(__dirname, 'models');
   fs.readdirSync(modelPath).forEach(function(file) {
     if(~file.indexOf('.js')) require(modelPath + '/' + file);
   });
