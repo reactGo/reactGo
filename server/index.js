@@ -1,30 +1,31 @@
-const express = require('express');
-const webpack = require('webpack');
-const path = require('path');
-const appConfig = require('./config/appConfig');
-const dbConfig = require('./db');
+import express from 'express';
+import webpack from 'webpack';
+import appConfig from './config/appConfig';
+import { connect } from './db';
+import passportConfig from './config/passport';
+import expressConfig from './config/express';
+import routesConfig from './config/routes';
+import webpackDevConfig from '../webpack/webpack.config.dev-client';
+const App = require('../public/assets/server');
 const app = express();
-const compiledAppModulePath = path.resolve(__dirname, '..', 'public', 'assets', 'server.js');
-const App = require(compiledAppModulePath);
 
 /*
  * Database-specific setup
  * - connect to MongoDB using mongoose
  * - register mongoose Schema
  */
-dbConfig.connect();
+connect();
 
 /*
  * REMOVE if you do not need passport configuration
  */
-require('./config/passport')();
+passportConfig();
 
 if (appConfig.ENV === 'development') {
-  const config = require('../webpack/webpack.config.dev-client.js');
-  const compiler = webpack(config);
+  const compiler = webpack(webpackDevConfig);
   app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,
-    publicPath: config.output.publicPath
+    publicPath: webpackDevConfig.output.publicPath
   }));
 
   app.use(require('webpack-hot-middleware')(compiler));
@@ -33,14 +34,14 @@ if (appConfig.ENV === 'development') {
 /*
  * Bootstrap application settings
  */
-require('./config/express')(app);
+expressConfig(app);
 
 /*
  * REMOVE if you do not need any routes
  *
  * Note: Some of these routes have passport and database model dependencies
  */
-require('./config/routes')(app);
+routesConfig(app);
 
 /*
  * This is where the magic happens. We take the locals data we have already

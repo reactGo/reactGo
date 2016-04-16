@@ -7,7 +7,7 @@
   "scripts": {
     "babel": "babel --presets es2015,stage-0 --ignore node_modules,public",
     "babel-node": "babel-node --presets es2015,stage-0 --ignore node_modules,public",
-    "lint": "eslint app",
+    "lint": "eslint app server",
     "clean": "rimraf public && rimraf compiled",
     "start": "cross-env NODE_ENV=production node compiled/index.js",
     "dev": "cross-env NODE_ENV=development nodemon",

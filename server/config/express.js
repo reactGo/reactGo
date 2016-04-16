@@ -1,16 +1,16 @@
-var express = require('express');
-var passport = require('passport');
-var session = require('express-session');
-var bodyParser = require('body-parser');
-var path = require('path');
-var secrets = require('./secrets');
-var flash = require('express-flash');
-var methodOverride = require('method-override');
-const unsupportedMessage = require('../db/unsupportedMessage');
-var appConfig = require('./appConfig');
-const dbConfig = require('../db');
+import express from 'express';
+import passport from 'passport';
+import session from 'express-session';
+import bodyParser from 'body-parser';
+import path from 'path';
+import flash from 'express-flash';
+import methodOverride from 'method-override';
+import unsupportedMessage from '../db/unsupportedMessage';
+import { sessionSecret } from './secrets';
+import { DB_TYPE, ENV } from './appConfig';
+import { session as dbSession } from '../db';
 
-module.exports = function (app) {
+export default (app) => {
   app.set('port', (process.env.PORT || 3000));
 
   // X-Powered-By header has no functional value.
@@ -22,7 +22,7 @@ module.exports = function (app) {
   app.set('view cache', false);
 
   app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
+  app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
   app.use(methodOverride());
   app.use(express.static(path.join(__dirname, '../..', 'public')));
 
@@ -54,16 +54,16 @@ module.exports = function (app) {
   //                  However, it requires an https-enabled website, i.e., HTTPS is necessary for secure cookies.
   //                  If secure is set, and you access your site over HTTP, the cookie will not be set.
   let sessionStore = null;
-  if (!dbConfig.session) {
+  if (!dbSession) {
     console.warn(unsupportedMessage('session'));
   } else {
-    sessionStore = dbConfig.session();
+    sessionStore = dbSession();
   }
 
-  var sess = {
+  const sess = {
     resave: true,
     saveUninitialized: false,
-    secret: secrets.sessionSecret,
+    secret: sessionSecret,
     proxy: true, // The "X-Forwarded-Proto" header will be used.
     name: 'sessionId',
     // Add HTTPOnly, Secure attributes on Session Cookie
@@ -77,10 +77,10 @@ module.exports = function (app) {
 
   console.log('--------------------------');
   console.log('===> 😊  Starting Server . . .');
-  console.log('===>  Environment: ' + appConfig.ENV);
-  console.log('===>  Listening on port: ' + app.get('port'));
-  console.log(`===>  Using DB TYPE: ${appConfig.DB_TYPE}`);
-  if (appConfig.ENV === 'production') {
+  console.log(`===>  Environment: ${ENV}`);
+  console.log(`===>  Listening on port: ${app.get('port')}`);
+  console.log(`===>  Using DB TYPE: ${DB_TYPE}`);
+  if (ENV === 'production') {
     console.log('===> 🚦  Note: In order for authentication to work in production');
     console.log('===>           you will need a secure HTTPS connection');
     sess.cookie.secure = true; // Serve secure cookies
@@ -93,5 +93,4 @@ module.exports = function (app) {
   app.use(passport.session());
 
   app.use(flash());
-
 };

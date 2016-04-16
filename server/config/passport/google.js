@@ -1,10 +1,9 @@
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const secrets = require('../secrets');
-const unsupportedMessage = require('../../db/unsupportedMessage');
-const dbConfig = require('../../db');
-const dbPassport = dbConfig.passport;
+import { OAuth2Strategy as GoogleStrategy } from 'passport-google-oauth';
+import { google } from '../secrets';
+import unsupportedMessage from '../../db/unsupportedMessage';
+import { passport as dbPassport } from '../../db';
 
-module.exports = (passport) => {
+export default (passport) => {
   if (!dbPassport || !dbPassport.google || ! typeof dbPassport.google === 'function') {
     console.warn(unsupportedMessage('passport-google-oauth'));
     return;
@@ -31,8 +30,8 @@ module.exports = (passport) => {
   * as options specifying a client ID, client secret, and callback URL.
   */
   passport.use(new GoogleStrategy({
-    clientID: secrets.google.clientID,
-    clientSecret: secrets.google.clientSecret,
-    callbackURL: secrets.google.callbackURL
+    clientID: google.clientID,
+    clientSecret: google.clientSecret,
+    callbackURL: google.callbackURL
   }, dbPassport.google));
 };

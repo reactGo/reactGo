@@ -1,7 +1,7 @@
-var User = require('../models/user');
+import User from '../models/user';
 
-module.exports = function(id, done) {
-  User.findById(id, function(err, user) {
+export default (id, done) => {
+  User.findById(id, (err, user) => {
     done(err, user);
   });
 };

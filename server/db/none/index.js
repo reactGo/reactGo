@@ -1,3 +1,3 @@
-module.exports = {
-  connect() {}
-};
+export function connect() {}
+
+export default { connect };

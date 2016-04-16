@@ -1,4 +1,9 @@
-module.exports = {
-  topics: require('./topics'),
-  users: require('./users')
+import topics from './topics';
+import users from './users';
+
+export { topics, users };
+
+export default {
+  topics,
+  users
 };

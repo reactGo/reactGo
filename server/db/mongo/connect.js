@@ -1,17 +1,17 @@
-var fs = require('fs');
-var path = require('path');
-var mongoose = require('mongoose');
-var secrets = require('../../config/secrets');
+import fs from 'fs';
+import path from 'path';
+import mongoose from 'mongoose';
+import { db } from '../../config/secrets';
 
-module.exports = function() {
+export default () => {
   // Find the appropriate database to connect to, default to localhost if not found.
-  var connect = function() {
-    mongoose.connect(secrets.db, function(err, res) {
-      if(err) {
-        console.log('===>  Error connecting to  ' + secrets.db);
-        console.log('Reason: ' + err);
-      }else {
-        console.log('===>  Succeeded in connecting to  ' + secrets.db);
+  const connect = () => {
+    mongoose.connect(db, (err) => {
+      if (err) {
+        console.log(`===>  Error connecting to ${db}`);
+        console.log(`Reason: ${err}`);
+      } else {
+        console.log(`===>  Succeeded in connecting to ${db}`);
       }
     });
   };
@@ -21,9 +21,9 @@ module.exports = function() {
   mongoose.connection.on('disconnected', connect);
 
   // Register schema as mongoose model
-  var modelPath = path.join(__dirname, 'models');
-  fs.readdirSync(modelPath).forEach(function(file) {
-    if(~file.indexOf('.js')) require(modelPath + '/' + file);
+  const modelPath = path.join(__dirname, 'models');
+  fs.readdirSync(modelPath).forEach((file) => {
+    if (~file.indexOf('.js')) require(`${modelPath}/${file}`);
   });
 };
 

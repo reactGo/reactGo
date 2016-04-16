@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import Topic from '../models/topics';
-const topicsController = {};
 
 /**
  * List
@@ -76,6 +75,9 @@ export function remove(req, res) {
   });
 }
 
-topicsController.remove = remove;
-
-export default topicsController;
+export default {
+  all,
+  add,
+  update,
+  remove
+};

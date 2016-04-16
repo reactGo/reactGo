@@ -1,13 +1,13 @@
-var session = require('express-session');
-var MongoStore = require('connect-mongo')(session);
-var secrets = require('../../config/secrets');
+import session from 'express-session';
+import connectMongo from 'connect-mongo';
+import { db } from '../../config/secrets';
 
-module.exports = function() {
-  return new MongoStore(
+const MongoStore = connectMongo(session);
+
+export default () =>
+  new MongoStore(
     {
-      url: secrets.db,
+      url: db,
       autoReconnect: true
     }
   );
-};
-

@@ -4,7 +4,7 @@ import passport from 'passport';
 /**
  * POST /login
  */
-exports.postLogin = (req, res, next) => {
+export function login(req, res, next) {
   // Do email and password validation for the server
   passport.authenticate('local', (authErr, user, info) => {
     if (authErr) return next(authErr);
@@ -13,30 +13,29 @@ exports.postLogin = (req, res, next) => {
     }
     // Passport exposes a login() function on req (also aliased as
     // logIn()) that can be used to establish a login session
-    req.logIn(user, (loginErr) => {
+    return req.logIn(user, (loginErr) => {
       if (loginErr) return res.status(401).json({ message: loginErr });
       return res.status(200).json({
         message: 'You have been successfully logged in.'
       });
     });
   })(req, res, next);
-};
-
+}
 
 /**
  * POST /logout
  */
-exports.postLogout = (req, res) => {
+export function logout(req, res) {
   // Do email and password validation for the server
   req.logout();
   res.redirect('/');
-};
+}
 
 /**
  * POST /signup
  * Create a new local account
  */
-exports.postSignUp = (req, res, next) => {
+export function signUp(req, res, next) {
   const user = new User({
     email: req.body.email,
     password: req.body.password
@@ -47,9 +46,9 @@ exports.postSignUp = (req, res, next) => {
       return res.status(409).json({ message: 'Account with this email address already exists!' });
     }
 
-    user.save((saveErr) => {
+    return user.save((saveErr) => {
       if (saveErr) return next(saveErr);
-      req.logIn(user, (loginErr) => {
+      return req.logIn(user, (loginErr) => {
         if (loginErr) return res.status(401).json({ message: loginErr });
         return res.status(200).json({
           message: 'You have been successfully logged in.'
@@ -57,4 +56,10 @@ exports.postSignUp = (req, res, next) => {
       });
     });
   });
+}
+
+export default {
+  login,
+  logout,
+  signUp
 };

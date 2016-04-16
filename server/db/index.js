@@ -1,17 +1,24 @@
-const appConfig = require('../config/appConfig');
-const DB_TYPES = require('../config/constants').DB_TYPES;
+import { DB_TYPE } from '../config/appConfig';
+import { DB_TYPES } from '../config/constants';
+import * as mongo from './mongo';
+import * as none from './none';
 
 let dbConfig = null;
 
-switch (appConfig.DB_TYPE) {
+switch (DB_TYPE) {
   case DB_TYPES.MONGO:
-    dbConfig = require('./mongo');
+    dbConfig = mongo;
     break;
   case DB_TYPES.NONE:
-    dbConfig = require('./none');
+    dbConfig = none;
     break;
   default:
-    throw new Error(`No database type '${appConfig.DB_TYPE}' found`);
+    throw new Error(`No database type '${DB_TYPE}' found`);
 }
 
-module.exports = dbConfig;
+export const connect = dbConfig.connect;
+export const controllers = dbConfig.controllers;
+export const passport = dbConfig.passport;
+export const session = dbConfig.session;
+
+export default dbConfig.default;

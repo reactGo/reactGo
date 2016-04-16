@@ -1,6 +1,13 @@
-module.exports = {
-  connect: require('./connect'),
-  controllers: require('./controllers'),
-  passport: require('./passport'),
-  session: require('./session')
+import connect from './connect';
+import controllers from './controllers';
+import passport from './passport';
+import session from './session';
+
+export { connect, controllers, passport, session };
+
+export default {
+  connect,
+  controllers,
+  passport,
+  session
 };

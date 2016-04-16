@@ -3,19 +3,17 @@
  */
 import passport from 'passport';
 import unsupportedMessage from '../db/unsupportedMessage';
-import dbConfig from '../db';
+import { controllers, passport as passportConfig } from '../db';
 
-const controllers = dbConfig.controllers;
 const usersController = controllers && controllers.users;
 const topicsController = controllers && controllers.topics;
-const passportConfig = dbConfig.passport;
 
-module.exports = (app) => {
+export default (app) => {
   // user routes
   if (usersController) {
-    app.post('/login', usersController.postLogin);
-    app.post('/signup', usersController.postSignUp);
-    app.post('/logout', usersController.postLogout);
+    app.post('/login', usersController.login);
+    app.post('/signup', usersController.signUp);
+    app.post('/logout', usersController.logout);
   } else {
     console.warn(unsupportedMessage('users routes'));
   }

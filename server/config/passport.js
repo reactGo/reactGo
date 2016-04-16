@@ -1,12 +1,11 @@
 /* Initializing passport.js */
-const passport = require('passport');
-const local = require('./passport/local');
-const google = require('./passport/google');
-const dbConfig = require('../db');
-const unsupportedMessage = require('../db/unsupportedMessage');
-const dbPassport = dbConfig.passport;
+import passport from 'passport';
+import local from './passport/local';
+import google from './passport/google';
+import { passport as dbPassport } from '../db';
+import unsupportedMessage from '../db/unsupportedMessage';
 
-module.exports = () => {
+export default () => {
   // Configure Passport authenticated session persistence.
   //
   // In order to restore authentication state across HTTP requests, Passport needs
