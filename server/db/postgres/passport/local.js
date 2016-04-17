@@ -2,7 +2,7 @@ import Models from '../../sequelize/models';
 
 const User = Models.User;
 
-module.exports = (email, password, done) =>
+export default (email, password, done) =>
   User.findOne({ where: { email } }).then((user) => {
     if (!user) return done(null, false, { message: `There is no record of the email ${email}.` });
     return user.comparePassword(password).then(
@@ -12,4 +12,4 @@ module.exports = (email, password, done) =>
   }).catch((err) => {
     console.log(err);
     done(null, false, { message: 'Something went wrong trying to authenticate' });
-  })
+  });

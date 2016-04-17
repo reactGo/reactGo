@@ -1,5 +1,6 @@
-const Promise = require('bluebird');
-const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
+import Promise from 'bluebird';
+import bcryptNode from 'bcrypt-nodejs';
+const bcrypt = Promise.promisifyAll(bcryptNode);
 
 // Other oauthtypes to be added
 

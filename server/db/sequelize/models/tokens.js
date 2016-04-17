@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
   const Token = sequelize.define('Token', {
     kind: {
       type: DataTypes.STRING,

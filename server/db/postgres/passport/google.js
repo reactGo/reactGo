@@ -52,7 +52,7 @@ const existingEmailUserMessage = [
   'Sign in to that account and link it with Google manually from Account Settings.'
 ].join(' ');
 
-module.exports = (req, accessToken, refreshToken, profile, done) =>
+export default (req, accessToken, refreshToken, profile, done) =>
   User.findOne({
     where: { google: profile.id }
   }).then((existingUser) => {
