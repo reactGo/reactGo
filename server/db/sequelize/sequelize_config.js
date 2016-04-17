@@ -2,22 +2,13 @@
 /** You should not be committing this file to GitHub **/
 /** Repeat: DO! NOT! COMMIT! THIS! FILE! TO! YOUR! REPO! **/
 
-module.exports = {
-  development: {
-    username: process.env.PGUSER || 'root',
-    password: null,
-    database: 'react_webpack_node_development',
-    host: '127.0.0.1',
-    dialect: 'postgres'
-  },
-  test: {
-    username: process.env.PGUSER || 'root',
-    password: null,
-    database: 'react_webpack_node_test',
-    host: '127.0.0.1',
-    dialect: 'postgres'
-  },
-  production: {
-    use_env_variable: 'POSTGRES_DB_URL'
-  }
-};
+const DB_TYPE = require('../../config/appConfig').DB_TYPE;
+const DB_TYPES = require('../../config/constants').DB_TYPES;
+
+switch (DB_TYPE) {
+  case DB_TYPES.POSTGRES:
+    module.exports = require('../postgres/sequelize_config');
+    break;
+  default:
+    throw new Error(`No sequelize config found for db type '${DB_TYPE}'`);
+}
