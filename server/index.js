@@ -1,30 +1,31 @@
-var express = require('express');
-var passport = require('passport');
-var webpack = require('webpack');
-var path = require('path');
-var appConfig = require('./config/appConfig');
-var app = express();
-var compiled_app_module_path = path.resolve(__dirname, '..', 'public', 'assets', 'server.js');
-var App = require(compiled_app_module_path);
+import express from 'express';
+import webpack from 'webpack';
+import appConfig from './config/appConfig';
+import { connect } from './db';
+import passportConfig from './config/passport';
+import expressConfig from './config/express';
+import routesConfig from './config/routes';
+import webpackDevConfig from '../webpack/webpack.config.dev-client';
+const App = require('../public/assets/server');
+const app = express();
 
 /*
  * Database-specific setup
  * - connect to MongoDB using mongoose
  * - register mongoose Schema
  */
-require('./config/connect')[appConfig.DB_TYPE]();
+connect();
 
 /*
  * REMOVE if you do not need passport configuration
  */
-require('./config/passport')(app);
+passportConfig();
 
 if (appConfig.ENV === 'development') {
-  var config = require('../webpack/webpack.config.dev-client.js');
-  var compiler = webpack(config);
+  const compiler = webpack(webpackDevConfig);
   app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,
-    publicPath: config.output.publicPath
+    publicPath: webpackDevConfig.output.publicPath
   }));
 
   app.use(require('webpack-hot-middleware')(compiler));
@@ -33,22 +34,21 @@ if (appConfig.ENV === 'development') {
 /*
  * Bootstrap application settings
  */
-require('./config/express')(app);
+expressConfig(app);
 
 /*
  * REMOVE if you do not need any routes
  *
  * Note: Some of these routes have passport and database model dependencies
  */
-require('./config/routes')(app);
+routesConfig(app);
 
 /*
  * This is where the magic happens. We take the locals data we have already
  * fetched and seed our stores with data.
- * App is a function that requires store data and url to initialize and return the React-rendered html string
+ * App is a function that requires store data and url
+ * to initialize and return the React-rendered html string
  */
-app.get('*', function (req, res, next) {
-  App.default(req, res);
-});
+app.get('*', App.default);
 
 app.listen(app.get('port'));

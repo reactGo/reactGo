@@ -1,10 +1,11 @@
 /* Initializing passport.js */
-var passport = require('passport');
-var User = require('../models/user');
-var local = require('./passport/local');
-var google = require('./passport/google');
+import passport from 'passport';
+import local from './passport/local';
+import google from './passport/google';
+import { passport as dbPassport } from '../db';
+import unsupportedMessage from '../db/unsupportedMessage';
 
-module.exports = function() {
+export default () => {
   // Configure Passport authenticated session persistence.
   //
   // In order to restore authentication state across HTTP requests, Passport needs
@@ -12,19 +13,18 @@ module.exports = function() {
   // typical implementation of this is as simple as supplying the user ID when
   // serializing, and querying the user record by ID from the database when
   // deserializing.
-  passport.serializeUser(function(user, done) {
-    done(null, user.id);
-  });
 
-  passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
-      done(err, user);
+  if (dbPassport && dbPassport.deserializeUser) {
+    passport.serializeUser((user, done) => {
+      done(null, user.id);
     });
-  });
 
-  //use the following strategies
-  passport.use(local);
-  passport.use(google);
+    passport.deserializeUser(dbPassport.deserializeUser);
+  } else {
+    console.warn(unsupportedMessage('(de)serialize User'));
+  }
 
-
+  // use the following strategies
+  local(passport);
+  google(passport);
 };

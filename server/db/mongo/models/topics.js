@@ -2,9 +2,9 @@
  * Schema Definitions
  *
  */
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-var TopicSchema = new mongoose.Schema({
+const TopicSchema = new mongoose.Schema({
   id: String,
   text: String,
   count: { type: Number, min: 0 },
@@ -13,5 +13,5 @@ var TopicSchema = new mongoose.Schema({
 
 // Compiles the schema into a model, opening (or creating, if
 //	nonexistent) the 'Topic' collection in the MongoDB database
-module.exports = mongoose.model('Topic', TopicSchema);
+export default mongoose.model('Topic', TopicSchema);
 
