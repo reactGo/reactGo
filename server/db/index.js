@@ -1,6 +1,7 @@
 import { DB_TYPE } from '../config/appConfig';
 import { DB_TYPES } from '../config/constants';
 import * as mongo from './mongo';
+import * as postgres from './postgres';
 import * as none from './none';
 
 let dbConfig = null;
@@ -8,6 +9,9 @@ let dbConfig = null;
 switch (DB_TYPE) {
   case DB_TYPES.MONGO:
     dbConfig = mongo;
+    break;
+  case DB_TYPES.POSTGRES:
+    dbConfig = postgres;
     break;
   case DB_TYPES.NONE:
     dbConfig = none;

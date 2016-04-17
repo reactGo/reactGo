@@ -5,7 +5,7 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(module.filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(`${__dirname}/../config/sequelize_config.js`)[env];
+const config = require('../sequelize_config')[env];
 const db = {};
 let sequelize;
 
@@ -30,14 +30,6 @@ Object.keys(db).forEach((modelName) => {
     db[modelName].associate(db);
   }
 });
-
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Successfully connected to postgres');
-  }, (err) => {
-    console.log('Unable to connect to the postgres database: ', err);
-  });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

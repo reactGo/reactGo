@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import mongoose from 'mongoose';
-import { db } from '../../config/secrets';
+import { db } from './constants';
 
 export default () => {
   // Find the appropriate database to connect to, default to localhost if not found.
@@ -26,4 +26,3 @@ export default () => {
     if (~file.indexOf('.js')) require(`${modelPath}/${file}`);
   });
 };
-
