@@ -1,6 +1,4 @@
-import connect from './connect';
-import controllers from './controllers';
-import passport from './passport';
+import { connect, controllers, passport } from '../sequelize';
 import session from './session';
 
 export { connect, controllers, passport, session };

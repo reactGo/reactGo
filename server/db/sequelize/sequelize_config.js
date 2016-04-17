@@ -8,7 +8,6 @@ module.exports = {
     password: null,
     database: 'react_webpack_node_development',
     host: '127.0.0.1',
-    // TODO: pull this based on db_type
     dialect: 'postgres'
   },
   test: {

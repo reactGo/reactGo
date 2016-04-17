@@ -1,4 +1,4 @@
-import { DB_TYPES } from './constants';
+const DB_TYPES = require('./constants').DB_TYPES;
 
 /*
  * Set DB_TYPE to a database of your choice:
@@ -6,11 +6,11 @@ import { DB_TYPES } from './constants';
  * - POSTGRES: Postgresql
  * - NONE: There is no DB connection
  */
-export const DB_TYPE = process.env.DB_TYPE || DB_TYPES.MONGO;
-export const ENV = process.env.NODE_ENV;
 
-export default {
-  DB_TYPE,
-  ENV
-};
+/* Use this old export style until sequelize cli supports es6 syntax */
+function defaultExport() {}
 
+defaultExport.DB_TYPE = process.env.DB_TYPE || DB_TYPES.MONGO;
+defaultExport.ENV = process.env.NODE_ENV;
+
+module.exports = defaultExport;
