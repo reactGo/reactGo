@@ -1,3 +1,16 @@
+1.6.1
+====
+- Swap databases out with a single config change
+- Check PR #190 for the changes
+- There is a DB folder in the server which contains
+  all the database/ORM specific code, including:
+  - models
+  - controllers
+  - deserializing users
+  - connecting to the database
+  - session stores
+  - passport logic
+
 1.6
 ====
 - Addresses issue #26
