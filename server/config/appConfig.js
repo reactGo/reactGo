@@ -1,3 +1,4 @@
+/* Use this old export style until sequelize cli supports es6 syntax */
 const DB_TYPES = require('./constants').DB_TYPES;
 
 /*
@@ -7,7 +8,6 @@ const DB_TYPES = require('./constants').DB_TYPES;
  * - NONE: There is no DB connection
  */
 
-/* Use this old export style until sequelize cli supports es6 syntax */
 function defaultExport() {}
 
 defaultExport.DB_TYPE = process.env.DB_TYPE || DB_TYPES.MONGO;

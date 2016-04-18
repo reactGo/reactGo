@@ -1,11 +1,9 @@
 import { DB_TYPE } from '../config/appConfig';
 import { DB_TYPES } from '../config/constants';
-// import * as mongo from './mongo';
-// import * as postgres from './postgres';
-// import * as none from './none';
 
 let dbConfig = null;
 
+/* use inline requires for conditional loading */
 switch (DB_TYPE) {
   case DB_TYPES.MONGO:
     dbConfig = require('./mongo');
