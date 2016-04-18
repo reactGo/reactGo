@@ -23,6 +23,8 @@
   "author": "Choon Ken Ding",
   "license": "MIT",
   "devDependencies": {
+    "eslint-config-airbnb": "^7.0.0",
+    "eslint-plugin-react": "^5.0.1",
     "expect": "^1.15.2",
     "karma": "^0.13.22",
     "karma-jsdom-launcher": "^3.0.0",
@@ -49,7 +51,7 @@
     "axios": "^0.9.1",
     "babel-cli": "^6.7.5",
     "babel-core": "^6.7.2",
-    "babel-eslint": "^5.0.0",
+    "babel-eslint": "^6.0.2",
     "babel-loader": "^6.2.4",
     "babel-plugin-react-transform": "^2.0.2",
     "babel-plugin-transform-react-constant-elements": "^6.5.0",
