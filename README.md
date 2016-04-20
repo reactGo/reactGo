@@ -28,6 +28,7 @@ Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring u
 	- Asynchonous Data Fetching on server-side rendering
 	- Server side authentication + Redirecting for components
 - Hot reloading using [**react-transform-hmr**](https://github.com/gaearon/react-transform-hmr)
+- Time travel using [**Redux-Devtools Chrome Extension**](https://github.com/zalmoxisus/redux-devtools-extension)
 - [**Webpack**](https://github.com/webpack/webpack) for both development and production bundles. It's (in my opinion) the best bundler for JS, CSS, LESS, images, and lots more!
 - [**CSS Modules**](https://github.com/css-modules/css-modules) allows for modular and reusable CSS. Say goodbye to conflicts (most of them) and global scope
 - **Unit Tests** with webpack, karma, jsdom, mocha, & sinon
@@ -221,6 +222,10 @@ Express app.use() receives a request
 ```
 
 More TBD
+
+## Redux DevTools
+
+You will have to install redux devtools extension from [here](https://github.com/zalmoxisus/redux-devtools-extension) and then everything should just work!
 
 ## Yeoman Generator
 If you like using yeoman generators, you could check out [this](https://github.com/iiegor/generator-react-webpack-node) cool yeoman generator by @iiegor!
