@@ -14,6 +14,11 @@ module.exports = {
     dialect: 'postgres'
   },
   production: {
-    use_env_variable: 'POSTGRES_DB_URL'
+    use_env_variable: 'POSTGRES_DB_URL',
+    username: process.env.PGUSER || 'root',
+    password: null,
+    database: 'react_webpack_node_production',
+    host: '127.0.0.1',
+    dialect: 'postgres'
   }
 };

@@ -57,8 +57,9 @@ postgres -D /usr/local/var/postgres
 
 **Setup your postgres database**
 ```bash
-createdb react_webpack_node_development
-sequelize db:migrate
+createuser root
+createdb react_webpack_node_development # or test/production
+npm run sequelize db:migrate
 ```
 
 **Installing on Heroku**
@@ -67,6 +68,6 @@ sequelize db:migrate
 heroku addons:create heroku-postgresql:<PLANNAME> --as POSTGRES_DB
 heroku run bash
 # once in bash
-sequelize db:migrate
+npm run sequelize db:migrate
 # exit heroku bash
 ```

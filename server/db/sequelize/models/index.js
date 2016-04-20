@@ -3,14 +3,14 @@ import path from 'path';
 import Sequelize from 'sequelize';
 import sequelizeConfig from '../sequelize_config';
 import { ENV } from '../../../config/appConfig';
-const env = ENV || 'development';
-const config = sequelizeConfig[env];
+const config = sequelizeConfig[ENV];
 const basename = path.basename(module.filename);
 const db = {};
 let sequelize;
 
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable]);
+const dbUrl = process.env[config.use_env_variable];
+if (dbUrl) {
+  sequelize = new Sequelize(dbUrl);
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }

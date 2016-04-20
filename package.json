@@ -7,6 +7,7 @@
   "scripts": {
     "babel": "babel --presets es2015,stage-0 --ignore node_modules,public",
     "babel-node": "babel-node --presets es2015,stage-0 --ignore node_modules,public",
+    "sequelize": "node_modules/.bin/sequelize",
     "lint": "eslint app server",
     "clean": "rimraf public && rimraf compiled",
     "start": "cross-env NODE_ENV=production node compiled/index.js",
