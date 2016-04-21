@@ -1,9 +1,10 @@
-export const DB_TYPES = {
+/* Use this old export style until sequelize cli supports es6 syntax */
+function defaultExport() {}
+
+defaultExport.DB_TYPES = {
   MONGO: 'MONGO',
   POSTGRES: 'POSTGRES',
   NONE: 'NONE'
 };
 
-export default {
-  DB_TYPES
-};
+module.exports = defaultExport;

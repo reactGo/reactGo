@@ -1,6 +1,6 @@
 import express from 'express';
 import webpack from 'webpack';
-import appConfig from './config/appConfig';
+import { ENV } from './config/appConfig';
 import { connect } from './db';
 import passportConfig from './config/passport';
 import expressConfig from './config/express';
@@ -21,7 +21,7 @@ connect();
  */
 passportConfig();
 
-if (appConfig.ENV === 'development') {
+if (ENV === 'development') {
   const compiler = webpack(webpackDevConfig);
   app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,

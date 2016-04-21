@@ -5,7 +5,7 @@
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring universal Redux, React Router, React Router Redux Hot reloading, CSS modules, Express 4.x, mongoose.
+Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring universal Redux, React Router, React Router Redux Hot reloading, CSS modules, Express 4.x, and multiple ORMs.
 
 [dep-status-img]: https://david-dm.org/choonkending/react-webpack-node.svg
 [dep-status-link]: https://david-dm.org/choonkending/react-webpack-node
@@ -37,6 +37,7 @@ Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring u
 	- Synchronous and Asynchronous Actions
 - Express 4.x server with a ton of middleware
 - Mongoose for MongoDB
+- Sequelize for Postgres
 - Procfile to enable deployment to Heroku & Docs on Salt configurations + Deployment for Digital Ocean
 
 **Easter Eggs** :egg:
@@ -85,8 +86,7 @@ brew update
 brew install mongodb
 ```
 
-If you hate MongoDB with a passion and would like to see a postgresql example, check [**reap**](https://github.com/choonkending/reap) out!
-
+If you hate MongoDB with a passion and would like to see a postgresql example, check [this](https://github.com/choonkending/react-webpack-node/blob/master/docs/databases.md) out!
 
 **Setup your mongoDB directory**
 
