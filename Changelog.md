@@ -1,3 +1,12 @@
+1.7
+===
+- We now have multiple ORMs! Mongoose (for MongoDB) and sequelize (for
+  Postgresql)!
+- Addresses #121 and #156
+- Read
+  [databases.md](https://github.com/choonkending/react-webpack-node/blob/master/docs/databases.md)
+  to learn more.
+
 1.6.2
 ====
 - Addresses issue #191
