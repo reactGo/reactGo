@@ -1,3 +1,9 @@
+1.6.2
+====
+- Addresses issue #191
+- Remove DevTools window popup, instead use [**Redux-Devtools Chrome
+  Extension**](https://github.com/zalmoxisus/redux-devtools-extension)
+
 1.6.1
 ====
 - Swap databases out with a single config change
