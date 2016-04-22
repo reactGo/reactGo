@@ -1,3 +1,10 @@
+1.7.1
+===
+- Bump up library versions:
+   - React 15
+   - Babel Eslint
+   - Nock
+
 1.7
 ===
 - We now have multiple ORMs! Mongoose (for MongoDB) and sequelize (for
