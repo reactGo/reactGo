@@ -1,12 +1,17 @@
+1.7.2
+====
+- Addresses issue #202 - Front end routing does not fetch data for component
+- More detailed discussion in PR #203
+
 1.7.1
-===
+====
 - Bump up library versions:
    - React 15
    - Babel Eslint
    - Nock
 
 1.7
-===
+====
 - We now have multiple ORMs! Mongoose (for MongoDB) and sequelize (for
   Postgresql)!
 - Addresses #121 and #156
