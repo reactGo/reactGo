@@ -20,34 +20,23 @@ class LoginOrRegister extends Component {
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
   }
 
-  onLoginSubmit() {
-    const { dispatch } = this.props;
-    const email = ReactDOM.findDOMNode(this.refs.email).value;
-    const password = ReactDOM.findDOMNode(this.refs.password).value;
-    dispatch(manualLogin({
-      email,
-      password
-    }));
-  }
-
-  onRegisterSubmit() {
-    const { dispatch } = this.props;
-    const email = ReactDOM.findDOMNode(this.refs.email).value;
-    const password = ReactDOM.findDOMNode(this.refs.password).value;
-    dispatch(signUp({
-      email,
-      password
-    }));
-  }
-
   handleOnSubmit(event) {
     event.preventDefault();
 
-    const { isLogin } = this.props.user;
+    const { dispatch, user: { isLogin } } = this.props;
+    const email = ReactDOM.findDOMNode(this.refs.email).value;
+    const password = ReactDOM.findDOMNode(this.refs.password).value;
+
     if (isLogin) {
-      this.onLoginSubmit();
+      dispatch(manualLogin({
+        email,
+        password
+      }));
     } else {
-      this.onRegisterSubmit();
+      dispatch(signUp({
+        email,
+        password
+      }));
     }
   }
 
