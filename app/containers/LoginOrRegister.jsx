@@ -17,8 +17,7 @@ class LoginOrRegister extends Component {
   constructor(props) {
     super(props);
     this.toggleMode = this.toggleMode.bind(this);
-    this.onLoginSubmit = this.onLoginSubmit.bind(this);
-    this.onRegisterSubmit = this.onRegisterSubmit.bind(this);
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
   }
 
   onLoginSubmit() {
@@ -39,6 +38,17 @@ class LoginOrRegister extends Component {
       email,
       password
     }));
+  }
+
+  handleOnSubmit(event) {
+    event.preventDefault();
+
+    const { isLogin } = this.props.user;
+    if (isLogin) {
+      this.onLoginSubmit();
+    } else {
+      this.onRegisterSubmit();
+    }
   }
 
   toggleMode() {
@@ -77,13 +87,13 @@ class LoginOrRegister extends Component {
     if (isLogin) {
       return (
         <button className={cx('button')}
-          onClick={this.onLoginSubmit}>Login</button>
+          type="submit">Login</button>
       );
     }
 
     return (
       <button className={cx('button')}
-        onClick={this.onRegisterSubmit}>Register</button>
+        type="submit">Register</button>
     );
   }
 
@@ -98,22 +108,24 @@ class LoginOrRegister extends Component {
           { this.renderHeader() }
           <img className={cx('loading')} src={hourGlassSvg} />
           <div className={cx('email-container')}>
-            <input className={cx('input')}
+            <form onSubmit={this.handleOnSubmit}>
+              <input className={cx('input')}
               type="email"
               ref="email"
               placeholder="email" />
-            <input className={cx('input')}
+              <input className={cx('input')}
               type="password"
               ref="password"
               placeholder="password" />
-            <div className={cx('hint')}>
+              <div className={cx('hint')}>
               <div>Hint</div>
               <div>email: example@ninja.com password: ninja</div>
-            </div>
-            <p className={cx('message', {
-              'message-show': message && message.length > 0
+              </div>
+              <p className={cx('message', {
+                'message-show': message && message.length > 0
               })}>{message}</p>
-            { this.renderButton() }
+              { this.renderButton() }
+            </form>
           </div>
           <div className={cx('google-container')}>
             <h1 className={cx('heading')}>Google Login Demo</h1>
