@@ -71,23 +71,8 @@ class LoginOrRegister extends Component {
     );
   }
 
-  renderButton() {
-    const { isLogin } = this.props.user;
-    if (isLogin) {
-      return (
-        <button className={cx('button')}
-          type="submit">Login</button>
-      );
-    }
-
-    return (
-      <button className={cx('button')}
-        type="submit">Register</button>
-    );
-  }
-
   render() {
-    const { isWaiting, message } = this.props.user;
+    const { isWaiting, message, isLogin } = this.props.user;
 
     return (
       <div className={cx('login', {
@@ -113,7 +98,9 @@ class LoginOrRegister extends Component {
               <p className={cx('message', {
                 'message-show': message && message.length > 0
               })}>{message}</p>
-              { this.renderButton() }
+              <input className={cx('button')}
+                type="submit"
+                value={isLogin ? 'Login' : 'Register'} />
             </form>
           </div>
           <div className={cx('google-container')}>
