@@ -1,7 +1,3 @@
-/** Important **/
-/** You should not be committing this file to GitHub **/
-/** Repeat: DO! NOT! COMMIT! THIS! FILE! TO! YOUR! REPO! **/
-
 const DB_TYPE = require('../../config/appConfig').DB_TYPE;
 const DB_TYPES = require('../../config/constants').DB_TYPES;
 
