@@ -1,3 +1,9 @@
+1.7.3
+====
+- Addresses issue #166 - Duplicate fetch called being made in
+  fetchComponentDataBeforeRender.js
+- More detailed discussion in PR #201
+
 1.7.2
 ====
 - Addresses issue #202 - Front end routing does not fetch data for component
