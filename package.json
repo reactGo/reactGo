@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "autoprefixer": "^6.3.3",
-    "axios": "^0.9.1",
+    "axios": "^0.11.0",
     "babel-cli": "^6.7.5",
     "babel-core": "^6.7.2",
     "babel-eslint": "^6.0.2",
