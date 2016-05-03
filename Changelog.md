@@ -1,3 +1,7 @@
+1.7.5
+====
+- PR #200 - Adding Es7 decorators (issue #199)
+
 1.7.4
 ====
 - PR #206 - Move login and register input fields into a form
