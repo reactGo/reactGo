@@ -99,10 +99,8 @@ module.exports = {
       ])
     },
     resolve: {
+      root: [path.join(__dirname, '..', 'app')],
       extensions: ['', '.js', '.jsx', '.css'],
-      modulesDirectories: [
-        'app', 'node_modules'
-      ]
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),

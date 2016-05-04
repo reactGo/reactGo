@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import createRoutes from 'routes.jsx';
+import createRoutes from 'routes';
 import configureStore from 'store/configureStore';
 import { fetchComponentDataBeforeRender } from 'api/fetchComponentDataBeforeRender';
 
