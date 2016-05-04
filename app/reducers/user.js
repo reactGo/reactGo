@@ -8,7 +8,7 @@ import {
   SIGNUP_ERROR_USER,
   LOGOUT_USER,
   LOGOUT_SUCCESS_USER,
-  LOGOUT_ERROR_USER } from 'constants/index';
+  LOGOUT_ERROR_USER } from 'types';
 
 export default function user(state = {
   isLogin: true,
