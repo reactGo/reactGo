@@ -1,3 +1,7 @@
+1.7.6
+====
+- PR #216 - Fixing migration filenames
+
 1.7.5
 ====
 - PR #200 - Adding Es7 decorators (issue #199)
