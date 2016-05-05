@@ -1,3 +1,9 @@
+1.7.7
+====
+- PR #215 - Update dependencies
+- Rename `constants` to `types`
+- Use `resolve.root` instead of `resolve.modulesDirectories`
+
 1.7.6
 ====
 - PR #216 - Fixing migration filenames

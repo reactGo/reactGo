@@ -25,7 +25,10 @@
         "arrow-body-style": 0,
         "no-console": 0,
         "max-len": 0,
-        "prefer-template": 0
+        "prefer-template": 0,
+        "import/no-unresolved": 0,
+        "global-require": 0,
+        "no-underscore-dangle": 0
     },
     "plugins": [
         "react"
