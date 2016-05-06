@@ -1,6 +1,7 @@
 import {
   LOGIN_SUCCESS_USER,
-  SIGNUP_SUCCESS_USER
+  SIGNUP_SUCCESS_USER,
+  DISMISS_MESSAGE
 } from 'types';
 
 /*
@@ -18,6 +19,11 @@ export default function message(state = {
     case SIGNUP_SUCCESS_USER:
       return Object.assign({}, state, {
         message: action.message,
+        type: 'SUCCESS'
+      });
+    case DISMISS_MESSAGE:
+      return Object.assign({}, state, {
+        message: '',
         type: 'SUCCESS'
       });
     default:
