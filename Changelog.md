@@ -1,3 +1,7 @@
+1.7.8
+====
+- PR #219 - Dismiss messages on click
+
 1.7.7
 ====
 - PR #215 - Update dependencies
