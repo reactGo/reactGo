@@ -14,7 +14,8 @@ var commonLoaders = [
     // Reason why we put this here instead of babelrc
     // https://github.com/gaearon/react-transform-hmr/issues/5#issuecomment-142313637
     query: {
-      "presets": ["react-hmre", "es2015", "react", "stage-0"]
+      "presets": ["react-hmre", "es2015", "react", "stage-0"],
+      "plugins": ["transform-decorators-legacy"]
     },
     include: path.join(__dirname, '..', 'app'),
     exclude: path.join(__dirname, '..', 'node_modules')
@@ -98,10 +99,8 @@ module.exports = {
       ])
     },
     resolve: {
+      root: [path.join(__dirname, '..', 'app')],
       extensions: ['', '.js', '.jsx', '.css'],
-      modulesDirectories: [
-        'app', 'node_modules'
-      ]
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),

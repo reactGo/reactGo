@@ -1,3 +1,17 @@
+1.7.7
+====
+- PR #215 - Update dependencies
+- Rename `constants` to `types`
+- Use `resolve.root` instead of `resolve.modulesDirectories`
+
+1.7.6
+====
+- PR #216 - Fixing migration filenames
+
+1.7.5
+====
+- PR #200 - Adding Es7 decorators (issue #199)
+
 1.7.4
 ====
 - PR #206 - Move login and register input fields into a form

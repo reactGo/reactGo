@@ -19,6 +19,7 @@ var commonLoaders = [
     query: {
       "presets": ["es2015", "react", "stage-0"],
       "plugins": [
+        "transform-decorators-legacy",
         "transform-react-remove-prop-types",
         "transform-react-constant-elements",
         "transform-react-inline-elements"
@@ -104,10 +105,8 @@ module.exports = [
       loaders: commonLoaders
     },
     resolve: {
-      extensions: ['', '.js', '.jsx', '.css'],
-      modulesDirectories: [
-        "app", "node_modules"
-      ]
+      root: [path.join(__dirname, '..', 'app')],
+      extensions: ['', '.js', '.jsx', '.css']
     },
     plugins: [
         // extract inline css from modules into separate files
@@ -145,10 +144,8 @@ module.exports = [
       loaders: commonLoaders
     },
     resolve: {
-      extensions: ['', '.js', '.jsx', '.css'],
-      modulesDirectories: [
-        "app", "node_modules"
-      ]
+      root: [path.join(__dirname, '..', 'app')],
+      extensions: ['', '.js', '.jsx', '.css']
     },
     plugins: [
         // Order the modules and chunks by occurrence.
