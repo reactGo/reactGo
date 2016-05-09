@@ -1,3 +1,7 @@
+1.7.10
+====
+- PR #223 - Issue #212 - Logging out does not log you out in session
+
 1.7.9
 ====
 - PR #214 - React Helmet 3.1
