@@ -1,3 +1,7 @@
+1.7.9
+====
+- PR #214 - React Helmet 3.1
+
 1.7.8
 ====
 - PR #219 - Dismiss messages on click
