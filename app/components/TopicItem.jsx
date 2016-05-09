@@ -13,24 +13,24 @@ export default class TopicItem extends Component {
   }
 
   onIncrement() {
-    const { id, index, onIncrement } = this.props;
-    onIncrement(id, index);
+    const { topic, index, onIncrement } = this.props;
+    onIncrement(topic._id, index);
   }
 
   onDecrement() {
-    const { id, index, onDecrement } = this.props;
-    onDecrement(id, index);
+    const { topic, index, onDecrement } = this.props;
+    onDecrement(topic._id, index);
   }
 
   onDestroyClick() {
-    const { id, index, onDestroy } = this.props;
-    onDestroy(id, index);
+    const { topic, onDestroy } = this.props;
+    onDestroy(topic._id);
   }
 
   render() {
     return (
-      <li className={cx('topic-item')} key={this.props.id}>
-        <span className={cx('topic')}>{this.props.text}</span>
+      <li className={cx('topic-item')}>
+        <span className={cx('topic')}>{this.props.topic.text}</span>
         <button className={
           cx('button', 'increment')
         } onClick={this.onIncrement}>+</button>
@@ -46,9 +46,8 @@ export default class TopicItem extends Component {
 }
 
 TopicItem.propTypes = {
-  text: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
+  topic: PropTypes.object.isRequired,
   onIncrement: PropTypes.func.isRequired,
   onDecrement: PropTypes.func.isRequired,
   onDestroy: PropTypes.func.isRequired

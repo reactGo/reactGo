@@ -40,9 +40,9 @@ class Vote extends Component {
     dispatch(decrementCount(id, index));
   }
 
-  onDestroy(id, index) {
+  onDestroy(id) {
     const { dispatch } = this.props;
-    dispatch(destroyTopic(id, index));
+    dispatch(destroyTopic(id));
   }
 
   onEntryChange(text) {

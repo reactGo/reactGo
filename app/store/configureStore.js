@@ -1,26 +1,37 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
-import thunk from 'redux-thunk';
 import rootReducer from 'reducers';
-import promiseMiddleware from 'api/promiseMiddleware';
+import axios from 'axios';
+import axiosMiddleware from 'redux-axios-middleware';
 import createLogger from 'redux-logger';
 
 /*
- * @param {Object} initial state to bootstrap our stores with for server-side rendering
- * @param {History Object} a history object. We use `createMemoryHistory` for server-side rendering,
- *                          while using browserHistory for client-side
- *                          rendering.
+ * Store Configurations
+ *
+ * @param {Object}         Initial state to bootstrap our stores with for server-side rendering
+ * @param {History Object} A history object. `createMemoryHistory` for server-side rendering
+ *                         and `browserHistory` for client-side rendering.
  */
 export default function configureStore(initialState, history) {
-  // Installs hooks that always keep react-router and redux
-  // store in sync
-  const middleware = [thunk, promiseMiddleware, routerMiddleware(history)];
+  // Http client configuration
+  const client = axios.create({
+    baseURL:`http://${process.env.HOSTNAME || "localhost"}:${process.env.PORT || "3000"}`,
+    responseType: 'json'
+  });
+
+  // Common middlewares
+  const middlewares = [
+    axiosMiddleware(client), // Handle requests on client side
+    routerMiddleware(history) // Keep react-router sync with redux store
+  ];
+
+  // Development middlewares
   if (__DEVCLIENT__) {
-    middleware.push(createLogger());
+    middlewares.push(createLogger());
   }
 
   const store = createStore(rootReducer, initialState, compose(
-    applyMiddleware(...middleware),
+    applyMiddleware(...middlewares),
     typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
   ));
 

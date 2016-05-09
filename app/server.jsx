@@ -1,20 +1,11 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { RouterContext, match, createMemoryHistory } from 'react-router'
-import axios from 'axios';
 import { Provider } from 'react-redux';
 import createRoutes from 'routes';
 import configureStore from 'store/configureStore';
 import headconfig from 'components/Meta';
 import { fetchComponentDataBeforeRender } from 'api/fetchComponentDataBeforeRender';
-
-const clientConfig = {
-  host: process.env.HOSTNAME || 'localhost',
-  port: process.env.PORT || '3000'
-};
-
-// configure baseURL for axios requests (for serverside API calls)
-axios.defaults.baseURL = `http://${clientConfig.host}:${clientConfig.port}`;
 
 /*
  * Our html template file
