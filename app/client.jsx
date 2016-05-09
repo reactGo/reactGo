@@ -5,7 +5,7 @@ import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import createRoutes from 'routes';
 import configureStore from 'store/configureStore';
-import { fetchComponentDataBeforeRender } from 'api/fetchComponentDataBeforeRender';
+import preRenderMiddleware from 'middlewares/preRenderMiddleware';
 
 // Grab the state from a global injected into
 // server-generated HTML
@@ -29,8 +29,10 @@ function onUpdate() {
     window.__INITIAL_STATE__ = null;
     return;
   }
-  const { state: { components, params } } = this;
-  fetchComponentDataBeforeRender(store.dispatch, components, params);
+
+  const { components, params } = this.state;
+
+  preRenderMiddleware(store.dispatch, components, params);
 }
 
 
