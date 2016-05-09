@@ -61,7 +61,7 @@ export default (app) => {
   }
 
   const sess = {
-    resave: true,
+    resave: false,
     saveUninitialized: false,
     secret: sessionSecret,
     proxy: true, // The "X-Forwarded-Proto" header will be used.
