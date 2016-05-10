@@ -121,7 +121,7 @@ npm run dev
 
 **Production**
 
-Run the commands below for a production build, i.e. what is deployed to Heroku. If you are deploying to Heroku or similar, we assume that you serving the pages over HTTPS.
+Run the commands below for a production build, i.e. what is deployed to Heroku. If you are deploying to Heroku or similar, we assume that you are serving the pages over HTTPS.
 
 ```bash
 # Clean public folder
