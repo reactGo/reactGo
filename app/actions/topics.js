@@ -35,7 +35,7 @@ export function fetchTopics() {
   };
 
   return {
-    type: types.GET_TOPICS,
+    types: [types.GET_TOPICS_REQUEST, types.GET_TOPICS_SUCCESS, types.GET_TOPICS_FAILURE],
     payload: { request }
   }
 }
@@ -75,7 +75,7 @@ export function decrementCount(id, index) {
   };
 }
 
-export function destroyTopic(id, index) {
+export function destroyTopic(id) {
   return {
     types: [types.DESTROY_TOPIC_REQUEST, types.DESTROY_TOPIC_SUCCESS, types.DESTROY_TOPIC_FAILURE],
     payload: {

@@ -1,6 +1,5 @@
 import {
   TYPING,
-  GET_TOPICS,
   CREATE_TOPIC_REQUEST,
   CREATE_TOPIC_SUCCESS,
   CREATE_TOPIC_FAILURE,
@@ -26,10 +25,6 @@ export default function topic(state = {
     case TYPING:
       return Object.assign({}, state,
         { newTopic: action.newTopic }
-      );
-    case GET_TOPICS:
-      return Object.assign({}, state,
-        { topics: action.payload }
       );
     case GET_TOPICS_REQUEST:
       return Object.assign({}, state, {

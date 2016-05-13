@@ -33,13 +33,12 @@ export function add(req, res) {
  * Update a topic
  */
 export function update(req, res) {
-  const isIncrement = req.body.isIncrement;
-  const isFull = req.body.isFull;
+  const { isIncrement, isFull } = req.body;
   const omitKeys = ['_id', '_v', 'isIncrement', 'isFull'];
   const data = _.omit(req.body, omitKeys);
   const callback = (err, updated) => {
     if (err) {
-      console.log('Error on save!');
+      console.error(err);
       return res.sendStatus(500);
     }
 
@@ -47,9 +46,9 @@ export function update(req, res) {
   };
 
   if (isFull) {
-    Topic.findOneAndUpdate({'_id': req.params.id}, data, callback);
+    Topic.findOneAndUpdate({'_id': req.params.id}, data, {'new': true}, callback);
   } else {
-    Topic.findOneAndUpdate({'_id': req.params.id}, { $inc: { count: isIncrement ? 1 : -1 } }, callback);
+    Topic.findOneAndUpdate({'_id': req.params.id}, { '$inc': { count: isIncrement ? 1 : -1 } }, {'new': true}, callback);
   }
 }
 

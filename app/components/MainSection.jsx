@@ -8,8 +8,8 @@ const cx = classNames.bind(styles);
 const MainSection = ({onIncrement, onDecrement, onDestroy, topics}) => {
   const topicItems = topics.map((topic, key) => {
     return (
-      <TopicItem index={key}
-        key={key}
+      <TopicItem key={key}
+        index={key}
         topic={topic}
         onIncrement={onIncrement}
         onDecrement={onDecrement}
