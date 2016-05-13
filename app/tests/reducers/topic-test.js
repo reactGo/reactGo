@@ -1,7 +1,7 @@
 import expect from 'expect';
 import md5 from 'spark-md5';
 import reducer from 'reducers/topic';
-import * as types from 'types';
+import * as types from '../types/topic';
 
 describe('Topics reducer', () => {
   it('Should return the initial state', () => {

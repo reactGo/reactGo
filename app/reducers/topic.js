@@ -1,83 +1,66 @@
-import {
-  TYPING,
-  CREATE_TOPIC_REQUEST,
-  CREATE_TOPIC_SUCCESS,
-  CREATE_TOPIC_FAILURE,
-  DESTROY_TOPIC_REQUEST,
-  DESTROY_TOPIC_SUCCESS,
-  DESTROY_TOPIC_FAILURE,
-  INCREMENT_COUNT_REQUEST,
-  INCREMENT_COUNT_SUCCESS,
-  INCREMENT_COUNT_FAILURE,
-  DECREMENT_COUNT_REQUEST,
-  DECREMENT_COUNT_SUCCESS,
-  DECREMENT_COUNT_FAILURE,
-  GET_TOPICS_REQUEST,
-  GET_TOPICS_SUCCESS,
-  GET_TOPICS_FAILURE } from 'types';
-
+import * as types from '../types/topic';
 
 export default function topic(state = {
   topics: [],
   newTopic: ''
 }, action) {
   switch (action.type) {
-    case TYPING:
+    case types.TYPING:
       return Object.assign({}, state,
         { newTopic: action.newTopic }
       );
-    case GET_TOPICS_REQUEST:
+    case types.GET_TOPICS_REQUEST:
       return Object.assign({}, state, {
         isFetching: true
       });
-    case GET_TOPICS_SUCCESS:
+    case types.GET_TOPICS_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
         topics: action.payload.data
       });
-    case GET_TOPICS_FAILURE:
+    case types.GET_TOPICS_FAILURE:
       return Object.assign({}, state, {
         isFetching: false
       });
-    case CREATE_TOPIC_REQUEST:
+    case types.CREATE_TOPIC_REQUEST:
       return Object.assign({}, state, {
         isFetching: true
       });
-    case CREATE_TOPIC_SUCCESS:
+    case types.CREATE_TOPIC_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
         topics: [...state.topics, action.payload.data],
         newTopic: ''
       });
-    case CREATE_TOPIC_FAILURE:
+    case types.CREATE_TOPIC_FAILURE:
       return {
         isFetching: false,
         topics: state.topics,
         newTopic: state.newTopic
       };
-    case DESTROY_TOPIC_REQUEST:
+    case types.DESTROY_TOPIC_REQUEST:
       return {
         isFetching: true,
         topics: state.topics,
         newTopic: state.newTopic
       };
-    case DESTROY_TOPIC_SUCCESS:
+    case types.DESTROY_TOPIC_SUCCESS:
       return {
         isFetching: false,
         topics: state.topics.filter((obj) => obj._id !== action.payload.data._id),
         newTopic: state.newTopic
       };
-    case DESTROY_TOPIC_FAILURE:
+    case types.DESTROY_TOPIC_FAILURE:
       return {
         isFetching: false,
         topics: state.topics,
         newTopic: state.newTopic
       };
-    case INCREMENT_COUNT_REQUEST:
+    case types.INCREMENT_COUNT_REQUEST:
       return Object.assign({}, state, {
         isFetching: true
       });
-    case INCREMENT_COUNT_SUCCESS:
+    case types.INCREMENT_COUNT_SUCCESS:
       return {
         isFetching: false,
         topics: state.topics.reduce((topics, topic) => {
@@ -91,15 +74,15 @@ export default function topic(state = {
         }, []),
         newTopic: state.newTopic
       };
-    case INCREMENT_COUNT_FAILURE:
+    case types.INCREMENT_COUNT_FAILURE:
       return Object.assign({}, state, {
         isFetching: false
       });
-    case DECREMENT_COUNT_REQUEST:
+    case types.DECREMENT_COUNT_REQUEST:
       return Object.assign({}, state, {
         isFetching: true
       });
-    case DECREMENT_COUNT_SUCCESS:
+    case types.DECREMENT_COUNT_SUCCESS:
       return {
         isFetching: false,
         topics: state.topics.reduce((topics, topic) => {
@@ -113,7 +96,7 @@ export default function topic(state = {
         }, []),
         newTopic: state.newTopic
       };
-    case DECREMENT_COUNT_FAILURE:
+    case types.DECREMENT_COUNT_FAILURE:
       return Object.assign({}, state, {
         isFetching: false
       });

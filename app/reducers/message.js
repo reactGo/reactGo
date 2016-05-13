@@ -1,8 +1,4 @@
-import {
-  LOGIN_SUCCESS_USER,
-  SIGNUP_SUCCESS_USER,
-  DISMISS_MESSAGE
-} from 'types';
+import * as types from '../types/message';
 
 /*
  * Message store for global messages, i.e. Network messages / Redirect messages
@@ -15,13 +11,13 @@ export default function message(state = {
   type: 'SUCCESS'
 }, action = {}) {
   switch (action.type) {
-    case LOGIN_SUCCESS_USER:
-    case SIGNUP_SUCCESS_USER:
+    case types.LOGIN_SUCCESS_USER:
+    case types.SIGNUP_SUCCESS_USER:
       return Object.assign({}, state, {
         message: action.message,
         type: 'SUCCESS'
       });
-    case DISMISS_MESSAGE:
+    case types.DISMISS_MESSAGE:
       return Object.assign({}, state, {
         message: '',
         type: 'SUCCESS'
