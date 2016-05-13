@@ -41,7 +41,7 @@ export function fetchTopics() {
 }
 
 
-export function incrementCount(id, index) {
+export function incrementCount(id) {
   const request = {
     method: 'put',
     url: `/topic/${id}`,
@@ -53,12 +53,11 @@ export function incrementCount(id, index) {
 
   return {
     types: [types.INCREMENT_COUNT_REQUEST, types.INCREMENT_COUNT_SUCCESS, types.INCREMENT_COUNT_FAILURE],
-    payload: { request },
-    index: index
+    payload: { request }
   };
 }
 
-export function decrementCount(id, index) {
+export function decrementCount(id) {
   const request = {
     method: 'put',
     url: `/topic/${id}`,
@@ -70,8 +69,7 @@ export function decrementCount(id, index) {
 
   return {
     types: [types.DECREMENT_COUNT_REQUEST, types.DECREMENT_COUNT_SUCCESS, types.DECREMENT_COUNT_FAILURE],
-    payload: { request },
-    index: index
+    payload: { request }
   };
 }
 

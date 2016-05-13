@@ -84,7 +84,8 @@ export default function render(req, res) {
         `);
       })
       .catch((err) => {
-        res.status(500).json(err);
+        console.error(err);
+        res.sendStatus(500);
       });
     } else {
       res.sendStatus(404);

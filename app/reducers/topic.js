@@ -33,7 +33,7 @@ export default function topic(state = {
     case GET_TOPICS_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
-        topics: action.payload
+        topics: action.payload.data
       });
     case GET_TOPICS_FAILURE:
       return Object.assign({}, state, {
@@ -46,7 +46,7 @@ export default function topic(state = {
     case CREATE_TOPIC_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
-        topics: [...state.topics, action.payload],
+        topics: [...state.topics, action.payload.data],
         newTopic: ''
       });
     case CREATE_TOPIC_FAILURE:
@@ -64,7 +64,7 @@ export default function topic(state = {
     case DESTROY_TOPIC_SUCCESS:
       return {
         isFetching: false,
-        topics: state.topics.filter((obj) => obj._id !== action.payload._id),
+        topics: state.topics.filter((obj) => obj._id !== action.payload.data._id),
         newTopic: state.newTopic
       };
     case DESTROY_TOPIC_FAILURE:
@@ -80,13 +80,15 @@ export default function topic(state = {
     case INCREMENT_COUNT_SUCCESS:
       return {
         isFetching: false,
-        topics: [
-          ...state.topics.slice(0, action.index),
-          Object.assign({}, state.topics[action.index], {
-            count: action.payload.count
-          }),
-          ...state.topics.slice(action.index + 1)
-        ],
+        topics: state.topics.reduce((topics, topic) => {
+          if (topic._id === action.payload.data._id) {
+            topic = action.payload.data;
+          }
+
+          topics.push(topic);
+
+          return topics;
+        }, []),
         newTopic: state.newTopic
       };
     case INCREMENT_COUNT_FAILURE:
@@ -100,13 +102,15 @@ export default function topic(state = {
     case DECREMENT_COUNT_SUCCESS:
       return {
         isFetching: false,
-        topics: [
-          ...state.topics.slice(0, action.index),
-          Object.assign({}, state.topics[action.index], {
-            count: action.payload.count
-          }),
-          ...state.topics.slice(action.index + 1)
-        ],
+        topics: state.topics.reduce((topics, topic) => {
+          if (topic._id === action.payload.data._id) {
+            topic = action.payload.data;
+          }
+
+          topics.push(topic);
+
+          return topics;
+        }, []),
         newTopic: state.newTopic
       };
     case DECREMENT_COUNT_FAILURE:

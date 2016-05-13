@@ -13,13 +13,13 @@ export default class TopicItem extends Component {
   }
 
   onIncrement() {
-    const { topic, index, onIncrement } = this.props;
-    onIncrement(topic._id, index);
+    const { topic, onIncrement } = this.props;
+    onIncrement(topic._id);
   }
 
   onDecrement() {
-    const { topic, index, onDecrement } = this.props;
-    onDecrement(topic._id, index);
+    const { topic, onDecrement } = this.props;
+    onDecrement(topic._id);
   }
 
   onDestroyClick() {
@@ -46,7 +46,6 @@ export default class TopicItem extends Component {
 }
 
 TopicItem.propTypes = {
-  index: PropTypes.number.isRequired,
   topic: PropTypes.object.isRequired,
   onIncrement: PropTypes.func.isRequired,
   onDecrement: PropTypes.func.isRequired,

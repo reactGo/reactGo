@@ -9,7 +9,6 @@ const MainSection = ({onIncrement, onDecrement, onDestroy, topics}) => {
   const topicItems = topics.map((topic, key) => {
     return (
       <TopicItem key={key}
-        index={key}
         topic={topic}
         onIncrement={onIncrement}
         onDecrement={onDecrement}

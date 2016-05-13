@@ -30,14 +30,14 @@ class Vote extends Component {
     this.onEntrySave = this.onEntrySave.bind(this);
   }
 
-  onIncrement(id, index) {
+  onIncrement(id) {
     const { dispatch } = this.props;
-    dispatch(incrementCount(id, index));
+    dispatch(incrementCount(id));
   }
 
-  onDecrement(id, index) {
+  onDecrement(id) {
     const { dispatch } = this.props;
-    dispatch(decrementCount(id, index));
+    dispatch(decrementCount(id));
   }
 
   onDestroy(id) {
