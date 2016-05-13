@@ -13,8 +13,10 @@ const MainSection = ({onIncrement, onDecrement, onDestroy, topics}) => {
         topic={topic}
         onIncrement={onIncrement}
         onDecrement={onDecrement}
-        onDestroy={onDestroy} />);
-    });
+        onDestroy={onDestroy}
+      />
+    );
+  });
 
   return (
     <div className={cx('main-section')}>

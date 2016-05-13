@@ -55,9 +55,9 @@ class Vote extends Component {
     dispatch(createTopic(text));
   }
 
-
   render() {
     const {newTopic, topics} = this.props;
+
     return (
       <div className={cx('vote')}>
         <EntryBox topic={newTopic}
