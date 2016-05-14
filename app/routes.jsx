@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
+import { showMessage } from 'actions/messages';
 
 import App from 'containers/App';
 import Vote from 'containers/Vote';
@@ -20,6 +21,8 @@ export default (store) => {
         pathname: '/login',
         state: { nextPathname: nextState.location.pathname }
       });
+
+      store.dispatch(showMessage('error', 'You need login before that.'));
     }
     callback();
   };
