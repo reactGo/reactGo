@@ -18,20 +18,18 @@ class Message extends Component {
   }
 
   render() {
-    const {message, type} = this.props;
+    const {text, style} = this.props;
+    const classes = [style, {show: text && text.length > 0}];
 
     return (
-      <div className={cx('message', {
-        show: message && message.length > 0,
-        success: type === 'SUCCESS'
-      })} onClick={this.onDismiss}>{message}</div>
+      <div className={cx('message', classes)} onClick={this.onDismiss}>{text}</div>
     );
   }
 }
 
 Message.propTypes = {
-  message: PropTypes.string,
-  type: PropTypes.string,
+  style: PropTypes.string,
+  text: PropTypes.string,
   dispatch: PropTypes.func.isRequired
 };
 

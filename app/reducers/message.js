@@ -6,21 +6,20 @@ import * as types from '../types/message';
  * messages/notifications should appear within the component to give the user
  * more context. - My 2 cents.
  */
-export default function message(state = {
-  message: '',
-  type: 'SUCCESS'
-}, action = {}) {
+export default function message(
+  state = {style: '', text: ''},
+  action = {}
+) {
   switch (action.type) {
-    case types.LOGIN_SUCCESS_USER:
-    case types.SIGNUP_SUCCESS_USER:
+    case types.SHOW_MESSAGE:
       return Object.assign({}, state, {
-        message: action.message,
-        type: 'SUCCESS'
+        style: action.style,
+        text: action.text
       });
     case types.DISMISS_MESSAGE:
       return Object.assign({}, state, {
-        message: '',
-        type: 'SUCCESS'
+        style: '',
+        text: ''
       });
     default:
       return state;

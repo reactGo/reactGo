@@ -58,11 +58,6 @@
     composes: input from '../common/input';
   }
 
-  .message {
-    color: color-crimson;
-    font-size: font-small;
-  }
-
   .button {
     composes: greenButton from '../common/button';
   }
