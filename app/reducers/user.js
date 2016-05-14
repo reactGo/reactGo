@@ -1,37 +1,35 @@
 import * as types from '../types/user';
 
-export default function user(state = {
-  isLogin: true,
-  message: '',
-  isWaiting: false,
-  authenticated: false }, action = {}) {
+export default function user(
+  state = {
+    isLogin: true,
+    isWaiting: false,
+    authenticated: false
+  },
+  action = {}
+) {
   switch (action.type) {
     case types.TOGGLE_LOGIN_MODE:
       return Object.assign({}, state, {
-        isLogin: !state.isLogin,
-        message: ''
+        isLogin: !state.isLogin
       });
     case types.MANUAL_LOGIN_USER:
       return Object.assign({}, state, {
-        isWaiting: true,
-        message: ''
+        isWaiting: true
       });
     case types.LOGIN_SUCCESS_USER:
       return Object.assign({}, state, {
         isWaiting: false,
-        authenticated: true,
-        message: ''
+        authenticated: true
       });
     case types.LOGIN_ERROR_USER:
       return Object.assign({}, state, {
         isWaiting: false,
-        authenticated: false,
-        message: action.message
+        authenticated: false
       });
     case types.SIGNUP_USER:
       return Object.assign({}, state, {
-        isWaiting: true,
-        message: ''
+        isWaiting: true
       });
     case types.SIGNUP_SUCCESS_USER:
       return Object.assign({}, state, {
@@ -41,13 +39,11 @@ export default function user(state = {
     case types.SIGNUP_ERROR_USER:
       return Object.assign({}, state, {
         isWaiting: false,
-        authenticated: false,
-        message: action.message
+        authenticated: false
       });
     case types.LOGOUT_USER:
       return Object.assign({}, state, {
-        isWaiting: true,
-        message: ''
+        isWaiting: true
       });
     case types.LOGOUT_SUCCESS_USER:
       return Object.assign({}, state, {
