@@ -3,7 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { createMemoryHistory, match, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
 import createRoutes from 'routes';
-import configureStore from 'store/configureStore';
+import configureStore from 'configureStore';
 import preRenderMiddleware from 'middlewares/preRenderMiddleware';
 import header from 'components/Meta';
 
