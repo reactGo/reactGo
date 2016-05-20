@@ -8,16 +8,14 @@ import styles from 'css/components/navigation';
 
 const cx = classNames.bind(styles);
 
-const Navigation = ({user, dispatch}) => {
-	const logout = () => dispatch(logOut());
-
+const Navigation = ({ user, logOut }) => {
     return (
       <nav className={cx('navigation')} role="navigation">
         <Link to="/"
           className={cx('item', 'logo')}
           activeClassName={cx('active')}>Ninja Ocean</Link>
           { user.authenticated ? (
-            <Link onClick={logout}
+            <Link onClick={logOut}
               className={cx('item')} to="/">Logout</Link>
           ) : (
             <Link className={cx('item')} to="/login">Log in</Link>
@@ -30,7 +28,7 @@ const Navigation = ({user, dispatch}) => {
 
 Navigation.propTypes = {
   user: PropTypes.object,
-  dispatch: PropTypes.func.isRequired
+  logOut: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
@@ -39,4 +37,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Navigation);
+export default connect(mapStateToProps, { logOut })(Navigation);
