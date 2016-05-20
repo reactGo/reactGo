@@ -1,3 +1,8 @@
+1.7.11
+====
+- PR #237 - Issue #220 - Refactor code to use `mapDispatchToProps`
+- PR #227 - Fixed typo in README
+
 1.7.10
 ====
 - PR #223 - Issue #212 - Logging out does not log you out in session
