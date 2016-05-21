@@ -19,7 +19,6 @@ export default function render(req, res) {
     user: {
       authenticated,
       isWaiting: false,
-      message: '',
       isLogin: true
     }
   }, history);
