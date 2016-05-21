@@ -11,6 +11,11 @@ export default function message(
   action = {}
 ) {
   switch (action.type) {
+    case types.NETWORK_EXCEPTION:
+      return Object.assign({}, state, {
+        style: 'error',
+        text: JSON.stringify(action.error)
+      });
     case types.SHOW_MESSAGE:
       return Object.assign({}, state, {
         style: action.style,
