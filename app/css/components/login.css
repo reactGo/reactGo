@@ -9,12 +9,6 @@
   border-radius: global-radius;
 }
 
-  .waiting {
-    .loading {
-      display: block;
-    }
-  }
-
   .alternative {
     background: color-white;
     padding: 12px 8px;
@@ -28,12 +22,6 @@
     font-weight: bold;
 
     cursor: pointer;
-  }
-
-  .loading {
-    display: none;
-    text-align: center;
-    margin: 24px auto;
   }
 
   .email-container {

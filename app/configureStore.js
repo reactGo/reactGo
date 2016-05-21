@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
+import { loadingBarMiddleware } from 'react-redux-loading-bar';
 import rootReducer from 'reducers';
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
@@ -21,6 +22,7 @@ export default function configureStore(initialState, history) {
 
   // Common middlewares
   const middlewares = [
+    // loadingBarMiddleware(), // Waiting for https://github.com/mironov/react-redux-loading-bar/issues/2 to been resolved
     axiosMiddleware(client), // Handle requests on client side
     routerMiddleware(history) // Keep react-router sync with redux store
   ];
