@@ -9,7 +9,7 @@ import styles from 'css/components/navigation';
 
 const cx = classNames.bind(styles);
 
-const Navigation = ({ user, signOut }) => {
+const Navigation = ({ user, signOut, push, showMessage }) => {
     const logout = () => {
       signOut()
         .then(() => {
@@ -17,7 +17,7 @@ const Navigation = ({ user, signOut }) => {
           push('/');
         })
         .catch((response) => {
-          showMessage('error', response.error.data.message);
+          showMessage('error', 'You can modify this to override default error message.');
         });
     }
 
@@ -28,7 +28,7 @@ const Navigation = ({ user, signOut }) => {
           activeClassName={cx('active')}>Ninja Ocean</Link>
           {
             user.authenticated
-            ? (<Link className={cx('item')} to="/" onClick={logout}>Logout</Link>)
+            ? (<a className={cx('item')} onClick={logout}>Logout</a>)
             : (<Link className={cx('item')} to="/login">Log in</Link>)
           }
           <Link className={cx('item')} to="/dashboard">Dashboard</Link>
