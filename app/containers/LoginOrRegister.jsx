@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { showMessage } from 'actions/messages';
-import { signWithCredentials } from 'actions/users';
+import { signWith } from 'actions/users';
 import styles from 'css/components/login';
 
 const cx = classNames.bind(styles);
@@ -25,19 +25,19 @@ class LoginOrRegister extends Component {
   handleOnSubmit(event) {
     event.preventDefault();
 
-    const { dispatch, route: { isLogin } } = this.props;
-    const formData = {
+    const { signWith, showMessage, push, route: { isLogin } } = this.props;
+    const credentials = {
       'email': ReactDOM.findDOMNode(this.refs.email).value,
       'password': ReactDOM.findDOMNode(this.refs.password).value,
     };
 
-    dispatch(signWithCredentials(formData, isLogin))
+    signWith(credentials, isLogin)
       .then(() => {
-        dispatch(showMessage('success', 'Welcome to Ninja Ocean!'));
-        dispatch(push('/'));
+        showMessage('success', 'Welcome to Ninja Ocean!');
+        push('/');
       })
       .catch((response) => {
-        dispatch(showMessage('error', response.error.data.message));
+        showMessage('error', response.error.data.message);
       });
   }
 
@@ -95,7 +95,9 @@ class LoginOrRegister extends Component {
 }
 
 LoginOrRegister.propTypes = {
-  dispatch: PropTypes.func
+  signWith: PropTypes.func.isRequired,
+  showMessage: PropTypes.func.isRequired,
+  push: PropTypes.func.isRequired
 };
 
 // Function passed in to `connect` to subscribe to Redux store updates.
@@ -107,4 +109,4 @@ function mapStateToProps(state) {
 // Connects React component to the redux store
 // It does not modify the component class passed to it
 // Instead, it returns a new, connected component class, for you to use.
-export default connect(mapStateToProps)(LoginOrRegister);
+export default connect(mapStateToProps, { signWith, showMessage, push })(LoginOrRegister);

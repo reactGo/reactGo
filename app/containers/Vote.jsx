@@ -4,9 +4,7 @@ import classNames from 'classnames/bind';
 import EntryBox from 'components/EntryBox';
 import MainSection from 'components/MainSection';
 import Scoreboard from 'components/Scoreboard';
-import {
-  createTopic, typing, incrementCount,
-  decrementCount, destroyTopic, fetchTopics } from 'actions/topics';
+import { typing, createTopic, incrementCount, decrementCount, destroyTopic, fetchTopics } from 'actions/topics';
 import styles from 'css/components/vote';
 
 const cx = classNames.bind(styles);
@@ -14,59 +12,23 @@ const cx = classNames.bind(styles);
 class Vote extends Component {
 
   //Data that needs to be called before rendering the component
-  //This is used for server side rending via the fetchComponentDataBeforeRender() method
+  //This is used for server side rending via preRenderMiddleware()
   static need = [  // eslint-disable-line
     fetchTopics
   ]
 
-  constructor(props) {
-    super(props);
-    // event handlers for MainSection component
-    this.onIncrement = this.onIncrement.bind(this);
-    this.onDecrement = this.onDecrement.bind(this);
-    this.onDestroy = this.onDestroy.bind(this);
-    // event handlers for EntryBox component
-    this.onEntryChange = this.onEntryChange.bind(this);
-    this.onEntrySave = this.onEntrySave.bind(this);
-  }
-
-  onIncrement(id) {
-    const { dispatch } = this.props;
-    dispatch(incrementCount(id));
-  }
-
-  onDecrement(id) {
-    const { dispatch } = this.props;
-    dispatch(decrementCount(id));
-  }
-
-  onDestroy(id) {
-    const { dispatch } = this.props;
-    dispatch(destroyTopic(id));
-  }
-
-  onEntryChange(text) {
-    const { dispatch } = this.props;
-    dispatch(typing(text));
-  }
-
-  onEntrySave(text) {
-    const { dispatch } = this.props;
-    dispatch(createTopic(text));
-  }
-
   render() {
-    const {newTopic, topics} = this.props;
+    const { newTopic, topics, typing, createTopic, destroyTopic, incrementCount, decrementCount } = this.props;
 
     return (
       <div className={cx('vote')}>
         <EntryBox topic={newTopic}
-          onEntryChange={this.onEntryChange}
-          onEntrySave={this.onEntrySave} />
+          onEntryChange={typing}
+          onEntrySave={createTopic} />
         <MainSection topics={topics}
-          onIncrement={this.onIncrement}
-          onDecrement={this.onDecrement}
-          onDestroy={this.onDestroy} />
+          onIncrement={incrementCount}
+          onDecrement={decrementCount}
+          onDestroy={destroyTopic} />
         <Scoreboard topics={topics} />
       </div>
     );
@@ -75,8 +37,12 @@ class Vote extends Component {
 
 Vote.propTypes = {
   topics: PropTypes.array.isRequired,
-  newTopic: PropTypes.string,
-  dispatch: PropTypes.func.isRequired
+  typing: PropTypes.func.isRequired,
+  createTopic: PropTypes.func.isRequired,
+  destroyTopic: PropTypes.func.isRequired,
+  incrementCount: PropTypes.func.isRequired,
+  decrementCount: PropTypes.func.isRequired,
+  newTopic: PropTypes.string
 };
 
 function mapStateToProps(state) {
@@ -88,4 +54,4 @@ function mapStateToProps(state) {
 
 // Read more about where to place `connect` here:
 // https://github.com/rackt/react-redux/issues/75#issuecomment-135436563
-export default connect(mapStateToProps)(Vote);
+export default connect(mapStateToProps, { typing, createTopic, incrementCount, decrementCount, destroyTopic })(Vote);

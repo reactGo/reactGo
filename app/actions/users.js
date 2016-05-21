@@ -26,6 +26,6 @@ export function signOut() {
   });
 }
 
-export function signWithCredentials(data, isLogin) {
-  return isLogin ? signIn(data) : signUp(data);
+export function signWith(credentials, isLogin) {
+  return isLogin ? signIn(credentials) : signUp(credentials);
 }

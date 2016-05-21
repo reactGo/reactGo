@@ -9,15 +9,15 @@ import styles from 'css/components/navigation';
 
 const cx = classNames.bind(styles);
 
-const Navigation = ({user, dispatch}) => {
-	const logout = () => {
-      dispatch(signOut())
+const Navigation = ({ user, signOut }) => {
+    const logout = () => {
+      signOut()
         .then(() => {
-          dispatch(showMessage('success', 'See you!'));
-          dispatch(push('/'));
+          showMessage('success', 'See you!');
+          push('/');
         })
         .catch((response) => {
-          dispatch(showMessage('error', response.error.data.message));
+          showMessage('error', response.error.data.message);
         });
     }
 
@@ -39,7 +39,9 @@ const Navigation = ({user, dispatch}) => {
 
 Navigation.propTypes = {
   user: PropTypes.object,
-  dispatch: PropTypes.func.isRequired
+  signOut: PropTypes.func.isRequired,
+  push: PropTypes.func.isRequired,
+  showMessage: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -48,4 +50,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Navigation);
+export default connect(mapStateToProps, { signOut, push, showMessage })(Navigation);
