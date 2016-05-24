@@ -1,5 +1,5 @@
 /* eslint consistent-return: 0, no-else-return: 0*/
-import { request } from './network';
+import { create, destroy, update, fetch } from './network';
 import * as types from '../types/topic';
 
 export function typing(text) {
@@ -13,8 +13,7 @@ export function createTopic(text) {
   // If the text box is empty
   if (text.trim().length <= 0) return;
 
-  return request(types.CREATE_TOPIC, {
-    method: 'post',
+  return create(types.CREATE_TOPIC_REQUEST, {
     url: '/topic',
     data: {
       count: 1,
@@ -24,22 +23,19 @@ export function createTopic(text) {
 }
 
 export function fetchTopics() {
-  return request(types.GET_TOPICS, {
-    method: 'get',
+  return fetch(types.GET_TOPICS_REQUEST, {
     url: '/topic'
   });
 }
 
 export function destroyTopic(id) {
-  return request(types.DESTROY_TOPIC, {
-    method: 'delete',
+  return destroy(types.DESTROY_TOPIC_REQUEST, {
     url: `/topic/${id}`
   });
 }
 
 export function incrementCount(id) {
-  return request(types.INCREMENT_COUNT, {
-    method: 'put',
+  return update(types.INCREMENT_COUNT_REQUEST, {
     url: `/topic/${id}`,
     data: {
       isFull: false,
@@ -49,8 +45,7 @@ export function incrementCount(id) {
 }
 
 export function decrementCount(id) {
-  return request(types.DECREMENT_COUNT, {
-    method: 'put',
+  return update(types.DECREMENT_COUNT_REQUEST, {
     url: `/topic/${id}`,
     data: {
       isFull: false,

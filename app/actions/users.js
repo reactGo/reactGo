@@ -1,9 +1,8 @@
-import { request } from './network';
+import { create, destroy, update, fetch } from './network';
 import * as types from '../types/user';
 
 function signIn(data) {
-  return request(types.SIGNIN, {
-    method: 'post',
+  return create(types.SIGNIN_REQUEST, {
     url: '/login',
     withCredentials: true,
     data
@@ -11,8 +10,7 @@ function signIn(data) {
 }
 
 function signUp(data) {
-  return request(types.SIGNUP, {
-    method: 'post',
+  return create(types.SIGNUP_REQUEST, {
     url: '/signup',
     withCredentials: true,
     data
@@ -20,8 +18,7 @@ function signUp(data) {
 }
 
 export function signOut() {
-  return request(types.SIGNOUT, {
-    method: 'post',
+  return create(types.SIGNOUT_REQUEST, {
     url: '/logout'
   });
 }
