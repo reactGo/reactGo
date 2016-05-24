@@ -16,6 +16,22 @@ const mockStore = configureStore(middlewares);
 describe('Topic Actions', () => {
   describe('Asynchronous actions', () => {
     let sandbox;
+
+    const topic = 'A time machine';
+    const id = md5.hash(topic);
+    const data = {
+      id,
+      count: 1,
+      text: topic
+    };
+
+    const initialState = {
+      topic: {
+        topics: [],
+        newtopic: ''
+      }
+    };
+
     beforeEach(() => {
       sandbox = sinon.sandbox.create(); // eslint-disable-line
     });
@@ -25,21 +41,6 @@ describe('Topic Actions', () => {
     });
 
     it('dispatches request and success actions when status is 200', done => {
-      const topic = 'A time machine';
-      const id = md5.hash(topic);
-      const data = {
-        id,
-        count: 1,
-        text: topic
-      };
-
-      const initialState = {
-        topic: {
-          topics: [],
-          newtopic: ''
-        }
-      };
-
       const expectedActions = [
         {
           type: types.CREATE_TOPIC_REQUEST,
@@ -62,21 +63,6 @@ describe('Topic Actions', () => {
     });
 
     it('dispatches request and failed actions when status is NOT 200', done => {
-      const topic = 'A time machine';
-      const id = md5.hash(topic);
-      const data = {
-        id,
-        count: 1,
-        text: topic
-      };
-
-      const initialState = {
-        topic: {
-          topics: [],
-          newtopic: ''
-        }
-      };
-
       const expectedActions = [
         {
           type: types.CREATE_TOPIC_REQUEST,
@@ -100,22 +86,7 @@ describe('Topic Actions', () => {
     });
 
     it('dispatches a duplicate action for a duplicate topic', () => {
-      const topic = 'A time machine';
-      const id = md5.hash(topic);
-      const data = {
-        id,
-        count: 1,
-        text: topic
-      };
-
-      const initialState = {
-        topic: {
-          topics: [
-            data
-          ],
-          newtopic: ''
-        }
-      };
+      initialState.topic.topics.push(data);
 
       const expectedActions = [
         {
@@ -126,6 +97,104 @@ describe('Topic Actions', () => {
       const store = mockStore(initialState);
       store.dispatch(actions.createTopic(topic));
       expect(store.getActions()).toEqual(expectedActions);
+      initialState.topic.topics.pop();
     });
   });
- });
+  describe('Action creator unit tests', () => {
+    const index = 0;
+    const topic = 'A time machine';
+    const id = md5.hash(topic);
+    const data = {
+      id,
+      count: 1,
+      text: topic
+    };
+    let sandbox;
+
+    beforeEach(() => {
+      sandbox = sinon.sandbox.create(); // eslint-disable-line
+    });
+
+    afterEach(() => {
+      sandbox.restore();
+    });
+
+    it('should create an action object to increment the count', () => {
+      const expectedAction = {
+        type: types.INCREMENT_COUNT,
+        index
+      };
+      expect(actions.increment(index)).toEqual(expectedAction);
+    });
+
+    it('should create an action object to decrement count', () => {
+      const expectedAction = {
+        type: types.DECREMENT_COUNT,
+        index
+      };
+      expect(actions.decrement(index)).toEqual(expectedAction);
+    });
+
+    it('should create an action object to destroy a topic', () => {
+      const expectedAction = {
+        type: types.DESTROY_TOPIC,
+        index
+      };
+      expect(actions.destroy(index)).toEqual(expectedAction);
+    });
+
+    it('should create an action object with a new topic', () => {
+      const expectedAction = {
+        type: types.TYPING,
+        newTopic: data.text
+      };
+      expect(actions.typing(data.text)).toEqual(expectedAction);
+    });
+
+    it('should create an action object with a new topic request', () => {
+      const expectedAction = {
+        type: types.CREATE_TOPIC_REQUEST,
+        id: data.id,
+        count: data.count,
+        text: data.text
+      };
+      expect(actions.createTopicRequest(data)).toEqual(expectedAction);
+    });
+
+    it('should create an action object on a new topic success', () => {
+      const expectedAction = {
+        type: types.CREATE_TOPIC_SUCCESS
+      };
+      expect(actions.createTopicSuccess()).toEqual(expectedAction);
+    });
+
+    it('should create an action object on a new topic failure', () => {
+      const dataFail = Object.assign({}, {
+        error: 'Oops! Something went wrong and we couldn\'t create your topic',
+        id: data.id
+      });
+      const expectedAction = {
+        type: types.CREATE_TOPIC_FAILURE,
+        id: dataFail.id,
+        error: dataFail.error
+      };
+      expect(actions.createTopicFailure(dataFail)).toEqual(expectedAction);
+    });
+
+    it('should create an action on a topic duplicate', () => {
+      const expectedAction = {
+        type: types.CREATE_TOPIC_DUPLICATE
+      };
+      expect(actions.createTopicDuplicate()).toEqual(expectedAction);
+    });
+
+    it('should create an action when fetching topics', () => {
+      sandbox.stub(axios, 'get').returns('hello');
+      const expectedAction = {
+        type: types.GET_TOPICS,
+        promise: 'hello'
+      };
+      expect(actions.fetchTopics()).toEqual(expectedAction);
+    });
+  });
+});
