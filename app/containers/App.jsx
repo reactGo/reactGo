@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-// import LoadingBar from 'components/LoadingBar';
+import LoadingBar from 'components/LoadingBar';
 import Navigation from 'containers/Navigation';
 import Message from 'containers/Message';
 import classNames from 'classnames/bind';
@@ -17,13 +17,14 @@ const cx = classNames.bind(styles);
  * A better explanation of react-router is available here:
  * https://github.com/rackt/react-router/blob/latest/docs/Introduction.md
  */
+
 const App = ({children}) => {
-  // <LoadingBar /> Waiting for https://github.com/mironov/react-redux-loading-bar/issues/2 to been resolved
   return (
     <div className={cx('app')}>
-      <Navigation />
+      <LoadingBar speed={5} step={2} />
       <Message />
-        {children}
+      <Navigation />
+      {children}
     </div>
   );
 };

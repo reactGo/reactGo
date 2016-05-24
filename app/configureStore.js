@@ -14,16 +14,21 @@ import createLogger from 'redux-logger';
  *                         and `browserHistory` for client-side rendering.
  */
 export default function configureStore(initialState, history) {
-  // Http client configuration
+  // Configuration of redux-axios-middleware
   const client = axios.create({
     baseURL:`http://${process.env.HOSTNAME || "localhost"}:${process.env.PORT || "3000"}`,
     responseType: 'json'
   });
 
+  // Configuration of react-redux-loading-bar
+  const loading = {
+    promiseTypeSuffixes: ['REQUEST', 'SUCCESS', 'EXCEPTION']
+  };
+
   // Common middlewares
   const middlewares = [
-    // loadingBarMiddleware(), // Waiting for https://github.com/mironov/react-redux-loading-bar/issues/2 to been resolved
     axiosMiddleware(client), // Handle requests on client side
+    loadingBarMiddleware(loading), // Global loading bar integration
     routerMiddleware(history) // Keep react-router sync with redux store
   ];
 
