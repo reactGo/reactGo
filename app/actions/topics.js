@@ -17,19 +17,19 @@ polyfill();
  * @param String endpoint
  * @return Promise
  */
-function makeTopicRequest(method, id, data, api = '/topic') {
+export function makeTopicRequest(method, id, data, api = '/topic') {
   return request[method](api + (id ? ('/' + id) : ''), data);
 }
 
-function increment(index) {
+export function increment(index) {
   return { type: types.INCREMENT_COUNT, index };
 }
 
-function decrement(index) {
+export function decrement(index) {
   return { type: types.DECREMENT_COUNT, index };
 }
 
-function destroy(index) {
+export function destroy(index) {
   return { type: types.DESTROY_TOPIC, index };
 }
 
@@ -45,7 +45,7 @@ export function typing(text) {
  * @param data
  * @return a simple JS object
  */
-function createTopicRequest(data) {
+export function createTopicRequest(data) {
   return {
     type: types.CREATE_TOPIC_REQUEST,
     id: data.id,
@@ -54,13 +54,13 @@ function createTopicRequest(data) {
   };
 }
 
-function createTopicSuccess() {
+export function createTopicSuccess() {
   return {
     type: types.CREATE_TOPIC_SUCCESS
   };
 }
 
-function createTopicFailure(data) {
+export function createTopicFailure(data) {
   return {
     type: types.CREATE_TOPIC_FAILURE,
     id: data.id,
@@ -68,7 +68,7 @@ function createTopicFailure(data) {
   };
 }
 
-function createTopicDuplicate() {
+export function createTopicDuplicate() {
   return {
     type: types.CREATE_TOPIC_DUPLICATE
   };
