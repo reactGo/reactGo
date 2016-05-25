@@ -1,3 +1,7 @@
+.about {
+  composes: box from '../common/layout.css';
+}
+
 .header {
   composes: heading from '../common/typography';
   text-align: center;

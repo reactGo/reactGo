@@ -46,7 +46,7 @@ export default (app) => {
   // topic routes
   if (topicsController) {
     app.get('/topic', topicsController.all);
-    app.post('/topic/:id', topicsController.add);
+    app.post('/topic', topicsController.add);
     app.put('/topic/:id', topicsController.update);
     app.delete('/topic/:id', topicsController.remove);
   } else {

@@ -1,72 +1,52 @@
-import {
-  TYPING,
-  CREATE_TOPIC_REQUEST,
-  CREATE_TOPIC_FAILURE,
-  DESTROY_TOPIC,
-  INCREMENT_COUNT,
-  DECREMENT_COUNT,
-  GET_TOPICS_REQUEST,
-  GET_TOPICS_SUCCESS,
-  GET_TOPICS_FAILURE } from 'types';
-
+import * as types from '../types/topic';
 
 export default function topic(state = {
   topics: [],
   newTopic: ''
 }, action) {
   switch (action.type) {
-    case TYPING:
+    case types.TYPING:
       return Object.assign({}, state,
         { newTopic: action.newTopic }
       );
-    case GET_TOPICS_REQUEST:
+    case types.GET_TOPICS_SUCCESS:
       return Object.assign({}, state, {
-        isFetching: true
+        topics: action.payload.data
       });
-    case GET_TOPICS_SUCCESS:
+    case types.CREATE_TOPIC_SUCCESS:
       return Object.assign({}, state, {
-        isFetching: false,
-        topics: action.req.data
-      });
-    case GET_TOPICS_FAILURE:
-      return Object.assign({}, state, {
-        isFetching: false
-      });
-    case CREATE_TOPIC_REQUEST:
-      return {
-        topics: [...state.topics, { id: action.id, count: action.count, text: action.text }],
+        topics: [...state.topics, action.payload.data],
         newTopic: ''
-      };
-    case CREATE_TOPIC_FAILURE:
+      });
+    case types.DESTROY_TOPIC_SUCCESS:
       return {
-        topics: [...state.topics.filter((tp) => tp.id !== action.id)],
+        topics: state.topics.filter((obj) => obj._id !== action.payload.data._id),
         newTopic: state.newTopic
       };
-    case DESTROY_TOPIC:
+    case types.INCREMENT_COUNT_SUCCESS:
       return {
-        topics: [...state.topics.filter((tp, i) => i !== action.index)],
+        topics: state.topics.reduce((topics, topic) => {
+          if (topic._id === action.payload.data._id) {
+            topic = action.payload.data;
+          }
+
+          topics.push(topic);
+
+          return topics;
+        }, []),
         newTopic: state.newTopic
       };
-    case INCREMENT_COUNT:
+    case types.DECREMENT_COUNT_SUCCESS:
       return {
-        topics: [
-        ...state.topics.slice(0, action.index),
-        Object.assign({}, state.topics[action.index], {
-          count: state.topics[action.index].count + 1
-        }),
-        ...state.topics.slice(action.index + 1)
-        ],
-        newTopic: state.newTopic
-      };
-    case DECREMENT_COUNT:
-      return {
-        topics: [
-        ...state.topics.slice(0, action.index),
-        Object.assign({}, state.topics[action.index], {
-          count: state.topics[action.index].count - 1
-        }),
-        ...state.topics.slice(action.index + 1)
-        ],
+        topics: state.topics.reduce((topics, topic) => {
+          if (topic._id === action.payload.data._id) {
+            topic = action.payload.data;
+          }
+
+          topics.push(topic);
+
+          return topics;
+        }, []),
         newTopic: state.newTopic
       };
 

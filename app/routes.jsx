@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
+import { showMessage } from 'actions/messages';
 
 import App from 'containers/App';
 import Vote from 'containers/Vote';
@@ -20,6 +21,8 @@ export default (store) => {
         pathname: '/login',
         state: { nextPathname: nextState.location.pathname }
       });
+
+      store.dispatch(showMessage('error', 'You need login before that.'));
     }
     callback();
   };
@@ -36,7 +39,8 @@ export default (store) => {
   return (
     <Route path="/" component={App}>
       <IndexRoute component={Vote} />
-      <Route path="login" component={LoginOrRegister} onEnter={redirectAuth} />
+      <Route path="login" component={LoginOrRegister} isLogin={true} onEnter={redirectAuth} />
+      <Route path="register" component={LoginOrRegister} isLogin={false} onEnter={redirectAuth} />
       <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
       <Route path="about" component={About} />
     </Route>

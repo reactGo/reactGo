@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import LoadingBar from 'react-redux-loading-bar';
 import Navigation from 'containers/Navigation';
 import Message from 'containers/Message';
 import classNames from 'classnames/bind';
@@ -16,12 +17,14 @@ const cx = classNames.bind(styles);
  * A better explanation of react-router is available here:
  * https://github.com/rackt/react-router/blob/latest/docs/Introduction.md
  */
+
 const App = ({children}) => {
   return (
     <div className={cx('app')}>
-      <Navigation />
+      <LoadingBar />
       <Message />
-        {children}
+      <Navigation />
+      {children}
     </div>
   );
 };
