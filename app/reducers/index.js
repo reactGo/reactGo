@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import user from 'reducers/user';
 import topic from 'reducers/topic';
 import message from 'reducers/message';
-import loading from 'reducers/loading';
+import { loadingBarReducer } from 'react-redux-loading-bar';
 import { routerReducer as routing } from 'react-router-redux';
 
 // Combine reducers with routeReducer which keeps track of
@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
   user,
   topic,
   message,
-  loading,
+  loadingBar: loadingBarReducer,
   routing
 });
 

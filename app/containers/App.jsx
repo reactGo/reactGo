@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import LoadingBar from 'components/LoadingBar';
+import LoadingBar from 'react-redux-loading-bar';
 import Navigation from 'containers/Navigation';
 import Message from 'containers/Message';
 import classNames from 'classnames/bind';
@@ -21,7 +21,7 @@ const cx = classNames.bind(styles);
 const App = ({children}) => {
   return (
     <div className={cx('app')}>
-      <LoadingBar speed={5} step={2} />
+      <LoadingBar />
       <Message />
       <Navigation />
       {children}
