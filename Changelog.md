@@ -1,3 +1,7 @@
+1.7.12
+====
+- PR #240 - Update tests to add tests for action creator
+
 1.7.11
 ====
 - PR #237 - Issue #220 - Refactor code to use `mapDispatchToProps`
