@@ -132,40 +132,31 @@ export function fetchTopics() {
 
 export function incrementCount(id, index) {
   return dispatch => {
-    dispatch(increment(index));
-
     return makeTopicRequest('put', id, {
         isFull: false,
         isIncrement: true
-      });
-    // do something with the ajax response
-    // You can also dispatch here
-    // E.g.
-    // .then(response => {});
+      })
+      .then(() => dispatch(increment(index)))
+      .catch(() => dispatch(createTopicFailure({id, error: 'Oops! Something went wrong and we couldn\'t add your vote'})));
   };
 }
 
 export function decrementCount(id, index) {
   return dispatch => {
-    dispatch(decrement(index));
     return makeTopicRequest('put', id, {
         isFull: false,
         isIncrement: false
-      });
-    // do something with the ajax response
-    // You can also dispatch here
-    // E.g.
-    // .then(response => {});
+      })
+      .then(() => dispatch(decrement(index)))
+      .catch(() => dispatch(createTopicFailure({id, error: 'Oops! Something went wrong and we couldn\'t add your vote'})));
   };
 }
 
 export function destroyTopic(id, index) {
   return dispatch => {
-    dispatch(destroy(index));
-    return makeTopicRequest('delete', id);
-    // do something with the ajax response
-    // You can also dispatch here
-    // E.g.
-    // .then(response => {});
+    return makeTopicRequest('delete', id)
+      .then(() => dispatch(destroy(index)))
+      .catch(() => dispatch(createTopicFailure({id,
+        error: 'Oops! Something went wrong and we couldn\'t add your vote'})));
   };
 }
