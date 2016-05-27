@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import { loadingBarMiddleware } from 'react-redux-loading-bar';
-import rootReducer from 'reducers';
-import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
 import createLogger from 'redux-logger';
+import rootReducer from 'reducers';
+import clients from 'clients';
 
 /*
  * Store Configurations
@@ -14,12 +14,6 @@ import createLogger from 'redux-logger';
  *                         and `browserHistory` for client-side rendering.
  */
 export default function configureStore(initialState, history) {
-  // Configuration of redux-axios-middleware
-  const client = axios.create({
-    baseURL:`http://${process.env.HOSTNAME || "localhost"}:${process.env.PORT || "3000"}`,
-    responseType: 'json'
-  });
-
   // Configuration of react-redux-loading-bar
   const loading = {
     promiseTypeSuffixes: ['REQUEST', 'SUCCESS', 'EXCEPTION']
@@ -27,9 +21,12 @@ export default function configureStore(initialState, history) {
 
   // Common middlewares
   const middlewares = [
-    axiosMiddleware(client), // Handle requests on client side
-    loadingBarMiddleware(loading), // Global loading bar integration
-    routerMiddleware(history) // Keep react-router sync with redux store
+    // Wrap all your http requests into http clients with Promise support
+    axiosMiddleware(clients),
+    // Global loading bar integration
+    loadingBarMiddleware(loading),
+    // Keep react-router sync with redux store
+    routerMiddleware(history)
   ];
 
   // Development middlewares
