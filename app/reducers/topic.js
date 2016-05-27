@@ -30,7 +30,8 @@ export default function topic(state = {
       });
     case GET_TOPICS_FAILURE:
       return Object.assign({}, state, {
-        isFetching: false
+        isFetching: false,
+        error: action.error
       });
     case CREATE_TOPIC_REQUEST:
       return {
