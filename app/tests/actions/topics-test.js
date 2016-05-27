@@ -41,7 +41,7 @@ describe('Topic Actions', () => {
       sandbox.restore();
     });
 
-    it('createTopic dispatches request and success actions when status is 200', done => {
+    it('dispatches request and success actions when status is 200', done => {
       const expectedActions = [
         {
           type: types.CREATE_TOPIC_REQUEST,
@@ -62,7 +62,7 @@ describe('Topic Actions', () => {
         }).then(done).catch(done);
     });
 
-    it('createTopic dispatches request and failed actions when status is NOT 200', done => {
+    it('dispatches request and failed actions when status is NOT 200', done => {
       const expectedActions = [
         {
           type: types.CREATE_TOPIC_REQUEST,
@@ -84,7 +84,7 @@ describe('Topic Actions', () => {
         }).then(done).catch(done);
     });
 
-    it('createTopic dispatches a duplicate action for a duplicate topic', () => {
+    it('dispatches a duplicate action for a duplicate topic', () => {
       initialState.topic.topics.push(data);
 
       const expectedActions = [
