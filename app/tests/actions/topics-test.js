@@ -17,6 +17,7 @@ describe('Topic Actions', () => {
   describe('Asynchronous actions', () => {
     let sandbox;
 
+    const index = 0;
     const topic = 'A time machine';
     const id = md5.hash(topic);
     const data = {
@@ -58,8 +59,7 @@ describe('Topic Actions', () => {
       store.dispatch(actions.createTopic(topic))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        })
-        .then(done).catch(done);
+        }).then(done).catch(done);
     });
 
     it('dispatches request and failed actions when status is NOT 200', done => {
@@ -81,8 +81,7 @@ describe('Topic Actions', () => {
       store.dispatch(actions.createTopic(topic))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        })
-        .then(done).catch(done);
+        }).then(done).catch(done);
     });
 
     it('dispatches a duplicate action for a duplicate topic', () => {
@@ -98,6 +97,93 @@ describe('Topic Actions', () => {
       store.dispatch(actions.createTopic(topic));
       expect(store.getActions()).toEqual(expectedActions);
       initialState.topic.topics.pop();
+    });
+
+    it('incrementCount dispatches an increment count action on success', done => {
+      const expectedActions = [
+      {
+        type: types.INCREMENT_COUNT,
+        index
+      }];
+      sandbox.stub(axios, 'put').returns(Promise.resolve({ status: 200 }));
+      const store = mockStore();
+      store.dispatch(actions.incrementCount(data.id, index))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        }).then(done).catch(done);
+    });
+
+    it('incrementCount should not dispatch a failure action on failure', done => {
+      const expectedActions = [
+      {
+        type: types.CREATE_TOPIC_FAILURE,
+        id: data.id,
+        error: 'Oops! Something went wrong and we couldn\'t add your vote'
+      }];
+      sandbox.stub(axios, 'put').returns(Promise.reject({ status: 400 }));
+      const store = mockStore();
+      store.dispatch(actions.incrementCount(data.id, index))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        }).then(done).catch(done);
+    });
+
+    it('decrementCount dispatches an decrement count action on success', done => {
+      const expectedActions = [
+      {
+        type: types.DECREMENT_COUNT,
+        index
+      }];
+      sandbox.stub(axios, 'put').returns(Promise.resolve({ status: 200 }));
+      const store = mockStore();
+      store.dispatch(actions.decrementCount(data.id, index))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        }).then(done).catch(done);
+    });
+
+    it('decrementCount should not dispatch a decrement count action on failure', done => {
+      const expectedActions = [
+      {
+        type: types.CREATE_TOPIC_FAILURE,
+        error: 'Oops! Something went wrong and we couldn\'t add your vote',
+        id: data.id
+      }];
+      sandbox.stub(axios, 'put').returns(Promise.reject({ status: 400 }));
+      const store = mockStore(initialState);
+      store.dispatch(actions.decrementCount(data.id, index))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        }).then(done).catch(done);
+    });
+
+    it('destroyTopic dispatches a decrement count action on success', done => {
+      const expectedActions = [
+      {
+        type: types.DESTROY_TOPIC,
+        index
+      }];
+      sandbox.stub(axios, 'delete').returns(Promise.resolve({ status: 200 }));
+      const store = mockStore();
+      store.dispatch(actions.destroyTopic(data.id, index))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        }).then(done).catch(done);
+    });
+
+    it('destroyTopic should not dispatch an decrement count action on failure', done => {
+      const expectedActions = [
+      {
+        type: types.CREATE_TOPIC_FAILURE,
+        id: data.id,
+        error: 'Oops! Something went wrong and we couldn\'t add your vote'
+      }];
+      sandbox.stub(axios, 'delete').returns(Promise.reject({ status: 400 }));
+      const store = mockStore();
+      store.dispatch(actions.destroyTopic(data.id, index))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        }).then(done).catch(done);
     });
   });
   describe('Action creator unit tests', () => {

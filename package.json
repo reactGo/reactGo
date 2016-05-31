@@ -68,6 +68,7 @@
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.3.5",
     "body-parser": "^1.15.0",
+    "chai": "^3.5.0",
     "classnames": "^2.2.3",
     "connect-mongo": "^1.1.0",
     "connect-pg-simple": "^3.1.0",
