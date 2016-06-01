@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import { loadingBarMiddleware } from 'react-redux-loading-bar';
-import axiosMiddleware from 'redux-axios-middleware';
+import axiosMiddleware from 'redux-axios';
 import createLogger from 'redux-logger';
 import rootReducer from 'reducers';
 import clients from 'clients';
