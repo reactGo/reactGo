@@ -1,3 +1,8 @@
+1.7.13
+====
+- PR #247 - Use optimistic update *after* request has been dispatched
+- Set #app height to 100%
+
 1.7.12
 ====
 - PR #240 - Update tests to add tests for action creator
