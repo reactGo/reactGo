@@ -1,48 +1,5 @@
+import * as actions from 'actions/chat';
 
-
-
-const log = (message, options) =>{
-  var $el = $('<li>').addClass('log').text(message);
-  addMessageElement($el, options);
-};
-
-
-
-const addParticipantsMessage = (data) => {
-  var message = '';
-  if (data.numUsers === 1) {
-    message += "there's 1 participant";
-  } else {
-    message += "there are " + data.numUsers + " participants";
-  }
-  log(message);
-};
-
-function addMessageElement (el, options) {
-    var $el = $(el);
-
-    // Setup default options
-    if (!options) {
-      options = {};
-    }
-    if (typeof options.fade === 'undefined') {
-      options.fade = true;
-    }
-    if (typeof options.prepend === 'undefined') {
-      options.prepend = false;
-    }
-
-    // Apply options
-    if (options.fade) {
-      $el.hide().fadeIn(FADE_TIME);
-    }
-    if (options.prepend) {
-      $messages.prepend($el);
-    } else {
-      $messages.append($el);
-    }
-    $messages[0].scrollTop = $messages[0].scrollHeight;
-}
 
 export default (dispatch) => {
 
@@ -51,6 +8,8 @@ export default (dispatch) => {
 
   socket.on('login', function (data) {
     console.log('SOME ONE LOGGED ON', data);
+    let { username } = data;
+    dispatch(actions.userJoined(username));
     //connected = true;
     // Display the welcome message
     //var message = "Welcome to Socket.IO Chat – ";

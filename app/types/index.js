@@ -23,3 +23,9 @@ export const SIGNUP_ERROR_USER = 'SIGNUP_ERROR_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 export const LOGOUT_SUCCESS_USER = 'LOGOUT_SUCCESS_USER';
 export const LOGOUT_ERROR_USER = 'LOGOUT_ERROR_USER';
+
+
+export const USER_JOINED = 'USER_JOINED';
+export const USER_LEFT = 'USER_LEFT';
+export const COMPOSE_CHAT = 'COMPOSE_CHAT';
+export const RECEIVE_CHAT = 'RECEIVE_CHAT';

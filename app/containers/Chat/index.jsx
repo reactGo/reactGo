@@ -15,43 +15,54 @@ class Chat extends Component {
 
   constructor(props) {
     super(props);
-    console.log('CHAT CON');
   }
 
   componentDidMount() {
-    console.log('CHAT MOUNTER');
     let { dispatch } = this.props;
     this.socket = socketDispatcher(dispatch);
-
-
-    //this.socket.
-
     this.socket.emit('add user', 'TESTNAME');
+  }
+
+  sendMessage() {
+    this.socket.emit('new message', 'some new message');
   }
 
   render() {
     return (
       <div className={cx('chat')}>
         <h1 className={cx('header')}>CHAT</h1>
-        <ChatWindow/>
-        <TextArea/>
+        <ChatWindow
+          messages={this.props.messages}
+        />
+        <TextArea
+          message={this.props.myMessage}
+        />
+        <div onClick={ () => {
+            this.sendMessage()
+        }}>
+          SEND MESSAGE
+        </div>
+
         <UserList
-          users={['test', 'bob']}
+          users={this.props.users}
         />
       </div>
     );
   }
 }
 
-/*
-<div onClick={() => {
-  console.log('ONCLICK');
-}}>
-*/
 
 function mapStateToProps(state) {
-  return {
+  let { chat:{ myMessage, messages, users}} = state;
 
+  myMessage = myMessage || '';
+  messages = messages || [];
+  users = users || [];
+
+  return {
+    myMessage,
+    messages,
+    users
   };
 }
 
