@@ -22,6 +22,8 @@ export default (server) => {
 
     // when the client emits 'add user', this listens and executes
     socket.on('add user', function (username) {
+      console.log('SERVER ADD USER ##');
+      console.log('username', username);
       if (addedUser) return;
 
       // we store the username in the socket session for this client

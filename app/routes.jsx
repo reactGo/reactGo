@@ -5,6 +5,7 @@ import App from 'containers/App';
 import Vote from 'containers/Vote';
 import About from 'containers/About';
 import Chat from 'containers/Chat';
+import Test from 'containers/Test';
 import LoginOrRegister from 'containers/LoginOrRegister';
 import Dashboard from 'containers/Dashboard';
 
@@ -40,7 +41,9 @@ export default (store) => {
       <Route path="login" component={LoginOrRegister} onEnter={redirectAuth} />
       <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
       <Route path="about" component={About} />
-      <Route path="chat" component={Chat} />
+      <Route path="chat" component={Test} />
+      <Route path="test" component={Test} />
+      <Route path="newChat" component={Chat} />
     </Route>
   );
 };

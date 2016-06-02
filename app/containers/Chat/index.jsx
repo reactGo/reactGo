@@ -9,14 +9,20 @@ import ChatWindow from './components/ChatWindow';
 import TextArea from './components/TextArea';
 import UserList from './components/UserList';
 
-
-import socketConnection from './socketConnection';
+import socketDispatcher from './socketDispatcher';
 
 class Chat extends Component {
 
   constructor(props) {
     super(props);
-    this.socket = socketConnection();
+    console.log('CHAT CON');
+  }
+
+  componentDidMount() {
+    console.log('CHAT MOUNTER');
+    let { dispatch } = this.props;
+    this.socket = socketDispatcher(dispatch);
+    this.socket.emit('add user', 'TESTNAME');
   }
 
   render() {
@@ -25,11 +31,6 @@ class Chat extends Component {
         <h1 className={cx('header')}>CHAT</h1>
         <ChatWindow/>
         <TextArea/>
-        <div onClick={() => {
-          console.log('ONCLICK');
-        }}>
-          SEND THE MESSAGE
-        </div>
         <UserList
           users={['test', 'bob']}
         />
@@ -37,6 +38,19 @@ class Chat extends Component {
     );
   }
 }
+
+/*
+<ChatWindow/>
+<TextArea/>
+<div onClick={() => {
+  console.log('ONCLICK');
+}}>
+  SEND THE MESSAGE
+</div>
+<UserList
+  users={['test', 'bob']}
+/>
+*/
 
 function mapStateToProps(state) {
   return {
@@ -46,7 +60,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-
+    dispatch
   };
 }
 
