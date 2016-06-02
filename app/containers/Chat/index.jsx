@@ -38,7 +38,7 @@ class Chat extends Component {
           message={this.props.myMessage}
         />
         <div onClick={ () => {
-            this.sendMessage()
+          this.sendMessage()
         }}>
           SEND MESSAGE
         </div>

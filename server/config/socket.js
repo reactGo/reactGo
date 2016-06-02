@@ -12,7 +12,10 @@ export default (server) => {
     // when the client emits 'new message', this listens and executes
     socket.on('new message', function (data) {
       // we tell the client to execute 'new message'
-      socket.broadcast.emit('new message', {
+
+      /// remove socket.broadcast.emit
+      // because I want this messgae to come back to myself
+      socket.emit('new message', {
         username: socket.username,
         message: data
       });

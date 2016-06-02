@@ -11,7 +11,7 @@ const cx = classNames.bind(styles);
 
 const TextArea = (props) => {
   return (
-    
+
     <textarea
       className={cx('textarea')}
       placeholder={'write a message'}
@@ -27,7 +27,6 @@ const TextArea = (props) => {
 const mapDispatchToProps = (dispatch) => ({
   onChange(el) {
     let text = el.target.value;
-    console.log('TEXT AREA ', text);
     dispatch(composeChat(text));
   }
 });

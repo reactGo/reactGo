@@ -22,6 +22,8 @@ export default (dispatch) => {
   // Whenever the server emits 'new message', update the chat body
   socket.on('new message', function (data) {
     console.log('SOMONE SENT A MESSGE NEW MESSAGE', data);
+
+    dispatch(actions.receiveChat(data));
     //addChatMessage(data);
   });
 
