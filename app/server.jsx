@@ -16,6 +16,32 @@ const clientConfig = {
 // configure baseURL for axios requests (for serverside API calls)
 axios.defaults.baseURL = `http://${clientConfig.host}:${clientConfig.port}`;
 
+
+const analtyicsScript =
+  typeof trackingID === "undefined" ? ``
+  :
+  `<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', ${trackingID}, 'auto');
+    ga('send', 'pageview');
+  </script>`;
+
+
+/*
+ * To Enable Google analytics simply replace the hashes with your tracking ID,
+ * and move the variable above the analtyicsScript. Because the ID is declared
+ * beneath where is is being used, it's declaration being hoisted to the top
+ * of the file, however it does not maintain its value during this process,
+ * so it is undefined for the type check.
+ */
+const trackingID  = "'UA-########-#'";
+
+
+
+
 /*
  * Export render function to be used in server/config/routes.js
  * We grab the state passed in from the server and the req object from Express/Koa
@@ -87,6 +113,7 @@ export default function render(req, res) {
             <body>
               <div id="app">${componentHTML}</div>
               <script>window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};</script>
+              ${analtyicsScript}
               <script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>
             </body>
           </html>
