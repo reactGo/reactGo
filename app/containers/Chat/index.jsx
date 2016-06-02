@@ -22,6 +22,10 @@ class Chat extends Component {
     console.log('CHAT MOUNTER');
     let { dispatch } = this.props;
     this.socket = socketDispatcher(dispatch);
+
+
+    //this.socket.
+
     this.socket.emit('add user', 'TESTNAME');
   }
 
@@ -40,16 +44,9 @@ class Chat extends Component {
 }
 
 /*
-<ChatWindow/>
-<TextArea/>
 <div onClick={() => {
   console.log('ONCLICK');
 }}>
-  SEND THE MESSAGE
-</div>
-<UserList
-  users={['test', 'bob']}
-/>
 */
 
 function mapStateToProps(state) {

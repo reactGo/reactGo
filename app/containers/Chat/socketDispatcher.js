@@ -50,10 +50,10 @@ export default (dispatch) => {
   let socket = io();
 
   socket.on('login', function (data) {
-    console.log('ON LOGIN');
-    connected = true;
+    console.log('SOME ONE LOGGED ON', data);
+    //connected = true;
     // Display the welcome message
-    var message = "Welcome to Socket.IO Chat – ";
+    //var message = "Welcome to Socket.IO Chat – ";
     // log(message, {
     //   prepend: true
     // });
@@ -62,7 +62,7 @@ export default (dispatch) => {
 
   // Whenever the server emits 'new message', update the chat body
   socket.on('new message', function (data) {
-    console.log('ON NEW MESSAGE', data);
+    console.log('SOMONE SENT A MESSGE NEW MESSAGE', data);
     //addChatMessage(data);
   });
 
