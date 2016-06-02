@@ -11,6 +11,7 @@ const chat = (state = {
   users:[],
   myMessage:''
 }, action = {}) => {
+  
   switch (action.type) {
     case USER_JOINED:
       return Object.assign({}, state,
