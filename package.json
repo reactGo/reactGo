@@ -116,6 +116,7 @@
     "rimraf": "^2.5.2",
     "sequelize": "^3.21.0",
     "sequelize-cli": "^2.3.1",
+    "socket.io": "^1.4.6",
     "spark-md5": "^2.0.2",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
