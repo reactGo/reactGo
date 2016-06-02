@@ -5,6 +5,7 @@ import { connect } from './db';
 import passportConfig from './config/passport';
 import expressConfig from './config/express';
 import routesConfig from './config/routes';
+import socketConfig from './config/socket';
 import webpackDevConfig from '../webpack/webpack.config.dev-client';
 const App = require('../public/assets/server');
 const app = express();
@@ -51,4 +52,5 @@ routesConfig(app);
  */
 app.get('*', App.default);
 
-app.listen(app.get('port'));
+const server = app.listen(app.get('port'));
+socketConfig(server);
