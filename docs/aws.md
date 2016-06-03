@@ -61,3 +61,6 @@ I high suggest that you do no use this method to copy over your dependencies, it
 Now that your files and dependencies are on the server a simple `npm start` will get you going. But it wont keep you going. Once you close your SSH connection your site will go down.
 
 To remedy this will will use [forever](https://www.npmjs.com/package/forever). We will need to install it globally `sudo npm install forever -g` and then add another script to our package.js. Just a modified version of the start stript. `"stayAlive": "cross-env NODE_ENV=production forever start compiled/index.js",`
+
+If you don't want the port value ruining your nice url then you can use IP tables to set it to  redirect it to 80 
+`sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000`
