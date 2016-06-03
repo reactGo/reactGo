@@ -31,11 +31,13 @@ const analtyicsScript =
 
 
 /*
- * To Enable Google analytics simply replace the hashes with your tracking ID,
- * and move the variable above the analtyicsScript. Because the ID is declared
- * beneath where is is being used, it's declaration being hoisted to the top
- * of the file, however it does not maintain its value during this process,
- * so it is undefined for the type check.
+ * To Enable Google analytics simply replace the hashes with your tracking ID
+ * and move the constant to above the analtyicsScript constant.
+ *
+ * Currently because the ID is declared beneath where is is being used, the
+ * declaration will get hoisted to the top of the file.
+ * however the assignement  does not, so it is undefined for the type check above.
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var#var_hoisting
  */
 const trackingID  = "'UA-########-#'";
 
