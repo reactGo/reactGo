@@ -1,11 +1,10 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import App from 'containers/App';
+import App from './App';
 import Vote from 'topics';
 import About from 'about';
-import LoginOrRegister from 'containers/LoginOrRegister';
-import Dashboard from 'containers/Dashboard';
+import { LoginOrRegister, Dashboard } from 'users';
 
 /*
  * @param {Redux Store}

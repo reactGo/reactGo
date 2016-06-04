@@ -1,5 +1,5 @@
-@value global-radius, font-large, font-medium, font-small from '../settings';
-@value color-athens-gray, color-mercury, color-white, color-dodger-blue, color-crimson, color-bombay from '../common/colors.css';
+@value global-radius, font-large, font-medium, font-small from 'css/settings';
+@value color-athens-gray, color-mercury, color-white, color-dodger-blue, color-crimson, color-bombay from 'css/common/colors.css';
 
 .login {
   width: 420px;
@@ -48,14 +48,14 @@
   .header {}
 
   .heading {
-    composes: subheading from '../common/typography';
+    composes: subheading from 'css/common/typography';
 
     padding: 16px 12px;
     text-align: center;
   }
 
   .input {
-    composes: input from '../common/input';
+    composes: input from 'css/common/input';
   }
 
   .message {
@@ -64,10 +64,10 @@
   }
 
   .button {
-    composes: greenButton from '../common/button';
+    composes: greenButton from 'css/common/button';
   }
 
   .hint {
-    composes: small from '../common/typography';
+    composes: small from 'css/common/typography';
     color: color-bombay;
   }

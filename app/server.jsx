@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import createRoutes from 'routes';
 import configureStore from 'store/configureStore';
 import preRenderMiddleware from 'middlewares/preRenderMiddleware';
-import header from 'components/Meta';
+import header from './Meta';
 
 const clientConfig = {
   host: process.env.HOSTNAME || 'localhost',

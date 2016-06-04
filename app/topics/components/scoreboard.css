@@ -1,13 +1,13 @@
-@value font-medium from '../settings.css';
+@value font-medium from 'css/settings.css';
 
 .scoreboard {
-  composes: card from '../common/card';
+  composes: card from 'css/common/card';
   width: 40%;
 }
 
   .header {
-    composes: title from '../common/card';
-    composes: subheading from '../common/typography';
+    composes: title from 'css/common/card';
+    composes: subheading from 'css/common/typography';
     background: #0F9D58;
     color: #fff;
   }
@@ -23,6 +23,6 @@
   }
 
   .topic {
-    composes: flexNotMoreThan200 from '../common/layout';
+    composes: flexNotMoreThan200 from 'css/common/layout';
     font-size: font-medium;
   }

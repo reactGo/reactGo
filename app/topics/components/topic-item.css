@@ -1,5 +1,5 @@
-@value font-medium from '../settings.css';
-@value color-salem, color-dodger-blue, color-punch from '../common/colors.css';
+@value font-medium from 'css/settings.css';
+@value color-salem, color-dodger-blue, color-punch from 'css/common/colors.css';
 
 .topic-item {
   display: flex;
@@ -7,7 +7,7 @@
 }
 
 .topic {
-  composes: flexNotMoreThan200 from '../common/layout';
+  composes: flexNotMoreThan200 from 'css/common/layout';
   font-size: font-medium;
 }
 

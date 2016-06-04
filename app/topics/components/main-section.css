@@ -1,0 +1,20 @@
+@value global-radius from 'css/settings.css';
+
+.main-section {
+  composes: card from 'css/common/card';
+  width: 50%;
+  border-radius: global-radius;
+}
+
+  .header {
+    composes: title from 'css/common/card';
+    composes: subheading from 'css/common/typography';
+    background: #ed193a;
+    color: #fff;
+  }
+
+  .list {
+    list-style: none;
+    padding: 16px;
+  }
+
