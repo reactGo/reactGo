@@ -67,7 +67,12 @@ I'm really a fan of this implementation of flux for state management. The main p
 
 make it very fun and easy to write **predictable** code! There's a ton of reasons why, but you should head to the [Redux docs](http://redux.js.org/index.html) to dive in!
 
+Or if you are more of a visual learner watch the free egghead video series narrated by the creator of redux.
+1. [Getting Started](https://egghead.io/series/getting-started-with-redux)
+2. [Building Idiomatically](https://egghead.io/series/building-react-applications-with-idiomatic-redux)
+
 **alt**
+µµ
 
 Having isomorphic React was one of my key criteria when choosing a Flux library, which helped narrow down the scope of libraries. I found alt's implementation to be clean and simple, and like the option of allowing us to create alt instances or using singletons (and flushing the stores). I also like the direction in which alt is heading.
 
