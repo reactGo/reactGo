@@ -22,15 +22,15 @@ export default (dispatch) => {
   // Whenever the server emits 'new message', update the chat body
   socket.on('new message', function (data) {
     console.log('SOMONE SENT A MESSGE NEW MESSAGE', data);
-
     dispatch(actions.receiveChat(data));
     //addChatMessage(data);
   });
 
   // Whenever the server emits 'user joined', log it in the chat body
   socket.on('user joined', function (data) {
-    //log(data.username + ' joined');
+    //log(data.username + ' joined')
     console.log('ON USER JOINED', data);
+    dispatch(actions.userJoined(data.username));
     //addParticipantsMessage(data);
   });
 

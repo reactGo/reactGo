@@ -19,6 +19,11 @@ export default (server) => {
         username: socket.username,
         message: data
       });
+
+      socket.broadcast.emit('new message', {
+        username: socket.username,
+        message: data
+      });
     });
 
     // when the client emits 'add user', this listens and executes

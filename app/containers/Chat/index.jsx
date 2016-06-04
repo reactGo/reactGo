@@ -9,6 +9,8 @@ import ChatWindow from './components/ChatWindow';
 import TextArea from './components/TextArea';
 import UserList from './components/UserList';
 
+import { v4 } from 'node-uuid';
+
 import socketDispatcher from './socketDispatcher';
 
 class Chat extends Component {
@@ -20,7 +22,7 @@ class Chat extends Component {
   componentDidMount() {
     let { dispatch } = this.props;
     this.socket = socketDispatcher(dispatch);
-    this.socket.emit('add user', 'TESTNAME');
+    this.socket.emit('add user', `anon${v4()}`);
   }
 
   sendMessage() {
