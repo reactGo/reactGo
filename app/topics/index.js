@@ -1,0 +1,1 @@
+export Vote from './Vote';
