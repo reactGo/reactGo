@@ -2,8 +2,8 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import App from './App';
-import Vote from 'topics';
-import About from 'about';
+import { Vote } from 'topics';
+import { About } from 'about';
 import { LoginOrRegister, Dashboard } from 'users';
 
 /*

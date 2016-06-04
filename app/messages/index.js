@@ -1,1 +1,3 @@
-export Message from './container';
+import Message from './container';
+
+export default Message;
