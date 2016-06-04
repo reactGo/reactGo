@@ -7,7 +7,7 @@ import {
   DECREMENT_COUNT,
   GET_TOPICS_REQUEST,
   GET_TOPICS_SUCCESS,
-  GET_TOPICS_FAILURE } from 'types';
+  GET_TOPICS_FAILURE } from './actions';
 
 
 export default function topic(state = {

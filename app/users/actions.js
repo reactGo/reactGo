@@ -2,7 +2,16 @@ import { polyfill } from 'es6-promise';
 import request from 'axios';
 import { push } from 'react-router-redux';
 
-import * as types from 'types';
+export const TOGGLE_LOGIN_MODE = 'TOGGLE_LOGIN_MODE';
+export const MANUAL_LOGIN_USER = 'MANUAL_LOGIN_USER';
+export const LOGIN_SUCCESS_USER = 'LOGIN_SUCCESS_USER';
+export const LOGIN_ERROR_USER = 'LOGIN_ERROR_USER';
+export const SIGNUP_USER = 'SIGNUP_USER';
+export const SIGNUP_SUCCESS_USER = 'SIGNUP_SUCCESS_USER';
+export const SIGNUP_ERROR_USER = 'SIGNUP_ERROR_USER';
+export const LOGOUT_USER = 'LOGOUT_USER';
+export const LOGOUT_SUCCESS_USER = 'LOGOUT_SUCCESS_USER';
+export const LOGOUT_ERROR_USER = 'LOGOUT_ERROR_USER';
 
 polyfill();
 
@@ -27,19 +36,19 @@ function makeUserRequest(method, data, api = '/login') {
 
 // Log In Action Creators
 function beginLogin() {
-  return { type: types.MANUAL_LOGIN_USER };
+  return { type: MANUAL_LOGIN_USER };
 }
 
 function loginSuccess(message) {
   return {
-    type: types.LOGIN_SUCCESS_USER,
+    type: LOGIN_SUCCESS_USER,
     message
   };
 }
 
 function loginError(message) {
   return {
-    type: types.LOGIN_ERROR_USER,
+    type: LOGIN_ERROR_USER,
     message
   };
 }
@@ -47,37 +56,37 @@ function loginError(message) {
 // Sign Up Action Creators
 function signUpError(message) {
   return {
-    type: types.SIGNUP_ERROR_USER,
+    type: SIGNUP_ERROR_USER,
     message
   };
 }
 
 function beginSignUp() {
-  return { type: types.SIGNUP_USER };
+  return { type: SIGNUP_USER };
 }
 
 function signUpSuccess(message) {
   return {
-    type: types.SIGNUP_SUCCESS_USER,
+    type: SIGNUP_SUCCESS_USER,
     message
   };
 }
 
 // Log Out Action Creators
 function beginLogout() {
-  return { type: types.LOGOUT_USER};
+  return { type: LOGOUT_USER};
 }
 
 function logoutSuccess() {
-  return { type: types.LOGOUT_SUCCESS_USER };
+  return { type: LOGOUT_SUCCESS_USER };
 }
 
 function logoutError() {
-  return { type: types.LOGOUT_ERROR_USER };
+  return { type: LOGOUT_ERROR_USER };
 }
 
 export function toggleLoginMode() {
-  return { type: types.TOGGLE_LOGIN_MODE };
+  return { type: TOGGLE_LOGIN_MODE };
 }
 
 export function manualLogin(data) {

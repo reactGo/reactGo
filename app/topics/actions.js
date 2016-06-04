@@ -2,7 +2,19 @@
 import { polyfill } from 'es6-promise';
 import request from 'axios';
 import md5 from 'spark-md5';
-import * as types from 'types';
+
+export const CREATE_TOPIC_REQUEST = 'CREATE_TOPIC_REQUEST';
+export const CREATE_TOPIC_FAILURE = 'CREATE_TOPIC_FAILURE';
+export const CREATE_TOPIC_SUCCESS = 'CREATE_TOPIC_SUCCESS';
+export const CREATE_TOPIC_DUPLICATE = 'CREATE_TOPIC_DUPLICATE';
+export const GET_TOPICS = 'GET_TOPICS';
+export const GET_TOPICS_REQUEST = 'GET_TOPICS_REQUEST';
+export const GET_TOPICS_SUCCESS = 'GET_TOPICS_SUCCESS';
+export const GET_TOPICS_FAILURE = 'GET_TOPICS_FAILURE';
+export const INCREMENT_COUNT = 'INCREMENT_COUNT';
+export const DECREMENT_COUNT = 'DECREMENT_COUNT';
+export const DESTROY_TOPIC = 'DESTROY_TOPIC';
+export const TYPING = 'TYPING';
 
 polyfill();
 
@@ -22,21 +34,21 @@ export function makeTopicRequest(method, id, data, api = '/topic') {
 }
 
 export function increment(index) {
-  return { type: types.INCREMENT_COUNT, index };
+  return { type: INCREMENT_COUNT, index };
 }
 
 export function decrement(index) {
-  return { type: types.DECREMENT_COUNT, index };
+  return { type: DECREMENT_COUNT, index };
 }
 
 export function destroy(index) {
-  return { type: types.DESTROY_TOPIC, index };
+  return { type: DESTROY_TOPIC, index };
 }
 
 
 export function typing(text) {
   return {
-    type: types.TYPING,
+    type: TYPING,
     newTopic: text
   };
 }
@@ -47,7 +59,7 @@ export function typing(text) {
  */
 export function createTopicRequest(data) {
   return {
-    type: types.CREATE_TOPIC_REQUEST,
+    type: CREATE_TOPIC_REQUEST,
     id: data.id,
     count: data.count,
     text: data.text
@@ -56,13 +68,13 @@ export function createTopicRequest(data) {
 
 export function createTopicSuccess() {
   return {
-    type: types.CREATE_TOPIC_SUCCESS
+    type: CREATE_TOPIC_SUCCESS
   };
 }
 
 export function createTopicFailure(data) {
   return {
-    type: types.CREATE_TOPIC_FAILURE,
+    type: CREATE_TOPIC_FAILURE,
     id: data.id,
     error: data.error
   };
@@ -70,7 +82,7 @@ export function createTopicFailure(data) {
 
 export function createTopicDuplicate() {
   return {
-    type: types.CREATE_TOPIC_DUPLICATE
+    type: CREATE_TOPIC_DUPLICATE
   };
 }
 
@@ -124,7 +136,7 @@ export function createTopic(text) {
 // Fetch posts logic
 export function fetchTopics() {
   return {
-    type: types.GET_TOPICS,
+    type: GET_TOPICS,
     promise: makeTopicRequest('get')
   };
 }

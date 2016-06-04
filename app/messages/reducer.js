@@ -2,7 +2,7 @@ import {
   LOGIN_SUCCESS_USER,
   SIGNUP_SUCCESS_USER,
   DISMISS_MESSAGE
-} from 'types';
+} from './actions';
 
 /*
  * Message store for global messages, i.e. Network messages / Redirect messages
