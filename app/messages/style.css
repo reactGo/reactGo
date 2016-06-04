@@ -1,5 +1,5 @@
-@value global-radius, font-medium from '../settings.css';
-@value color-black, color-white, color-salem from '../common/colors.css';
+@value global-radius, font-medium from 'css/settings.css';
+@value color-black, color-white, color-salem from 'css/common/colors.css';
 
 .message {
   display: none;
