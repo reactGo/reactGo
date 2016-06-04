@@ -1,5 +1,5 @@
-@value font-x-large from '../settings.css';
-@value color-black, color-dodger-blue from '../common/colors.css';
+@value font-x-large from 'css/settings.css';
+@value color-black, color-dodger-blue from 'css/common/colors.css';
 
 .navigation {
   padding: 0 28px;

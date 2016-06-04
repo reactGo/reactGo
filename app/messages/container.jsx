@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames/bind';
 import { dismissMessage } from './actions';
-import styles from 'style';
+import styles from './style.css';
 
 const cx = classNames.bind(styles);
 
