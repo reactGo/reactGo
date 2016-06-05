@@ -267,6 +267,13 @@ heroku config:set GOOGLE_CALLBACK=YOUR_CALLBACK
 	- Don't you worry child. Read [this](https://github.com/choonkending/react-webpack-node/blob/master/docs/ReactInES6.md).
 	- You can learn more about ES6 (or ES2015) [here](http://babeljs.io/docs/learn-es2015/).
 
+**Google Analytics**
+
+Google Analytics are there if you want them and very easy to enable the basic site level support. All you need to do is replace the tracking ID in `app/server.jsx`
+
+To learn about how to best use Google Analytics for your site [read more](https://developers.google.com/analytics/devguides/collection/analyticsjs/) here.
+
+
 ## How to Contribute:
 
 Best way to keep up to date is check the [issues](https://github.com/choonkending/react-webpack-node/issues). I really welcome improvements for **all aspects** of an app.
