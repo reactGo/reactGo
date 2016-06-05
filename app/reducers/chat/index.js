@@ -1,5 +1,6 @@
 
 import {
+  USER_LOGGED_ON,
   USER_JOINED,
   USER_LEFT,
   COMPOSE_CHAT,
@@ -11,9 +12,19 @@ const chat = (state = {
   users:[],
   myMessage:''
 }, action = {}) => {
-  
+
   switch (action.type) {
+
+    case USER_LOGGED_ON:
+      console.log('LOGGED ON .users', action.users);
+      return Object.assign (
+        {},
+        state,
+        {users: action.users}
+      );
+
     case USER_JOINED:
+      console.log('NEW JOIN ');
       return Object.assign({}, state,
         { users: state.users.concat(action.user) }
       );

@@ -1,10 +1,13 @@
 import socket from 'socket.io';
-
+import {
+  users
+} from './chat';
 
 export default (server) => {
 
   const io = socket.listen(server);
   let numUsers = 0;
+
 
   io.sockets.on('connection', function (socket) {
     var addedUser = false;
@@ -29,6 +32,8 @@ export default (server) => {
     // when the client emits 'add user', this listens and executes
     socket.on('add user', function (username) {
       console.log('SERVER ADD USER ##');
+
+
       console.log('username', username, addedUser);
       if (addedUser) return;
 
@@ -36,10 +41,13 @@ export default (server) => {
       socket.username = username;
       ++numUsers;
       addedUser = true;
+      users.push(username);
       socket.emit('login', {
-        username: socket.username,
-        numUsers: numUsers
+        //username: socket.username,
+        users
       });
+
+
 
       // echo globally (all clients) that a person has connected
       socket.broadcast.emit('user joined', {

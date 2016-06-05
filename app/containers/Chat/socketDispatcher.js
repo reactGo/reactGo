@@ -7,9 +7,9 @@ export default (dispatch) => {
   let socket = io();
 
   socket.on('login', function (data) {
-    console.log('SOME ONE LOGGED ON', data);
-    let { username } = data;
-    dispatch(actions.userJoined(username));
+    let { users } = data;
+    console.log('SOME ONE LOGGED ON', users);
+    dispatch(actions.userLoggedin(users));
     //connected = true;
     // Display the welcome message
     //var message = "Welcome to Socket.IO Chat – ";
@@ -30,7 +30,7 @@ export default (dispatch) => {
   socket.on('user joined', function (data) {
     //log(data.username + ' joined')
     console.log('ON USER JOINED', data);
-    dispatch(actions.userJoined(data.username));
+    dispatch(actions.addNewUser(data.username));
     //addParticipantsMessage(data);
   });
 

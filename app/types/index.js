@@ -25,6 +25,7 @@ export const LOGOUT_SUCCESS_USER = 'LOGOUT_SUCCESS_USER';
 export const LOGOUT_ERROR_USER = 'LOGOUT_ERROR_USER';
 
 
+export const USER_LOGGED_ON = 'USER_LOGGED_ON';
 export const USER_JOINED = 'USER_JOINED';
 export const USER_LEFT = 'USER_LEFT';
 export const COMPOSE_CHAT = 'COMPOSE_CHAT';

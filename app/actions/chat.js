@@ -2,7 +2,12 @@
 
 import * as types from 'types';
 
-export const userJoined = (user) => ({
+export const userLoggedin = (users) => ({
+  users,
+  type: types.USER_LOGGED_ON
+});
+
+export const addNewUser = (user) => ({
   user,
   type: types.USER_JOINED
 });
