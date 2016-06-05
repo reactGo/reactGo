@@ -14,7 +14,7 @@ var commonLoaders = [
     // https://github.com/gaearon/react-transform-hmr/issues/5#issuecomment-142313637
     query: {
       "presets": ["es2015", "react", "stage-0"],
-      "plugins": ["transform-decorators-legacy"]
+      "plugins": ["transform-decorators-legacy", "transform-object-assign"]
     },
     include: path.join(__dirname, '..', 'app'),
     exclude: path.join(__dirname, '..', 'node_modules')
