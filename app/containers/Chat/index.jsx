@@ -26,7 +26,7 @@ class Chat extends Component {
   componentDidMount() {
     let { dispatch } = this.props;
     this.socket = socketDispatcher(dispatch);
-    let user = `anon${v4()}`;
+    let user = `${v4()}`;
 
     dispatch(
       addSelf(user)

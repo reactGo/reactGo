@@ -4,8 +4,21 @@
   height:500px;
   overflow: scroll;
   margin-bottom: 10px;
+  padding:0 8px;
 
 }
-.messageWindow {
 
+.message {
+  padding:2px;
+  margin-bottom:4px;
+  p {
+    margin: 0;
+  }
+}
+.userMessage {
+  border: 1px solid grey;
+}
+.messageWindow {
+  list-style-type: none;
+  padding:0;
 }

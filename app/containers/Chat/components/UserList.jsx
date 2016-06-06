@@ -6,12 +6,34 @@ const cx = classNames.bind(styles);
 
 const UserList = (props) => {
 
+  const uuidToColor = (uuid) => {
+    console.log('uuidToColor',uuid);
+
+    var parts = uuid.split('-');
+    var ints = parts.map(function(d) { return parseInt(d,16) });
+    var code = ints[0]
+
+    var blue = (code >> 16) & 31;
+    var green = (code >> 21) & 31;
+    var red = (code >> 27) & 31;
+    var foreColor = "rgb(" + (red << 3) + "," + (green << 3) + "," + (blue << 3) + ")";
+
+    return foreColor;
+  }
+
+
   const renderUsers = () => {
 
 
     const selectClass = (index, selIndex) => {
       let selClass = selIndex === index ? 'sel' : '';
       return selClass;
+    }
+
+    const colorStyle = (username) => {
+      return {
+        color:uuidToColor(username)
+      };
     }
 
     let {self, users} = props;
@@ -29,7 +51,7 @@ const UserList = (props) => {
                 className={selectClass(index, selIndex)}
                 key={index}
               >
-                {val}
+                <p style={colorStyle(val)}>{val}</p>
               </li>);
             }
           )}
