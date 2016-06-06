@@ -1,6 +1,8 @@
 import socket from 'socket.io';
 import {
-  users
+  addUser,
+  removeAUser,
+  getUserList
 } from './chat';
 
 export default (server) => {
@@ -41,10 +43,10 @@ export default (server) => {
       socket.username = username;
       ++numUsers;
       addedUser = true;
-      users.push(username);
+      addUser(username);
       socket.emit('login', {
         //username: socket.username,
-        users
+        users:getUserList()
       });
 
 
@@ -73,9 +75,11 @@ export default (server) => {
 
     // when the user disconnects.. perform this
     socket.on('disconnect', function () {
+      console.log('DISCONNECT!!!');
       if (addedUser) {
         --numUsers;
 
+        removeAUser(socket.username);
         // echo globally that this client has left
         socket.broadcast.emit('user left', {
           username: socket.username,

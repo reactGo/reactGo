@@ -7,17 +7,28 @@ const cx = classNames.bind(styles);
 const ChatWindow = (props) => {
 
 
-  const renderMessage = (val, index) =>{
+  const renderMessage = (val, index) => {
+
+    let { username, message } = val;
+    console.log('val',val);
+
+    const selectClass = () => {
+      let selClass = username === props.self ? 'sel' : '';
+      return selClass;
+    }
+
 
     return (
       <li
         key={index}
+        className={selectClass()}
       >
-        <p>{val.username}: </p>
-        <p>{val.message}</p>
+        <p>{username}: </p>
+        <p>{message}</p>
       </li>
     )
   }
+
 
   return (
     <div className={cx('chatwindow')}>

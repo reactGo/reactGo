@@ -9,7 +9,7 @@ export default (dispatch) => {
   socket.on('login', function (data) {
     let { users } = data;
     console.log('SOME ONE LOGGED ON', users);
-    dispatch(actions.userLoggedin(users));
+    dispatch(actions.addUserList(users));
     //connected = true;
     // Display the welcome message
     //var message = "Welcome to Socket.IO Chat – ";
@@ -38,6 +38,9 @@ export default (dispatch) => {
   socket.on('user left', function (data) {
     console.log('ON USER LEFT', data);
     //log(data.username + ' left');
+
+
+    dispatch(actions.removeUser(data.username));
     //addParticipantsMessage(data);
     //removeChatTyping(data);
   });

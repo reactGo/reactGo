@@ -11,6 +11,10 @@ import UserList from './components/UserList';
 
 import { v4 } from 'node-uuid';
 
+import {
+  addSelf
+} from 'actions/chat';
+
 import socketDispatcher from './socketDispatcher';
 
 class Chat extends Component {
@@ -22,7 +26,13 @@ class Chat extends Component {
   componentDidMount() {
     let { dispatch } = this.props;
     this.socket = socketDispatcher(dispatch);
-    this.socket.emit('add user', `anon${v4()}`);
+    let user = `anon${v4()}`;
+
+    dispatch(
+      addSelf(user)
+    );
+
+    this.socket.emit('add user', user);
   }
 
   sendMessage() {
@@ -35,6 +45,7 @@ class Chat extends Component {
         <h1 className={cx('header')}>CHAT</h1>
         <ChatWindow
           messages={this.props.messages}
+          self={this.props.self}
         />
         <TextArea
           message={this.props.myMessage}
@@ -47,6 +58,7 @@ class Chat extends Component {
 
         <UserList
           users={this.props.users}
+          self={this.props.self}
         />
       </div>
     );
@@ -55,16 +67,18 @@ class Chat extends Component {
 
 
 function mapStateToProps(state) {
-  let { chat:{ myMessage, messages, users}} = state;
+  let { chat:{ myMessage, messages, users, self}} = state;
 
   myMessage = myMessage || '';
   messages = messages || [];
   users = users || [];
+  self = self || '';
 
   return {
     myMessage,
     messages,
-    users
+    users,
+    self
   };
 }
 

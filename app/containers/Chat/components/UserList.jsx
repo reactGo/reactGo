@@ -7,13 +7,27 @@ const cx = classNames.bind(styles);
 const UserList = (props) => {
 
   const renderUsers = () => {
-    if(props.users.length > 0) {
+
+
+    const selectClass = (index, selIndex) => {
+      let selClass = selIndex === index ? 'sel' : '';
+      return selClass;
+    }
+
+    let {self, users} = props;
+
+    let selIndex = users.findIndex( (user) => {
+      return user === self;
+    });
+
+    if(users.length > 0) {
       return (
         <ul>
-          {props.users.map( (val, index) => {
+          {users.map( (val, index) => {
               return (
               <li
-              key={index}
+                className={selectClass(index, selIndex)}
+                key={index}
               >
                 {val}
               </li>);

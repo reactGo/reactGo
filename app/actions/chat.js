@@ -1,10 +1,15 @@
 
-
 import * as types from 'types';
 
-export const userLoggedin = (users) => ({
+
+export const addSelf = (self) => ({
+  self,
+  type: types.USER_ADD_SELF
+});
+
+export const addUserList = (users) => ({
   users,
-  type: types.USER_LOGGED_ON
+  type: types.USER_ADD_USER_LIST
 });
 
 export const addNewUser = (user) => ({
@@ -12,7 +17,7 @@ export const addNewUser = (user) => ({
   type: types.USER_JOINED
 });
 
-export const userLeft = (user) => ({
+export const removeUser = (user) => ({
   user,
   type: types.USER_LEFT
 });
