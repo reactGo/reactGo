@@ -1,6 +1,6 @@
 {
   "name": "react-webpack-node",
-  "version": "1.7.13",
+  "version": "1.7.14",
   "description": "A simple Node.js app using Express 4 with Webpack, React, alt, ImmutableJS",
   "repository": "https://github.com/choonkending/react-webpack-node",
   "main": "index.js",
