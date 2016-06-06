@@ -91,7 +91,7 @@ describe('Topics reducer', () => {
     expect(
       reducer(undefined, {
         type: types.GET_TOPICS_SUCCESS,
-        req: {
+        res: {
           data: topic
         }
       })
