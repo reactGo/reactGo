@@ -1,3 +1,11 @@
+1.7.14
+====
+- PR #256 - Update README to include egghead videos. Egghead ftw!
+- PR #257 - Issue #243 - Add `Object.assign` as a babel-plugin
+- PR #258 - Issue #252 - Bump dependencies - kerberos and friends
+- PR #262 - Issue #251 - Removed legacy Express views config
+- PR #254 - Conditional Google Analytics script
+
 1.7.13
 ====
 - PR #247 - Use optimistic update *after* request has been dispatched
