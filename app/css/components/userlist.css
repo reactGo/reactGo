@@ -1,0 +1,20 @@
+
+.userlist {
+  width: 300px;
+  float: left;
+}
+
+.listwrap{
+  height:471px;
+  overflow:scroll;
+  border: solid 1px grey;
+  ul {
+    list-style-type: none;
+    padding:0;
+    padding-left: 4px;
+  }
+}
+
+h2 {
+  margin:0;
+}

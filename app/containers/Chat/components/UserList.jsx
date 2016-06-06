@@ -17,7 +17,6 @@ const UserList = (props) => {
     var green = (code >> 21) & 31;
     var red = (code >> 27) & 31;
     var foreColor = "rgb(" + (red << 3) + "," + (green << 3) + "," + (blue << 3) + ")";
-
     return foreColor;
   }
 
@@ -42,20 +41,29 @@ const UserList = (props) => {
       return user === self;
     });
 
+    const displayName = (name) => {
+      if(name === props.self){
+        name += ' (You)';
+      }
+      return name;
+    }
+
     if(users.length > 0) {
       return (
-        <ul>
-          {users.map( (val, index) => {
-              return (
-              <li
-                className={selectClass(index, selIndex)}
-                key={index}
-              >
-                <p style={colorStyle(val)}>{val}</p>
-              </li>);
-            }
-          )}
-        </ul>
+        <div className={cx('listwrap')}>
+          <ul>
+            {users.map( (val, index) => {
+                return (
+                <li
+                  className={selectClass(index, selIndex)}
+                  key={index}
+                >
+                  <p style={colorStyle(val)}>{displayName(val)}</p>
+                </li>);
+              }
+            )}
+          </ul>
+        </div>
       );
     }
 

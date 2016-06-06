@@ -32,6 +32,8 @@ class Chat extends Component {
       addSelf(user)
     );
 
+    console.log('ADD and socket', user,this.socket);
+    alert('ADD')
     this.socket.emit('add user', user);
   }
 
@@ -43,23 +45,35 @@ class Chat extends Component {
     return (
       <div className={cx('chat')}>
         <h1 className={cx('header')}>CHAT</h1>
-        <ChatWindow
-          messages={this.props.messages}
-          self={this.props.self}
-        />
+
+        <div className={cx('topdisplay')}>
+          <ChatWindow
+            messages={this.props.messages}
+            self={this.props.self}
+          />
+
+          <UserList
+            users={this.props.users}
+            self={this.props.self}
+          />
+        </div>
+
+        <div className={cx('bottomdisplay')}>
+
         <TextArea
           message={this.props.myMessage}
         />
-        <div onClick={ () => {
-          this.sendMessage()
-        }}>
+        <div
+          className={cx('sendbutton')}
+          onClick={ () => {
+            this.sendMessage()
+          }}>
           SEND MESSAGE
         </div>
 
-        <UserList
-          users={this.props.users}
-          self={this.props.self}
-        />
+        </div>
+
+
       </div>
     );
   }

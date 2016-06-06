@@ -1,3 +1,13 @@
+
+
+.chat{
+  max-width: 900px;
+}
+
+.topdisplay{
+  composes: clearfix from '../common/layout';
+}
+
 .header {
   composes: heading from '../common/typography';
   text-align: center;
@@ -9,4 +19,11 @@
 
 .contribute {
   composes: small from '../common/typography';
+}
+
+.sendbutton{
+
+  margin-top:10px;
+  composes: greenButton from '../common/button';
+  width:500px;
 }
