@@ -28,7 +28,7 @@ export const removeAUser = (username, userList) => {
 const chat = (state = {
   messages:[],
   users:[],
-  myMessage:''
+  myMessage:'',
 }, action = {}) => {
 
   switch (action.type) {
@@ -42,7 +42,6 @@ const chat = (state = {
       );
 
     case USER_ADD_USER_LIST:
-      console.log('LOGGED ON .users', action.users);
       return Object.assign (
         {},
         state,
@@ -50,13 +49,11 @@ const chat = (state = {
       );
 
     case USER_JOINED:
-      console.log('NEW JOIN ');
       return Object.assign({}, state,
         { users: state.users.concat(action.user) }
       );
 
     case USER_LEFT:
-      console.log('REMOVE USER');
       return Object.assign({}, state,
         { users: removeAUser(action.user, state.users) }
       );
@@ -65,6 +62,12 @@ const chat = (state = {
       return Object.assign({}, state,
         { messages: state.messages.concat(action.chat) }
       );
+
+    case COMPOSE_CHAT:
+      return Object.assign({}, state,
+        { myMessage:action.chat }
+      );
+
     default:
       return state;
   }

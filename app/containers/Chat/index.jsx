@@ -12,7 +12,8 @@ import UserList from './components/UserList';
 import { v4 } from 'node-uuid';
 
 import {
-  addSelf
+  addSelf,
+  composeChat
 } from 'actions/chat';
 
 import socketDispatcher from './socketDispatcher';
@@ -32,13 +33,13 @@ class Chat extends Component {
       addSelf(user)
     );
 
-    console.log('ADD and socket', user,this.socket);
-    alert('ADD')
     this.socket.emit('add user', user);
   }
 
   sendMessage() {
-    this.socket.emit('new message', 'some new message');
+    let { dispatch, myMessage } = this.props;
+    dispatch(composeChat(''));
+    this.socket.emit('new message',myMessage);
   }
 
   render() {

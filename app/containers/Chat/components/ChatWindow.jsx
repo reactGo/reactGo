@@ -9,7 +9,6 @@ const ChatWindow = (props) => {
 
 
   const uuidToColor = (uuid) => {
-    console.log('uuidToColor',uuid);
 
     var parts = uuid.split('-');
     var ints = parts.map(function(d) { return parseInt(d,16) });

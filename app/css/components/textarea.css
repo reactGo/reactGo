@@ -2,4 +2,5 @@
   width:500px;
   height:100px;
   resize: none;
+  border: solid 1px grey;
 }

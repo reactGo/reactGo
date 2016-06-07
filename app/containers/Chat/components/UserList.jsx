@@ -7,7 +7,6 @@ const cx = classNames.bind(styles);
 const UserList = (props) => {
 
   const uuidToColor = (uuid) => {
-    console.log('uuidToColor',uuid);
 
     var parts = uuid.split('-');
     var ints = parts.map(function(d) { return parseInt(d,16) });

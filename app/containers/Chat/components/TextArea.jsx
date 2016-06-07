@@ -16,6 +16,7 @@ const TextArea = (props) => {
       className={cx('textarea')}
       placeholder={'write a message'}
       onChange={props.onChange}
+      value={props.message}
     >
     </textarea>
   );
