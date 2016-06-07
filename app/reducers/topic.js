@@ -26,7 +26,7 @@ export default function topic(state = {
     case GET_TOPICS_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
-        topics: action.req.data
+        topics: action.res.data
       });
     case GET_TOPICS_FAILURE:
       return Object.assign({}, state, {
