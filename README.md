@@ -78,117 +78,11 @@ Having isomorphic React was one of my key criteria when choosing a Flux library,
 
 ## Instructions
 
-### Prerequisites
-
-> If you wish to run this app **without installing/running a database**, you can easily do so. Read more [here](https://github.com/choonkending/react-webpack-node/blob/master/docs/databases.md).
-
-**Install MongoDB as your database**:
-
-```bash
-# Update brew formulae
-brew update
-# Install MongoDB
-brew install mongodb
-```
-
-If you hate MongoDB with a passion and would like to see a postgresql example, check [this](https://github.com/choonkending/react-webpack-node/blob/master/docs/databases.md) out!
-
-**Setup your mongoDB directory**
-
-Note: Make sure you have the directory and its permissions setup (i.e. `/data/db`):
-```bash
-sudo mkdir -p /data/db
-sudo chown -R `id -u` /data/db
-```
-
-**Run your mongoDB server**
-```bash
-mongod
-```
-
-### Build & Dev
-
-**Installation**
-```bash
-# Install node modules - this includes those for production and development
-# You only need to do this once :)
-npm install
-```
-
-**Development**
-
-```bash
-# Starts the server with Hot Reloading
-# Run webpack through webpack.config.dev.js
-npm run dev
-
-```
-
-**Production**
-
-Run the commands below for a production build, i.e. what is deployed to Heroku. If you are deploying to Heroku or similar, we assume that you are serving the pages over HTTPS.
-
-```bash
-# Clean public folder
-# Run webpack through webpack.config.prod.js
-npm run build
-
-# Start server
-## Note: You need MongoDB running
-npm start
-```
 
 **Deployment**
 
-Heroku
-```bash
-heroku create
+Currently we support Heroku and Digital Ocean
 
-# Deploy to Heroku server
-git push heroku master
-
-# Database on Heroku
-heroku addons:add mongohq
-# or
-heroku addons:add mongolab
-
-# OPTIONAL:
-
-# Rename if you need to
-heroku app:rename <newname>
-
-# Open Link in browser
-heroku open
-
-```
-
-Note:
-
-1. If you are working from a different machine and get `heroku does not appear to be a remote repository` message, be sure to run `git remote add heroku git@heroku.com:appname.git`.
-2. For setting up Google Authentication for Heroku and local dev, read the FAQ section
-
-Digital Ocean
-
-1. Create a Droplet
-2. Follow [this](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-14-04) or
-[this](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-an-ubuntu-14-04-server) tutorial
-to set up nodejs
-3. Follow [this](https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-12-04) tutorial to install mongodb
-4. git clone this repo
-```bash
-npm install
-sudo npm install pm2 -g
-pm2 start server/index.js
-pm2 startup ubuntu
-sudo env PATH=$PATH:/usr/local/bin pm2 startup ubuntu -u sammy
-
-```
-
-Read more on DO config [here](https://github.com/choonkending/react-webpack-node/blob/master/docs/GettingStartedWithDigitalOcean.md)
-
-AWS
-
-TBD - if you have an interest, please help
 
 ## Unit Tests
 
@@ -236,36 +130,7 @@ You will have to install redux devtools extension from [here](https://github.com
 If you like using yeoman generators, you could check out [this](https://github.com/iiegor/generator-react-webpack-node) cool yeoman generator by @iiegor!
 
 ## FAQ
-1. Where do you compile your **css**?
-	We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugin) to extract compiled css in our [webpack config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.prod.js).
-	Read more about **postcss** and **Css modules** [here](https://github.com/choonkending/react-webpack-node/blob/master/docs/css.md).
-2. What loaders do you use for ES6/ ES2015?
-	[babel-loader](https://github.com/babel/babel-loader). Seriously, try it!
-3. Google Authentication does not work locally or on heroku!
-	1. Follow [these steps from Google](https://developers.google.com/identity/protocols/OpenIDConnect) to create your API  keys on [Google Developers Console](https://console.developers.google.com/)
-	2. Under APIs & Auth, Copy your Client ID and Client Secret
 
-**Dev**
-
-- For Google Auth to work locally, you need to do the following in your terminal before starting the server:
-
-```bash
-export GOOGLE_CLIENTID=YOUR_CLIENTID
-export GOOGLE_SECRET=YOUR_SECRET
-```
-
-**Heroku**
-
-- Fret not! Heroku's covered [this](https://devcenter.heroku.com/articles/config-vars) pretty well:
-
-```bash
-heroku config:set GOOGLE_CLIENTID=YOUR_CLIENTID
-heroku config:set GOOGLE_SECRET=YOUR_SECRET
-heroku config:set GOOGLE_CALLBACK=YOUR_CALLBACK
-```
-4. I do not know how to write React Components/anything in ES6. Help!
-	- Don't you worry child. Read [this](https://github.com/choonkending/react-webpack-node/blob/master/docs/ReactInES6.md).
-	- You can learn more about ES6 (or ES2015) [here](http://babeljs.io/docs/learn-es2015/).
 
 **Google Analytics**
 
