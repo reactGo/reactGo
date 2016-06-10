@@ -12,8 +12,6 @@ body {
 }
 
 .app {
-  composes: box from './common/layout.css';
-
   height: 100%;
 
   font-family: montserrat;

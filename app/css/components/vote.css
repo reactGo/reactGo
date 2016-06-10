@@ -1,4 +1,5 @@
 .vote {
+  composes: box from '../common/layout.css';
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
