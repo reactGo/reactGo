@@ -8,14 +8,15 @@ const cx = classNames.bind(styles);
 const MainSection = ({onIncrement, onDecrement, onDestroy, topics}) => {
   const topicItems = topics.map((topic, key) => {
     return (
-      <TopicItem index={key}
-        id={topic.id}
-        key={key}
+      <TopicItem key={key}
+        id={topic._id}
         text={topic.text}
         onIncrement={onIncrement}
         onDecrement={onDecrement}
-        onDestroy={onDestroy} />);
-    });
+        onDestroy={onDestroy}
+      />
+    );
+  });
 
   return (
     <div className={cx('main-section')}>

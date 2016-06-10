@@ -6,16 +6,15 @@ import styles from 'css/components/message';
 
 const cx = classNames.bind(styles);
 
-const Message = ({message, type, dismissMessage}) => (
-    <div className={cx('message', {
-      show: message && message.length > 0,
-      success: type === 'SUCCESS'
-    })} onClick={dismissMessage}>{message}</div>
+const Message = ({style, text, dismissMessage}) => (
+    <div className={cx('message', [style, {show: text && text.length > 0}])}
+      onClick={dismissMessage}
+    >{text}</div>
 );
 
 Message.propTypes = {
-  message: PropTypes.string,
-  type: PropTypes.string,
+  style: PropTypes.string,
+  text: PropTypes.string,
   dismissMessage: PropTypes.func.isRequired
 };
 
