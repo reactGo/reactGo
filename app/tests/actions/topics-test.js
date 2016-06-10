@@ -1,16 +1,11 @@
 /* eslint no-unused-vars: 0 */ // since fetch is needed but not used
 import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import md5 from 'spark-md5';
-import { polyfill } from 'es6-promise';
-import axios from 'axios';
 import expect from 'expect';
+import axiosMiddleware from 'redux-axios';
 import * as actions from 'actions/topics';
-import * as types from 'types';
+import * as types from '../types/topic';
 
-polyfill();
-
-const middlewares = [thunk];
+const middlewares = [axiosMiddleware];
 const mockStore = configureStore(middlewares);
 
 describe('Topic Actions', () => {
