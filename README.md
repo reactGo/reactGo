@@ -89,7 +89,6 @@ You will have to install redux devtools extension from [here](https://github.com
 
 ## Instructions
 
-
 #### Database
 
 We currently support MongoDB and Postgres, as well as the ability to not use any database. [Learn](docs/databases.md) about how to configure your app.
@@ -97,7 +96,6 @@ We currently support MongoDB and Postgres, as well as the ability to not use any
 #### Development
 
 Development is a breeze. Once you have installed all your dependencies all the configuration is done for you. using simple The process is outlined [here](docs/development.md).
-
 
 #### Unit Tests
 
@@ -133,7 +131,6 @@ We have assembled an FAQ [here](/docs/FAQ.md)
 
 Best way to keep up to date is check the [issues](https://github.com/choonkending/react-webpack-node/issues). I really welcome improvements for **all aspects** of an app.
 
-
 1. Any suggestions/improvements/bugs can be in the form of Pull Requests, or creating an issue.
 2. Coding guidelines:
  - [Airbnb's Style Guide](https://github.com/airbnb/javascript)
@@ -141,7 +138,6 @@ Best way to keep up to date is check the [issues](https://github.com/choonkendin
 
 
 Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app), [flux-examples](https://github.com/facebook/flux/tree/master/examples), [node-express-mongo-demo](https://github.com/madhums/node-express-mongoose-demo), [hackathon-starter](https://github.com/sahat/hackathon-starter/), [web-starter-kit](https://github.com/google/web-starter-kit), [awesome material-ui](https://github.com/callemall/material-ui), [alt and iso](https://github.com/goatslacker/iso/tree/master/examples/react-router-flux), [react-starter](https://github.com/webpack/react-starter), [reap](https://github.com/choonkending/reap), [isomorphic-redux-app](https://github.com/caljrimmer/isomorphic-redux-app) and [mxstbr/react-boilerplate](https://github.com/mxstbr/react-boilerplate/blob/master/README.md)
-
 
 **Easter Eggs** :egg:
 
