@@ -123,9 +123,15 @@ Currently we support [Heroku](docs/deployment/Heroku.md) and [Digital Ocean](doc
 ## Yeoman Generator
 If you like using yeoman generators, you could check out [this](https://github.com/iiegor/generator-react-webpack-node) cool yeoman generator by @iiegor!
 
+
 ## FAQ
 
 We have assembled an FAQ [here](/docs/FAQ.md)
+
+## Check out what people have done
+
+We have a [list](/docs/apps.md) of projects that have been created with this boilerplate. Check 
+them out to see what can be done or to get some inspiration.
 
 ## How to Contribute:
 
