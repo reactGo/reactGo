@@ -1,6 +1,6 @@
-# Databases
+## Databases
 
-**How do I run this app without a database?**
+#### How do I run this app without a database?
 
 Change the following:
 ```javascript
@@ -11,7 +11,7 @@ Change the following:
 DB_TYPE: process.env.DB_TYPE || DB_TYPES.NONE
 ```
 
-**How do I switch to a different database?**
+#### How do I switch to a different database?
 
 Currently, we support these DB_TYPES:
 
@@ -41,7 +41,7 @@ You will need to add a folder after `/db` with [may] contain the following ORM s
 
 ##Setting up Postgres
 
-**Install Postgres as your database**:
+#### Install Postgres as your database:
 
 ```bash
 # Update brew formulae
@@ -50,19 +50,19 @@ brew update
 brew install postgres
 ```
 
-**Run your Postgres server**
+#### Run your Postgres server
 ```bash
 postgres -D /usr/local/var/postgres
 ```
 
-**Setup your postgres database**
+#### Setup your postgres database
 ```bash
 createuser root
 createdb react_webpack_node_development # or test/production
 npm run sequelize db:migrate
 ```
 
-**Installing on Heroku**
+#### Installing on Heroku
 ```bash
 # https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-the-add-on
 heroku addons:create heroku-postgresql:<PLANNAME> --as POSTGRES_DB

@@ -1,8 +1,8 @@
-# Getting Started with Digital Ocean
+## Getting Started with Digital Ocean
 
 [Start Here](/SaltStackOnDigitalOcean.md)
 
-Digital Ocean
+#### Digital Ocean
 
 1. Create a Droplet
 2. Follow [this](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-14-04) or
@@ -69,7 +69,7 @@ sudo env PATH=$PATH:/usr/local/bin pm2 startup ubuntu -u sammy
 
   READ more in Reference 2 and 3
 
-# FAQ
+#### FAQ
 1. `ssh root@<ip-address>` still prompts me for my password, even when I have entered my ssh prior to this!
 
 You can try editing your ~/.ssh/config file to have this additional entry:
@@ -81,7 +81,7 @@ Host digitalocean
 ```
 The next time you can just `ssh digitalocean` and you're in!
 
-# Reference
+## Reference
 1. [How to connect to your droplet with SSH](https://www.digitalocean.com/community/tutorials/how-to-connect-to-your-droplet-with-ssh)
 2. [How to use ssh keys with droplets](https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets)
 3. [Initial Server setup with Ubuntu 14.04](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04)

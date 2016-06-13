@@ -17,24 +17,27 @@ Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring u
 [npm-link]: http://badge.fury.io/js/react-webpack-node
 
 
-## Demo site:
+#### Demo site:
 
 [https://react-webpack-node.herokuapp.com/](https://react-webpack-node.herokuapp.com/)
 
 ## Features:
-- ~~isomorphic~~ [**universal**](https://medium.com/@ghengeveld/isomorphism-vs-universal-javascript-4b47fb481beb#.4x2t3jlmx) [**Redux**](https://github.com/reactjs/redux)
-	- Server-side rendering with [**React Router**](https://github.com/reactjs/react-router) 2.x. Having server-side rendering allows you to pre-render the initial state of your components when a user (or search engine crawler) requests a page.
-	- Integrating Redux with React Router with ~~Redux Simple Router~~ [React Router Redux](https://github.com/reactjs/react-router-redux)
-	- Asynchonous Data Fetching on server-side rendering
-	- Server side authentication + Redirecting for components
+- ~~isomorphic~~ [**universal**](https://medium.com/@ghengeveld/isomorphism-vs-universal-javascript-4b47fb481beb#.4x2t3jlmx) Rendering
+- [**Redux**](https://github.com/reactjs/redux) Predictive state containers.
+- Server-side rendering with [**React Router**](https://github.com/reactjs/react-router) 2.x. Having server-side rendering allows you to pre-render the initial state of your components when a user (or search engine crawler) requests a page.
+- Integrating Redux with React Router with ~~Redux Simple Router~~ [React Router Redux](https://github.com/reactjs/react-router-redux)
+- Asynchronous Data Fetching on server-side rendering
+- Server side authentication + Redirecting for components
 - Hot reloading using [**react-transform-hmr**](https://github.com/gaearon/react-transform-hmr)
 - Time travel using [**Redux-Devtools Chrome Extension**](https://github.com/zalmoxisus/redux-devtools-extension)
 - [**Webpack**](https://github.com/webpack/webpack) for both development and production bundles. It's (in my opinion) the best bundler for JS, CSS, LESS, images, and lots more!
 - [**CSS Modules**](https://github.com/css-modules/css-modules) allows for modular and reusable CSS. Say goodbye to conflicts (most of them) and global scope
+
 - **Unit Tests** with webpack, karma, jsdom, mocha, & sinon
 	- Reducers
 	- Components
 	- Synchronous and Asynchronous Actions
+
 - Express 4.x server with a ton of middleware
 - Mongoose for MongoDB
 - Sequelize for Postgres
@@ -43,7 +46,9 @@ Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring u
 
 ## Motivation
 
-The aim of this repo is to incorporate the best practices to building a non-trivial, performant, secure and quality full-stack apps with React.js and Webpack and Node (hence...react-webpack-node). However, along the way we definitely have had extensive additions to this boilerplate! I am working to document this repo extensively so it would be easy for both beginners and experts to begin dev-ing on it without pulling your hair out.
+The motivation is simple, best practices. Everyone's ultimate goal is to build a non-trivial applications. Performant and free of bugs, we want our applications to be secure and joy for the user. We believe that using a mixture of with React.js and Webpack and Node is the best way to accomplish this. (hence...react-webpack-node).
+
+This boilerplate serves a second purpose as well. It is a learning tool for any and all that are interested in learning how to put a large React application together. We have had extensive additions to this boilerplate from the community over time as practices have evolved, and we are always interested in hearing new ideas and welcome all forms  of help.
 
 ## Why Redux
 
@@ -78,17 +83,21 @@ Express app.use() receives a request
 
 More TBD
 
-
 #### Redux DevTools
 
 You will have to install redux devtools extension from [here](https://github.com/zalmoxisus/redux-devtools-extension) and then everything should just work!
 
-
 ## Instructions
 
-#### Deployment
 
-Currently we support [Heroku](docs/deployment/Heroku.md) and [Digital Ocean](docs/deployment/DigitalOcean.md) and [AWS](docs/deployment/AWS.md)
+#### Database
+
+We currently support MongoDB and Postgres, as well as the ability to not use any database. [Learn](docs/databases.md) about how to configure your app.
+
+#### Development
+
+Development is a breeze. Once you have installed all your dependencies all the configuration is done for you. using simple The process is outlined [here](docs/development.md).
+
 
 #### Unit Tests
 
@@ -109,23 +118,21 @@ npm test:watch
 
 We have unit tests for async (redux) actions, reducers, and components.
 
+#### Deployment
+
+Currently we support [Heroku](docs/deployment/Heroku.md) and [Digital Ocean](docs/deployment/DigitalOcean.md) and [AWS](docs/deployment/AWS.md)
 
 ## Yeoman Generator
 If you like using yeoman generators, you could check out [this](https://github.com/iiegor/generator-react-webpack-node) cool yeoman generator by @iiegor!
 
 ## FAQ
 
-
-**Google Analytics**
-
-Google Analytics are there if you want them and very easy to enable the basic site level support. All you need to do is replace the tracking ID in `app/server.jsx`
-
-To learn about how to best use Google Analytics for your site [read more](https://developers.google.com/analytics/devguides/collection/analyticsjs/) here.
-
+We have assembled an FAQ [here](/docs/FAQ.md)
 
 ## How to Contribute:
 
 Best way to keep up to date is check the [issues](https://github.com/choonkending/react-webpack-node/issues). I really welcome improvements for **all aspects** of an app.
+
 
 1. Any suggestions/improvements/bugs can be in the form of Pull Requests, or creating an issue.
 2. Coding guidelines:

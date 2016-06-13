@@ -1,16 +1,16 @@
-# Salt Stack
+## Salt Stack
 
 I recommend you read this [walkthrough](http://docs.saltstack.com/en/latest/topics/tutorials/walkthrough.html) and [this guide to setting up salt on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-salt-on-ubuntu-12-04). I am really excited about using SaltStack, and I hope this guide can help many of you out there.
 
 This tutorial will help you with installing salt on your Ubuntu Droplet, configuring a salt-minion to run a NodeJS express server and to ensure that the server is running.
 
-## Tell me what is salt now!
+#### Tell me what is salt now!
 The backbone of Salt is the *remote execution engine*, which creates a high-speed, secure and bi-directional communication net for groups of systems. On top of this communication system lies a configuration management system called *Salt States*.
 
-## Basic terminology
+#### Basic terminology
 Salt functions on a master/minion topology. A `master` server acts as a central control bus for the clients, which are called `minions`. The minions connect back to the master.
 
-# Instructions
+## Instructions
 
 1. Firstly, `ssh` into your droplet. If you have trouble with this, read [GettingStartedWithDigitalOcean](https://github.com/choonkending/react-webpack-node/blob/master/docs/GettingStartedWithDigitalOcean.md)
 
