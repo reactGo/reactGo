@@ -59,32 +59,7 @@ Or if you are more of a *visual learner* watch the free egghead video series nar
 1. [Getting Started](https://egghead.io/series/getting-started-with-redux)
 2. [Building Idiomatically](https://egghead.io/series/building-react-applications-with-idiomatic-redux)
 
-## Instructions
-
-**Deployment**
-
-Currently we support [Heroku](docs/deployment/Heroku.md) and [Digital Ocean](docs/deployment/DigitalOcean.md) and AWS
-
-## Unit Tests
-
-Testing with:
-- `karma` as test runner
-	- `karma.conf.js` for the main karma configuration (it has webpack configurations)
-	- `tests.webpack.js` which is the single entry file. It uses `webpack`'s require API to find all the files we need that have a `-test.js` suffix.
-- `mocha` as the test framework
-- `jsdom` as my test environment
-
-```bash
-# Run test once
-npm test
-
-# Run in watch mode
-npm test:watch
-```
-
-We have unit tests for async (redux) actions, reducers, and components.
-
-## Data Flow
+#### Data Flow
 
 A simplistic representation of data flow from server to client is:
 
@@ -103,9 +78,37 @@ Express app.use() receives a request
 
 More TBD
 
-## Redux DevTools
+
+#### Redux DevTools
 
 You will have to install redux devtools extension from [here](https://github.com/zalmoxisus/redux-devtools-extension) and then everything should just work!
+
+
+## Instructions
+
+#### Deployment
+
+Currently we support [Heroku](docs/deployment/Heroku.md) and [Digital Ocean](docs/deployment/DigitalOcean.md) and [AWS](docs/deployment/AWS.md)
+
+#### Unit Tests
+
+Testing with:
+- `karma` as test runner
+	- `karma.conf.js` for the main karma configuration (it has webpack configurations)
+	- `tests.webpack.js` which is the single entry file. It uses `webpack`'s require API to find all the files we need that have a `-test.js` suffix.
+- `mocha` as the test framework
+- `jsdom` as my test environment
+
+```bash
+# Run test once
+npm test
+
+# Run in watch mode
+npm test:watch
+```
+
+We have unit tests for async (redux) actions, reducers, and components.
+
 
 ## Yeoman Generator
 If you like using yeoman generators, you could check out [this](https://github.com/iiegor/generator-react-webpack-node) cool yeoman generator by @iiegor!

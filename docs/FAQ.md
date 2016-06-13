@@ -1,6 +1,6 @@
 1. Where do you compile your **css**?
 	We use [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugin) to extract compiled css in our [webpack config file](https://github.com/choonkending/react-webpack-node/blob/master/webpack.config.prod.js).
-	Read more about **postcss** and **Css modules** [here](https://github.com/choonkending/react-webpack-node/blob/master/docs/css.md).
+	Read more about **postcss** and **Css modules** [here](docs/css.md).
 2. What loaders do you use for ES6/ ES2015?
 	[babel-loader](https://github.com/babel/babel-loader). Seriously, try it!
 3. Google Authentication does not work locally or on heroku!
