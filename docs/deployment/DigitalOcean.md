@@ -1,5 +1,6 @@
 # Getting Started with Digital Ocean
 
+[Start Here](/SaltStackOnDigitalOcean.md)
 
 Digital Ocean
 
