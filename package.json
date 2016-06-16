@@ -18,7 +18,7 @@
     "build": "npm run clean && npm run build:prod && npm run build:node",
     "test": "cross-env NODE_ENV=test karma start",
     "test:watch": "cross-env NODE_ENV=test npm test -- --watch --no-single-run",
-    "postinstall": "npm run build"
+    "postInstall": "if [ $BUILD_ASSETS ]; then npm run build; fi"
   },
   "author": "Choon Ken Ding",
   "license": "MIT",
