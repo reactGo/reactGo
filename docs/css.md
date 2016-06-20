@@ -1,4 +1,4 @@
-# CSS
+## CSS
 
 We recently removed sass from the boilerplate, and opted in several postcss plugins:
 - postcss-import
@@ -15,7 +15,7 @@ Note: This change to postcss is experimental, as there might be features you wan
 
 ## CSS module questions
 
-**How do I reuse a class?**
+#### How do I reuse a class?
 ```css
 /* Within the same file */
 .borderLine {
@@ -33,7 +33,7 @@ Note: This change to postcss is experimental, as there might be features you wan
 
 ```
 
-**How do I reuse a value?**
+#### How do I reuse a value?
 ```css
 /* Within the same file */
 @value color-white: #fff;
