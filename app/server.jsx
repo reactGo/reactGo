@@ -1,48 +1,11 @@
-import axios from 'axios';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { createMemoryHistory, match, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
 import createRoutes from 'routes';
-import configureStore from 'store/configureStore';
+import configureStore from 'configureStore';
 import preRenderMiddleware from 'middlewares/preRenderMiddleware';
 import header from 'components/Meta';
-
-const clientConfig = {
-  host: process.env.HOSTNAME || 'localhost',
-  port: process.env.PORT || '3000'
-};
-
-// configure baseURL for axios requests (for serverside API calls)
-axios.defaults.baseURL = `http://${clientConfig.host}:${clientConfig.port}`;
-
-
-const analtyicsScript =
-  typeof trackingID === "undefined" ? ``
-  :
-  `<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    ga('create', ${trackingID}, 'auto');
-    ga('send', 'pageview');
-  </script>`;
-
-
-/*
- * To Enable Google analytics simply replace the hashes with your tracking ID
- * and move the constant to above the analtyicsScript constant.
- *
- * Currently because the ID is declared beneath where is is being used, the
- * declaration will get hoisted to the top of the file.
- * however the assignement  does not, so it is undefined for the type check above.
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var#var_hoisting
- */
-const trackingID  = "'UA-########-#'";
-
-
-
 
 /*
  * Export render function to be used in server/config/routes.js
@@ -52,15 +15,20 @@ const trackingID  = "'UA-########-#'";
 export default function render(req, res) {
   const authenticated = req.isAuthenticated();
   const history = createMemoryHistory();
-  const store = configureStore({
-    user: {
-      authenticated,
-      isWaiting: false,
-      message: '',
-      isLogin: true
-    }
-  }, history);
+  const store = configureStore({ user: { authenticated } }, history);
   const routes = createRoutes(store);
+
+  /*
+   * To Enable Google analytics simply replace the hashes with your tracking ID
+   * and move the constant to above the analtyicsScript constant.
+   *
+   * Currently because the ID is declared beneath where is is being used, the
+   * declaration will get hoisted to the top of the file.
+   * however the assignement  does not, so it is undefined for the type check above.
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var#var_hoisting
+   */
+  const trackingID  = "'UA-########-#'";
+  const analtyicsScript = `(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', ${trackingID}, 'auto');ga('send', 'pageview');`;
 
   /*
    * From the react-router docs:
@@ -115,14 +83,15 @@ export default function render(req, res) {
             <body>
               <div id="app">${componentHTML}</div>
               <script>window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};</script>
-              ${analtyicsScript}
+              <script>${typeof trackingID === "undefined" ? `` : analtyicsScript}</script>
               <script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>
             </body>
           </html>
         `);
       })
       .catch((err) => {
-        res.status(500).json(err);
+        console.error(err);
+        res.sendStatus(500);
       });
     } else {
       res.sendStatus(404);
