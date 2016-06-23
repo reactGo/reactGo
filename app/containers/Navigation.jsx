@@ -1,25 +1,36 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { logOut } from 'actions/users';
-
+import { push } from 'react-router-redux';
+import { showMessage } from 'actions/messages';
+import { signOut } from 'actions/users';
 import classNames from 'classnames/bind';
 import styles from 'css/components/navigation';
 
 const cx = classNames.bind(styles);
 
-const Navigation = ({ user, logOut }) => {
+const Navigation = ({ user, signOut, push, showMessage }) => {
+    const logout = () => {
+      signOut()
+        .then(() => {
+          showMessage('success', 'See you!');
+          push('/');
+        })
+        .catch((response) => {
+          showMessage('error', 'If you not set this, default error message will show.');
+        });
+    }
+
     return (
       <nav className={cx('navigation')} role="navigation">
         <Link to="/"
           className={cx('item', 'logo')}
           activeClassName={cx('active')}>Ninja Ocean</Link>
-          { user.authenticated ? (
-            <Link onClick={logOut}
-              className={cx('item')} to="/">Logout</Link>
-          ) : (
-            <Link className={cx('item')} to="/login">Log in</Link>
-          )}
+          {
+            user.authenticated
+            ? (<a className={cx('item')} onClick={logout}>Logout</a>)
+            : (<Link className={cx('item')} to="/login">Log in</Link>)
+          }
           <Link className={cx('item')} to="/dashboard">Dashboard</Link>
           <Link to="/about" className={cx('item')} activeClassName={cx('active')}>About</Link>
       </nav>
@@ -28,7 +39,9 @@ const Navigation = ({ user, logOut }) => {
 
 Navigation.propTypes = {
   user: PropTypes.object,
-  logOut: PropTypes.func.isRequired
+  signOut: PropTypes.func.isRequired,
+  push: PropTypes.func.isRequired,
+  showMessage: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -37,4 +50,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { logOut })(Navigation);
+export default connect(mapStateToProps, { signOut, push, showMessage })(Navigation);
