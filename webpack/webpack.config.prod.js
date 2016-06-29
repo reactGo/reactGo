@@ -86,8 +86,8 @@ module.exports = [
      *  new CommonsChunkPlugin("c-commons.js", ["pageC", "adminPageC"]);
      * ]
      */
-    // A SourceMap is emitted.
-    devtool: "source-map",
+    // SourceMap without column-mappings
+    devtool: "cheap-module-source-map",
     context: path.join(__dirname, "..", "app"),
     entry: {
       app: "./client"
@@ -163,6 +163,7 @@ module.exports = [
           __DEVCLIENT__: false,
           __DEVSERVER__: false
         }),
+        new webpack.IgnorePlugin(/vertx/),
         new InlineEnviromentVariablesPlugin({ NODE_ENV: 'production' })
     ],
     postcss: postCSSConfig
