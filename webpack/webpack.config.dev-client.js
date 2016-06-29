@@ -38,6 +38,8 @@ var postCSSConfig = function() {
       // addDependencyTo is used for hot-reloading in webpack
       addDependencyTo: webpack
     }),
+    // Note: you must set postcss-mixins before simple-vars and nested
+    require('postcss-mixins')(),
     require('postcss-simple-vars')(),
     // Unwrap nested rules like how Sass does it
     require('postcss-nested')(),
