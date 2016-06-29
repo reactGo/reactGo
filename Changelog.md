@@ -1,3 +1,13 @@
+1.7.15
+====
+- PR #264 - Instaces of `req` in reference to Promise results changed to `res`
+- PR #255 - AWS docs
+- PR #267 - docs restructure :+1
+- PR #285 - Unit tests for users
+- PR #293 - Webpack build tweaks (sourcemap change + ignore plugin)
+- PR #294 - Remove redux-devtools from prod
+- PR #295 - Add postcss-mixins into config again
+
 1.7.14
 ====
 - PR #256 - Update README to include egghead videos. Egghead ftw!
