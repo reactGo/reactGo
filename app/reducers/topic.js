@@ -9,30 +9,19 @@ import {
   GET_TOPICS_SUCCESS,
   GET_TOPICS_FAILURE } from 'types';
 
-
 export default function topic(state = {
   topics: [],
   newTopic: ''
 }, action) {
   switch (action.type) {
     case TYPING:
-      return Object.assign({}, state,
-        { newTopic: action.newTopic }
-      );
+      return {...state, newTopic: action.newTopic};
     case GET_TOPICS_REQUEST:
-      return Object.assign({}, state, {
-        isFetching: true
-      });
+      return {...state, isFetching: true};
     case GET_TOPICS_SUCCESS:
-      return Object.assign({}, state, {
-        isFetching: false,
-        topics: action.res.data
-      });
+      return {...state, isFetching: false, topics: action.res.data};
     case GET_TOPICS_FAILURE:
-      return Object.assign({}, state, {
-        isFetching: false,
-        error: action.error
-      });
+      return {...state, isFetching: false, error: action.error};
     case CREATE_TOPIC_REQUEST:
       return {
         topics: [...state.topics, { id: action.id, count: action.count, text: action.text }],
@@ -51,22 +40,18 @@ export default function topic(state = {
     case INCREMENT_COUNT:
       return {
         topics: [
-        ...state.topics.slice(0, action.index),
-        Object.assign({}, state.topics[action.index], {
-          count: state.topics[action.index].count + 1
-        }),
-        ...state.topics.slice(action.index + 1)
+          ...state.topics.slice(0, action.index),
+          {...state.topics[action.index], count: state.topics[action.index].count + 1},
+          ...state.topics.slice(action.index + 1)
         ],
         newTopic: state.newTopic
       };
     case DECREMENT_COUNT:
       return {
         topics: [
-        ...state.topics.slice(0, action.index),
-        Object.assign({}, state.topics[action.index], {
-          count: state.topics[action.index].count - 1
-        }),
-        ...state.topics.slice(action.index + 1)
+          ...state.topics.slice(0, action.index),
+          {...state.topics[action.index], count: state.topics[action.index].count - 1},
+          ...state.topics.slice(action.index + 1)
         ],
         newTopic: state.newTopic
       };

@@ -17,15 +17,9 @@ export default function message(state = {
   switch (action.type) {
     case LOGIN_SUCCESS_USER:
     case SIGNUP_SUCCESS_USER:
-      return Object.assign({}, state, {
-        message: action.message,
-        type: 'SUCCESS'
-      });
+      return {...state, message: action.message, type: 'SUCCESS'};
     case DISMISS_MESSAGE:
-      return Object.assign({}, state, {
-        message: '',
-        type: 'SUCCESS'
-      });
+      return {...state, message: '', type: 'SUCCESS'};
     default:
       return state;
   }
