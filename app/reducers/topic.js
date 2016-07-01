@@ -1,43 +1,34 @@
-import {
-  TYPING,
-  CREATE_TOPIC_REQUEST,
-  CREATE_TOPIC_FAILURE,
-  DESTROY_TOPIC,
-  INCREMENT_COUNT,
-  DECREMENT_COUNT,
-  GET_TOPICS_REQUEST,
-  GET_TOPICS_SUCCESS,
-  GET_TOPICS_FAILURE } from 'types';
+import * as types from 'types';
 
 export default function topic(state = {
   topics: [],
   newTopic: ''
 }, action) {
   switch (action.type) {
-    case TYPING:
+    case types.TYPING:
       return {...state, newTopic: action.newTopic};
-    case GET_TOPICS_REQUEST:
+    case types.GET_TOPICS_REQUEST:
       return {...state, isFetching: true};
-    case GET_TOPICS_SUCCESS:
+    case types.GET_TOPICS_SUCCESS:
       return {...state, isFetching: false, topics: action.res.data};
-    case GET_TOPICS_FAILURE:
+    case types.GET_TOPICS_FAILURE:
       return {...state, isFetching: false, error: action.error};
-    case CREATE_TOPIC_REQUEST:
+    case types.CREATE_TOPIC_REQUEST:
       return {
         topics: [...state.topics, { id: action.id, count: action.count, text: action.text }],
         newTopic: ''
       };
-    case CREATE_TOPIC_FAILURE:
+    case types.CREATE_TOPIC_FAILURE:
       return {
         topics: [...state.topics.filter((tp) => tp.id !== action.id)],
         newTopic: state.newTopic
       };
-    case DESTROY_TOPIC:
+    case types.DESTROY_TOPIC:
       return {
         topics: [...state.topics.filter((tp, i) => i !== action.index)],
         newTopic: state.newTopic
       };
-    case INCREMENT_COUNT:
+    case types.INCREMENT_COUNT:
       return {
         topics: [
           ...state.topics.slice(0, action.index),
@@ -46,7 +37,7 @@ export default function topic(state = {
         ],
         newTopic: state.newTopic
       };
-    case DECREMENT_COUNT:
+    case types.DECREMENT_COUNT:
       return {
         topics: [
           ...state.topics.slice(0, action.index),
@@ -55,7 +46,6 @@ export default function topic(state = {
         ],
         newTopic: state.newTopic
       };
-
     default:
       return state;
   }
