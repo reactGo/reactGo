@@ -1,3 +1,7 @@
+1.7.16
+====
+- PR #299 - Update all dependencies (greenkeeper)
+
 1.7.15
 ====
 - PR #264 - Instaces of `req` in reference to Promise results changed to `res`
