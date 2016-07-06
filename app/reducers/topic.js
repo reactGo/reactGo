@@ -1,77 +1,87 @@
-import {
-  TYPING,
-  CREATE_TOPIC_REQUEST,
-  CREATE_TOPIC_FAILURE,
-  DESTROY_TOPIC,
-  INCREMENT_COUNT,
-  DECREMENT_COUNT,
-  GET_TOPICS_REQUEST,
-  GET_TOPICS_SUCCESS,
-  GET_TOPICS_FAILURE } from 'types';
+import { combineReducers } from 'redux';
+import * as types from 'types';
 
-
-export default function topic(state = {
-  topics: [],
-  newTopic: ''
-}, action) {
+const isFetching = (
+  state = false,
+  action
+) => {
   switch (action.type) {
-    case TYPING:
-      return Object.assign({}, state,
-        { newTopic: action.newTopic }
-      );
-    case GET_TOPICS_REQUEST:
-      return Object.assign({}, state, {
-        isFetching: true
-      });
-    case GET_TOPICS_SUCCESS:
-      return Object.assign({}, state, {
-        isFetching: false,
-        topics: action.res.data
-      });
-    case GET_TOPICS_FAILURE:
-      return Object.assign({}, state, {
-        isFetching: false,
-        error: action.error
-      });
-    case CREATE_TOPIC_REQUEST:
-      return {
-        topics: [...state.topics, { id: action.id, count: action.count, text: action.text }],
-        newTopic: ''
-      };
-    case CREATE_TOPIC_FAILURE:
-      return {
-        topics: [...state.topics.filter((tp) => tp.id !== action.id)],
-        newTopic: state.newTopic
-      };
-    case DESTROY_TOPIC:
-      return {
-        topics: [...state.topics.filter((tp, i) => i !== action.index)],
-        newTopic: state.newTopic
-      };
-    case INCREMENT_COUNT:
-      return {
-        topics: [
-        ...state.topics.slice(0, action.index),
-        Object.assign({}, state.topics[action.index], {
-          count: state.topics[action.index].count + 1
-        }),
-        ...state.topics.slice(action.index + 1)
-        ],
-        newTopic: state.newTopic
-      };
-    case DECREMENT_COUNT:
-      return {
-        topics: [
-        ...state.topics.slice(0, action.index),
-        Object.assign({}, state.topics[action.index], {
-          count: state.topics[action.index].count - 1
-        }),
-        ...state.topics.slice(action.index + 1)
-        ],
-        newTopic: state.newTopic
-      };
+    case types.GET_TOPICS_REQUEST:
+      return true;
+    case types.GET_TOPICS_SUCCESS:
+    case types.GET_TOPICS_FAILURE:
+      return false;
+    default:
+      return state;
+  }
+};
 
+const topic = (
+  state = {},
+  action
+) => {
+  switch (action.type) {
+    case types.CREATE_TOPIC_REQUEST:
+      return {
+        id: action.id,
+        count: action.count,
+        text: action.text
+      };
+    case types.INCREMENT_COUNT:
+      if (state.id === action.id) {
+        return { ...state, count: state.count + 1 };
+      }
+      return state;
+    case types.DECREMENT_COUNT:
+      if (state.id === action.id) {
+        return { ...state, count: state.count - 1 };
+      }
+      return state;
+    default:
+      return state;
+  }
+};
+
+const topics = (
+  state = [],
+  action
+) => {
+  switch (action.type) {
+    case types.GET_TOPICS_SUCCESS:
+      return action.res.data;
+    case types.CREATE_TOPIC_REQUEST:
+      return [...state, topic(undefined, action) ];
+    case types.CREATE_TOPIC_FAILURE:
+      return state.filter(t => t.id !== action.id);
+    case types.DESTROY_TOPIC:
+      return state.filter(t => t.id !== action.id);
+    case types.INCREMENT_COUNT:
+    case types.DECREMENT_COUNT:
+      return state.map(t => topic(t, action));
+    default:
+      return state;
+  }
+};
+
+const newTopic = (
+  state = '',
+  action
+) => {
+  switch (action.type) {
+    case types.TYPING:
+      return action.newTopic;
+    case types.CREATE_TOPIC_REQUEST:
+      return '';
     default:
       return state;
   }
 }
+
+const topicReducer = combineReducers({
+  topics,
+  isFetching,
+  newTopic
+});
+
+export default topicReducer;
+
