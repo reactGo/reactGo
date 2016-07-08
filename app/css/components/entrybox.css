@@ -1,18 +1,19 @@
+@import '../common/typography';
+@import '../common/input';
+
 .entrybox {
   width: 100%;
   margin-bottom: 72px;
 }
 
 .header {
-  composes: heading from '../common/typography';
-
+  @apply --heading;
   text-align: center;
 }
 
 .input {
-  composes: heading from '../common/typography';
-  composes: input from '../common/input';
-
+  @apply --heading;
+  @apply --input;
   text-align: center;
   outline: none;
 }

@@ -1,73 +1,73 @@
-@value global-radius, font-large, font-medium, font-small from '../settings';
-@value color-athens-gray, color-mercury, color-white, color-dodger-blue, color-crimson, color-bombay from '../common/colors.css';
+@import '../settings';
+@import '../common/typography';
+@import '../common/colors';
+@import '../common/button';
+@import '../common/input';
 
 .login {
   width: 420px;
   margin: 0 auto;
-  background-color: color-athens-gray;
-  border: 2px solid color-mercury;
-  border-radius: global-radius;
+  background-color: var(--colorAthensGray);
+  border: 2px solid var(--colorMercury);
+  border-radius: var(--globalRadius);
 }
 
-  .waiting {
-    .loading {
-      display: block;
-    }
-  }
-
-  .alternative {
-    background: color-white;
-    padding: 12px 8px;
-
-    font-size: font-medium;
-    text-align: center;
-  }
-
-  .alternative-link {
-    color: color-dodger-blue;
-    font-weight: bold;
-
-    cursor: pointer;
-  }
-
+.waiting {
   .loading {
-    display: none;
-    text-align: center;
-    margin: 24px auto;
+    display: block;
   }
+}
 
-  .email-container {
-    padding: 16px 12px;
-    border-bottom: 2px solid color-mercury;
-  }
+.alternative {
+  background: var(--colorWhite);
+  padding: 12px 8px;
+  font-size: var(--fontMedium);
+  text-align: center;
+}
 
-  .google-container {
-    padding: 16px 12px;
-  }
+.alternative-link {
+  color: var(--colorDodgerBlue);
+  font-weight: bold;
+  cursor: pointer;
+}
 
-  .header {}
+.loading {
+  display: none;
+  text-align: center;
+  margin: 24px auto;
+}
 
-  .heading {
-    composes: subheading from '../common/typography';
+.email-container {
+  padding: 16px 12px;
+  border-bottom: 2px solid var(--colorMercury);
+}
 
-    padding: 16px 12px;
-    text-align: center;
-  }
+.google-container {
+  padding: 16px 12px;
+}
 
-  .input {
-    composes: input from '../common/input';
-  }
+.header {}
 
-  .message {
-    color: color-crimson;
-    font-size: font-small;
-  }
+.heading {
+  @apply --subHeading;
+  padding: 16px 12px;
+  text-align: center;
+}
 
-  .button {
-    composes: greenButton from '../common/button';
-  }
+.input {
+  @apply --input;
+}
 
-  .hint {
-    composes: small from '../common/typography';
-    color: color-bombay;
-  }
+.message {
+  color: var(--colorCrimson);
+  font-size: var(--fontSmall);
+}
+
+.button {
+  @apply --greenButton;
+}
+
+.hint {
+  @apply --small;
+  color: var(--colorBombay);
+}

@@ -1,9 +1,8 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
-@value font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+:root {
 
-@value font-small: 12px;
-@value font-medium: 16px;
-@value font-large: 21px;
-@value font-x-large: 28px;
+  --globalRadius:             4px;
 
-@value global-radius: 4px;
+  --ViewTransitionIn:         opacity .4s ease-in;
+  --ViewTransitionOut:        opacity .1s ease-out;
+
+}

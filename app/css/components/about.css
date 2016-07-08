@@ -1,12 +1,9 @@
+@import '../common/typography';
+
 .header {
-  composes: heading from '../common/typography';
+  @apply --heading;
   text-align: center;
 }
 
-.description {
-  composes: normal from '../common/typography';
-}
-
-.contribute {
-  composes: small from '../common/typography';
-}
+.description { @apply --normal; }
+.contribute { @apply --small; }
