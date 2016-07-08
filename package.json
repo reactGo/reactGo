@@ -44,7 +44,9 @@
     "react-stateless-wrapper": "^1.0.2",
     "react-transform-catch-errors": "^1.0.2",
     "redux-mock-store": "1.1.2",
-    "sinon": "^1.17.3"
+    "sinon": "^1.17.3",
+    "stylelint": "^6.9.0",
+    "stylelint-webpack-plugin": "^0.2.0"
   },
   "engines": {
     "node": "5.x"
@@ -98,12 +100,10 @@
     "passport-local": "^1.0.0",
     "pg": "^6.0.1",
     "pg-hstore": "^2.3.2",
+    "postcss-cssnext": "^2.7.0",
     "postcss-import": "^8.0.2",
     "postcss-loader": "^0.9.1",
-    "postcss-mixins": "^5.0.0",
-    "postcss-nested": "^1.0.0",
     "postcss-reporter": "^1.4.1",
-    "postcss-simple-vars": "^3.0.0",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-helmet": "^3.1.0",
