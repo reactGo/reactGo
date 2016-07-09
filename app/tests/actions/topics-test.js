@@ -59,7 +59,8 @@ describe('Topic Actions', () => {
       store.dispatch(actions.createTopic(topic))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
 
     it('dispatches request and failed actions when status is NOT 200', done => {
@@ -81,7 +82,8 @@ describe('Topic Actions', () => {
       store.dispatch(actions.createTopic(topic))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
 
     it('dispatches a duplicate action for a duplicate topic', () => {
@@ -110,7 +112,8 @@ describe('Topic Actions', () => {
       store.dispatch(actions.incrementCount(data.id))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
 
     it('incrementCount should not dispatch a failure action on failure', done => {
@@ -125,7 +128,8 @@ describe('Topic Actions', () => {
       store.dispatch(actions.incrementCount(data.id, index))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
 
     it('decrementCount dispatches an decrement count action on success', done => {
@@ -139,7 +143,8 @@ describe('Topic Actions', () => {
       store.dispatch(actions.decrementCount(data.id))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
 
     it('decrementCount should not dispatch a decrement count action on failure', done => {
@@ -154,7 +159,8 @@ describe('Topic Actions', () => {
       store.dispatch(actions.decrementCount(data.id))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
 
     it('destroyTopic dispatches a decrement count action on success', done => {
@@ -168,7 +174,8 @@ describe('Topic Actions', () => {
       store.dispatch(actions.destroyTopic(data.id))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
 
     it('destroyTopic should not dispatch an decrement count action on failure', done => {
@@ -183,7 +190,8 @@ describe('Topic Actions', () => {
       store.dispatch(actions.destroyTopic(data.id))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
   });
   describe('Action creator unit tests', () => {

@@ -71,7 +71,8 @@ describe('Users Async Actions', () => {
       store.dispatch(actions.manualLogin(data))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
 
     it('dispatches MANUAL_LOGIN_USER and LOGIN_ERROR_USER when Manual Login returns status that is NOT 200', (done) => {
@@ -90,7 +91,8 @@ describe('Users Async Actions', () => {
       store.dispatch(actions.manualLogin(data))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
   });
 
@@ -118,7 +120,8 @@ describe('Users Async Actions', () => {
       store.dispatch(actions.signUp(data))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
 
     it('dispatches SIGNUP_USER and SIGNUP_ERROR_USER when Sign Up returns status of NOT 200', (done) => {
@@ -138,7 +141,8 @@ describe('Users Async Actions', () => {
       store.dispatch(actions.signUp(data))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
   });
   describe('User Logout', () => {
@@ -157,7 +161,8 @@ describe('Users Async Actions', () => {
       store.dispatch(actions.logOut(data))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
 
     it('dispatches SIGNUP_USER and SIGNUP_ERROR_USER when Sign Up returns status of NOT 200', (done) => {
@@ -175,7 +180,8 @@ describe('Users Async Actions', () => {
       store.dispatch(actions.logOut(data))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
   });
 });

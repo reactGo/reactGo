@@ -50,7 +50,7 @@ const topics = (
     case types.GET_TOPICS_SUCCESS:
       return action.res.data;
     case types.CREATE_TOPIC_REQUEST:
-      return [...state, topic(undefined, action) ];
+      return [...state, topic(undefined, action)];
     case types.CREATE_TOPIC_FAILURE:
       return state.filter(t => t.id !== action.id);
     case types.DESTROY_TOPIC:
@@ -75,7 +75,7 @@ const newTopic = (
     default:
       return state;
   }
-}
+};
 
 const topicReducer = combineReducers({
   topics,
@@ -84,4 +84,3 @@ const topicReducer = combineReducers({
 });
 
 export default topicReducer;
-
