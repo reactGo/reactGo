@@ -25,28 +25,23 @@ polyfill();
  * @return Promise
  */
 function makeUserRequest(method, data, api = '/login') {
-  return request({
-    url: api,
-    method,
-    data,
-    withCredentials: true
-  });
+  return request[method](api, data);
 }
 
 
 // Log In Action Creators
-function beginLogin() {
+export function beginLogin() {
   return { type: MANUAL_LOGIN_USER };
 }
 
-function loginSuccess(message) {
+export function loginSuccess(message) {
   return {
     type: LOGIN_SUCCESS_USER,
     message
   };
 }
 
-function loginError(message) {
+export function loginError(message) {
   return {
     type: LOGIN_ERROR_USER,
     message
@@ -54,18 +49,18 @@ function loginError(message) {
 }
 
 // Sign Up Action Creators
-function signUpError(message) {
+export function signUpError(message) {
   return {
     type: SIGNUP_ERROR_USER,
     message
   };
 }
 
-function beginSignUp() {
+export function beginSignUp() {
   return { type: SIGNUP_USER };
 }
 
-function signUpSuccess(message) {
+export function signUpSuccess(message) {
   return {
     type: SIGNUP_SUCCESS_USER,
     message
@@ -73,15 +68,15 @@ function signUpSuccess(message) {
 }
 
 // Log Out Action Creators
-function beginLogout() {
+export function beginLogout() {
   return { type: LOGOUT_USER};
 }
 
-function logoutSuccess() {
+export function logoutSuccess() {
   return { type: LOGOUT_SUCCESS_USER };
 }
 
-function logoutError() {
+export function logoutError() {
   return { type: LOGOUT_ERROR_USER };
 }
 

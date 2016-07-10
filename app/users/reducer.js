@@ -9,68 +9,84 @@ import {
   LOGOUT_USER,
   LOGOUT_SUCCESS_USER,
   LOGOUT_ERROR_USER } from './actions';
+import { combineReducers } from 'redux';
 
-export default function user(state = {
-  isLogin: true,
-  message: '',
-  isWaiting: false,
-  authenticated: false }, action = {}) {
+const isLogin = (
+  state = true,
+  action
+) => {
   switch (action.type) {
     case TOGGLE_LOGIN_MODE:
-      return Object.assign({}, state, {
-        isLogin: !state.isLogin,
-        message: ''
-      });
-    case MANUAL_LOGIN_USER:
-      return Object.assign({}, state, {
-        isWaiting: true,
-        message: ''
-      });
-    case LOGIN_SUCCESS_USER:
-      return Object.assign({}, state, {
-        isWaiting: false,
-        authenticated: true,
-        message: ''
-      });
-    case LOGIN_ERROR_USER:
-      return Object.assign({}, state, {
-        isWaiting: false,
-        authenticated: false,
-        message: action.message
-      });
-    case SIGNUP_USER:
-      return Object.assign({}, state, {
-        isWaiting: true,
-        message: ''
-      });
-    case SIGNUP_SUCCESS_USER:
-      return Object.assign({}, state, {
-        isWaiting: false,
-        authenticated: true
-      });
-    case SIGNUP_ERROR_USER:
-      return Object.assign({}, state, {
-        isWaiting: false,
-        authenticated: false,
-        message: action.message
-      });
-    case LOGOUT_USER:
-      return Object.assign({}, state, {
-        isWaiting: true,
-        message: ''
-      });
-    case LOGOUT_SUCCESS_USER:
-      return Object.assign({}, state, {
-        isWaiting: false,
-        authenticated: false
-      });
-    case LOGOUT_ERROR_USER:
-      return Object.assign({}, state, {
-        isWaiting: false,
-        authenticated: true,
-        isLogin: true
-      });
+      return !state;
     default:
       return state;
   }
-}
+};
+
+const message = (
+  state = '',
+  action
+) => {
+  switch (action.type) {
+    case TOGGLE_LOGIN_MODE:
+    case MANUAL_LOGIN_USER:
+    case SIGNUP_USER:
+    case LOGOUT_USER:
+    case LOGIN_SUCCESS_USER:
+    case SIGNUP_SUCCESS_USER:
+      return '';
+    case LOGIN_ERROR_USER:
+    case SIGNUP_ERROR_USER:
+      return action.message;
+    default:
+      return state;
+  }
+};
+
+const isWaiting = (
+  state = false,
+  action
+) => {
+  switch (action.type) {
+    case MANUAL_LOGIN_USER:
+    case SIGNUP_USER:
+    case LOGOUT_USER:
+      return true;
+    case LOGIN_SUCCESS_USER:
+    case SIGNUP_SUCCESS_USER:
+    case LOGOUT_SUCCESS_USER:
+    case LOGIN_ERROR_USER:
+    case SIGNUP_ERROR_USER:
+    case LOGOUT_ERROR_USER:
+      return false;
+    default:
+      return state;
+  }
+};
+
+const authenticated = (
+  state = false,
+  action
+) => {
+  switch (action.type) {
+    case LOGIN_SUCCESS_USER:
+    case SIGNUP_SUCCESS_USER:
+    case LOGOUT_ERROR_USER:
+      return true;
+    case LOGIN_ERROR_USER:
+    case SIGNUP_ERROR_USER:
+    case LOGOUT_SUCCESS_USER:
+      return false;
+    default:
+      return state;
+  }
+};
+
+const userReducer = combineReducers({
+  isLogin,
+  isWaiting,
+  authenticated,
+  message
+});
+
+export default userReducer;
