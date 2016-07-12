@@ -95,7 +95,7 @@
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
-    "pg": "^6.0.1",
+    "pg": "^6.0.2",
     "pg-hstore": "^2.3.2",
     "postcss-import": "^8.0.2",
     "postcss-loader": "^0.9.1",
