@@ -59,7 +59,8 @@ describe('Topic Actions', () => {
       store.dispatch(actions.createTopic(topic))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
 
     it('dispatches request and failed actions when status is NOT 200', done => {
@@ -81,7 +82,8 @@ describe('Topic Actions', () => {
       store.dispatch(actions.createTopic(topic))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
 
     it('dispatches a duplicate action for a duplicate topic', () => {
@@ -103,14 +105,15 @@ describe('Topic Actions', () => {
       const expectedActions = [
       {
         type: types.INCREMENT_COUNT,
-        index
+        id
       }];
       sandbox.stub(axios, 'put').returns(Promise.resolve({ status: 200 }));
       const store = mockStore();
-      store.dispatch(actions.incrementCount(data.id, index))
+      store.dispatch(actions.incrementCount(data.id))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
 
     it('incrementCount should not dispatch a failure action on failure', done => {
@@ -125,21 +128,23 @@ describe('Topic Actions', () => {
       store.dispatch(actions.incrementCount(data.id, index))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
 
     it('decrementCount dispatches an decrement count action on success', done => {
       const expectedActions = [
       {
         type: types.DECREMENT_COUNT,
-        index
+        id
       }];
       sandbox.stub(axios, 'put').returns(Promise.resolve({ status: 200 }));
       const store = mockStore();
-      store.dispatch(actions.decrementCount(data.id, index))
+      store.dispatch(actions.decrementCount(data.id))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
 
     it('decrementCount should not dispatch a decrement count action on failure', done => {
@@ -151,24 +156,26 @@ describe('Topic Actions', () => {
       }];
       sandbox.stub(axios, 'put').returns(Promise.reject({ status: 400 }));
       const store = mockStore(initialState);
-      store.dispatch(actions.decrementCount(data.id, index))
+      store.dispatch(actions.decrementCount(data.id))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
 
     it('destroyTopic dispatches a decrement count action on success', done => {
       const expectedActions = [
       {
         type: types.DESTROY_TOPIC,
-        index
+        id
       }];
       sandbox.stub(axios, 'delete').returns(Promise.resolve({ status: 200 }));
       const store = mockStore();
-      store.dispatch(actions.destroyTopic(data.id, index))
+      store.dispatch(actions.destroyTopic(data.id))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
 
     it('destroyTopic should not dispatch an decrement count action on failure', done => {
@@ -180,10 +187,11 @@ describe('Topic Actions', () => {
       }];
       sandbox.stub(axios, 'delete').returns(Promise.reject({ status: 400 }));
       const store = mockStore();
-      store.dispatch(actions.destroyTopic(data.id, index))
+      store.dispatch(actions.destroyTopic(data.id))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
+        }).then(done)
+        .catch(done);
     });
   });
   describe('Action creator unit tests', () => {
@@ -208,25 +216,25 @@ describe('Topic Actions', () => {
     it('should create an action object to increment the count', () => {
       const expectedAction = {
         type: types.INCREMENT_COUNT,
-        index
+        id
       };
-      expect(actions.increment(index)).toEqual(expectedAction);
+      expect(actions.increment(id)).toEqual(expectedAction);
     });
 
     it('should create an action object to decrement count', () => {
       const expectedAction = {
         type: types.DECREMENT_COUNT,
-        index
+        id
       };
-      expect(actions.decrement(index)).toEqual(expectedAction);
+      expect(actions.decrement(id)).toEqual(expectedAction);
     });
 
     it('should create an action object to destroy a topic', () => {
       const expectedAction = {
         type: types.DESTROY_TOPIC,
-        index
+        id
       };
-      expect(actions.destroy(index)).toEqual(expectedAction);
+      expect(actions.destroy(id)).toEqual(expectedAction);
     });
 
     it('should create an action object with a new topic', () => {

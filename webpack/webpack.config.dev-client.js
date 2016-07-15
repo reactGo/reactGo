@@ -14,8 +14,8 @@ var commonLoaders = [
     // Reason why we put this here instead of babelrc
     // https://github.com/gaearon/react-transform-hmr/issues/5#issuecomment-142313637
     query: {
-      "presets": ["react-hmre", "es2015", "react", "stage-0"],
-      "plugins": ["transform-decorators-legacy", "transform-object-assign"]
+      presets: ['react-hmre', 'es2015', 'react', 'stage-0'],
+      plugins: ['transform-decorators-legacy']
     },
     include: path.join(__dirname, '..', 'app'),
     exclude: path.join(__dirname, '..', 'node_modules')
@@ -38,6 +38,8 @@ var postCSSConfig = function() {
       // addDependencyTo is used for hot-reloading in webpack
       addDependencyTo: webpack
     }),
+    // Note: you must set postcss-mixins before simple-vars and nested
+    require('postcss-mixins')(),
     require('postcss-simple-vars')(),
     // Unwrap nested rules like how Sass does it
     require('postcss-nested')(),
