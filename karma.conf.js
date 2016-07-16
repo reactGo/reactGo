@@ -58,6 +58,12 @@ module.exports = function(config) {
           { test: /\.css$/, loader: "null-loader" }
         ],
       },
+      externals: {
+        'cheerio': 'window',
+        'react/addons': true,
+        'react/lib/ExecutionEnvironment': true,
+        'react/lib/ReactContext': true
+      },
       resolve: {
         extensions: ['', '.js', '.jsx', '.css'],
         modulesDirectories: [
