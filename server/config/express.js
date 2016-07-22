@@ -9,6 +9,8 @@ import unsupportedMessage from '../db/unsupportedMessage';
 import { sessionSecret } from './secrets';
 import { DB_TYPE, ENV } from './appConfig';
 import { session as dbSession } from '../db';
+import gzip from 'compression';
+
 
 export default (app) => {
   app.set('port', (process.env.PORT || 3000));
@@ -83,6 +85,10 @@ export default (app) => {
     sess.cookie.secure = true; // Serve secure cookies
   }
   console.log('--------------------------');
+
+  if (ENV === 'production') {
+    app.use(gzip());
+  }
 
   app.use(session(sess));
 
