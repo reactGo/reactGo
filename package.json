@@ -72,7 +72,7 @@
     "classnames": "^2.2.3",
     "connect-mongo": "^1.1.0",
     "connect-pg-simple": "^3.1.0",
-    "cross-env": "^1.0.7",
+    "cross-env": "^2.0.0",
     "css-loader": "^0.23.1",
     "deep-equal": "^1.0.1",
     "es6-promise": "^3.1.2",
