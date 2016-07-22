@@ -52,7 +52,7 @@
   "dependencies": {
     "autoprefixer": "^6.3.3",
     "axios": "^0.13.1",
-    "babel-cli": "^6.7.5",
+    "babel-cli": "^6.10.1",
     "babel-core": "^6.7.2",
     "babel-eslint": "^6.0.2",
     "babel-loader": "^6.2.4",
