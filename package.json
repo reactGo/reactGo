@@ -27,7 +27,7 @@
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.6.0",
     "eslint-plugin-jsx-a11y": "^1.5.5",
-    "eslint-plugin-react": "^5.0.1",
+    "eslint-plugin-react": "^5.2.2",
     "expect": "^1.15.2",
     "karma": "^1.1.1",
     "karma-jsdom-launcher": "^3.0.0",
