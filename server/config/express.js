@@ -23,6 +23,12 @@ export default (app) => {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
   app.use(methodOverride());
+
+  if (ENV === 'production') {
+    app.use(gzip());
+  }
+
+
   app.use(express.static(path.join(__dirname, '../..', 'public')));
 
   // I am adding this here so that the Heroku deploy will work
@@ -86,9 +92,6 @@ export default (app) => {
   }
   console.log('--------------------------');
 
-  if (ENV === 'production') {
-    app.use(gzip());
-  }
 
   app.use(session(sess));
 
