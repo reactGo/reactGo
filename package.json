@@ -70,7 +70,7 @@
     "body-parser": "^1.15.0",
     "chai": "^3.5.0",
     "classnames": "^2.2.3",
-    "connect-mongo": "^1.1.0",
+    "connect-mongo": "^1.3.0",
     "connect-pg-simple": "^3.1.0",
     "cross-env": "^2.0.0",
     "css-loader": "^0.23.1",
