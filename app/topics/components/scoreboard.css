@@ -1,0 +1,28 @@
+@value font-medium from 'css/settings.css';
+
+.scoreboard {
+  composes: card from 'css/common/card';
+  width: 40%;
+}
+
+  .header {
+    composes: title from 'css/common/card';
+    composes: subheading from 'css/common/typography';
+    background: #0F9D58;
+    color: #fff;
+  }
+
+  .list {
+    padding: 16px;
+    list-style: none;
+  }
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .topic {
+    composes: flexNotMoreThan200 from 'css/common/layout';
+    font-size: font-medium;
+  }
