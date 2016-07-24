@@ -8,9 +8,9 @@ heroku create
 git push heroku master
 
 # Database on Heroku
-heroku addons:add mongohq
+heroku addons:create mongohq
 # or
-heroku addons:add mongolab
+heroku addons:create mongolab
 
 # OPTIONAL:
 
