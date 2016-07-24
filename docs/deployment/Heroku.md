@@ -15,7 +15,7 @@ heroku addons:add mongolab
 # OPTIONAL:
 
 # Rename if you need to
-heroku app:rename <newname>
+heroku apps:rename <newname>
 
 # Open Link in browser
 heroku open
