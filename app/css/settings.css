@@ -1,4 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+@value montserrat from './common/typography.css';
+
 @value font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 
 @value font-small: 12px;

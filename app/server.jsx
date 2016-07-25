@@ -110,14 +110,15 @@ export default function render(req, res) {
             <head>
               ${header.title.toString()}
               ${header.meta.toString()}
-              ${header.link.toString()}
             </head>
             <body>
               <div id="app">${componentHTML}</div>
               <script>window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};</script>
               ${analtyicsScript}
               <script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>
+              ${header.link.toString()}
             </body>
+
           </html>
         `);
       })
