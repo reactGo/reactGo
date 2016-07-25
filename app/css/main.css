@@ -24,9 +24,9 @@ body {
 
 /* ex:
 
-:global .foo {
-  color: red;
-  & .bar { color: blue; }
+:global {
+  & .red { color: red; }
+  & .blue { color: blue; }
 }
 
 */
