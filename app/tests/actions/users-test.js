@@ -34,8 +34,10 @@ describe('Users Async Actions', () => {
     };
 
     const errMsg = {
-      data: {
-        message: 'Oops! Something went wrong!'
+      response: {
+        data: {
+          message: 'Oops! Something went wrong!'
+        }
       }
     };
 
@@ -82,7 +84,7 @@ describe('Users Async Actions', () => {
       },
       {
         type: types.LOGIN_ERROR_USER,
-        message: errMsg.data.message
+        message: errMsg.response.data.message
       }];
 
       sandbox.stub(axios, 'post').returns(Promise.reject(errMsg));
@@ -131,7 +133,7 @@ describe('Users Async Actions', () => {
       },
       {
         type: types.SIGNUP_ERROR_USER,
-        message: errMsg.data.message
+        message: errMsg.response.data.message
       }
       ];
 
