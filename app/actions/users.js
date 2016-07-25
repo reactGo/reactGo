@@ -6,6 +6,7 @@ import * as types from 'types';
 
 polyfill();
 
+const getMessage = res => res.response && res.response.data && res.response.data.message;
 /*
  * Utility function to make AJAX requests using isomorphic fetch.
  * You can also use jquery's $.ajax({}) if you do not want to use the
@@ -89,7 +90,7 @@ export function manualLogin(data) {
         }
       })
       .catch(err => {
-        dispatch(loginError(err.data.message));
+        dispatch(loginError(getMessage(err)));
       });
   };
 }
@@ -108,7 +109,7 @@ export function signUp(data) {
         }
       })
       .catch(err => {
-        dispatch(signUpError(err.data.message));
+        dispatch(signUpError(getMessage(err)));
       });
   };
 }

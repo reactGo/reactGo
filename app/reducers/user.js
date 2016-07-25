@@ -5,7 +5,7 @@ const isLogin = (
   state = true,
   action
 ) => {
-  switch(action.type) {
+  switch (action.type) {
     case types.TOGGLE_LOGIN_MODE:
       return !state;
     default:
@@ -80,4 +80,3 @@ const userReducer = combineReducers({
 });
 
 export default userReducer;
-

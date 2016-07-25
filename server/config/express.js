@@ -9,6 +9,8 @@ import unsupportedMessage from '../db/unsupportedMessage';
 import { sessionSecret } from './secrets';
 import { DB_TYPE, ENV } from './appConfig';
 import { session as dbSession } from '../db';
+import gzip from 'compression';
+
 
 export default (app) => {
   app.set('port', (process.env.PORT || 3000));
@@ -17,10 +19,16 @@ export default (app) => {
   // Keeping it makes it easier for an attacker to build the site's profile
   // It can be removed safely
   app.disable('x-powered-by');
-  
+
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
   app.use(methodOverride());
+
+  if (ENV === 'production') {
+    app.use(gzip());
+  }
+
+
   app.use(express.static(path.join(__dirname, '../..', 'public')));
 
   // I am adding this here so that the Heroku deploy will work
@@ -83,6 +91,7 @@ export default (app) => {
     sess.cookie.secure = true; // Serve secure cookies
   }
   console.log('--------------------------');
+
 
   app.use(session(sess));
 

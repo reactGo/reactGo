@@ -7,9 +7,11 @@ describe('Topics reducer', () => {
   const s = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
   function createTopic() {
-    return Array(5).join().split(',').map(() => {
+    return Array(5).join().split(',')
+    .map(() => {
       return s.charAt(Math.floor(Math.random() * s.length));
-    }).join('');
+    })
+    .join('');
   }
 
   const topic = createTopic();
@@ -157,7 +159,7 @@ describe('Topics reducer', () => {
       },
       {
         type: types.DESTROY_TOPIC,
-        id: topics[topics.length -1].id,
+        id: topics[topics.length - 1].id,
       })
     ).toEqual({
         topics: newTopics.pop() && newTopics,
@@ -181,7 +183,7 @@ describe('Topics reducer', () => {
       },
       {
         type: types.INCREMENT_COUNT,
-        id: topics[topics.length -1].id,
+        id: topics[topics.length - 1].id,
       })
     ).toEqual({
         topics: newTopics,
@@ -205,7 +207,7 @@ describe('Topics reducer', () => {
       },
       {
         type: types.DECREMENT_COUNT,
-        id: topics[topics.length -1].id,
+        id: topics[topics.length - 1].id,
       })
     ).toEqual({
         topics: newTopics,
