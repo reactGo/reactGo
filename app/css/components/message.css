@@ -1,5 +1,5 @@
 @value global-radius, font-medium from '../settings.css';
-@value color-black, color-white, color-salem from '../common/colors.css';
+@value color-black, color-white, color-salem, color-loblolly, color-crimson from '../common/colors.css';
 
 .message {
   display: none;
@@ -17,5 +17,15 @@
 
   .success {
     background-color: color-salem;
+    color: color-white;
+  }
+
+  .warning {
+    background-color: color-loblolly;
+    color: color-white;
+  }
+
+  .error {
+    background-color: color-crimson;
     color: color-white;
   }
