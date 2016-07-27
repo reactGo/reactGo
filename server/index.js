@@ -1,24 +1,10 @@
 import express from 'express';
 import webpack from 'webpack';
 import { ENV } from './config/appConfig';
-import { connect } from './db';
-import passportConfig from './config/passport';
 import expressConfig from './config/express';
-import routesConfig from './config/routes';
 const App = require('../public/assets/server');
 const app = express();
 
-/*
- * Database-specific setup
- * - connect to MongoDB using mongoose
- * - register mongoose Schema
- */
-connect();
-
-/*
- * REMOVE if you do not need passport configuration
- */
-passportConfig();
 
 if (ENV === 'development') {
   const webpackDevConfig = require('../webpack/webpack.config.dev-client');
@@ -36,12 +22,6 @@ if (ENV === 'development') {
  */
 expressConfig(app);
 
-/*
- * REMOVE if you do not need any routes
- *
- * Note: Some of these routes have passport and database model dependencies
- */
-routesConfig(app);
 
 /*
  * This is where the magic happens. We take the locals data we have already
