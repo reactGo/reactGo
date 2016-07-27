@@ -35,7 +35,7 @@ module.exports = function(config) {
 
     webpack: {
       devtool: 'inline-source-map',
-      context: path.join(__dirname, "app"),
+      context: path.join(__dirname, 'app'),
       module: {
         loaders: [
           {
@@ -44,19 +44,25 @@ module.exports = function(config) {
             // Reason why we put this here instead of babelrc
             // https://github.com/gaearon/react-transform-hmr/issues/5#issuecomment-142313637
             query: {
-              "presets": ["es2015", "react", "stage-0"],
-              "plugins": [
-                "transform-react-remove-prop-types",
-                "transform-react-constant-elements",
-                "transform-react-inline-elements"
+              'presets': ['es2015', 'react', 'stage-0'],
+              'plugins': [
+                'transform-react-remove-prop-types',
+                'transform-react-constant-elements',
+                'transform-react-inline-elements'
               ]
             },
             include: path.join(__dirname, 'app'),
             exclude: path.join(__dirname, '/node_modules/')
           },
-          { test: /\.json$/, loader: "json-loader" },
-          { test: /\.css$/, loader: "null-loader" }
+          { test: /\.json$/, loader: 'json-loader' },
+          { test: /\.css$/, loader: 'null-loader' }
         ],
+      },
+      externals: {
+        'cheerio': 'window',
+        'react/addons': true,
+        'react/lib/ExecutionEnvironment': true,
+        'react/lib/ReactContext': true
       },
       resolve: {
         extensions: ['', '.js', '.jsx', '.css'],
@@ -65,7 +71,7 @@ module.exports = function(config) {
         ]
       },
       node: {
-        fs: "empty"
+        fs: 'empty'
       },
       watch: true
     },

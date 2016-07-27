@@ -1,43 +1,34 @@
 import React from 'react';
-import ReactTestUtils from 'react-addons-test-utils';
 import expect from 'expect';
-import { wrap } from 'react-stateless-wrapper';
+import { mount } from 'enzyme';
 import MainSection from 'components/MainSection';
 import TopicItem from 'components/TopicItem';
 
-const WrappedMainSection = wrap(MainSection);
+const emptyData = [];
+const topicItemData = [{
+  text: '',
+  id: '',
+  index: 0,
+  onIncrement: () => {},
+  onDecrement: () => {},
+  onDestroy: () => {}
+}];
+const stubFunctions = {
+  onIncrement: () => {},
+  onDecrement: () => {},
+  onDestroy: () => {}
+};
 
-describe('MainSection', () => {
-  let result;
-  let topicItems;
-  const topicItemData = {
-    text: '',
-    id: '',
-    index: 0,
-    onIncrement: () => {},
-    onDecrement: () => {},
-    onDestroy: () => {}
-  };
-  const stubFunctions = {
-    onIncrement: () => {},
-    onDecrement: () => {},
-    onDestroy: () => {}
-  };
-  const topics = [topicItemData];
-
-  describe('Has topics', () => {
-    it('should render TopicItems', () => {
-      result = ReactTestUtils.renderIntoDocument(<WrappedMainSection topics={topics} {...stubFunctions} />);
-      topicItems = ReactTestUtils.scryRenderedComponentsWithType(result, TopicItem);
-      expect(topicItems.length).toBe(1);
+describe('<MainSection />', () => {
+  describe('With Topics', () => {
+    it('should render <TopicItem> list items', () => {
+      expect(mount(<MainSection topics={topicItemData} {...stubFunctions} />).find(TopicItem).length).toBe(1);
     });
   });
 
-  describe('Does not have topics', () => {
-    it('should not render TopicItems', () => {
-      result = ReactTestUtils.renderIntoDocument(<WrappedMainSection topics={[]} {...stubFunctions} />);
-      topicItems = ReactTestUtils.scryRenderedComponentsWithType(result, TopicItem);
-      expect(topicItems.length).toBe(0);
+  describe('Without Topics', () => {
+    it('should not render <TopicItem> list items', () => {
+      expect(mount(<MainSection topics={emptyData} {...stubFunctions} />).find(TopicItem).length).toBe(0);
     });
   });
 });
