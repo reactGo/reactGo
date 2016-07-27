@@ -5,17 +5,18 @@ import styles from 'css/components/main-section';
 
 const cx = classNames.bind(styles);
 
-const MainSection = ({onIncrement, onDecrement, onDestroy, topics}) => {
+const MainSection = ({ topics, onIncrement, onDecrement, onDestroy }) => {
   const topicItems = topics.map((topic, key) => {
     return (
-      <TopicItem index={key}
+      <TopicItem
+        index={key}
         id={topic.id}
         key={key}
         text={topic.text}
-        onIncrement={onIncrement}
-        onDecrement={onDecrement}
-        onDestroy={onDestroy} />);
-    });
+        incrementCount={onIncrement}
+        decrementCount={onDecrement}
+        destroyTopic={onDestroy} />);
+  });
 
   return (
     <div className={cx('main-section')}>
