@@ -116,7 +116,7 @@ npm test
 npm test:watch
 ```
 
-We have unit tests for async (redux) actions, reducers, and stateless ([enzyme](http://airbnb.io/enzyme)) components.
+We have unit tests for async (redux) actions, reducers, and stateless components with [enzyme](http://airbnb.io/enzyme).
 
 #### Deployment
 
