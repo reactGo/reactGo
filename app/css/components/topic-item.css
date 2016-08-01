@@ -1,5 +1,6 @@
-@value font-medium from '../settings.css';
-@value color-salem, color-dodger-blue, color-punch from '../common/colors.css';
+@import '../common/typography';
+@import '../common/colors';
+@import '../common/layout';
 
 .topic-item {
   display: flex;
@@ -7,12 +8,12 @@
 }
 
 .topic {
-  composes: flexNotMoreThan200 from '../common/layout';
-  font-size: font-medium;
+  @apply --flexNotMoreThan200;
+  font-size: var(--fontMedium);
 }
 
 .button {
-  font-size: font-medium;
+  font-size: var(--fontMedium);
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -22,14 +23,14 @@
 }
 
 .increment {
-  background-color: color-salem;
+  background-color: var(--colorSalem);
 }
 
 .decrement {
-  background-color: color-dodger-blue;
+  background-color: var(--colorDodgerBlue);
 }
 
 .destroy {
-  background-color: color-punch;
+  background-color: var(--colorPunch);
 }
 

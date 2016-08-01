@@ -1,28 +1,30 @@
-@value font-medium from '../settings.css';
+@import '../common/typography';
+@import '../common/layout';
+@import '../common/card';
 
 .scoreboard {
-  composes: card from '../common/card';
+  @apply --card;
   width: 40%;
 }
 
-  .header {
-    composes: title from '../common/card';
-    composes: subheading from '../common/typography';
-    background: #0F9D58;
-    color: #fff;
-  }
+.header {
+  @apply --title;
+  @apply --subHeading;
+  background: #0F9D58;
+  color: #fff;
+}
 
-  .list {
-    padding: 16px;
-    list-style: none;
-  }
+.list {
+  padding: 16px;
+  list-style: none;
+}
 
-  .item {
-    display: flex;
-    justify-content: space-between;
-  }
+.item {
+  display: flex;
+  justify-content: space-between;
+}
 
-  .topic {
-    composes: flexNotMoreThan200 from '../common/layout';
-    font-size: font-medium;
-  }
+.topic {
+  @apply --flexNotMoreThan200;
+  font-size: var(--fontMedium);
+}

@@ -7,7 +7,8 @@
       "app/components/Meta.jsx",
       "server",
       "webpack/webpack.config.dev-client.js",
-      "webpack/webpack.config.dev-server.js"
+      "webpack/webpack.config.dev-server.js",
+      ".stylelintrc"
     ],
     "exec": "npm run build:dev && npm run babel-node -- server/index.js"
 }

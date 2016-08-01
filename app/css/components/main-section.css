@@ -1,20 +1,22 @@
-@value global-radius from '../settings.css';
+@import '../settings';
+@import '../common/typography';
+@import '../common/card';
 
 .main-section {
-  composes: card from '../common/card';
+  @apply --card;
   width: 50%;
-  border-radius: global-radius;
+  border-radius: var(--globalRadius);
 }
 
-  .header {
-    composes: title from '../common/card';
-    composes: subheading from '../common/typography';
-    background: #ed193a;
-    color: #fff;
-  }
+.header {
+  @apply --title;
+  @apply --subHeading;
+  background: #ed193a;
+  color: #fff;
+}
 
-  .list {
-    list-style: none;
-    padding: 16px;
-  }
+.list {
+  list-style: none;
+  padding: 16px;
+}
 

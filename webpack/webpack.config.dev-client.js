@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var styleLintPlugin = require('stylelint-webpack-plugin');
 var assetsPath = path.join(__dirname, '..', 'public', 'assets');
 var hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
 
@@ -31,27 +32,16 @@ var commonLoaders = [
   { test: /\.html$/, loader: 'html-loader' }
 ];
 
-var postCSSConfig = function() {
+var postCSSConfig = function () {
   return [
     require('postcss-import')({
       path: path.join(__dirname, '..', 'app', 'css'),
-      // addDependencyTo is used for hot-reloading in webpack
-      addDependencyTo: webpack
+      addDependencyTo: webpack // for hot-reloading
     }),
-    // Note: you must set postcss-mixins before simple-vars and nested
-    require('postcss-mixins')(),
-    require('postcss-simple-vars')(),
-    // Unwrap nested rules like how Sass does it
-    require('postcss-nested')(),
-    //  parse CSS and add vendor prefixes to CSS rules
-    require('autoprefixer')({
-      browsers: ['last 2 versions', 'IE > 8']
+    require('postcss-cssnext')({
+      browsers: ['> 1%', 'last 2 versions']
     }),
-    // A PostCSS plugin to console.log() the messages registered by other
-    // PostCSS plugins
-    require('postcss-reporter')({
-      clearMessages: true
-    })
+    require('postcss-reporter')({ clearMessages: true })
   ];
 };
 
@@ -110,6 +100,11 @@ module.exports = {
         new webpack.DefinePlugin({
           __DEVCLIENT__: true,
           __DEVSERVER__: false
+        }),
+        new styleLintPlugin({
+          configFile: path.join(__dirname, '..', '.stylelintrc'),
+          context: path.join(__dirname, '..', 'app'),
+          files: '**/*.?(sa|sc|c)ss'
         })
     ],
     postcss: postCSSConfig

@@ -1,22 +1,32 @@
-@value montserrat from './common/typography.css';
+@import 'settings';
+@import 'common/layout';
+@import 'common/typography';
 
-/*
- * Add any global styles here
- */
-* {
-  box-sizing: border-box;
-}
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
+  font-family: var(--fontMontserrat);
 }
 
 .app {
-  composes: box from './common/layout.css';
-
+  @apply --box;
   height: 100%;
-
-  font-family: montserrat;
   font-weight: normal;
   font-smoothing: antialiased;
 }
+
+
+/* Add your global styles below... */
+
+/* ex:
+
+:global {
+  & .red { color: red; }
+  & .blue { color: blue; }
+}
+
+*/
