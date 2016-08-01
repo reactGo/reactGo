@@ -46,13 +46,15 @@ Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring u
 
 ## Motivation
 
-The motivation is simple, best practices. Everyone's ultimate goal is to build a non-trivial applications. Performant and free of bugs, we want our applications to be secure and joy for the user. We believe that using a mixture of with React.js and Webpack and Node is the best way to accomplish this. (hence...react-webpack-node).
+The motivation is simple: best practices and a wonderful development experience. Our ultimate goal is to provide a boilerplate for building non-trivial applications that are secure, performant and free of bugs. Believing a mixture of React.js, Webpack and Node was the best way to accomplish this, we created react-webpack-node.
 
-This boilerplate serves a second purpose as well. It is a learning tool for any and all that are interested in learning how to put a large React application together. We have had extensive additions to this boilerplate from the community over time as practices have evolved, and we are always interested in hearing new ideas and welcome all forms  of help.
+react-webpack-node also works great as a learning tool for anyone interested in learning how to implement a large React application, or those who want a modern setup ASAP.
+
+We've had extensive community additions to this boilerplate over time as practices have evolved, and are always interested in hearing new ideas or contributions.
 
 ## Why Redux
 
-I'm really a fan of this implementation of flux for state management. The main principles of having:
+We're really big fans of this implementation of flux for state management. The main principles of having:
 - a single store
 - state being read-only (you have to express an intent to mutate being creating actions)
 - mutations written as pure functions
@@ -130,7 +132,7 @@ We have assembled an FAQ [here](/docs/FAQ.md)
 
 ## Check out what people have done
 
-We have a [list](/docs/apps.md) of projects that have been created with this boilerplate. Check 
+We have a [list](/docs/apps.md) of projects that have been created with this boilerplate. Check
 them out to see what can be done or to get some inspiration.
 
 ## How to Contribute:
