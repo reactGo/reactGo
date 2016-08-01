@@ -33,9 +33,9 @@ Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring u
 - [**Webpack**](https://github.com/webpack/webpack) for both development and production bundles. It's (in my opinion) the best bundler for JS, CSS, LESS, images, and lots more!
 - [**CSS Modules**](https://github.com/css-modules/css-modules) allows for modular and reusable CSS. Say goodbye to conflicts (most of them) and global scope
 
-- **Unit Tests** with webpack, karma, jsdom, mocha, & sinon
+- **Unit Testing** with webpack, karma, jsdom, mocha, sinon & enzyme
 	- Reducers
-	- Components
+	- Components ([Enzyme](http://airbnb.io/enzyme))
 	- Synchronous and Asynchronous Actions
 
 - Express 4.x server with a ton of middleware
@@ -116,7 +116,7 @@ npm test
 npm test:watch
 ```
 
-We have unit tests for async (redux) actions, reducers, and components.
+We have unit tests for async (redux) actions, reducers, and stateless components with [enzyme](http://airbnb.io/enzyme).
 
 #### Deployment
 
