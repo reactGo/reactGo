@@ -125,6 +125,6 @@
     "warning": "^3.0.0",
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.5.1",
-    "webpack-hot-middleware": "^2.12.1"
+    "webpack-hot-middleware": "^2.12.2"
   }
 }
