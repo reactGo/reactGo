@@ -3,8 +3,8 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { createMemoryHistory, match, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
-import createRoutes from 'routes';
-import configureStore from 'store/configureStore';
+import routes from 'routes';
+import configureStore from 'configureStore';
 import preRenderMiddleware from 'middlewares/preRenderMiddleware';
 import header from 'components/Meta';
 
@@ -52,7 +52,6 @@ const trackingID  = "'UA-########-#'";
 export default function render(req, res) {
   const history = createMemoryHistory();
   const store = configureStore({}, history);
-  const routes = createRoutes(store);
 
   /*
    * From the react-router docs:
