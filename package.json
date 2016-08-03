@@ -33,7 +33,7 @@
     "karma": "^1.1.1",
     "karma-jsdom-launcher": "^3.0.0",
     "karma-mocha": "^1.0.1",
-    "karma-mocha-reporter": "^2.0.0",
+    "karma-mocha-reporter": "^2.1.0",
     "karma-sinon": "^1.0.4",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
