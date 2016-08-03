@@ -52,7 +52,7 @@
     "node": "5.x"
   },
   "dependencies": {
-    "autoprefixer": "^6.3.3",
+    "autoprefixer": "^6.4.0",
     "axios": "^0.13.1",
     "babel-cli": "^6.7.5",
     "babel-core": "^6.7.2",
