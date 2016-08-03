@@ -39,7 +39,7 @@
     "karma-webpack": "^1.7.0",
     "mocha": "^2.5.3",
     "nock": "^8.0.0",
-    "nodemon": "^1.9.1",
+    "nodemon": "^1.10.0",
     "null-loader": "^0.1.1",
     "react-addons-test-utils": "^15.3.0",
     "react-transform-catch-errors": "^1.0.2",
