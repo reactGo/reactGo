@@ -113,6 +113,11 @@ export default function render(req, res) {
               ${header.link.toString()}
             </head>
             <body>
+              <script>
+                if ('serviceWorker' in navigator) {
+                  navigator.serviceWorker.register('/sw.js')
+                }
+              </script>
               <div id="app">${componentHTML}</div>
               <script>window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};</script>
               ${analtyicsScript}
