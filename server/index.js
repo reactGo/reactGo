@@ -23,6 +23,11 @@ app.get('/sw.js', (req, res) => {
   res.sendFile(path.join(__dirname + '/../public/assets/sw.js'))
 })
 
+app.get('/sw-include.js', (req, res) => {
+  res.setHeader('content-type', 'application/javascript');
+  res.sendFile(path.join(__dirname + '/../sw-include.js'))
+})
+
 /*
  * Database-specific setup
  * - connect to MongoDB using mongoose

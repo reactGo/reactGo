@@ -109,7 +109,12 @@ module.exports = {
         }),
         new SWPrecacheWebpackPlugin({
           cacheId: 'my-project-name',
+          importScripts: ['/sw-include.js'],
           filename: 'sw.js',
+          runtimeCaching: [{
+            urlPattern: /\//,
+            handler: 'fastest'
+          }]
         })
     ],
     postcss: postCSSConfig
