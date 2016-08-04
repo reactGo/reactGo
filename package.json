@@ -37,7 +37,7 @@
     "karma-sinon": "^1.0.4",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
-    "mocha": "^2.5.3",
+    "mocha": "^3.0.1",
     "nock": "^8.0.0",
     "nodemon": "^1.9.1",
     "null-loader": "^0.1.1",
