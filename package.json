@@ -55,7 +55,7 @@
     "autoprefixer": "^6.3.3",
     "axios": "^0.13.1",
     "babel-cli": "^6.7.5",
-    "babel-core": "^6.7.2",
+    "babel-core": "^6.13.2",
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.4",
     "babel-plugin-react-transform": "^2.0.2",
