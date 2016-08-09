@@ -1,12 +1,12 @@
 ## CSS
 
 We recently removed sass from the boilerplate, and opted in several postcss plugins:
-- postcss-import
-- postcss-mixins [unused]
-- postcss-simple-vars
-- postcss-nested
-- autoprefixer
-- postcss-reporter
+- (postcss-import)[https://github.com/postcss/postcss-import]
+- (postcss-mixins)[https://github.com/postcss/postcss-mixins] [unused]
+- (postcss-simple-vars)[https://github.com/postcss/postcss-simple-vars]
+- (postcss-nested)[https://github.com/postcss/postcss-nested]
+- (autoprefixer)[https://github.com/postcss/autoprefixer]
+- (postcss-reporter)[https://github.com/postcss/postcss-reporter]
 
 
 Please refer to [this](https://github.com/choonkending/react-webpack-node/issues/150) for more reading.
