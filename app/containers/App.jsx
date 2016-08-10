@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
-import classNames from 'classnames/bind';
-import styles from 'css/main';
+import { app } from 'css/main';
 
 const cx = classNames.bind(styles);
 
@@ -15,7 +14,7 @@ const cx = classNames.bind(styles);
  * https://github.com/rackt/react-router/blob/latest/docs/Introduction.md
  */
 const App = ({children}) => (
-  <div className={cx('app')}>
+  <div className={app}>
     {children}
   </div>
 );
