@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var styleLintPlugin = require('stylelint-webpack-plugin');
 var assetsPath = path.join(__dirname, '..', 'public', 'assets');
+var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 var hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
 
 var commonLoaders = [
@@ -105,6 +106,15 @@ module.exports = {
           configFile: path.join(__dirname, '..', '.stylelintrc'),
           context: path.join(__dirname, '..', 'app'),
           files: '**/*.?(sa|sc|c)ss'
+        }),
+        new SWPrecacheWebpackPlugin({
+          cacheId: 'my-project-name',
+          importScripts: ['/sw-include.js'],
+          filename: 'sw.js',
+          runtimeCaching: [{
+            urlPattern: /\//,
+            handler: 'fastest'
+          }]
         })
     ],
     postcss: postCSSConfig

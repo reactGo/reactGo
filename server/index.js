@@ -8,6 +8,26 @@ import routesConfig from './config/routes';
 const App = require('../public/assets/server');
 const app = express();
 
+// add service worker
+import path from 'path';
+import fs from 'fs';
+import https from 'https';
+
+// https.createServer({
+//   key: fs.readFileSync('./key.pem'),
+//   cert: fs.readFileSync('./cert.pem')
+// }, app).listen(3443);
+
+app.get('/sw.js', (req, res) => {
+  res.setHeader('content-type', 'application/javascript');
+  res.sendFile(path.join(__dirname + '/../public/assets/sw.js'))
+})
+
+app.get('/sw-include.js', (req, res) => {
+  res.setHeader('content-type', 'application/javascript');
+  res.sendFile(path.join(__dirname + '/../sw-include.js'))
+})
+
 /*
  * Database-specific setup
  * - connect to MongoDB using mongoose
