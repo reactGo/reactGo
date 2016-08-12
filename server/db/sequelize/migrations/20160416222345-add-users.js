@@ -44,10 +44,9 @@ module.exports = {
     ).then(() =>
       queryInterface.addIndex(
         'Users',
-        // [DataTypes.fn('lower', DataTypes.col('email'))],
-        ['email'],
+        [DataTypes.fn('lower', DataTypes.col('email'))],
         {
-          indexName: 'users_email_index1',
+          indexName: 'users_email_index',
           indicesType: 'unique'
         }
       )
