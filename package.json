@@ -117,7 +117,7 @@
     "redux-mock-store": "^1.1.4",
     "redux-thunk": "^2.0.1",
     "rimraf": "^2.5.4",
-    "sequelize": "^3.23.6",
+    "sequelize": "^3.24.1",
     "sequelize-cli": "^2.3.1",
     "spark-md5": "^2.0.2",
     "style-loader": "^0.13.0",
