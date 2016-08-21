@@ -93,7 +93,7 @@
     "kerberos": "0.0.21",
     "lodash": "^4.6.1",
     "method-override": "^2.3.5",
-    "mongoose": "^4.4.7",
+    "mongoose": "^4.5.8",
     "node-libs-browser": "^1.0.0",
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",
