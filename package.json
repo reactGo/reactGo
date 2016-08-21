@@ -102,7 +102,7 @@
     "pg-hstore": "^2.3.2",
     "postcss-cssnext": "^2.7.0",
     "postcss-import": "^8.0.2",
-    "postcss-loader": "^0.9.1",
+    "postcss-loader": "^0.10.1",
     "postcss-reporter": "^1.4.1",
     "postcss-simple-vars": "^3.0.0",
     "react": "^15.3.1",
