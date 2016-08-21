@@ -45,7 +45,7 @@
     "react-transform-catch-errors": "^1.0.2",
     "redux-mock-store": "1.1.2",
     "sinon": "^1.17.4",
-    "stylelint": "^6.9.0",
+    "stylelint": "^7.1.0",
     "stylelint-webpack-plugin": "^0.3.1"
   },
   "engines": {
