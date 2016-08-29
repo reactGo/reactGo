@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import meta from 'pages/meta';
-import Vote from 'containers/Vote';
+import Page from 'pages/Page';
+import VoteContainer from 'containers/Vote';
 
-const VoteWithMeta = meta(Vote);
-
-class VotePage extends Component {
+class Vote extends Component {
   render() {
     return (
-      <VoteWithMeta {...this.props} metaData={this.getMetaData()} />
+      <Page metaData={this.getMetaData()}>
+        <VoteContainer {...this.props} />
+      </Page>
     );
   }
 
@@ -34,5 +34,5 @@ class VotePage extends Component {
   }
 }
 
-export default VotePage;
+export default Vote;
 
