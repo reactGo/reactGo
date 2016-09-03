@@ -3,8 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 
 import { fetchVoteData } from 'fetch-data';
 import App from 'containers/App';
-import { Vote, Dashboard, About } from 'pages';
-import LoginOrRegister from 'containers/LoginOrRegister';
+import { Vote, Dashboard, About, LoginOrRegister } from 'pages';
 
 /*
  * @param {Redux Store}
