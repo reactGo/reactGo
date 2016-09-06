@@ -32,6 +32,7 @@ export default (passport) => {
   passport.use(new GoogleStrategy({
     clientID: google.clientID,
     clientSecret: google.clientSecret,
-    callbackURL: google.callbackURL
+    callbackURL: google.callbackURL,
+    passReqToCallback: true,
   }, dbPassport.google));
 };

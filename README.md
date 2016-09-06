@@ -1,11 +1,13 @@
-# React Webpack Node
+# reactGo
 
 [![Dependency Status][dep-status-img]][dep-status-link] [![devDependency Status][dev-dep-status-img]][dev-dep-status-link]
 [![Gitter][gitter-img]][gitter-link] [![npm version][npm-badge]][npm-link]
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring universal Redux, React Router, React Router Redux Hot reloading, CSS modules, Express 4.x, and multiple ORMs.
+> Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring universal Redux, React Router, React Router Redux Hot reloading, CSS modules, Express 4.x, and multiple ORMs. :rocket:
+
+_Formerly known as choonkending/react-webpack-node_
 
 [dep-status-img]: https://david-dm.org/choonkending/react-webpack-node.svg
 [dep-status-link]: https://david-dm.org/choonkending/react-webpack-node
@@ -121,6 +123,9 @@ We have unit tests for async (redux) actions, reducers, and stateless components
 #### Deployment
 
 Currently we support [Heroku](docs/deployment/Heroku.md) and [Digital Ocean](docs/deployment/DigitalOcean.md) and [AWS](docs/deployment/AWS.md)
+
+#### Roadmap
+We have an outline of our roadmap [here](https://github.com/reactGo/reactGo/blob/master/Roadmap.md)
 
 ## Yeoman Generator
 If you like using yeoman generators, you could check out [this](https://github.com/iiegor/generator-react-webpack-node) cool yeoman generator by @iiegor!
