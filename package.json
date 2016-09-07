@@ -112,7 +112,7 @@
     "react-router": "^2.7.0",
     "react-router-redux": "^4.0.0",
     "react-transform-hmr": "^1.0.4",
-    "redux": "^3.3.1",
+    "redux": "^3.6.0",
     "redux-logger": "^2.6.1",
     "redux-mock-store": "^1.1.4",
     "redux-thunk": "^2.0.1",
