@@ -91,7 +91,7 @@
     "isomorphic-fetch": "^2.2.1",
     "json-loader": "^0.5.4",
     "kerberos": "0.0.21",
-    "lodash": "^4.6.1",
+    "lodash": "^4.14.1",
     "method-override": "^2.3.5",
     "mongoose": "^4.5.8",
     "node-libs-browser": "^1.0.0",
