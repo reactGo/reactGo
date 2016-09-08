@@ -4,6 +4,9 @@ Heroku
 ```bash
 heroku create
 
+# Run build after npm install
+heroku config:set BUILD_ASSETS=true
+
 # Deploy to Heroku server
 git push heroku master
 
