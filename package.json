@@ -24,7 +24,7 @@
   "license": "MIT",
   "devDependencies": {
     "enzyme": "^2.4.1",
-    "eslint": "^3.3.1",
+    "eslint": "^3.5.0",
     "eslint-config-airbnb": "^10.0.0",
     "eslint-plugin-import": "^1.14.0",
     "eslint-plugin-jsx-a11y": "^2.0.1",
