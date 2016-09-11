@@ -48,7 +48,7 @@ const topics = (
 ) => {
   switch (action.type) {
     case types.GET_TOPICS_SUCCESS:
-      return action.res.data;
+      return action.data;
     case types.CREATE_TOPIC_REQUEST:
       return [...state, topic(undefined, action)];
     case types.CREATE_TOPIC_FAILURE:

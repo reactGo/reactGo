@@ -12,12 +12,6 @@ const cx = classNames.bind(styles);
 
 class Vote extends Component {
 
-  //Data that needs to be called before rendering the component
-  //This is used for server side rending via the fetchComponentDataBeforeRender() method
-  static need = [  // eslint-disable-line
-    fetchTopics
-  ]
-
   render() {
     const {newTopic, topics, typing, createTopic, destroyTopic, incrementCount, decrementCount } = this.props;
     return (

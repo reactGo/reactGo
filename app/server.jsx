@@ -91,12 +91,10 @@ export default function render(req, res) {
     } else if (props) {
       // This method waits for all render component
       // promises to resolve before returning to browser
-      preRenderMiddleware(
-        store.dispatch,
-        props.components,
-        props.params
-      )
-      .then(() => {
+      preRenderMiddleware(props)
+      .then(data => {
+        store.dispatch({ type: "GET_TOPICS_SUCCESS", data: data.data });
+
         const initialState = store.getState();
         const componentHTML = renderToString(
           <Provider store={store}>
@@ -121,7 +119,8 @@ export default function render(req, res) {
           </html>
         `);
       })
-      .catch((err) => {
+      .catch(err => {
+        console.log(err);
         res.status(500).json(err);
       });
     } else {
