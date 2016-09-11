@@ -3,6 +3,8 @@ import path from 'path';
 import mongoose from 'mongoose';
 import { db } from './constants';
 
+mongoose.Promise = global.Promise;
+
 export default () => {
   // Find the appropriate database to connect to, default to localhost if not found.
   const connect = () => {
