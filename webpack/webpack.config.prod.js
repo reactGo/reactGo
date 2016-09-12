@@ -100,7 +100,7 @@ module.exports = [
     },
     plugins: [
         // extract inline css from modules into separate files
-        new ExtractTextPlugin('styles/main.css'),
+        new ExtractTextPlugin('styles/main.css', { allChunks: true }),
         new webpack.optimize.UglifyJsPlugin({
           compressor: {
             warnings: false
@@ -142,7 +142,7 @@ module.exports = [
         // This saves space, because often referenced modules
         // and chunks get smaller ids.
         new webpack.optimize.OccurenceOrderPlugin(),
-        new ExtractTextPlugin('styles/main.css'),
+        new ExtractTextPlugin('styles/main.css', { allChunks: true }),
         new webpack.optimize.UglifyJsPlugin({
           compressor: {
             warnings: false
