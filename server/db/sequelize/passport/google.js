@@ -73,8 +73,7 @@ export default (req, accessToken, refreshToken, profile, done) =>
       if (existingEmailUser) {
         return done(null, false, { message: existingEmailUserMessage });
       }
-      // TODO: accesstoken was null but req looked like one...?
-      return createUserWithToken(profile, req, done);
+      return createUserWithToken(profile, accessToken, done);
     });
   }).catch((err) => {
     console.log(err);
