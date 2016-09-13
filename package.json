@@ -31,7 +31,7 @@
     "eslint-plugin-jsx-a11y": "^2.2.0",
     "eslint-plugin-react": "^6.1.2",
     "expect": "^1.15.2",
-    "karma": "^1.1.1",
+    "karma": "^1.1.2",
     "karma-jsdom-launcher": "^4.0.0",
     "karma-mocha": "^1.0.1",
     "karma-mocha-reporter": "^2.0.0",
