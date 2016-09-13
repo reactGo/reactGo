@@ -95,7 +95,7 @@ export default function render(req, res) {
       store.dispatch({ type: types.CREATE_REQUEST });
       preRenderMiddleware(props)
       .then(data => {
-        store.dispatch({ type: types.REQUEST_SUCCESS, data: data.data });
+        store.dispatch({ type: types.REQUEST_SUCCESS, data });
         const componentHTML = renderToString(
           <Provider store={store}>
             <RouterContext {...props} />

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import createRoutes from 'routes';
+import * as types from 'types';
 import configureStore from 'store/configureStore';
 import preRenderMiddleware from 'middlewares/preRenderMiddleware';
 
@@ -30,9 +31,11 @@ function onUpdate() {
     return;
   }
 
-  const { components, params } = this.state;
-
-  preRenderMiddleware(store.dispatch, components, params);
+  store.dispatch({ type: types.CREATE_REQUEST });
+  preRenderMiddleware(this.state)
+  .then(data => {
+    return store.dispatch({ type: types.REQUEST_SUCCESS, data });
+  });
 }
 
 
