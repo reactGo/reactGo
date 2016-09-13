@@ -3,8 +3,8 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { createMemoryHistory, match, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
-import createRoutes from 'routes';
-import configureStore from 'store/configureStore';
+import routes from 'routes';
+import configureStore from 'configureStore';
 import preRenderMiddleware from 'middlewares/preRenderMiddleware';
 import header from 'components/Meta';
 
@@ -50,17 +50,8 @@ const trackingID  = "'UA-########-#'";
  * and pass it into the Router.run function.
  */
 export default function render(req, res) {
-  const authenticated = req.isAuthenticated();
   const history = createMemoryHistory();
-  const store = configureStore({
-    user: {
-      authenticated,
-      isWaiting: false,
-      message: '',
-      isLogin: true
-    }
-  }, history);
-  const routes = createRoutes(store);
+  const store = configureStore({}, history);
 
   /*
    * From the react-router docs:
