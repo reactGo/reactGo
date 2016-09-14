@@ -7,6 +7,7 @@ import createRoutes from 'routes';
 import configureStore from 'store/configureStore';
 import preRenderMiddleware from 'middlewares/preRenderMiddleware';
 import header from 'components/Meta';
+import ssrAuth from 'api/preRenderAuthentication.js';
 
 const clientConfig = {
   host: process.env.HOSTNAME || 'localhost',
@@ -62,6 +63,7 @@ export default function render(req, res) {
   }, history);
   const routes = createRoutes(store);
 
+
   /*
    * From the react-router docs:
    *
@@ -83,6 +85,12 @@ export default function render(req, res) {
    * If all three parameters are `undefined`, this means that there was no route found matching the
    * given location.
    */
+   
+  //if user is authenticated, it creates an interceptor
+  //that adds current session cookie to next session to be used for server side rendering
+  if(authenticated){
+    ssrAuth(req.headers.cookie);
+  }
   match({routes, location: req.url}, (err, redirect, props) => {
     if (err) {
       res.status(500).json(err);
@@ -96,6 +104,10 @@ export default function render(req, res) {
         props.components,
         props.params
       )
+      .then(() => {
+        //after preRendering is complete, we destroy the interceptors
+        authenticated ? ssrAuth() : null;
+      })
       .then(() => {
         const initialState = store.getState();
         const componentHTML = renderToString(
