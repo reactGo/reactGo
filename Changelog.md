@@ -1,3 +1,8 @@
+1.7.17
+===
+- #509 - fetch data on Route Components
+- Update many greenkeeper dependencies
+
 1.7.16
 ====
 - PR #299 - Update all dependencies (greenkeeper)
