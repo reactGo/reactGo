@@ -1,21 +1,6 @@
 import { combineReducers } from 'redux';
 import * as types from 'types';
 
-const isFetching = (
-  state = false,
-  action
-) => {
-  switch (action.type) {
-    case types.GET_TOPICS_REQUEST:
-      return true;
-    case types.GET_TOPICS_SUCCESS:
-    case types.GET_TOPICS_FAILURE:
-      return false;
-    default:
-      return state;
-  }
-};
-
 const topic = (
   state = {},
   action
@@ -47,8 +32,9 @@ const topics = (
   action
 ) => {
   switch (action.type) {
-    case types.GET_TOPICS_SUCCESS:
-      return action.res.data;
+    case types.REQUEST_SUCCESS:
+      if (action.data) return action.data;
+      return state;
     case types.CREATE_TOPIC_REQUEST:
       return [...state, topic(undefined, action)];
     case types.CREATE_TOPIC_FAILURE:
@@ -79,7 +65,6 @@ const newTopic = (
 
 const topicReducer = combineReducers({
   topics,
-  isFetching,
   newTopic
 });
 

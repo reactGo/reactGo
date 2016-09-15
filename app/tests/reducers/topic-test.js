@@ -40,8 +40,7 @@ describe('Topics reducer', () => {
     ).toEqual(
       {
         topics: [],
-        newTopic: '',
-        isFetching: false
+        newTopic: ''
       }
     );
   });
@@ -62,8 +61,7 @@ describe('Topics reducer', () => {
             text: topic
           }
         ],
-        newTopic: '',
-        isFetching: false
+        newTopic: ''
     });
   });
 
@@ -75,33 +73,28 @@ describe('Topics reducer', () => {
       })
     ).toEqual({
         topics: [],
-        newTopic: topic,
-        isFetching: false
+        newTopic: topic
     });
   });
 
-  it('Should handle GET_TOPICS_REQUEST', () => {
+  it('Should handle CREATE_REQUEST', () => {
     expect(
       reducer(undefined, {
-        type: types.GET_TOPICS_REQUEST
+        type: types.CREATE_REQUEST
       })
     ).toEqual({
-        isFetching: true,
         topics: [],
         newTopic: ''
     });
   });
 
-  it('Should handle GET_TOPICS_SUCCESS', () => {
+  it('Should handle REQUEST_SUCCESS', () => {
     expect(
       reducer(undefined, {
-        type: types.GET_TOPICS_SUCCESS,
-        res: {
-          data: topic
-        }
+        type: types.REQUEST_SUCCESS,
+        data: topic
       })
     ).toEqual({
-        isFetching: false,
         topics: topic,
         newTopic: ''
     });
@@ -123,8 +116,7 @@ describe('Topics reducer', () => {
       })
     ).toEqual({
         newTopic: '',
-        topics: newTopics,
-        isFetching: false
+        topics: newTopics
     });
   });
 
@@ -143,8 +135,7 @@ describe('Topics reducer', () => {
       })
     ).toEqual({
         topics: newTopics.pop() && newTopics,
-        newTopic: topic,
-        isFetching: false
+        newTopic: topic
     });
   });
 
@@ -163,8 +154,7 @@ describe('Topics reducer', () => {
       })
     ).toEqual({
         topics: newTopics.pop() && newTopics,
-        newTopic: topic,
-        isFetching: false
+        newTopic: topic
     });
   });
 
@@ -187,8 +177,7 @@ describe('Topics reducer', () => {
       })
     ).toEqual({
         topics: newTopics,
-        newTopic: topic,
-        isFetching: false
+        newTopic: topic
     });
   });
 
@@ -211,8 +200,7 @@ describe('Topics reducer', () => {
       })
     ).toEqual({
         topics: newTopics,
-        newTopic: topic,
-        isFetching: false
+        newTopic: topic
     });
   });
 });

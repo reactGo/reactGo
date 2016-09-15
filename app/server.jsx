@@ -5,6 +5,7 @@ import { createMemoryHistory, match, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
 import createRoutes from 'routes';
 import configureStore from 'store/configureStore';
+import * as types from 'types';
 import preRenderMiddleware from 'middlewares/preRenderMiddleware';
 import header from 'components/Meta';
 
@@ -91,18 +92,17 @@ export default function render(req, res) {
     } else if (props) {
       // This method waits for all render component
       // promises to resolve before returning to browser
-      preRenderMiddleware(
-        store.dispatch,
-        props.components,
-        props.params
-      )
-      .then(() => {
-        const initialState = store.getState();
+      store.dispatch({ type: types.CREATE_REQUEST });
+      preRenderMiddleware(props)
+      .then(data => {
+        store.dispatch({ type: types.REQUEST_SUCCESS, data });
         const componentHTML = renderToString(
           <Provider store={store}>
             <RouterContext {...props} />
           </Provider>
         );
+
+        const initialState = store.getState();
 
         res.status(200).send(`
           <!doctype html>
@@ -121,7 +121,8 @@ export default function render(req, res) {
           </html>
         `);
       })
-      .catch((err) => {
+      .catch(err => {
+        console.error(err);
         res.status(500).json(err);
       });
     } else {
