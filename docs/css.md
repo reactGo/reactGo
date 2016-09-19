@@ -9,7 +9,7 @@ We recently removed sass from the boilerplate, and opted in several postcss plug
 - [postcss-reporter](https://github.com/postcss/postcss-reporter)
 
 
-Please refer to [this](https://github.com/choonkending/react-webpack-node/issues/150) for more reading.
+Please refer to [this](https://github.com/reactGo/reactGo/issues/150) for more reading.
 
 Note: This change to postcss is experimental, as there might be features you want from a preprocessor such as sass that might not be supported - unless you write a plugin yourself.
 

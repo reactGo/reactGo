@@ -12,7 +12,7 @@ We wish for this boilerplate to be **useful** to our users from two aspects:
 
 We've found **concrete examples** to be extremely valuable for our users. However, we are aware that this **decreases the efficiency of building a new project** rapidly.
 
-This issue has been raised in [#137](https://github.com/choonkending/react-webpack-node/issues/137), [#156](https://github.com/choonkending/react-webpack-node/issues/156) and [#372](https://github.com/choonkending/react-webpack-node/issues/372)
+This issue has been raised in [#137](https://github.com/reactGo/reactGo/issues/137), [#156](https://github.com/reactGo/reactGo/issues/156) and [#372](https://github.com/reactGo/reactGo/issues/372)
 
 **Solution**
 
@@ -39,7 +39,7 @@ By reducing our minimal support, we can focus on improving the existing things w
 1. Migration to [**reactGo**](https://github.com/reactGo/reactGo)
 Existing react-webpack-node will be moved to that repository.
 
-2. [**release stateless 2.0**](https://github.com/choonkending/react-webpack-node/pull/406) becomes master
+2. [**release stateless 2.0**](https://github.com/reactGo/reactGo/pull/406) becomes master
 
 3. Other examples will be created as separate repositories (all based on master branch):
 

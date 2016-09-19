@@ -142,7 +142,7 @@ them out to see what can be done or to get some inspiration.
 
 ## How to Contribute:
 
-Best way to keep up to date is check the [issues](https://github.com/choonkending/react-webpack-node/issues). I really welcome improvements for **all aspects** of an app.
+Best way to keep up to date is check the [issues](https://github.com/reactGo/reactGo/issues). I really welcome improvements for **all aspects** of an app.
 
 1. Any suggestions/improvements/bugs can be in the form of Pull Requests, or creating an issue.
 2. Coding guidelines:
@@ -161,7 +161,7 @@ React.js -> Facebook Flux -> Alt -> Redux
 
 We have two implementations of universal flux:
 - **Redux** is on our active **master** branch
-- [**Alt**](https://github.com/goatslacker/alt) (previously implemented) on [flux/alt](https://github.com/choonkending/react-webpack-node/tree/flux/alt) branch. It features [iso](https://github.com/goatslacker/iso), react-router and ImmutableJS.
+- [**Alt**](https://github.com/goatslacker/alt) (previously implemented) on [flux/alt](https://github.com/reactGo/reactGo/tree/flux/alt) branch. It features [iso](https://github.com/goatslacker/iso), react-router and ImmutableJS.
 
 > Note: If you have previously used an alt implementation of this repository, please refer to this branch. I will not be updating it as frequently as master, but definitely welcome suggestions!
 
