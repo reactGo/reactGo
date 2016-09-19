@@ -5,6 +5,6 @@
   "logo": "https://node-js-sample.herokuapp.com/node.svg",
   "keywords": ["node", "express", "static", "react", "webpack", "mongodb"],
   "addons" : [
-  	"mongohq"
+  	"mongolab"
   ]
 }
