@@ -1,6 +1,6 @@
 {
-  "name": "React Node Express Mongo",
-  "description": "A barebones Node.js app using Express 4 with MongoDB, and ReactJS in Flux, using Webpack as a module bundler",
+  "name": "React Go",
+  "description": "A simple Node.js app using Express 4 with Webpack, React, alt, ImmutableJS",
   "repository": "https://github.com/reactGo/reactGo",
   "logo": "https://node-js-sample.herokuapp.com/node.svg",
   "keywords": ["node", "express", "static", "react", "webpack", "mongodb"],

@@ -1,5 +1,5 @@
 {
-  "name": "react-webpack-node",
+  "name": "reactGo",
   "version": "1.7.17",
   "description": "A simple Node.js app using Express 4 with Webpack, React, alt, ImmutableJS",
   "repository": "https://github.com/reactGo/reactGo",
