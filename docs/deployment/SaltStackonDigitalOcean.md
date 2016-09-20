@@ -12,7 +12,7 @@ Salt functions on a master/minion topology. A `master` server acts as a central 
 
 ## Instructions
 
-1. Firstly, `ssh` into your droplet. If you have trouble with this, read [GettingStartedWithDigitalOcean](https://github.com/choonkending/react-webpack-node/blob/master/docs/GettingStartedWithDigitalOcean.md)
+1. Firstly, `ssh` into your droplet. If you have trouble with this, read [GettingStartedWithDigitalOcean](https://github.com/reactGo/reactGo/blob/master/docs/deployment/DigitalOcean.md)
 
 2. Install the SaltStack PPA (personal packaged archives) for Ubuntu - I'm using 14.04.
   i. `sudo apt-get install python-software-properties`

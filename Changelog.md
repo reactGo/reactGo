@@ -94,7 +94,7 @@
   Postgresql)!
 - Addresses #121 and #156
 - Read
-  [databases.md](https://github.com/choonkending/react-webpack-node/blob/master/docs/databases.md)
+  [databases.md](https://github.com/reactGo/reactGo/blob/master/docs/databases.md)
   to learn more.
 
 1.6.2
@@ -138,7 +138,7 @@ npm install babel-cli
 - Abstract Database type into `appConfig.js`
 - Move main route `all` to `server/index.js` from `server/config/routes.js`
 - Use `DB_TYPE` value from `appConfig.js` to conditionally require DB-specific files in `config/connect` and `config/sessions`
-- Read more about how to easily NOT use a DB within this repo [here](https://github.com/choonkending/react-webpack-node/blob/master/docs/databases.md)
+- Read more about how to easily NOT use a DB within this repo [here](https://github.com/reactGo/reactGo/blob/master/docs/databases.md)
 
 1.5.3
 =====
@@ -227,7 +227,7 @@ This was actually a pretty big change!
 =====
 - Breaking changes (at least for master):
   - We will be using Redux in our master branch. We know a lot more work needs to be done to make this more boilerplate-y.
-  - alt is now on the [flux/alt](https://github.com/choonkending/react-webpack-node/tree/flux/alt) branch.
+  - alt is now on the [flux/alt](https://github.com/reactGo/reactGo/tree/flux/alt) branch.
 
 1.2.1
 ======

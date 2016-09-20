@@ -25,7 +25,7 @@ function onUpdate() {
   // So when the client side onUpdate kicks in, we do not need to fetch twice.
   // We set it to null so that every subsequent client-side navigation will
   // still trigger a fetch data.
-  // Read more: https://github.com/choonkending/react-webpack-node/pull/203#discussion_r60839356
+  // Read more: https://github.com/reactGo/reactGo/pull/203#discussion_r60839356
   if (window.__INITIAL_STATE__ !== null) {
     window.__INITIAL_STATE__ = null;
     return;

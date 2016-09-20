@@ -2,7 +2,7 @@
   "name": "react-webpack-node",
   "version": "1.7.17",
   "description": "A simple Node.js app using Express 4 with Webpack, React, alt, ImmutableJS",
-  "repository": "https://github.com/choonkending/react-webpack-node",
+  "repository": "https://github.com/reactGo/reactGo",
   "main": "index.js",
   "scripts": {
     "babel": "babel --presets es2015,stage-0 --ignore node_modules,public",

@@ -21,7 +21,7 @@ Currently, we support these DB_TYPES:
 
 We abstracted the DB config in `appConfig` to enable you to require the correct files if you were to use a different database, e.g. postgresql.
 
-Please read [this PR](https://github.com/choonkending/react-webpack-node/pull/190#issuecomment-210273745) for more context.
+Please read [this PR](https://github.com/reactGo/reactGo/pull/190#issuecomment-210273745) for more context.
 
 ```javascript
 /*
