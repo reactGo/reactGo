@@ -1,8 +1,5 @@
-import axios from 'axios';
-
 const service = {
-  getTopics: () => axios.get('/topic')
+  getTopics: (api) => api.get('/topic')
 };
 
 export default service;
-

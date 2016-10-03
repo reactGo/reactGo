@@ -19,7 +19,7 @@ axios.defaults.baseURL = `http://${clientConfig.host}:${clientConfig.port}`;
 
 
 const analtyicsScript =
-  typeof trackingID === "undefined" ? ``
+  typeof trackingID === 'undefined' ? ''
   :
   `<script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -40,9 +40,7 @@ const analtyicsScript =
  * however the assignement  does not, so it is undefined for the type check above.
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var#var_hoisting
  */
-const trackingID  = "'UA-########-#'";
-
-
+const trackingID = "'UA-########-#'";
 
 
 /*
@@ -93,7 +91,17 @@ export default function render(req, res) {
       // This method waits for all render component
       // promises to resolve before returning to browser
       store.dispatch({ type: types.CREATE_REQUEST });
-      preRenderMiddleware(props)
+      let api = axios;
+      // This allows us to fetch data from API server during SSR
+      // that requires authentication. Otherwise axios requests would not
+      // have the user session set.
+      if (authenticated) {
+        api = axios.create({
+          headers: { cookie: req.headers.cookie },
+          baseURL: `http://${clientConfig.host}:${clientConfig.port}`
+        });
+      }
+      preRenderMiddleware({ props, api })
       .then(data => {
         store.dispatch({ type: types.REQUEST_SUCCESS, data });
         const componentHTML = renderToString(

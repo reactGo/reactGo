@@ -7,6 +7,7 @@ import createRoutes from 'routes';
 import * as types from 'types';
 import configureStore from 'store/configureStore';
 import preRenderMiddleware from 'middlewares/preRenderMiddleware';
+import axios from 'axios';
 
 // Grab the state from a global injected into
 // server-generated HTML
@@ -15,6 +16,8 @@ const initialState = window.__INITIAL_STATE__;
 const store = configureStore(initialState, browserHistory);
 const history = syncHistoryWithStore(browserHistory, store);
 const routes = createRoutes(store);
+
+const api = axios.create();
 
 /**
  * Callback function handling frontend route changes.
@@ -32,7 +35,7 @@ function onUpdate() {
   }
 
   store.dispatch({ type: types.CREATE_REQUEST });
-  preRenderMiddleware(this.state)
+  preRenderMiddleware({ props: this.state, api })
   .then(data => {
     return store.dispatch({ type: types.REQUEST_SUCCESS, data });
   });
