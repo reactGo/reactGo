@@ -104,7 +104,9 @@ export default function render(req, res) {
 
         const initialState = store.getState();
 
-        res.status(200).send(`
+        const status = props.routes.reduce((prevstatus, route) => route.status || prevstatus, undefined);
+
+        res.status(status || 200).send(`
           <!doctype html>
           <html ${header.htmlAttributes.toString()}>
             <head>
