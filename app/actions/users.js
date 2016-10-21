@@ -69,7 +69,6 @@ export function logoutSuccess(message) {
     type: types.LOGOUT_SUCCESS_USER,
     message
   };
-
 }
 
 export function logoutError() {
@@ -127,7 +126,6 @@ export function logOut() {
         if (response.status === 200) {
           dispatch(logoutSuccess(response.data.message));
           dispatch(push('/logout'));
-
         } else {
           dispatch(logoutError());
         }

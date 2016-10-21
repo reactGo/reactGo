@@ -43,7 +43,6 @@ export default (store) => {
       <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
       <Route path="about" component={About} />
       <Route path="logout" component={Logout} />
-
     </Route>
   );
 };
