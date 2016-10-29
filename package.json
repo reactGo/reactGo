@@ -109,7 +109,7 @@
     "react-router-redux": "^4.0.0",
     "react-transform-hmr": "^1.0.4",
     "redux": "^3.6.0",
-    "redux-logger": "^2.6.1",
+    "redux-logger": "^2.7.3",
     "redux-thunk": "^2.0.1",
     "rimraf": "^2.5.4",
     "sequelize": "^3.24.1",
