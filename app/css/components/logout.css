@@ -1,0 +1,8 @@
+@import '../common/typography';
+
+.header {
+  @apply --heading;
+  text-align: center;
+}
+
+.description { @apply --normal; }

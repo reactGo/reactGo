@@ -28,7 +28,9 @@ export function login(req, res, next) {
 export function logout(req, res) {
   // Do email and password validation for the server
   req.logout();
-  res.redirect('/');
+  return res.status(200).json({
+    message: 'You have been successfully logged out.'
+  });
 }
 
 /**
