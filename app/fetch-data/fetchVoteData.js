@@ -1,9 +1,11 @@
 import { voteService } from 'services';
+import * as types from 'types';
 
 const fetchData = () => {
-  return voteService.getTopics()
-          .then(res => res.data);
+  return {
+    type: types.GET_TOPICS,
+    promise: voteService.getTopics()
+  }
 };
 
 export default fetchData;
-

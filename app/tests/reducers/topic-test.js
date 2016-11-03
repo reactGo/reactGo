@@ -77,10 +77,10 @@ describe('Topics reducer', () => {
     });
   });
 
-  it('Should handle CREATE_REQUEST', () => {
+  it('Should handle FETCH_DATA_REQUEST', () => {
     expect(
       reducer(undefined, {
-        type: types.CREATE_REQUEST
+        type: types.FETCH_DATA_REQUEST
       })
     ).toEqual({
         topics: [],
@@ -88,11 +88,24 @@ describe('Topics reducer', () => {
     });
   });
 
-  it('Should handle REQUEST_SUCCESS', () => {
+  it('Should handle FETCH_DATA_SUCCESS', () => {
     expect(
       reducer(undefined, {
-        type: types.REQUEST_SUCCESS,
-        data: topic
+        type: types.FETCH_DATA_SUCCESS
+      })
+    ).toEqual({
+        topics: [],
+        newTopic: ''
+    });
+  });
+
+  it('Should handle GET_TOPICS_SUCCESS', () => {
+    expect(
+      reducer(undefined, {
+        type: types.GET_TOPICS_SUCCESS,
+        res: {
+          data: topic
+        }
       })
     ).toEqual({
         topics: topic,

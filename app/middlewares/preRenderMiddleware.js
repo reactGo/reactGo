@@ -1,10 +1,8 @@
-const defaultFetchData = () => Promise.resolve();
+import {flatten} from 'lodash'
 
-function preRenderMiddleware({ routes, location, params }) {
-  const matchedRoute = routes[routes.length - 1];
-  const fetchDataHandler = matchedRoute.fetchData || defaultFetchData;
-  return fetchDataHandler(params);
+//Dispatch is from the store
+//FetchData is either falsy (null, undefined etc), an action (function, Promise) or an array of either:
+export default(dispatch, { routes, params, location: { query } }) => {
+  const dataFetchers = flatten(routes.filter(({fetchData}) => !!fetchData).map(e=>e.fetchData))
+  return Promise.all(dataFetchers.map(fetchData => dispatch(fetchData({ ...params, query }))))
 }
-
-export default preRenderMiddleware;
-

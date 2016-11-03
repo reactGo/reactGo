@@ -7,10 +7,10 @@ import * as types from 'types';
 
 const isFetching = ( state = false, action ) => {
   switch (action.type) {
-    case types.CREATE_REQUEST:
+    case types.FETCH_DATA_REQUEST:
       return true;
-    case types.REQUEST_SUCCESS:
-    case types.REQUEST_FAILURE:
+    case types.FETCH_DATA_SUCCESS:
+    case types.FETCH_DATA_FAILURE:
       return false;
     default:
       return state;
