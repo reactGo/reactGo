@@ -1,46 +1,18 @@
 var path = require('path');
+var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var InlineEnviromentVariablesPlugin = require('inline-environment-variables-webpack-plugin');
-var webpack = require('webpack');
 
-var assetsPath = path.join(__dirname, '..', 'public', 'assets');
-var publicPath = '/assets/';
+var commonLoaders = require('./common.config').commonLoaders;
+var assetsPath = require('./common.config').assetsPath;
+var publicPath = require('./common.config').publicPath;
 
-var commonLoaders = [
+commonLoaders = commonLoaders.concat(
   {
-    /*
-     * TC39 categorises proposals for babel in 4 stages
-     * Read more http://babeljs.io/docs/usage/experimental/
-     */
-    test: /\.js$|\.jsx$/,
-    loader: 'babel-loader',
-    // Reason why we put this here instead of babelrc
-    // https://github.com/gaearon/react-transform-hmr/issues/5#issuecomment-142313637
-    query: {
-      presets: ['es2015', 'react', 'stage-0'],
-      plugins: [
-        'transform-decorators-legacy',
-        'transform-react-remove-prop-types',
-        'transform-react-constant-elements',
-        'transform-react-inline-elements'
-      ]
-    },
-    include: path.join(__dirname, '..', 'app'),
-    exclude: path.join(__dirname, '..', 'node_modules')
-  },
-  { test: /\.json$/, loader: 'json-loader' },
-  {
-    test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
-    loader: 'url',
-    query: {
-        name: '[hash].[ext]',
-        limit: 10000,
-    }
-  },
-  { test: /\.css$/,
+    test: /\.css$/,
     loader: ExtractTextPlugin.extract('style-loader', 'css-loader?module!postcss-loader')
   }
-];
+);
 
 var postCSSConfig = function () {
   return [
@@ -90,7 +62,6 @@ module.exports = [
       publicPath: publicPath
 
     },
-
     module: {
       loaders: commonLoaders
     },

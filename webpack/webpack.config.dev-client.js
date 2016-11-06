@@ -1,8 +1,9 @@
 var path = require('path');
 var webpack = require('webpack');
 var styleLintPlugin = require('stylelint-webpack-plugin');
-var assetsPath = path.join(__dirname, '..', 'public', 'assets');
 var hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
+var assetsPath = require('./common.config').assetsPath;
+var publicPath = require('./common.config').publicPath;
 
 var commonLoaders = [
   {
@@ -81,7 +82,7 @@ module.exports = {
       // The filename of the entry chunk as relative path inside the output.path directory
       filename: '[name].js',
       // The output path from the view of the Javascript
-      publicPath: '/assets/'
+      publicPath: publicPath
     },
     module: {
       loaders: commonLoaders.concat([
