@@ -1,9 +1,8 @@
 import { voteService } from 'services';
 
-const fetchData = () => {
-  return voteService.getTopics()
+const fetchData = ({ api }) => {
+  return voteService.getTopics(api)
           .then(res => res.data);
 };
 
 export default fetchData;
-
