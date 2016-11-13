@@ -3,7 +3,6 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { RouterContext } from 'react-router';
 import { trackingID } from 'config/app';
-import markup from 'index.html';
 import Helmet from 'react-helmet';
 
 /*
@@ -29,20 +28,24 @@ const createApp = (store, props) => renderToString(
 );
 
 const createScriptTags = () => {
-  return `
-    ${analtyicsScript}
-    <script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>
-  `;
+  return `${analtyicsScript}<script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>`;
 };
 
 const buildPage = ({ componentHTML, initialState, headAssets, analtyicsScript }) => {
-  return markup
-    .replace('!!TITLE_TAG!!', headAssets.title.toString())
-    .replace('!!META_TAGS!!', headAssets.meta.toString())
-    .replace('!!LINK_TAGS!!', headAssets.link.toString())
-    .replace('!!SCRIPT_TAGS!!', createScriptTags())
-    .replace('!!COMPONENT_HTML!!', componentHTML)
-    .replace('!!INITIAL_STATE!!', JSON.stringify(initialState));
+  return `
+<!doctype html>
+<html>
+  <head>
+    ${headAssets.title.toString()}
+    ${headAssets.meta.toString()}
+    ${headAssets.link.toString()}
+  </head>
+  <body>
+    <div id="app">${componentHTML}</div>
+    <script>window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}</script>
+    ${createScriptTags()}
+  </body>
+</html>`;
 };
 
 export default (store, props) => {

@@ -29,8 +29,7 @@ var commonLoaders = [
         name: '[hash].[ext]',
         limit: 10000,
     }
-  },
-  { test: /\.html$/, loader: 'html-loader' }
+  }
 ];
 
 var postCSSConfig = function () {
