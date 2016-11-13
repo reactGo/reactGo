@@ -1,6 +1,7 @@
 {
     "verbose": false,
     "watch": [
+      "app/utils",
       "app/server.jsx",
       "app/routes.jsx",
       "app/helmconfig.js",

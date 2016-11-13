@@ -1,35 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
-var assetsPath = path.join(__dirname, '..', 'public', 'assets');
-
-var commonLoaders = [
-  {
-    /*
-     * TC39 categorises proposals for babel in 4 stages
-     * Read more http://babeljs.io/docs/usage/experimental/
-     */
-    test: /\.js$|\.jsx$/,
-    loader: 'babel-loader',
-    // Reason why we put this here instead of babelrc
-    // https://github.com/gaearon/react-transform-hmr/issues/5#issuecomment-142313637
-    query: {
-      presets: ['es2015', 'react', 'stage-0'],
-      plugins: ['transform-decorators-legacy']
-    },
-    include: path.join(__dirname, '..', 'app'),
-    exclude: path.join(__dirname, '..', 'node_modules')
-  },
-  { test: /\.json$/, loader: 'json-loader' },
-  {
-    test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
-    loader: 'url',
-    query: {
-        name: '[hash].[ext]',
-        limit: 10000,
-    }
-  },
-  { test: /\.html$/, loader: 'html-loader' }
-];
+var commonLoaders = require('./common.config').commonLoaders;
+var assetsPath = require('./common.config').assetsPath;
+var publicPath = require('./common.config').publicPath;
 
 module.exports = {
     // The configuration for the server-side rendering
@@ -45,7 +18,7 @@ module.exports = {
       // The filename of the entry chunk as relative path inside the output.path directory
       filename: 'server.js',
       // The output path from the view of the Javascript
-      publicPath: '/assets/',
+      publicPath: publicPath,
       libraryTarget: 'commonjs2'
     },
     module: {
