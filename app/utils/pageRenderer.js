@@ -3,8 +3,13 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { RouterContext } from 'react-router';
 import { trackingID } from 'config/app';
+import markup from 'index.html';
 import Helmet from 'react-helmet';
 
+/*
+ * Consider async script loading if you support IE9+
+ * https://developers.google.com/analytics/devguides/collection/analyticsjs/
+ */
 const createTrackingScript = trackingID =>
 `<script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -23,26 +28,27 @@ const createApp = (store, props) => renderToString(
   </Provider>
 );
 
-const buildPage = (header, componentHTML, initialState, analtyicsScript) =>
-`<!doctype html>
-<html ${header.htmlAttributes.toString()}>
-<head>
-${header.title.toString()}
-${header.meta.toString()}
-${header.link.toString()}
-</head>
-<body>
-<div id="app">${componentHTML}</div>
-<script>window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};</script>
-${analtyicsScript}
-<script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>
-</body>
-</html>`;
+const createScriptTags = () => {
+  return `
+    ${analtyicsScript}
+    <script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>
+  `;
+};
+
+const buildPage = ({ componentHTML, initialState, headAssets, analtyicsScript }) => {
+  return markup
+    .replace('!!TITLE_TAG!!', headAssets.title.toString())
+    .replace('!!META_TAGS!!', headAssets.meta.toString())
+    .replace('!!LINK_TAGS!!', headAssets.link.toString())
+    .replace('!!SCRIPT_TAGS!!', createScriptTags())
+    .replace('!!COMPONENT_HTML!!', componentHTML)
+    .replace('!!INITIAL_STATE!!', JSON.stringify(initialState));
+};
 
 export default (store, props) => {
   const initialState = store.getState();
   const componentHTML = createApp(store, props);
-  const header = Helmet.rewind();
-  return buildPage(header, componentHTML, initialState, analtyicsScript);
+  const headAssets = Helmet.rewind();
+  return buildPage({ componentHTML, initialState, headAssets, analtyicsScript });
 };
 
