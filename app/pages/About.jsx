@@ -5,7 +5,7 @@ import AboutContainer from 'containers/About';
 class About extends Component {
   render() {
     return (
-      <Page metaData={this.getMetaData()}>
+      <Page {...this.getMetaData()}>
         <AboutContainer {...this.props} />
       </Page>
     );

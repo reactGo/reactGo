@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 
-const Page = ({ metaData, children }) => {
-  const { title, link, meta } = metaData;
+const Page = ({ title, link, meta, children }) => {
   return (
     <div>
       <Helmet title={title} link={link} meta={meta} />
@@ -12,11 +11,9 @@ const Page = ({ metaData, children }) => {
 };
 
 Page.propTypes = {
-  metaData: PropTypes.shape({
-    title: PropTypes.string,
-    link: PropTypes.array,
-    meta: PropTypes.array
-  })
+  title: PropTypes.string,
+  link: PropTypes.array,
+  meta: PropTypes.array
 };
 
 export default Page;

@@ -5,7 +5,7 @@ import LoginOrRegisterContainer from 'containers/LoginOrRegister';
 class LoginOrRegister extends Component {
   render() {
     return (
-      <Page metaData={this.getMetaData()}>
+      <Page {...this.getMetaData()}>
         <LoginOrRegisterContainer {...this.props} />
       </Page>
     );

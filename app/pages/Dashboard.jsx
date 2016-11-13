@@ -5,7 +5,7 @@ import DashboardContainer from 'containers/Dashboard';
 class Dashboard extends Component {
   render() {
     return (
-      <Page metaData={this.getMetaData()}>
+      <Page {...this.getMetaData()}>
         <DashboardContainer {...this.props} />
       </Page>
     );

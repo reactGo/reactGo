@@ -5,7 +5,7 @@ import VoteContainer from 'containers/Vote';
 class Vote extends Component {
   render() {
     return (
-      <Page metaData={this.getMetaData()}>
+      <Page {...this.getMetaData()}>
         <VoteContainer {...this.props} />
       </Page>
     );
