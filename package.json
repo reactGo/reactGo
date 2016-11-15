@@ -88,7 +88,7 @@
     "inline-environment-variables-webpack-plugin": "1.1.0",
     "isomorphic-fetch": "^2.2.1",
     "json-loader": "^0.5.4",
-    "lodash": "^4.16.2",
+    "lodash": "^4.17.1",
     "method-override": "^2.3.5",
     "mongoose": "^4.5.10",
     "passport": "^0.3.2",
