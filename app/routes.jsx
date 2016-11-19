@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import { fetchVoteData } from 'fetch-data';
 import App from 'containers/App';
-import { Vote, Dashboard, About, LoginOrRegister } from 'pages';
 
 /*
  * @param {Redux Store}
@@ -30,12 +29,37 @@ export default (store) => {
     }
     callback();
   };
+
+  const getVote = (nextState, cb) => {
+    require.ensure([], (require) => {
+      cb(null, require('./pages/Vote').default);
+    });
+  };
+
+  const getDashboard = (nextState, cb) => {
+    require.ensure([], (require) => {
+      cb(null, require('./pages/Dashboard').default);
+    });
+  };
+
+  const getLoginOrRegister = (nextState, cb) => {
+    require.ensure([], (require) => {
+      cb(null, require('./pages/LoginOrRegister').default);
+    });
+  };
+
+  const getAbout = (nextState, cb) => {
+    require.ensure([], (require) => {
+      cb(null, require('./pages/About').default);
+    });
+  };
+
   return (
     <Route path="/" component={App}>
-      <IndexRoute component={Vote} fetchData={fetchVoteData} />
-      <Route path="login" component={LoginOrRegister} onEnter={redirectAuth} />
-      <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
-      <Route path="about" component={About} />
+      <IndexRoute getComponent={getVote} fetchData={fetchVoteData} />
+      <Route path="login" getComponent={getLoginOrRegister} onEnter={redirectAuth} />
+      <Route path="dashboard" getComponent={getDashboard} onEnter={requireAuth} />
+      <Route path="about" getComponent={getAbout} />
     </Route>
   );
 };
