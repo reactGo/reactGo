@@ -44,6 +44,7 @@ const buildPage = ({ componentHTML, initialState, headAssets, analtyicsScript })
     <div id="app">${componentHTML}</div>
     <script>window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}</script>
     ${createScriptTags()}
+    ${headAssets.script.toString()}
   </body>
 </html>`;
 };
