@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { meta as metaAssets, link as linkAssets, script as scriptAssets } from 'config/headAssets';
 
-const Page = ({ title, link, meta, children }) => {
+const Page = ({ title, link, meta, script, children }) => {
   const metaProp = meta || metaAssets;
   const linkProp = link || linkAssets;
   const scriptProp = script || scriptAssets;
@@ -17,7 +17,8 @@ const Page = ({ title, link, meta, children }) => {
 Page.propTypes = {
   title: PropTypes.string,
   link: PropTypes.array,
-  meta: PropTypes.array
+  meta: PropTypes.array,
+  script: PropTypes.array,
 };
 
 export default Page;
