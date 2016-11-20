@@ -88,7 +88,7 @@
     "isomorphic-fetch": "^2.2.1",
     "json-loader": "^0.5.4",
     "lodash": "^4.16.2",
-    "method-override": "^2.3.5",
+    "method-override": "^2.3.7",
     "mongoose": "^4.5.10",
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",
