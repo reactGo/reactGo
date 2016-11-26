@@ -19,10 +19,20 @@ If you hate MongoDB with a passion and would like to see a postgresql example, c
 #### Setup your mongoDB directory
 
 Note: Make sure you have the directory and its permissions setup (i.e. `/data/db`):
-```bash
+
+(Linux / MacOS)
+```bash 
 sudo mkdir -p /data/db
 sudo chown -R `id -u` /data/db
 ```
+
+(Windows)
+```bash 
+sudo mkdir -p \data\db
+sudo chown -R `id -u` \data\db
+```
+
+ 
 
 #### Run your mongoDB server
 ```bash
