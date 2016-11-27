@@ -1,6 +1,6 @@
 {
   "name": "react-webpack-node",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring universal Redux, React Router, React Router Redux Hot reloading, CSS modules, Express 4.x, and multiple ORMs.",
   "repository": "https://github.com/choonkending/react-webpack-node",
   "main": "index.js",
@@ -85,7 +85,6 @@
     "file-loader": "^0.9.0",
     "helmet": "^2.1.2",
     "inline-environment-variables-webpack-plugin": "1.1.0",
-    "isomorphic-fetch": "^2.2.1",
     "json-loader": "^0.5.4",
     "lodash": "^4.16.2",
     "method-override": "^2.3.5",

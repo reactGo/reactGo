@@ -1,3 +1,7 @@
+2.0.1
+===
+- Remove isomorphic fetch as dependency - no longer needed! Hooray!
+
 2.0
 ===
 - #730 - Remove promise middleware
