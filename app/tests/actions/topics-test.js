@@ -282,13 +282,5 @@ describe('Topic Actions', () => {
       expect(actions.createTopicDuplicate()).toEqual(expectedAction);
     });
 
-    it('should create an action when fetching topics', () => {
-      sandbox.stub(axios, 'get').returns('hello');
-      const expectedAction = {
-        type: types.GET_TOPICS,
-        promise: 'hello'
-      };
-      expect(actions.fetchTopics()).toEqual(expectedAction);
-    });
   });
 });

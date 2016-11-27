@@ -1,3 +1,40 @@
+2.0
+===
+- #730 - Remove promise middleware
+
+If you previously `dispatch` promises and relied on `promise` middleware, we are planning on deprecating the support for this promise middleware. From #509, we remove usage of `promise` in action dispatched for asynchronous API call in redux action calls.
+
+Previously in order to fetch data asynchronously on route change, we would specify a `static need` method in a `container` component, e.g. `Vote.jsx`. This `need` method specified an action creator such as the method below.
+
+```js
+export function fetchTopics() {
+  return {
+    type: types.GET_TOPICS,
+    promise: makeTopicRequest('get')
+  };
+}
+```
+
+`preRenderMiddleware` would call the above function which relied on `promiseMiddleware` to work and fetch data. This coupled our asynchronous data fetching to `redux` which was coupled to `promiseMiddleware`. Upon inspection, we could make `preRenderMiddleware` a simpler function which served one purpose, to invoke the `fetch` functions specified on `Routes` and returning the values.
+
+When we removed usage of promise in our middleware, we effectively **removed the need for this middleware to exist**! Hooray! It's all to a matter of preference, if you like (and it suits your project), keep it!
+
+If you are wondering how you could handle dispatching of events without `promiseMiddleware`, shout in an issue and someone will help you out. Otherwise, look at how we implemented `fetch-data/fetchVoteData.js` and work your way backwards from there!
+
+1.7.18
+===
+- #518 - remove unneeded `app/services/user.js` @StefanWerW
+- #523 - Update app.json with mongolab @StefanWerW
+- #548 - Fix 404 in README @malixsys
+- #591 - Update apps.md @StefanWerW
+- #617 - Remove unused dependencies @StefanWerW
+- #569 - Add jsx to lint files @GGAlanSmithee
+- #648 - Bugfix for local authentication @shredd
+- #675 - Fix page title, meta, link tags for dynamic routes
+- #699 - Remove immutable
+- #711 - Do no check line-breaks for windows @ZeroCho
+- Delete duplicate AWS doc
+
 1.7.17
 ===
 - #509 - fetch data on Route Components

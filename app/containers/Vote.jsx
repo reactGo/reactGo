@@ -5,7 +5,7 @@ import EntryBox from 'components/EntryBox';
 import MainSection from 'components/MainSection';
 import Scoreboard from 'components/Scoreboard';
 import { createTopic, typing, incrementCount,
-  decrementCount, destroyTopic, fetchTopics } from 'actions/topics';
+  decrementCount, destroyTopic } from 'actions/topics';
 import styles from 'css/components/vote';
 
 const cx = classNames.bind(styles);
