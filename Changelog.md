@@ -1,3 +1,26 @@
+2.0
+===
+- #730 - Remove promise middleware
+
+If you previously `dispatch` promises and relied on `promise` middleware, we are planning on deprecating the support for this promise middleware. From #509, we remove usage of `promise` in action dispatched for asynchronous API call in redux action calls.
+
+Previously in order to fetch data asynchronously on route change, we would specify a `static need` method in a `container` component, e.g. `Vote.jsx`. This `need` method specified an action creator such as the method below.
+
+```js
+export function fetchTopics() {
+  return {
+    type: types.GET_TOPICS,
+    promise: makeTopicRequest('get')
+  };
+}
+```
+
+`preRenderMiddleware` would call the above function which relied on `promiseMiddleware` to work and fetch data. This coupled our asynchronous data fetching to `redux` which was coupled to `promiseMiddleware`. Upon inspection, we could make `preRenderMiddleware` a simpler function which served one purpose, to invoke the `fetch` functions specified on `Routes` and returning the values.
+
+When we removed usage of promise in our middleware, we effectively **removed the need for this middleware to exist**! Hooray! It's all to a matter of preference, if you like (and it suits your project), keep it!
+
+If you are wondering how you could handle dispatching of events without `promiseMiddleware`, shout in an issue and someone will help you out. Otherwise, look at how we implemented `fetch-data/fetchVoteData.js` and work your way backwards from there!
+
 1.7.18
 ===
 - #518 - remove unneeded `app/services/user.js` @StefanWerW
