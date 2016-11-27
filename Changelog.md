@@ -1,3 +1,17 @@
+1.7.18
+===
+- #518 - remove unneeded `app/services/user.js` @StefanWerW
+- #523 - Update app.json with mongolab @StefanWerW
+- #548 - Fix 404 in README @malixsys
+- #591 - Update apps.md @StefanWerW
+- #617 - Remove unused dependencies @StefanWerW
+- #569 - Add jsx to lint files @GGAlanSmithee
+- #648 - Bugfix for local authentication @shredd
+- #675 - Fix page title, meta, link tags for dynamic routes
+- #699 - Remove immutable
+- #711 - Do no check line-breaks for windows @ZeroCho
+- Delete duplicate AWS doc
+
 1.7.17
 ===
 - #509 - fetch data on Route Components
