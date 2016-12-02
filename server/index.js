@@ -5,7 +5,7 @@ import { connect } from './db';
 import passportConfig from './config/passport';
 import expressConfig from './config/express';
 import routesConfig from './config/routes';
-const App = require('../public/assets/server');
+import renderMiddleware from '../app/server';
 const app = express();
 
 /*
@@ -46,9 +46,9 @@ routesConfig(app);
 /*
  * This is where the magic happens. We take the locals data we have already
  * fetched and seed our stores with data.
- * App is a function that requires store data and url
+ * renderMiddleware is a function that requires store data and url
  * to initialize and return the React-rendered html string
  */
-app.get('*', App.default);
+app.get('*', renderMiddleware);
 
 app.listen(app.get('port'));
