@@ -95,7 +95,7 @@
     "pg": "^6.0.3",
     "pg-hstore": "^2.3.2",
     "postcss-cssnext": "^2.7.0",
-    "postcss-import": "^8.0.2",
+    "postcss-import": "^9.0.0",
     "postcss-loader": "^0.13.0",
     "postcss-reporter": "^1.4.1",
     "postcss-simple-vars": "^3.0.0",
