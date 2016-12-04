@@ -1,6 +1,5 @@
-import Models from '../models';
+import { Models, sequelize } from '../models';
 
-const sequelize = Models.sequelize;
 const User = Models.User;
 
 /* eslint-disable no-param-reassign */
