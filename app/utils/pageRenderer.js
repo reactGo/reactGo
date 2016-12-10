@@ -19,7 +19,7 @@ const createTrackingScript = trackingID =>
   ga('send', 'pageview');
   </script>`;
 
-const analtyicsScript = createTrackingScript(trackingID);
+const analyticsScript = createTrackingScript(trackingID);
 
 const createApp = (store, props) => renderToString(
   <Provider store={store}>
@@ -28,10 +28,10 @@ const createApp = (store, props) => renderToString(
 );
 
 const createScriptTags = () => {
-  return `${analtyicsScript}<script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>`;
+  return `${analyticsScript}<script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>`;
 };
 
-const buildPage = ({ componentHTML, initialState, headAssets, analtyicsScript }) => {
+const buildPage = ({ componentHTML, initialState, headAssets, analyticsScript }) => {
   return `
 <!doctype html>
 <html>
@@ -52,6 +52,6 @@ export default (store, props) => {
   const initialState = store.getState();
   const componentHTML = createApp(store, props);
   const headAssets = Helmet.rewind();
-  return buildPage({ componentHTML, initialState, headAssets, analtyicsScript });
+  return buildPage({ componentHTML, initialState, headAssets, analyticsScript });
 };
 
