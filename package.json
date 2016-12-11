@@ -5,7 +5,6 @@
   "repository": "https://github.com/choonkending/react-webpack-node",
   "main": "index.js",
   "scripts": {
-    "babel-node": "babel-node --presets es2015,stage-0 --ignore node_modules,public",
     "sequelize": "node_modules/.bin/sequelize",
     "lint": "eslint --ext .js,.jsx app server",
     "lint:fix": "eslint --ext .js,.jsx app server --fix",
