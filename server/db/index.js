@@ -12,7 +12,7 @@ switch (DB_TYPE) {
     dbConfig = require('./postgres').default;
     break;
   case DB_TYPES.NONE:
-    dbConfig = require('./none');
+    dbConfig = require('./none').default;
     break;
   default:
     throw new Error(`No database type '${DB_TYPE}' found`);
