@@ -97,7 +97,7 @@
     "postcss-cssnext": "^2.7.0",
     "postcss-import": "^8.0.2",
     "postcss-loader": "^0.13.0",
-    "postcss-reporter": "^1.4.1",
+    "postcss-reporter": "^2.0.0",
     "postcss-simple-vars": "^3.0.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
