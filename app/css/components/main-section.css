@@ -11,8 +11,8 @@
 .header {
   @apply --title;
   @apply --subHeading;
-  background: #ed193a;
-  color: #fff;
+  background: --colorCrimson;
+  color: --colorWhite;
 }
 
 .list {
