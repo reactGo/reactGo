@@ -134,7 +134,12 @@ module.exports = [
           __DEVSERVER__: false
         }),
         new webpack.IgnorePlugin(/vertx/),
-        new InlineEnviromentVariablesPlugin({ NODE_ENV: 'production' })
+        new InlineEnviromentVariablesPlugin({ NODE_ENV: 'production' }),
+        new webpack.optimize.UglifyJsPlugin({
+          compressor: {
+            warnings: false
+          }
+        })
     ]
   }
 ];
