@@ -10,7 +10,7 @@
 .header {
   @apply --title;
   @apply --subHeading;
-  background: #0F9D58;
+  background: --colorSalem;
   color: #fff;
 }
 
