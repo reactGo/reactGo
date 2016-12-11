@@ -84,11 +84,10 @@ module.exports = {
       publicPath: publicPath
     },
     module: {
-      loaders: commonLoaders.concat([
-        { test: /\.css$/,
-          loader: 'style!css?module&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
-        }
-      ])
+      loaders: commonLoaders.concat({
+        test: /\.css$/,
+        loader: 'style!css?module&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
+      })
     },
     resolve: {
       root: [path.join(__dirname, '..', 'app')],
