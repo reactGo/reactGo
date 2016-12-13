@@ -88,7 +88,7 @@ module.exports = {
     module: {
       loaders: commonLoaders.concat({
         test: /\.css$/,
-        loader: 'style!css?module&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
+        loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
       })
     },
     resolve: {

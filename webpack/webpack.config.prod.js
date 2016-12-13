@@ -63,7 +63,7 @@ module.exports = [
       loaders: commonLoaders.concat(
         {
           test: /\.css$/,
-          loader: ExtractTextPlugin.extract('style-loader', 'css-loader?module!postcss-loader')
+          loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1!postcss-loader')
         }
       )
     },
@@ -109,7 +109,7 @@ module.exports = [
     module: {
       loaders: commonLoaders.concat({
           test: /\.css$/,
-          loader: 'css/locals?module!postcss-loader'
+          loader: 'css/locals?modules&importLoaders=1!postcss-loader'
       })
     },
     resolve: {
