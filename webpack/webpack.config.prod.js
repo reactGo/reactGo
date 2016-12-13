@@ -9,17 +9,7 @@ var externals = commonConfig.externals;
 var assetsPath = commonConfig.output.assetsPath;
 var distPath = commonConfig.output.distPath;
 var publicPath = commonConfig.output.publicPath;
-
-var postCSSConfig = function() {
-  return [
-    require('postcss-import')(),
-    require('postcss-cssnext')({
-      browsers: ['> 1%', 'last 2 versions']
-    }),
-    require('postcss-reporter')({ clearMessages: true })
-  ];
-};
-
+var postCSSConfig = commonConfig.postCSSConfig;
 
 module.exports = [
   {

@@ -49,5 +49,14 @@ module.exports = {
       }
     }
   ],
-  externals: externalNodeModules
+  externals: externalNodeModules,
+  postCSSConfig: function() {
+    return [
+      require('postcss-import')(),
+      require('postcss-cssnext')({
+        browsers: ['> 1%', 'last 2 versions']
+      }),
+      require('postcss-reporter')({ clearMessages: true })
+    ];
+  }
 };
