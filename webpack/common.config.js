@@ -1,9 +1,23 @@
 var path = require('path');
+var fs = require('fs');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+var externalNodeModules =
+  fs.readdirSync('node_modules')
+  .filter(function(x) {
+    return ['.bit'].indexOf(x) === -1;
+  })
+  .reduce(function(acc, cur) {
+    acc[cur] = 'commonjs ' + cur;
+    return acc;
+  }, {});
+
 module.exports = {
-  publicPath: '/assets/',
-  assetsPath: path.join(__dirname, '..', 'public', 'assets'),
+  output: {
+    publicPath: '/assets/',
+    assetsPath: path.join(__dirname, '..', 'public', 'assets'),
+    distPath: path.join(__dirname, '..', 'compiled')
+  },
   commonLoaders: [
     {
       /*
@@ -34,5 +48,6 @@ module.exports = {
         limit: 10000,
       }
     }
-  ]
+  ],
+  externals: externalNodeModules
 };

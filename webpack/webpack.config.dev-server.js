@@ -1,17 +1,11 @@
 var path = require('path');
-var fs = require('fs');
 var webpack = require('webpack');
-var commonLoaders = require('./common.config').commonLoaders;
-var publicPath = require('./common.config').publicPath;
 
-var nodeModules = fs.readdirSync('node_modules')
-                    .filter(function(x) {
-                      return ['.bit'].indexOf(x) === -1;
-                    })
-                    .reduce(function(acc, cur) {
-                      acc[cur] = 'commonjs ' + cur;
-                      return acc;
-                    }, {});
+var commonConfig = require('./common.config');
+
+var commonLoaders = commonConfig.commonLoaders;
+var publicPath = commonConfig.output.publicPath;
+var externals = commonConfig.externals;
 
 module.exports = {
     // The configuration for the server-side rendering
@@ -43,7 +37,7 @@ module.exports = {
       root: [path.join(__dirname, '..', 'app')],
       extensions: ['', '.js', '.jsx', '.css'],
     },
-    externals: nodeModules,
+    externals: externals,
     plugins: [
         new webpack.DefinePlugin({
           __DEVCLIENT__: false,

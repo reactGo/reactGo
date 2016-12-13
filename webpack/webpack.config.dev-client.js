@@ -2,8 +2,10 @@ var path = require('path');
 var webpack = require('webpack');
 var styleLintPlugin = require('stylelint-webpack-plugin');
 var hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
-var assetsPath = require('./common.config').assetsPath;
-var publicPath = require('./common.config').publicPath;
+
+var output = require('./common.config').output;
+var assetsPath = output.assetsPath;
+var publicPath = output.publicPath;
 
 var commonLoaders = [
   {

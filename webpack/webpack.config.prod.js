@@ -2,20 +2,13 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var InlineEnviromentVariablesPlugin = require('inline-environment-variables-webpack-plugin');
-var fs = require('fs');
 
-var commonLoaders = require('./common.config').commonLoaders;
-var assetsPath = require('./common.config').assetsPath;
-var publicPath = require('./common.config').publicPath;
-
-var nodeModules = fs.readdirSync('node_modules')
-                    .filter(function(x) {
-                      return ['.bit'].indexOf(x) === -1;
-                    })
-                    .reduce(function(acc, cur) {
-                      acc[cur] = 'commonjs ' + cur;
-                      return acc;
-                    }, {});
+var commonConfig = require('./common.config');
+var commonLoaders = commonConfig.commonLoaders;
+var externals = commonConfig.externals;
+var assetsPath = commonConfig.output.assetsPath;
+var distPath = commonConfig.output.distPath;
+var publicPath = commonConfig.output.publicPath;
 
 var postCSSConfig = function() {
   return [
@@ -106,7 +99,7 @@ module.exports = [
     },
     output: {
       // The output directory as absolute path
-      path: path.join(__dirname, '..', 'compiled'),
+      path: distPath,
       // The filename of the entry chunk as relative path inside the output.path directory
       filename: 'server.js',
       // The output path from the view of the Javascript
@@ -123,7 +116,7 @@ module.exports = [
       root: [path.join(__dirname, '..', 'app')],
       extensions: ['', '.js', '.jsx', '.css']
     },
-    externals: nodeModules,
+    externals: externals,
     plugins: [
         // Order the modules and chunks by occurrence.
         // This saves space, because often referenced modules
