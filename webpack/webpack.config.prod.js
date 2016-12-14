@@ -87,6 +87,7 @@ module.exports = [
     node: {
       __dirname: false
     },
+    devtool: 'sourcemap',
     output: {
       // The output directory as absolute path
       path: distPath,
@@ -122,7 +123,11 @@ module.exports = [
           compressor: {
             warnings: false
           }
-        })
+        }),
+        new webpack.BannerPlugin(
+          'require("source-map-support").install();',
+          { raw: true, entryOnly: false }
+        )
     ]
   }
 ];

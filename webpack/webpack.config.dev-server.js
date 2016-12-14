@@ -18,6 +18,7 @@ module.exports = {
     node: {
       __dirname: false
     },
+    devtool: 'sourcemap',
     output: {
       // The output directory as absolute path
       path: path.join(__dirname, '..', 'compiled'),
@@ -43,6 +44,10 @@ module.exports = {
           __DEVCLIENT__: false,
           __DEVSERVER__: true
         }),
-        new webpack.IgnorePlugin(/vertx/)
+        new webpack.IgnorePlugin(/vertx/),
+        new webpack.BannerPlugin(
+          'require("source-map-support").install();',
+          { raw: true, entryOnly: false }
+        )
     ]
 };
