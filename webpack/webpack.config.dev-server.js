@@ -6,6 +6,7 @@ var commonConfig = require('./common.config');
 var commonLoaders = commonConfig.commonLoaders;
 var publicPath = commonConfig.output.publicPath;
 var externals = commonConfig.externals;
+var postCSSConfig = commonConfig.postCSSConfig;
 
 module.exports = {
     // The configuration for the server-side rendering
@@ -49,5 +50,6 @@ module.exports = {
           'require("source-map-support").install();',
           { raw: true, entryOnly: false }
         )
-    ]
+    ],
+    postcss: postCSSConfig
 };

@@ -128,6 +128,7 @@ module.exports = [
           'require("source-map-support").install();',
           { raw: true, entryOnly: false }
         )
-    ]
+    ],
+    postcss: postCSSConfig
   }
 ];
