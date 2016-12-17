@@ -56,7 +56,7 @@ module.exports = {
       require('postcss-cssnext')({
         browsers: ['> 1%', 'last 2 versions']
       }),
-      require('postcss-reporter')({ clearMessages: true })
+      require('postcss-reporter')({ clearReportedMessages: true })
     ];
   }
 };
