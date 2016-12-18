@@ -1,7 +1,6 @@
 import _ from 'lodash';
-import Models from '../models';
+import { Models, sequelize } from '../models';
 const Topic = Models.Topic;
-const sequelize = Models.sequelize;
 
 /**
  * List

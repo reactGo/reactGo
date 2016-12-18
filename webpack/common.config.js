@@ -1,9 +1,23 @@
 var path = require('path');
+var fs = require('fs');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+var externalNodeModules =
+  fs.readdirSync('node_modules')
+  .filter(function(x) {
+    return ['.bit'].indexOf(x) === -1;
+  })
+  .reduce(function(acc, cur) {
+    acc[cur] = 'commonjs ' + cur;
+    return acc;
+  }, {});
+
 module.exports = {
-  publicPath: '/assets/',
-  assetsPath: path.join(__dirname, '..', 'public', 'assets'),
+  output: {
+    publicPath: '/assets/',
+    assetsPath: path.join(__dirname, '..', 'public', 'assets'),
+    distPath: path.join(__dirname, '..', 'compiled')
+  },
   commonLoaders: [
     {
       /*
@@ -23,7 +37,6 @@ module.exports = {
           'transform-react-inline-elements'
         ]
       },
-      include: path.join(__dirname, '..', 'app'),
       exclude: path.join(__dirname, '..', 'node_modules')
     },
     { test: /\.json$/, loader: 'json-loader' },
@@ -35,5 +48,15 @@ module.exports = {
         limit: 10000,
       }
     }
-  ]
+  ],
+  externals: externalNodeModules,
+  postCSSConfig: function() {
+    return [
+      require('postcss-import')(),
+      require('postcss-cssnext')({
+        browsers: ['> 1%', 'last 2 versions']
+      }),
+      require('postcss-reporter')({ clearReportedMessages: true })
+    ];
+  }
 };

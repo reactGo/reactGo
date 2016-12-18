@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import mongoose from 'mongoose';
 import { db } from './constants';
+import loadModels from './models';
 
 export default () => {
   // Find the appropriate database to connect to, default to localhost if not found.
@@ -20,9 +21,5 @@ export default () => {
   mongoose.connection.on('error', console.log);
   mongoose.connection.on('disconnected', connect);
 
-  // Register schema as mongoose model
-  const modelPath = path.join(__dirname, 'models');
-  fs.readdirSync(modelPath).forEach((file) => {
-    if (~file.indexOf('.js')) require(`${modelPath}/${file}`);
-  });
+  loadModels();
 };

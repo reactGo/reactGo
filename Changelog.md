@@ -1,3 +1,27 @@
+2.1
+===
+- #766
+- Modify webpack configurations (prod and dev) to work on server
+  - Specify all `node_modules` files (except binaries) as externals.
+  - Change entry point for server to be server/index.js
+  - Change output path to be /compiled
+  - Extract postcss config to common.config.js
+  - Remove css extraction
+  - Use css-loader/locals in the prerendering bundle to only export identifier mappings webpack/css-loader#59 (comment)
+  - Add sourcemap support
+- Cleaned up package.json
+- Removed babel, babel-node, build:node, build:prod commands in scripts
+- Fix db/* files to work with webpack
+- Modify express path to work with webpack
+- Fix incorrect css-loader query parameters - thanks @ZeroCho!
+- Add command line config to webpack to have i
+  - `--debug`
+  - `--display-error-details` - shows more information about errors. I.e. this
+    shows which paths are tried while resolving a module
+- Bump postcss-loader, postcss-import, postcss-cssnext, postcss-reporter versions
+- Remove postcss-simple-vars
+
+
 2.0.1
 ===
 - Remove isomorphic fetch as dependency - no longer needed! Hooray!

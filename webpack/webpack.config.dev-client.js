@@ -2,8 +2,11 @@ var path = require('path');
 var webpack = require('webpack');
 var styleLintPlugin = require('stylelint-webpack-plugin');
 var hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
-var assetsPath = require('./common.config').assetsPath;
-var publicPath = require('./common.config').publicPath;
+
+var commonConfig = require('./common.config');
+var postCSSConfig = commonConfig.postCSSConfig;
+var assetsPath = commonConfig.output.assetsPath;
+var publicPath = commonConfig.output.publicPath;
 
 var commonLoaders = [
   {
@@ -31,19 +34,6 @@ var commonLoaders = [
     }
   }
 ];
-
-var postCSSConfig = function () {
-  return [
-    require('postcss-import')({
-      path: path.join(__dirname, '..', 'app', 'css'),
-      addDependencyTo: webpack // for hot-reloading
-    }),
-    require('postcss-cssnext')({
-      browsers: ['> 1%', 'last 2 versions']
-    }),
-    require('postcss-reporter')({ clearMessages: true })
-  ];
-};
 
 module.exports = {
     // eval - Each module is executed with eval and //@ sourceURL.
@@ -84,11 +74,10 @@ module.exports = {
       publicPath: publicPath
     },
     module: {
-      loaders: commonLoaders.concat([
-        { test: /\.css$/,
-          loader: 'style!css?module&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
-        }
-      ])
+      loaders: commonLoaders.concat({
+        test: /\.css$/,
+        loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
+      })
     },
     resolve: {
       root: [path.join(__dirname, '..', 'app')],

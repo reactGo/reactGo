@@ -1,4 +1,4 @@
-import Models from '../models';
+import { Models } from '../models';
 
 const User = Models.User;
 

@@ -3,26 +3,13 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var InlineEnviromentVariablesPlugin = require('inline-environment-variables-webpack-plugin');
 
-var commonLoaders = require('./common.config').commonLoaders;
-var assetsPath = require('./common.config').assetsPath;
-var publicPath = require('./common.config').publicPath;
-
-commonLoaders = commonLoaders.concat(
-  {
-    test: /\.css$/,
-    loader: ExtractTextPlugin.extract('style-loader', 'css-loader?module!postcss-loader')
-  }
-);
-
-var postCSSConfig = function () {
-  return [
-    require('postcss-import')(),
-    require('postcss-cssnext')({
-      browsers: ['> 1%', 'last 2 versions']
-    }),
-    require('postcss-reporter')({ clearMessages: true })
-  ];
-};
+var commonConfig = require('./common.config');
+var commonLoaders = commonConfig.commonLoaders;
+var externals = commonConfig.externals;
+var assetsPath = commonConfig.output.assetsPath;
+var distPath = commonConfig.output.distPath;
+var publicPath = commonConfig.output.publicPath;
+var postCSSConfig = commonConfig.postCSSConfig;
 
 module.exports = [
   {
@@ -63,7 +50,12 @@ module.exports = [
 
     },
     module: {
-      loaders: commonLoaders
+      loaders: commonLoaders.concat(
+        {
+          test: /\.css$/,
+          loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1!postcss-loader')
+        }
+      )
     },
     resolve: {
       root: [path.join(__dirname, '..', 'app')],
@@ -89,12 +81,16 @@ module.exports = [
     name: 'server-side rendering',
     context: path.join(__dirname, '..', 'app'),
     entry: {
-      server: './server'
+      server: '../server/index'
     },
     target: 'node',
+    node: {
+      __dirname: false
+    },
+    devtool: 'sourcemap',
     output: {
       // The output directory as absolute path
-      path: assetsPath,
+      path: distPath,
       // The filename of the entry chunk as relative path inside the output.path directory
       filename: 'server.js',
       // The output path from the view of the Javascript
@@ -102,29 +98,36 @@ module.exports = [
       libraryTarget: 'commonjs2'
     },
     module: {
-      loaders: commonLoaders
+      loaders: commonLoaders.concat({
+          test: /\.css$/,
+          loader: 'css/locals?modules&importLoaders=1!postcss-loader'
+      })
     },
     resolve: {
       root: [path.join(__dirname, '..', 'app')],
       extensions: ['', '.js', '.jsx', '.css']
     },
+    externals: externals,
     plugins: [
         // Order the modules and chunks by occurrence.
         // This saves space, because often referenced modules
         // and chunks get smaller ids.
         new webpack.optimize.OccurenceOrderPlugin(),
-        new ExtractTextPlugin('styles/main.css', { allChunks: true }),
-        new webpack.optimize.UglifyJsPlugin({
-          compressor: {
-            warnings: false
-          }
-        }),
         new webpack.DefinePlugin({
           __DEVCLIENT__: false,
           __DEVSERVER__: false
         }),
         new webpack.IgnorePlugin(/vertx/),
-        new InlineEnviromentVariablesPlugin({ NODE_ENV: 'production' })
+        new InlineEnviromentVariablesPlugin({ NODE_ENV: 'production' }),
+        new webpack.optimize.UglifyJsPlugin({
+          compressor: {
+            warnings: false
+          }
+        }),
+        new webpack.BannerPlugin(
+          'require("source-map-support").install();',
+          { raw: true, entryOnly: false }
+        )
     ],
     postcss: postCSSConfig
   }

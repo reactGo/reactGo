@@ -1,3 +1,6 @@
-export function connect() {}
+const connect = () => {};
+const controllers = () => {};
+const passport = () => {};
+const session = () => {};
 
-export default { connect };
+export default { connect, controllers, passport, session };

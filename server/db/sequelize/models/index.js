@@ -3,35 +3,21 @@ import path from 'path';
 import Sequelize from 'sequelize';
 import sequelizeConfig from '../sequelize_config';
 import { ENV } from '../../../config/appConfig';
+import tokenModel from './tokens';
+import topicModel from './topics';
+import userModel from './users';
 const config = sequelizeConfig[ENV];
-const basename = path.basename(module.filename);
+
 const db = {};
-let sequelize;
-
 const dbUrl = process.env[config.use_env_variable];
-if (dbUrl) {
-  sequelize = new Sequelize(dbUrl);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
 
-fs
-  .readdirSync(__dirname)
-  .filter((file) =>
-    (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js')
-  )
-  .forEach((file) => {
-    const model = sequelize.import(path.join(__dirname, file));
-    db[model.name] = model;
-  });
+const sequelize = dbUrl ? new Sequelize(dbUrl) : new Sequelize(config.database, config.username, config.password, config);
 
-Object.keys(db).forEach((modelName) => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
-});
+db.Token = sequelize.import('Token', tokenModel);
+db.Topic = sequelize.import('Topic', topicModel);
+db.User = sequelize.import('User', userModel);
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+Object.keys(db).forEach(model => model.associate && model.associate(db));
 
-module.exports = db;
+export { db as Models, sequelize };
+

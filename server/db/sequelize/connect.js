@@ -1,6 +1,4 @@
-import Models from './models';
-
-const sequelize = Models.sequelize;
+import { sequelize } from './models';
 
 export default () => {
   sequelize
