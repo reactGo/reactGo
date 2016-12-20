@@ -1,16 +1,8 @@
-import React, { Component, PropTypes } from 'react';
-import Page from 'pages/Page';
-import DashboardContainer from 'containers/Dashboard';
+import React, { Component } from 'react';
+import Page from '../pages/Page';
+import DashboardContainer from '../containers/Dashboard';
 
 class Dashboard extends Component {
-  render() {
-    return (
-      <Page {...this.getMetaData()}>
-        <DashboardContainer {...this.props} />
-      </Page>
-    );
-  }
-
   getMetaData() {
     return {
       title: this.pageTitle(),
@@ -25,12 +17,20 @@ class Dashboard extends Component {
 
   pageMeta() {
     return [
-      { name: "description", content: "A reactGo example of a dashboard page" }
+      { name: 'description', content: 'A reactGo example of a dashboard page' }
     ];
   }
 
   pageLink() {
     return [];
+  }
+
+  render() {
+    return (
+      <Page {...this.getMetaData()}>
+        <DashboardContainer {...this.props} />
+      </Page>
+    );
   }
 }
 

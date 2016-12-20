@@ -5,13 +5,12 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import flash from 'express-flash';
 import methodOverride from 'method-override';
+import gzip from 'compression';
+import helmet from 'helmet';
 import unsupportedMessage from '../db/unsupportedMessage';
 import { sessionSecret } from './secrets';
 import { DB_TYPE, ENV } from './appConfig';
 import { session as dbSession } from '../db';
-import gzip from 'compression';
-import helmet from 'helmet';
-
 
 export default (app) => {
   app.set('port', (process.env.PORT || 3000));

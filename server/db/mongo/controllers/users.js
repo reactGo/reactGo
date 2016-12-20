@@ -1,5 +1,5 @@
-import User from '../models/user';
 import passport from 'passport';
+import User from '../models/user';
 
 /**
  * POST /login

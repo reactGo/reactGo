@@ -7,7 +7,7 @@ export default (email, password, done) =>
     if (!user) return done(null, false, { message: `There is no record of the email ${email}.` });
     return user.comparePassword(password).then(
       (result) => {
-        if(result) done(null, user);
+        if (result) done(null, user);
         else done(null, false, { message: 'Your email/password combination is incorrect.' });
     });
   }).catch((err) => {

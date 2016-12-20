@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+
 const ENTER_KEY_CODE = 13;
 
 export default class TopicTextInput extends Component {
@@ -38,7 +39,8 @@ export default class TopicTextInput extends Component {
   render() {
     const { className, placeholder, value } = this.props;
     return (
-      <input className={className}
+      <input
+        className={className}
         placeholder={placeholder}
         onChange={this.onChange}
         onKeyDown={this.onKeyDown}

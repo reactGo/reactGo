@@ -13,7 +13,7 @@
             "jsx": true,
             "es6": true,
             "experimentalObjectRestSpread" : true
-        },
+        }
     },
     "rules": {
         "comma-dangle": 0,

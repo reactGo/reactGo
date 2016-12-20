@@ -1,2 +1,4 @@
-export { default as fetchVoteData } from './fetchVoteData';
+import { fetchVoteData } from './fetchVoteData';
+
+export default { fetchVoteData };
 

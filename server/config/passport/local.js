@@ -8,7 +8,7 @@ import { passport as dbPassport } from '../../db';
 import unsupportedMessage from '../../db/unsupportedMessage';
 
 export default (passport) => {
-  if (!dbPassport || !dbPassport.local || ! typeof dbPassport.local === 'function') {
+  if (!dbPassport || !dbPassport.local || !typeof dbPassport.local === 'function') {
     console.warn(unsupportedMessage('passport-local'));
     return;
   }
