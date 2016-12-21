@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import TopicItem from 'components/TopicItem';
 import classNames from 'classnames/bind';
-import styles from 'css/components/main-section';
+import TopicItem from '../components/TopicItem';
+import styles from '../css/components/main-section';
 
 const cx = classNames.bind(styles);
 

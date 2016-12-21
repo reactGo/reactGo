@@ -1,16 +1,8 @@
-import React, { Component, PropTypes } from 'react';
-import Page from 'pages/Page';
-import AboutContainer from 'containers/About';
+import React, { Component } from 'react';
+import Page from '../pages/Page';
+import AboutContainer from '../containers/About';
 
 class About extends Component {
-  render() {
-    return (
-      <Page {...this.getMetaData()}>
-        <AboutContainer {...this.props} />
-      </Page>
-    );
-  }
-
   getMetaData() {
     return {
       title: this.pageTitle(),
@@ -25,12 +17,20 @@ class About extends Component {
 
   pageMeta() {
     return [
-      { name: "description", content: "A reactGo example of life" }
+      { name: 'description', content: 'A reactGo example of life' }
     ];
   }
 
   pageLink() {
     return [];
+  }
+
+  render() {
+    return (
+      <Page {...this.getMetaData()}>
+        <AboutContainer {...this.props} />
+      </Page>
+    );
   }
 }
 

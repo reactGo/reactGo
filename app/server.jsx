@@ -1,14 +1,11 @@
 import axios from 'axios';
-import React from 'react';
 import { createMemoryHistory, match } from 'react-router';
-import createRoutes from 'routes';
-import configureStore from 'store/configureStore';
-import * as types from 'types';
-import preRenderMiddleware from 'middlewares/preRenderMiddleware';
-import { host, port } from 'config/app';
-import pageRenderer from 'utils/pageRenderer';
-
-
+import createRoutes from './routes';
+import configureStore from './store/configureStore';
+import * as types from './types';
+import preRenderMiddleware from './middlewares/preRenderMiddleware';
+import { host, port } from './config/app';
+import pageRenderer from './utils/pageRenderer';
 
 // configure baseURL for axios requests (for serverside API calls)
 axios.defaults.baseURL = `http://${host}:${port}`;

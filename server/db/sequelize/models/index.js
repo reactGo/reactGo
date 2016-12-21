@@ -1,11 +1,10 @@
-import fs from 'fs';
-import path from 'path';
 import Sequelize from 'sequelize';
 import sequelizeConfig from '../sequelize_config';
 import { ENV } from '../../../config/appConfig';
 import tokenModel from './tokens';
 import topicModel from './topics';
 import userModel from './users';
+
 const config = sequelizeConfig[ENV];
 
 const db = {};

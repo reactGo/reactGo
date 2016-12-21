@@ -1,2 +1,3 @@
-export { default as voteService } from './topics';
+import voteService from './topics';
 
+export default { voteService };

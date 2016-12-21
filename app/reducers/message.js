@@ -1,4 +1,4 @@
-import * as types from 'types';
+import * as types from '../types';
 
 /*
  * Message store for global messages, i.e. Network messages / Redirect messages

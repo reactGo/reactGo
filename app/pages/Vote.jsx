@@ -1,16 +1,8 @@
-import React, { Component, PropTypes } from 'react';
-import Page from 'pages/Page';
-import VoteContainer from 'containers/Vote';
+import React, { Component } from 'react';
+import Page from '../pages/Page';
+import VoteContainer from '../containers/Vote';
 
 class Vote extends Component {
-  render() {
-    return (
-      <Page {...this.getMetaData()}>
-        <VoteContainer {...this.props} />
-      </Page>
-    );
-  }
-
   getMetaData() {
     return {
       title: this.pageTitle(),
@@ -25,12 +17,20 @@ class Vote extends Component {
 
   pageMeta() {
     return [
-      { name: "description", content: "A reactGo example of a voting page" }
+      { name: 'description', content: 'A reactGo example of a voting page' }
     ];
   }
 
   pageLink() {
     return [];
+  }
+
+  render() {
+    return (
+      <Page {...this.getMetaData()}>
+        <VoteContainer {...this.props} />
+      </Page>
+    );
   }
 }
 

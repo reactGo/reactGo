@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 
 const Page = ({ title, link, meta, children }) => {
