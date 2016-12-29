@@ -22,7 +22,6 @@ var commonLoaders = [
       presets: ['react-hmre', 'es2015', 'react', 'stage-0'],
       plugins: ['transform-decorators-legacy']
     },
-    include: path.join(__dirname, '..', 'app'),
     exclude: path.join(__dirname, '..', 'node_modules')
   },
   {
