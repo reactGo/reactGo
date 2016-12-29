@@ -5,7 +5,7 @@ import chromeFavicon from '../images/chrome-ninja192-precomposed.png';
 import appleFavicon from '../images/apple-ninja152-precomposed.png';
 import msFavicon from '../images/ms-ninja144-precomposed.png';
 import favicon from '../images/favicon.png';
-import { isDev } from '../config/app';
+import { isDev } from '../../config/app';
 
 const metaAssets = () => {
   return [
