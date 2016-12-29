@@ -1,3 +1,10 @@
+2.1.1
+===
+- PR #786 - Fixed failed imports with named export
+- PR #780 - Eslint fix
+- Replace external inline-environment-variables-webpack-plugin with
+  webpack.EvnrionmentPlugin
+
 2.1
 ===
 - #766

@@ -1,7 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var InlineEnviromentVariablesPlugin = require('inline-environment-variables-webpack-plugin');
 
 var commonConfig = require('./common.config');
 var commonLoaders = commonConfig.commonLoaders;
@@ -73,7 +72,7 @@ module.exports = [
           __DEVCLIENT__: false,
           __DEVSERVER__: false
         }),
-        new InlineEnviromentVariablesPlugin({ NODE_ENV: 'production' })
+        new webpack.EnvironmentPlugin(['NODE_ENV'])
     ],
     postcss: postCSSConfig
   }, {
@@ -117,8 +116,8 @@ module.exports = [
           __DEVCLIENT__: false,
           __DEVSERVER__: false
         }),
+        new webpack.EnvironmentPlugin(['NODE_ENV']),
         new webpack.IgnorePlugin(/vertx/),
-        new InlineEnviromentVariablesPlugin({ NODE_ENV: 'production' }),
         new webpack.optimize.UglifyJsPlugin({
           compressor: {
             warnings: false
