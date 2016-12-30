@@ -46,7 +46,7 @@ module.exports = {
         'Users',
         [DataTypes.fn('lower', DataTypes.col('email'))],
         {
-          indexName: 'users_email',
+          indexName: 'users_email_index',
           indicesType: 'unique'
         }
       )

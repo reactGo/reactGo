@@ -4,7 +4,7 @@ const User = Models.User;
 
 export default (email, password, done) =>
   User.findOne({ where: { email } }).then((user) => {
-    if (!user) return done(null, false, { message: `There is no record of the email ${email}.` });
+    if (!user) return done(null, false, { message: 'There is no record of the email ${email}.' });
     return user.comparePassword(password).then(
       (result) => {
         if (result) done(null, user);
