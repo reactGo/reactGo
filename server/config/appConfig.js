@@ -1,5 +1,4 @@
-/* Use this old export style until sequelize cli supports es6 syntax */
-const DB_TYPES = require('./constants').DB_TYPES;
+import { DB_TYPES } from '../../config/dbTypes';
 
 /*
  * Set DB_TYPE to a database of your choice:
