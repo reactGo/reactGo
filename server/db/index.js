@@ -1,4 +1,4 @@
-import { DB_TYPE } from '../config/appConfig';
+import { DB_TYPE } from '../../config/app';
 import { DB_TYPES } from '../../config/dbTypes';
 
 let dbConfig = null;

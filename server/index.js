@@ -1,6 +1,6 @@
 import express from 'express';
 import webpack from 'webpack';
-import { ENV } from './config/appConfig';
+import { isDebug } from '../config/app';
 import { connect } from './db';
 import passportConfig from './config/passport';
 import expressConfig from './config/express';
@@ -21,7 +21,7 @@ connect();
  */
 passportConfig();
 
-if (ENV === 'development') {
+if (isDebug) {
   const webpackDevConfig = require('../webpack/webpack.config.dev-client');
 
   const compiler = webpack(webpackDevConfig);
