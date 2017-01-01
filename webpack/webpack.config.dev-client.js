@@ -89,6 +89,7 @@ module.exports = {
           __DEVCLIENT__: true,
           __DEVSERVER__: false
         }),
+        new webpack.EnvironmentPlugin(['NODE_ENV']),
         new styleLintPlugin({
           configFile: path.join(__dirname, '..', '.stylelintrc'),
           context: path.join(__dirname, '..', 'app'),
