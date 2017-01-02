@@ -5,7 +5,7 @@
 Change the following:
 ```javascript
 /*
- * config/app.js
+ * config/env.js
  */
 
 DB_TYPE: process.env.DB_TYPE || DB_TYPES.NONE
@@ -19,12 +19,12 @@ Currently, we support these DB_TYPES:
 - POSTGRES
 - NONE
 
-We abstracted the DB config in `app` to enable you to require the correct files if you were to use a different database, e.g. postgresql.
+We abstracted the DB config in `env` to enable you to require the correct files if you were to use a different database, e.g. postgresql.
 
 
 ```javascript
 /*
- * config/app.js
+ * config/env.js
  */
 
 DB_TYPE: process.env.DB_TYPE || DB_TYPES.YOUR_DB

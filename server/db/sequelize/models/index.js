@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 import sequelizeConfig from '../sequelize_config';
-import { ENV } from '../../../../config/app';
+import { ENV } from '../../../../config/env';
 import tokenModel from './tokens';
 import topicModel from './topics';
 import userModel from './users';

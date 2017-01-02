@@ -1,4 +1,4 @@
-import { ENV } from '../../../config/app';
+import { ENV } from '../../../config/env';
 import sequelizeConfig from './sequelize_config';
 
 const config = sequelizeConfig[ENV];

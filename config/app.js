@@ -1,9 +1,4 @@
-import { DB_TYPES } from './dbTypes';
-
-export const HOST = process.env.HOSTNAME || 'localhost';
-export const PORT = process.env.PORT || '3000';
-export const DB_TYPE = process.env.DB_TYPE || DB_TYPES.MONGO;
-export const ENV = process.env.NODE_ENV || 'development';
+import { HOST, PORT, ENV } from './env';
 
 export const isProduction = ENV === 'production';
 export const isDebug = ENV === 'development';
