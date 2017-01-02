@@ -8,7 +8,7 @@ import methodOverride from 'method-override';
 import gzip from 'compression';
 import helmet from 'helmet';
 import unsupportedMessage from '../db/unsupportedMessage';
-import { sessionSecret } from './secrets';
+import { sessionSecret } from '../../config/secrets';
 import { DB_TYPE, ENV } from '../../config/app';
 import { session as dbSession } from '../db';
 
