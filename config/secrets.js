@@ -8,7 +8,3 @@ export const google = {
   callbackURL: process.env.GOOGLE_CALLBACK || '/auth/google/callback'
 };
 
-export default {
-  sessionSecret,
-  google
-};

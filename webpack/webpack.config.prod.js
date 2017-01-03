@@ -68,10 +68,6 @@ module.exports = [
             warnings: false
           }
         }),
-        new webpack.DefinePlugin({
-          __DEVCLIENT__: false,
-          __DEVSERVER__: false
-        }),
         new webpack.EnvironmentPlugin(['NODE_ENV'])
     ],
     postcss: postCSSConfig
@@ -112,10 +108,6 @@ module.exports = [
         // This saves space, because often referenced modules
         // and chunks get smaller ids.
         new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.DefinePlugin({
-          __DEVCLIENT__: false,
-          __DEVSERVER__: false
-        }),
         new webpack.EnvironmentPlugin(['NODE_ENV']),
         new webpack.IgnorePlugin(/vertx/),
         new webpack.optimize.UglifyJsPlugin({

@@ -22,7 +22,6 @@ var commonLoaders = [
       presets: ['react-hmre', 'es2015', 'react', 'stage-0'],
       plugins: ['transform-decorators-legacy']
     },
-    include: path.join(__dirname, '..', 'app'),
     exclude: path.join(__dirname, '..', 'node_modules')
   },
   {
@@ -86,10 +85,7 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
-        new webpack.DefinePlugin({
-          __DEVCLIENT__: true,
-          __DEVSERVER__: false
-        }),
+        new webpack.EnvironmentPlugin(['NODE_ENV']),
         new styleLintPlugin({
           configFile: path.join(__dirname, '..', '.stylelintrc'),
           context: path.join(__dirname, '..', 'app'),

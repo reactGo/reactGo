@@ -5,7 +5,7 @@ import chromeFavicon from '../images/chrome-ninja192-precomposed.png';
 import appleFavicon from '../images/apple-ninja152-precomposed.png';
 import msFavicon from '../images/ms-ninja144-precomposed.png';
 import favicon from '../images/favicon.png';
-import { isDev } from '../config/app';
+import { isProduction } from '../../config/app';
 
 const metaAssets = () => {
   return [
@@ -51,7 +51,7 @@ const linkAssets = () => {
     // add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones
     // { 'rel': 'canonical', 'href': 'http://www.example.com/' }
   ];
-  return isDev() ? links.filter(l => l.rel !== 'stylesheet') : links;
+  return isProduction ? links : links.filter(l => l.rel !== 'stylesheet');
 };
 
 export const title = 'reactGo - just ship it';

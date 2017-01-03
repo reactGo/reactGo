@@ -1,3 +1,10 @@
+2.2.0
+===
+- PR #792 0 Centralize /config
+Having config/ folders in app and server with shared functionality makes it harder to understand and maintain our app.
+
+With this change, we move our config/ to the root level.
+
 2.1.1
 ===
 - PR #786 - Fixed failed imports with named export

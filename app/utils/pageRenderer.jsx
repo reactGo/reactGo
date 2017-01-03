@@ -3,7 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { RouterContext } from 'react-router';
 import Helmet from 'react-helmet';
-import { trackingID } from '../config/app';
+import { trackingID } from '../../config/app';
 
 /*
  * Consider async script loading if you support IE9+

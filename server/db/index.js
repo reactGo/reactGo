@@ -1,5 +1,5 @@
-import { DB_TYPE } from '../config/appConfig';
-import { DB_TYPES } from '../config/constants';
+import { DB_TYPE } from '../../config/env';
+import { DB_TYPES } from '../../config/dbTypes';
 
 let dbConfig = null;
 

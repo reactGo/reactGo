@@ -41,10 +41,7 @@ module.exports = {
     },
     externals: externals,
     plugins: [
-        new webpack.DefinePlugin({
-          __DEVCLIENT__: false,
-          __DEVSERVER__: true
-        }),
+        new webpack.EnvironmentPlugin(['NODE_ENV']),
         new webpack.IgnorePlugin(/vertx/),
         new webpack.BannerPlugin(
           'require("source-map-support").install();',
