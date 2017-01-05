@@ -3,23 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { RouterContext } from 'react-router';
 import Helmet from 'react-helmet';
-import { trackingID } from '../../config/app';
-
-/*
- * Consider async script loading if you support IE9+
- * https://developers.google.com/analytics/devguides/collection/analyticsjs/
- */
-const createTrackingScript = trackingID =>
-`<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', ${trackingID}, 'auto');
-  ga('send', 'pageview');
-  </script>`;
-
-const analyticsScript = createTrackingScript(trackingID);
+import { GOOGLE_ANALYTICS_ID } from '../../config/env';
 
 const createApp = (store, props) => renderToString(
   <Provider store={store}>
@@ -27,11 +11,7 @@ const createApp = (store, props) => renderToString(
   </Provider>
 );
 
-const createScriptTags = () => {
-  return `${analyticsScript}<script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>`;
-};
-
-const buildPage = ({ componentHTML, initialState, headAssets, analyticsScript }) => {
+const buildPage = ({ componentHTML, initialState, headAssets }) => {
   return `
 <!doctype html>
 <html>
@@ -48,10 +28,29 @@ const buildPage = ({ componentHTML, initialState, headAssets, analyticsScript })
 </html>`;
 };
 
+const createScriptTags = () => {
+  const analyticsScript = GOOGLE_ANALYTICS_ID ? createTrackingScript(GOOGLE_ANALYTICS_ID) : '';
+  return `${analyticsScript}<script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>`;
+};
+
+/*
+ * Consider async script loading if you support IE9+
+ * https://developers.google.com/analytics/devguides/collection/analyticsjs/
+ */
+const createTrackingScript = trackingID =>
+`<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '${trackingID}', 'auto');
+  ga('send', 'pageview');
+  </script>`;
+
 export default (store, props) => {
   const initialState = store.getState();
   const componentHTML = createApp(store, props);
   const headAssets = Helmet.rewind();
-  return buildPage({ componentHTML, initialState, headAssets, analyticsScript });
+  return buildPage({ componentHTML, initialState, headAssets });
 };
 
