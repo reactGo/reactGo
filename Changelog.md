@@ -1,6 +1,11 @@
+2.2.1
+===
+- PR #795 - Convert tracking ID for google analytics into a environment variable
+With this change, we also extracted createScript files from pageRenderer
+
 2.2.0
 ===
-- PR #792 0 Centralize /config
+- PR #792 - Centralize /config
 Having config/ folders in app and server with shared functionality makes it harder to understand and maintain our app.
 
 With this change, we move our config/ to the root level.
