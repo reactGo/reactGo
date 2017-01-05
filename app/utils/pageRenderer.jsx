@@ -3,7 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { RouterContext } from 'react-router';
 import Helmet from 'react-helmet';
-import { GOOGLE_ANALYTICS_ID } from '../../config/env';
+import { createAppScript, createTrackingScript } from './createScripts';
 
 const createApp = (store, props) => renderToString(
   <Provider store={store}>
@@ -27,22 +27,6 @@ const buildPage = ({ componentHTML, initialState, headAssets }) => {
     ${createAppScript()}
   </body>
 </html>`;
-};
-
-const createTrackingScript = () => {
-  return GOOGLE_ANALYTICS_ID ? createAnalyticsSnippet(GOOGLE_ANALYTICS_ID) : '';
-};
-
-const createAnalyticsSnippet = id =>
-`<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', '${id}', 'auto');
-ga('send', 'pageview');
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>`;
-
-const createAppScript = () => {
-  return '<script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>';
 };
 
 export default (store, props) => {
