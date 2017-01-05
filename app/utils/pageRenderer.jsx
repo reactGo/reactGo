@@ -24,7 +24,7 @@ const buildPage = ({ componentHTML, initialState, headAssets }) => {
   <body>
     <div id="app">${componentHTML}</div>
     <script>window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}</script>
-    ${createScriptTags()}
+    ${createAppScript()}
   </body>
 </html>`;
 };
@@ -41,7 +41,7 @@ ga('send', 'pageview');
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>`;
 
-const createScriptTags = () => {
+const createAppScript = () => {
   return '<script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>';
 };
 
