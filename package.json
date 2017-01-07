@@ -15,7 +15,6 @@
     "build": "npm run clean && cross-env NODE_ENV=production webpack --colors --display-error-details --config ./webpack/webpack.config.prod.js",
     "test": "cross-env NODE_ENV=test karma start",
     "test:watch": "cross-env NODE_ENV=test npm test -- --watch --no-single-run",
-    "postinstall": "npm run build",
     "keep-green": "git merge master && rm -rf node_modules && npm install && npm start"
   },
   "author": "Choon Ken Ding",
