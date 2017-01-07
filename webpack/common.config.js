@@ -5,7 +5,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var externalNodeModules =
   fs.readdirSync('node_modules')
   .filter(function(x) {
-    return ['.bit'].indexOf(x) === -1;
+    return ['.bin'].indexOf(x) === -1;
   })
   .reduce(function(acc, cur) {
     acc[cur] = 'commonjs ' + cur;
