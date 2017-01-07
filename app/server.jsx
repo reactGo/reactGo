@@ -38,11 +38,11 @@ export default function render(req, res) {
    * The function will create a `history` for you, passing additional `options` to create it.
    * These options can include `basename` to control the base name for URLs, as well as the pair
    * of `parseQueryString` and `stringifyQuery` to control query string parsing and serializing.
-   * You can also pass in an already instantiated `history` object, which can be constructured
+   * You can also pass in an already instantiated `history` object, which can be constructed
    * however you like.
    *
    * The three arguments to the callback function you pass to `match` are:
-   * - err:       A javascript Error object if an error occured, `undefined` otherwise.
+   * - err:       A javascript Error object if an error occurred, `undefined` otherwise.
    * - redirect:  A `Location` object if the route is a redirect, `undefined` otherwise
    * - props:     The props you should pass to the routing context if the route matched,
    *              `undefined` otherwise.
