@@ -1,3 +1,8 @@
+2.2.2
+===
+- PR #798 - Fix incorrect exclusion of binary files in webpack
+`bit` -> `bin`
+
 2.2.1
 ===
 - PR #795 - Convert tracking ID for google analytics into a environment variable
