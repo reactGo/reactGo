@@ -1,3 +1,9 @@
+2.2.3
+===
+- PR #800
+   - Rename server/config into server/init
+   - Move passport.js into passport/index.js
+
 2.2.2
 ===
 - PR #798 - Fix incorrect exclusion of binary files in webpack

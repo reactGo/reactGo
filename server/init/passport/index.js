@@ -1,9 +1,9 @@
 /* Initializing passport.js */
 import passport from 'passport';
-import local from './passport/local';
-import google from './passport/google';
-import { passport as dbPassport } from '../db';
-import unsupportedMessage from '../db/unsupportedMessage';
+import local from './local';
+import google from './google';
+import { passport as dbPassport } from '../../db';
+import unsupportedMessage from '../../db/unsupportedMessage';
 
 export default () => {
   // Configure Passport authenticated session persistence.
