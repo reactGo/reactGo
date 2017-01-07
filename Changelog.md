@@ -1,3 +1,11 @@
+2.2.4
+===
+- PR #802
+  - Add `npm run build` as part of `npm start`
+  - Remove postinstall command - we no longer need it! (Running `npm start` or
+    `npm run dev` both build the app respectively
+  - Remove greenkeeper command in package.json as we no longer use it
+
 2.2.3
 ===
 - PR #800

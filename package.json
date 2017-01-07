@@ -1,6 +1,6 @@
 {
   "name": "react-webpack-node",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring universal Redux, React Router, React Router Redux Hot reloading, CSS modules, Express 4.x, and multiple ORMs.",
   "repository": "https://github.com/choonkending/react-webpack-node",
   "main": "index.js",
@@ -9,14 +9,12 @@
     "lint": "eslint --ext .js,.jsx app server",
     "lint:fix": "eslint --ext .js,.jsx app server --fix",
     "clean": "rimraf public && rimraf compiled",
-    "start": "cross-env NODE_ENV=production node compiled/server.js",
+    "start": "npm run build && cross-env NODE_ENV=production node compiled/server.js",
     "dev": "cross-env NODE_ENV=development nodemon",
     "build:dev": "cross-env NODE_ENV=development webpack ---debug --colors --display-error-details --config ./webpack/webpack.config.dev-server.js",
     "build": "npm run clean && cross-env NODE_ENV=production webpack --colors --display-error-details --config ./webpack/webpack.config.prod.js",
     "test": "cross-env NODE_ENV=test karma start",
-    "test:watch": "cross-env NODE_ENV=test npm test -- --watch --no-single-run",
-    "postinstall": "npm run build",
-    "keep-green": "git merge master && rm -rf node_modules && npm install && npm start"
+    "test:watch": "cross-env NODE_ENV=test npm test -- --watch --no-single-run"
   },
   "author": "Choon Ken Ding",
   "license": "MIT",

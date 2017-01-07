@@ -41,8 +41,9 @@ npm install
 #### Development
 
 ```bash
+## Note: You need MongoDB running
 # Starts the server with Hot Reloading
-# Run webpack through webpack.config.dev.js
+# Run webpack through webpack.config.dev-client.js and webpack.config.dev-server.js
 npm run dev
 
 ```
@@ -52,11 +53,10 @@ npm run dev
 Run the commands below for a production build, i.e. what is deployed to Heroku. If you are deploying to Heroku or similar, we assume that you are serving the pages over HTTPS.
 
 ```bash
+## Note: You need MongoDB running
+
 # Clean public folder
 # Run webpack through webpack.config.prod.js
-npm run build
-
 # Start server
-## Note: You need MongoDB running
 npm start
 ```
