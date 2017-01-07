@@ -2,9 +2,9 @@ import express from 'express';
 import webpack from 'webpack';
 import { isDebug } from '../config/app';
 import { connect } from './db';
-import configurePassport from './config/passport';
-import configureExpress from './config/express';
-import configureRoutes from './config/routes';
+import initPassport from './init/passport';
+import initExpress from './init/express';
+import initRoutes from './init/routes';
 import renderMiddleware from '../app/server';
 
 const app = express();
@@ -19,7 +19,7 @@ connect();
 /*
  * REMOVE if you do not need passport configuration
  */
-configurePassport();
+initPassport();
 
 if (isDebug) {
   const webpackDevConfig = require('../webpack/webpack.config.dev-client');
@@ -36,14 +36,14 @@ if (isDebug) {
 /*
  * Bootstrap application settings
  */
-configureExpress(app);
+initExpress(app);
 
 /*
  * REMOVE if you do not need any routes
  *
  * Note: Some of these routes have passport and database model dependencies
  */
-configureRoutes(app);
+initRoutes(app);
 
 /*
  * This is where the magic happens. We take the locals data we have already
