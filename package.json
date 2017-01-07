@@ -14,8 +14,7 @@
     "build:dev": "cross-env NODE_ENV=development webpack ---debug --colors --display-error-details --config ./webpack/webpack.config.dev-server.js",
     "build": "npm run clean && cross-env NODE_ENV=production webpack --colors --display-error-details --config ./webpack/webpack.config.prod.js",
     "test": "cross-env NODE_ENV=test karma start",
-    "test:watch": "cross-env NODE_ENV=test npm test -- --watch --no-single-run",
-    "keep-green": "git merge master && rm -rf node_modules && npm install && npm start"
+    "test:watch": "cross-env NODE_ENV=test npm test -- --watch --no-single-run"
   },
   "author": "Choon Ken Ding",
   "license": "MIT",
