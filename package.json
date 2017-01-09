@@ -11,9 +11,9 @@
     "clean": "rimraf public && rimraf compiled",
     "start": "npm run build && cross-env NODE_ENV=production node compiled/server.js",
     "dev": "cross-env NODE_ENV=development nodemon",
-    "build:dev": "cross-env NODE_ENV=development webpack ---debug --colors --display-error-details --config ./webpack/webpack.config.dev-server.js",
-    "build": "npm run clean && cross-env NODE_ENV=production webpack --colors --display-error-details --config ./webpack/webpack.config.prod.js",
-    "test": "cross-env NODE_ENV=test karma start",
+    "build:dev": "cross-env NODE_ENV=development webpack --colors --display-error-details",
+    "build": "npm run clean && cross-env NODE_ENV=production webpack --colors --display-error-details",
+    "test": "cross-env NODE_ENV=test karma start ./app/tests/karma.conf.js",
     "test:watch": "cross-env NODE_ENV=test npm test -- --watch --no-single-run"
   },
   "author": "Choon Ken Ding",
@@ -26,14 +26,14 @@
     "eslint-plugin-jsx-a11y": "^2.2.0",
     "eslint-plugin-react": "^6.2.0",
     "expect": "^1.15.2",
-    "karma": "^1.1.2",
+    "karma": "^1.3.0",
     "karma-jsdom-launcher": "^4.0.0",
     "karma-mocha": "^1.0.1",
     "karma-mocha-reporter": "^2.1.0",
     "karma-sinon": "^1.0.4",
     "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^1.7.0",
-    "mocha": "^3.0.1",
+    "karma-webpack": "^1.8.1",
+    "mocha": "^3.2.0",
     "nodemon": "^1.10.2",
     "null-loader": "^0.1.1",
     "react-addons-test-utils": "^15.4.1",
@@ -44,7 +44,7 @@
     "stylelint-webpack-plugin": "^0.4.2"
   },
   "engines": {
-    "node": "5.x"
+    "node": ">=6.x"
   },
   "dependencies": {
     "autoprefixer": "^6.4.0",
@@ -75,7 +75,7 @@
     "express": "^4.13.4",
     "express-flash": "0.0.2",
     "express-session": "^1.14.1",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "file-loader": "^0.9.0",
     "helmet": "^2.1.2",
     "json-loader": "^0.5.4",
@@ -107,8 +107,8 @@
     "spark-md5": "^2.0.2",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.2",
-    "webpack-dev-middleware": "^1.5.1",
-    "webpack-hot-middleware": "^2.12.2"
+    "webpack": "^2.2.0-rc.3",
+    "webpack-dev-middleware": "^1.9.0",
+    "webpack-hot-middleware": "^2.14.0"
   }
 }
