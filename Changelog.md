@@ -1,3 +1,9 @@
+2.2.5
+===
+- PR #803 - Minor spelling fixes
+- PR #805 - Update README with new demo site (https://demo-reactgo.herokuapp.com)
+- PR #807 - Rename middlewares/preRenderMiddleware -> utils/fetchDataForRoute
+
 2.2.4
 ===
 - PR #802

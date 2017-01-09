@@ -6,7 +6,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import createRoutes from './routes';
 import * as types from './types';
 import configureStore from './store/configureStore';
-import preRenderMiddleware from './middlewares/preRenderMiddleware';
+import fetchDataForRoute from './utils/fetchDataForRoute';
 
 // Grab the state from a global injected into
 // server-generated HTML
@@ -32,10 +32,10 @@ function onUpdate() {
   }
 
   store.dispatch({ type: types.CREATE_REQUEST });
-  preRenderMiddleware(this.state)
-  .then(data => {
-    return store.dispatch({ type: types.REQUEST_SUCCESS, data });
-  });
+  fetchDataForRoute(this.state)
+    .then(data => {
+      return store.dispatch({ type: types.REQUEST_SUCCESS, data });
+    });
 }
 
 
