@@ -5,7 +5,7 @@ import { connect } from './db';
 import initPassport from './init/passport';
 import initExpress from './init/express';
 import initRoutes from './init/routes';
-import renderMiddleware from '../app/server';
+import renderMiddleware from '../app/renderMiddleware';
 
 const app = express();
 
