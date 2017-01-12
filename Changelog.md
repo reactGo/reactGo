@@ -1,3 +1,10 @@
+2.2.6
+===
+- PR #811
+  - Move and rename app/server.jsx -> server/render/middleware.js
+  - Move createScripts -> server/render/
+  - Move pageRenderer -> server/render/
+
 2.2.5
 ===
 - PR #803 - Minor spelling fixes
