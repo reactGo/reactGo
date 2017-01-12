@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { createMemoryHistory, match } from 'react-router';
-import createRoutes from './routes';
-import configureStore from './store/configureStore';
-import * as types from './types';
-import { baseURL } from '../config/app';
-import pageRenderer from './utils/pageRenderer';
-import fetchDataForRoute from './utils/fetchDataForRoute';
+import createRoutes from '../../app/routes';
+import configureStore from '../../app/store/configureStore';
+import * as types from '../../app/types';
+import { baseURL } from '../../config/app';
+import pageRenderer from './pageRenderer';
+import fetchDataForRoute from '../../app/utils/fetchDataForRoute';
 
 // configure baseURL for axios requests (for serverside API calls)
 axios.defaults.baseURL = baseURL;
