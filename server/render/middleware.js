@@ -4,7 +4,7 @@ import createRoutes from '../../app/routes';
 import configureStore from '../../app/store/configureStore';
 import * as types from '../../app/types';
 import { baseURL } from '../../config/app';
-import pageRenderer from '../../app/utils/pageRenderer';
+import pageRenderer from './pageRenderer';
 import fetchDataForRoute from '../../app/utils/fetchDataForRoute';
 
 // configure baseURL for axios requests (for serverside API calls)

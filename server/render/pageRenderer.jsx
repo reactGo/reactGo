@@ -3,7 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { RouterContext } from 'react-router';
 import Helmet from 'react-helmet';
-import { createAppScript, createTrackingScript } from './createScripts';
+import { createAppScript, createTrackingScript } from '../../app/utils/createScripts';
 
 const createApp = (store, props) => renderToString(
   <Provider store={store}>
