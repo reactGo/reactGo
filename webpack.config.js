@@ -112,7 +112,7 @@ module.exports = (env = '') => {
     if (!production && browser) {
       return [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
         new webpack.EnvironmentPlugin(['NODE_ENV'])
       ];
     }
