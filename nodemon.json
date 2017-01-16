@@ -6,8 +6,7 @@
       "app/routes.jsx",
       "server",
       "webpack.config.js",
-      "postcss.config.js",
-      ".stylelintrc"
+      "postcss.config.js"
     ],
     "exec": "npm run build:dev && node compiled/server.dev.js"
 }

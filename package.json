@@ -39,9 +39,7 @@
     "react-addons-test-utils": "^15.4.1",
     "react-transform-catch-errors": "^1.0.2",
     "redux-mock-store": "1.1.2",
-    "sinon": "^1.17.5",
-    "stylelint": "^7.1.0",
-    "stylelint-webpack-plugin": "^0.4.2"
+    "sinon": "^1.17.5"
   },
   "engines": {
     "node": ">=6.x"
