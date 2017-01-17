@@ -6,7 +6,7 @@
  * env is a string passed by "webpack --env" on command line or calling this function directly
  * if env contains substring 'browser', then returns browser-rendering config, otherwise server-rendering config
  *
- * NOTE: browser/server is client/server-side rendering respectively in universial/isomophoric javascript
+ * NOTE: browser/server is client/server-side rendering respectively in universal/isomorphic javascript
  *
  */
 const fs = require('fs');
