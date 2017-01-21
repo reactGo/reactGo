@@ -31,7 +31,6 @@ module.exports = {
       query: {
         presets: ['es2015', 'react', 'stage-0'],
         plugins: [
-          'transform-decorators-legacy',
           'transform-react-remove-prop-types',
           'transform-react-constant-elements',
           'transform-react-inline-elements'
