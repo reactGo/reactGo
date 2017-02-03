@@ -49,17 +49,16 @@ module.exports = (env = '') => {
       test: /\.js$|\.jsx$/,
       loader: 'babel-loader',
       query: {
-        presets: ['es2015', 'react', 'stage-0'],
-        plugins: ['transform-decorators-legacy']
+        presets: ['es2015', 'react', 'stage-0']
       },
       exclude: PATHS.modules
     };
     if (production) {
-      obj.query.plugins.push(
+      obj.query.plugins = [
         'transform-react-remove-prop-types',
         'transform-react-constant-elements',
         'transform-react-inline-elements'
-      );
+      ];
     } else if (browser) {
       obj.query.presets.unshift('react-hmre');
     }

@@ -1,3 +1,23 @@
+2.2.7
+===
+- PR #814
+  - Remove babel-plugin-transform-decorators-legacy
+- PR #819
+  - Fix unit tests breaking due to failed import directory
+
+2.2.6
+===
+- PR #811
+  - Move and rename app/server.jsx -> server/render/middleware.js
+  - Move createScripts -> server/render/
+  - Move pageRenderer -> server/render/
+
+2.2.5
+===
+- PR #803 - Minor spelling fixes
+- PR #805 - Update README with new demo site (https://demo-reactgo.herokuapp.com)
+- PR #807 - Rename middlewares/preRenderMiddleware -> utils/fetchDataForRoute
+
 2.2.4
 ===
 - PR #802

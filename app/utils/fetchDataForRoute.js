@@ -1,10 +1,10 @@
 const defaultFetchData = () => Promise.resolve();
 
-function preRenderMiddleware({ routes, params }) {
+function fetchDataForRoute({ routes, params }) {
   const matchedRoute = routes[routes.length - 1];
   const fetchDataHandler = matchedRoute.fetchData || defaultFetchData;
   return fetchDataHandler(params);
 }
 
-export default preRenderMiddleware;
+export default fetchDataForRoute;
 

@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { createMemoryHistory, match } from 'react-router';
-import createRoutes from './routes';
-import configureStore from './store/configureStore';
-import * as types from './types';
-import preRenderMiddleware from './middlewares/preRenderMiddleware';
-import { baseURL } from '../config/app';
-import pageRenderer from './utils/pageRenderer';
+import createRoutes from '../../app/routes';
+import configureStore from '../../app/store/configureStore';
+import * as types from '../../app/types';
+import { baseURL } from '../../config/app';
+import pageRenderer from './pageRenderer';
+import fetchDataForRoute from '../../app/utils/fetchDataForRoute';
 
 // configure baseURL for axios requests (for serverside API calls)
 axios.defaults.baseURL = baseURL;
@@ -58,16 +58,16 @@ export default function render(req, res) {
       // This method waits for all render component
       // promises to resolve before returning to browser
       store.dispatch({ type: types.CREATE_REQUEST });
-      preRenderMiddleware(props)
-      .then(data => {
-        store.dispatch({ type: types.REQUEST_SUCCESS, data });
-        const html = pageRenderer(store, props);
-        res.status(200).send(html);
-      })
-      .catch(err => {
-        console.error(err);
-        res.status(500).json(err);
-      });
+      fetchDataForRoute(props)
+        .then(data => {
+          store.dispatch({ type: types.REQUEST_SUCCESS, data });
+          const html = pageRenderer(store, props);
+          res.status(200).send(html);
+        })
+        .catch(err => {
+          console.error(err);
+          res.status(500).json(err);
+        });
     } else {
       res.sendStatus(404);
     }
