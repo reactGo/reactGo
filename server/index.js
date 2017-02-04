@@ -9,7 +9,7 @@ import renderMiddleware from './render/middleware';
 
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
-const webpackConfig = require('../webpack.config');
+const webpackConfig = require('../webpack/webpack.config');
 
 const app = express();
 
