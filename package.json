@@ -32,7 +32,7 @@
     "karma-mocha-reporter": "^2.1.0",
     "karma-sinon": "^1.0.4",
     "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^1.8.1",
+    "karma-webpack": "^2.0.2",
     "mocha": "^3.2.0",
     "nodemon": "^1.10.2",
     "null-loader": "^0.1.1",
