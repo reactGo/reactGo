@@ -1,23 +1,27 @@
 const PATHS = require('../paths');
 
 module.exports = ({ production = false, browser = false } = {}) => {
-  const obj = {
-    test: /\.js$|\.jsx$/,
-    loader: 'babel-loader',
-    query: {
-      presets: ['es2015', 'react', 'stage-0']
-    },
-    exclude: PATHS.modules
+  const enableHotModuleReplacement = !production && browser;
+  const createPresets = enableHotModuleReplacement => {
+    const presets = ['es2015', 'react', 'stage-0'];
+    return enableHotModuleReplacement ? ['react-hmre', ...presets]: presets;
   };
-  if (production) {
-    obj.query.plugins = [
+  const presets = createPresets(enableHotModuleReplacement);
+
+  const plugins = production ? [
       'transform-react-remove-prop-types',
       'transform-react-constant-elements',
       'transform-react-inline-elements'
-    ];
-  } else if (browser) {
-    obj.query.presets.unshift('react-hmre');
-  }
-  return obj;
+  ]: [];
+
+  return {
+    test: /\.js$|\.jsx$/,
+    loader: 'babel-loader',
+    options: {
+      presets,
+      plugins
+    },
+    exclude: PATHS.modules
+  };
 };
 
