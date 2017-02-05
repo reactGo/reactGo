@@ -10,12 +10,11 @@
  *
  */
 const fs = require('fs');
-const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PATHS = require('./paths');
 const image = require('./rules/image');
 const javascript = require('./rules/javascript');
 const css = require('./rules/css');
+const plugins = require('./plugins');
 
 module.exports = (env = '') => {
   const isProd = process.env.NODE_ENV === 'production';
@@ -25,47 +24,6 @@ module.exports = (env = '') => {
   const externals = fs.readdirSync('node_modules')
     .filter(x => ['.bin'].indexOf(x) === -1)
     .reduce((acc, cur) => Object.assign(acc, { [cur]: 'commonjs ' + cur }), {});
-
-  const webpackPlugins = (production = false, browser = false) => {
-    const bannerOptions = { raw: true, banner: 'require("source-map-support").install();' };
-    const compress = { warnings: false };
-
-    if (!production && !browser) {
-      return [
-        new webpack.EnvironmentPlugin(['NODE_ENV']),
-        new webpack.IgnorePlugin(/vertx/),
-        new webpack.BannerPlugin(bannerOptions)
-      ];
-    }
-    if (!production && browser) {
-      return [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
-        new webpack.EnvironmentPlugin(['NODE_ENV'])
-      ];
-    }
-    if (production && !browser) {
-      return [
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.EnvironmentPlugin(['NODE_ENV']),
-        new webpack.IgnorePlugin(/vertx/),
-        new webpack.optimize.UglifyJsPlugin({ compress }),
-        new webpack.BannerPlugin(bannerOptions)
-      ];
-    }
-    if (production && browser) {
-      const filename = 'styles/main.css';
-      const allChunks = true;
-
-      return [
-        new ExtractTextPlugin({ filename, allChunks }), // extracted css to css/main.css
-        // new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'manifest'] }),
-        new webpack.optimize.UglifyJsPlugin({ compress }),
-        new webpack.EnvironmentPlugin(['NODE_ENV'])
-      ];
-    }
-    return [];
-  };
 
   const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
 
@@ -105,7 +63,7 @@ module.exports = (env = '') => {
       ]
     },
     resolve,
-    plugins: webpackPlugins(true, false)
+    plugins: plugins(true, false)
   };
   const prodBrowserRender = {
     devtool: 'cheap-module-source-map',
@@ -133,7 +91,7 @@ module.exports = (env = '') => {
         ]
     },
     resolve,
-    plugins: webpackPlugins(true, true)
+    plugins: plugins(true, true)
   };
 
 
@@ -165,7 +123,7 @@ module.exports = (env = '') => {
         ]
     },
     resolve,
-    plugins: webpackPlugins(false, true)
+    plugins: plugins(false, true)
   };
 
   const devServerRender = {
@@ -196,7 +154,7 @@ module.exports = (env = '') => {
         ]
     },
     resolve,
-    plugins: webpackPlugins(false, false)
+    plugins: plugins(false, false)
   };
 
   const prodConfig = [prodBrowserRender, prodServerRender];
