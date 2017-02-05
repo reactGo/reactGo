@@ -16,6 +16,7 @@ const javascript = require('./rules/javascript');
 const css = require('./rules/css');
 const plugins = require('./plugins');
 const externals = require('./externals');
+const resolve = require('./resolve');
 
 module.exports = (env = '') => {
   const isProd = process.env.NODE_ENV === 'production';
@@ -23,11 +24,6 @@ module.exports = (env = '') => {
   console.log(`running webpack.config.js: isProd=${isProd}; browserRender=${browserRender};`);
 
   const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
-
-  const resolve = {
-    modules: [PATHS.app, PATHS.modules],
-    extensions: ['.js', '.jsx', '.css'],
-  };
 
   /*
    * PRODUCTION WEBPACK CONFIG
