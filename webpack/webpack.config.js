@@ -11,9 +11,7 @@
  */
 const fs = require('fs');
 const PATHS = require('./paths');
-const image = require('./rules/image');
-const javascript = require('./rules/javascript');
-const css = require('./rules/css');
+const rules = require('./rules');
 const plugins = require('./plugins');
 const externals = require('./externals');
 const resolve = require('./resolve');
@@ -41,20 +39,7 @@ module.exports = (env = '') => {
       publicPath: PATHS.public,
       libraryTarget: 'commonjs2'
     },
-    module: {
-      rules:
-        [
-          javascript({
-            production: isProd,
-            browser: false
-          }),
-          css({
-            production: isProd,
-            browser: false
-          }),
-          image()
-      ]
-    },
+    module: { rules: rules({ production: true, browser: false }) },
     resolve,
     plugins: plugins({ production: true, browser: false })
   };
@@ -69,20 +54,7 @@ module.exports = (env = '') => {
       chunkFilename: '[name].[chunkhash:6].js', // for code splitting. will work without but useful to set
       publicPath: PATHS.public
     },
-    module: {
-      rules:
-        [
-          javascript({
-            production: isProd,
-            browser: true
-          }),
-          css({
-            production: isProd,
-            browser: true
-          }),
-          image()
-        ]
-    },
+    module: { rules: rules({ production: true, browser: true }) },
     resolve,
     plugins: plugins({ production: true, browser: true })
   };
@@ -101,20 +73,7 @@ module.exports = (env = '') => {
       filename: '[name].js',
       publicPath: PATHS.public
     },
-    module: {
-      rules:
-        [
-          javascript({
-            production: isProd,
-            browser: true
-          }),
-          css({
-            production: isProd,
-            browser: true
-          }),
-          image()
-        ]
-    },
+    module: { rules: rules({ production: false, browser: true }) },
     resolve,
     plugins: plugins({ production: false, browser: true })
   };
@@ -132,20 +91,7 @@ module.exports = (env = '') => {
       publicPath: PATHS.public,
       libraryTarget: 'commonjs2',
     },
-    module: {
-      rules:
-        [
-          javascript({
-            production: isProd,
-            browser: false
-          }),
-          css({
-            production: isProd,
-            browser: false
-          }),
-          image()
-        ]
-    },
+    module: { rules: rules({ production: false, browser: false }) },
     resolve,
     plugins: plugins({ production: false, browser: false })
   };
