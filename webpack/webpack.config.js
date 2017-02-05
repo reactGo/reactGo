@@ -11,27 +11,13 @@
  */
 const fs = require('fs');
 const webpack = require('webpack');
-const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const PATHS = require('./paths');
 
 module.exports = (env = '') => {
   const isProd = process.env.NODE_ENV === 'production';
   const browserRender = (env.indexOf('browser') >= 0);
   console.log(`running webpack.config.js: isProd=${isProd}; browserRender=${browserRender};`);
-
-  /**
-   * __dirname is changed after webpack-ed to another directory
-   * so process.cwd() is used instead to determine the correct base directory
-   */
-  const __DIR__ = process.cwd();
-
-  const PATHS = {
-    app: path.resolve(__DIR__, 'app'),
-    assets: path.resolve(__DIR__, 'public', 'assets'),
-    compiled: path.resolve(__DIR__, 'compiled'),
-    public: '/assets/', // use absolute path for css-loader?
-    modules: path.resolve(__DIR__, 'node_modules')
-  };
 
   const externals = fs.readdirSync('node_modules')
     .filter(x => ['.bin'].indexOf(x) === -1)
