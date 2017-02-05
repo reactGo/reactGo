@@ -17,9 +17,9 @@ const externals = require('./externals');
 const resolve = require('./resolve');
 
 module.exports = (env = '') => {
-  const isProd = process.env.NODE_ENV === 'production';
-  const browserRender = (env.indexOf('browser') >= 0);
-  console.log(`running webpack.config.js: isProd=${isProd}; browserRender=${browserRender};`);
+  const isProduction = process.env.NODE_ENV === 'production';
+  const isBrowser = (env.indexOf('browser') >= 0);
+  console.log(`Running webpack in ${process.env.NODE_ENV} mode on ${isBrowser ? 'browser': 'server'}`);
 
   const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
   const node = { __dirname: true, __filename: true };
@@ -92,8 +92,8 @@ module.exports = (env = '') => {
   };
 
   const prodConfig = [prodBrowserRender, prodServerRender];
-  const devConfig = browserRender ? devBrowserRender : devServerRender;
-  const configuration = isProd ? prodConfig : devConfig;
+  const devConfig = isBrowser ? devBrowserRender : devServerRender;
+  const configuration = isProduction ? prodConfig : devConfig;
 
   return configuration;
 };
