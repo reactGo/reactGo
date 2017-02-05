@@ -22,13 +22,14 @@ module.exports = (env = '') => {
   console.log(`running webpack.config.js: isProd=${isProd}; browserRender=${browserRender};`);
 
   const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
+  const node = { __dirname: true, __filename: true };
 
   const prodServerRender = {
     devtool: 'source-map',
     context: PATHS.app,
     entry: { server: '../server/index' },
     target: 'node',
-    node: { __dirname: true, __filename: true },
+    node,
     externals,
     output: {
       path: PATHS.compiled,
@@ -45,7 +46,7 @@ module.exports = (env = '') => {
     devtool: 'cheap-module-source-map',
     context: PATHS.app,
     entry: { app: ['./client'] },
-    node: { __dirname: true, __filename: true },
+    node,
     output: {
       path: PATHS.assets,
       filename: '[name].js', // filename: '[name].[hash:6].js',
@@ -61,7 +62,7 @@ module.exports = (env = '') => {
     devtool: 'eval',
     context: PATHS.app,
     entry: { app: ['./client', hotMiddlewareScript] },
-    node: { __dirname: true, __filename: true },
+    node,
     output: {
       path: PATHS.assets,
       filename: '[name].js',
@@ -77,7 +78,7 @@ module.exports = (env = '') => {
     context: PATHS.app,
     entry: { server: '../server/index' },
     target: 'node',
-    node: { __dirname: true, __filename: true },
+    node,
     externals,
     output: {
       path: PATHS.compiled,
