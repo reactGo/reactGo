@@ -63,7 +63,7 @@ module.exports = (env = '') => {
       ]
     },
     resolve,
-    plugins: plugins(true, false)
+    plugins: plugins({ production: true, browser: false })
   };
   const prodBrowserRender = {
     devtool: 'cheap-module-source-map',
@@ -91,7 +91,7 @@ module.exports = (env = '') => {
         ]
     },
     resolve,
-    plugins: plugins(true, true)
+    plugins: plugins({ production: true, browser: true })
   };
 
 
@@ -123,7 +123,7 @@ module.exports = (env = '') => {
         ]
     },
     resolve,
-    plugins: plugins(false, true)
+    plugins: plugins({ production: false, browser: true })
   };
 
   const devServerRender = {
@@ -154,7 +154,7 @@ module.exports = (env = '') => {
         ]
     },
     resolve,
-    plugins: plugins(false, false)
+    plugins: plugins({ production: false, browser: false })
   };
 
   const prodConfig = [prodBrowserRender, prodServerRender];
