@@ -23,9 +23,6 @@ module.exports = (env = '') => {
 
   const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
 
-  /*
-   * PRODUCTION WEBPACK CONFIG
-   */
   const prodServerRender = {
     devtool: 'source-map',
     context: PATHS.app,
@@ -43,6 +40,7 @@ module.exports = (env = '') => {
     resolve,
     plugins: plugins({ production: true, browser: false })
   };
+
   const prodBrowserRender = {
     devtool: 'cheap-module-source-map',
     context: PATHS.app,
@@ -59,10 +57,6 @@ module.exports = (env = '') => {
     plugins: plugins({ production: true, browser: true })
   };
 
-
-  /*
-   * DEVELOPMENT WEBPACK CONFIG
-   */
   const devBrowserRender = {
     devtool: 'eval',
     context: PATHS.app,
@@ -100,6 +94,6 @@ module.exports = (env = '') => {
   const devConfig = browserRender ? devBrowserRender : devServerRender;
   const configuration = isProd ? prodConfig : devConfig;
 
-  // console.log('%o', configuration);
   return configuration;
 };
+
