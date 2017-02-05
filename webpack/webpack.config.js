@@ -15,15 +15,12 @@ const image = require('./rules/image');
 const javascript = require('./rules/javascript');
 const css = require('./rules/css');
 const plugins = require('./plugins');
+const externals = require('./externals');
 
 module.exports = (env = '') => {
   const isProd = process.env.NODE_ENV === 'production';
   const browserRender = (env.indexOf('browser') >= 0);
   console.log(`running webpack.config.js: isProd=${isProd}; browserRender=${browserRender};`);
-
-  const externals = fs.readdirSync('node_modules')
-    .filter(x => ['.bin'].indexOf(x) === -1)
-    .reduce((acc, cur) => Object.assign(acc, { [cur]: 'commonjs ' + cur }), {});
 
   const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
 
