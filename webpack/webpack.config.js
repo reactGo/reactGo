@@ -13,6 +13,7 @@ const fs = require('fs');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PATHS = require('./paths');
+const image = require('./rules/image');
 
 module.exports = (env = '') => {
   const isProd = process.env.NODE_ENV === 'production';
@@ -22,13 +23,6 @@ module.exports = (env = '') => {
   const externals = fs.readdirSync('node_modules')
     .filter(x => ['.bin'].indexOf(x) === -1)
     .reduce((acc, cur) => Object.assign(acc, { [cur]: 'commonjs ' + cur }), {});
-
-  const urlLoader = (limit = 10000) => ({
-    test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
-    loader: 'url-loader',
-    query: { name: '[hash].[ext]', limit }, // name for file-loader
-    include: PATHS.app
-  });
 
   const babelLoader = (production = false, browser = false) => {
     const obj = {
@@ -147,7 +141,7 @@ module.exports = (env = '') => {
       publicPath: PATHS.public,
       libraryTarget: 'commonjs2'
     },
-    module: { rules: [babelLoader(isProd, false), cssLoader(isProd, false), urlLoader()] },
+    module: { rules: [babelLoader(isProd, false), cssLoader(isProd, false), image()] },
     resolve,
     plugins: webpackPlugins(true, false)
   };
@@ -162,7 +156,7 @@ module.exports = (env = '') => {
       chunkFilename: '[name].[chunkhash:6].js', // for code splitting. will work without but useful to set
       publicPath: PATHS.public
     },
-    module: { rules: [babelLoader(isProd, true), cssLoader(isProd, true), urlLoader()] },
+    module: { rules: [babelLoader(isProd, true), cssLoader(isProd, true), image()] },
     resolve,
     plugins: webpackPlugins(true, true)
   };
@@ -181,7 +175,7 @@ module.exports = (env = '') => {
       filename: '[name].js',
       publicPath: PATHS.public
     },
-    module: { rules: [babelLoader(isProd, true), cssLoader(isProd, true), urlLoader()] },
+    module: { rules: [babelLoader(isProd, true), cssLoader(isProd, true), image()] },
     resolve,
     plugins: webpackPlugins(false, true)
   };
@@ -199,7 +193,7 @@ module.exports = (env = '') => {
       publicPath: PATHS.public,
       libraryTarget: 'commonjs2',
     },
-    module: { rules: [babelLoader(isProd, false), cssLoader(isProd, false), urlLoader()] },
+    module: { rules: [babelLoader(isProd, false), cssLoader(isProd, false), image()] },
     resolve,
     plugins: webpackPlugins(false, false)
   };
