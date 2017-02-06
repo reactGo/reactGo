@@ -1,3 +1,15 @@
+3.0.0
+===
+- PR #822 Webpack is here!!! Hooray!
+  - There have been significant changes to our webpack configuration files
+```js
+- webpack/
+   - rules/
+   plugins
+   externals
+   resolve
+```
+
 2.2.7
 ===
 - PR #814
