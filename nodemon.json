@@ -5,9 +5,8 @@
       "app/server.jsx",
       "app/routes.jsx",
       "server",
-      "webpack/webpack.config.dev-client.js",
-      "webpack/webpack.config.dev-server.js",
-      ".stylelintrc"
+      "webpack.config.js",
+      "postcss.config.js"
     ],
     "exec": "npm run build:dev && node compiled/server.dev.js"
 }

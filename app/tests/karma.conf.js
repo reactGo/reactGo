@@ -1,5 +1,4 @@
-var path = require('path');
-var webpack = require('webpack');
+const PATHS = require('../../webpack/paths');
 
 module.exports = function(config) {
   config.set({
@@ -35,24 +34,24 @@ module.exports = function(config) {
 
     webpack: {
       devtool: 'inline-source-map',
-      context: path.join(__dirname, 'app'),
+      context: PATHS.app,
       module: {
         loaders: [
           {
             test: /\.js$|\.jsx$/,
-            loader: 'babel',
+            loader: 'babel-loader',
             // Reason why we put this here instead of babelrc
             // https://github.com/gaearon/react-transform-hmr/issues/5#issuecomment-142313637
-            query: {
-              'presets': ['es2015', 'react', 'stage-0'],
-              'plugins': [
+            options: {
+              presets: ['es2015', 'react', 'stage-0'],
+              plugins: [
                 'transform-react-remove-prop-types',
                 'transform-react-constant-elements',
                 'transform-react-inline-elements'
               ]
             },
-            include: path.join(__dirname, 'app'),
-            exclude: path.join(__dirname, '/node_modules/')
+            include: PATHS.app,
+            exclude: PATHS.modules
           },
           { test: /\.json$/, loader: 'json-loader' },
           { test: /\.css$/, loader: 'null-loader' }
@@ -65,10 +64,8 @@ module.exports = function(config) {
         'react/lib/ReactContext': true
       },
       resolve: {
-        extensions: ['', '.js', '.jsx', '.css'],
-        modulesDirectories: [
-          'app', 'node_modules'
-        ]
+        extensions: ['.js', '.jsx', '.css'],
+        modules: [ PATHS.app, PATHS.modules ]
       },
       node: {
         fs: 'empty'

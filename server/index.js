@@ -22,15 +22,14 @@ connect();
 initPassport();
 
 if (isDebug) {
-  const webpackDevConfig = require('../webpack/webpack.config.dev-client');
-
-  const compiler = webpack(webpackDevConfig);
-  app.use(require('webpack-dev-middleware')(compiler, {
-    noInfo: true,
-    publicPath: webpackDevConfig.output.publicPath
-  }));
-
-  app.use(require('webpack-hot-middleware')(compiler));
+  // enable webpack hot module replacement
+  const webpackDevMiddleware = require('webpack-dev-middleware');
+  const webpackHotMiddleware = require('webpack-hot-middleware');
+  const webpackConfig = require('../webpack/webpack.config');
+  const devBrowserConfig = webpackConfig('browser');
+  const compiler = webpack(devBrowserConfig);
+  app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: devBrowserConfig.output.publicPath }));
+  app.use(webpackHotMiddleware(compiler));
 }
 
 /*
