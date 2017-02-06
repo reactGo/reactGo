@@ -30,7 +30,7 @@ _Formerly known as choonkending/react-webpack-node_
 - Server side authentication + Redirecting for components
 - Hot reloading using [**react-transform-hmr**](https://github.com/gaearon/react-transform-hmr)
 - Time travel using [**Redux-Devtools Chrome Extension**](https://github.com/zalmoxisus/redux-devtools-extension)
-- [**Webpack**](https://github.com/webpack/webpack) for both development and production bundles. It's (in my opinion) the best bundler for JS, CSS, LESS, images, and lots more!
+- [**Webpack 2**](https://github.com/webpack/webpack) for both development and production bundles. It's (in my opinion) the best bundler for JS, CSS, LESS, images, and lots more!
 - [**CSS Modules**](https://github.com/css-modules/css-modules) allows for modular and reusable CSS. Say goodbye to conflicts (most of them) and global scope
 
 - **Unit Testing** with webpack, karma, jsdom, mocha, sinon & enzyme
