@@ -11,7 +11,7 @@
     "clean": "rimraf public && rimraf compiled",
     "start": "npm run build && cross-env NODE_ENV=production node compiled/server.js",
     "dev": "cross-env NODE_ENV=development nodemon",
-    "build:dev": "cross-env NODE_ENV=development webpack --colors --display-error-details --config ./webpack/webpack.config.js",
+    "build:dev": "cross-env NODE_ENV=development webpack --debug --colors --display-error-details --config ./webpack/webpack.config.js",
     "build": "npm run clean && cross-env NODE_ENV=production webpack --colors --display-error-details --config ./webpack/webpack.config.js",
     "test": "cross-env NODE_ENV=test karma start ./app/tests/karma.conf.js",
     "test:watch": "cross-env NODE_ENV=test npm test -- --watch --no-single-run"
