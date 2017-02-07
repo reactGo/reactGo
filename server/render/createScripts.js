@@ -1,4 +1,17 @@
-import { GOOGLE_ANALYTICS_ID } from '../../config/env';
+import { GOOGLE_ANALYTICS_ID, ENV } from '../../config/env';
+
+const createVendorScripts = () => {
+  const isProduction = ENV === 'production'
+  
+  const vendorManifest = isProduction ? require('../../public/vendor/prod/manifest.json')
+                                      : require('../../public/vendor/dev/manifest.json');
+                                              
+  const vendorScripts = Object.keys(vendorManifest).map(key => vendorManifest[key])
+                                                   .map(value => `<script src="vendor/${isProduction ? 'prod' : 'dev'}/${value}"></script>`)
+                                                   .join('\n');
+                                                   
+  return vendorScripts;
+};
 
 const createAppScript = () => {
   return '<script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>';
@@ -16,5 +29,5 @@ ga('send', 'pageview');
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>`;
 
-export { createTrackingScript, createAppScript };
+export { createTrackingScript, createAppScript, createVendorScripts };
 
