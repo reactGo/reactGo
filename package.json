@@ -8,9 +8,10 @@
     "sequelize": "node_modules/.bin/sequelize",
     "lint": "eslint --ext .js,.jsx app server",
     "lint:fix": "eslint --ext .js,.jsx app server --fix",
-    "clean": "rimraf public && rimraf compiled",
+    "clean": "rimraf public/*.js* public/*.*css && rimraf compiled",
     "start": "npm run build && cross-env NODE_ENV=production node compiled/server.js",
     "dev": "cross-env NODE_ENV=development nodemon",
+    "build:dll": "cross-env NODE_ENV=dll webpack --debug --colors --display-error-details --config ./webpack/webpack.config.js",
     "build:dev": "cross-env NODE_ENV=development webpack --debug --colors --display-error-details --config ./webpack/webpack.config.js",
     "build": "npm run clean && cross-env NODE_ENV=production webpack --colors --display-error-details --config ./webpack/webpack.config.js",
     "test": "cross-env NODE_ENV=test karma start ./app/tests/karma.conf.js",
@@ -106,6 +107,7 @@
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1",
     "webpack-dev-middleware": "^1.9.0",
-    "webpack-hot-middleware": "^2.14.0"
+    "webpack-hot-middleware": "^2.14.0",
+    "webpack-manifest-plugin": "^1.1.0"
   }
 }

@@ -9,14 +9,20 @@
  * NOTE: browser/server is client/server-side rendering respectively in universal/isomorphic javascript
  *
  */
-const fs = require('fs');
 const PATHS = require('./paths');
 const rules = require('./rules');
 const plugins = require('./plugins');
 const externals = require('./externals');
 const resolve = require('./resolve');
+const dll = require('./dll');
 
 module.exports = (env = '') => {
+  console.log(env);
+  
+  if (process.env.NODE_ENV === 'dll') {
+    return dll;
+  }
+  
   const isProduction = process.env.NODE_ENV === 'production';
   const isBrowser = (env.indexOf('browser') >= 0);
   console.log(`Running webpack in ${process.env.NODE_ENV} mode on ${isBrowser ? 'browser': 'server'}`);
