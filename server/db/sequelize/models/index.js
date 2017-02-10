@@ -16,7 +16,12 @@ db.Token = sequelize.import('Token', tokenModel);
 db.Topic = sequelize.import('Topic', topicModel);
 db.User = sequelize.import('User', userModel);
 
-Object.keys(db).forEach(model => model.associate && model.associate(db));
+Object.keys(db).forEach((key) => {
+  const model = db[key];
+  if (model.associate) {
+    model.associate(db);
+  }
+});
 
 export { db as Models, sequelize };
 
