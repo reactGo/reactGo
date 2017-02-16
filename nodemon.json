@@ -2,11 +2,9 @@
     "verbose": false,
     "watch": [
       "app/utils",
-      "app/server.jsx",
       "app/routes.jsx",
       "server",
-      "webpack.config.js",
-      "postcss.config.js"
+      "webpack"
     ],
     "exec": "npm run build:dev && node compiled/server.dev.js"
 }
