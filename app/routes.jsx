@@ -1,7 +1,12 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
-import { fetchVoteData } from './fetch-data';
-import { App, Vote, Dashboard, About, LoginOrRegister } from './pages';
+import {Route, IndexRoute} from 'react-router';
+import {fetchVoteData} from './fetch-data';
+import {App} from './pages';
+
+const getLoginComponent     = (l, c) => require.ensure([], () => c(null, require('./pages/LoginOrRegister').default));
+const getVoteComponent      = (l, c) => require.ensure([], () => c(null, require('./pages/Vote').default));
+const getDashboardComponent = (l, c) => require.ensure([], () => c(null, require('./pages/Dashboard').default));
+const getAboutComponent     = (l, c) => require.ensure([], () => c(null, require('./pages/About').default));
 
 /*
  * @param {Redux Store}
@@ -29,12 +34,13 @@ export default (store) => {
     }
     callback();
   };
+  
   return (
     <Route path="/" component={App}>
-      <IndexRoute component={Vote} fetchData={fetchVoteData} />
-      <Route path="login" component={LoginOrRegister} onEnter={redirectAuth} />
-      <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
-      <Route path="about" component={About} />
+      <IndexRoute getComponent={getVoteComponent} fetchData={fetchVoteData} />
+      <Route path="about" getComponent={getAboutComponent} />
+      <Route path="dashboard" getComponent={getDashboardComponent} onEnter={requireAuth} />
+      <Route path="login" getComponent={getLoginComponent} onEnter={redirectAuth} />
     </Route>
   );
 };
