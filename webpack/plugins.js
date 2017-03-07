@@ -9,6 +9,8 @@ module.exports = ({ production = false, browser = false } = {}) => {
 
   if (!production && !browser) {
     return [
+      // Use Infinity to prevent code-split on the server
+      new webpack.optimize.MinChunkSizePlugin({minChunkSize: Infinity}),
       new webpack.EnvironmentPlugin(['NODE_ENV']),
       new webpack.BannerPlugin(bannerOptions)
     ];
@@ -24,6 +26,7 @@ module.exports = ({ production = false, browser = false } = {}) => {
           filename: '[name].js',
           minChuncks: Infinity
       }),
+      new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10000}),
       new webpack.EnvironmentPlugin(['NODE_ENV']),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin()
@@ -31,6 +34,8 @@ module.exports = ({ production = false, browser = false } = {}) => {
   }
   if (production && !browser) {
     return [
+      // Use Infinity to prevent code-split on the server
+      new webpack.optimize.MinChunkSizePlugin({minChunkSize: Infinity}),
       new webpack.EnvironmentPlugin(['NODE_ENV']),
       new webpack.BannerPlugin(bannerOptions),
       new webpack.optimize.UglifyJsPlugin({ compress })
@@ -52,6 +57,7 @@ module.exports = ({ production = false, browser = false } = {}) => {
           filename: '[name].[chunkhash].chunk.js',
           minChuncks: Infinity
       }),
+      new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10000}),
       new webpack.EnvironmentPlugin(['NODE_ENV']),
       new ExtractTextPlugin({
         filename: 'styles/main.css',

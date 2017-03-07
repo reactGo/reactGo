@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
 import {fetchVoteData} from './fetch-data';
-import {App} from './pages';
+import App from './pages/App';
 
 const getLoginComponent     = (l, c) => require.ensure([], () => c(null, require('./pages/LoginOrRegister').default));
 const getVoteComponent      = (l, c) => require.ensure([], () => c(null, require('./pages/Vote').default));
