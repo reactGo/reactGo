@@ -5,8 +5,9 @@ import md5 from 'spark-md5';
 import { polyfill } from 'es6-promise';
 import axios from 'axios';
 import expect from 'expect';
-import * as actions from 'actions/topics';
-import * as types from 'types';
+import sinon from 'sinon';
+import * as actions from '../../actions/topics';
+import * as types from '../../types';
 
 polyfill();
 

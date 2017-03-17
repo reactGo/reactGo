@@ -3,8 +3,9 @@ import thunk from 'redux-thunk';
 import { polyfill } from 'es6-promise';
 import axios from 'axios';
 import expect from 'expect';
-import * as actions from 'actions/users';
-import * as types from 'types';
+import sinon from 'sinon';
+import * as actions from '../../actions/users';
+import * as types from '../../types';
 
 polyfill();
 
