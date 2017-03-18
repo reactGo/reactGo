@@ -33,7 +33,7 @@ _Formerly known as choonkending/react-webpack-node_
 - [**Webpack 2**](https://github.com/webpack/webpack) for both development and production bundles. It's (in my opinion) the best bundler for JS, CSS, LESS, images, and lots more!
 - [**CSS Modules**](https://github.com/css-modules/css-modules) allows for modular and reusable CSS. Say goodbye to conflicts (most of them) and global scope
 
-- **Unit Testing** with webpack, karma, jsdom, mocha, sinon & enzyme
+- **Unit Testing** with jsdom, mocha, sinon & enzyme
 	- Reducers
 	- Components ([Enzyme](http://airbnb.io/enzyme))
 	- Synchronous and Asynchronous Actions
@@ -102,10 +102,8 @@ Development is a breeze. Once you have installed all your dependencies all the c
 #### Unit Tests
 
 Testing with:
-- `karma` as test runner
-	- `karma.conf.js` for the main karma configuration (it has webpack configurations)
-	- `tests.webpack.js` which is the single entry file. It uses `webpack`'s require API to find all the files we need that have a `-test.js` suffix.
 - `mocha` as the test framework
+	- We find all the files we need that have a `-test.js` suffix in the `/app` directory.
 - `jsdom` as my test environment
 
 ```bash
