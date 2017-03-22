@@ -1,3 +1,15 @@
+3.1
+===
+- PR #847 Kill karma as a test runner - removing many layers of abstraction feels so good!
+  - Bump babel-dependencies
+  - Use mocha as a test runner
+  - Create a setup file which does the following:
+  - babel-register
+  - Initialises jsdom by loading document into the global scope. Reference here
+  - Remove karma dependencies
+  - Remove tests.webpack.js
+  - Remove karma.conf.js
+
 3.0.0
 ===
 - PR #822 Webpack is here!!! Hooray!
