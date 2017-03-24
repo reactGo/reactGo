@@ -2,6 +2,8 @@ import mongoose from 'mongoose';
 import { db } from './constants';
 import loadModels from './models';
 
+mongoose.Promise = global.Promise;
+
 export default () => {
   // Find the appropriate database to connect to, default to localhost if not found.
   const connect = () => {

@@ -54,7 +54,6 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.22.0",
     "bcrypt-nodejs": "0.0.3",
-    "bluebird": "^3.4.6",
     "body-parser": "^1.15.0",
     "classnames": "^2.2.3",
     "compression": "^1.6.2",
