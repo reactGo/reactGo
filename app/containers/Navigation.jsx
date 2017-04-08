@@ -38,4 +38,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { logOut })(Navigation);
+export default connect(mapStateToProps, { logOut }, null, {pure:false})(Navigation);
