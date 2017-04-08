@@ -69,11 +69,11 @@ export function toggleLoginMode() {
 }
 
 export function manualLogin(data) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(beginLogin());
 
     return makeUserRequest('post', data, '/login')
-      .then(response => {
+      .then((response) => {
         if (response.status === 200) {
           dispatch(loginSuccess(response.data.message));
           dispatch(push('/'));
@@ -81,18 +81,18 @@ export function manualLogin(data) {
           dispatch(loginError('Oops! Something went wrong!'));
         }
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(loginError(getMessage(err)));
       });
   };
 }
 
 export function signUp(data) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(beginSignUp());
 
     return makeUserRequest('post', data, '/signup')
-      .then(response => {
+      .then((response) => {
         if (response.status === 200) {
           dispatch(signUpSuccess(response.data.message));
           dispatch(push('/'));
@@ -100,18 +100,18 @@ export function signUp(data) {
           dispatch(signUpError('Oops! Something went wrong'));
         }
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(signUpError(getMessage(err)));
       });
   };
 }
 
 export function logOut() {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(beginLogout());
 
     return makeUserRequest('post', null, '/logout')
-      .then(response => {
+      .then((response) => {
         if (response.status === 200) {
           dispatch(logoutSuccess());
         } else {

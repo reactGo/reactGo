@@ -33,7 +33,7 @@ function onUpdate() {
 
   store.dispatch({ type: types.CREATE_REQUEST });
   fetchDataForRoute(this.state)
-    .then(data => {
+    .then((data) => {
       return store.dispatch({ type: types.REQUEST_SUCCESS, data });
     });
 }

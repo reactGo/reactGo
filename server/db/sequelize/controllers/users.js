@@ -56,7 +56,7 @@ export function signUp(req, res, next) {
         });
       });
     });
-  }).catch((err) =>
+  }).catch(err =>
     next(err)
   );
 }

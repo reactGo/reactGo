@@ -11,19 +11,19 @@ class Vote extends Component {
     };
   }
 
-  pageTitle() {
+  pageTitle = () => {
     return 'Vote | reactGo';
-  }
+  };
 
-  pageMeta() {
+  pageMeta = () => {
     return [
       { name: 'description', content: 'A reactGo example of a voting page' }
     ];
-  }
+  };
 
-  pageLink() {
+  pageLink = () => {
     return [];
-  }
+  };
 
   render() {
     return (

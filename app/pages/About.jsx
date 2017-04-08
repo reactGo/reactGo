@@ -11,19 +11,19 @@ class About extends Component {
     };
   }
 
-  pageTitle() {
+  pageTitle = () => {
     return 'About | reactGo';
-  }
+  };
 
-  pageMeta() {
+  pageMeta = () => {
     return [
       { name: 'description', content: 'A reactGo example of life' }
     ];
-  }
+  };
 
-  pageLink() {
+  pageLink = () => {
     return [];
-  }
+  };
 
   render() {
     return (
