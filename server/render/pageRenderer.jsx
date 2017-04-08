@@ -32,7 +32,7 @@ const buildPage = ({ componentHTML, initialState, headAssets }) => {
 export default (store, props) => {
   const initialState = store.getState();
   const componentHTML = createApp(store, props);
-  const headAssets = Helmet.rewind();
+  const headAssets = Helmet.renderStatic();
   return buildPage({ componentHTML, initialState, headAssets });
 };
 
