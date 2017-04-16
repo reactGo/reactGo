@@ -32,6 +32,13 @@ mongod
 ## Build & Dev
 
 #### Installation
+
+#### Yarn
+```
+yarn install
+```
+
+#### npm
 ```bash
 # Install node modules - this includes those for production and development
 # You only need to do this once :)
