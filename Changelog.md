@@ -1,3 +1,56 @@
+3.2
+===
+- PR #855 (@ZeroCho) :
+  - Add yarn.lock file - You can now use yarn install!
+  - Bump dependencies:
+    - React, react-dom, prop-types, react-addons-test-utils
+    - autoprefixer
+    - axios
+    - babel-cli
+    - babel-core
+    - babel-plugin-transform-react-remove-prop-types
+    - babel-preset-es2015
+    - babel-preset-react
+    - babel-preset-stage-0
+    - bluebird
+    - body-parser
+    - cross-env
+    - css-loader
+    - es6-promise
+    - express
+    - express-session
+    - extract-text-webpack-plugin
+    - file-loader
+    - helmet
+    - method-override
+    - mongoose
+    - pg
+    - postcss-cssnext
+    - postcss-loader
+    - react-helmet
+    - react-redux
+    - react-router
+    - redux-logger
+    - rimraf
+    - sequelize
+    - sequelize-cli
+    - spark-md5
+    - style-loader
+    - url-loader
+    - webpack
+    - webpack-dev-middleware
+    - webpack-hot-middleware
+  - Bump dev dependencies:
+    - babel-eslint
+    - enzyme
+    - eslint
+    - eslint-config-airbnb
+    - eslint-plugin-import
+    - eslint-plugin-jsx-a11y
+    - react-test-renderer
+    - redux-mock-store
+    - sinon
+
 3.1
 ===
 - PR #847 Kill karma as a test runner - removing many layers of abstraction feels so good!
