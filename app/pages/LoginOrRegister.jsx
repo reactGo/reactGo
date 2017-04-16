@@ -11,19 +11,19 @@ class LoginOrRegister extends Component {
     };
   }
 
-  pageTitle() {
+  pageTitle = () => {
     return 'LoginOrRegister | reactGo';
-  }
+  };
 
-  pageMeta() {
+  pageMeta = () => {
     return [
       { name: 'description', content: 'A reactGo example of a login or register page' }
     ];
-  }
+  };
 
-  pageLink() {
+  pageLink = () => {
     return [];
-  }
+  };
 
   render() {
     return (

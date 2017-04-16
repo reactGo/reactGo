@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Navigation from '../containers/Navigation';
 import Message from '../containers/Message';
@@ -16,12 +17,12 @@ const cx = classNames.bind(styles);
  * A better explanation of react-router is available here:
  * https://github.com/rackt/react-router/blob/latest/docs/Introduction.md
  */
-const App = ({children}) => {
+const App = ({ children }) => {
   return (
     <div className={cx('app')}>
       <Navigation />
       <Message />
-        {children}
+      {children}
     </div>
   );
 };

@@ -9,7 +9,7 @@ function attachGoogleAccount(user, profile, accessToken, done) {
   user.gender = user.gender || profile._json.gender;
   user.picture = user.picture || profile._json.picture;
 
-  return sequelize.transaction((transaction) =>
+  return sequelize.transaction(transaction =>
     user.save({ transaction }).then(() =>
       user.createToken({
         kind: 'google',
@@ -23,14 +23,14 @@ function attachGoogleAccount(user, profile, accessToken, done) {
 /* eslint-enable no-param-reassign */
 
 function createUserWithToken(profile, accessToken, done) {
-  return sequelize.transaction((transaction) =>
+  return sequelize.transaction(transaction =>
     User.create({
       email: profile._json.emails[0].value,
       google: profile.id,
       name: profile.displayName,
       gender: profile._json.gender,
       picture: profile._json.picture
-    }, { transaction }).then((user) =>
+    }, { transaction }).then(user =>
       user.createToken({
         kind: 'google',
         accessToken
@@ -59,7 +59,7 @@ export default (req, accessToken, refreshToken, profile, done) =>
       if (existingUser) {
         return done(null, false, { message: existingGoogleAccountMessage });
       }
-      return User.findById(req.user.id).then((user) =>
+      return User.findById(req.user.id).then(user =>
         attachGoogleAccount(user, profile, accessToken, done)
       );
     }

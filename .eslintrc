@@ -1,41 +1,41 @@
 {
-    "extends": "airbnb",
-    "env": {
-        "browser": true,
-        "node": true,
-        "mocha": true
-    },
- "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "forOf": true,
-            "jsx": true,
-            "es6": true,
-            "experimentalObjectRestSpread" : true
-        }
-    },
-    "rules": {
-        "comma-dangle": 0,
-        "indent": 0,
-        "react/prop-types": 0,
-        "react/jsx-indent-props" : 0,
-        "linebreak-style": 0,
-        "react/jsx-closing-bracket-location" : 0,
-        "object-curly-spacing" : 0,
-        "arrow-body-style": 0,
-        "no-console": 0,
-        "max-len": 0,
-        "prefer-template": 0,
-        "import/no-unresolved": 0,
-        "global-require": 0,
-        "no-underscore-dangle": 0
-    },
-    "plugins": [
-        "react"
-      ],
-     "globals": {
-        "__DEVSERVER__": true,
-        "__DEVCLIENT__": true
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "comma-dangle": 0,
+    "indent": 0,
+    "react/prop-types": 0,
+    "react/jsx-indent-props": 0,
+    "linebreak-style": 0,
+    "react/jsx-closing-bracket-location": 0,
+    "object-curly-spacing": 0,
+    "arrow-body-style": 0,
+    "no-console": 0,
+    "max-len": 0,
+    "prefer-template": 0,
+    "import/no-unresolved": 0,
+    "global-require": 0,
+    "no-underscore-dangle": 0
+  },
+  "plugins": [
+    "react",
+    "jsx-a11y"
+  ],
+  "globals": {
+    "__DEVSERVER__": true,
+    "__DEVCLIENT__": true
   }
 }

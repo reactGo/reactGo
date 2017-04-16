@@ -59,12 +59,12 @@ export default function render(req, res) {
       // promises to resolve before returning to browser
       store.dispatch({ type: types.CREATE_REQUEST });
       fetchDataForRoute(props)
-        .then(data => {
+        .then((data) => {
           store.dispatch({ type: types.REQUEST_SUCCESS, data });
           const html = pageRenderer(store, props);
           res.status(200).send(html);
         })
-        .catch(err => {
+        .catch((err) => {
           console.error(err);
           res.status(500).json(err);
         });

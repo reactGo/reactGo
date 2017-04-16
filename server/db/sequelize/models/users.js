@@ -8,7 +8,7 @@ const bcrypt = Promise.promisifyAll(bcryptNode);
 /* eslint-disable no-param-reassign */
 function hashPassword(user) {
   if (!user.changed('password')) return null;
-  return bcrypt.genSaltAsync(5).then((salt) =>
+  return bcrypt.genSaltAsync(5).then(salt =>
     bcrypt.hashAsync(user.password, salt, null).then((hash) => {
       user.password = hash;
     })

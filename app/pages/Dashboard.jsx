@@ -11,19 +11,19 @@ class Dashboard extends Component {
     };
   }
 
-  pageTitle() {
+  pageTitle = () => {
     return 'Dashboard | reactGo';
-  }
+  };
 
-  pageMeta() {
+  pageMeta = () => {
     return [
       { name: 'description', content: 'A reactGo example of a dashboard page' }
     ];
-  }
+  };
 
-  pageLink() {
+  pageLink = () => {
     return [];
-  }
+  };
 
   render() {
     return (

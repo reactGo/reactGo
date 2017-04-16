@@ -95,7 +95,7 @@ export function createTopic(text) {
     dispatch(createTopicRequest(data));
 
     return makeTopicRequest('post', id, data)
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) {
           // We can actually dispatch a CREATE_TOPIC_SUCCESS
           // on success, but I've opted to leave that out
@@ -111,7 +111,7 @@ export function createTopic(text) {
 }
 
 export function incrementCount(id) {
-  return dispatch => {
+  return (dispatch) => {
     return makeTopicRequest('put', id, {
         isFull: false,
         isIncrement: true
@@ -122,7 +122,7 @@ export function incrementCount(id) {
 }
 
 export function decrementCount(id) {
-  return dispatch => {
+  return (dispatch) => {
     return makeTopicRequest('put', id, {
         isFull: false,
         isIncrement: false
@@ -133,7 +133,7 @@ export function decrementCount(id) {
 }
 
 export function destroyTopic(id) {
-  return dispatch => {
+  return (dispatch) => {
     return makeTopicRequest('delete', id)
       .then(() => dispatch(destroy(id)))
       .catch(() => dispatch(createTopicFailure({id,
