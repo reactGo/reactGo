@@ -1,3 +1,10 @@
+3.2.1
+===
+- PR #859 (@avloss):
+  - Fix broken links
+- PR #860 (@tomas-st):
+  - Update apps.md to include new project
+
 3.2
 ===
 - PR #855 (@ZeroCho) :
