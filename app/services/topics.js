@@ -1,7 +1,13 @@
-import axios from 'axios';
+import { baseURL } from '../../config/app';
+import createRestApiClient from '../utils/createRestApiClient';
 
-const service = {
-  getTopics: () => axios.get('/topic')
+export default () => {
+  const client = createRestApiClient().withConfig({ baseURL });
+  return {
+    getTopics: () => client.request({
+      method: 'GET',
+      url: '/topic'
+    })
+  };
 };
 
-export default service;
