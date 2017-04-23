@@ -8,7 +8,7 @@ import expect from 'expect';
 import sinon from 'sinon';
 import * as actions from '../../actions/topics';
 import * as types from '../../types';
-import * as voteService from '../../services/topics';
+import createVoteServiceStub from '../../tests/helpers/createVoteServiceStub';
 
 polyfill();
 
@@ -167,14 +167,17 @@ describe('Topic Actions', () => {
 
     describe('destroyTopic', () => {
       let store;
+      let stub;
 
       describe('on success', () => {
 
         beforeEach(() => {
-          sandbox.stub(voteService, 'default').returns({
-            deleteTopic: () => Promise.resolve({ status: 200 })
-          });
+          stub = createVoteServiceStub().replace('deleteTopic').with(() => Promise.resolve({ status: 200 }));
           store = mockStore();
+        });
+
+        afterEach(() => {
+          stub.restore();
         });
 
         it('should dispatch a DESTROY_TOPIC action', done => {
@@ -196,10 +199,12 @@ describe('Topic Actions', () => {
 
       describe('on failure', () => {
         beforeEach(() => {
-          sandbox.stub(voteService, 'default').returns({
-            deleteTopic: () => Promise.reject({ status: 400 })
-          });
+          stub = createVoteServiceStub().replace('deleteTopic').with(() => Promise.reject({ status: 400 }));
           store = mockStore();
+        });
+
+        afterEach(() => {
+          stub.restore();
         });
 
         it('should dispatch a CREATE_TOPIC_FAILURE action', done => {
