@@ -11,6 +11,11 @@ export default () => {
     deleteTopic: ({ id }) => client.request({
       method: 'DELETE',
       url: `/topic/${id}`
+    }),
+    updateTopic: ({ id, data }) => client.request({
+      method: 'PUT',
+      url: `/topic/${id}`,
+      data
     })
   };
 };
