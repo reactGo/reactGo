@@ -103,66 +103,126 @@ describe('Topic Actions', () => {
       initialState.topic.topics.pop();
     });
 
-    it('incrementCount dispatches an increment count action on success', done => {
-      const expectedActions = [
-      {
-        type: types.INCREMENT_COUNT,
-        id
-      }];
-      sandbox.stub(axios, 'put').returns(Promise.resolve({ status: 200 }));
-      const store = mockStore();
-      store.dispatch(actions.incrementCount(data.id))
-        .then(() => {
-          expect(store.getActions()).toEqual(expectedActions);
-        }).then(done)
-        .catch(done);
+    describe('incrementCount', () => {
+      let store;
+      let stub;
+
+      describe('on success', () => {
+
+        beforeEach(() => {
+          stub = createVoteServiceStub().replace('updateTopic').with(() => Promise.resolve({ status: 200 }));
+          store = mockStore();
+        });
+
+        afterEach(() => {
+          stub.restore();
+        });
+
+        it('should dispatch a INCREMENT_COUNT action', done => {
+          const expectedActions = [
+            {
+              type: types.INCREMENT_COUNT,
+              id
+            }
+          ];
+
+          store.dispatch(actions.incrementCount(id))
+            .then(() => {
+              expect(store.getActions()).toEqual(expectedActions);
+              done();
+            })
+            .catch(done);
+        });
+      });
+
+      describe('on failure', () => {
+        beforeEach(() => {
+          stub = createVoteServiceStub().replace('updateTopic').with(() => Promise.reject({ status: 400 }));
+          store = mockStore();
+        });
+
+        afterEach(() => {
+          stub.restore();
+        });
+
+        it('should dispatch a CREATE_TOPIC_FAILURE action', done => {
+          const expectedActions = [
+            {
+              type: types.CREATE_TOPIC_FAILURE,
+              id: id,
+              error: 'Oops! Something went wrong and we couldn\'t add your vote'
+            }
+          ];
+
+          store.dispatch(actions.incrementCount(id))
+            .then(() => {
+              expect(store.getActions()).toEqual(expectedActions);
+              done();
+            })
+            .catch(done);
+        });
+      });
     });
 
-    it('incrementCount should not dispatch a failure action on failure', done => {
-      const expectedActions = [
-      {
-        type: types.CREATE_TOPIC_FAILURE,
-        id: data.id,
-        error: 'Oops! Something went wrong and we couldn\'t add your vote'
-      }];
-      sandbox.stub(axios, 'put').returns(Promise.reject({ status: 400 }));
-      const store = mockStore();
-      store.dispatch(actions.incrementCount(data.id, index))
-        .then(() => {
-          expect(store.getActions()).toEqual(expectedActions);
-        }).then(done)
-        .catch(done);
-    });
+    describe('decrementCount', () => {
+      let store;
+      let stub;
 
-    it('decrementCount dispatches an decrement count action on success', done => {
-      const expectedActions = [
-      {
-        type: types.DECREMENT_COUNT,
-        id
-      }];
-      sandbox.stub(axios, 'put').returns(Promise.resolve({ status: 200 }));
-      const store = mockStore();
-      store.dispatch(actions.decrementCount(data.id))
-        .then(() => {
-          expect(store.getActions()).toEqual(expectedActions);
-        }).then(done)
-        .catch(done);
-    });
+      describe('on success', () => {
 
-    it('decrementCount should not dispatch a decrement count action on failure', done => {
-      const expectedActions = [
-      {
-        type: types.CREATE_TOPIC_FAILURE,
-        error: 'Oops! Something went wrong and we couldn\'t add your vote',
-        id: data.id
-      }];
-      sandbox.stub(axios, 'put').returns(Promise.reject({ status: 400 }));
-      const store = mockStore(initialState);
-      store.dispatch(actions.decrementCount(data.id))
-        .then(() => {
-          expect(store.getActions()).toEqual(expectedActions);
-        }).then(done)
-        .catch(done);
+        beforeEach(() => {
+          stub = createVoteServiceStub().replace('updateTopic').with(() => Promise.resolve({ status: 200 }));
+          store = mockStore();
+        });
+
+        afterEach(() => {
+          stub.restore();
+        });
+
+        it('should dispatch a DECREMENT_COUNT action', done => {
+          const expectedActions = [
+            {
+              type: types.DECREMENT_COUNT,
+              id
+            }
+          ];
+
+          store.dispatch(actions.decrementCount(id))
+            .then(() => {
+              expect(store.getActions()).toEqual(expectedActions);
+              done();
+            })
+            .catch(done);
+        });
+      });
+
+      describe('on failure', () => {
+        beforeEach(() => {
+          stub = createVoteServiceStub().replace('updateTopic').with(() => Promise.reject({ status: 400 }));
+          store = mockStore();
+        });
+
+        afterEach(() => {
+          stub.restore();
+        });
+
+        it('should dispatch a CREATE_TOPIC_FAILURE action', done => {
+          const expectedActions = [
+            {
+              type: types.CREATE_TOPIC_FAILURE,
+              id: id,
+              error: 'Oops! Something went wrong and we couldn\'t add your vote'
+            }
+          ];
+
+          store.dispatch(actions.decrementCount(id))
+            .then(() => {
+              expect(store.getActions()).toEqual(expectedActions);
+              done();
+            })
+            .catch(done);
+        });
+      });
     });
 
     describe('destroyTopic', () => {
