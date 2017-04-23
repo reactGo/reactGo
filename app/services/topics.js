@@ -7,6 +7,10 @@ export default () => {
     getTopics: () => client.request({
       method: 'GET',
       url: '/topic'
+    }),
+    deleteTopic: ({ id }) => client.request({
+      method: 'DELETE',
+      url: `/topic/${id}`
     })
   };
 };
