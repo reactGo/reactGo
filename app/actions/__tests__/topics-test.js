@@ -8,6 +8,7 @@ import expect from 'expect';
 import sinon from 'sinon';
 import * as actions from '../../actions/topics';
 import * as types from '../../types';
+import * as voteService from '../../services/topics';
 
 polyfill();
 
@@ -164,37 +165,64 @@ describe('Topic Actions', () => {
         .catch(done);
     });
 
-    it('destroyTopic dispatches a decrement count action on success', done => {
-      const expectedActions = [
-      {
-        type: types.DESTROY_TOPIC,
-        id
-      }];
-      sandbox.stub(axios, 'delete').returns(Promise.resolve({ status: 200 }));
-      const store = mockStore();
-      store.dispatch(actions.destroyTopic(data.id))
-        .then(() => {
-          expect(store.getActions()).toEqual(expectedActions);
-        }).then(done)
-        .catch(done);
+    describe('destroyTopic', () => {
+      let store;
+
+      describe('on success', () => {
+
+        beforeEach(() => {
+          sandbox.stub(voteService, 'default').returns({
+            deleteTopic: () => Promise.resolve({ status: 200 })
+          });
+          store = mockStore();
+        });
+
+        it('should dispatch a DESTROY_TOPIC action', done => {
+          const expectedActions = [
+            {
+              type: types.DESTROY_TOPIC,
+              id
+            }
+          ];
+
+          store.dispatch(actions.destroyTopic(id))
+            .then(() => {
+              expect(store.getActions()).toEqual(expectedActions);
+              done();
+            })
+            .catch(done);
+        });
+      });
+
+      describe('on failure', () => {
+        beforeEach(() => {
+          sandbox.stub(voteService, 'default').returns({
+            deleteTopic: () => Promise.reject({ status: 400 })
+          });
+          store = mockStore();
+        });
+
+        it('should dispatch a CREATE_TOPIC_FAILURE action', done => {
+          const expectedActions = [
+            {
+              type: types.CREATE_TOPIC_FAILURE,
+              id: id,
+              error: 'Oops! Something went wrong and we couldn\'t add your vote'
+            }
+          ];
+
+          store.dispatch(actions.destroyTopic(id))
+            .then(() => {
+              expect(store.getActions()).toEqual(expectedActions);
+              done();
+            })
+            .catch(done);
+        });
+      });
     });
 
-    it('destroyTopic should not dispatch an decrement count action on failure', done => {
-      const expectedActions = [
-      {
-        type: types.CREATE_TOPIC_FAILURE,
-        id: data.id,
-        error: 'Oops! Something went wrong and we couldn\'t add your vote'
-      }];
-      sandbox.stub(axios, 'delete').returns(Promise.reject({ status: 400 }));
-      const store = mockStore();
-      store.dispatch(actions.destroyTopic(data.id))
-        .then(() => {
-          expect(store.getActions()).toEqual(expectedActions);
-        }).then(done)
-        .catch(done);
-    });
   });
+
   describe('Action creator unit tests', () => {
     const index = 0;
     const topic = 'A time machine';

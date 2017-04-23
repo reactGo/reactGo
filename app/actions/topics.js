@@ -3,6 +3,7 @@ import { polyfill } from 'es6-promise';
 import request from 'axios';
 import md5 from 'spark-md5';
 import * as types from '../types';
+import { voteService } from '../services';
 
 polyfill();
 
@@ -134,7 +135,7 @@ export function decrementCount(id) {
 
 export function destroyTopic(id) {
   return (dispatch) => {
-    return makeTopicRequest('delete', id)
+    return voteService().deleteTopic({ id })
       .then(() => dispatch(destroy(id)))
       .catch(() => dispatch(createTopicFailure({id,
         error: 'Oops! Something went wrong and we couldn\'t add your vote'})));
