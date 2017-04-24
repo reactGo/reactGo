@@ -16,6 +16,11 @@ export default () => {
       method: 'PUT',
       url: `/topic/${id}`,
       data
+    }),
+    createTopic: ({ id, data }) => client.request({
+      method: 'POST',
+      url: `/topic/${id}`,
+      data
     })
   };
 };
