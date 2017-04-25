@@ -1,15 +1,7 @@
 /* eslint consistent-return: 0, no-else-return: 0*/
-import { polyfill } from 'es6-promise';
-import request from 'axios';
 import md5 from 'spark-md5';
 import * as types from '../types';
 import { voteService } from '../services';
-
-polyfill();
-
-export function makeTopicRequest(method, id, data, api = '/topic') {
-  return request[method](api + (id ? ('/' + id) : ''), data);
-}
 
 export function increment(id) {
   return { type: types.INCREMENT_COUNT, id };
@@ -31,10 +23,6 @@ export function typing(text) {
   };
 }
 
-/*
- * @param data
- * @return a simple JS object
- */
 export function createTopicRequest(data) {
   return {
     type: types.CREATE_TOPIC_REQUEST,
@@ -95,7 +83,7 @@ export function createTopic(text) {
     // First dispatch an optimistic update
     dispatch(createTopicRequest(data));
 
-    return makeTopicRequest('post', id, data)
+    return voteService().createTopic({ id, data })
       .then((res) => {
         if (res.status === 200) {
           // We can actually dispatch a CREATE_TOPIC_SUCCESS

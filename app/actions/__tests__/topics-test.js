@@ -43,51 +43,6 @@ describe('Topic Actions', () => {
       sandbox.restore();
     });
 
-    it('dispatches request and success actions when status is 200', done => {
-      const expectedActions = [
-        {
-          type: types.CREATE_TOPIC_REQUEST,
-          id,
-          count: 1,
-          text: data.text
-        }, {
-          type: types.CREATE_TOPIC_SUCCESS
-        }
-      ];
-
-      sandbox.stub(axios, 'post').returns(Promise.resolve({ status: 200 }));
-
-      const store = mockStore(initialState);
-      store.dispatch(actions.createTopic(topic))
-        .then(() => {
-          expect(store.getActions()).toEqual(expectedActions);
-        }).then(done)
-        .catch(done);
-    });
-
-    it('dispatches request and failed actions when status is NOT 200', done => {
-      const expectedActions = [
-        {
-          type: types.CREATE_TOPIC_REQUEST,
-          id,
-          count: 1,
-          text: data.text
-        }, {
-          type: types.CREATE_TOPIC_FAILURE,
-          id,
-          error: 'Oops! Something went wrong and we couldn\'t create your topic'
-        }
-      ];
-      sandbox.stub(axios, 'post').returns(Promise.reject({status: 404, data: 'Oops! Something went wrong and we couldn\'t create your topic'}));
-
-      const store = mockStore(initialState);
-      store.dispatch(actions.createTopic(topic))
-        .then(() => {
-          expect(store.getActions()).toEqual(expectedActions);
-        }).then(done)
-        .catch(done);
-    });
-
     it('dispatches a duplicate action for a duplicate topic', () => {
       initialState.topic.topics.push(data);
 
@@ -102,6 +57,103 @@ describe('Topic Actions', () => {
       expect(store.getActions()).toEqual(expectedActions);
       initialState.topic.topics.pop();
     });
+
+    describe('createTopic', () => {
+      let store;
+      let stub;
+
+      describe('on success', () => {
+
+        beforeEach(() => {
+          stub = createVoteServiceStub().replace('createTopic').with(() => Promise.resolve({ status: 200 }));
+          store = mockStore(initialState);
+        });
+
+        afterEach(() => {
+          stub.restore();
+        });
+
+        it('should dispatch a CREATE_TOPIC request and success actions', done => {
+          const expectedActions = [
+            {
+              type: types.CREATE_TOPIC_REQUEST,
+              id,
+              count: 1,
+              text: data.text
+            }, {
+              type: types.CREATE_TOPIC_SUCCESS
+            }
+          ];
+
+          store.dispatch(actions.createTopic(topic))
+            .then(() => {
+              expect(store.getActions()).toEqual(expectedActions);
+              done();
+            })
+            .catch(done);
+        });
+
+      });
+
+      describe('with an existing topic', () => {
+        const topicsWithData = initialState.topic.topics.concat(data);
+        const initialStateWithTopic = { ...initialState, topic: { topics: topicsWithData }};
+
+        beforeEach(() => {
+          stub = createVoteServiceStub().replace('createTopic').with(() => Promise.resolve({ status: 200 }));
+          store = mockStore(initialStateWithTopic);
+        });
+
+        afterEach(() => {
+          stub.restore();
+        });
+
+        it('should dispatch a CREATE_TOPIC_DUPLICATE action', () => {
+          const expectedActions = [
+            {
+              type: types.CREATE_TOPIC_DUPLICATE
+            }
+          ];
+          store.dispatch(actions.createTopic(topic));
+          expect(store.getActions()).toEqual(expectedActions);
+        });
+
+      });
+
+      describe('on failure', () => {
+        beforeEach(() => {
+          stub = createVoteServiceStub().replace('createTopic').with(() => Promise.reject({ status: 400 }));
+          store = mockStore(initialState);
+        });
+
+        afterEach(() => {
+          stub.restore();
+        });
+
+        it('should dispatch a CREATE_TOPIC_FAILURE action', done => {
+          const expectedActions = [
+            {
+              type: types.CREATE_TOPIC_REQUEST,
+              id,
+              count: 1,
+              text: data.text
+            }, {
+              type: types.CREATE_TOPIC_FAILURE,
+              id,
+              error: 'Oops! Something went wrong and we couldn\'t create your topic'
+            }
+          ];
+
+          store.dispatch(actions.createTopic(topic))
+            .then(() => {
+              expect(store.getActions()).toEqual(expectedActions);
+              done();
+            })
+            .catch(done);
+        });
+      });
+    });
+
 
     describe('incrementCount', () => {
       let store;
