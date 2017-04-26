@@ -3,27 +3,19 @@ import md5 from 'spark-md5';
 import * as types from '../types';
 import { voteService } from '../services';
 
-export function increment(id) {
+function increment(id) {
   return { type: types.INCREMENT_COUNT, id };
 }
 
-export function decrement(id) {
+function decrement(id) {
   return { type: types.DECREMENT_COUNT, id };
 }
 
-export function destroy(id) {
+function destroy(id) {
   return { type: types.DESTROY_TOPIC, id };
 }
 
-
-export function typing(text) {
-  return {
-    type: types.TYPING,
-    newTopic: text
-  };
-}
-
-export function createTopicRequest(data) {
+function createTopicRequest(data) {
   return {
     type: types.CREATE_TOPIC_REQUEST,
     id: data.id,
@@ -32,13 +24,13 @@ export function createTopicRequest(data) {
   };
 }
 
-export function createTopicSuccess() {
+function createTopicSuccess() {
   return {
     type: types.CREATE_TOPIC_SUCCESS
   };
 }
 
-export function createTopicFailure(data) {
+function createTopicFailure(data) {
   return {
     type: types.CREATE_TOPIC_FAILURE,
     id: data.id,
@@ -46,9 +38,16 @@ export function createTopicFailure(data) {
   };
 }
 
-export function createTopicDuplicate() {
+function createTopicDuplicate() {
   return {
     type: types.CREATE_TOPIC_DUPLICATE
+  };
+}
+
+export function typing(text) {
+  return {
+    type: types.TYPING,
+    newTopic: text
   };
 }
 

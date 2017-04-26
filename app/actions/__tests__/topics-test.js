@@ -3,9 +3,7 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import md5 from 'spark-md5';
 import { polyfill } from 'es6-promise';
-import axios from 'axios';
 import expect from 'expect';
-import sinon from 'sinon';
 import * as actions from '../../actions/topics';
 import * as types from '../../types';
 import createVoteServiceStub from '../../tests/helpers/createVoteServiceStub';
@@ -34,14 +32,6 @@ describe('Topic Actions', () => {
         newtopic: ''
       }
     };
-
-    beforeEach(() => {
-      sandbox = sinon.sandbox.create(); // eslint-disable-line
-    });
-
-    afterEach(() => {
-      sandbox.restore();
-    });
 
     it('dispatches a duplicate action for a duplicate topic', () => {
       initialState.topic.topics.push(data);
@@ -339,94 +329,5 @@ describe('Topic Actions', () => {
     });
 
   });
-
-  describe('Action creator unit tests', () => {
-    const index = 0;
-    const topic = 'A time machine';
-    const id = md5.hash(topic);
-    const data = {
-      id,
-      count: 1,
-      text: topic
-    };
-    let sandbox;
-
-    beforeEach(() => {
-      sandbox = sinon.sandbox.create(); // eslint-disable-line
-    });
-
-    afterEach(() => {
-      sandbox.restore();
-    });
-
-    it('should create an action object to increment the count', () => {
-      const expectedAction = {
-        type: types.INCREMENT_COUNT,
-        id
-      };
-      expect(actions.increment(id)).toEqual(expectedAction);
-    });
-
-    it('should create an action object to decrement count', () => {
-      const expectedAction = {
-        type: types.DECREMENT_COUNT,
-        id
-      };
-      expect(actions.decrement(id)).toEqual(expectedAction);
-    });
-
-    it('should create an action object to destroy a topic', () => {
-      const expectedAction = {
-        type: types.DESTROY_TOPIC,
-        id
-      };
-      expect(actions.destroy(id)).toEqual(expectedAction);
-    });
-
-    it('should create an action object with a new topic', () => {
-      const expectedAction = {
-        type: types.TYPING,
-        newTopic: data.text
-      };
-      expect(actions.typing(data.text)).toEqual(expectedAction);
-    });
-
-    it('should create an action object with a new topic request', () => {
-      const expectedAction = {
-        type: types.CREATE_TOPIC_REQUEST,
-        id: data.id,
-        count: data.count,
-        text: data.text
-      };
-      expect(actions.createTopicRequest(data)).toEqual(expectedAction);
-    });
-
-    it('should create an action object on a new topic success', () => {
-      const expectedAction = {
-        type: types.CREATE_TOPIC_SUCCESS
-      };
-      expect(actions.createTopicSuccess()).toEqual(expectedAction);
-    });
-
-    it('should create an action object on a new topic failure', () => {
-      const dataFail = Object.assign({}, {
-        error: 'Oops! Something went wrong and we couldn\'t create your topic',
-        id: data.id
-      });
-      const expectedAction = {
-        type: types.CREATE_TOPIC_FAILURE,
-        id: dataFail.id,
-        error: dataFail.error
-      };
-      expect(actions.createTopicFailure(dataFail)).toEqual(expectedAction);
-    });
-
-    it('should create an action on a topic duplicate', () => {
-      const expectedAction = {
-        type: types.CREATE_TOPIC_DUPLICATE
-      };
-      expect(actions.createTopicDuplicate()).toEqual(expectedAction);
-    });
-
-  });
 });
+
