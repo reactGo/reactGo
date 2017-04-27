@@ -1,7 +1,27 @@
-import axios from 'axios';
+import { baseURL } from '../../config/app';
+import createRestApiClient from '../utils/createRestApiClient';
 
-const service = {
-  getTopics: () => axios.get('/topic')
+export default () => {
+  const client = createRestApiClient().withConfig({ baseURL });
+  return {
+    getTopics: () => client.request({
+      method: 'GET',
+      url: '/topic'
+    }),
+    deleteTopic: ({ id }) => client.request({
+      method: 'DELETE',
+      url: `/topic/${id}`
+    }),
+    updateTopic: ({ id, data }) => client.request({
+      method: 'PUT',
+      url: `/topic/${id}`,
+      data
+    }),
+    createTopic: ({ id, data }) => client.request({
+      method: 'POST',
+      url: `/topic/${id}`,
+      data
+    })
+  };
 };
 
-export default service;

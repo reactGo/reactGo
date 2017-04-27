@@ -1,40 +1,21 @@
 /* eslint consistent-return: 0, no-else-return: 0*/
-import { polyfill } from 'es6-promise';
-import request from 'axios';
 import md5 from 'spark-md5';
 import * as types from '../types';
+import { voteService } from '../services';
 
-polyfill();
-
-export function makeTopicRequest(method, id, data, api = '/topic') {
-  return request[method](api + (id ? ('/' + id) : ''), data);
-}
-
-export function increment(id) {
+function increment(id) {
   return { type: types.INCREMENT_COUNT, id };
 }
 
-export function decrement(id) {
+function decrement(id) {
   return { type: types.DECREMENT_COUNT, id };
 }
 
-export function destroy(id) {
+function destroy(id) {
   return { type: types.DESTROY_TOPIC, id };
 }
 
-
-export function typing(text) {
-  return {
-    type: types.TYPING,
-    newTopic: text
-  };
-}
-
-/*
- * @param data
- * @return a simple JS object
- */
-export function createTopicRequest(data) {
+function createTopicRequest(data) {
   return {
     type: types.CREATE_TOPIC_REQUEST,
     id: data.id,
@@ -43,13 +24,13 @@ export function createTopicRequest(data) {
   };
 }
 
-export function createTopicSuccess() {
+function createTopicSuccess() {
   return {
     type: types.CREATE_TOPIC_SUCCESS
   };
 }
 
-export function createTopicFailure(data) {
+function createTopicFailure(data) {
   return {
     type: types.CREATE_TOPIC_FAILURE,
     id: data.id,
@@ -57,9 +38,16 @@ export function createTopicFailure(data) {
   };
 }
 
-export function createTopicDuplicate() {
+function createTopicDuplicate() {
   return {
     type: types.CREATE_TOPIC_DUPLICATE
+  };
+}
+
+export function typing(text) {
+  return {
+    type: types.TYPING,
+    newTopic: text
   };
 }
 
@@ -94,7 +82,7 @@ export function createTopic(text) {
     // First dispatch an optimistic update
     dispatch(createTopicRequest(data));
 
-    return makeTopicRequest('post', id, data)
+    return voteService().createTopic({ id, data })
       .then((res) => {
         if (res.status === 200) {
           // We can actually dispatch a CREATE_TOPIC_SUCCESS
@@ -112,10 +100,13 @@ export function createTopic(text) {
 
 export function incrementCount(id) {
   return (dispatch) => {
-    return makeTopicRequest('put', id, {
+    return voteService().updateTopic({
+      id,
+      data: {
         isFull: false,
         isIncrement: true
-      })
+      }
+    })
       .then(() => dispatch(increment(id)))
       .catch(() => dispatch(createTopicFailure({id, error: 'Oops! Something went wrong and we couldn\'t add your vote'})));
   };
@@ -123,10 +114,13 @@ export function incrementCount(id) {
 
 export function decrementCount(id) {
   return (dispatch) => {
-    return makeTopicRequest('put', id, {
+    return voteService().updateTopic({
+      id,
+      data: {
         isFull: false,
         isIncrement: false
-      })
+      }
+    })
       .then(() => dispatch(decrement(id)))
       .catch(() => dispatch(createTopicFailure({id, error: 'Oops! Something went wrong and we couldn\'t add your vote'})));
   };
@@ -134,7 +128,7 @@ export function decrementCount(id) {
 
 export function destroyTopic(id) {
   return (dispatch) => {
-    return makeTopicRequest('delete', id)
+    return voteService().deleteTopic({ id })
       .then(() => dispatch(destroy(id)))
       .catch(() => dispatch(createTopicFailure({id,
         error: 'Oops! Something went wrong and we couldn\'t add your vote'})));
