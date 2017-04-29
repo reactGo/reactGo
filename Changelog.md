@@ -1,3 +1,10 @@
+3.3
+===
+- PR #853
+  - Create a boundary around axios - restApiClient
+    - Update topics actions creator to use our services module
+    - Update services module to use our restApiClient
+
 3.2.1
 ===
 - PR #859 (@avloss):
