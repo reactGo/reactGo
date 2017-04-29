@@ -87,7 +87,7 @@ module.exports = (env = {}) => {
     plugins: plugins({ production: false, browser: false })
   };
 
-  const prodConfig = [prodBrowserRender, prodServerRender];
+  const prodConfig = isBrowser ? prodBrowserRender : prodServerRender;
   const devConfig = isBrowser ? devBrowserRender : devServerRender;
   const configuration = isProduction ? prodConfig : devConfig;
 
