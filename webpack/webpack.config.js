@@ -45,7 +45,7 @@ module.exports = (env = {}) => {
     node,
     output: {
       path: PATHS.assets,
-      filename: '[name].js', // filename: '[name].[hash:6].js',
+      filename: '[chunkhash].js',
       chunkFilename: '[name].[chunkhash:6].js', // for code splitting. will work without but useful to set
       publicPath: PATHS.public
     },

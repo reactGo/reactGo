@@ -1,6 +1,10 @@
 import { GOOGLE_ANALYTICS_ID } from '../../config/env';
 
 const createAppScript = () => {
+  if (__PRODUCTION__) {
+    const assets = require('../../public/assets/manifest.json');
+    return `<script type="text/javascript" charset="utf-8" src="/assets/${assets['app.js']}"></script>`
+  }
   return '<script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>';
 };
 
