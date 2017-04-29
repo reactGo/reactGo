@@ -9,7 +9,6 @@
  * NOTE: browser/server is client/server-side rendering respectively in universal/isomorphic javascript
  *
  */
-const fs = require('fs');
 const PATHS = require('./paths');
 const rules = require('./rules');
 const plugins = require('./plugins');
