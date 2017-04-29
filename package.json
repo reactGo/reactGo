@@ -103,6 +103,7 @@
     "url-loader": "^0.5.8",
     "webpack": "^2.3.3",
     "webpack-dev-middleware": "^1.10.1",
-    "webpack-hot-middleware": "^2.18.0"
+    "webpack-hot-middleware": "^2.18.0",
+    "webpack-manifest-plugin": "^1.1.0"
   }
 }
