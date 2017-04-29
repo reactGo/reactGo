@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = ({ production = false, browser = false } = {}) => {
   const bannerOptions = { raw: true, banner: 'require("source-map-support").install();' };
@@ -32,7 +33,10 @@ module.exports = ({ production = false, browser = false } = {}) => {
         filename: 'styles/main.css',
         allChunks: true
       }),
-      new webpack.optimize.UglifyJsPlugin({ compress })
+      new webpack.optimize.UglifyJsPlugin({ compress }),
+      new ManifestPlugin({
+        fileName: 'manifest.json'
+      })
     ];
   }
   return [];
