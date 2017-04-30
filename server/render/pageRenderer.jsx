@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { RouterContext } from 'react-router';
 import Helmet from 'react-helmet';
 import { createAppScript, createTrackingScript } from './createScripts';
+import { createStylesheets } from './createStylesheets';
 
 const createApp = (store, props) => renderToString(
   <Provider store={store}>
@@ -19,6 +20,7 @@ const buildPage = ({ componentHTML, initialState, headAssets }) => {
     ${headAssets.title.toString()}
     ${headAssets.meta.toString()}
     ${headAssets.link.toString()}
+    ${createStylesheets()}
     ${createTrackingScript()}
   </head>
   <body>
