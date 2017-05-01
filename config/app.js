@@ -1,4 +1,4 @@
-import { HOST, PORT, ENV } from './env';
+import { ENV } from './env';
 
 export const isProduction = ENV === 'production';
 export const isDebug = ENV === 'development';
