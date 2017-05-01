@@ -1,6 +1,6 @@
 {
   "name": "react-webpack-node",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "description": "Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring universal Redux, React Router, React Router Redux Hot reloading, CSS modules, Express 4.x, and multiple ORMs.",
   "repository": "https://github.com/choonkending/react-webpack-node",
   "main": "index.js",
@@ -11,8 +11,9 @@
     "clean": "rimraf public && rimraf compiled",
     "start": "npm run build && cross-env NODE_ENV=production node compiled/server.js",
     "dev": "cross-env NODE_ENV=development nodemon",
-    "build:dev": "cross-env NODE_ENV=development webpack --debug --colors --display-error-details --config ./webpack/webpack.config.js",
-    "build": "npm run clean && cross-env NODE_ENV=production webpack --colors --display-error-details --config ./webpack/webpack.config.js",
+    "build:dev": "cross-env NODE_ENV=development npm run webpack -- --env.server",
+    "build": "npm run clean && cross-env NODE_ENV=production npm run webpack -- --env.browser && NODE_ENV=production npm run webpack -- --env.server",
+    "webpack": "webpack --colors --display-error-details --config ./webpack/webpack.config.js",
     "test": "mocha ./app/tests/setup.js --compilers css:./app/tests/compilers/css ./app/**/*-test.js",
     "test:watch": "mocha ./app/tests/setup.js --watch --compilers css:./app/tests/compilers/css ./app/**/*-test.js"
   },
@@ -102,6 +103,7 @@
     "url-loader": "^0.5.8",
     "webpack": "^2.3.3",
     "webpack-dev-middleware": "^1.10.1",
-    "webpack-hot-middleware": "^2.18.0"
+    "webpack-hot-middleware": "^2.18.0",
+    "webpack-manifest-plugin": "^1.1.0"
   }
 }

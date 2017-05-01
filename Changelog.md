@@ -1,3 +1,8 @@
+3.4
+===
+- PR #867
+  - Add long term caching with webpack-manifest-plugin
+
 3.3
 ===
 - PR #853

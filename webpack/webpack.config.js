@@ -1,24 +1,20 @@
-/**
- * webpack.config.js
+/*
+ * process.env.NODE_ENV - used to determine whether we generate a production or development bundle
  *
- * process.env.NODE_ENV is used to determine to return production config or not (an array with both browser and server config)
- * if not, env is used to determine to return browser-rendering config (for hot module replacement) or server-side rendering config (for node)
- * env is a string passed by "webpack --env" on command line or calling this function directly
- * if env contains substring 'browser', then returns browser-rendering config, otherwise server-rendering config
+ * webpack --env.browser - used to determine whether to generate a browser or server bundle
  *
  * NOTE: browser/server is client/server-side rendering respectively in universal/isomorphic javascript
  *
  */
-const fs = require('fs');
 const PATHS = require('./paths');
 const rules = require('./rules');
 const plugins = require('./plugins');
 const externals = require('./externals');
 const resolve = require('./resolve');
 
-module.exports = (env = '') => {
+module.exports = (env = {}) => {
   const isProduction = process.env.NODE_ENV === 'production';
-  const isBrowser = (env.indexOf('browser') >= 0);
+  const isBrowser = env.browser;
   console.log(`Running webpack in ${process.env.NODE_ENV} mode on ${isBrowser ? 'browser': 'server'}`);
 
   const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
@@ -49,7 +45,7 @@ module.exports = (env = '') => {
     node,
     output: {
       path: PATHS.assets,
-      filename: '[name].js', // filename: '[name].[hash:6].js',
+      filename: '[chunkhash].js',
       chunkFilename: '[name].[chunkhash:6].js', // for code splitting. will work without but useful to set
       publicPath: PATHS.public
     },
@@ -91,7 +87,7 @@ module.exports = (env = '') => {
     plugins: plugins({ production: false, browser: false })
   };
 
-  const prodConfig = [prodBrowserRender, prodServerRender];
+  const prodConfig = isBrowser ? prodBrowserRender : prodServerRender;
   const devConfig = isBrowser ? devBrowserRender : devServerRender;
   const configuration = isProduction ? prodConfig : devConfig;
 

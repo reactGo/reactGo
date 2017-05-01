@@ -5,7 +5,6 @@ import chromeFavicon from '../images/chrome-ninja192-precomposed.png';
 import appleFavicon from '../images/apple-ninja152-precomposed.png';
 import msFavicon from '../images/ms-ninja144-precomposed.png';
 import favicon from '../images/favicon.png';
-import { isProduction } from '../../config/app';
 
 const metaAssets = () => {
   return [
@@ -44,14 +43,11 @@ const linkAssets = () => {
     { rel: 'icon', href: favicon },
     { rel: 'icon', sizes: '192x192', href: chromeFavicon },
     // Add to homescreen for Safari on IOS
-    { rel: 'apple-touch-icon', sizes: '152x152', href: appleFavicon },
-    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto+Condensed', type: 'text/css' },
-    { rel: 'stylesheet', href: '/assets/styles/main.css' }
+    { rel: 'apple-touch-icon', sizes: '152x152', href: appleFavicon }
     // SEO: If your mobile URL is different from the desktop URL,
     // add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones
     // { 'rel': 'canonical', 'href': 'http://www.example.com/' }
   ];
-  return isProduction ? links : links.filter(l => l.rel !== 'stylesheet');
 };
 
 export const title = 'reactGo - just ship it';
