@@ -25,10 +25,10 @@ const apiServer = () => {
 describe('RESTful api client', () => {
   let client;
   let server;
-  const BASE_URL = 'http://localhost:3001';
+  const apiEndpoint = 'http://localhost:3001';
 
   beforeEach(() => {
-    client = createRestApiClient().withConfig({ baseUrl: BASE_URL });
+    client = createRestApiClient().withConfig({ baseUrl: apiEndpoint });
 
     server = apiServer('/test');
   });
