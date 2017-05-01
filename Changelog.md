@@ -1,3 +1,10 @@
+3.4.1
+===
+- PR #868
+  - Replace baseUrl variable in config with apiEndpoint
+    - This is hardcoded and no longer relying on `process.env.HOST` and `process.env.PORT`
+  - Remove unneeded process.env variables
+
 3.4
 ===
 - PR #867
