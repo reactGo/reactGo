@@ -1,6 +1,7 @@
 import { polyfill } from 'es6-promise';
 import request from 'axios';
 import { push } from 'react-router-redux';
+import { authService } from '../services';
 
 import * as types from '../types';
 
@@ -12,8 +13,6 @@ function makeUserRequest(method, data, api = '/login') {
   return request[method](api, data);
 }
 
-
-// Log In Action Creators
 export function beginLogin() {
   return { type: types.MANUAL_LOGIN_USER };
 }
@@ -32,7 +31,6 @@ export function loginError(message) {
   };
 }
 
-// Sign Up Action Creators
 export function signUpError(message) {
   return {
     type: types.SIGNUP_ERROR_USER,
@@ -51,7 +49,6 @@ export function signUpSuccess(message) {
   };
 }
 
-// Log Out Action Creators
 export function beginLogout() {
   return { type: types.LOGOUT_USER};
 }
@@ -72,14 +69,10 @@ export function manualLogin(data) {
   return (dispatch) => {
     dispatch(beginLogin());
 
-    return makeUserRequest('post', data, '/login')
+    return authService().login(data)
       .then((response) => {
-        if (response.status === 200) {
-          dispatch(loginSuccess(response.data.message));
+          dispatch(loginSuccess('You have been successfully logged in'));
           dispatch(push('/'));
-        } else {
-          dispatch(loginError('Oops! Something went wrong!'));
-        }
       })
       .catch((err) => {
         dispatch(loginError(getMessage(err)));
