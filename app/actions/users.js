@@ -75,7 +75,7 @@ export function manualLogin(data) {
           dispatch(push('/'));
       })
       .catch((err) => {
-        dispatch(loginError(getMessage(err)));
+        dispatch(loginError('Oops! Invalid username or password'));
       });
   };
 }
