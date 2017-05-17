@@ -48,6 +48,8 @@ const linkAssets = () => {
     // add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones
     // { 'rel': 'canonical', 'href': 'http://www.example.com/' }
   ];
+
+  return links;
 };
 
 export const title = 'reactGo - just ship it';
