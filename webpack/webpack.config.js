@@ -16,8 +16,6 @@ module.exports = (env = {}) => {
   const isProduction = process.env.NODE_ENV === 'production';
   const isBrowser = env.browser;
   console.log(`Running webpack in ${process.env.NODE_ENV} mode on ${isBrowser ? 'browser': 'server'}`);
-
-  const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
   const node = { __dirname: true, __filename: true };
 
   const prodServerRender = {
@@ -57,7 +55,11 @@ module.exports = (env = {}) => {
   const devBrowserRender = {
     devtool: 'eval',
     context: PATHS.app,
-    entry: { app: ['./client', hotMiddlewareScript] },
+    entry: { app: [
+      'react-hot-loader/patch',
+      'webpack-hot-middleware/client?reload=true&path=/__webpack_hmr',
+      './client'
+    ] },
     node,
     output: {
       path: PATHS.assets,
