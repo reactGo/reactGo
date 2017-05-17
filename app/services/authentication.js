@@ -11,6 +11,14 @@ export default () => {
         email,
         password
       }
+    }),
+    signUp: ({ email, password }) => client.request({
+      method: 'POST',
+      url: '/users',
+      data: {
+        email,
+        password
+      }
     })
   };
 };
