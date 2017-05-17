@@ -19,6 +19,10 @@ export default () => {
         email,
         password
       }
+    }),
+    logOut: () => client.request({
+      method: 'DELETE',
+      url: '/sessions'
     })
   };
 };
