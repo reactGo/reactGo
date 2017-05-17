@@ -99,13 +99,12 @@ export function logOut() {
   return (dispatch) => {
     dispatch(beginLogout());
 
-    return makeUserRequest('post', null, '/logout')
+    return authService().logOut()
       .then((response) => {
-        if (response.status === 200) {
           dispatch(logoutSuccess());
-        } else {
-          dispatch(logoutError());
-        }
+      })
+      .catch((err) => {
+        dispatch(logoutError());
       });
   };
 }

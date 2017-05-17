@@ -124,45 +124,6 @@ describe('Users Async Actions', () => {
       });
     });
 
-    describe('User Logout', () => {
-      it('dispatches SIGNUP_USER and SIGNUP_SUCCESS_USER when Sign Up returns status of 200 and routes user to /', (done) => {
-        const expectedActions = [
-          {
-            type: types.LOGOUT_USER
-          },
-          {
-            type: types.LOGOUT_SUCCESS_USER
-          }];
-
-        sandbox.stub(axios, 'post').returns(Promise.resolve({status: 200}));
-
-        const store = mockStore(initialState);
-        store.dispatch(actions.logOut(data))
-          .then(() => {
-            expect(store.getActions()).toEqual(expectedActions);
-          }).then(done)
-          .catch(done);
-      });
-
-      it('dispatches SIGNUP_USER and SIGNUP_ERROR_USER when Sign Up returns status of NOT 200', (done) => {
-        const expectedActions = [
-          {
-            type: types.SIGNUP_USER
-          },
-          {
-            type: types.SIGNUP_ERROR_USER,
-          }];
-
-        sandbox.stub(axios, 'post').returns(Promise.reject());
-
-        const store = mockStore(initialState);
-        store.dispatch(actions.logOut(data))
-          .then(() => {
-            expect(store.getActions()).toEqual(expectedActions);
-          }).then(done)
-          .catch(done);
-      });
-    });
   });
 
   describe('signUp', () => {
@@ -236,17 +197,34 @@ describe('Users Async Actions', () => {
     });
   });
 
-  describe('Users Action Creators', () => {
-    describe('User Logout', () => {
-      it('beginLogout returns action type LOGOUT_USER', () => {
-        expect(actions.beginLogout()).toEqual({type: types.LOGOUT_USER});
-      });
-      it('signUpSuccess returns action type SIGNUP_SUCCESS_USER', () => {
-        expect(actions.logoutSuccess()).toEqual({type: types.LOGOUT_SUCCESS_USER});
-      });
-      it('signUpError returns action type SIGNUP_ERROR_USER', () => {
-        expect(actions.logoutError()).toEqual({type: types.LOGOUT_ERROR_USER});
-      });
+  describe('logOut', () => {
+    beforeEach(() => {
+      stub = createAuthServiceStub().replace('logOut').with(() => Promise.resolve({ status: 200 }));
+      store = mockStore(initialState);
     });
+
+    afterEach(() => {
+      stub.restore();
+    });
+
+    it('should dispatch LOGOUT_USER, LOGOUT_SUCCESS_USER', done => {
+      const expectedActions = [
+        {
+          type: types.LOGOUT_USER
+        },
+        {
+          type: types.LOGOUT_SUCCESS_USER
+        }
+      ];
+
+      store.dispatch(actions.logOut(data))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+          done();
+        })
+        .catch(done);
+    });
+
   });
+
 });
