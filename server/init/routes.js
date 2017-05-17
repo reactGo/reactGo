@@ -12,7 +12,7 @@ export default (app) => {
   // user routes
   if (usersController) {
     app.post('/sessions', usersController.login);
-    app.post('/signup', usersController.signUp);
+    app.post('/users', usersController.signUp);
     app.post('/logout', usersController.logout);
   } else {
     console.warn(unsupportedMessage('users routes'));

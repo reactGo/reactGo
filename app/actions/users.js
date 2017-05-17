@@ -84,17 +84,13 @@ export function signUp(data) {
   return (dispatch) => {
     dispatch(beginSignUp());
 
-    return makeUserRequest('post', data, '/signup')
+    return authService().signUp(data)
       .then((response) => {
-        if (response.status === 200) {
-          dispatch(signUpSuccess(response.data.message));
+          dispatch(signUpSuccess('You have successfully registered an account!'));
           dispatch(push('/'));
-        } else {
-          dispatch(signUpError('Oops! Something went wrong'));
-        }
       })
       .catch((err) => {
-        dispatch(signUpError(getMessage(err)));
+        dispatch(signUpError('Oops! Something went wrong when signing up'));
       });
   };
 }

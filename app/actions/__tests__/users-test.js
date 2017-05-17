@@ -15,6 +15,8 @@ const mockStore = configureStore(middlewares);
 
 describe('Users Async Actions', () => {
   let sandbox;
+  let store;
+  let stub;
 
   const initialState = {
     isLogin: true,
@@ -52,8 +54,6 @@ describe('Users Async Actions', () => {
   });
 
   describe('manualLogin', () => {
-    let store;
-    let stub;
 
     describe('on success', () => {
 
@@ -124,55 +124,6 @@ describe('Users Async Actions', () => {
       });
     });
 
-    describe('User Signup', () => {
-      it('dispatches SIGNUP_USER and SIGNUP_SUCCESS_USER when Sign Up returns status of 200 and routes user to /', (done) => {
-        const expectedActions = [
-          {
-            type: types.SIGNUP_USER
-          },
-          {
-            type: types.SIGNUP_SUCCESS_USER,
-            message: response.data.message
-          },
-          {
-            payload: {
-              args: ['/'],
-              method: 'push'
-            },
-            type: '@@router/CALL_HISTORY_METHOD'
-          }];
-
-        sandbox.stub(axios, 'post').returns(Promise.resolve(response));
-
-        const store = mockStore(initialState);
-        store.dispatch(actions.signUp(data))
-          .then(() => {
-            expect(store.getActions()).toEqual(expectedActions);
-          }).then(done)
-          .catch(done);
-      });
-
-      it('dispatches SIGNUP_USER and SIGNUP_ERROR_USER when Sign Up returns status of NOT 200', (done) => {
-        const expectedActions = [
-          {
-            type: types.SIGNUP_USER
-          },
-          {
-            type: types.SIGNUP_ERROR_USER,
-            message: errMsg.response.data.message
-          }
-        ];
-
-        sandbox.stub(axios, 'post').returns(Promise.reject(errMsg));
-
-        const store = mockStore(initialState);
-        store.dispatch(actions.signUp(data))
-          .then(() => {
-            expect(store.getActions()).toEqual(expectedActions);
-          }).then(done)
-          .catch(done);
-      });
-    });
     describe('User Logout', () => {
       it('dispatches SIGNUP_USER and SIGNUP_SUCCESS_USER when Sign Up returns status of 200 and routes user to /', (done) => {
         const expectedActions = [
@@ -214,20 +165,78 @@ describe('Users Async Actions', () => {
     });
   });
 
-  describe('Users Action Creators', () => {
-    describe('User Signup', () => {
-      it('beginSignUp returns action type SIGNUP_USER', () => {
-        expect(actions.beginSignUp()).toEqual({type: types.SIGNUP_USER});
+  describe('signUp', () => {
+    describe('on success', () => {
+
+      beforeEach(() => {
+        stub = createAuthServiceStub().replace('signUp').with(() => Promise.resolve({ status: 200 }));
+        store = mockStore(initialState);
       });
-      it('signUpSuccess returns action type SIGNUP_SUCCESS_USER and a success message', () => {
-        const message = 'Success';
-        expect(actions.signUpSuccess(message)).toEqual({type: types.SIGNUP_SUCCESS_USER, message});
+
+      afterEach(() => {
+        stub.restore();
       });
-      it('signUpError returns action type SIGNUP_ERROR_USER and an error message', () => {
-        const message = 'Oops! Something went wrong!';
-        expect(actions.signUpError(message)).toEqual({type: types.SIGNUP_ERROR_USER, message});
+
+      it('should dispatch SIGNUP_USER, SIGNUP_SUCCESS_USER and route path change actions', done => {
+        const expectedActions = [
+          {
+            type: types.SIGNUP_USER
+          },
+          {
+            type: types.SIGNUP_SUCCESS_USER,
+            message: 'You have successfully registered an account!'
+          },
+          {
+            payload: {
+              args: ['/'],
+              method: 'push'
+            },
+            type: '@@router/CALL_HISTORY_METHOD'
+          }
+        ];
+
+        store.dispatch(actions.signUp(data))
+          .then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+            done();
+          })
+          .catch(done);
+      });
+
+    });
+    describe('on failure', () => {
+
+      beforeEach(() => {
+        stub = createAuthServiceStub().replace('signUp').with(() => Promise.reject({ status: 401 }));
+        store = mockStore(initialState);
+      });
+
+      afterEach(() => {
+        stub.restore();
+      });
+
+      it('should dispatch MANUAL_LOGIN_USER and LOGIN_ERROR_USER', (done) => {
+        const expectedActions = [
+          {
+            type: types.SIGNUP_USER
+          },
+          {
+            type: types.SIGNUP_ERROR_USER,
+            message: 'Oops! Something went wrong when signing up'
+          }
+        ];
+
+        store.dispatch(actions.signUp(data))
+          .then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+            done();
+          })
+          .catch(done);
       });
     });
+  });
+
+  describe('Users Action Creators', () => {
     describe('User Logout', () => {
       it('beginLogout returns action type LOGOUT_USER', () => {
         expect(actions.beginLogout()).toEqual({type: types.LOGOUT_USER});
