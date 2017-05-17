@@ -1,63 +1,53 @@
-import { polyfill } from 'es6-promise';
-import request from 'axios';
 import { push } from 'react-router-redux';
 import { authService } from '../services';
 
 import * as types from '../types';
 
-polyfill();
-
-const getMessage = res => res.response && res.response.data && res.response.data.message;
-
-function makeUserRequest(method, data, api = '/login') {
-  return request[method](api, data);
-}
-
-export function beginLogin() {
+function beginLogin() {
   return { type: types.MANUAL_LOGIN_USER };
 }
 
-export function loginSuccess(message) {
+function loginSuccess(message) {
   return {
     type: types.LOGIN_SUCCESS_USER,
     message
   };
 }
 
-export function loginError(message) {
+function loginError(message) {
   return {
     type: types.LOGIN_ERROR_USER,
     message
   };
 }
 
-export function signUpError(message) {
+function signUpError(message) {
   return {
     type: types.SIGNUP_ERROR_USER,
     message
   };
 }
 
-export function beginSignUp() {
+function beginSignUp() {
   return { type: types.SIGNUP_USER };
 }
 
-export function signUpSuccess(message) {
+function signUpSuccess(message) {
   return {
     type: types.SIGNUP_SUCCESS_USER,
     message
   };
 }
 
-export function beginLogout() {
+function beginLogout() {
   return { type: types.LOGOUT_USER};
 }
 
-export function logoutSuccess() {
+function logoutSuccess() {
   return { type: types.LOGOUT_SUCCESS_USER };
 }
 
-export function logoutError() {
+function logoutError() {
   return { type: types.LOGOUT_ERROR_USER };
 }
 
