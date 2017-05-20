@@ -1,20 +1,15 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { polyfill } from 'es6-promise';
-import axios from 'axios';
 import expect from 'expect';
-import sinon from 'sinon';
 import * as actions from '../../actions/users';
 import * as types from '../../types';
 import createAuthServiceStub from '../../tests/helpers/createAuthServiceStub';
-
-polyfill();
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
 describe('Users Async Actions', () => {
-  let sandbox;
   let store;
   let stub;
 
@@ -44,14 +39,6 @@ describe('Users Async Actions', () => {
       }
     }
   };
-
-  beforeEach(() => {
-    sandbox = sinon.sandbox.create(); // eslint-disable-line
-  });
-
-  afterEach(() => {
-    sandbox.restore();
-  });
 
   describe('manualLogin', () => {
 
