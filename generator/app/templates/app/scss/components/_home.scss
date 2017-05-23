@@ -1,0 +1,11 @@
+@import 'settings.scss';
+
+.home {
+  padding: 0 24px;
+}
+
+.home__header {
+  color: $color-black;
+  font-size: $font-large;
+  text-align: center;
+}
