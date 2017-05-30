@@ -17,6 +17,8 @@ const UserSchema = new mongoose.Schema({
   password: String,
   tokens: Array,
   profile: {
+    id: { type: String, default: '' },
+    email: { type: String, default: '' },
     name: { type: String, default: '' },
     gender: { type: String, default: '' },
     location: { type: String, default: '' },

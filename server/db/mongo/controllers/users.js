@@ -15,7 +15,11 @@ export function login(req, res, next) {
     // logIn()) that can be used to establish a login session
     return req.logIn(user, (loginErr) => {
       if (loginErr) return res.sendStatus(401);
-      return res.sendStatus(200);
+      const userData = {
+        id: user._id,
+        email: user.email
+      };
+      return res.json(userData);
     });
   })(req, res, next);
 }
@@ -35,8 +39,10 @@ export function logout(req, res) {
 export function signUp(req, res, next) {
   const user = new User({
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
+    profile: { email: req.body.email }
   });
+  user.profile.id = user._id;
 
   User.findOne({ email: req.body.email }, (findErr, existingUser) => {
     if (existingUser) {
@@ -47,7 +53,11 @@ export function signUp(req, res, next) {
       if (saveErr) return next(saveErr);
       return req.logIn(user, (loginErr) => {
         if (loginErr) return res.sendStatus(401);
-        return res.sendStatus(200);
+        const userData = {
+          id: user._id,
+          email: user.email
+        };
+        return res.json(userData);
       });
     });
   });

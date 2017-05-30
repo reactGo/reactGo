@@ -55,14 +55,23 @@ export function toggleLoginMode() {
   return { type: types.TOGGLE_LOGIN_MODE };
 }
 
+export function updateUserProfile(user) {
+  return { type: types.UPDATE_USER_PROFILE, user };
+}
+
+export function updateUserEmail(email) {
+  return { type: types.UPDATE_USER_EMAIL, email };
+}
+
 export function manualLogin(data) {
   return (dispatch) => {
     dispatch(beginLogin());
 
     return authService().login(data)
       .then((response) => {
-          dispatch(loginSuccess('You have been successfully logged in'));
-          dispatch(push('/'));
+        dispatch(loginSuccess('You have been successfully logged in'));
+        dispatch(updateUserProfile(response.data));
+        dispatch(push('/dashboard'));
       })
       .catch((err) => {
         dispatch(loginError('Oops! Invalid username or password'));
@@ -77,7 +86,8 @@ export function signUp(data) {
     return authService().signUp(data)
       .then((response) => {
           dispatch(signUpSuccess('You have successfully registered an account!'));
-          dispatch(push('/'));
+          dispatch(updateUserProfile(response.data));
+          dispatch(push('/dashboard'));
       })
       .catch((err) => {
         dispatch(signUpError('Oops! Something went wrong when signing up'));
@@ -91,7 +101,7 @@ export function logOut() {
 
     return authService().logOut()
       .then((response) => {
-          dispatch(logoutSuccess());
+        dispatch(logoutSuccess());
       })
       .catch((err) => {
         dispatch(logoutError());

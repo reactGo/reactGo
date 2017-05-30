@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames/bind';
 import { connect } from 'react-redux';
-import { manualLogin, signUp, toggleLoginMode } from '../actions/users';
+import { manualLogin, signUp, toggleLoginMode, updateUserEmail } from '../actions/users';
 import styles from '../css/components/login';
 import hourGlassSvg from '../images/hourglass.svg';
 
@@ -18,9 +18,11 @@ class LoginOrRegister extends Component {
   handleOnSubmit(event) {
     event.preventDefault();
 
-    const { manualLogin, signUp, user: { isLogin } } = this.props;
+    const { manualLogin, signUp, updateUserEmail, user: { isLogin } } = this.props;
     const email = ReactDOM.findDOMNode(this.refs.email).value;
     const password = ReactDOM.findDOMNode(this.refs.password).value;
+
+    updateUserEmail(email);
 
     if (isLogin) {
       manualLogin({ email, password });
@@ -116,12 +118,13 @@ LoginOrRegister.propTypes = {
   user: PropTypes.object,
   manualLogin: PropTypes.func.isRequired,
   signUp: PropTypes.func.isRequired,
-  toggleLoginMode: PropTypes.func.isRequired
+  toggleLoginMode: PropTypes.func.isRequired,
+  updateUserEmail: PropTypes.func.isRequired
 };
 
 // Function passed in to `connect` to subscribe to Redux store updates.
 // Any time it updates, mapStateToProps is called.
-function mapStateToProps({user}) {
+function mapStateToProps({ user }) {
   return {
     user
   };
@@ -130,5 +133,5 @@ function mapStateToProps({user}) {
 // Connects React component to the redux store
 // It does not modify the component class passed to it
 // Instead, it returns a new, connected component class, for you to use.
-export default connect(mapStateToProps, { manualLogin, signUp, toggleLoginMode })(LoginOrRegister);
+export default connect(mapStateToProps, { manualLogin, signUp, toggleLoginMode, updateUserEmail })(LoginOrRegister);
 

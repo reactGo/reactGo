@@ -72,11 +72,31 @@ const authenticated = (
   }
 };
 
+const profile = (state = {
+  id: '',
+  email: ''
+  }, action) => {
+  switch (action.type) {
+    case types.UPDATE_USER_PROFILE:
+      return { id: action.user.id, email: action.user.email };
+    case types.UPDATE_USER_EMAIL:
+      if (state.email !== action.email) {
+        return {...state, email: action.email};
+      }
+      return state;
+    case types.LOGOUT_SUCCESS_USER:
+      return { id: '', email: '' };
+    default:
+      return state;
+  }
+};
+
 const userReducer = combineReducers({
   isLogin,
   isWaiting,
   authenticated,
-  message
+  message,
+  profile
 });
 
 export default userReducer;
