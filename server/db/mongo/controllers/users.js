@@ -15,11 +15,7 @@ export function login(req, res, next) {
     // logIn()) that can be used to establish a login session
     return req.logIn(user, (loginErr) => {
       if (loginErr) return res.sendStatus(401);
-      const userData = {
-        id: user._id,
-        email: user.email
-      };
-      return res.json(userData);
+      return res.json(user.profile);
     });
   })(req, res, next);
 }
@@ -53,11 +49,7 @@ export function signUp(req, res, next) {
       if (saveErr) return next(saveErr);
       return req.logIn(user, (loginErr) => {
         if (loginErr) return res.sendStatus(401);
-        const userData = {
-          id: user._id,
-          email: user.email
-        };
-        return res.json(userData);
+        return res.json(user.profile);
       });
     });
   });
