@@ -19,7 +19,10 @@ export default function render(req, res) {
       isWaiting: false,
       message: '',
       isLogin: true,
-      profile: req.user ? req.user.profile : {}
+      profile: req.user ? req.user.profile : {
+        id: '',
+        email: ''
+      }
     }
   }, history);
   const routes = createRoutes(store);
