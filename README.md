@@ -99,6 +99,16 @@ We currently support MongoDB and Postgres, as well as the ability to not use any
 
 Development is a breeze. Once you have installed all your dependencies all the configuration is done for you. using simple The process is outlined [here](docs/development.md).
 
+#### Generate components
+
+Running the command bellow will lead you to generate a new component **based on existing ones**, which means that even if you change the folder structure you'll be able to use this command.
+
+```bash
+npm run component
+```
+
+Alternatively, you can use the [Yeoman Generator](#yeoman-generator), which has a pre-configured component template.
+
 #### Unit Tests
 
 Testing with:
