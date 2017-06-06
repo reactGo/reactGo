@@ -15,7 +15,8 @@
     "build": "npm run clean && cross-env NODE_ENV=production npm run webpack -- --env.browser && NODE_ENV=production npm run webpack -- --env.server",
     "webpack": "webpack --colors --display-error-details --config ./webpack/webpack.config.js",
     "test": "mocha ./app/tests/setup.js --compilers css:./app/tests/compilers/css ./app/**/*-test.js",
-    "test:watch": "mocha ./app/tests/setup.js --watch --compilers css:./app/tests/compilers/css ./app/**/*-test.js"
+    "test:watch": "mocha ./app/tests/setup.js --watch --compilers css:./app/tests/compilers/css ./app/**/*-test.js",
+    "component": "generact"
   },
   "author": "Choon Ken Ding",
   "license": "MIT",
@@ -29,6 +30,7 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
     "expect": "^1.15.2",
+    "generact": "^0.1.1",
     "jsdom": "^9.12.0",
     "mocha": "^3.2.0",
     "nodemon": "^1.10.2",
