@@ -4,7 +4,7 @@ There are a million good resources out there for learning Redux.
 If you want to learn more, just go to the [docs](http://redux.js.org/).
 Trust me, it's good. Otherwise, read the code yourself!
 
-This README is here is to explain some of the syntax we opted to use.
+This README is here to explain some of the syntax we opted to use.
 
 We recently switched to using `mapDispatchToProps` in our react-redux `connect`
 function. This is an implementation detail, but I hope the explanation below
