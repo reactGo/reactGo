@@ -58,36 +58,32 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING
     }
   }, {
-    timestamps: false,
-
-    classMethods: {
-      associate(models) {
-        User.hasMany(models.Token, {
-          foreignKey: 'userId'
-        });
-      }
-    },
-
-    instanceMethods: {
-      comparePassword(candidatePassword) {
-        return bcrypt.compareAsync(candidatePassword, this.password);
-      },
-
-      toJSON() {
-        return {
-          id: this.id,
-          email: this.email,
-          profile: {
-            name: this.name,
-            gender: this.gender,
-            location: this.location,
-            website: this.website,
-            picture: this.picture
-          }
-        };
-      }
-    }
+    timestamps: false
   });
+  
+  User.associate = function(models) {
+    User.hasMany(models.Token, {
+      foreignKey: 'userId'
+    });
+  }
+
+  User.prototype.comparePassword = function(candidatePassword) {
+    return bcrypt.compareAsync(candidatePassword, this.password);
+  }
+
+  User.prototype.toJSON = function() {
+    return {
+      id: this.id,
+      email: this.email,
+      profile: {
+        name: this.name,
+        gender: this.gender,
+        location: this.location,
+        website: this.website,
+        picture: this.picture
+      }
+    };
+  }
 
   User.beforeCreate(hashPassword);
   User.beforeUpdate(hashPassword);
