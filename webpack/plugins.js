@@ -39,6 +39,7 @@ module.exports = ({ production = false, browser = false } = {}) => {
         allChunks: true
       }),
       new webpack.optimize.UglifyJsPlugin({ compress }),
+      new webpack.optimize.ModuleConcatenationPlugin(),
       new ManifestPlugin({
         fileName: 'manifest.json'
       })
