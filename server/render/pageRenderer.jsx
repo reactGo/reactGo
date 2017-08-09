@@ -1,15 +1,5 @@
 import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { Provider } from 'react-redux';
-import { RouterContext } from 'react-router';
-import Helmet from 'react-helmet';
 import staticAssets from './static-assets';
-
-const createApp = (store, props) => renderToString(
-  <Provider store={store}>
-    <RouterContext {...props} />
-  </Provider>
-);
 
 const buildPage = ({ componentHTML, initialState, headAssets }) => {
   return `
@@ -30,10 +20,6 @@ const buildPage = ({ componentHTML, initialState, headAssets }) => {
 </html>`;
 };
 
-export default (store, props) => {
-  const initialState = store.getState();
-  const componentHTML = createApp(store, props);
-  const headAssets = Helmet.renderStatic();
+export default ({ componentHTML, initialState, headAssets }) => {
   return buildPage({ componentHTML, initialState, headAssets });
 };
-

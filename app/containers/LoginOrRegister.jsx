@@ -15,6 +15,13 @@ class LoginOrRegister extends Component {
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
   }
 
+  componentWillMount() {
+    const { user: { authenticated }, history } = this.props;
+    if (authenticated) {
+      history.replace('/');
+    }
+  }
+
   handleOnSubmit(event) {
     event.preventDefault();
 
@@ -113,6 +120,7 @@ class LoginOrRegister extends Component {
 }
 
 LoginOrRegister.propTypes = {
+  history: PropTypes.object,
   user: PropTypes.object,
   manualLogin: PropTypes.func.isRequired,
   signUp: PropTypes.func.isRequired,

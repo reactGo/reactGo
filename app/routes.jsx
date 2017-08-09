@@ -1,40 +1,46 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import App from './pages/App';
 import { fetchVoteData } from './fetch-data';
-import { App, Vote, Dashboard, About, LoginOrRegister } from './pages';
 
-/*
- * @param {Redux Store}
- * We require store as an argument here because we wish to get
- * state from the store after it has been authenticated.
- */
-export default (store) => {
-  const requireAuth = (nextState, replace, callback) => {
-    const { user: { authenticated }} = store.getState();
-    if (!authenticated) {
-      replace({
-        pathname: '/login',
-        state: { nextPathname: nextState.location.pathname }
-      });
-    }
-    callback();
-  };
+function asyncComponent(getComponent) {
+  return class AsyncComponent extends React.Component {
+    static Component = null;
+    state = { Component: AsyncComponent.Component };
 
-  const redirectAuth = (nextState, replace, callback) => {
-    const { user: { authenticated }} = store.getState();
-    if (authenticated) {
-      replace({
-        pathname: '/'
-      });
+    componentWillMount() {
+      if (!this.state.Component) {
+        getComponent().then(({ default: Component }) => {
+          AsyncComponent.Component = Component;
+          this.setState({ Component });
+        }).catch(err => console.error(err));
+      }
     }
-    callback();
+
+    render() {
+      const { Component } = this.state;
+      if (Component) {
+        return <Component {...this.props} />;
+      }
+      return null;
+    }
   };
-  return (
-    <Route path="/" component={App}>
-      <IndexRoute component={Vote} fetchData={fetchVoteData} />
-      <Route path="login" component={LoginOrRegister} onEnter={redirectAuth} />
-      <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
-      <Route path="about" component={About} />
-    </Route>
-  );
-};
+}
+
+export default [{
+  component: App,
+  routes: [{
+    path: '/',
+    exact: true,
+    fetchData: fetchVoteData,
+    component: asyncComponent(() => import(/* webpackChunkName: "Index" */ './pages/Vote')),
+  }, {
+    path: '/login',
+    component: asyncComponent(() => import(/* webpackChunkName: "Login" */ './pages/LoginOrRegister')),
+  }, {
+    path: '/dashboard',
+    component: asyncComponent(() => import(/* webpackChunkName: "Dashboard" */ './pages/Dashboard')),
+  }, {
+    path: '/about',
+    component: asyncComponent(() => import(/* webpackChunkName: "About" */ './pages/About')),
+  }],
+}];

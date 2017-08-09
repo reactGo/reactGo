@@ -57,7 +57,7 @@ module.exports = (env = {}) => {
   const devBrowserRender = {
     devtool: 'eval',
     context: PATHS.app,
-    entry: { app: ['./client', hotMiddlewareScript] },
+    entry: { app: ['react-hot-loader/patch', './client', hotMiddlewareScript] },
     node,
     output: {
       path: PATHS.assets,
