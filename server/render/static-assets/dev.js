@@ -1,6 +1,6 @@
 import { GOOGLE_ANALYTICS_ID } from '../../../config/env';
 
-const createAppScript = () => '<script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>';
+const createAppScript = () => '<script async type="text/javascript" charset="utf-8" src="/assets/app.js"></script>';
 
 const createTrackingScript = () => GOOGLE_ANALYTICS_ID ? createAnalyticsSnippet(GOOGLE_ANALYTICS_ID) : '';
 
