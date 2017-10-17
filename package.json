@@ -98,6 +98,7 @@
     "rimraf": "^2.6.1",
     "sequelize": "^3.30.4",
     "sequelize-cli": "^2.7.0",
+    "serialize-javascript": "^1.4.0",
     "spark-md5": "^3.0.0",
     "style-loader": "^0.16.1",
     "url-loader": "^0.5.8",

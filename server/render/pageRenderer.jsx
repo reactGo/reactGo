@@ -3,6 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { RouterContext } from 'react-router';
 import Helmet from 'react-helmet';
+import serialize from 'serialize-javascript';
 import staticAssets from './static-assets';
 
 const createApp = (store, props) => renderToString(
@@ -24,7 +25,7 @@ const buildPage = ({ componentHTML, initialState, headAssets }) => {
   </head>
   <body>
     <div id="app">${componentHTML}</div>
-    <script>window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}</script>
+    <script>window.__INITIAL_STATE__ = ${serialize(initialState)}</script>
     ${staticAssets.createAppScript()}
   </body>
 </html>`;
