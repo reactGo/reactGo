@@ -8,3 +8,5 @@ export const google = {
   callbackURL: process.env.GOOGLE_CALLBACK || '/auth/google/callback'
 };
 
+/* To make sure everything referencing the session ID knows what it is called */
+export const sessionId = 'sid';
