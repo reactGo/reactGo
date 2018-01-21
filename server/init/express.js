@@ -2,13 +2,14 @@ import express from 'express';
 import passport from 'passport';
 import session from 'express-session';
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import path from 'path';
 import flash from 'express-flash';
 import methodOverride from 'method-override';
 import gzip from 'compression';
 import helmet from 'helmet';
 import unsupportedMessage from '../db/unsupportedMessage';
-import { sessionSecret } from '../../config/secrets';
+import { sessionSecret, sessionId } from '../../config/secrets';
 import { DB_TYPE, ENV } from '../../config/env';
 import { session as dbSession } from '../db';
 
@@ -24,6 +25,7 @@ export default (app) => {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
   app.use(methodOverride());
+  app.use(cookieParser());
 
   app.use(express.static(path.join(process.cwd(), 'public')));
 
@@ -66,7 +68,7 @@ export default (app) => {
     saveUninitialized: false,
     secret: sessionSecret,
     proxy: true, // The "X-Forwarded-Proto" header will be used.
-    name: 'sessionId',
+    name: sessionId,
     // Add HTTPOnly, Secure attributes on Session Cookie
     // If secure is set, and you access your site over HTTP, the cookie will not be set
     cookie: {
@@ -87,7 +89,6 @@ export default (app) => {
     sess.cookie.secure = true; // Serve secure cookies
   }
   console.log('--------------------------');
-
 
   app.use(session(sess));
 

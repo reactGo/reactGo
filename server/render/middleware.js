@@ -1,9 +1,11 @@
 import { createMemoryHistory, match } from 'react-router';
+import axios from 'axios';
 import createRoutes from '../../app/routes';
 import configureStore from '../../app/store/configureStore';
 import * as types from '../../app/types';
 import pageRenderer from './pageRenderer';
 import fetchDataForRoute from '../../app/utils/fetchDataForRoute';
+import { sessionId } from '../../config/secrets';
 
 /*
  * Export render function to be used in server/config/routes.js
@@ -44,7 +46,12 @@ export default function render(req, res) {
    * If all three parameters are `undefined`, this means that there was no route found matching the
    * given location.
    */
-  match({routes, location: req.url}, (err, redirect, props) => {
+  match({ routes, location: req.url }, (err, redirect, props) => {
+    /* Give the user's session to the server to use */
+    if (req.cookies[sessionId]) {
+      axios.defaults.headers.common.Cookie = sessionId + '=' + req.cookies[sessionId];
+    }
+
     if (err) {
       res.status(500).json(err);
     } else if (redirect) {
