@@ -1,13 +1,14 @@
 require('babel-register') ({
   presets: ['es2015', 'react', 'stage-0']
 });
-var jsdom = require('jsdom').jsdom;
+const { JSDOM } = require('jsdom');
+
+const { document } = (new JSDOM('<!doctype><html><head></head><body></body></html>', {
+  url: 'http://localhost:3001'
+})).window;
+global.document = document;
 
 var exposedProperties = ['window', 'navigator', 'document'];
-
-global.document = jsdom('<!doctype><html><head></head><body></body></html>', {
-  url: 'http://localhost:3001'
-});
 
 global.window = document.defaultView;
 Object.keys(document.defaultView).forEach((property) => {
