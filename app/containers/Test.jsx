@@ -3,45 +3,52 @@ import axios from 'axios'
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { connect } from 'react-redux';
+import { SignUpTest } from '../actions/user_test';
+import { Field, reduxForm } from 'redux-form'
 
 
-class Test extends Component {
-  constructor () {
-    super()
-    this.state = {
-      username: ''
-    }
-    this.handleClick = this.handleClick.bind(this)
-  }
+const Test = props => {
 
-  handleClick () {
-    axios({
-      method: 'post',
-      url: 'http://52.56.45.37/api/v1/auth',
-      data: {
-        email: "string@gmail.com",
-        password: "11111111",
-        password_confirmation: "11111111"
-      }
-    }).then(function (response) {
-      console.log('then', response);
-    }).catch((error) => {
-    console.log('ERROR ', error.response.data.errors.full_messages);
-  });
-  }
+  const { handleSubmit } = props;
 
-  render () {
     return (
       <div className='button__container'>
-        <button className='button' onClick={this.handleClick}>
-          Click Me
-        </button>
-        <p>{this.state.username}</p>
-
+        <form onSubmit={handleSubmit(SignUpTest)}>
+          <div>
+            <label>First Name</label>
+            <div>
+              <Field
+                name="firstName"
+                component="input"
+                type="text"
+                placeholder="First Name"
+                validate={false}
+              />
+              <Field
+                name="password"
+                component="input"
+                type="password"
+                placeholder="Password"
+                validate={false}
+              />
+              <Field
+                name="confirm_password"
+                component="input"
+                type="password"
+                placeholder="Confirm password"
+                validate={false}
+              />
+              <button type="button">
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     )
-  }
 };
 
 
-export default Test;
+export default reduxForm({
+  form: 'simple' // a unique identifier for this form
+})(Test)

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Page from '../pages/Page';
 import TestContainer from '../containers/Test';
+import { connect } from 'react-redux';
 
 class Test extends Component {
   getMetaData() {
@@ -34,4 +35,4 @@ class Test extends Component {
   }
 }
 
-export default Test;
+export default connect()(Test);
