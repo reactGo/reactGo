@@ -5,7 +5,7 @@
   "repository": "https://github.com/choonkending/react-webpack-node",
   "main": "index.js",
   "scripts": {
-    "sequelize": "node_modules/.bin/sequelize",
+    "sequelize": "sequelize",
     "lint": "eslint --ext .js,.jsx app server",
     "lint:fix": "eslint --ext .js,.jsx app server --fix",
     "clean": "rimraf public && rimraf compiled",
