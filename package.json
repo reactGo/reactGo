@@ -67,7 +67,7 @@
     "webpack-manifest-plugin": "^2.0.4"
   },
   "engines": {
-    "node": ">=6.x"
+    "node": ">=8.11.3"
   },
   "dependencies": {
     "autoprefixer": "^9.1.5",
