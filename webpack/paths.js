@@ -12,6 +12,7 @@ module.exports = {
   assets: path.resolve(CURRENT_WORKING_DIR, 'public', 'assets'),
   compiled: path.resolve(CURRENT_WORKING_DIR, 'compiled'),
   public: '/assets/', // use absolute path for css-loader?
+  prod_public: '/', // use absolute path for css-loader?
   modules: path.resolve(CURRENT_WORKING_DIR, 'node_modules')
 };
 

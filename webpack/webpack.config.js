@@ -11,6 +11,7 @@ const rules = require('./rules');
 const plugins = require('./plugins');
 const externals = require('./externals');
 const resolve = require('./resolve');
+const UglifyJsPlugin    = require('uglifyjs-webpack-plugin')
 
 module.exports = (env = {}) => {
   const isProduction = process.env.NODE_ENV === 'production';
@@ -21,6 +22,7 @@ module.exports = (env = {}) => {
   const node = { __dirname: true, __filename: true };
 
   const prodServerRender = {
+    mode: "production",
     devtool: 'source-map',
     context: PATHS.app,
     entry: { server: '../server/index' },
@@ -30,7 +32,7 @@ module.exports = (env = {}) => {
     output: {
       path: PATHS.compiled,
       filename: '[name].js',
-      publicPath: PATHS.public,
+      publicPath: PATHS.prod_public,
       libraryTarget: 'commonjs2'
     },
     module: { rules: rules({ production: true, browser: false }) },
@@ -39,6 +41,7 @@ module.exports = (env = {}) => {
   };
 
   const prodBrowserRender = {
+    mode: "production",
     devtool: 'cheap-module-source-map',
     context: PATHS.app,
     entry: { app: ['./client'] },
@@ -47,7 +50,23 @@ module.exports = (env = {}) => {
       path: PATHS.assets,
       filename: '[chunkhash].js',
       chunkFilename: '[name].[chunkhash:6].js', // for code splitting. will work without but useful to set
-      publicPath: PATHS.public
+      publicPath: PATHS.prod_public
+    },
+    optimization: {
+      minimizer: [
+        new UglifyJsPlugin({
+          sourceMap: true,
+          uglifyOptions: {
+            output: {
+              comments: false,
+              ascii_only: true
+            },
+            compress: {
+              warnings: false 
+            }
+          }
+        })
+      ],
     },
     module: { rules: rules({ production: true, browser: true }) },
     resolve,
@@ -55,6 +74,7 @@ module.exports = (env = {}) => {
   };
 
   const devBrowserRender = {
+    mode: "development",
     devtool: 'eval',
     context: PATHS.app,
     entry: { app: ['./client', hotMiddlewareScript] },
@@ -64,12 +84,16 @@ module.exports = (env = {}) => {
       filename: '[name].js',
       publicPath: PATHS.public
     },
+    optimization: {
+      noEmitOnErrors: true,
+    },
     module: { rules: rules({ production: false, browser: true }) },
     resolve,
     plugins: plugins({ production: false, browser: true })
   };
 
   const devServerRender = {
+    mode: "development",
     devtool: 'sourcemap',
     context: PATHS.app,
     entry: { server: '../server/index' },
