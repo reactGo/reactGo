@@ -1,8 +1,11 @@
 import React from 'react';
 import expect from 'expect';
-import { mount } from 'enzyme';
+import { mount, configure, } from 'enzyme';
 import MainSection from '../../components/MainSection';
 import TopicItem from '../../components/TopicItem';
+import Adapter from 'enzyme-adapter-react-16';
+
+configure({ adapter: new Adapter() });
 
 const emptyData = [];
 const topicItemData = [{
