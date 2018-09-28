@@ -27,6 +27,7 @@ const buildPage = ({ componentHTML, initialState, headAssets }) => {
     <div id="app">${componentHTML}</div>
     <script>window.__INITIAL_STATE__ = ${serialize(initialState)}</script>
     ${staticAssets.createAppScript()}
+    ${staticAssets.createVendorScript()}
   </body>
 </html>`;
 };

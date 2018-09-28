@@ -32,7 +32,7 @@ module.exports = (env = {}) => {
     output: {
       path: PATHS.compiled,
       filename: '[name].js',
-      publicPath: PATHS.prod_public,
+      publicPath: PATHS.public,
       libraryTarget: 'commonjs2'
     },
     module: { rules: rules({ production: true, browser: false }) },
@@ -48,9 +48,9 @@ module.exports = (env = {}) => {
     node,
     output: {
       path: PATHS.assets,
-      filename: '[chunkhash].js',
+      filename: '[name].[chunkhash].js',
       chunkFilename: '[name].[chunkhash:6].js', // for code splitting. will work without but useful to set
-      publicPath: PATHS.prod_public
+      publicPath: PATHS.public
     },
     optimization: {
       minimizer: [
@@ -67,6 +67,21 @@ module.exports = (env = {}) => {
           }
         })
       ],
+      splitChunks: {
+        chunks: "all",
+        cacheGroups: {
+          vendor: {
+            test: /node_modules/, // you may add "vendor.js" here if you want to
+            name: "vendor",
+            chunks: "initial",
+            enforce: true
+          }
+        }
+      },
+    },
+    performance: { /* this to hide 'WARNING in asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).' */
+      maxEntrypointSize: 512000,
+      maxAssetSize: 512000
     },
     module: { rules: rules({ production: true, browser: true }) },
     resolve,

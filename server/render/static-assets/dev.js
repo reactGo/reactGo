@@ -1,6 +1,7 @@
 import { GOOGLE_ANALYTICS_ID } from '../../../config/env';
 
 const createAppScript = () => '<script async type="text/javascript" charset="utf-8" src="/assets/app.js"></script>';
+const createVendorScript = () => '';
 
 const createTrackingScript = () => GOOGLE_ANALYTICS_ID ? createAnalyticsSnippet(GOOGLE_ANALYTICS_ID) : '';
 
@@ -14,5 +15,5 @@ ga('send', 'pageview');
 
 const createStylesheets = () => '<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed" />';
 
-export { createAppScript, createTrackingScript, createStylesheets };
+export { createAppScript, createVendorScript, createTrackingScript, createStylesheets };
 

@@ -37,7 +37,8 @@ module.exports = ({ production = false, browser = false } = {}) => {
         allChunks: true,
       }),
       new ManifestPlugin({
-        fileName: 'manifest.json'
+        fileName: 'manifest.json',
+        publicPath: ''
       })
     ];
   }
