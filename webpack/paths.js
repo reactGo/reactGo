@@ -12,7 +12,10 @@ module.exports = {
   assets: path.resolve(CURRENT_WORKING_DIR, 'public', 'assets'),
   compiled: path.resolve(CURRENT_WORKING_DIR, 'compiled'),
   public: '/assets/', // use absolute path for css-loader?
-  prod_public: '/', // use absolute path for css-loader?
+  prod_public: '/', // public path for production build should be like this
+/*
+ * In prod with public: '/assets/' the app tries to get the js and css from '/assets//assets/*' . Just changed the prod publicPath for '/'.
+ */
   modules: path.resolve(CURRENT_WORKING_DIR, 'node_modules')
 };
 

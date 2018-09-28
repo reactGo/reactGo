@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = ({ production = false, browser = false } = {}) => {
@@ -43,11 +43,3 @@ module.exports = ({ production = false, browser = false } = {}) => {
   }
   return [];
 };
-// migration to webpack 4
-// change webpack config:
-// 1 replace ExtractTextPlugin with MiniCssExtractPlugin
-// 2 required packages updates
-// 3 add production public path
-// 4 everything is working as expected
-// 5 will migrate to react 16
-
