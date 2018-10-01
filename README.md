@@ -24,13 +24,13 @@ _Formerly known as choonkending/react-webpack-node_
 ## Features:
 - ~~isomorphic~~ [**universal**](https://medium.com/@ghengeveld/isomorphism-vs-universal-javascript-4b47fb481beb#.4x2t3jlmx) Rendering
 - [**Redux**](https://github.com/reactjs/redux) Predictive state containers.
-- Server-side rendering with [**React Router**](https://github.com/reactjs/react-router) 2.x. Having server-side rendering allows you to pre-render the initial state of your components when a user (or search engine crawler) requests a page.
+- Server-side rendering with [**React Router**](https://github.com/reactjs/react-router) 3.x. Having server-side rendering allows you to pre-render the initial state of your components when a user (or search engine crawler) requests a page.
 - Integrating Redux with React Router with ~~Redux Simple Router~~ [React Router Redux](https://github.com/reactjs/react-router-redux)
 - Asynchronous Data Fetching on server-side rendering
 - Server side authentication + Redirecting for components
 - Hot reloading using [**react-transform-hmr**](https://github.com/gaearon/react-transform-hmr)
 - Time travel using [**Redux-Devtools Chrome Extension**](https://github.com/zalmoxisus/redux-devtools-extension)
-- [**Webpack 2**](https://github.com/webpack/webpack) for both development and production bundles. It's (in my opinion) the best bundler for JS, CSS, LESS, images, and lots more!
+- [**Webpack 4**](https://github.com/webpack/webpack) for both development and production bundles. It's (in my opinion) the best bundler for JS, CSS, LESS, images, and lots more!
 - [**CSS Modules**](https://github.com/css-modules/css-modules) allows for modular and reusable CSS. Say goodbye to conflicts (most of them) and global scope
 
 - **Unit Testing** with jsdom, mocha, sinon & enzyme
