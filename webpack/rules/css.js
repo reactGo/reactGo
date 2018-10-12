@@ -1,5 +1,5 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const postcssImport = require('postcss-import');
 const postcssCssnext = require('postcss-cssnext');
 const postcssReporter = require('postcss-reporter');
@@ -19,7 +19,7 @@ module.exports = ({ production = false, browser = false } = {}) => {
    *
    * Referenced from: https://github.com/webpack-contrib/css-loader#css-scope
    *
-   * For prerendering with extract-text-webpack-plugin you should use
+   * For prerendering with mini-css-extract-plugin you should use
    * css-loader/locals instead of style-loader!css-loader in the prerendering bundle.
    * It doesn't embed CSS but only exports the identifier mappings.
    */
@@ -50,10 +50,7 @@ module.exports = ({ production = false, browser = false } = {}) => {
 
   const createBrowserLoaders = extractCssToFile => loaders => {
     if (extractCssToFile) {
-      return ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: loaders
-      });
+      return [ MiniCssExtractPlugin.loader, ...loaders]; 
     }
     return [{ loader: 'style-loader' }, ...loaders];
   };
