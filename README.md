@@ -99,6 +99,26 @@ We currently support MongoDB and Postgres, as well as the ability to not use any
 
 Development is a breeze. Once you have installed all your dependencies all the configuration is done for you. using simple The process is outlined [here](docs/development.md).
 
+#### Building the application
+
+```bash
+# Build the application for development
+npm run build
+
+# Build the application for production
+npm run build:dev
+```
+
+#### Running the application
+
+```bash
+# Run in development mode (with hot-reloading)
+npm run dev
+
+# Run in production mode
+npm start
+```
+
 #### Unit Tests
 
 Testing with:
