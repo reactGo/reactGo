@@ -2,7 +2,7 @@
 import md5 from 'spark-md5';
 import * as types from '../types';
 import { voteService } from '../services';
-
+import React from 'React';
 function increment(id) {
   return { type: types.INCREMENT_COUNT, id };
 }
