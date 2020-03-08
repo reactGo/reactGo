@@ -1,6 +1,6 @@
 {
   "name": "reactgo",
-  "version": "3.5.0",
+  "version": "3.5.1",
   "description": "Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring universal Redux, React Router, React Router Redux Hot reloading, CSS modules, Express 4.x, and multiple ORMs.",
   "repository": "https://github.com/reactGo/reactGo",
   "main": "compiled/server.js",
@@ -18,9 +18,11 @@
     "test:watch": "mocha ./app/tests/setup.js --watch --compilers css:./app/tests/compilers/css ./app/**/*-test.js"
   },
   "author": "Choon Ken Ding",
-  "contributors": [{
-    "name": "Zero Cho"
-  }],
+  "contributors": [
+    {
+      "name": "Zero Cho"
+    }
+  ],
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.24.1",
