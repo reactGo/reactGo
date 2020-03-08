@@ -41,16 +41,14 @@ module.exports = {
           type: DataTypes.DATE
         }
       }
-    ).then(() =>
-      queryInterface.addIndex(
+    ).then(() => queryInterface.addIndex(
         'Users',
         [DataTypes.fn('lower', DataTypes.col('email'))],
         {
           indexName: 'users_email',
           indicesType: 'unique'
         }
-      )
-    );
+      ));
   },
 
   down(queryInterface) {

@@ -10,6 +10,7 @@ export default class TopicTextInput extends Component {
     this.onChange = this.onChange.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
   }
+
   /*
    * Invokes the callback passed in as onSave, allowing this component to be
    * used in different ways. I personally think this makes it more reusable.
@@ -46,15 +47,23 @@ export default class TopicTextInput extends Component {
         onChange={this.onChange}
         onKeyDown={this.onKeyDown}
         value={value}
-        autoFocus />
+        autoFocus
+      />
     );
   }
 }
 
 TopicTextInput.propTypes = {
-  className: PropTypes.string,
+  className: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string,
   onEntrySave: PropTypes.func,
   onEntryChange: PropTypes.func
+};
+
+TopicTextInput.defaultProps = {
+  placeholder: '',
+  value: '',
+  onEntrySave: () => {},
+  onEntryChange: () => {},
 };

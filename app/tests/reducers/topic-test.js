@@ -162,7 +162,7 @@ describe('Topics reducer', () => {
     const topics = createTopics(20);
     const newTopics = [...topics];
     topics.push(data);
-    const newData = Object.assign({}, data);
+    const newData = { ...data};
     newData.count++;
     newTopics.push(newData);
 
@@ -185,7 +185,7 @@ describe('Topics reducer', () => {
     const topics = createTopics(20);
     const newTopics = [...topics];
     topics.push(data);
-    const newData = Object.assign({}, data);
+    const newData = { ...data};
     newData.count--;
     newTopics.push(newData);
 

@@ -14,11 +14,18 @@ const Navigation = ({ user, logOut }) => {
         <Link
           to="/"
           className={cx('item', 'logo')}
-          activeClassName={cx('active')}>Ninja Ocean</Link>
-          { user.authenticated ? (
-            <Link
-              onClick={logOut}
-              className={cx('item')} to="/">Logout</Link>
+          activeClassName={cx('active')}
+        >
+          Ninja Ocean
+        </Link>
+        { user.authenticated ? (
+          <Link
+            onClick={logOut}
+            className={cx('item')}
+            to="/"
+          >
+            Logout
+          </Link>
           ) : (
             <Link className={cx('item')} to="/login">Log in</Link>
           )}
@@ -29,7 +36,7 @@ const Navigation = ({ user, logOut }) => {
 };
 
 Navigation.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.objectOf(PropTypes.any).isRequired,
   logOut: PropTypes.func.isRequired
 };
 

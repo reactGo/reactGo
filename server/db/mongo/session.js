@@ -4,8 +4,7 @@ import { db } from './constants';
 
 const MongoStore = connectMongo(session);
 
-export default () =>
-  new MongoStore(
+export default () => new MongoStore(
     {
       url: db,
       autoReconnect: true

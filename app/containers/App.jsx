@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import Navigation from '../containers/Navigation';
-import Message from '../containers/Message';
+import Navigation from './Navigation';
+import Message from './Message';
 import styles from '../css/main';
 
 const cx = classNames.bind(styles);
@@ -28,7 +28,7 @@ const App = ({ children }) => {
 };
 
 App.propTypes = {
-  children: PropTypes.object
+  children: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default App;

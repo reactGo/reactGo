@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import md5 from 'spark-md5';
 import { polyfill } from 'es6-promise';
 import expect from 'expect';
-import * as actions from '../../actions/topics';
+import * as actions from '../topics';
 import * as types from '../../types';
 import createVoteServiceStub from '../../tests/helpers/createVoteServiceStub';
 
@@ -53,7 +53,6 @@ describe('Topic Actions', () => {
       let stub;
 
       describe('on success', () => {
-
         beforeEach(() => {
           stub = createVoteServiceStub().replace('createTopic').with(() => Promise.resolve({ status: 200 }));
           store = mockStore(initialState);
@@ -63,7 +62,7 @@ describe('Topic Actions', () => {
           stub.restore();
         });
 
-        it('should dispatch a CREATE_TOPIC request and success actions', done => {
+        it('should dispatch a CREATE_TOPIC request and success actions', (done) => {
           const expectedActions = [
             {
               type: types.CREATE_TOPIC_REQUEST,
@@ -82,7 +81,6 @@ describe('Topic Actions', () => {
             })
             .catch(done);
         });
-
       });
 
       describe('with an existing topic', () => {
@@ -107,7 +105,6 @@ describe('Topic Actions', () => {
           store.dispatch(actions.createTopic(topic));
           expect(store.getActions()).toEqual(expectedActions);
         });
-
       });
 
       describe('on failure', () => {
@@ -120,7 +117,7 @@ describe('Topic Actions', () => {
           stub.restore();
         });
 
-        it('should dispatch a CREATE_TOPIC_FAILURE action', done => {
+        it('should dispatch a CREATE_TOPIC_FAILURE action', (done) => {
           const expectedActions = [
             {
               type: types.CREATE_TOPIC_REQUEST,
@@ -150,7 +147,6 @@ describe('Topic Actions', () => {
       let stub;
 
       describe('on success', () => {
-
         beforeEach(() => {
           stub = createVoteServiceStub().replace('updateTopic').with(() => Promise.resolve({ status: 200 }));
           store = mockStore();
@@ -160,7 +156,7 @@ describe('Topic Actions', () => {
           stub.restore();
         });
 
-        it('should dispatch a INCREMENT_COUNT action', done => {
+        it('should dispatch a INCREMENT_COUNT action', (done) => {
           const expectedActions = [
             {
               type: types.INCREMENT_COUNT,
@@ -187,11 +183,11 @@ describe('Topic Actions', () => {
           stub.restore();
         });
 
-        it('should dispatch a CREATE_TOPIC_FAILURE action', done => {
+        it('should dispatch a CREATE_TOPIC_FAILURE action', (done) => {
           const expectedActions = [
             {
               type: types.CREATE_TOPIC_FAILURE,
-              id: id,
+              id,
               error: 'Oops! Something went wrong and we couldn\'t add your vote'
             }
           ];
@@ -211,7 +207,6 @@ describe('Topic Actions', () => {
       let stub;
 
       describe('on success', () => {
-
         beforeEach(() => {
           stub = createVoteServiceStub().replace('updateTopic').with(() => Promise.resolve({ status: 200 }));
           store = mockStore();
@@ -221,7 +216,7 @@ describe('Topic Actions', () => {
           stub.restore();
         });
 
-        it('should dispatch a DECREMENT_COUNT action', done => {
+        it('should dispatch a DECREMENT_COUNT action', (done) => {
           const expectedActions = [
             {
               type: types.DECREMENT_COUNT,
@@ -248,11 +243,11 @@ describe('Topic Actions', () => {
           stub.restore();
         });
 
-        it('should dispatch a CREATE_TOPIC_FAILURE action', done => {
+        it('should dispatch a CREATE_TOPIC_FAILURE action', (done) => {
           const expectedActions = [
             {
               type: types.CREATE_TOPIC_FAILURE,
-              id: id,
+              id,
               error: 'Oops! Something went wrong and we couldn\'t add your vote'
             }
           ];
@@ -272,7 +267,6 @@ describe('Topic Actions', () => {
       let stub;
 
       describe('on success', () => {
-
         beforeEach(() => {
           stub = createVoteServiceStub().replace('deleteTopic').with(() => Promise.resolve({ status: 200 }));
           store = mockStore();
@@ -282,7 +276,7 @@ describe('Topic Actions', () => {
           stub.restore();
         });
 
-        it('should dispatch a DESTROY_TOPIC action', done => {
+        it('should dispatch a DESTROY_TOPIC action', (done) => {
           const expectedActions = [
             {
               type: types.DESTROY_TOPIC,
@@ -309,11 +303,11 @@ describe('Topic Actions', () => {
           stub.restore();
         });
 
-        it('should dispatch a CREATE_TOPIC_FAILURE action', done => {
+        it('should dispatch a CREATE_TOPIC_FAILURE action', (done) => {
           const expectedActions = [
             {
               type: types.CREATE_TOPIC_FAILURE,
-              id: id,
+              id,
               error: 'Oops! Something went wrong and we couldn\'t add your vote'
             }
           ];
@@ -327,7 +321,5 @@ describe('Topic Actions', () => {
         });
       });
     });
-
   });
 });
-

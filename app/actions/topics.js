@@ -1,4 +1,4 @@
-/* eslint consistent-return: 0, no-else-return: 0*/
+/* eslint consistent-return: 0, no-else-return: 0 */
 import md5 from 'spark-md5';
 import * as types from '../types';
 import { voteService } from '../services';
@@ -72,7 +72,7 @@ export function createTopic(text) {
 
     // Conditional dispatch
     // If the topic already exists, make sure we emit a dispatch event
-    if (topic.topics.filter(topicItem => topicItem.id === id).length > 0) {
+    if (topic.topics.filter((topicItem) => topicItem.id === id).length > 0) {
       // Currently there is no reducer that changes state for this
       // For production you would ideally have a message reducer that
       // notifies the user of a duplicate topic
@@ -130,7 +130,9 @@ export function destroyTopic(id) {
   return (dispatch) => {
     return voteService().deleteTopic({ id })
       .then(() => dispatch(destroy(id)))
-      .catch(() => dispatch(createTopicFailure({id,
-        error: 'Oops! Something went wrong and we couldn\'t add your vote'})));
+      .catch(() => dispatch(createTopicFailure({
+id,
+        error: 'Oops! Something went wrong and we couldn\'t add your vote'
+})));
   };
 }

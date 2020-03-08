@@ -20,10 +20,10 @@ export default function configureStore(initialState, history) {
     middleware.push(createLogger());
     store = createStore(rootReducer, initialState, compose(
       applyMiddleware(...middleware),
-      typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
+      typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : (f) => f
     ));
   } else {
-    store = createStore(rootReducer, initialState, compose(applyMiddleware(...middleware), f => f));
+    store = createStore(rootReducer, initialState, compose(applyMiddleware(...middleware), (f) => f));
   }
 
   if (module.hot) {

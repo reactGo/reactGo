@@ -1,5 +1,4 @@
-export default (sequelize, DataTypes) =>
-  sequelize.define('Topic', {
+export default (sequelize, DataTypes) => sequelize.define('Topic', {
     id: {
       type: DataTypes.STRING,
       primaryKey: true
