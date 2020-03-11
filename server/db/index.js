@@ -18,7 +18,6 @@ switch (DB_TYPE) {
     throw new Error(`No database type '${DB_TYPE}' found`);
 }
 
-export const {connect} = dbConfig;
-export const {controllers} = dbConfig;
-export const {passport} = dbConfig;
-export const {session} = dbConfig;
+export const {
+  connect, controllers, passport, session,
+} = dbConfig;
