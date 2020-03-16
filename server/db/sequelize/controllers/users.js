@@ -1,7 +1,7 @@
 import passport from 'passport';
 import { Models } from '../models';
 
-const User = Models.User;
+const {User} = Models;
 
 /**
  * POST /login
@@ -12,6 +12,9 @@ export function login(req, res, next) {
     if (authErr) return next(authErr);
     if (!user) {
       return res.sendStatus(401);
+    }
+    if (info) {
+      return res.status(401).json(info);
     }
     // Passport exposes a login() function on req (also aliased as
     // logIn()) that can be used to establish a login session
@@ -51,9 +54,7 @@ export function signUp(req, res, next) {
         return res.sendStatus(200);
       });
     });
-  }).catch(err =>
-    next(err)
-  );
+  }).catch((err) => next(err));
 }
 
 export default {

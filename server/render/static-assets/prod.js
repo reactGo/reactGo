@@ -4,10 +4,9 @@ import assets from '../../../public/assets/manifest.json';
 const createAppScript = () => `<script async type="text/javascript" charset="utf-8" src="/assets/${assets['app.js']}"></script>`;
 const createVendorScript = () => `<script async type="text/javascript" charset="utf-8" src="/assets/${assets['vendor.js']}"></script>`;
 
-const createTrackingScript = () => GOOGLE_ANALYTICS_ID ? createAnalyticsSnippet(GOOGLE_ANALYTICS_ID) : '';
+const createTrackingScript = () => (GOOGLE_ANALYTICS_ID ? createAnalyticsSnippet(GOOGLE_ANALYTICS_ID) : '');
 
-const createAnalyticsSnippet = id =>
-  `<script>
+const createAnalyticsSnippet = (id) => `<script>
 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
 ga('create', '${id}', 'auto');
 ga('send', 'pageview');
@@ -19,5 +18,6 @@ const createStylesheets = () => `
 <link rel="stylesheet" href="/assets/${assets['app.css']}" />
 `;
 
-export { createAppScript, createVendorScript, createTrackingScript, createStylesheets };
-
+export {
+ createAppScript, createVendorScript, createTrackingScript, createStylesheets
+};

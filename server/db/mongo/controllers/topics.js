@@ -34,8 +34,8 @@ export function add(req, res) {
  */
 export function update(req, res) {
   const query = { id: req.params.id };
-  const isIncrement = req.body.isIncrement;
-  const isFull = req.body.isFull;
+  const {isIncrement} = req.body;
+  const {isFull} = req.body;
   const omitKeys = ['id', '_id', '_v', 'isIncrement', 'isFull'];
   const data = _.omit(req.body, omitKeys);
 

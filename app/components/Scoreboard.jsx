@@ -25,7 +25,7 @@ const Scoreboard = ({topics}) => {
 };
 
 Scoreboard.propTypes = {
-  topics: PropTypes.array.isRequired
+  topics: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default Scoreboard;

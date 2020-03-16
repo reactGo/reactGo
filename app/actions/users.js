@@ -60,11 +60,11 @@ export function manualLogin(data) {
     dispatch(beginLogin());
 
     return authService().login(data)
-      .then((response) => {
+      .then(() => {
           dispatch(loginSuccess('You have been successfully logged in'));
           dispatch(push('/'));
       })
-      .catch((err) => {
+      .catch(() => {
         dispatch(loginError('Oops! Invalid username or password'));
       });
   };
@@ -75,11 +75,11 @@ export function signUp(data) {
     dispatch(beginSignUp());
 
     return authService().signUp(data)
-      .then((response) => {
+      .then(() => {
           dispatch(signUpSuccess('You have successfully registered an account!'));
           dispatch(push('/'));
       })
-      .catch((err) => {
+      .catch(() => {
         dispatch(signUpError('Oops! Something went wrong when signing up'));
       });
   };
@@ -90,10 +90,10 @@ export function logOut() {
     dispatch(beginLogout());
 
     return authService().logOut()
-      .then((response) => {
+      .then(() => {
           dispatch(logoutSuccess());
       })
-      .catch((err) => {
+      .catch(() => {
         dispatch(logoutError());
       });
   };

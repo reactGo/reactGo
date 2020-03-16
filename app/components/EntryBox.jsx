@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import TopicTextInput from '../components/TopicTextInput';
+import TopicTextInput from './TopicTextInput';
 import styles from '../css/components/entrybox';
 
 const cx = classNames.bind(styles);
@@ -29,6 +29,10 @@ EntryBox.propTypes = {
   topic: PropTypes.string,
   onEntryChange: PropTypes.func.isRequired,
   onEntrySave: PropTypes.func.isRequired
+};
+
+EntryBox.defaultProps = {
+  topic: '',
 };
 
 export default EntryBox;

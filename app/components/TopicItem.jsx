@@ -5,7 +5,9 @@ import styles from '../css/components/topic-item';
 
 const cx = classNames.bind(styles);
 
-const TopicItem = ({ text, id, incrementCount, decrementCount, destroyTopic }) => {
+const TopicItem = ({
+ text, id, incrementCount, decrementCount, destroyTopic
+}) => {
   const onIncrement = () => {
     incrementCount(id);
   };
@@ -20,14 +22,23 @@ const TopicItem = ({ text, id, incrementCount, decrementCount, destroyTopic }) =
     <li className={cx('topic-item')} key={id}>
       <span className={cx('topic')}>{text}</span>
       <button
+        type="button"
         className={cx('button', 'increment')}
-        onClick={onIncrement}>+</button>
+        onClick={onIncrement}>
+        +
+      </button>
       <button
+        type="button"
         className={cx('button', 'decrement')}
-        onClick={onDecrement}>-</button>
+        onClick={onDecrement}>
+        -
+      </button>
       <button
+        type="button"
         className={cx('button', 'destroy')}
-        onClick={onDestroy}>{String.fromCharCode(215)}</button>
+        onClick={onDestroy}>
+        {String.fromCharCode(215)}
+      </button>
     </li>
   );
 };

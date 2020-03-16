@@ -1,7 +1,8 @@
-require('babel-register') ({
+require('babel-register')({
   presets: ['es2015', 'react', 'stage-0']
 });
 const jsdom = require('jsdom');
+
 const { JSDOM } = jsdom;
 
 const exposedProperties = ['window', 'navigator', 'document'];
@@ -25,4 +26,3 @@ global.navigator = {
 };
 
 documentRef = document;
-

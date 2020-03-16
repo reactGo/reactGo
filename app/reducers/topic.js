@@ -38,12 +38,12 @@ const topics = (
     case types.CREATE_TOPIC_REQUEST:
       return [...state, topic(undefined, action)];
     case types.CREATE_TOPIC_FAILURE:
-      return state.filter(t => t.id !== action.id);
+      return state.filter((t) => t.id !== action.id);
     case types.DESTROY_TOPIC:
-      return state.filter(t => t.id !== action.id);
+      return state.filter((t) => t.id !== action.id);
     case types.INCREMENT_COUNT:
     case types.DECREMENT_COUNT:
-      return state.map(t => topic(t, action));
+      return state.map((t) => topic(t, action));
     default:
       return state;
   }

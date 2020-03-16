@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Page from '../pages/Page';
+import Page from './Page';
 import VoteContainer from '../containers/Vote';
 
 class Vote extends Component {
@@ -35,4 +35,3 @@ class Vote extends Component {
 }
 
 export default Vote;
-
