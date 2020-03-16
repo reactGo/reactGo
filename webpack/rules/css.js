@@ -27,12 +27,14 @@ module.exports = ({ production = false, browser = false } = {}) => {
 
   const createCssLoaders = embedCssInBundle => ([
     {
-      loader: embedCssInBundle ? 'css-loader' : 'css-loader/locals',
+      loader: 'css-loader',
       options: {
-        localIdentName,
         sourceMap: true,
-        modules: true,
-        importLoaders: 1
+        modules: {
+          localIdentName,
+        },
+        importLoaders: 1,
+        onlyLocals: !embedCssInBundle,
       }
     },
     {
@@ -50,7 +52,7 @@ module.exports = ({ production = false, browser = false } = {}) => {
 
   const createBrowserLoaders = extractCssToFile => loaders => {
     if (extractCssToFile) {
-      return [ MiniCssExtractPlugin.loader, ...loaders]; 
+      return [ MiniCssExtractPlugin.loader, ...loaders];
     }
     return [{ loader: 'style-loader' }, ...loaders];
   };

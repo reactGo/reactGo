@@ -46,4 +46,5 @@ render(
     <Router history={history} onUpdate={onUpdate}>
       {routes}
     </Router>
-  </Provider>, document.getElementById('app'));
+  </Provider>, document.getElementById('app')
+);

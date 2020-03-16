@@ -7,23 +7,31 @@ import styles from '../css/components/message';
 
 const cx = classNames.bind(styles);
 
-const Message = ({message, type, dismissMessage}) => (
+const Message = ({ message, type, dismissMessage }) => (
   <div
+    role="presentation"
     className={cx('message', {
       show: message && message.length > 0,
-      success: type === 'SUCCESS'
+      success: type === 'SUCCESS',
     })}
-    onClick={dismissMessage}>{message}</div>
+    onClick={dismissMessage}>
+    {message}
+  </div>
 );
 
 Message.propTypes = {
   message: PropTypes.string,
   type: PropTypes.string,
-  dismissMessage: PropTypes.func.isRequired
+  dismissMessage: PropTypes.func.isRequired,
+};
+
+Message.defaultProps = {
+  message: '',
+  type: '',
 };
 
 function mapStateToProps(state) {
-  return {...state.message};
+  return { ...state.message };
 }
 
 export default connect(mapStateToProps, { dismissMessage })(Message);

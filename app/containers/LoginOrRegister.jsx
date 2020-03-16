@@ -40,7 +40,9 @@ class LoginOrRegister extends Component {
             <a
               className={cx('alternative-link')}
               onClick={toggleLoginMode}
-            >Register an Account</a>
+            >
+              Register an Account
+            </a>
           </div>
         </div>
       );
@@ -54,7 +56,9 @@ class LoginOrRegister extends Component {
           <a
             className={cx('alternative-link')}
             onClick={toggleLoginMode}
-          >Login</a>
+          >
+            Login
+          </a>
         </div>
       </div>
     );
@@ -83,7 +87,7 @@ class LoginOrRegister extends Component {
               <input
                 className={cx('input')}
                 type="password"
-               ref="password"
+                ref="password"
                 placeholder="password"
               />
               <div className={cx('hint')}>
@@ -93,7 +97,9 @@ class LoginOrRegister extends Component {
               <p
                 className={cx('message', {
                 'message-show': message && message.length > 0
-              })}>{message}</p>
+              })}>
+                {message}
+              </p>
               <input
                 className={cx('button')}
                 type="submit"
@@ -104,7 +110,9 @@ class LoginOrRegister extends Component {
             <h1 className={cx('heading')}>Google Login Demo</h1>
             <a
               className={cx('button')}
-              href="/auth/google">Login with Google</a>
+              href="/auth/google">
+              Login with Google
+            </a>
           </div>
         </div>
       </div>
@@ -113,7 +121,7 @@ class LoginOrRegister extends Component {
 }
 
 LoginOrRegister.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.objectOf(PropTypes.any).isRequired,
   manualLogin: PropTypes.func.isRequired,
   signUp: PropTypes.func.isRequired,
   toggleLoginMode: PropTypes.func.isRequired
@@ -131,4 +139,3 @@ function mapStateToProps({user}) {
 // It does not modify the component class passed to it
 // Instead, it returns a new, connected component class, for you to use.
 export default connect(mapStateToProps, { manualLogin, signUp, toggleLoginMode })(LoginOrRegister);
-

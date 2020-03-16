@@ -39,8 +39,7 @@ export default (app) => {
       passport.authenticate('google', {
         successRedirect: '/',
         failureRedirect: '/login'
-      })
-    );
+      }));
   }
 
   // topic routes

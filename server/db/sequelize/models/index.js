@@ -24,4 +24,3 @@ Object.keys(db).forEach((key) => {
 });
 
 export { db as Models, sequelize };
-

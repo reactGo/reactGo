@@ -5,8 +5,7 @@ import { db } from '../sequelize/constants';
 
 const PGStore = connectPostgres(session);
 
-export default () =>
-  new PGStore(
+export default () => new PGStore(
     {
       pg,
       conString: db

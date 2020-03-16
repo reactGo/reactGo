@@ -7,4 +7,3 @@ function fetchDataForRoute({ routes, params }) {
 }
 
 export default fetchDataForRoute;
-

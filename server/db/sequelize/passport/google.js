@@ -1,6 +1,6 @@
 import { Models, sequelize } from '../models';
 
-const User = Models.User;
+const {User} = Models;
 
 /* eslint-disable no-param-reassign */
 function attachGoogleAccount(user, profile, accessToken, done) {
@@ -9,36 +9,24 @@ function attachGoogleAccount(user, profile, accessToken, done) {
   user.gender = user.gender || profile._json.gender;
   user.picture = user.picture || profile._json.picture;
 
-  return sequelize.transaction(transaction =>
-    user.save({ transaction }).then(() =>
-      user.createToken({
+  return sequelize.transaction((transaction) => user.save({ transaction }).then(() => user.createToken({
         kind: 'google',
         accessToken
-      }, { transaction })
-    )
-  ).then(() =>
-    done(null, user, { message: 'Google account has been linked.' })
-  );
+      }, { transaction }))).then(() => done(null, user, { message: 'Google account has been linked.' }));
 }
 /* eslint-enable no-param-reassign */
 
 function createUserWithToken(profile, accessToken, done) {
-  return sequelize.transaction(transaction =>
-    User.create({
+  return sequelize.transaction((transaction) => User.create({
       email: profile._json.emails[0].value,
       google: profile.id,
       name: profile.displayName,
       gender: profile._json.gender,
       picture: profile._json.picture
-    }, { transaction }).then(user =>
-      user.createToken({
+    }, { transaction }).then((user) => user.createToken({
         kind: 'google',
         accessToken
-      }, { transaction }).then(() =>
-        done(null, user)
-      )
-    )
-  );
+      }, { transaction }).then(() => done(null, user))));
 }
 
 const existingGoogleAccountMessage = [
@@ -51,17 +39,14 @@ const existingEmailUserMessage = [
   'Sign in to that account and link it with Google manually from Account Settings.'
 ].join(' ');
 
-export default (req, accessToken, refreshToken, profile, done) =>
-  User.findOne({
+export default (req, accessToken, refreshToken, profile, done) => User.findOne({
     where: { google: profile.id }
   }).then((existingUser) => {
     if (req.user) {
       if (existingUser) {
         return done(null, false, { message: existingGoogleAccountMessage });
       }
-      return User.findById(req.user.id).then(user =>
-        attachGoogleAccount(user, profile, accessToken, done)
-      );
+      return User.findById(req.user.id).then((user) => attachGoogleAccount(user, profile, accessToken, done));
     }
 
     if (existingUser) return done(null, existingUser);
