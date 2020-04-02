@@ -9,6 +9,7 @@ export default () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
+      useFindAndModify: false,
     }, (err) => {
       if (err) {
         console.log(`===>  Error connecting to ${db}`);
