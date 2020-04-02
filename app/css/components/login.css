@@ -29,6 +29,9 @@
   color: var(--colorDodgerBlue);
   font-weight: bold;
   cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
 }
 
 .loading {

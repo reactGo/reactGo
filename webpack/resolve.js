@@ -7,4 +7,3 @@ module.exports = {
     'react-dom': '@hot-loader/react-dom'
   },
 };
-

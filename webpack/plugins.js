@@ -16,7 +16,7 @@ module.exports = ({ production = false, browser = false } = {}) => {
   }
   if (!production && browser) {
     return [
-      new webpack.EnvironmentPlugin(['NODE_ENV', 'DB_TYPE', 'GOOGLE_ANALYTICS_ID']),
+      new webpack.EnvironmentPlugin(['NODE_ENV']),
       new webpack.DefinePlugin(compileTimeConstantForMinification),
       new webpack.HotModuleReplacementPlugin(),
     ];
@@ -30,7 +30,7 @@ module.exports = ({ production = false, browser = false } = {}) => {
   }
   if (production && browser) {
     return [
-      new webpack.EnvironmentPlugin(['NODE_ENV', 'DB_TYPE', 'GOOGLE_ANALYTICS_ID']),
+      new webpack.EnvironmentPlugin(['NODE_ENV']),
       new webpack.DefinePlugin(compileTimeConstantForMinification),
       new MiniCssExtractPlugin({
         filename: '[contenthash].css',
