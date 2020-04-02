@@ -1,37 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Page from './Page';
 import AboutContainer from '../containers/About';
 
-class About extends Component {
-  getMetaData() {
-    return {
-      title: this.pageTitle(),
-      meta: this.pageMeta(),
-      link: this.pageLink()
-    };
-  }
-
-  pageTitle = () => {
+const About = (props) => {
+  const pageTitle = () => {
     return 'About | reactGo';
   };
 
-  pageMeta = () => {
+  const pageMeta = () => {
     return [
-      { name: 'description', content: 'A reactGo example of life' }
+      { name: 'description', content: 'A reactGo example of life' },
     ];
   };
 
-  pageLink = () => {
+  const pageLink = () => {
     return [];
   };
 
-  render() {
-    return (
-      <Page {...this.getMetaData()}>
-        <AboutContainer {...this.props} />
-      </Page>
-    );
-  }
-}
+  const getMetaData = () => ({
+    title: pageTitle(),
+    meta: pageMeta(),
+    link: pageLink(),
+  });
+
+  return (
+    <Page {...getMetaData()}>
+      <AboutContainer {...props} />
+    </Page>
+  );
+};
 
 export default About;

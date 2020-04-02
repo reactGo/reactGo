@@ -1,37 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Page from './Page';
 import DashboardContainer from '../containers/Dashboard';
 
-class Dashboard extends Component {
-  getMetaData() {
-    return {
-      title: this.pageTitle(),
-      meta: this.pageMeta(),
-      link: this.pageLink()
-    };
-  }
-
-  pageTitle = () => {
+const Dashboard = (props) => {
+  const pageTitle = () => {
     return 'Dashboard | reactGo';
   };
 
-  pageMeta = () => {
+  const pageMeta = () => {
     return [
-      { name: 'description', content: 'A reactGo example of a dashboard page' }
+      { name: 'description', content: 'A reactGo example of a dashboard page' },
     ];
   };
 
-  pageLink = () => {
+  const pageLink = () => {
     return [];
   };
 
-  render() {
-    return (
-      <Page {...this.getMetaData()}>
-        <DashboardContainer {...this.props} />
-      </Page>
-    );
-  }
-}
+  const getMetaData = () => ({
+    title: pageTitle(),
+    meta: pageMeta(),
+    link: pageLink(),
+  });
+
+  return (
+    <Page {...getMetaData()}>
+      <DashboardContainer {...props} />
+    </Page>
+  );
+};
 
 export default Dashboard;

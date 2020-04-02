@@ -1,66 +1,41 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames/bind';
 import EntryBox from '../components/EntryBox';
 import MainSection from '../components/MainSection';
 import Scoreboard from '../components/Scoreboard';
 import {
- createTopic, typing, incrementCount,
-  decrementCount, destroyTopic
+ createTopic, typing, incrementCount, decrementCount, destroyTopic,
 } from '../actions/topics';
 import styles from '../css/components/vote';
 
 const cx = classNames.bind(styles);
 
-const Vote = ({
- newTopic, topics, typing, createTopic, destroyTopic, incrementCount, decrementCount
-}) => {
+const Vote = () => {
+  const { topics, newTopic } = useSelector((state) => state.topic);
+  const dispatch = useDispatch();
+  const dispatchCreateTopic = (data) => dispatch(createTopic(data));
+  const dispatchTyping = (data) => dispatch(typing(data));
+  const dispatchIncrementCount = (data) => dispatch(incrementCount(data));
+  const dispatchDecrementCount = (data) => dispatch(decrementCount(data));
+  const dispatchDestroyTopic = (data) => dispatch(destroyTopic(data));
+
   return (
     <div className={cx('vote')}>
       <EntryBox
         topic={newTopic}
-        onEntryChange={typing}
-        onEntrySave={createTopic} />
+        onEntryChange={dispatchTyping}
+        onEntrySave={dispatchCreateTopic}
+      />
       <MainSection
         topics={topics}
-        onIncrement={incrementCount}
-        onDecrement={decrementCount}
-        onDestroy={destroyTopic} />
+        onIncrement={dispatchIncrementCount}
+        onDecrement={dispatchDecrementCount}
+        onDestroy={dispatchDestroyTopic}
+      />
       <Scoreboard topics={topics} />
     </div>
   );
 };
 
-Vote.propTypes = {
-  topics: PropTypes.arrayOf(PropTypes.object).isRequired,
-  typing: PropTypes.func.isRequired,
-  createTopic: PropTypes.func.isRequired,
-  destroyTopic: PropTypes.func.isRequired,
-  incrementCount: PropTypes.func.isRequired,
-  decrementCount: PropTypes.func.isRequired,
-  newTopic: PropTypes.string
-};
-
-Vote.defaultProps = {
-  newTopic: '',
-};
-
-function mapStateToProps(state) {
-  return {
-    topics: state.topic.topics,
-    newTopic: state.topic.newTopic
-  };
-}
-
-const mapDispatchToProps = {
-  createTopic,
-  typing,
-  incrementCount,
-  decrementCount,
-  destroyTopic,
-};
-
-// Read more about where to place `connect` here:
-// https://github.com/rackt/react-redux/issues/75#issuecomment-135436563
-export default connect(mapStateToProps, mapDispatchToProps)(Vote);
+export default Vote;

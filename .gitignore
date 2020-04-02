@@ -6,3 +6,4 @@ public
 compiled
 *.swp
 .vscode
+.env

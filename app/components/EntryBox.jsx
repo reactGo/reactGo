@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import TopicTextInput from './TopicTextInput';
+import TopicTextForm from './TopicTextForm';
 import styles from '../css/components/entrybox';
 
 const cx = classNames.bind(styles);
@@ -11,11 +11,11 @@ const cx = classNames.bind(styles);
 // to grandchild. To make it cleaner, you could consider:
 // 1. moving `connect` down to this component so you could mapStateToProps and dispatch
 // 2. Move TopicTextInput up to EntryBox so it's less confusing
-const EntryBox = ({onEntryChange, onEntrySave, topic}) => {
+const EntryBox = ({ onEntryChange, onEntrySave, topic }) => {
   return (
     <div className={cx('entrybox')}>
       <h1 className={cx('header')}>Vote for your top hack idea</h1>
-      <TopicTextInput
+      <TopicTextForm
         className={cx('input')}
         value={topic}
         placeholder="Suggest a hackday idea . . ."
@@ -28,7 +28,7 @@ const EntryBox = ({onEntryChange, onEntrySave, topic}) => {
 EntryBox.propTypes = {
   topic: PropTypes.string,
   onEntryChange: PropTypes.func.isRequired,
-  onEntrySave: PropTypes.func.isRequired
+  onEntrySave: PropTypes.func.isRequired,
 };
 
 EntryBox.defaultProps = {

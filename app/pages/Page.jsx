@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
 const Page = ({
- title, link, meta, children
+ title, link, meta, children,
 }) => {
   return (
     <div>
       <Helmet title={title} link={link} meta={meta} />
-      { children }
+      {children}
     </div>
   );
 };

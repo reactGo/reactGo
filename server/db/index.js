@@ -11,6 +11,9 @@ switch (DB_TYPE) {
   case DB_TYPES.POSTGRES:
     dbConfig = require('./postgres').default;
     break;
+  case DB_TYPES.MYSQL:
+    dbConfig = require('./mysql').default;
+    break;
   case DB_TYPES.NONE:
     dbConfig = require('./none').default;
     break;
