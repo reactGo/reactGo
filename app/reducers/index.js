@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
-import { routerReducer as routing } from 'react-router-redux';
+import { connectRouter } from 'connected-react-router';
+
 import user from './user';
 import topic from './topic';
 import message from './message';
@@ -19,12 +20,12 @@ const isFetching = (state = false, action) => {
 
 // Combine reducers with routeReducer which keeps track of
 // router state
-const rootReducer = combineReducers({
+const createRootReducer = (history) => combineReducers({
   isFetching,
   topic,
   user,
   message,
-  routing
+  router: connectRouter(history),
 });
 
-export default rootReducer;
+export default createRootReducer;

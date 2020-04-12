@@ -1,9 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
-import createRoutes from './routes';
+import { createBrowserHistory } from 'history';
+import { ConnectedRouter } from 'connected-react-router';
+
+import App from './pages/App';
 import * as types from './types';
 import configureStore from './store/configureStore';
 import fetchDataForRoute from './utils/fetchDataForRoute';
@@ -12,9 +13,8 @@ import fetchDataForRoute from './utils/fetchDataForRoute';
 // server-generated HTML
 const initialState = window.__INITIAL_STATE__;
 
-const store = configureStore(initialState, browserHistory);
-const history = syncHistoryWithStore(browserHistory, store);
-const routes = createRoutes(store);
+const history = createBrowserHistory();
+const store = configureStore(initialState, history);
 
 /**
  * Callback function handling frontend route changes.
@@ -38,13 +38,10 @@ function onUpdate() {
     });
 }
 
-
-// Router converts <Route> element hierarchy to a route config:
-// Read more https://github.com/rackt/react-router/blob/latest/docs/Glossary.md#routeconfig
 render(
   <Provider store={store}>
-    <Router history={history} onUpdate={onUpdate}>
-      {routes}
-    </Router>
+    <ConnectedRouter history={history} onUpdate={onUpdate}>
+      <App />
+    </ConnectedRouter>
   </Provider>, document.getElementById('app')
 );

@@ -1,8 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { routerMiddleware } from 'react-router-redux';
+import { routerMiddleware } from 'connected-react-router';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
-import rootReducer from '../reducers';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import createRootReducer from '../reducers';
 import { isClient, isDebug } from '../../config/app';
 
 /*
@@ -18,12 +19,11 @@ export default function configureStore(initialState, history) {
 
   if (isClient && isDebug) {
     middleware.push(createLogger());
-    store = createStore(rootReducer, initialState, compose(
+    store = createStore(createRootReducer(history), initialState, composeWithDevTools(
       applyMiddleware(...middleware),
-      typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : (f) => f
     ));
   } else {
-    store = createStore(rootReducer, initialState, compose(applyMiddleware(...middleware), (f) => f));
+    store = createStore(createRootReducer(history), initialState, compose(applyMiddleware(...middleware), (f) => f));
   }
 
   if (module.hot) {

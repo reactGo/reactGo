@@ -1,14 +1,18 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
-import { RouterContext } from 'react-router';
+import { StaticRouter } from 'react-router';
 import Helmet from 'react-helmet';
 import serialize from 'serialize-javascript';
-import staticAssets from './static-assets';
 
-const createApp = (store, props) => renderToString(
+import staticAssets from './static-assets';
+import App from '../../app/pages/App';
+
+const createApp = (req, store, context) => renderToString(
   <Provider store={store}>
-    <RouterContext {...props} />
+    <StaticRouter location={req.url} context={context}>
+      <App />
+    </StaticRouter>
   </Provider>
 );
 
@@ -32,9 +36,16 @@ const buildPage = ({ componentHTML, initialState, headAssets }) => {
 </html>`;
 };
 
-export default (store, props) => {
+export default (req, store, context) => {
   const initialState = store.getState();
-  const componentHTML = createApp(store, props);
+  console.log('initialState', initialState);
+  let componentHTML;
+  try {
+    componentHTML = createApp(req, store, context);
+  } catch (err) {
+    console.error(err);
+  }
+  console.log('componentHTML', componentHTML);
   const headAssets = Helmet.renderStatic();
   return buildPage({ componentHTML, initialState, headAssets });
 };

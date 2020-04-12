@@ -1,11 +1,13 @@
 import React from 'react';
-import Page from './Page';
-import AppContainer from '../containers/App';
-import { title, meta, link } from './assets';
+import { renderRoutes } from 'react-router-config';
 
-const App = (props) => (
+import Page from './Page';
+import { link, meta, title } from './assets';
+import routes from '../routes';
+
+const App = () => (
   <Page title={title} meta={meta} link={link}>
-    <AppContainer {...props} />
+    {renderRoutes(routes)}
   </Page>
 );
 

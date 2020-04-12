@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { replace } from 'connected-react-router';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Page from './Page';
 import DashboardContainer from '../containers/Dashboard';
 
 const Dashboard = (props) => {
+  const { authenticated } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  /*
+   * Redirect to '/' if is not authenticated
+   */
+  useEffect(() => {
+    if (!authenticated) {
+      dispatch(replace({ pathname: '/' }));
+    }
+  }, []);
+
   const pageTitle = () => {
     return 'Dashboard | reactGo';
   };
