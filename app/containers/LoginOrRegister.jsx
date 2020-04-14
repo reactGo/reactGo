@@ -34,7 +34,7 @@ const LoginOrRegister = () => {
     } else {
       dispatchSignUp({ email, password });
     }
-  }, [email, password]);
+  }, [isLogin, email, password]);
 
   const renderHeader = () => {
     if (isLogin) {

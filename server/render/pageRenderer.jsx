@@ -2,7 +2,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import serialize from 'serialize-javascript';
 
 import staticAssets from './static-assets';
@@ -19,7 +19,7 @@ const createApp = (req, store, context) => renderToString(
 const buildPage = ({ componentHTML, initialState, headAssets }) => {
   return `
 <!doctype html>
-<html>
+<html ${headAssets.htmlAttributes.toString()}>
   <head>
     ${headAssets.title.toString()}
     ${headAssets.meta.toString()}
@@ -27,7 +27,7 @@ const buildPage = ({ componentHTML, initialState, headAssets }) => {
     ${staticAssets.createStylesheets()}
     ${staticAssets.createTrackingScript()}
   </head>
-  <body>
+  <body ${headAssets.bodyAttributes.toString()}>
     <div id="app">${componentHTML}</div>
     <script>window.__INITIAL_STATE__ = ${serialize(initialState)}</script>
     ${staticAssets.createAppScript()}
@@ -38,14 +38,7 @@ const buildPage = ({ componentHTML, initialState, headAssets }) => {
 
 export default (req, store, context) => {
   const initialState = store.getState();
-  console.log('initialState', initialState);
-  let componentHTML;
-  try {
-    componentHTML = createApp(req, store, context);
-  } catch (err) {
-    console.error(err);
-  }
-  console.log('componentHTML', componentHTML);
+  const componentHTML = createApp(req, store, context);
   const headAssets = Helmet.renderStatic();
   return buildPage({ componentHTML, initialState, headAssets });
 };

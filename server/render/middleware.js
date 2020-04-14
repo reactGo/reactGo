@@ -4,14 +4,13 @@ import { matchRoutes } from 'react-router-config';
 
 import routes from '../../app/routes';
 import configureStore from '../../app/store/configureStore';
-import * as types from '../../app/types';
 import pageRenderer from './pageRenderer';
 import { sessionId } from '../../config/secrets';
 
-const loadBranchData = (url) => {
+const loadBranchData = (url, store) => {
   const branch = matchRoutes(routes, url);
   const promises = branch.map(({ route }) => {
-    return route.fetchData ? route.fetchData() : Promise.resolve(null);
+    return route.fetchData ? route.fetchData(store) : Promise.resolve(null);
   });
 
   return Promise.all(promises);
@@ -33,18 +32,17 @@ export default function render(req, res) {
       isLogin: true,
     },
   }, history);
+  // For server side rendering.
   if (req.cookies[sessionId]) {
     axios.defaults.headers.common.Cookie = sessionId + '=' + req.cookies[sessionId];
   }
-  store.dispatch({ type: types.CREATE_REQUEST });
+  // If redirection exists, context object is going to have a url property.
   const context = {};
-  loadBranchData(req.url)
+  loadBranchData(req.url, store)
     .then((data) => {
-      console.log('data', data);
-      store.dispatch({ type: types.REQUEST_SUCCESS, data });
       const html = pageRenderer(req, store, context);
       if (context.url) {
-        // If context has a url property, then we need to handle a redirection in Redux Router
+        // If context has a url property, then we need to handle a redirection
         res.writeHead(302, {
           Location: context.url
         });

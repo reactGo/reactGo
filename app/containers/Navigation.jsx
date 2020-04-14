@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames/bind';
 import { logOut } from '../actions/users';
@@ -11,29 +11,17 @@ const Navigation = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const dispatchLogOut = () => dispatch(logOut());
-
+  // activeClassName issues https://github.com/ReactTraining/react-router/issues/6201
   return (
     <nav className={cx('navigation')} role="navigation">
-      <Link
-        to="/"
-        className={cx('item', 'logo')}
-        activeClassName={cx('active')}
-      >
-        Ninja Ocean
-      </Link>
+      <NavLink to="/" className={cx('item', 'logo')} activeClassName={cx('active')}>Ninja Ocean</NavLink>
       {user.authenticated ? (
-        <Link
-          onClick={dispatchLogOut}
-          className={cx('item')}
-          to="/"
-        >
-          Logout
-        </Link>
+        <NavLink onClick={dispatchLogOut} className={cx('item')} to="/">Logout</NavLink>
       ) : (
-        <Link className={cx('item')} to="/login">Log in</Link>
+        <NavLink className={cx('item')} to="/login" activeClassName={cx('active')}>Log in</NavLink>
       )}
-      <Link className={cx('item')} to="/dashboard">Dashboard</Link>
-      <Link to="/about" className={cx('item')} activeClassName={cx('active')}>About</Link>
+      <NavLink className={cx('item')} to="/dashboard" activeClassName={cx('active')}>Dashboard</NavLink>
+      <NavLink to="/about" className={cx('item')} activeClassName={cx('active')}>About</NavLink>
     </nav>
   );
 };

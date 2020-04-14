@@ -3,14 +3,17 @@ import Vote from './pages/Vote';
 import LoginOrRegister from './pages/LoginOrRegister';
 import Dashboard from './pages/Dashboard';
 import About from './pages/About';
-import { fetchVoteData } from './fetch-data';
+import { getTopics } from './actions/topics';
 
 const routes = [{
   component: App,
   routes: [{
     path: '/',
+    exact: true,
     component: Vote,
-    fetchData: fetchVoteData,
+    fetchData: (store) => {
+      return store.dispatch(getTopics());
+    },
   }, {
     path: '/login',
     component: LoginOrRegister,

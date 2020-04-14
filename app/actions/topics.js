@@ -98,6 +98,42 @@ export function createTopic(text) {
   };
 }
 
+
+function getTopicsRequest() {
+  return {
+    type: types.GET_TOPICS_REQUEST,
+  };
+}
+
+function getTopicsSuccess(data) {
+  return {
+    type: types.GET_TOPICS_SUCCESS,
+    data,
+  };
+}
+
+function getTopicsFailure(error) {
+  return {
+    type: types.GET_TOPICS_FAILURE,
+    error,
+  };
+}
+
+export function getTopics() {
+  return (dispatch) => {
+    dispatch(getTopicsRequest());
+    return voteService().getTopics()
+      .then((res) => {
+        dispatch(getTopicsSuccess(res.data));
+        return Promise.resolve();
+      })
+      .catch((error) => {
+        dispatch(getTopicsFailure(error));
+        return Promise.reject(error);
+      });
+  };
+}
+
 export function incrementCount(id) {
   return (dispatch) => {
     return voteService().updateTopic({

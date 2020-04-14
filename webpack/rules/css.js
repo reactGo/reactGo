@@ -23,7 +23,7 @@ module.exports = ({ production = false, browser = false } = {}) => {
    * css-loader/locals instead of style-loader!css-loader in the prerendering bundle.
    * It doesn't embed CSS but only exports the identifier mappings.
    */
-  const localIdentName = 'localIdentName=[name]__[local]___[hash:base64:5]';
+  const localIdentName = '[name]__[local]___[hash:base64:5]';
 
   const createCssLoaders = embedCssInBundle => ([
     {
