@@ -1,7 +1,8 @@
-import { push } from 'react-router-redux';
+import { push } from 'connected-react-router';
 import { authService } from '../services';
 
 import * as types from '../types';
+import { getTopics } from './topics';
 
 function beginLogin() {
   return { type: types.MANUAL_LOGIN_USER };
@@ -62,6 +63,7 @@ export function manualLogin(data) {
     return authService().login(data)
       .then(() => {
           dispatch(loginSuccess('You have been successfully logged in'));
+          dispatch(getTopics());
           dispatch(push('/'));
       })
       .catch(() => {

@@ -1,28 +1,9 @@
-import { apiEndpoint } from '../../config/app';
-import createRestApiClient from '../utils/createRestApiClient';
+import axios from 'axios';
 
 export default () => {
-  const client = createRestApiClient().withConfig({ baseURL: apiEndpoint });
   return {
-    login: ({ email, password }) => client.request({
-      method: 'POST',
-      url: '/sessions',
-      data: {
-        email,
-        password
-      }
-    }),
-    signUp: ({ email, password }) => client.request({
-      method: 'POST',
-      url: '/users',
-      data: {
-        email,
-        password
-      }
-    }),
-    logOut: () => client.request({
-      method: 'DELETE',
-      url: '/sessions'
-    })
+    login: ({ email, password }) => axios.post('/sessions', { email, password }),
+    signUp: ({ email, password }) => axios.post('/users', { email, password }),
+    logOut: () => axios.delete('/sessions')
   };
 };

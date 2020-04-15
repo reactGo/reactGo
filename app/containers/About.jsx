@@ -1,8 +1,6 @@
 import React from 'react';
-import classNames from 'classnames/bind';
-import styles from 'css/components/about';
 
-const cx = classNames.bind(styles);
+import { Contribute, Description, Header } from '../css/components/about';
 
 /*
  * Note: This is kept as a container-level component,
@@ -11,16 +9,16 @@ const cx = classNames.bind(styles);
  */
 const About = () => {
   return (
-    <div className={cx('about')}>
-      <h1 className={cx('header')}>About Ninja Ocean</h1>
-      <div className={cx('description')}>
+    <div>
+      <Header>About Ninja Ocean</Header>
+      <Description>
         <p>
           Imagine an ocean of ninjas. Now think of it as a metaphor.
           <br />
           Seriously, we love good tech. React, redux, scala, Haskell, machine learning, you name it!
         </p>
-      </div>
-      <div className={cx('contribute')}>
+      </Description>
+      <Contribute>
         <p>
           Want to contribute? Help us out!
           If you think the code on &nbsp;
@@ -29,7 +27,7 @@ const About = () => {
           <a target="_blank" rel="noopener noreferrer" href="https://github.com/choonkending/react-webpack-node/issues">here</a>
           !
         </p>
-      </div>
+      </Contribute>
     </div>
   );
 };

@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
-import TopicItem from './TopicItem';
-import styles from '../css/components/main-section';
 
-const cx = classNames.bind(styles);
+import TopicItem from './TopicItem';
+import { Header, List, MainSectionWrapper } from '../css/components/mainSection';
 
 const MainSection = ({
  topics, onIncrement, onDecrement, onDestroy
@@ -23,10 +21,10 @@ const MainSection = ({
   });
 
   return (
-    <div className={cx('main-section')}>
-      <h3 className={cx('header')}>Vote for your favorite hack day idea</h3>
-      <ul className={cx('list')}>{topicItems}</ul>
-    </div>
+    <MainSectionWrapper>
+      <Header>Vote for your favorite hack day idea</Header>
+      <List>{topicItems}</List>
+    </MainSectionWrapper>
   );
 };
 

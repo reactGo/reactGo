@@ -1,50 +1,78 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
-import createRoutes from './routes';
-import * as types from './types';
+import { createBrowserHistory } from 'history';
+import { ConnectedRouter } from 'connected-react-router';
+import { matchRoutes } from 'react-router-config';
+import { Route } from 'react-router';
+
+import App from './pages/App';
 import configureStore from './store/configureStore';
-import fetchDataForRoute from './utils/fetchDataForRoute';
+import routes from './routes';
 
 // Grab the state from a global injected into
 // server-generated HTML
 const initialState = window.__INITIAL_STATE__;
 
-const store = configureStore(initialState, browserHistory);
-const history = syncHistoryWithStore(browserHistory, store);
-const routes = createRoutes(store);
+const history = createBrowserHistory();
+const store = configureStore(initialState, history);
 
 /**
  * Callback function handling frontend route changes.
  */
-function onUpdate() {
-  // Prevent duplicate fetches when first loaded.
-  // Explanation: On server-side render, we already have __INITIAL_STATE__
-  // So when the client side onUpdate kicks in, we do not need to fetch twice.
-  // We set it to null so that every subsequent client-side navigation will
-  // still trigger a fetch data.
-  // Read more: https://github.com/choonkending/react-webpack-node/pull/203#discussion_r60839356
-  if (window.__INITIAL_STATE__ !== null) {
-    window.__INITIAL_STATE__ = null;
-    return;
+class PendingNavDataLoader extends Component {
+  state = {
+    previousLocation: null,
+    currentLocation: this.props.location,
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    const currentLocation = props.location;
+    const previousLocation = state.currentLocation;
+
+    const navigated = currentLocation !== previousLocation;
+    if (navigated) {
+      // save the location so we can render the old screen
+      return {
+        previousLocation,
+        currentLocation,
+      };
+    }
+
+    return null;
   }
 
-  store.dispatch({ type: types.CREATE_REQUEST });
-  fetchDataForRoute(this.state)
-    .then((data) => {
-      return store.dispatch({ type: types.REQUEST_SUCCESS, data });
-    });
+  componentDidUpdate(prevProps) {
+    const navigated = prevProps.location !== this.props.location;
+
+    if (navigated) {
+      // load data while the old screen remains
+      const branch = matchRoutes(routes, this.props.location);
+      console.log('branch', branch);
+      this.setState({
+        previousLocation: null,
+      });
+    }
+  }
+
+  render() {
+    const { children, location } = this.props;
+    const { previousLocation } = this.state;
+
+    // use a controlled <Route> to trick all descendants into
+    // rendering the old location
+    return (
+      <Route location={previousLocation || location} render={() => children} />
+    );
+  }
 }
 
-
-// Router converts <Route> element hierarchy to a route config:
-// Read more https://github.com/rackt/react-router/blob/latest/docs/Glossary.md#routeconfig
 render(
   <Provider store={store}>
-    <Router history={history} onUpdate={onUpdate}>
-      {routes}
-    </Router>
-  </Provider>, document.getElementById('app')
+    <ConnectedRouter history={history}>
+      <PendingNavDataLoader routes={routes}>
+        <App />
+      </PendingNavDataLoader>
+    </ConnectedRouter>
+  </Provider>, document.getElementById('app'),
 );

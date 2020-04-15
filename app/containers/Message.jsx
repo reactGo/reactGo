@@ -1,10 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import classNames from 'classnames/bind';
-import { dismissMessage } from '../actions/messages';
-import styles from '../css/components/message';
 
-const cx = classNames.bind(styles);
+import { dismissMessage } from '../actions/messages';
+import { MessageWrapper } from '../css/components/message';
 
 const Message = () => {
   const { message, type } = useSelector((state) => state.message);
@@ -12,15 +10,13 @@ const Message = () => {
   const dispatchDismissMessage = () => dispatch(dismissMessage());
 
   return (
-    <div
+    <MessageWrapper
       role="presentation"
-      className={cx('message', {
-        show: message && message.length > 0,
-        success: type === 'SUCCESS',
-      })}
+      show={message && message.length > 0}
+      success={type === 'SUCCESS'}
       onClick={dispatchDismissMessage}>
       {message}
-    </div>
+    </MessageWrapper>
   );
 };
 
