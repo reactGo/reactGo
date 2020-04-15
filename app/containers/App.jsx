@@ -1,22 +1,23 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
-import classNames from 'classnames/bind';
 import { renderRoutes } from 'react-router-config';
+import { Global } from '@emotion/core';
 
+import { AppWrapper, global } from '../css/main';
 import Navigation from './Navigation';
 import Message from './Message';
-import styles from '../css/main';
-
-const cx = classNames.bind(styles);
 
 const App = ({ route }) => (
-  <div className={cx('app')}>
+  <AppWrapper>
+    <Global
+      styles={global}
+    />
     <Navigation />
     <Message />
     <Switch>
       {renderRoutes(route.routes)}
     </Switch>
-  </div>
+  </AppWrapper>
 );
 
 export default App;

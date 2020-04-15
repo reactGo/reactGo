@@ -1,12 +1,17 @@
 import React, { useState, useCallback } from 'react';
-import classNames from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { manualLogin, signUp, toggleLoginMode } from '../actions/users';
-import styles from '../css/components/login';
 import hourGlassSvg from '../images/hourglass.svg';
-
-const cx = classNames.bind(styles);
+import {
+  Alternative,
+  AlternativeLink, Button,
+  EmailContainer,
+  GoogleContainer,
+  Header,
+  Heading, Hint, Input, Loading,
+  LoginWrapper, Message,
+} from '../css/components/login';
 
 const LoginOrRegister = () => {
   const { isWaiting, message, isLogin } = useSelector((state) => state.user);
@@ -39,84 +44,79 @@ const LoginOrRegister = () => {
   const renderHeader = () => {
     if (isLogin) {
       return (
-        <div className={cx('header')}>
-          <h1 className={cx('heading')}>Login with Email</h1>
-          <div className={cx('alternative')}>
+        <Header>
+          <Heading>Login with Email</Heading>
+          <Alternative>
             Not what you want?
-            <button
+            <AlternativeLink
               type="button"
-              className={cx('alternative-link')}
               onClick={dispatchToggleLoginMode}
             >
               Register an Account
-            </button>
-          </div>
-        </div>
+            </AlternativeLink>
+          </Alternative>
+        </Header>
       );
     }
 
     return (
-      <div className={cx('header')}>
-        <h1 className={cx('heading')}>Register with Email</h1>
-        <div className={cx('alternative')}>
+      <Header>
+        <Heading>Register with Email</Heading>
+        <Alternative>
           Already have an account?
-          <button
+          <AlternativeLink
             type="button"
-            className={cx('alternative-link')}
             onClick={dispatchToggleLoginMode}
           >
             Login
-          </button>
-        </div>
-      </div>
+          </AlternativeLink>
+        </Alternative>
+      </Header>
     );
   };
 
   return (
-    <div className={cx('login', { waiting: isWaiting })}>
-      <div className={cx('container')}>
+    <LoginWrapper waiting={isWaiting}>
+      <div>
         {renderHeader()}
-        <img className={cx('loading')} alt="loading" src={hourGlassSvg} />
-        <div className={cx('email-container')}>
+        <Loading alt="loading" src={hourGlassSvg} />
+        <EmailContainer>
           <form onSubmit={handleOnSubmit}>
-            <input
-              className={cx('input')}
+            <Input
               type="email"
               value={email}
               onChange={onChangeEmail}
               placeholder="email"
             />
-            <input
-              className={cx('input')}
+            <Input
               type="password"
               value={password}
               onChange={onChangePassword}
               placeholder="password"
             />
-            <div className={cx('hint')}>
+            <Hint>
               <div>Hint</div>
               <div>email: example@ninja.com password: ninja</div>
-            </div>
-            <p
-              className={cx('message', { 'message-show': message && message.length > 0 })}>
+            </Hint>
+            <Message show={message && message.length > 0}>
               {message}
-            </p>
-            <input
-              className={cx('button')}
+            </Message>
+            <Button
+              as="input"
               type="submit"
               value={isLogin ? 'Login' : 'Register'} />
           </form>
-        </div>
-        <div className={cx('google-container')}>
-          <h1 className={cx('heading')}>Google Login Demo</h1>
-          <a
-            className={cx('button')}
+        </EmailContainer>
+        <GoogleContainer>
+          <Heading>Google Login Demo</Heading>
+          <Button
+            as="a"
             href="/auth/google">
             Login with Google
-          </a>
-        </div>
+          </Button>
+        </GoogleContainer>
       </div>
-    </div>
+    </LoginWrapper>
   );
 };
 

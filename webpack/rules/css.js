@@ -1,8 +1,5 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const postcssImport = require('postcss-import');
-const postcssCssnext = require('postcss-cssnext');
-const postcssReporter = require('postcss-reporter');
 const PATHS = require('../paths');
 
 module.exports = ({ production = false, browser = false } = {}) => {
@@ -37,17 +34,6 @@ module.exports = ({ production = false, browser = false } = {}) => {
         onlyLocals: !embedCssInBundle,
       }
     },
-    {
-      loader: 'postcss-loader',
-      options: {
-        ident: 'postcss',
-        plugins: [
-          postcssImport({ path: path.resolve(PATHS.app, './css') }),
-          postcssCssnext({ browsers: ['> 1%', 'last 2 versions'] }),
-          postcssReporter({ clearMessages: true })
-        ]
-      }
-    }
   ]);
 
   const createBrowserLoaders = extractCssToFile => loaders => {

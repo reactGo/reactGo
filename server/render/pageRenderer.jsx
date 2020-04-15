@@ -38,7 +38,12 @@ const buildPage = ({ componentHTML, initialState, headAssets }) => {
 
 export default (req, store, context) => {
   const initialState = store.getState();
-  const componentHTML = createApp(req, store, context);
+  let componentHTML;
+  try {
+    componentHTML = createApp(req, store, context);
+  } catch (err) {
+    console.error(err);
+  }
   const headAssets = Helmet.renderStatic();
   return buildPage({ componentHTML, initialState, headAssets });
 };
