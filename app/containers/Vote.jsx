@@ -5,9 +5,10 @@ import EntryBox from '../components/EntryBox';
 import MainSection from '../components/MainSection';
 import Scoreboard from '../components/Scoreboard';
 import {
- createTopic, typing, incrementCount, decrementCount, destroyTopic,
+ typing,
 } from '../actions/topics';
 import { VoteWrapper } from '../css/components/vote';
+import { createTopic, decrementCount, destroyTopic, incrementCount } from '../thunks/topics';
 
 const Vote = () => {
   const { topics, newTopic } = useSelector((state) => state.topic);

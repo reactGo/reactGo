@@ -2,8 +2,8 @@ import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { logOut } from '../actions/users';
 import { NavigationWrapper, Item, Logo } from '../css/components/navigation';
+import { logOut } from '../thunks/users';
 
 const LogOut = Item.withComponent('button');
 

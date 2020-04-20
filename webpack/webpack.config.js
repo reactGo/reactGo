@@ -1,3 +1,4 @@
+const dotenv = require('dotenv');
 /*
  * process.env.NODE_ENV - used to determine whether we generate a production or development bundle
  *
@@ -12,6 +13,7 @@ const plugins = require('./plugins');
 const externals = require('./externals');
 const resolve = require('./resolve');
 const UglifyJsPlugin    = require('uglifyjs-webpack-plugin')
+dotenv.config();
 
 module.exports = (env = {}) => {
   const isProduction = process.env.NODE_ENV === 'production';
@@ -62,7 +64,7 @@ module.exports = (env = {}) => {
               ascii_only: true
             },
             compress: {
-              warnings: false 
+              warnings: false
             }
           }
         })

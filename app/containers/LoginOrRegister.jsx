@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { manualLogin, signUp, toggleLoginMode } from '../actions/users';
+import { toggleLoginMode } from '../actions/users';
 import hourGlassSvg from '../images/hourglass.svg';
 import {
   Alternative,
@@ -12,6 +12,7 @@ import {
   Heading, Hint, Input, Loading,
   LoginWrapper, Message,
 } from '../css/components/login';
+import { manualLogin, signUp } from '../thunks/users';
 
 const LoginOrRegister = () => {
   const { isWaiting, message, isLogin } = useSelector((state) => state.user);

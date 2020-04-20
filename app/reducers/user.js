@@ -19,14 +19,13 @@ const message = (
 ) => {
   switch (action.type) {
     case types.TOGGLE_LOGIN_MODE:
-    case types.MANUAL_LOGIN_USER:
-    case types.SIGNUP_USER:
-    case types.LOGOUT_USER:
-    case types.LOGIN_SUCCESS_USER:
-    case types.SIGNUP_SUCCESS_USER:
+    case types.LOGIN_USER_REQUEST:
+    case types.SIGNUP_USER_REQUEST:
+    case types.LOGOUT_USER_REQUEST:
+    case types.SIGNUP_USER_SUCCESS:
       return '';
-    case types.LOGIN_ERROR_USER:
-    case types.SIGNUP_ERROR_USER:
+    case types.LOGIN_USER_FAILURE:
+    case types.SIGNUP_USER_FAILURE:
       return action.message;
     default:
       return state;
@@ -38,16 +37,15 @@ const isWaiting = (
   action
 ) => {
   switch (action.type) {
-    case types.MANUAL_LOGIN_USER:
-    case types.SIGNUP_USER:
-    case types.LOGOUT_USER:
+    case types.LOGIN_USER_REQUEST:
+    case types.SIGNUP_USER_REQUEST:
+    case types.LOGOUT_USER_REQUEST:
       return true;
-    case types.LOGIN_SUCCESS_USER:
-    case types.SIGNUP_SUCCESS_USER:
-    case types.LOGOUT_SUCCESS_USER:
-    case types.LOGIN_ERROR_USER:
-    case types.SIGNUP_ERROR_USER:
-    case types.LOGOUT_ERROR_USER:
+    case types.SIGNUP_USER_SUCCESS:
+    case types.LOGOUT_USER_SUCCESS:
+    case types.LOGIN_USER_FAILURE:
+    case types.SIGNUP_USER_FAILURE:
+    case types.LOGOUT_USER_FAILURE:
       return false;
     default:
       return state;
@@ -59,13 +57,13 @@ const authenticated = (
   action
 ) => {
   switch (action.type) {
-    case types.LOGIN_SUCCESS_USER:
-    case types.SIGNUP_SUCCESS_USER:
-    case types.LOGOUT_ERROR_USER:
+    case types.LOGIN_USER_REQUEST:
+    case types.SIGNUP_USER_SUCCESS:
+    case types.LOGOUT_USER_FAILURE:
       return true;
-    case types.LOGIN_ERROR_USER:
-    case types.SIGNUP_ERROR_USER:
-    case types.LOGOUT_SUCCESS_USER:
+    case types.LOGIN_USER_FAILURE:
+    case types.SIGNUP_USER_FAILURE:
+    case types.LOGOUT_USER_SUCCESS:
       return false;
     default:
       return state;
