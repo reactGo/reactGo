@@ -8,9 +8,10 @@ import flash from 'express-flash';
 import methodOverride from 'method-override';
 import gzip from 'compression';
 import helmet from 'helmet';
+import morgan from 'morgan';
 import unsupportedMessage from '../db/unsupportedMessage';
 import { sessionSecret, sessionId } from '../../config/secrets';
-import { DB_TYPE, ENV, REDUX_ASYNC_MIDDLEWARE } from '../../config/env';
+import { DB_TYPE, ENV } from '../../config/env';
 import { session as dbSession } from '../db';
 
 export default (app) => {
@@ -20,6 +21,9 @@ export default (app) => {
     app.use(gzip());
     // Secure your Express apps by setting various HTTP headers. Documentation: https://github.com/helmetjs/helmet
     app.use(helmet());
+    app.use(morgan('combined'));
+  } else {
+    app.use(morgan('dev'));
   }
 
   app.use(bodyParser.json());
@@ -83,7 +87,6 @@ export default (app) => {
   console.log(`===>  Environment: ${ENV}`);
   console.log(`===>  Listening on port: ${app.get('port')}`);
   console.log(`===>  Using DB TYPE: ${DB_TYPE}`);
-  console.log(`===>  Using REDUX MIDDLEWARE: ${REDUX_ASYNC_MIDDLEWARE}`);
   if (ENV === 'production') {
     console.log('===> 🚦  Note: In order for authentication to work in production');
     console.log('===>           you will need a secure HTTPS connection');
