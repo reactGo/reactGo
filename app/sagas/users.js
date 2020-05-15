@@ -8,7 +8,7 @@ import { getTopicsRequest } from '../actions/topics';
 
 function* login(action) {
   try {
-    yield call(authService().login(action.data));
+    yield call(authService().login, action.data);
     yield put(loginSuccess('You have been successfully logged in'));
     yield put(getTopicsRequest());
     yield put(push('/'));
@@ -23,7 +23,7 @@ function* watchLogin() {
 
 function* signUp(action) {
   try {
-    yield call(authService().signUp(action.data));
+    yield call(authService().signUp, action.data);
     yield put(signUpSuccess('You have successfully registered an account!'));
     yield put(push('/'));
   } catch (error) {
@@ -37,7 +37,7 @@ function* watchSignUp() {
 
 function* logOut() {
   try {
-    yield call(authService().logOut());
+    yield call(authService().logOut);
     yield put(logoutSuccess());
   } catch (error) {
     yield put(logoutError(error));

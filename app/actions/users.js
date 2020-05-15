@@ -1,7 +1,7 @@
 import * as types from '../types';
 
-export function beginLogin() {
-  return { type: types.LOGIN_USER_REQUEST };
+export function beginLogin(data) {
+  return { type: types.LOGIN_USER_REQUEST, data };
 }
 
 export function loginSuccess(message) {
@@ -25,8 +25,8 @@ export function signUpError(message) {
   };
 }
 
-export function beginSignUp() {
-  return { type: types.SIGNUP_USER_REQUEST };
+export function beginSignUp(data) {
+  return { type: types.SIGNUP_USER_REQUEST, data };
 }
 
 export function signUpSuccess(message) {
@@ -44,8 +44,8 @@ export function logoutSuccess() {
   return { type: types.LOGOUT_USER_SUCCESS };
 }
 
-export function logoutError() {
-  return { type: types.LOGOUT_USER_FAILURE };
+export function logoutError(error) {
+  return { type: types.LOGOUT_USER_FAILURE, error };
 }
 
 export function toggleLoginMode() {

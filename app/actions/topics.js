@@ -1,12 +1,20 @@
 /* eslint consistent-return: 0, no-else-return: 0 */
 import * as types from '../types';
 
+export function incrementCountRequest(id) {
+  return { type: types.INCREMENT_COUNT_REQUEST, id };
+}
+
 export function incrementCountSuccess(id) {
   return { type: types.INCREMENT_COUNT_SUCCESS, id };
 }
 
 export function incrementCountFailure(id) {
   return { type: types.INCREMENT_COUNT_FAILURE, id };
+}
+
+export function decrementCountRequest(id) {
+  return { type: types.DECREMENT_COUNT_REQUEST, id };
 }
 
 export function decrementCountSuccess(id) {

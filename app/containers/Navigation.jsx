@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { NavigationWrapper, Item, Logo } from '../css/components/navigation';
-import { logOut } from '../thunks/users';
+import { beginLogout } from '../actions/users';
 
 const LogOut = Item.withComponent('button');
 
@@ -13,7 +13,7 @@ const Navigation = () => {
   const history = useHistory();
 
   const dispatchLogOut = useCallback(() => {
-    dispatch(logOut());
+    dispatch(beginLogout());
     history.push('/');
   }, []);
 

@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { toggleLoginMode } from '../actions/users';
+import { beginLogin, beginSignUp, toggleLoginMode } from '../actions/users';
 import hourGlassSvg from '../images/hourglass.svg';
 import {
   Alternative,
@@ -12,7 +12,6 @@ import {
   Heading, Hint, Input, Loading,
   LoginWrapper, Message,
 } from '../css/components/login';
-import { manualLogin, signUp } from '../thunks/users';
 
 const LoginOrRegister = () => {
   const { isWaiting, message, isLogin } = useSelector((state) => state.user);
@@ -20,8 +19,6 @@ const LoginOrRegister = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const dispatchManualLogin = (data) => dispatch(manualLogin(data));
-  const dispatchSignUp = (data) => dispatch(signUp(data));
   const dispatchToggleLoginMode = () => dispatch(toggleLoginMode());
 
   const onChangeEmail = useCallback((event) => {
@@ -36,9 +33,9 @@ const LoginOrRegister = () => {
     event.preventDefault();
 
     if (isLogin) {
-      dispatchManualLogin({ email, password });
+      dispatch(beginLogin({ email, password }));
     } else {
-      dispatchSignUp({ email, password });
+      dispatch(beginSignUp({ email, password }));
     }
   }, [isLogin, email, password]);
 

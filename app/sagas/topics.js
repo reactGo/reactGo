@@ -19,7 +19,7 @@ import {
 
 function* getTopics() {
   try {
-    const res = yield call(voteService().getTopics());
+    const res = yield call(voteService().getTopics);
     yield put(getTopicsSuccess(res.data));
   } catch (error) {
     yield put(getTopicsFailure(error));
@@ -32,7 +32,7 @@ function* watchGetTopics() {
 
 function* destroyTopic(action) {
   try {
-    yield call(voteService().deleteTopic({ id: action.id }));
+    yield call(voteService().deleteTopic, { id: action.id });
     yield put(destroyTopicSuccess(action.id));
   } catch (error) {
     yield put(destroyTopicFailure({
@@ -71,7 +71,7 @@ function* createTopic({ text }) {
     // First dispatch an optimistic update
     yield put(createTopicRequest(data));
 
-    return yield call(voteService().createTopic({ id, data }));
+    return yield call(voteService().createTopic, { id, data });
   } catch (error) {
     return yield put(createTopicFailure({
       id,
@@ -86,13 +86,13 @@ function* watchCreateTopic() {
 
 function* incrementCount(action) {
   try {
-    yield call(voteService().updateTopic({
+    yield call(voteService().updateTopic, {
       id: action.id,
       data: {
         isFull: false,
         isIncrement: true,
       },
-    }));
+    });
     yield put(incrementCountSuccess(action.id));
   } catch (error) {
     yield put(incrementCountFailure({
@@ -108,13 +108,13 @@ function* watchIncrementCount() {
 
 function* decrementCount(action) {
   try {
-    yield call(voteService().updateTopic({
+    yield call(voteService().updateTopic, {
       id: action.id,
       data: {
         isFull: false,
         isIncrement: true,
       },
-    }));
+    });
     yield put(decrementCountSuccess(action.id));
   } catch (error) {
     yield put(decrementCountFailure({
