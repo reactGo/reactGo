@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { Provider } from 'react-redux';
+import { Provider } from 'mobx-react';
 import { StaticRouter } from 'react-router';
 import { Helmet } from 'react-helmet';
 import serialize from 'serialize-javascript';
@@ -9,7 +9,7 @@ import staticAssets from './static-assets';
 import App from '../../app/pages/App';
 
 const createApp = (req, store, context) => renderToString(
-  <Provider store={store}>
+  <Provider appstate={}>
     <StaticRouter location={req.url} context={context}>
       <App />
     </StaticRouter>

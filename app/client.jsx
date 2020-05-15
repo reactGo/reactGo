@@ -7,7 +7,6 @@ import { matchRoutes } from 'react-router-config';
 import { Route } from 'react-router';
 
 import App from './pages/App';
-import configureStore from './store/configureStore';
 import routes from './routes';
 
 // Grab the state from a global injected into
