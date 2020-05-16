@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { userStore, postStore } from './store';
+import { userStore, topicStore, messageStore } from './store';
 
 export const storeContext = React.createContext({
   userStore,
-  postStore,
+  topicStore,
+  messageStore,
 });
 
 export const StoreProvider = ({ children }) => {

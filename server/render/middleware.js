@@ -3,7 +3,6 @@ import axios from 'axios';
 import { matchRoutes } from 'react-router-config';
 
 import routes from '../../app/routes';
-import configureStore from '../../app/store/configureStore';
 import pageRenderer from './pageRenderer';
 import { sessionId } from '../../config/secrets';
 

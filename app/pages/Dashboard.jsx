@@ -1,20 +1,19 @@
 import React, { useEffect } from 'react';
-import { replace } from 'connected-react-router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 
 import Page from './Page';
 import DashboardContainer from '../containers/Dashboard';
+import useStore from '../useStore';
 
 const Dashboard = (props) => {
-  const { authenticated } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-
+  const { userStore: { authenticated } } = useStore();
+  const history = useHistory();
   /*
    * Redirect to '/' if is not authenticated
    */
   useEffect(() => {
     if (!authenticated) {
-      dispatch(replace({ pathname: '/' }));
+      history.replace('/');
     }
   }, []);
 

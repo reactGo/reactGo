@@ -1,19 +1,17 @@
 import React, { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { logOut } from '../actions/users';
 import { NavigationWrapper, Item, Logo } from '../css/components/navigation';
+import useStore from '../useStore';
 
 const LogOut = Item.withComponent('button');
 
 const Navigation = () => {
-  const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+  const { userStore: { authenticated, logOut } } = useStore();
   const history = useHistory();
 
   const dispatchLogOut = useCallback(() => {
-    dispatch(logOut());
+    logOut();
     history.push('/');
   }, []);
 
@@ -21,7 +19,7 @@ const Navigation = () => {
   return (
     <NavigationWrapper role="navigation">
       <Logo to="/" activeClassName="active">Ninja Ocean</Logo>
-      {user.authenticated ? (
+      {authenticated ? (
         <LogOut onClick={dispatchLogOut}>Logout</LogOut>
       ) : (
         <Item to="/login" activeClassName="active">Log in</Item>

@@ -1,20 +1,17 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
-import { dismissMessage } from '../actions/messages';
 import { MessageWrapper } from '../css/components/message';
+import useStore from '../useStore';
 
 const Message = () => {
-  const { message, type } = useSelector((state) => state.message);
-  const dispatch = useDispatch();
-  const dispatchDismissMessage = () => dispatch(dismissMessage());
+  const { messageStore: { message, type, dismissMessage } } = useStore();
 
   return (
     <MessageWrapper
       role="presentation"
       show={message && message.length > 0}
       success={type === 'SUCCESS'}
-      onClick={dispatchDismissMessage}>
+      onClick={dismissMessage}>
       {message}
     </MessageWrapper>
   );
