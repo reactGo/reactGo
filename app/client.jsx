@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import { createBrowserHistory } from 'history';
-import { ConnectedRouter } from 'connected-react-router';
 import { matchRoutes } from 'react-router-config';
 import { Route } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 
+import StoreProvider from './Context';
 import App from './pages/App';
 import routes from './routes';
-
-// Grab the state from a global injected into
-// server-generated HTML
-const initialState = window.__INITIAL_STATE__;
-
-const history = createBrowserHistory();
-const store = configureStore(initialState, history);
 
 /**
  * Callback function handling frontend route changes.
@@ -67,11 +59,11 @@ class PendingNavDataLoader extends Component {
 }
 
 render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
+  <StoreProvider>
+    <BrowserRouter>
       <PendingNavDataLoader routes={routes}>
         <App />
       </PendingNavDataLoader>
-    </ConnectedRouter>
-  </Provider>, document.getElementById('app'),
+    </BrowserRouter>
+  </StoreProvider>, document.getElementById('app'),
 );

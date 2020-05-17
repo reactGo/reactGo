@@ -5,6 +5,7 @@ import { matchRoutes } from 'react-router-config';
 import routes from '../../app/routes';
 import pageRenderer from './pageRenderer';
 import { sessionId } from '../../config/secrets';
+import createStore from '../../app/store';
 
 const loadBranchData = (url, store) => {
   const branch = matchRoutes(routes, url);
@@ -22,15 +23,14 @@ const loadBranchData = (url, store) => {
  */
 export default function render(req, res) {
   const authenticated = req.isAuthenticated();
-  const history = createMemoryHistory();
-  const store = configureStore({
-    user: {
+  const store = createStore({
+    userStore: {
       authenticated,
       isWaiting: false,
       message: '',
       isLogin: true,
-    },
-  }, history);
+    }
+  });
   // For server side rendering.
   if (req.cookies[sessionId]) {
     axios.defaults.headers.common.Cookie = sessionId + '=' + req.cookies[sessionId];

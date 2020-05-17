@@ -77,7 +77,6 @@
     "connect-mongo": "^3.2.0",
     "connect-mysql": "^4.0.0",
     "connect-pg-simple": "^6.1.0",
-    "connected-react-router": "^6.8.0",
     "cookie-parser": "^1.4.5",
     "core-js": "^3.6.5",
     "cross-env": "^7.0.2",

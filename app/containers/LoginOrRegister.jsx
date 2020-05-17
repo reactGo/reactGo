@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { useObserver } from 'mobx-react';
 
 import hourGlassSvg from '../images/hourglass.svg';
 import {
@@ -13,11 +14,7 @@ import {
 import useStore from '../useStore';
 
 const LoginOrRegister = () => {
-  const {
-    userStore: {
-      isWaiting, message, isLogin, manualLogin, signUp, toggleLoginMode,
-    },
-  } = useStore();
+  const { userStore } = useStore();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -32,49 +29,49 @@ const LoginOrRegister = () => {
   const handleOnSubmit = useCallback((event) => {
     event.preventDefault();
 
-    if (isLogin) {
-      manualLogin({ email, password });
+    if (userStore.isLogin) {
+      userStore.manualLogin({ email, password });
     } else {
-      signUp({ email, password });
+      userStore.signUp({ email, password });
     }
-  }, [isLogin, email, password]);
+  }, [userStore.isLogin, email, password]);
 
   const renderHeader = () => {
-    if (isLogin) {
-      return (
+    if (userStore.isLogin) {
+      return useObserver(() => (
         <Header>
           <Heading>Login with Email</Heading>
           <Alternative>
             Not what you want?
             <AlternativeLink
               type="button"
-              onClick={toggleLoginMode}
+              onClick={userStore.toggleLoginMode}
             >
               Register an Account
             </AlternativeLink>
           </Alternative>
         </Header>
-      );
+      ));
     }
 
-    return (
+    return useObserver(() => (
       <Header>
         <Heading>Register with Email</Heading>
         <Alternative>
           Already have an account?
           <AlternativeLink
             type="button"
-            onClick={toggleLoginMode}
+            onClick={userStore.toggleLoginMode}
           >
             Login
           </AlternativeLink>
         </Alternative>
       </Header>
-    );
+    ));
   };
 
-  return (
-    <LoginWrapper waiting={isWaiting}>
+  return useObserver(() => (
+    <LoginWrapper waiting={userStore.isWaiting}>
       <div>
         {renderHeader()}
         <Loading alt="loading" src={hourGlassSvg} />
@@ -96,13 +93,13 @@ const LoginOrRegister = () => {
               <div>Hint</div>
               <div>email: example@ninja.com password: ninja</div>
             </Hint>
-            <Message show={message && message.length > 0}>
-              {message}
+            <Message show={userStore.message && userStore.message.length > 0}>
+              {userStore.message}
             </Message>
             <Button
               as="input"
               type="submit"
-              value={isLogin ? 'Login' : 'Register'} />
+              value={userStore.isLogin ? 'Login' : 'Register'} />
           </form>
         </EmailContainer>
         <GoogleContainer>
@@ -115,7 +112,7 @@ const LoginOrRegister = () => {
         </GoogleContainer>
       </div>
     </LoginWrapper>
-  );
+  ));
 };
 
 export default LoginOrRegister;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useObserver } from 'mobx-react';
 
 import { MessageWrapper } from '../css/components/message';
 import useStore from '../useStore';
@@ -6,7 +7,7 @@ import useStore from '../useStore';
 const Message = () => {
   const { messageStore: { message, type, dismissMessage } } = useStore();
 
-  return (
+  return useObserver(() => (
     <MessageWrapper
       role="presentation"
       show={message && message.length > 0}
@@ -14,7 +15,7 @@ const Message = () => {
       onClick={dismissMessage}>
       {message}
     </MessageWrapper>
-  );
+  ));
 };
 
 export default Message;

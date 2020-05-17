@@ -1,14 +1,18 @@
 import { observable } from 'mobx';
 
-export default observable({
-  message: '',
-  type: 'SUCCESS',
-  dismissMessage() {
-    this.message = '';
-    this.type = 'SUCCESS';
-  },
-  successMessage(message) {
-    this.message = message;
-    this.type = 'SUCCESS';
-  },
-});
+export default (initalState) => {
+  const messageStore = observable({
+    message: '',
+    type: 'SUCCESS',
+    ...initalState,
+    dismissMessage() {
+      messageStore.message = '';
+      messageStore.type = 'SUCCESS';
+    },
+    successMessage(message) {
+      messageStore.message = message;
+      messageStore.type = 'SUCCESS';
+    },
+  });
+  return messageStore;
+};

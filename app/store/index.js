@@ -1,5 +1,14 @@
-import userStore from './user';
-import topicStore from './topic';
-import messageStore from './message';
+import createUserStore from './user';
+import createTopicStore from './topic';
+import createMessageStore from './message';
 
-export { userStore, topicStore, messageStore };
+export default (initialState) => {
+  const userStore = createUserStore(initialState.userStore);
+  const topicStore = createTopicStore(initialState.topicStore);
+  const messageStore = createMessageStore(initialState.messageStore);
+  return ({
+    userStore,
+    topicStore,
+    messageStore,
+  });
+};

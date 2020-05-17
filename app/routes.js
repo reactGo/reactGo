@@ -3,7 +3,6 @@ import Vote from './pages/Vote';
 import LoginOrRegister from './pages/LoginOrRegister';
 import Dashboard from './pages/Dashboard';
 import About from './pages/About';
-import { topicStore } from './store';
 
 const routes = [{
   component: App,
@@ -11,8 +10,8 @@ const routes = [{
     path: '/',
     exact: true,
     component: Vote,
-    fetchData: () => {
-      return topicStore.getTopics();
+    fetchData: (store) => {
+      return store.topicStore.getTopics();
     },
   }, {
     path: '/login',

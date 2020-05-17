@@ -1,4 +1,5 @@
 import React from 'react';
+import { useObserver } from 'mobx-react';
 
 import EntryBox from '../components/EntryBox';
 import MainSection from '../components/MainSection';
@@ -7,28 +8,24 @@ import { VoteWrapper } from '../css/components/vote';
 import useStore from '../useStore';
 
 const Vote = () => {
-  const {
-    topicStore: {
-      topics, newTopic, typing, createTopic, incrementCount, decrementCount, destroyTopic,
-    },
-  } = useStore();
+  const { topicStore } = useStore();
 
-  return (
+  return useObserver(() => (
     <VoteWrapper>
       <EntryBox
-        topic={newTopic}
-        onEntryChange={typing}
-        onEntrySave={createTopic}
+        topic={topicStore.newTopic}
+        onEntryChange={topicStore.typing}
+        onEntrySave={topicStore.createTopic}
       />
       <MainSection
-        topics={topics}
-        onIncrement={incrementCount}
-        onDecrement={decrementCount}
-        onDestroy={destroyTopic}
+        topics={topicStore.topics}
+        onIncrement={topicStore.incrementCount}
+        onDecrement={topicStore.decrementCount}
+        onDestroy={topicStore.destroyTopic}
       />
-      <Scoreboard topics={topics} />
+      <Scoreboard topics={topicStore.topics} />
     </VoteWrapper>
-  );
+  ));
 };
 
 export default Vote;

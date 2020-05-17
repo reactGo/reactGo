@@ -1,18 +1,15 @@
 import * as React from 'react';
-import { userStore, topicStore, messageStore } from './store';
+import createStore from './store';
 
-export const storeContext = React.createContext({
-  userStore,
-  topicStore,
-  messageStore,
-});
+// Grab the state from a global injected into
+// server-generated HTML
+export const store = createStore(typeof window !== 'undefined' ? window.__INITIAL_STATE__ : {});
+export const storeContext = React.createContext(store);
 
-export const StoreProvider = ({ children }) => {
+export default ({ children }) => {
   return (
-    <storeContext.Provider>
+    <storeContext.Provider value={store}>
       {children}
     </storeContext.Provider>
   );
 };
-
-export default StoreProvider;
