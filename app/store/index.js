@@ -1,6 +1,9 @@
+import { RouterStore } from 'mobx-react-router';
 import createUserStore from './user';
 import createTopicStore from './topic';
 import createMessageStore from './message';
+
+export const routingStore = new RouterStore();
 
 export default (initialState) => {
   const userStore = createUserStore(initialState.userStore);
@@ -10,5 +13,6 @@ export default (initialState) => {
     userStore,
     topicStore,
     messageStore,
+    routingStore,
   });
 };

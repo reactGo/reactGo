@@ -3,23 +3,25 @@ import { renderToString } from 'react-dom/server';
 import { useStaticRendering } from 'mobx-react';
 import { StaticRouter } from 'react-router';
 import { Helmet } from 'react-helmet';
-import serialize from 'serialize-javascript';
 
 import staticAssets from './static-assets';
 import App from '../../app/pages/App';
-import StoreProvider from '../../app/Context';
+import createStoreProvider from '../../app/Context';
 import { ENV } from '../../config/env';
 
 if (ENV === 'development') {
   useStaticRendering(true);
 }
-const createApp = (req, context) => renderToString(
-  <StoreProvider>
-    <StaticRouter location={req.url} context={context}>
-      <App />
-    </StaticRouter>
-  </StoreProvider>
-);
+const createApp = (req, store, context) => {
+  const StoreProvider = createStoreProvider(store);
+  return renderToString(
+    <StoreProvider>
+      <StaticRouter location={req.url} context={context}>
+        <App />
+      </StaticRouter>
+    </StoreProvider>
+  );
+};
 
 const buildPage = ({ componentHTML, store, headAssets }) => {
   return `
@@ -34,7 +36,7 @@ const buildPage = ({ componentHTML, store, headAssets }) => {
   </head>
   <body ${headAssets.bodyAttributes.toString()}>
     <div id="app">${componentHTML}</div>
-    <script>window.__INITIAL_STATE__ = ${serialize(store)}</script>
+    <script>window.__INITIAL_STATE__ = ${JSON.stringify(store)}</script>
     ${staticAssets.createAppScript()}
     ${staticAssets.createVendorScript()}
   </body>
@@ -44,7 +46,7 @@ const buildPage = ({ componentHTML, store, headAssets }) => {
 export default (req, store, context) => {
   let componentHTML;
   try {
-    componentHTML = createApp(req, context);
+    componentHTML = createApp(req, store, context);
   } catch (err) {
     console.error(err);
   }

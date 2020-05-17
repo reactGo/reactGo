@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { matchRoutes } from 'react-router-config';
-import { Route } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
+import { Route, Router } from 'react-router';
+import { syncHistoryWithStore } from 'mobx-react-router';
+import { createBrowserHistory } from 'history';
 
-import StoreProvider from './Context';
+import createStoreProvider, { store } from './Context';
 import App from './pages/App';
 import routes from './routes';
+import { routingStore } from './store';
 
 /**
  * Callback function handling frontend route changes.
@@ -58,12 +60,15 @@ class PendingNavDataLoader extends Component {
   }
 }
 
+const browserHistory = createBrowserHistory();
+const history = syncHistoryWithStore(browserHistory, routingStore);
+const StoreProvider = createStoreProvider(store);
 render(
   <StoreProvider>
-    <BrowserRouter>
+    <Router history={history}>
       <PendingNavDataLoader routes={routes}>
         <App />
       </PendingNavDataLoader>
-    </BrowserRouter>
+    </Router>
   </StoreProvider>, document.getElementById('app'),
 );

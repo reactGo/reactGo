@@ -1,9 +1,7 @@
 import { observable } from 'mobx';
-import { createBrowserHistory } from 'history';
 import { authService } from '../services';
 import { store } from '../Context';
 
-const history = createBrowserHistory();
 export default (initalState) => {
   const userStore = observable({
     isLogin: true,
@@ -18,13 +16,14 @@ export default (initalState) => {
       userStore.isWaiting = true;
       return authService().login(data)
         .then(() => {
-          history.push('/');
+          store.routingStore.push('/');
           userStore.authenticated = true;
           store.topicStore.getTopics();
           userStore.message = '';
           store.messageStore.successMessage('You have been successfully logged in');
         })
-        .catch(() => {
+        .catch((error) => {
+          console.error(error);
           userStore.message = 'Oops! Invalid username or password';
         })
         .finally(() => {
@@ -35,12 +34,13 @@ export default (initalState) => {
       userStore.isWaiting = true;
       return authService().signUp(data)
         .then(() => {
-          // history.push('/');
+          store.routingStore.push('/');
           userStore.message = 'You have successfully registered an account!';
           userStore.authenticated = true;
           store.messageStore.successMessage('You have successfully registered an account!');
         })
-        .catch(() => {
+        .catch((error) => {
+          console.error(error);
           userStore.message = 'Oops! Something went wrong when signing up';
         })
         .finally(() => {

@@ -6,7 +6,7 @@ import createStore from './store';
 export const store = createStore(typeof window !== 'undefined' ? window.__INITIAL_STATE__ : {});
 export const storeContext = React.createContext(store);
 
-export default ({ children }) => {
+export default (store) => ({ children }) => {
   return (
     <storeContext.Provider value={store}>
       {children}

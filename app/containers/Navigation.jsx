@@ -8,11 +8,11 @@ import useStore from '../useStore';
 const LogOut = Item.withComponent('button');
 
 const Navigation = () => {
-  const { userStore: { authenticated, logOut } } = useStore();
+  const { userStore } = useStore();
   const history = useHistory();
 
   const dispatchLogOut = useCallback(() => {
-    logOut();
+    userStore.logOut();
     history.push('/');
   }, []);
 
@@ -20,7 +20,7 @@ const Navigation = () => {
   return useObserver(() => (
     <NavigationWrapper role="navigation">
       <Logo to="/" activeClassName="active">Ninja Ocean</Logo>
-      {authenticated ? (
+      {userStore.authenticated ? (
         <LogOut onClick={dispatchLogOut}>Logout</LogOut>
       ) : (
         <Item to="/login" activeClassName="active">Log in</Item>

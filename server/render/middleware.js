@@ -39,7 +39,12 @@ export default function render(req, res) {
   const context = {};
   loadBranchData(req.url, store)
     .then((data) => {
-      const html = pageRenderer(req, store, context);
+      let html;
+      try {
+        html = pageRenderer(req, store, context);
+      } catch (error) {
+        console.error(error);
+      }
       if (context.url) {
         // If context has a url property, then we need to handle a redirection
         res.writeHead(302, {
