@@ -1,20 +1,19 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { replace } from 'connected-react-router';
+import { useHistory } from 'react-router';
 
 import Page from './Page';
 import LoginOrRegisterContainer from '../containers/LoginOrRegister';
+import useStore from '../useStore';
 
 const LoginOrRegister = (props) => {
-  const { authenticated } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-
+  const { userStore: { authenticated }} = useStore();
+  const history = useHistory();
   /*
    * Redirect to '/' if is already logged in.
    */
   useEffect(() => {
     if (authenticated) {
-      dispatch(replace({ pathname: '/' }));
+      history.replace('/');
     }
   }, []);
 

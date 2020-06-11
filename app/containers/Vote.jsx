@@ -1,39 +1,31 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useObserver } from 'mobx-react';
 
 import EntryBox from '../components/EntryBox';
 import MainSection from '../components/MainSection';
 import Scoreboard from '../components/Scoreboard';
-import {
- createTopic, typing, incrementCount, decrementCount, destroyTopic,
-} from '../actions/topics';
 import { VoteWrapper } from '../css/components/vote';
+import useStore from '../useStore';
 
 const Vote = () => {
-  const { topics, newTopic } = useSelector((state) => state.topic);
-  const dispatch = useDispatch();
-  const dispatchCreateTopic = (data) => dispatch(createTopic(data));
-  const dispatchTyping = (data) => dispatch(typing(data));
-  const dispatchIncrementCount = (data) => dispatch(incrementCount(data));
-  const dispatchDecrementCount = (data) => dispatch(decrementCount(data));
-  const dispatchDestroyTopic = (data) => dispatch(destroyTopic(data));
+  const { topicStore } = useStore();
 
-  return (
+  return useObserver(() => (
     <VoteWrapper>
       <EntryBox
-        topic={newTopic}
-        onEntryChange={dispatchTyping}
-        onEntrySave={dispatchCreateTopic}
+        topic={topicStore.newTopic}
+        onEntryChange={topicStore.typing}
+        onEntrySave={topicStore.createTopic}
       />
       <MainSection
-        topics={topics}
-        onIncrement={dispatchIncrementCount}
-        onDecrement={dispatchDecrementCount}
-        onDestroy={dispatchDestroyTopic}
+        topics={topicStore.topics}
+        onIncrement={topicStore.incrementCount}
+        onDecrement={topicStore.decrementCount}
+        onDestroy={topicStore.destroyTopic}
       />
-      <Scoreboard topics={topics} />
+      <Scoreboard topics={topicStore.topics} />
     </VoteWrapper>
-  );
+  ));
 };
 
 export default Vote;

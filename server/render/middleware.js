@@ -3,9 +3,9 @@ import axios from 'axios';
 import { matchRoutes } from 'react-router-config';
 
 import routes from '../../app/routes';
-import configureStore from '../../app/store/configureStore';
 import pageRenderer from './pageRenderer';
 import { sessionId } from '../../config/secrets';
+import createStore from '../../app/store';
 
 const loadBranchData = (url, store) => {
   const branch = matchRoutes(routes, url);
@@ -23,15 +23,14 @@ const loadBranchData = (url, store) => {
  */
 export default function render(req, res) {
   const authenticated = req.isAuthenticated();
-  const history = createMemoryHistory();
-  const store = configureStore({
-    user: {
+  const store = createStore({
+    userStore: {
       authenticated,
       isWaiting: false,
       message: '',
       isLogin: true,
-    },
-  }, history);
+    }
+  });
   // For server side rendering.
   if (req.cookies[sessionId]) {
     axios.defaults.headers.common.Cookie = sessionId + '=' + req.cookies[sessionId];
@@ -40,7 +39,12 @@ export default function render(req, res) {
   const context = {};
   loadBranchData(req.url, store)
     .then((data) => {
-      const html = pageRenderer(req, store, context);
+      let html;
+      try {
+        html = pageRenderer(req, store, context);
+      } catch (error) {
+        console.error(error);
+      }
       if (context.url) {
         // If context has a url property, then we need to handle a redirection
         res.writeHead(302, {

@@ -1,22 +1,29 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { Provider } from 'react-redux';
+import { useStaticRendering } from 'mobx-react';
 import { StaticRouter } from 'react-router';
 import { Helmet } from 'react-helmet';
-import serialize from 'serialize-javascript';
 
 import staticAssets from './static-assets';
 import App from '../../app/pages/App';
+import createStoreProvider from '../../app/Context';
+import { ENV } from '../../config/env';
 
-const createApp = (req, store, context) => renderToString(
-  <Provider store={store}>
-    <StaticRouter location={req.url} context={context}>
-      <App />
-    </StaticRouter>
-  </Provider>
-);
+if (ENV === 'development') {
+  useStaticRendering(true);
+}
+const createApp = (req, store, context) => {
+  const StoreProvider = createStoreProvider(store);
+  return renderToString(
+    <StoreProvider>
+      <StaticRouter location={req.url} context={context}>
+        <App />
+      </StaticRouter>
+    </StoreProvider>
+  );
+};
 
-const buildPage = ({ componentHTML, initialState, headAssets }) => {
+const buildPage = ({ componentHTML, store, headAssets }) => {
   return `
 <!doctype html>
 <html ${headAssets.htmlAttributes.toString()}>
@@ -29,7 +36,7 @@ const buildPage = ({ componentHTML, initialState, headAssets }) => {
   </head>
   <body ${headAssets.bodyAttributes.toString()}>
     <div id="app">${componentHTML}</div>
-    <script>window.__INITIAL_STATE__ = ${serialize(initialState)}</script>
+    <script>window.__INITIAL_STATE__ = ${JSON.stringify(store)}</script>
     ${staticAssets.createAppScript()}
     ${staticAssets.createVendorScript()}
   </body>
@@ -37,7 +44,6 @@ const buildPage = ({ componentHTML, initialState, headAssets }) => {
 };
 
 export default (req, store, context) => {
-  const initialState = store.getState();
   let componentHTML;
   try {
     componentHTML = createApp(req, store, context);
@@ -45,5 +51,5 @@ export default (req, store, context) => {
     console.error(err);
   }
   const headAssets = Helmet.renderStatic();
-  return buildPage({ componentHTML, initialState, headAssets });
+  return buildPage({ componentHTML, store, headAssets });
 };

@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useObserver } from 'mobx-react';
 
-import { manualLogin, signUp, toggleLoginMode } from '../actions/users';
 import hourGlassSvg from '../images/hourglass.svg';
 import {
   Alternative,
@@ -12,16 +11,12 @@ import {
   Heading, Hint, Input, Loading,
   LoginWrapper, Message,
 } from '../css/components/login';
+import useStore from '../useStore';
 
 const LoginOrRegister = () => {
-  const { isWaiting, message, isLogin } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+  const { userStore } = useStore();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const dispatchManualLogin = (data) => dispatch(manualLogin(data));
-  const dispatchSignUp = (data) => dispatch(signUp(data));
-  const dispatchToggleLoginMode = () => dispatch(toggleLoginMode());
 
   const onChangeEmail = useCallback((event) => {
     setEmail(event.currentTarget.value);
@@ -34,49 +29,49 @@ const LoginOrRegister = () => {
   const handleOnSubmit = useCallback((event) => {
     event.preventDefault();
 
-    if (isLogin) {
-      dispatchManualLogin({ email, password });
+    if (userStore.isLogin) {
+      userStore.manualLogin({ email, password });
     } else {
-      dispatchSignUp({ email, password });
+      userStore.signUp({ email, password });
     }
-  }, [isLogin, email, password]);
+  }, [userStore.isLogin, email, password]);
 
   const renderHeader = () => {
-    if (isLogin) {
-      return (
+    if (userStore.isLogin) {
+      return useObserver(() => (
         <Header>
           <Heading>Login with Email</Heading>
           <Alternative>
             Not what you want?
             <AlternativeLink
               type="button"
-              onClick={dispatchToggleLoginMode}
+              onClick={userStore.toggleLoginMode}
             >
               Register an Account
             </AlternativeLink>
           </Alternative>
         </Header>
-      );
+      ));
     }
 
-    return (
+    return useObserver(() => (
       <Header>
         <Heading>Register with Email</Heading>
         <Alternative>
           Already have an account?
           <AlternativeLink
             type="button"
-            onClick={dispatchToggleLoginMode}
+            onClick={userStore.toggleLoginMode}
           >
             Login
           </AlternativeLink>
         </Alternative>
       </Header>
-    );
+    ));
   };
 
-  return (
-    <LoginWrapper waiting={isWaiting}>
+  return useObserver(() => (
+    <LoginWrapper waiting={userStore.isWaiting}>
       <div>
         {renderHeader()}
         <Loading alt="loading" src={hourGlassSvg} />
@@ -98,13 +93,13 @@ const LoginOrRegister = () => {
               <div>Hint</div>
               <div>email: example@ninja.com password: ninja</div>
             </Hint>
-            <Message show={message && message.length > 0}>
-              {message}
+            <Message show={userStore.message && userStore.message.length > 0}>
+              {userStore.message}
             </Message>
             <Button
               as="input"
               type="submit"
-              value={isLogin ? 'Login' : 'Register'} />
+              value={userStore.isLogin ? 'Login' : 'Register'} />
           </form>
         </EmailContainer>
         <GoogleContainer>
@@ -117,7 +112,7 @@ const LoginOrRegister = () => {
         </GoogleContainer>
       </div>
     </LoginWrapper>
-  );
+  ));
 };
 
 export default LoginOrRegister;

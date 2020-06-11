@@ -1,24 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useObserver } from 'mobx-react';
+
 import { Count, Item, Topic, ScoreboardWrapper, Header, List } from '../css/components/scoreboard';
 
 const Scoreboard = ({topics}) => {
-  const topicListItems = topics.map((topic, key) => {
-    return (
-      <Item key={key}>
-        <Topic>{topic.text}</Topic>
-        <Count>{topic.count}</Count>
-      </Item>
-    );
-  });
-  return (
+  return useObserver(() => (
     <ScoreboardWrapper>
       <Header>Vote count</Header>
       <List>
-        {topicListItems}
+        {topics.map((topic, key) => (
+          <Item key={key}>
+            <Topic>{topic.text}</Topic>
+            <Count>{topic.count}</Count>
+          </Item>
+        ))}
       </List>
     </ScoreboardWrapper>
-  );
+  ));
 };
 
 Scoreboard.propTypes = {
