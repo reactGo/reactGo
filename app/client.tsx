@@ -21,7 +21,7 @@ interface Props {
   location: Location;
 }
 interface State {
-  previousLocation: Location;
+  previousLocation: Location | null;
   currentLocation: Location;
 }
 /**
@@ -33,7 +33,7 @@ class PendingNavDataLoader extends Component<Props, State> {
     currentLocation: this.props.location,
   };
 
-  static getDerivedStateFromProps(props, state) {
+  static getDerivedStateFromProps(props: Props, state: State) {
     const currentLocation = props.location;
     const previousLocation = state.currentLocation;
 
@@ -49,7 +49,7 @@ class PendingNavDataLoader extends Component<Props, State> {
     return null;
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: Props) {
     const navigated = prevProps.location !== this.props.location;
 
     if (navigated) {

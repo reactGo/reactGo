@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { Decrement, Destroy, Increment, Topic, TopicItemWrapper } from '../css/components/topicItem';
 
@@ -36,14 +35,6 @@ const TopicItem = ({
       </Destroy>
     </TopicItemWrapper>
   );
-};
-
-TopicItem.propTypes = {
-  text: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  incrementCount: PropTypes.func.isRequired,
-  decrementCount: PropTypes.func.isRequired,
-  destroyTopic: PropTypes.func.isRequired
 };
 
 export default TopicItem;

@@ -1,3 +1,4 @@
+import { Store } from 'redux';
 import App from './containers/App';
 import Vote from './pages/Vote';
 import LoginOrRegister from './pages/LoginOrRegister';
@@ -11,7 +12,7 @@ const routes = [{
     path: '/',
     exact: true,
     component: Vote,
-    fetchData: (store) => {
+    fetchData: (store: Store) => {
       return store.dispatch(getTopics());
     },
   }, {

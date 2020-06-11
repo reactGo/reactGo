@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import TopicItem from './TopicItem';
 import { Header, List, MainSectionWrapper } from '../css/components/mainSection';
@@ -26,13 +25,6 @@ const MainSection = ({
       <List>{topicItems}</List>
     </MainSectionWrapper>
   );
-};
-
-MainSection.propTypes = {
-  topics: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onIncrement: PropTypes.func.isRequired,
-  onDecrement: PropTypes.func.isRequired,
-  onDestroy: PropTypes.func.isRequired
 };
 
 export default MainSection;

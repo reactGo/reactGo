@@ -1,5 +1,6 @@
 import { createMemoryHistory } from 'history';
 import axios from 'axios';
+import { Request, Response } from 'express';
 import { matchRoutes } from 'react-router-config';
 
 import routes from '../../app/routes';
@@ -7,7 +8,7 @@ import configureStore from '../../app/store/configureStore';
 import pageRenderer from './pageRenderer';
 import { sessionId } from '../../config/secrets';
 
-const loadBranchData = (url, store) => {
+const loadBranchData = (url: string, store) => {
   const branch = matchRoutes(routes, url);
   const promises = branch.map(({ route }) => {
     return route.fetchData ? route.fetchData(store) : Promise.resolve(null);
@@ -21,7 +22,7 @@ const loadBranchData = (url, store) => {
  * We grab the state passed in from the server and the req object from Express/Koa
  * and pass it into the Router.run function.
  */
-export default function render(req, res) {
+export default function render(req: Request, res: Response) {
   const authenticated = req.isAuthenticated();
   const history = createMemoryHistory();
   const store = configureStore({

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Count, Item, Topic, ScoreboardWrapper, Header, List } from '../css/components/scoreboard';
 
 const Scoreboard = ({topics}) => {
@@ -19,10 +18,6 @@ const Scoreboard = ({topics}) => {
       </List>
     </ScoreboardWrapper>
   );
-};
-
-Scoreboard.propTypes = {
-  topics: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default Scoreboard;

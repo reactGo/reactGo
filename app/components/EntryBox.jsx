@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { EntryBoxWrapper, Header, Input } from '../css/components/entrybox';
 
@@ -19,16 +18,6 @@ const EntryBox = ({ onEntryChange, onEntrySave, topic }) => {
         onEntrySave={onEntrySave} />
     </EntryBoxWrapper>
   );
-};
-
-EntryBox.propTypes = {
-  topic: PropTypes.string,
-  onEntryChange: PropTypes.func.isRequired,
-  onEntrySave: PropTypes.func.isRequired,
-};
-
-EntryBox.defaultProps = {
-  topic: '',
 };
 
 export default EntryBox;

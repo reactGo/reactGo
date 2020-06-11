@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
 
 const TopicTextForm = ({
   onEntrySave, onEntryChange, value, className, placeholder,
@@ -41,21 +40,6 @@ const TopicTextForm = ({
       />
     </form>
   );
-};
-
-TopicTextForm.propTypes = {
-  className: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-  value: PropTypes.string,
-  onEntrySave: PropTypes.func,
-  onEntryChange: PropTypes.func,
-};
-
-TopicTextForm.defaultProps = {
-  placeholder: '',
-  value: '',
-  onEntrySave: () => {},
-  onEntryChange: () => {},
 };
 
 export default TopicTextForm;

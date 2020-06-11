@@ -4,11 +4,12 @@ import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 import { Helmet } from 'react-helmet';
 import serialize from 'serialize-javascript';
+import { Request } from 'express';
 
 import staticAssets from './static-assets';
 import App from '../../app/pages/App';
 
-const createApp = (req, store, context) => renderToString(
+const createApp = (req: Request, store, context) => renderToString(
   <Provider store={store}>
     <StaticRouter location={req.url} context={context}>
       <App />
@@ -36,7 +37,7 @@ const buildPage = ({ componentHTML, initialState, headAssets }) => {
 </html>`;
 };
 
-export default (req, store, context) => {
+export default (req: Request, store, context) => {
   const initialState = store.getState();
   let componentHTML;
   try {

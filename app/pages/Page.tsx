@@ -1,8 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import { Helmet } from 'react-helmet';
 
-const Page = ({
+interface Props {
+  title: string;
+  link: Array<{}>;
+  meta: Array<{}>;
+  children: React.ReactNode;
+}
+
+const Page: FC<Props> = ({
  title, link, meta, children,
 }) => {
   return (
@@ -11,18 +17,6 @@ const Page = ({
       {children}
     </div>
   );
-};
-
-Page.propTypes = {
-  title: PropTypes.string,
-  link: PropTypes.arrayOf(PropTypes.any),
-  meta: PropTypes.arrayOf(PropTypes.any),
-};
-
-Page.defaultProps = {
-  title: '',
-  link: [],
-  meta: [],
 };
 
 export default Page;
