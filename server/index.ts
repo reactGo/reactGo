@@ -26,7 +26,9 @@ initPassport();
 
 if (isDebug) {
   // enable webpack hot module replacement
+  // eslint-disable-next-line import/no-extraneous-dependencies
   const webpackDevMiddleware = require('webpack-dev-middleware');
+  // eslint-disable-next-line import/no-extraneous-dependencies
   const webpackHotMiddleware = require('webpack-hot-middleware');
   const webpackConfig = require('../webpack/webpack.config');
   const devBrowserConfig = webpackConfig({ browser: true });

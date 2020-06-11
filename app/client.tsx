@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createBrowserHistory } from 'history';
+import { createBrowserHistory, Location } from 'history';
 import { ConnectedRouter } from 'connected-react-router';
 import { matchRoutes } from 'react-router-config';
 import { Route } from 'react-router';
@@ -17,10 +17,17 @@ const initialState = window.__INITIAL_STATE__;
 const history = createBrowserHistory();
 const store = configureStore(initialState, history);
 
+interface Props {
+  location: Location;
+}
+interface State {
+  previousLocation: Location;
+  currentLocation: Location;
+}
 /**
  * Callback function handling frontend route changes.
  */
-class PendingNavDataLoader extends Component {
+class PendingNavDataLoader extends Component<Props, State> {
   state = {
     previousLocation: null,
     currentLocation: this.props.location,
@@ -70,7 +77,7 @@ class PendingNavDataLoader extends Component {
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <PendingNavDataLoader routes={routes}>
+      <PendingNavDataLoader location={history.location}>
         <App />
       </PendingNavDataLoader>
     </ConnectedRouter>
