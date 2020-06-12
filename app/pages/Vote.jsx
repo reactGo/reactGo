@@ -1,37 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Page from './Page';
 import VoteContainer from '../containers/Vote';
 
-class Vote extends Component {
-  getMetaData() {
-    return {
-      title: this.pageTitle(),
-      meta: this.pageMeta(),
-      link: this.pageLink()
-    };
-  }
-
-  pageTitle = () => {
+const Vote = (props) => {
+  const pageTitle = () => {
     return 'Vote | reactGo';
   };
 
-  pageMeta = () => {
+  const pageMeta = () => {
     return [
-      { name: 'description', content: 'A reactGo example of a voting page' }
+      { name: 'description', content: 'A reactGo example of a voting page' },
     ];
   };
 
-  pageLink = () => {
+  const pageLink = () => {
     return [];
   };
 
-  render() {
-    return (
-      <Page {...this.getMetaData()}>
-        <VoteContainer {...this.props} />
-      </Page>
-    );
-  }
-}
+  const getMetaData = () => ({
+    title: pageTitle(),
+    meta: pageMeta(),
+    link: pageLink(),
+  });
+
+  return (
+    <Page {...getMetaData()}>
+      <VoteContainer {...props} />
+    </Page>
+  );
+};
 
 export default Vote;

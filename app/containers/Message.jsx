@@ -1,37 +1,23 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import classNames from 'classnames/bind';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { dismissMessage } from '../actions/messages';
-import styles from '../css/components/message';
+import { MessageWrapper } from '../css/components/message';
 
-const cx = classNames.bind(styles);
+const Message = () => {
+  const { message, type } = useSelector((state) => state.message);
+  const dispatch = useDispatch();
+  const dispatchDismissMessage = () => dispatch(dismissMessage());
 
-const Message = ({ message, type, dismissMessage }) => (
-  <div
-    role="presentation"
-    className={cx('message', {
-      show: message && message.length > 0,
-      success: type === 'SUCCESS',
-    })}
-    onClick={dismissMessage}>
-    {message}
-  </div>
-);
-
-Message.propTypes = {
-  message: PropTypes.string,
-  type: PropTypes.string,
-  dismissMessage: PropTypes.func.isRequired,
+  return (
+    <MessageWrapper
+      role="presentation"
+      show={message && message.length > 0}
+      success={type === 'SUCCESS'}
+      onClick={dispatchDismissMessage}>
+      {message}
+    </MessageWrapper>
+  );
 };
 
-Message.defaultProps = {
-  message: '',
-  type: '',
-};
-
-function mapStateToProps(state) {
-  return { ...state.message };
-}
-
-export default connect(mapStateToProps, { dismissMessage })(Message);
+export default Message;

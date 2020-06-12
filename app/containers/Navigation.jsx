@@ -1,49 +1,35 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router';
-import { connect } from 'react-redux';
-import classNames from 'classnames/bind';
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
 import { logOut } from '../actions/users';
-import styles from '../css/components/navigation';
+import { NavigationWrapper, Item, Logo } from '../css/components/navigation';
 
-const cx = classNames.bind(styles);
+const LogOut = Item.withComponent('button');
 
-const Navigation = ({ user, logOut }) => {
-    return (
-      <nav className={cx('navigation')} role="navigation">
-        <Link
-          to="/"
-          className={cx('item', 'logo')}
-          activeClassName={cx('active')}
-        >
-          Ninja Ocean
-        </Link>
-        { user.authenticated ? (
-          <Link
-            onClick={logOut}
-            className={cx('item')}
-            to="/"
-          >
-            Logout
-          </Link>
-          ) : (
-            <Link className={cx('item')} to="/login">Log in</Link>
-          )}
-        <Link className={cx('item')} to="/dashboard">Dashboard</Link>
-        <Link to="/about" className={cx('item')} activeClassName={cx('active')}>About</Link>
-      </nav>
-    );
+const Navigation = () => {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const dispatchLogOut = useCallback(() => {
+    dispatch(logOut());
+    history.push('/');
+  }, []);
+
+  // activeClassName issues https://github.com/ReactTraining/react-router/issues/6201
+  return (
+    <NavigationWrapper role="navigation">
+      <Logo to="/" activeClassName="active">Ninja Ocean</Logo>
+      {user.authenticated ? (
+        <LogOut onClick={dispatchLogOut}>Logout</LogOut>
+      ) : (
+        <Item to="/login" activeClassName="active">Log in</Item>
+      )}
+      <Item to="/dashboard" activeClassName="active">Dashboard</Item>
+      <Item to="/about" activeClassName="active">About</Item>
+    </NavigationWrapper>
+  );
 };
 
-Navigation.propTypes = {
-  user: PropTypes.objectOf(PropTypes.any).isRequired,
-  logOut: PropTypes.func.isRequired
-};
-
-function mapStateToProps(state) {
-  return {
-    user: state.user
-  };
-}
-
-export default connect(mapStateToProps, { logOut })(Navigation);
+export default Navigation;

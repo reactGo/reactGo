@@ -4,75 +4,64 @@ import Topic from '../models/topics';
 /**
  * List
  */
-export function all(req, res) {
-  Topic.find({}).exec((err, topics) => {
-    if (err) {
-      console.log('Error in first query');
-      return res.status(500).send('Something went wrong getting the data');
-    }
-
+export async function all(req, res) {
+  try {
+    const topics = await Topic.find({}).exec();
     return res.json(topics);
-  });
+  } catch (err) {
+    console.log('Error in first query');
+    return res.status(500).send('Something went wrong getting the data');
+  }
 }
 
 /**
  * Add a Topic
  */
-export function add(req, res) {
-  Topic.create(req.body, (err) => {
-    if (err) {
-      console.log(err);
-      return res.status(400).send(err);
-    }
-
+export async function add(req, res) {
+  try {
+    await Topic.create(req.body);
     return res.status(200).send('OK');
-  });
+  } catch (err) {
+    console.log('Error in create query');
+    return res.status(500).send('Something went wrong adding the topic');
+  }
 }
 
 /**
  * Update a topic
  */
-export function update(req, res) {
-  const query = { id: req.params.id };
-  const {isIncrement} = req.body;
-  const {isFull} = req.body;
-  const omitKeys = ['id', '_id', '_v', 'isIncrement', 'isFull'];
-  const data = _.omit(req.body, omitKeys);
+export async function update(req, res) {
+  try {
+    const query = { id: req.params.id };
+    const {isIncrement} = req.body;
+    const {isFull} = req.body;
+    const omitKeys = ['id', '_id', '_v', 'isIncrement', 'isFull'];
+    const data = _.omit(req.body, omitKeys);
 
-  if (isFull) {
-    Topic.findOneAndUpdate(query, data, (err) => {
-      if (err) {
-        console.log('Error on save!');
-        return res.status(500).send('We failed to save for some reason');
-      }
-
-      return res.status(200).send('Updated successfully');
-    });
-  } else {
-    Topic.findOneAndUpdate(query, { $inc: { count: isIncrement ? 1 : -1 } }, (err) => {
-      if (err) {
-        console.log('Error on save!');
-        return res.status(500).send('We failed to save for some reason');
-      }
-
-      return res.status(200).send('Updated successfully');
-    });
+    if (isFull) {
+      await Topic.findOneAndUpdate(query, data).exec();
+    } else {
+      await Topic.findOneAndUpdate(query, { $inc: { count: isIncrement ? 1 : -1 } }).exec();
+    }
+    return res.status(200).send('Updated successfully');
+  } catch (err) {
+    console.log('Error on save!');
+    return res.status(500).send('We failed to save for some reason');
   }
 }
 
 /**
  * Remove a topic
  */
-export function remove(req, res) {
-  const query = { id: req.params.id };
-  Topic.findOneAndRemove(query, (err) => {
-    if (err) {
-      console.log('Error on delete');
-      return res.status(500).send('We failed to delete for some reason');
-    }
-
+export async function remove(req, res) {
+  try {
+    const query = { id: req.params.id };
+    await Topic.findOneAndRemove(query).exec();
     return res.status(200).send('Removed Successfully');
-  });
+  } catch (err) {
+    console.log('Error on delete');
+    return res.status(500).send('We failed to delete for some reason');
+  }
 }
 
 export default {

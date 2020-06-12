@@ -46,7 +46,7 @@ export default (req, accessToken, refreshToken, profile, done) => User.findOne({
       if (existingUser) {
         return done(null, false, { message: existingGoogleAccountMessage });
       }
-      return User.findById(req.user.id).then((user) => attachGoogleAccount(user, profile, accessToken, done));
+      return User.findByPk(req.user.id).then((user) => attachGoogleAccount(user, profile, accessToken, done));
     }
 
     if (existingUser) return done(null, existingUser);

@@ -1,141 +1,123 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
-import classNames from 'classnames/bind';
-import { connect } from 'react-redux';
+import React, { useState, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { manualLogin, signUp, toggleLoginMode } from '../actions/users';
-import styles from '../css/components/login';
 import hourGlassSvg from '../images/hourglass.svg';
+import {
+  Alternative,
+  AlternativeLink, Button,
+  EmailContainer,
+  GoogleContainer,
+  Header,
+  Heading, Hint, Input, Loading,
+  LoginWrapper, Message,
+} from '../css/components/login';
 
-const cx = classNames.bind(styles);
+const LoginOrRegister = () => {
+  const { isWaiting, message, isLogin } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-class LoginOrRegister extends Component {
-  constructor(props) {
-    super(props);
-    this.handleOnSubmit = this.handleOnSubmit.bind(this);
-  }
+  const dispatchManualLogin = (data) => dispatch(manualLogin(data));
+  const dispatchSignUp = (data) => dispatch(signUp(data));
+  const dispatchToggleLoginMode = () => dispatch(toggleLoginMode());
 
-  handleOnSubmit(event) {
+  const onChangeEmail = useCallback((event) => {
+    setEmail(event.currentTarget.value);
+  }, []);
+
+  const onChangePassword = useCallback((event) => {
+    setPassword(event.currentTarget.value);
+  }, []);
+
+  const handleOnSubmit = useCallback((event) => {
     event.preventDefault();
 
-    const { manualLogin, signUp, user: { isLogin } } = this.props;
-    const email = ReactDOM.findDOMNode(this.refs.email).value;
-    const password = ReactDOM.findDOMNode(this.refs.password).value;
-
     if (isLogin) {
-      manualLogin({ email, password });
+      dispatchManualLogin({ email, password });
     } else {
-      signUp({ email, password });
+      dispatchSignUp({ email, password });
     }
-  }
+  }, [isLogin, email, password]);
 
-  renderHeader() {
-    const { user: { isLogin }, toggleLoginMode } = this.props;
+  const renderHeader = () => {
     if (isLogin) {
       return (
-        <div className={cx('header')}>
-          <h1 className={cx('heading')}>Login with Email</h1>
-          <div className={cx('alternative')}>
+        <Header>
+          <Heading>Login with Email</Heading>
+          <Alternative>
             Not what you want?
-            <a
-              className={cx('alternative-link')}
-              onClick={toggleLoginMode}
+            <AlternativeLink
+              type="button"
+              onClick={dispatchToggleLoginMode}
             >
               Register an Account
-            </a>
-          </div>
-        </div>
+            </AlternativeLink>
+          </Alternative>
+        </Header>
       );
     }
 
     return (
-      <div className={cx('header')}>
-        <h1 className={cx('heading')}>Register with Email</h1>
-        <div className={cx('alternative')}>
+      <Header>
+        <Heading>Register with Email</Heading>
+        <Alternative>
           Already have an account?
-          <a
-            className={cx('alternative-link')}
-            onClick={toggleLoginMode}
+          <AlternativeLink
+            type="button"
+            onClick={dispatchToggleLoginMode}
           >
             Login
-          </a>
-        </div>
-      </div>
+          </AlternativeLink>
+        </Alternative>
+      </Header>
     );
-  }
+  };
 
-  render() {
-    const { isWaiting, message, isLogin } = this.props.user;
-
-    return (
-      <div
-        className={cx('login', {
-          waiting: isWaiting
-        })}
-      >
-        <div className={cx('container')}>
-          { this.renderHeader() }
-          <img className={cx('loading')} alt="loading" src={hourGlassSvg} />
-          <div className={cx('email-container')}>
-            <form onSubmit={this.handleOnSubmit}>
-              <input
-                className={cx('input')}
-                type="email"
-                ref="email"
-               placeholder="email"
-              />
-              <input
-                className={cx('input')}
-                type="password"
-                ref="password"
-                placeholder="password"
-              />
-              <div className={cx('hint')}>
-                <div>Hint</div>
-                <div>email: example@ninja.com password: ninja</div>
-              </div>
-              <p
-                className={cx('message', {
-                'message-show': message && message.length > 0
-              })}>
-                {message}
-              </p>
-              <input
-                className={cx('button')}
-                type="submit"
-                value={isLogin ? 'Login' : 'Register'} />
-            </form>
-          </div>
-          <div className={cx('google-container')}>
-            <h1 className={cx('heading')}>Google Login Demo</h1>
-            <a
-              className={cx('button')}
-              href="/auth/google">
-              Login with Google
-            </a>
-          </div>
-        </div>
+  return (
+    <LoginWrapper waiting={isWaiting}>
+      <div>
+        {renderHeader()}
+        <Loading alt="loading" src={hourGlassSvg} />
+        <EmailContainer>
+          <form onSubmit={handleOnSubmit}>
+            <Input
+              type="email"
+              value={email}
+              onChange={onChangeEmail}
+              placeholder="email"
+            />
+            <Input
+              type="password"
+              value={password}
+              onChange={onChangePassword}
+              placeholder="password"
+            />
+            <Hint>
+              <div>Hint</div>
+              <div>email: example@ninja.com password: ninja</div>
+            </Hint>
+            <Message show={message && message.length > 0}>
+              {message}
+            </Message>
+            <Button
+              as="input"
+              type="submit"
+              value={isLogin ? 'Login' : 'Register'} />
+          </form>
+        </EmailContainer>
+        <GoogleContainer>
+          <Heading>Google Login Demo</Heading>
+          <Button
+            as="a"
+            href="/auth/google">
+            Login with Google
+          </Button>
+        </GoogleContainer>
       </div>
-    );
-  }
-}
-
-LoginOrRegister.propTypes = {
-  user: PropTypes.objectOf(PropTypes.any).isRequired,
-  manualLogin: PropTypes.func.isRequired,
-  signUp: PropTypes.func.isRequired,
-  toggleLoginMode: PropTypes.func.isRequired
+    </LoginWrapper>
+  );
 };
 
-// Function passed in to `connect` to subscribe to Redux store updates.
-// Any time it updates, mapStateToProps is called.
-function mapStateToProps({user}) {
-  return {
-    user
-  };
-}
-
-// Connects React component to the redux store
-// It does not modify the component class passed to it
-// Instead, it returns a new, connected component class, for you to use.
-export default connect(mapStateToProps, { manualLogin, signUp, toggleLoginMode })(LoginOrRegister);
+export default LoginOrRegister;
