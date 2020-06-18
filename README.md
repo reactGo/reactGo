@@ -3,9 +3,11 @@
 [![Dependency Status][dep-status-img]][dep-status-link] [![devDependency Status][dev-dep-status-img]][dev-dep-status-link]
 [![Gitter][gitter-img]][gitter-link] [![npm version][npm-badge]][npm-link]
 
+[한글 공식문서](https://github.com/reactGo/reactGo/blob/master/README_KO.md)
+
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-> Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring universal Redux, Redux Thunk, React Router, React Router Redux Hot reloading, CSS-in-JS, Express 4.x, and multiple ORMs. :rocket:
+> Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring universal Redux, Redux Thunk, React Router, Hot reloading, Emotion, Express 4.x, and multiple ORMs. :rocket:
 
 _Formerly known as choonkending/react-webpack-node_
 
@@ -26,7 +28,7 @@ _Formerly known as choonkending/react-webpack-node_
 - [**Redux**](https://github.com/reactjs/redux) Predictive state containers.
 - [**Redux Thunk**](https://github.com/reduxjs/redux-thunk) for asynchronous action dispatch.
 - Server-side rendering with [**React Router**](https://github.com/reactjs/react-router) 5.x. Having server-side rendering allows you to pre-render the initial state of your components when a user (or search engine crawler) requests a page.
-- Integrating Redux with React Router with ~~Redux Simple Router~~ [Connected React Router](https://github.com/supasate/connected-react-router)
+- Integrating Redux with React Router with [**Connected React Router**](https://github.com/supasate/connected-react-router)
 - Asynchronous Data Fetching on server-side rendering(SSR)
 - Server side authentication + Redirecting for components
 - Hot reloading using [**hot-loader/react-dom**](https://github.com/hot-loader/react-dom)
@@ -49,7 +51,7 @@ _Formerly known as choonkending/react-webpack-node_
 
 The motivation is simple: best practices and a wonderful development experience. Our ultimate goal is to provide a boilerplate for building non-trivial applications that are secure, performant and free of bugs. Believing a mixture of React.js, Webpack and Node was the best way to accomplish this, we created react-webpack-node.
 
-react-webpack-node also works great as a learning tool for anyone interested in learning how to implement a large React application, or those who want a modern setup ASAP.
+reactGo also works great as a learning tool for anyone interested in learning how to implement a large React application, or those who want a modern setup ASAP.
 
 We've had extensive community additions to this boilerplate over time as practices have evolved, and are always interested in hearing new ideas or contributions.
 

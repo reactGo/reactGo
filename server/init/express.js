@@ -8,6 +8,7 @@ import flash from 'express-flash';
 import methodOverride from 'method-override';
 import gzip from 'compression';
 import helmet from 'helmet';
+import morgan from 'morgan';
 import unsupportedMessage from '../db/unsupportedMessage';
 import { sessionSecret, sessionId } from '../../config/secrets';
 import { DB_TYPE, ENV } from '../../config/env';
@@ -20,6 +21,9 @@ export default (app) => {
     app.use(gzip());
     // Secure your Express apps by setting various HTTP headers. Documentation: https://github.com/helmetjs/helmet
     app.use(helmet());
+    app.use(morgan('combined'));
+  } else {
+    app.use(morgan('dev'));
   }
 
   app.use(bodyParser.json());
