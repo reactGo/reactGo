@@ -2,7 +2,7 @@ import { sequelize } from './models';
 
 export default () => {
   sequelize
-    .authenticate()
+    .sync()
     .then(() => {
       console.log('Successfully connected to sequelize database');
     }, (err) => {

@@ -1,4 +1,4 @@
-const { DB_TYPE } = require('../../../config/env');
+const { DB_TYPE } = require('../../../config/serverEnv');
 const { DB_TYPES } = require('../../../config/dbTypes');
 
 switch (DB_TYPE) {

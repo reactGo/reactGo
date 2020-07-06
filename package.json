@@ -81,6 +81,7 @@
     "@types/redux-logger": "^3.0.8",
     "@types/redux-thunk": "^2.1.0",
     "@types/serialize-javascript": "^1.5.0",
+    "@types/spark-md5": "^3.0.2",
     "@types/validator": "^13.1.0",
     "@types/webpack": "^4.41.18",
     "autoprefixer": "^9.8.4",

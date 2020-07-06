@@ -11,8 +11,9 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import unsupportedMessage from '../db/unsupportedMessage';
 import { sessionSecret, sessionId } from '../../config/secrets';
-import { DB_TYPE, ENV } from '../../config/env';
+import { ENV } from '../../config/env';
 import { session as dbSession } from '../db';
+import { DB_TYPE } from '../../config/serverEnv';
 
 export default (app) => {
   app.set('port', (process.env.PORT || 3000));
