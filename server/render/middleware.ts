@@ -1,14 +1,15 @@
-import { createMemoryHistory } from 'history';
+import { createMemoryHistory, LocationState } from 'history';
 import axios from 'axios';
 import { Request, Response } from 'express';
 import { matchRoutes } from 'react-router-config';
+import { Store } from 'redux';
 
 import routes from '../../app/routes';
 import configureStore from '../../app/store/configureStore';
 import pageRenderer from './pageRenderer';
 import { sessionId } from '../../config/secrets';
 
-const loadBranchData = (url: string, store) => {
+const loadBranchData = (url: string, store: Store) => {
   const branch = matchRoutes(routes, url);
   const promises = branch.map(({ route }) => {
     return route.fetchData ? route.fetchData(store) : Promise.resolve(null);
@@ -24,7 +25,7 @@ const loadBranchData = (url: string, store) => {
  */
 export default function render(req: Request, res: Response) {
   const authenticated = req.isAuthenticated();
-  const history = createMemoryHistory();
+  const history = createMemoryHistory<LocationState>();
   const store = configureStore({
     user: {
       authenticated,
@@ -38,7 +39,7 @@ export default function render(req: Request, res: Response) {
     axios.defaults.headers.common.Cookie = sessionId + '=' + req.cookies[sessionId];
   }
   // If redirection exists, context object is going to have a url property.
-  const context = {};
+  const context: { url?: string } = {};
   loadBranchData(req.url, store)
     .then((data) => {
       const html = pageRenderer(req, store, context);

@@ -2,14 +2,15 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetData } from 'react-helmet';
+import { Store } from 'redux';
 import serialize from 'serialize-javascript';
 import { Request } from 'express';
 
 import staticAssets from './static-assets';
 import App from '../../app/pages/App';
 
-const createApp = (req: Request, store, context) => renderToString(
+const createApp = (req: Request, store: Store, context: { url?: string }) => renderToString(
   <Provider store={store}>
     <StaticRouter location={req.url} context={context}>
       <App />
@@ -17,7 +18,7 @@ const createApp = (req: Request, store, context) => renderToString(
   </Provider>
 );
 
-const buildPage = ({ componentHTML, initialState, headAssets }) => {
+const buildPage = ({ componentHTML, initialState, headAssets }: { componentHTML?: string, initialState: object, headAssets: HelmetData }) => {
   return `
 <!doctype html>
 <html ${headAssets.htmlAttributes.toString()}>
@@ -37,7 +38,7 @@ const buildPage = ({ componentHTML, initialState, headAssets }) => {
 </html>`;
 };
 
-export default (req: Request, store, context) => {
+export default (req: Request, store: Store, context: { url?: string }) => {
   const initialState = store.getState();
   let componentHTML;
   try {

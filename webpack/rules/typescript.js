@@ -2,8 +2,8 @@ const PATHS = require('../paths');
 
 module.exports = ({ production = false } = {}) => {
   return {
-    test: /\.ts$|\.tsx$/,
-    loader: 'awesome-typescript-loader',
+    test: /\.[tj]sx?$/,
+    loader: 'babel-loader',
     exclude: PATHS.modules,
   };
 };

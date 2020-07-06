@@ -53,8 +53,9 @@ class PendingNavDataLoader extends Component<Props, State> {
     const navigated = prevProps.location !== this.props.location;
 
     if (navigated) {
+      console.log('matchRoutes', this.props.location);
       // load data while the old screen remains
-      const branch = matchRoutes(routes, this.props.location);
+      const branch = matchRoutes(routes, this.props.location as any);
       console.log('branch', branch);
       this.setState({
         previousLocation: null,

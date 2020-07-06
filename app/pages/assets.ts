@@ -1,9 +1,13 @@
 /* Based on the template in Web Starter Kit :
 https://github.com/google/web-starter-kit/blob/master/app/index.html
 */
+// @ts-ignore
 import chromeFavicon from '../images/chrome-ninja192-precomposed.png';
+// @ts-ignore
 import appleFavicon from '../images/apple-ninja152-precomposed.png';
+// @ts-ignore
 import msFavicon from '../images/ms-ninja144-precomposed.png';
+// @ts-ignore
 import favicon from '../images/favicon.png';
 
 const metaAssets = () => {
