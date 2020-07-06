@@ -1,9 +1,16 @@
-import { combineReducers } from 'redux';
+import { AnyAction, combineReducers } from 'redux';
+import md5 from 'spark-md5';
+
 import * as types from '../types';
 
+interface Topic {
+  id: string
+  text: string
+  count: number
+}
 const topic = (
-  state = {},
-  action
+  state: Topic,
+  action: AnyAction
 ) => {
   switch (action.type) {
     case types.CREATE_TOPIC_REQUEST:
@@ -28,15 +35,15 @@ const topic = (
 };
 
 const topics = (
-  state = [],
-  action
+  state: Topic[] = [],
+  action: AnyAction
 ) => {
   switch (action.type) {
     case types.GET_TOPICS_SUCCESS:
       if (action.data) return action.data;
       return state;
     case types.CREATE_TOPIC_REQUEST:
-      return [...state, topic(undefined, action)];
+      return [...state, topic({ id: md5.hash(action.text), count: 0, text: action.text }, action)];
     case types.CREATE_TOPIC_FAILURE:
       return state.filter((t) => t.id !== action.id);
     case types.DESTROY_TOPIC:
@@ -51,7 +58,7 @@ const topics = (
 
 const newTopic = (
   state = '',
-  action
+  action: AnyAction
 ) => {
   switch (action.type) {
     case types.TYPING:

@@ -1,3 +1,4 @@
+import { AnyAction } from 'redux';
 import * as types from '../types';
 
 /*
@@ -6,10 +7,10 @@ import * as types from '../types';
  * messages/notifications should appear within the component to give the user
  * more context. - My 2 cents.
  */
-export default function message(state = {
+function message(state = {
   message: '',
   type: 'SUCCESS'
-}, action = {}) {
+}, action: AnyAction) {
   switch (action.type) {
     case types.LOGIN_SUCCESS_USER:
     case types.SIGNUP_SUCCESS_USER:
@@ -20,3 +21,5 @@ export default function message(state = {
       return state;
   }
 }
+
+export default message;

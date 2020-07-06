@@ -1,21 +1,25 @@
 /* eslint consistent-return: 0, no-else-return: 0 */
 import md5 from 'spark-md5';
+import { ThunkDispatch } from 'redux-thunk';
+
 import * as types from '../types';
 import { voteService } from '../services';
 
-function increment(id) {
+function increment(id: string) {
   return { type: types.INCREMENT_COUNT, id };
 }
 
-function decrement(id) {
+function decrement(id: string) {
   return { type: types.DECREMENT_COUNT, id };
 }
 
-function destroy(id) {
+function destroy(id: string) {
   return { type: types.DESTROY_TOPIC, id };
 }
 
-function createTopicRequest(data) {
+interface Topic { id: string, count: number, text: string }
+
+function createTopicRequest(data: Topic) {
   return {
     type: types.CREATE_TOPIC_REQUEST,
     id: data.id,
@@ -30,7 +34,7 @@ function createTopicSuccess() {
   };
 }
 
-function createTopicFailure(data) {
+function createTopicFailure(data: { id: string, error: string }) {
   return {
     type: types.CREATE_TOPIC_FAILURE,
     id: data.id,
@@ -44,7 +48,7 @@ function createTopicDuplicate() {
   };
 }
 
-export function typing(text) {
+export function typing(text: string) {
   return {
     type: types.TYPING,
     newTopic: text
@@ -55,8 +59,8 @@ export function typing(text) {
 // which will get executed by Redux-Thunk middleware
 // This function does not need to be pure, and thus allowed
 // to have side effects, including executing asynchronous API calls.
-export function createTopic(text) {
-  return (dispatch, getState) => {
+export function createTopic(text: string) {
+  return (dispatch: ThunkDispatch<{}, {}, any>, getState: () => { topic: { topics: Topic[] }}) => {
     // If the text box is empty
     if (text.trim().length <= 0) return;
 
@@ -72,7 +76,7 @@ export function createTopic(text) {
 
     // Conditional dispatch
     // If the topic already exists, make sure we emit a dispatch event
-    if (topic.topics.filter((topicItem) => topicItem.id === id).length > 0) {
+    if (topic.topics.filter((topicItem: Topic) => topicItem.id === id).length > 0) {
       // Currently there is no reducer that changes state for this
       // For production you would ideally have a message reducer that
       // notifies the user of a duplicate topic
@@ -105,14 +109,14 @@ function getTopicsRequest() {
   };
 }
 
-function getTopicsSuccess(data) {
+function getTopicsSuccess(data: Topic) {
   return {
     type: types.GET_TOPICS_SUCCESS,
     data,
   };
 }
 
-function getTopicsFailure(error) {
+function getTopicsFailure(error: string) {
   return {
     type: types.GET_TOPICS_FAILURE,
     error,
@@ -120,7 +124,7 @@ function getTopicsFailure(error) {
 }
 
 export function getTopics() {
-  return (dispatch) => {
+  return (dispatch: ThunkDispatch<{}, {}, any>) => {
     dispatch(getTopicsRequest());
     return voteService().getTopics()
       .then((res) => {
@@ -134,8 +138,8 @@ export function getTopics() {
   };
 }
 
-export function incrementCount(id) {
-  return (dispatch) => {
+export function incrementCount(id: string) {
+  return (dispatch: ThunkDispatch<{}, {}, any>) => {
     return voteService().updateTopic({
       id,
       data: {
@@ -148,8 +152,8 @@ export function incrementCount(id) {
   };
 }
 
-export function decrementCount(id) {
-  return (dispatch) => {
+export function decrementCount(id: string) {
+  return (dispatch: ThunkDispatch<{}, {}, any>) => {
     return voteService().updateTopic({
       id,
       data: {
@@ -162,8 +166,8 @@ export function decrementCount(id) {
   };
 }
 
-export function destroyTopic(id) {
-  return (dispatch) => {
+export function destroyTopic(id: string) {
+  return (dispatch: ThunkDispatch<{}, {}, any>) => {
     return voteService().deleteTopic({ id })
       .then(() => dispatch(destroy(id)))
       .catch(() => dispatch(createTopicFailure({

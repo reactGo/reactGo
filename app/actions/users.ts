@@ -1,6 +1,6 @@
 import { push } from 'connected-react-router';
+import { ThunkDispatch } from 'redux-thunk';
 import { authService } from '../services';
-
 import * as types from '../types';
 import { getTopics } from './topics';
 
@@ -8,21 +8,21 @@ function beginLogin() {
   return { type: types.MANUAL_LOGIN_USER };
 }
 
-function loginSuccess(message) {
+function loginSuccess(message: string) {
   return {
     type: types.LOGIN_SUCCESS_USER,
     message
   };
 }
 
-function loginError(message) {
+function loginError(message: string) {
   return {
     type: types.LOGIN_ERROR_USER,
     message
   };
 }
 
-function signUpError(message) {
+function signUpError(message: string) {
   return {
     type: types.SIGNUP_ERROR_USER,
     message
@@ -33,7 +33,7 @@ function beginSignUp() {
   return { type: types.SIGNUP_USER };
 }
 
-function signUpSuccess(message) {
+function signUpSuccess(message: string) {
   return {
     type: types.SIGNUP_SUCCESS_USER,
     message
@@ -56,8 +56,8 @@ export function toggleLoginMode() {
   return { type: types.TOGGLE_LOGIN_MODE };
 }
 
-export function manualLogin(data) {
-  return (dispatch) => {
+export function manualLogin(data: { email: string, password: string }) {
+  return (dispatch: ThunkDispatch<{}, {}, any>) => {
     dispatch(beginLogin());
 
     return authService().login(data)
@@ -72,8 +72,8 @@ export function manualLogin(data) {
   };
 }
 
-export function signUp(data) {
-  return (dispatch) => {
+export function signUp(data: { email: string, password: string }) {
+  return (dispatch: ThunkDispatch<{}, {}, any>) => {
     dispatch(beginSignUp());
 
     return authService().signUp(data)
@@ -88,7 +88,7 @@ export function signUp(data) {
 }
 
 export function logOut() {
-  return (dispatch) => {
+  return (dispatch: ThunkDispatch<{}, {}, any>) => {
     dispatch(beginLogout());
 
     return authService().logOut()
