@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Application } from 'express';
 import passport from 'passport';
 import session from 'express-session';
 import bodyParser from 'body-parser';
@@ -15,7 +15,7 @@ import { ENV } from '../../config/env';
 import { session as dbSession } from '../db';
 import { DB_TYPE } from '../../config/serverEnv';
 
-export default (app) => {
+export default (app: Application) => {
   app.set('port', (process.env.PORT || 3000));
 
   if (ENV === 'production') {

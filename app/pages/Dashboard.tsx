@@ -1,30 +1,31 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { replace } from 'connected-react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../reducers';
 
 import Page from './Page';
-import LoginOrRegisterContainer from '../containers/LoginOrRegister';
+import DashboardContainer from '../containers/Dashboard';
 
-const LoginOrRegister = (props) => {
-  const { authenticated } = useSelector((state) => state.user);
+const Dashboard = () => {
+  const { authenticated } = useSelector<RootState, RootState['user']>((state) => state.user);
   const dispatch = useDispatch();
 
   /*
-   * Redirect to '/' if is already logged in.
+   * Redirect to '/' if is not authenticated
    */
   useEffect(() => {
-    if (authenticated) {
+    if (!authenticated) {
       dispatch(replace({ pathname: '/' }));
     }
   }, []);
 
   const pageTitle = () => {
-    return 'LoginOrRegister | reactGo';
+    return 'Dashboard | reactGo';
   };
 
   const pageMeta = () => {
     return [
-      { name: 'description', content: 'A reactGo example of a login or register page' },
+      { name: 'description', content: 'A reactGo example of a dashboard page' },
     ];
   };
 
@@ -40,9 +41,9 @@ const LoginOrRegister = (props) => {
 
   return (
     <Page {...getMetaData()}>
-      <LoginOrRegisterContainer {...props} />
+      <DashboardContainer />
     </Page>
   );
 };
 
-export default LoginOrRegister;
+export default Dashboard;

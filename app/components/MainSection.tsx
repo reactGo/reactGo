@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { FC } from 'react';
+import { Topic } from '../reducers/topic';
 
 import TopicItem from './TopicItem';
 import { Header, List, MainSectionWrapper } from '../css/components/mainSection';
 
-const MainSection = ({
+interface Props {
+  topics: Topic[],
+  onIncrement: (id: string) => void,
+  onDecrement: (id: string) => void,
+  onDestroy: (id: string) => void,
+}
+const MainSection: FC<Props> = ({
  topics, onIncrement, onDecrement, onDestroy
 }) => {
   const topicItems = topics.map((topic, key) => {
     return (
       <TopicItem
-        index={key}
         id={topic.id}
         key={key}
         text={topic.text}

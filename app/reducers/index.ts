@@ -1,6 +1,6 @@
-import { combineReducers } from 'redux';
+import { combineReducers, Reducer } from 'redux';
 import { History } from 'history';
-import { connectRouter } from 'connected-react-router';
+import { connectRouter, RouterState } from 'connected-react-router';
 
 import user from './user';
 import topic from './topic';
@@ -13,5 +13,17 @@ const createRootReducer = (history: History) => combineReducers({
   message,
   router: connectRouter(history),
 });
+
+export interface RootState {
+  topic: any,
+  user: {
+    authenticated: boolean;
+  },
+  message: {
+    type: string;
+    message: string;
+  },
+  router: Reducer<RouterState>
+}
 
 export default createRootReducer;

@@ -9,7 +9,7 @@ export const Loading = styled.img`
   margin: 24px auto;
 `;
 
-export const LoginWrapper = styled.div`
+export const LoginWrapper = styled.div<{ waiting: boolean }>`
   width: 420px;
   margin: 0 auto;
   background-color: var(--colorAthensGray);
@@ -60,7 +60,7 @@ export const Input = styled.input`
   ${input};
 `;
 
-export const Message = styled.p`
+export const Message = styled.p<{ show: boolean }>`
   color: var(--colorCrimson);
   font-size: var(--fontSmall);
   display: none;

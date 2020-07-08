@@ -1,6 +1,13 @@
-import React, { useCallback } from 'react';
+import React, { FC, useCallback } from 'react';
 
-const TopicTextForm = ({
+interface Props {
+  onEntrySave: (value: string) => void,
+  onEntryChange: (value: string) => void,
+  value: string,
+  className?: string,
+  placeholder: string,
+}
+const TopicTextForm: FC<Props> = ({
   onEntrySave, onEntryChange, value, className, placeholder,
 }) => {
   /*

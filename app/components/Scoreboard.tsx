@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Count, Item, Topic, ScoreboardWrapper, Header, List } from '../css/components/scoreboard';
+import { Topic as ITopic } from '../reducers/topic';
 
-const Scoreboard = ({topics}) => {
+interface Props {
+  topics: ITopic[];
+}
+const Scoreboard: FC<Props> = ({topics}) => {
   const topicListItems = topics.map((topic, key) => {
     return (
       <Item key={key}>

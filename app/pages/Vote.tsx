@@ -2,7 +2,7 @@ import React from 'react';
 import Page from './Page';
 import VoteContainer from '../containers/Vote';
 
-const Vote = (props) => {
+const Vote = () => {
   const pageTitle = () => {
     return 'Vote | reactGo';
   };
@@ -25,7 +25,7 @@ const Vote = (props) => {
 
   return (
     <Page {...getMetaData()}>
-      <VoteContainer {...props} />
+      <VoteContainer />
     </Page>
   );
 };

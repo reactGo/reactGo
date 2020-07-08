@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { Decrement, Destroy, Increment, Topic, TopicItemWrapper } from '../css/components/topicItem';
 
-const TopicItem = ({
+interface Props {
+  text: string,
+  id: string,
+  incrementCount: (id: string) => void,
+  decrementCount: (id: string) => void,
+  destroyTopic: (id: string) => void,
+}
+const TopicItem: FC<Props> = ({
  text, id, incrementCount, decrementCount, destroyTopic
 }) => {
   const onIncrement = () => {
