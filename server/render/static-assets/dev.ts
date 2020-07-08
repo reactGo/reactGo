@@ -3,7 +3,7 @@ import { GOOGLE_ANALYTICS_ID } from '../../../config/env';
 const createAppScript = () => '<script async type="text/javascript" charset="utf-8" src="/assets/app.js"></script>';
 const createVendorScript = () => '';
 
-const createAnalyticsSnippet = (id) => `<script>
+const createAnalyticsSnippet = (id: string) => `<script>
 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
 ga('create', '${id}', 'auto');
 ga('send', 'pageview');

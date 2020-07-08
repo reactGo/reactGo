@@ -68,7 +68,7 @@ export const Message = styled.p<{ show: boolean }>`
   ${(props) => props.show && 'display: inline-block'};
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<{ as?: string, href?: string }>`
   ${greenButton};
 `;
 

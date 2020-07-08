@@ -5,7 +5,7 @@ export default () => {
     .sync()
     .then(() => {
       console.log('Successfully connected to sequelize database');
-    }, (err) => {
+    }, (err: Error) => {
       console.log('Unable to connect to the sequelize database: ', err);
     });
 };

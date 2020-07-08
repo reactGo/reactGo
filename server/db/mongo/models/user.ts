@@ -4,7 +4,7 @@
  */
 
 import bcrypt from 'bcrypt-nodejs';
-import mongoose from 'mongoose';
+import mongoose, { Document, HookNextFunction } from 'mongoose';
 
 // Other oauthtypes to be added
 
@@ -12,7 +12,23 @@ import mongoose from 'mongoose';
  User Schema
  */
 
-const UserSchema = new mongoose.Schema({
+interface UserDocument extends Document {
+  email: string;
+  profile: {
+    name: string,
+    gender: string,
+    location: string,
+    website: string,
+    picture: string,
+  }
+  password: string;
+  tokens: string[];
+  resetPasswordToken: string;
+  resetPasswordExpires: Date;
+  comparePassword: (candidatePassword: string, cb: (error: Error | null, data?: any) => void) => void;
+}
+
+const UserSchema = new mongoose.Schema<UserDocument>({
   email: { type: String, unique: true, lowercase: true },
   password: String,
   tokens: Array,
@@ -28,7 +44,7 @@ const UserSchema = new mongoose.Schema({
   google: {}
 });
 
-function encryptPassword(next) {
+function encryptPassword(this: UserDocument, next: HookNextFunction) {
   const user = this;
   if (!user.isModified('password')) return next();
   return bcrypt.genSalt(5, (saltErr, salt) => {
@@ -49,19 +65,16 @@ UserSchema.pre('save', encryptPassword);
 /*
  Defining our own custom document instance method
  */
-UserSchema.methods = {
-  comparePassword(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
-      if (err) return cb(err);
-      return cb(null, isMatch);
-    });
-  }
+UserSchema.methods.comparePassword = function(candidatePassword, cb) {
+  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+    if (err) return cb(err);
+    return cb(null, isMatch);
+  });
 };
 
 /**
  * Statics
  */
+// UserSchema.statics = {};
 
-UserSchema.statics = {};
-
-export default mongoose.model('User', UserSchema);
+export default mongoose.model<UserDocument>('User', UserSchema);

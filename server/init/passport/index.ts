@@ -15,7 +15,7 @@ export default () => {
   // deserializing.
 
   if (dbPassport && dbPassport.deserializeUser) {
-    passport.serializeUser((user, done) => {
+    passport.serializeUser((user: { id: string }, done) => {
       done(null, user.id);
     });
 
@@ -25,6 +25,6 @@ export default () => {
   }
 
   // use the following strategies
-  local(passport);
-  google(passport);
+  local();
+  google();
 };

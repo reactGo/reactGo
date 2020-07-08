@@ -6,7 +6,7 @@ const createVendorScript = () => `<script async type="text/javascript" charset="
 
 const createTrackingScript = () => (GOOGLE_ANALYTICS_ID ? createAnalyticsSnippet(GOOGLE_ANALYTICS_ID) : '');
 
-const createAnalyticsSnippet = (id) => `<script>
+const createAnalyticsSnippet = (id: string) => `<script>
 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
 ga('create', '${id}', 'auto');
 ga('send', 'pageview');

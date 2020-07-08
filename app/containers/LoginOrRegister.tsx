@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { manualLogin, signUp, toggleLoginMode } from '../actions/users';
-import hourGlassSvg from '../images/hourglass.svg';
 import {
   Alternative,
   AlternativeLink, Button,
@@ -12,15 +11,17 @@ import {
   Heading, Hint, Input, Loading,
   LoginWrapper, Message,
 } from '../css/components/login';
+import { RootState } from '../reducers';
+const hourGlassSvg = require('../images/hourglass.svg');
 
 const LoginOrRegister = () => {
-  const { isWaiting, message, isLogin } = useSelector((state) => state.user);
+  const { isWaiting, message, isLogin } = useSelector<RootState, RootState['user']>((state) => state.user);
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const dispatchManualLogin = (data) => dispatch(manualLogin(data));
-  const dispatchSignUp = (data) => dispatch(signUp(data));
+  const dispatchManualLogin = (data: { email: string, password: string }) => dispatch(manualLogin(data));
+  const dispatchSignUp = (data: { email: string, password: string }) => dispatch(signUp(data));
   const dispatchToggleLoginMode = () => dispatch(toggleLoginMode());
 
   const onChangeEmail = useCallback((event) => {
@@ -98,7 +99,7 @@ const LoginOrRegister = () => {
               <div>Hint</div>
               <div>email: example@ninja.com password: ninja</div>
             </Hint>
-            <Message show={message && message.length > 0}>
+            <Message show={message && message.length > 0|| false}>
               {message}
             </Message>
             <Button

@@ -1,4 +1,4 @@
-import Sequelize from 'sequelize';
+import { Sequelize } from 'sequelize';
 import sequelizeConfig from '../sequelize_config';
 import { ENV } from '../../../../config/env';
 import tokenModel from './tokens';
@@ -7,17 +7,23 @@ import userModel from './users';
 
 const config = sequelizeConfig[ENV];
 
-const db = {};
 const dbUrl = process.env[config.use_env_variable];
 
 const sequelize = dbUrl ? new Sequelize(dbUrl) : new Sequelize(config.database, config.username, config.password, config);
 
-db.Token = sequelize.import('Token', tokenModel);
-db.Topic = sequelize.import('Topic', topicModel);
-db.User = sequelize.import('User', userModel);
+const db = {
+  Token: tokenModel,
+  Topic: topicModel,
+  User: userModel,
+} as const;
 
 Object.keys(db).forEach((key) => {
-  const model = db[key];
+  const model = db[key as keyof typeof db];
+  model.init(sequelize);
+});
+
+Object.keys(db).forEach((key) => {
+  const model = db[key as keyof typeof db];
   if (model.associate) {
     model.associate(db);
   }

@@ -1,10 +1,11 @@
+import { Response, Request, NextFunction } from 'express';
 import passport from 'passport';
 import User from '../models/user';
 
 /**
  * POST /login
  */
-export function login(req, res, next) {
+export function login(req: Request, res: Response, next: NextFunction) {
   // Do email and password validation for the server
   passport.authenticate('local', (authErr, user, info) => {
     if (authErr) return next(authErr);
@@ -26,7 +27,7 @@ export function login(req, res, next) {
 /**
  * POST /logout
  */
-export function logout(req, res) {
+export function logout(req: Request, res: Response) {
   req.logout();
   res.sendStatus(200);
 }
@@ -35,7 +36,7 @@ export function logout(req, res) {
  * POST /signup
  * Create a new local account
  */
-export function signUp(req, res, next) {
+export function signUp(req: Request, res: Response, next: NextFunction) {
   const user = new User({
     email: req.body.email,
     password: req.body.password

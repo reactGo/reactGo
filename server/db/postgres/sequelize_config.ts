@@ -1,8 +1,8 @@
-const dotenv = require('dotenv');
+import dotenv from 'dotenv';
 
 dotenv.config();
 
-module.exports = {
+export default {
   development: {
     username: process.env.PGUSER || 'root',
     password: process.env.PGPASS || null,
@@ -25,4 +25,4 @@ module.exports = {
     host: '127.0.0.1',
     dialect: 'postgres'
   }
-};
+} as const;

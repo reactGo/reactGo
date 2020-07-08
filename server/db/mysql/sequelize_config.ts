@@ -1,8 +1,8 @@
-const dotenv = require('dotenv');
+import dotenv from 'dotenv';
 
 dotenv.config();
 
-module.exports = {
+export default {
   development: {
     username: process.env.MYSQLUSER || 'root',
     password: process.env.MYSQLPASS || null,
@@ -24,4 +24,4 @@ module.exports = {
     host: '127.0.0.1',
     dialect: 'mysql'
   }
-};
+} as const;

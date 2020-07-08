@@ -3,7 +3,7 @@ import { History } from 'history';
 import { connectRouter, RouterState } from 'connected-react-router';
 
 import user from './user';
-import topic from './topic';
+import topic, { Topic } from './topic';
 import message from './message';
 
 // Combine reducers with connectRouter which keeps track of router state
@@ -15,9 +15,15 @@ const createRootReducer = (history: History) => combineReducers({
 });
 
 export interface RootState {
-  topic: any,
+  topic: {
+    topics: Topic[];
+    newTopic: string;
+  },
   user: {
     authenticated: boolean;
+    isWaiting: boolean;
+    message: string;
+    isLogin: boolean;
   },
   message: {
     type: string;

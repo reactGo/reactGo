@@ -1,10 +1,11 @@
+import { Request, Response } from 'express';
 import _ from 'lodash';
 import Topic from '../models/topics';
 
 /**
  * List
  */
-export async function all(req, res) {
+export async function all(req: Request, res: Response) {
   try {
     const topics = await Topic.find({}).exec();
     return res.json(topics);
@@ -17,7 +18,7 @@ export async function all(req, res) {
 /**
  * Add a Topic
  */
-export async function add(req, res) {
+export async function add(req: Request, res: Response) {
   try {
     await Topic.create(req.body);
     return res.status(200).send('OK');
@@ -30,7 +31,7 @@ export async function add(req, res) {
 /**
  * Update a topic
  */
-export async function update(req, res) {
+export async function update(req: Request, res: Response) {
   try {
     const query = { id: req.params.id };
     const {isIncrement} = req.body;
@@ -53,7 +54,7 @@ export async function update(req, res) {
 /**
  * Remove a topic
  */
-export async function remove(req, res) {
+export async function remove(req: Request, res: Response) {
   try {
     const query = { id: req.params.id };
     await Topic.findOneAndRemove(query).exec();

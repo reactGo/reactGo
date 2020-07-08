@@ -4,11 +4,12 @@ import { useHistory } from 'react-router-dom';
 
 import { logOut } from '../actions/users';
 import { NavigationWrapper, Item, Logo } from '../css/components/navigation';
+import { RootState } from '../reducers';
 
-const LogOut = Item.withComponent('button');
+const LogOut = Item.withComponent('button') as React.ElementType;
 
 const Navigation = () => {
-  const user = useSelector((state) => state.user);
+  const user = useSelector<RootState, RootState['user']>((state) => state.user);
   const dispatch = useDispatch();
   const history = useHistory();
 

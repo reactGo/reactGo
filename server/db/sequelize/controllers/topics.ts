@@ -1,3 +1,4 @@
+import { Request, Response } from 'express';
 import _ from 'lodash';
 import { Models, sequelize } from '../models';
 
@@ -6,10 +7,10 @@ const {Topic} = Models;
 /**
  * List
  */
-export function all(req, res) {
+export function all(req: Request, res: Response) {
   Topic.findAll().then((topics) => {
     res.json(topics);
-  }).catch((err) => {
+  }).catch((err: Error) => {
     console.log(err);
     res.status(500).send('Error in first query');
   });
@@ -18,10 +19,10 @@ export function all(req, res) {
 /**
  * Add a Topic
  */
-export function add(req, res) {
+export function add(req: Request, res: Response) {
   Topic.create(req.body).then(() => {
     res.status(200).send('OK');
-  }).catch((err) => {
+  }).catch((err: Error) => {
     console.log(err);
     res.status(400).send(err);
   });
@@ -30,7 +31,7 @@ export function add(req, res) {
 /**
  * Update a topic
  */
-export function update(req, res) {
+export function update(req: Request, res) {
   const query = { id: req.params.id };
   const {isIncrement} = req.body;
   const {isFull} = req.body;
