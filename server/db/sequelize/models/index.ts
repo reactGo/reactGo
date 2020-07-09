@@ -16,14 +16,15 @@ const db = {
   Topic: topicModel,
   User: userModel,
 } as const;
+export type dbType = typeof db;
 
 Object.keys(db).forEach((key) => {
-  const model = db[key as keyof typeof db];
-  model.init(sequelize);
+  const model = db[key as keyof dbType];
+  model.initWithSequelize(sequelize);
 });
 
 Object.keys(db).forEach((key) => {
-  const model = db[key as keyof typeof db];
+  const model = db[key as keyof dbType];
   if (model.associate) {
     model.associate(db);
   }

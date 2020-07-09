@@ -1,7 +1,8 @@
 import { Model, Sequelize, DataTypes } from 'sequelize';
+import { dbType } from './index';
 
 class Token extends Model {
-  static init(sequelize: Sequelize) {
+  static initWithSequelize(sequelize: Sequelize) {
     return super.init({
       kind: {
         type: DataTypes.STRING,
@@ -23,12 +24,14 @@ class Token extends Model {
       modelName: 'Token',
       tableName: 'tokens',
       timestamps: false,
-    })
+    });
   }
 
-  static associate = (db) => {
+  static associate = (db: dbType) => {
     Token.belongsTo(db.User, {
       foreignKey: 'userId'
     });
   };
 }
+
+export default Token;
