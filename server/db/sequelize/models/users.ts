@@ -74,8 +74,8 @@ class User extends Model {
       }
     }, {
       sequelize,
-      modelName: 'Topic',
-      tableName: 'topics',
+      modelName: 'User',
+      tableName: 'users',
       timestamps: false,
     });
 
@@ -84,7 +84,7 @@ class User extends Model {
   }
 
   static associate(models: dbType) {
-    User.hasMany(models.Token, {
+    models.User.hasMany(models.Token, {
       foreignKey: 'userId'
     });
   }

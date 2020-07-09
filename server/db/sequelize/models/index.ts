@@ -12,9 +12,9 @@ const dbUrl = process.env[config.use_env_variable];
 const sequelize = dbUrl ? new Sequelize(dbUrl) : new Sequelize(config.database, config.username, config.password, config);
 
 const db = {
+  User: userModel,
   Token: tokenModel,
   Topic: topicModel,
-  User: userModel,
 } as const;
 export type dbType = typeof db;
 

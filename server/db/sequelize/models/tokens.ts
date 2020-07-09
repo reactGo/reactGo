@@ -27,8 +27,8 @@ class Token extends Model {
     });
   }
 
-  static associate = (db: dbType) => {
-    Token.belongsTo(db.User, {
+  static associate = (models: dbType) => {
+    models.Token.belongsTo(models.User, {
       foreignKey: 'userId'
     });
   };
