@@ -3,7 +3,7 @@ import { dbType } from './index';
 
 class Token extends Model {
   static initWithSequelize(sequelize: Sequelize) {
-    return super.init({
+    return Token.init({
       kind: {
         type: DataTypes.STRING,
         allowNull: false
