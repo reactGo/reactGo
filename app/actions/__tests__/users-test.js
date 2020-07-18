@@ -1,9 +1,9 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import expect from 'expect';
-import * as actions from '../users';
 import * as types from '../../types';
 import createAuthServiceStub from '../../tests/helpers/createAuthServiceStub';
+import { logOut, manualLogin, signUp } from '../../thunks/users';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
@@ -35,13 +35,13 @@ describe('Users Async Actions', () => {
         stub.restore();
       });
 
-      it('should dispatch MANUAL_LOGIN_USER, LOGIN_SUCCESS_USER and route path change actions', (done) => {
+      it('should dispatch MANUAL_LOGIN_USER, LOGIN_USER_REQUEST and route path change actions', (done) => {
         const expectedActions = [
           {
             type: types.MANUAL_LOGIN_USER
           },
           {
-            type: types.LOGIN_SUCCESS_USER,
+            type: types.LOGIN_USER_REQUEST,
             message: 'You have been successfully logged in'
           },
           {
@@ -53,7 +53,7 @@ describe('Users Async Actions', () => {
           }
         ];
 
-        store.dispatch(actions.manualLogin(data))
+        store.dispatch(manualLogin(data))
           .then(() => {
             expect(store.getActions()).toEqual(expectedActions);
             done();
@@ -71,18 +71,18 @@ describe('Users Async Actions', () => {
         stub.restore();
       });
 
-      it('should dispatch MANUAL_LOGIN_USER and LOGIN_ERROR_USER', (done) => {
+      it('should dispatch MANUAL_LOGIN_USER and LOGIN_USER_FAILURE', (done) => {
         const expectedActions = [
           {
             type: types.MANUAL_LOGIN_USER
           },
           {
-            type: types.LOGIN_ERROR_USER,
+            type: types.LOGIN_USER_FAILURE,
             message: 'Oops! Invalid username or password'
           }
         ];
 
-        store.dispatch(actions.manualLogin(data))
+        store.dispatch(manualLogin(data))
           .then(() => {
             expect(store.getActions()).toEqual(expectedActions);
             done();
@@ -103,13 +103,13 @@ describe('Users Async Actions', () => {
         stub.restore();
       });
 
-      it('should dispatch SIGNUP_USER, SIGNUP_SUCCESS_USER and route path change actions', (done) => {
+      it('should dispatch SIGNUP_USER_REQUEST, SIGNUP_USER_SUCCESS and route path change actions', (done) => {
         const expectedActions = [
           {
-            type: types.SIGNUP_USER
+            type: types.SIGNUP_USER_REQUEST
           },
           {
-            type: types.SIGNUP_SUCCESS_USER,
+            type: types.SIGNUP_USER_SUCCESS,
             message: 'You have successfully registered an account!'
           },
           {
@@ -121,7 +121,7 @@ describe('Users Async Actions', () => {
           }
         ];
 
-        store.dispatch(actions.signUp(data))
+        store.dispatch(signUp(data))
           .then(() => {
             expect(store.getActions()).toEqual(expectedActions);
             done();
@@ -139,18 +139,18 @@ describe('Users Async Actions', () => {
         stub.restore();
       });
 
-      it('should dispatch MANUAL_LOGIN_USER and LOGIN_ERROR_USER', (done) => {
+      it('should dispatch MANUAL_LOGIN_USER and LOGIN_USER_FAILURE', (done) => {
         const expectedActions = [
           {
-            type: types.SIGNUP_USER
+            type: types.SIGNUP_USER_REQUEST
           },
           {
-            type: types.SIGNUP_ERROR_USER,
+            type: types.SIGNUP_USER_FAILURE,
             message: 'Oops! Something went wrong when signing up'
           }
         ];
 
-        store.dispatch(actions.signUp(data))
+        store.dispatch(signUp(data))
           .then(() => {
             expect(store.getActions()).toEqual(expectedActions);
             done();
@@ -170,17 +170,17 @@ describe('Users Async Actions', () => {
       stub.restore();
     });
 
-    it('should dispatch LOGOUT_USER, LOGOUT_SUCCESS_USER', (done) => {
+    it('should dispatch LOGOUT_USER_REQUEST, LOGOUT_USER_SUCCESS', (done) => {
       const expectedActions = [
         {
-          type: types.LOGOUT_USER
+          type: types.LOGOUT_USER_REQUEST
         },
         {
-          type: types.LOGOUT_SUCCESS_USER
+          type: types.LOGOUT_USER_SUCCESS
         }
       ];
 
-      store.dispatch(actions.logOut(data))
+      store.dispatch(logOut(data))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
           done();

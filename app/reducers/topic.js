@@ -12,12 +12,12 @@ const topic = (
         count: action.count,
         text: action.text
       };
-    case types.INCREMENT_COUNT:
+    case types.INCREMENT_COUNT_SUCCESS:
       if (state.id === action.id) {
         return { ...state, count: state.count + 1 };
       }
       return state;
-    case types.DECREMENT_COUNT:
+    case types.DECREMENT_COUNT_SUCCESS:
       if (state.id === action.id) {
         return { ...state, count: state.count - 1 };
       }
@@ -39,10 +39,10 @@ const topics = (
       return [...state, topic(undefined, action)];
     case types.CREATE_TOPIC_FAILURE:
       return state.filter((t) => t.id !== action.id);
-    case types.DESTROY_TOPIC:
+    case types.DESTROY_TOPIC_SUCCESS:
       return state.filter((t) => t.id !== action.id);
-    case types.INCREMENT_COUNT:
-    case types.DECREMENT_COUNT:
+    case types.INCREMENT_COUNT_SUCCESS:
+    case types.DECREMENT_COUNT_SUCCESS:
       return state.map((t) => topic(t, action));
     default:
       return state;

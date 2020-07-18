@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { manualLogin, signUp, toggleLoginMode } from '../actions/users';
+import { beginLogin, beginSignUp, toggleLoginMode } from '../actions/users';
 import hourGlassSvg from '../images/hourglass.svg';
 import {
   Alternative,
@@ -19,8 +19,6 @@ const LoginOrRegister = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const dispatchManualLogin = (data) => dispatch(manualLogin(data));
-  const dispatchSignUp = (data) => dispatch(signUp(data));
   const dispatchToggleLoginMode = () => dispatch(toggleLoginMode());
 
   const onChangeEmail = useCallback((event) => {
@@ -35,9 +33,9 @@ const LoginOrRegister = () => {
     event.preventDefault();
 
     if (isLogin) {
-      dispatchManualLogin({ email, password });
+      dispatch(beginLogin({ email, password }));
     } else {
-      dispatchSignUp({ email, password });
+      dispatch(beginSignUp({ email, password }));
     }
   }, [isLogin, email, password]);
 

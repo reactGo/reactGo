@@ -1,12 +1,12 @@
-/* eslint no-unused-vars: 0 */ // since fetch is needed but not used
+/* eslint no-unused-vars: 0 */                // since fetch is needed but not used
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import md5 from 'spark-md5';
 import { polyfill } from 'es6-promise';
 import expect from 'expect';
-import * as actions from '../topics';
 import * as types from '../../types';
 import createVoteServiceStub from '../../tests/helpers/createVoteServiceStub';
+import { createTopic, decrementCount, destroyTopic, incrementCount } from '../../thunks/topics';
 
 polyfill();
 
@@ -43,7 +43,7 @@ describe('Topic Actions', () => {
       ];
 
       const store = mockStore(initialState);
-      store.dispatch(actions.createTopic(topic));
+      store.dispatch(createTopic(topic));
       expect(store.getActions()).toEqual(expectedActions);
       initialState.topic.topics.pop();
     });
@@ -74,7 +74,7 @@ describe('Topic Actions', () => {
             }
           ];
 
-          store.dispatch(actions.createTopic(topic))
+          store.dispatch(createTopic(topic))
             .then(() => {
               expect(store.getActions()).toEqual(expectedActions);
               done();
@@ -102,7 +102,7 @@ describe('Topic Actions', () => {
               type: types.CREATE_TOPIC_DUPLICATE
             }
           ];
-          store.dispatch(actions.createTopic(topic));
+          store.dispatch(createTopic(topic));
           expect(store.getActions()).toEqual(expectedActions);
         });
       });
@@ -131,7 +131,7 @@ describe('Topic Actions', () => {
             }
           ];
 
-          store.dispatch(actions.createTopic(topic))
+          store.dispatch(createTopic(topic))
             .then(() => {
               expect(store.getActions()).toEqual(expectedActions);
               done();
@@ -164,7 +164,7 @@ describe('Topic Actions', () => {
             }
           ];
 
-          store.dispatch(actions.incrementCount(id))
+          store.dispatch(incrementCount(id))
             .then(() => {
               expect(store.getActions()).toEqual(expectedActions);
               done();
@@ -192,7 +192,7 @@ describe('Topic Actions', () => {
             }
           ];
 
-          store.dispatch(actions.incrementCount(id))
+          store.dispatch(incrementCount(id))
             .then(() => {
               expect(store.getActions()).toEqual(expectedActions);
               done();
@@ -224,7 +224,7 @@ describe('Topic Actions', () => {
             }
           ];
 
-          store.dispatch(actions.decrementCount(id))
+          store.dispatch(decrementCount(id))
             .then(() => {
               expect(store.getActions()).toEqual(expectedActions);
               done();
@@ -252,7 +252,7 @@ describe('Topic Actions', () => {
             }
           ];
 
-          store.dispatch(actions.decrementCount(id))
+          store.dispatch(decrementCount(id))
             .then(() => {
               expect(store.getActions()).toEqual(expectedActions);
               done();
@@ -284,7 +284,7 @@ describe('Topic Actions', () => {
             }
           ];
 
-          store.dispatch(actions.destroyTopic(id))
+          store.dispatch(destroyTopic(id))
             .then(() => {
               expect(store.getActions()).toEqual(expectedActions);
               done();
@@ -312,7 +312,7 @@ describe('Topic Actions', () => {
             }
           ];
 
-          store.dispatch(actions.destroyTopic(id))
+          store.dispatch(destroyTopic(id))
             .then(() => {
               expect(store.getActions()).toEqual(expectedActions);
               done();

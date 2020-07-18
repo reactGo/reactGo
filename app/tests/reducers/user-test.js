@@ -26,9 +26,9 @@ isWaiting: true,
 });
   });
 
-  it('should handle LOGIN_SUCCESS_USER', () => {
+  it('should handle LOGIN_USER_REQUEST', () => {
     expect(
-      reducer(undefined, {type: types.LOGIN_SUCCESS_USER})
+      reducer(undefined, {type: types.LOGIN_USER_REQUEST})
     ).toEqual({
  ...initialState,
 isWaiting: false,
@@ -37,10 +37,10 @@ isWaiting: false,
 });
   });
 
-  it('should handle LOGIN_ERROR_USER', () => {
+  it('should handle LOGIN_USER_FAILURE', () => {
     const message = 'Success';
     expect(
-      reducer(undefined, {type: types.LOGIN_ERROR_USER, message})
+      reducer(undefined, {type: types.LOGIN_USER_FAILURE, message})
     ).toEqual({
  ...initialState,
 isWaiting: false,
@@ -49,9 +49,9 @@ isWaiting: false,
 });
   });
 
-  it('should handle SIGNUP_USER', () => {
+  it('should handle SIGNUP_USER_REQUEST', () => {
     expect(
-      reducer(undefined, {type: types.SIGNUP_USER})
+      reducer(undefined, {type: types.SIGNUP_USER_REQUEST})
     ).toEqual({
  ...initialState,
 isWaiting: true,
@@ -59,9 +59,9 @@ isWaiting: true,
 });
   });
 
-  it('should handle SIGNUP_SUCCESS_USER', () => {
+  it('should handle SIGNUP_USER_SUCCESS', () => {
     expect(
-      reducer(undefined, {type: types.SIGNUP_SUCCESS_USER})
+      reducer(undefined, {type: types.SIGNUP_USER_SUCCESS})
     ).toEqual({
  ...initialState,
 isWaiting: false,
@@ -69,10 +69,10 @@ isWaiting: false,
 });
   });
 
-  it('should handle SIGNUP_ERROR_USER', () => {
+  it('should handle SIGNUP_USER_FAILURE', () => {
     const message = 'Oops! Something went wrong!';
     expect(
-      reducer(undefined, {type: types.SIGNUP_ERROR_USER, message})
+      reducer(undefined, {type: types.SIGNUP_USER_FAILURE, message})
     ).toEqual({
  ...initialState,
 isWaiting: false,
@@ -81,9 +81,9 @@ isWaiting: false,
 });
   });
 
-  it('should handle LOGOUT_USER', () => {
+  it('should handle LOGOUT_USER_REQUEST', () => {
     expect(
-      reducer(undefined, {type: types.LOGOUT_USER})
+      reducer(undefined, {type: types.LOGOUT_USER_REQUEST})
     ).toEqual({
  ...initialState,
 isWaiting: true,
@@ -91,9 +91,9 @@ isWaiting: true,
 });
   });
 
-  it('should handle LOGOUT_SUCCESS_USER', () => {
+  it('should handle LOGOUT_USER_SUCCESS', () => {
     expect(
-      reducer(undefined, {type: types.LOGOUT_SUCCESS_USER})
+      reducer(undefined, {type: types.LOGOUT_USER_SUCCESS})
     ).toEqual({
  ...initialState,
 isWaiting: false,
@@ -101,9 +101,9 @@ isWaiting: false,
 });
   });
 
-  it('should handle LOGOUT_ERROR_USER', () => {
+  it('should handle LOGOUT_USER_FAILURE', () => {
     expect(
-      reducer(undefined, {type: types.LOGOUT_ERROR_USER})
+      reducer(undefined, {type: types.LOGOUT_USER_FAILURE})
     ).toEqual({
  ...initialState,
 isWaiting: false,
