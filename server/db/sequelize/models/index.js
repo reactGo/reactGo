@@ -12,9 +12,9 @@ const dbUrl = process.env[config.use_env_variable];
 
 const sequelize = dbUrl ? new Sequelize(dbUrl) : new Sequelize(config.database, config.username, config.password, config);
 
-db.Token = sequelize.import('Token', tokenModel);
-db.Topic = sequelize.import('Topic', topicModel);
-db.User = sequelize.import('User', userModel);
+db.Token = tokenModel(sequelize, Sequelize);
+db.Topic = topicModel(sequelize, Sequelize);
+db.User = userModel(sequelize, Sequelize);
 
 Object.keys(db).forEach((key) => {
   const model = db[key];
