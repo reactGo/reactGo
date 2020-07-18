@@ -16,6 +16,7 @@ DB_TYPE: process.env.DB_TYPE || DB_TYPES.NONE
 Currently, we support these DB_TYPES:
 
 - MONGO
+- MYSQL
 - POSTGRES
 - NONE
 

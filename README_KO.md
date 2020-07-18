@@ -90,95 +90,82 @@ Express의 app.use()가 요청을 받습니다.
 
 ## 알아두어야할 것
 
-#### Database
+#### 데이터베이스
 
-We currently support MongoDB, MySQL and Postgres, as well as the ability to not use any database. [Learn](docs/databases.md) about how to configure your app.
+우리는 현재 몽고DB와 MySQL, 포스트그레SQL을 지원합니다. 아무 데이터베이스를 안 써도 됩니다. 설정하는 방법에 대해 [알아보세요](docs/databases.md).
 
-#### Development
+#### 개발하기
 
-Development is a breeze. Once you have installed all your dependencies all the configuration is done for you. using simple The process is outlined [here](docs/development.md).
+개발은 매우 쉽습니다. Dependencies만 다 설치하면 모든 설정은 알아서 다 됩니다. 전체 프로세스는 [여기](docs/development.md)에 나와 있습니다.
 
-#### Building the application
+#### 앱 빌드하기
 
 ```bash
-# Build the application for development
+# 개발 모드로 빌드하기
 npm run build
 
-# Build the application for production
+# 배포 모드로 빌드하기
 npm run build:dev
 ```
 
-#### Running the application
+#### 애플리케이션 실행하기
 
 ```bash
-# Run in development mode (with hot-reloading)
+# 개발 모드로 실행하기
 npm run dev
 
-# Run in production mode
+# 배포 모드로 실행하기
 npm start
 ```
 
-#### Unit Tests
+#### 유닛 테스트
 
-Testing with:
-- `mocha` as the test framework
-	- We find all the files we need that have a `-test.js` suffix in the `/app` directory.
-- `jsdom` as my test environment
+다음으로 테스트합니다:
+- 테스트 프레임워크로는 `mocha`
+	- `/app` 디렉토리 안에 `-test.js`로 끝나는 모든 파일들이 테스트 대상입니다.
+- 테스트 환경으로는 `jsdom`
 
 ```bash
-# Run test once
+# 한 번만 실행하기
 npm test
 
-# Run in watch mode
+# watch 모드로 실행하기
 npm test:watch
 ```
 
-We have unit tests for async (redux) actions, reducers, and stateless components with [enzyme](http://airbnb.io/enzyme).
+우리는 비동기 (리덕스) 액션들과, 리듀서, 상태가 없는 컴포넌트에 대한 유닛 테스트를 [enzyme](http://airbnb.io/enzyme) 으로 작성해두었습니다.
 
-#### Deployment
+#### 배포
 
-Currently we support [Heroku](docs/deployment/Heroku.md) and [Digital Ocean](docs/deployment/DigitalOcean.md) and [AWS](docs/deployment/aws.md)
+우리는 [Heroku](docs/deployment/Heroku.md)와 [Digital Ocean](docs/deployment/DigitalOcean.md)와 [AWS](docs/deployment/aws.md)를 지원합니다.
 
-#### Roadmap
-We have an outline of our roadmap [here](https://github.com/reactGo/reactGo/blob/master/Roadmap.md)
-
-## Yeoman Generator
-If you like using yeoman generators, you could check out [this](https://github.com/iiegor/generator-react-webpack-node) cool yeoman generator by @iiegor!
+#### 로드맵
+우리의 로드맵은 [여기](https://github.com/reactGo/reactGo/blob/master/Roadmap.md) 있습니다.
 
 ## FAQ
 
-We have assembled an FAQ [here](/docs/FAQ.md)
+자주 물어보는 질문들을 [여기에](/docs/FAQ.md) 모아놨습니다.
 
-## Check out what people have done
+## reactGo로 만들어진 앱들
 
-We have a [list](/docs/apps.md) of projects that have been created with this boilerplate. Check
-them out to see what can be done or to get some inspiration.
+우리는 이 보일러플레이트를 사용해 만든 프로젝트들의 [리스트](/docs/apps.md) 를 갖고 있습니다. 이걸로 뭘 할 수 있는지 알아보거나 영감을 얻고 싶다면 눌러보세요.
 
-## How to Contribute:
+## 기여하는 방법:
 
-Best way to keep up to date is check the [issues](https://github.com/choonkending/react-webpack-node/issues). I really welcome improvements for **all aspects** of an app.
+최신 진행 사항을 파악하려면 [이슈](https://github.com/choonkending/react-webpack-node/issues) 들을 체크해보는 게 제일 좋습니다. 앱에 대해 **어떤 점이든 상관없이** 개선 사항이 있다면 환영합니다.
 
-1. Any suggestions/improvements/bugs can be in the form of Pull Requests, or creating an issue.
-2. Coding guidelines:
- - [Airbnb's Style Guide](https://github.com/airbnb/javascript)
- - [bendc's frontend guidelines](https://github.com/bendc/frontend-guidelines)
+1. 어떠한 제안/개선사항/버그 제보도 괜찮으니 풀리퀘스트나 이슈로 알려주세요.
+2. 코딩 가이드라인:
+ - [Airbnb 스타일 가이드](https://github.com/airbnb/javascript)
+ - [bendc의 프런트엔드 가이드라인](https://github.com/bendc/frontend-guidelines)
 
+**이스터에그** :egg:
 
-Credits to [webpack-server-side-example](https://github.com/webpack/react-webpack-server-side-example), [example-app](https://github.com/webpack/example-app), [flux-examples](https://github.com/facebook/flux/tree/master/examples), [node-express-mongo-demo](https://github.com/madhums/node-express-mongoose-demo), [hackathon-starter](https://github.com/sahat/hackathon-starter/), [web-starter-kit](https://github.com/google/web-starter-kit), [awesome material-ui](https://github.com/callemall/material-ui), [alt and iso](https://github.com/goatslacker/iso/tree/master/examples/react-router-flux), [react-starter](https://github.com/webpack/react-starter), [reap](https://github.com/choonkending/reap), [isomorphic-redux-app](https://github.com/caljrimmer/isomorphic-redux-app) and [mxstbr/react-boilerplate](https://github.com/mxstbr/react-boilerplate/blob/master/README.md)
-
-**Easter Eggs** :egg:
-
-This boilerplate has gone through an evolution
+이 보일러플레이트는 다음과 같은 진화 과정을 거쳤습니다.
 ```
-React.js -> Facebook Flux -> Alt -> Redux
+React.js -> Facebook Flux -> Alt -> Redux(thunk -> saga) -> MobX(mobx 브랜치에 있음)
 ```
 
-We have two implementations of universal flux:
-- **Redux** is on our active **master** branch
-- [**Alt**](https://github.com/goatslacker/alt) (previously implemented) on [flux/alt](https://github.com/choonkending/react-webpack-node/tree/flux/alt) branch. It features [iso](https://github.com/goatslacker/iso), react-router and ImmutableJS.
-
-> Note: If you have previously used an alt implementation of this repository, please refer to this branch. I will not be updating it as frequently as master, but definitely welcome suggestions!
-
-License
+라이선스
 ===============
 MIT
