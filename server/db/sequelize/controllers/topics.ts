@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import _ from 'lodash';
-import { Models, sequelize } from '../models';
+import Sequelize from 'sequelize';
+
+import { Models } from '../models';
 
 const {Topic} = Models;
 
@@ -31,7 +33,7 @@ export function add(req: Request, res: Response) {
 /**
  * Update a topic
  */
-export function update(req: Request, res) {
+export function update(req: Request, res: Response) {
   const query = { id: req.params.id };
   const {isIncrement} = req.body;
   const {isFull} = req.body;
@@ -48,7 +50,7 @@ export function update(req: Request, res) {
   } else {
     const sign = isIncrement ? '+' : '-';
     Topic.update({
-      count: sequelize.literal(`count${sign}1`)
+      count: Sequelize.literal(`count${sign}1`)
     }, { where: query }).then(() => {
       res.status(200).send('Updated successfully');
     }).catch((err) => {
@@ -62,7 +64,7 @@ export function update(req: Request, res) {
 /**
  * Remove a topic
  */
-export function remove(req, res) {
+export function remove(req: Request, res: Response) {
   Topic.destroy({ where: { id: req.params.id } }).then(() => {
     res.status(200).send('Removed Successfully');
   }).catch((err) => {

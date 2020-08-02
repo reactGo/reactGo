@@ -1,6 +1,7 @@
 /**
  * Routes for express app
  */
+import { Application } from 'express';
 import passport from 'passport';
 import unsupportedMessage from '../db/unsupportedMessage';
 import { controllers, passport as passportConfig } from '../db';
@@ -8,7 +9,7 @@ import { controllers, passport as passportConfig } from '../db';
 const usersController = controllers && controllers.users;
 const topicsController = controllers && controllers.topics;
 
-export default (app) => {
+export default (app: Application) => {
   // user routes
   if (usersController) {
     app.post('/sessions', usersController.login);

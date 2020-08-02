@@ -39,11 +39,16 @@
     "no-underscore-dangle": 0,
     "no-plusplus": 0,
     "prefer-promise-reject-errors": 0,
-    "jsx-a11y/no-autofocus": 0
+    "jsx-a11y/no-autofocus": 0,
+    "object-curly-newline": 0,
+    "@typescript-eslint/no-unused-vars": [2, {
+      "args": "none"
+    }]
   },
   "plugins": [
     "react",
-    "jsx-a11y"
+    "jsx-a11y",
+    "@typescript-eslint"
   ],
   "globals": {
     "__DEVSERVER__": true,

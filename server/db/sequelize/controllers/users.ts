@@ -1,12 +1,11 @@
+import { NextFunction, Request, Response } from 'express';
 import passport from 'passport';
-import { Models } from '../models';
-
-const {User} = Models;
+import User from '../models/users';
 
 /**
  * POST /login
  */
-export function login(req, res, next) {
+export function login(req: Request, res: Response, next: NextFunction) {
   // Do email and password validation for the server
   passport.authenticate('local', (authErr, user, info) => {
     if (authErr) return next(authErr);
@@ -28,7 +27,7 @@ export function login(req, res, next) {
 /**
  * POST /logout
  */
-export function logout(req, res) {
+export function logout(req: Request, res: Response) {
   req.logout();
   res.sendStatus(200);
 }
@@ -37,28 +36,28 @@ export function logout(req, res) {
  * POST /signup
  * Create a new local account
  */
-export function signUp(req, res, next) {
-  User.findOne({ where: { email: req.body.email } }).then((existingUser) => {
+export async function signUp(req: Request, res: Response, next: NextFunction) {
+  try {
+    const existingUser = await User.findOne({ where: { email: req.body.email } });
     if (existingUser) {
       return res.sendStatus(409);
     }
-
-    const user = User.build({
+    const user = await User.create({
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
     });
-
-    return user.save().then(() => {
-      req.logIn(user, (err) => {
-        if (err) return res.sendStatus(401);
-        return res.sendStatus(200);
-      });
+    return req.logIn(user, (err) => {
+      if (err) return res.sendStatus(401);
+      return res.sendStatus(200);
     });
-  }).catch((err) => next(err));
+  } catch (error) {
+    console.error(error);
+    return next(error);
+  }
 }
 
 export default {
   login,
   logout,
-  signUp
+  signUp,
 };

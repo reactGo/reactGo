@@ -1,8 +1,8 @@
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const PATHS = require('../paths');
+import path from 'path';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import PATHS from '../paths';
 
-module.exports = ({ production = false, browser = false } = {}) => {
+export default ({ production = false, browser = false } = {}) => {
   /*
    * modules: boolean - Enable/Disable CSS Modules
    * importLoaders: number - Number of loaders applied before CSS loader
@@ -22,7 +22,7 @@ module.exports = ({ production = false, browser = false } = {}) => {
    */
   const localIdentName = '[name]__[local]___[hash:base64:5]';
 
-  const createCssLoaders = embedCssInBundle => ([
+  const createCssLoaders = (embedCssInBundle: boolean) => ([
     {
       loader: 'css-loader',
       options: {
@@ -36,7 +36,7 @@ module.exports = ({ production = false, browser = false } = {}) => {
     },
   ]);
 
-  const createBrowserLoaders = extractCssToFile => loaders => {
+  const createBrowserLoaders = (extractCssToFile: boolean) => (loaders: any[]) => {
     if (extractCssToFile) {
       return [ MiniCssExtractPlugin.loader, ...loaders];
     }

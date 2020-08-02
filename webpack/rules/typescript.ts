@@ -1,6 +1,6 @@
-const PATHS = require('../paths');
+import PATHS from '../paths';
 
-module.exports = ({ production = false } = {}) => {
+export default ({ production = false } = {}) => {
   return {
     test: /\.[tj]sx?$/,
     loader: 'babel-loader',

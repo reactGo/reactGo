@@ -1,8 +1,9 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import express from 'express';
-import webpack from 'webpack';
+import webpack, { Configuration } from 'webpack';
 
+import webpackConfig from '../webpack/webpack.config';
 import { isDebug } from '../config/app';
 import { connect } from './db';
 import initPassport from './init/passport';
@@ -30,10 +31,9 @@ if (isDebug) {
   const webpackDevMiddleware = require('webpack-dev-middleware');
   // eslint-disable-next-line import/no-extraneous-dependencies
   const webpackHotMiddleware = require('webpack-hot-middleware');
-  const webpackConfig = require('../webpack/webpack.config');
-  const devBrowserConfig = webpackConfig({ browser: true });
+  const devBrowserConfig = webpackConfig({ browser: true }) as Configuration;
   const compiler = webpack(devBrowserConfig);
-  app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: devBrowserConfig.output.publicPath }));
+  app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: devBrowserConfig.output!.publicPath }));
   app.use(webpackHotMiddleware(compiler));
 }
 

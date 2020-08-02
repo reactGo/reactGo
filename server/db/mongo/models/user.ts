@@ -22,7 +22,8 @@ interface UserDocument extends Document {
     picture: string,
   }
   password: string;
-  tokens: string[];
+  google: string;
+  tokens: Array<{ kind: string, accessToken: string }>;
   resetPasswordToken: string;
   resetPasswordExpires: Date;
   comparePassword: (candidatePassword: string, cb: (error: Error | null, data?: any) => void) => void;

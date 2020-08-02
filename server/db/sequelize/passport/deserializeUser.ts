@@ -1,8 +1,6 @@
-import { Models } from '../models';
+import User from '../models/users';
 
-const {User} = Models;
-
-export default (id, done) => {
+export default (id: number, done: (error: any, user?: User | null) => void) => {
   User.findByPk(id).then((user) => {
     done(null, user);
   }).catch(done);

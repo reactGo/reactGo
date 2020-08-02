@@ -12,6 +12,7 @@ import {
   LoginWrapper, Message,
 } from '../css/components/login';
 import { RootState } from '../reducers';
+
 const hourGlassSvg = require('../images/hourglass.svg');
 
 const LoginOrRegister = () => {
@@ -99,7 +100,7 @@ const LoginOrRegister = () => {
               <div>Hint</div>
               <div>email: example@ninja.com password: ninja</div>
             </Hint>
-            <Message show={message && message.length > 0|| false}>
+            <Message show={message ? message.length > 0 : false}>
               {message}
             </Message>
             <Button

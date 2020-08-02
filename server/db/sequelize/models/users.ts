@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt-nodejs';
-import { Model, Sequelize, DataTypes } from 'sequelize';
+import { Model, Sequelize, DataTypes, Transaction } from 'sequelize';
 import { dbType } from './index';
 
 // Other oauthtypes to be added
@@ -30,6 +30,10 @@ class User extends Model {
   public website?: string;
 
   public picture?: string;
+
+  public google?: string;
+
+  public setTokens!: (option: { kind: string, accessToken: string }, sequelizeOption: { transaction: Transaction }) => Promise<any>
 
   static initWithSequelize(sequelize: Sequelize) {
     User.init({
@@ -89,8 +93,20 @@ class User extends Model {
     });
   }
 
-  comparePassword(this: User, candidatePassword: string) {
-    return bcrypt.compare(candidatePassword, this.password, () => {});
+  async createToken(option: { kind: string, accessToken: string }, sequelizeOption: { transaction: Transaction }) {
+    return this.setTokens(option, sequelizeOption);
+  }
+
+  comparePassword(this: User, candidatePassword: string): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      bcrypt.compare(candidatePassword, this.password, (error, result) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(result);
+        }
+      });
+    });
   }
 
   toJSON(this: User): any {
