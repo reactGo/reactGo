@@ -24,6 +24,9 @@
       "name": "Zero Cho"
     }
   ],
+  "bin": {
+    "reactgo": "./cli.js"
+  },
   "license": "MIT",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.7.1",
@@ -68,7 +71,7 @@
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "@hot-loader/react-dom": "^16.13.0",
-    "@types/bcrypt-nodejs": "0.0.31",
+    "@types/bcryptjs": "^2.4.2",
     "@types/compression": "^1.7.0",
     "@types/connect-pg-simple": "^4.2.0",
     "@types/cookie-parser": "^1.4.2",
@@ -98,6 +101,7 @@
     "@types/react-router-dom": "^5.1.5",
     "@types/redux-logger": "^3.0.8",
     "@types/serialize-javascript": "^4.0.0",
+    "@types/shelljs": "^0.8.8",
     "@types/spark-md5": "^3.0.2",
     "@types/uglifyjs-webpack-plugin": "^1.1.0",
     "@types/validator": "^13.1.0",
@@ -106,9 +110,10 @@
     "autoprefixer": "^9.8.6",
     "axios": "^0.19.2",
     "babel-loader": "^8.1.0",
-    "bcrypt-nodejs": "0.0.3",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "classnames": "^2.2.3",
+    "commander": "^6.0.0",
     "compression": "^1.7.4",
     "connect-mongo": "^3.2.0",
     "connect-pg-simple": "^6.1.0",
@@ -124,6 +129,7 @@
     "express-session": "^1.17.1",
     "helmet": "^3.23.3",
     "history": "^4.10.1",
+    "inquirer": "^7.3.3",
     "lodash": "^4.17.15",
     "method-override": "^3.0.0",
     "mongoose": "^5.9.27",
@@ -155,6 +161,7 @@
     "sequelize": "^6.3.4",
     "sequelize-cli": "^6.2.0",
     "serialize-javascript": "^4.0.0",
+    "shelljs": "^0.8.4",
     "spark-md5": "^3.0.1",
     "typescript": "^3.9.6",
     "webpack": "^4.44.1",

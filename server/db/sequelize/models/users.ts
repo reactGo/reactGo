@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt-nodejs';
+import bcrypt from 'bcryptjs';
 import { Model, Sequelize, DataTypes, Transaction } from 'sequelize';
 import { dbType } from './index';
 
@@ -8,7 +8,7 @@ import { dbType } from './index';
 function hashPassword(user: User) {
   if (!user.changed('password')) return undefined;
   return bcrypt.genSalt(5, (saltError, salt) => {
-    bcrypt.hash(user.password, salt, null, (hashError, hash) => {
+    bcrypt.hash(user.password, salt, (hashError, hash) => {
       user.password = hash;
     });
   });
