@@ -5,7 +5,7 @@
   "repository": "https://github.com/reactGo/reactGo",
   "main": "compiled/server.js",
   "scripts": {
-    "prepublish": "tsc",
+    "prepublishOnly": "tsc",
     "sequelize": "sequelize",
     "lint": "eslint --ext .js,.jsx app server",
     "lint:fix": "eslint --ext .js,.jsx app server --fix",
