@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux';
+import { AnyAction, combineReducers } from 'redux';
 import * as types from '../types';
 
 const isLogin = (
   state = true,
-  action
+  action: AnyAction
 ) => {
   switch (action.type) {
     case types.TOGGLE_LOGIN_MODE:
@@ -15,7 +15,7 @@ const isLogin = (
 
 const message = (
   state = '',
-  action
+  action: AnyAction
 ) => {
   switch (action.type) {
     case types.TOGGLE_LOGIN_MODE:
@@ -34,7 +34,7 @@ const message = (
 
 const isWaiting = (
   state = false,
-  action
+  action: AnyAction
 ) => {
   switch (action.type) {
     case types.LOGIN_USER_REQUEST:
@@ -54,7 +54,7 @@ const isWaiting = (
 
 const authenticated = (
   state = false,
-  action
+  action: AnyAction
 ) => {
   switch (action.type) {
     case types.LOGIN_USER_REQUEST:

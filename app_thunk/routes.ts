@@ -1,3 +1,4 @@
+import React from 'react';
 import { RouteConfig } from 'react-router-config';
 import { Store } from 'redux';
 import {ThunkDispatch} from 'redux-thunk';

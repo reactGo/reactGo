@@ -1,10 +1,6 @@
 import axios from 'axios';
+import { Topic } from '../reducers/topic';
 
-interface Topic {
-  id: string;
-  text: string;
-  count: number;
-}
 export default () => {
   return {
     getTopics: () => axios.get('/topic'),

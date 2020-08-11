@@ -1,5 +1,6 @@
 import { all, call, fork, put, takeLatest, select } from 'redux-saga/effects';
 import md5 from 'spark-md5';
+import { Topic } from '../reducers/topic';
 
 import { voteService } from '../services';
 import {
@@ -61,7 +62,7 @@ function* createTopic({ text }) {
 
     // Conditional dispatch
     // If the topic already exists, make sure we emit a dispatch event
-    if (topic.topics.filter((topicItem) => topicItem.id === id).length > 0) {
+    if (topic.topics.filter((topicItem: Topic) => topicItem.id === id).length > 0) {
       // Currently there is no reducer that changes state for this
       // For production you would ideally have a message reducer that
       // notifies the user of a duplicate topic

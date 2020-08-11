@@ -23,7 +23,7 @@ const About = () => {
           Want to contribute? Help us out!
           If you think the code on &nbsp;
           <a target="_blank" rel="noopener noreferrer" href="https://github.com/choonkending/react-webpack-node">this repo</a>
-        &nbsp;could be improved, please create an issue&nbsp;
+          &nbsp;could be improved, please create an issue&nbsp;
           <a target="_blank" rel="noopener noreferrer" href="https://github.com/choonkending/react-webpack-node/issues">here</a>
           !
         </p>

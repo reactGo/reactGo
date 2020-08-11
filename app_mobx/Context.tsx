@@ -1,14 +1,19 @@
+import { FC } from 'react';
 import * as React from 'react';
-import createStore from './store';
+import createStore, { Store } from './store';
 
 // Grab the state from a global injected into
 // server-generated HTML
 export const store = createStore(typeof window !== 'undefined' ? window.__INITIAL_STATE__ : {});
 export const storeContext = React.createContext(store);
 
-export default (store) => ({ children }) => {
+interface Props {
+  children: React.ReactChildren;
+}
+
+export default (paramStore: Store): FC<Props> => ({ children }) => {
   return (
-    <storeContext.Provider value={store}>
+    <storeContext.Provider value={paramStore}>
       {children}
     </storeContext.Provider>
   );

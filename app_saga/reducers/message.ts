@@ -1,3 +1,4 @@
+import { AnyAction } from 'redux';
 import * as types from '../types';
 
 /*
@@ -9,7 +10,7 @@ import * as types from '../types';
 export default function message(state = {
   message: '',
   type: 'SUCCESS'
-}, action = {}) {
+}, action: AnyAction) {
   switch (action.type) {
     case types.LOGIN_USER_REQUEST:
     case types.SIGNUP_USER_SUCCESS:

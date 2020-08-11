@@ -2,16 +2,33 @@ import { observable, action } from 'mobx';
 import md5 from 'spark-md5';
 import { voteService } from '../services';
 
-export default (initalState) => {
-  const topicStore = observable({
+export interface Topic {
+  id: string,
+  count: number,
+  text: string,
+}
+
+export interface TopicStore {
+  topics: Topic[],
+  newTopic: string,
+  typing(text: string): void,
+  createTopic(text: string): void,
+  getTopics(): void,
+  incrementCount(id: string): void,
+  decrementCount(id: string): void,
+  destroyTopic(id: string): void,
+}
+
+export default (initalState: TopicStore): TopicStore => {
+  const topicStore: TopicStore = observable({
+    ...initalState,
     topics: [],
     newTopic: '',
-    ...initalState,
-    typing: action((text) => {
+    typing: action((text: string) => {
       topicStore.newTopic = text;
     }),
-    createTopic(text) {
-      if (text.trim().length <= 0) return;
+    createTopic(text: string) {
+      if (text.trim().length <= 0) return false;
       const id = md5.hash(text);
       const data = {
         count: 1,
@@ -19,7 +36,7 @@ export default (initalState) => {
         text
       };
       if (topicStore.topics.filter((topicItem) => topicItem.id === id).length > 0) {
-        return;
+        return false;
       }
       topicStore.newTopic = '';
       return voteService().createTopic({ id, data })
@@ -54,7 +71,9 @@ export default (initalState) => {
       })
         .then(() => {
           const topic = topicStore.topics.find((v) => v.id === id);
-          topic.count += 1;
+          if (topic) {
+            topic.count += 1;
+          }
         })
         .catch((error) => {
           console.error(error);
@@ -71,7 +90,9 @@ export default (initalState) => {
       })
         .then(() => {
           const topic = topicStore.topics.find((v) => v.id === id);
-          topic.count -= 1;
+          if (topic) {
+            topic.count -= 1;
+          }
         })
         .catch((error) => {
           console.error(error);

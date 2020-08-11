@@ -1,9 +1,7 @@
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createBrowserHistory } from 'history';
+import { createBrowserHistory, Location } from 'history';
 import { ConnectedRouter } from 'connected-react-router';
 import { matchRoutes } from 'react-router-config';
 import { Route } from 'react-router';
@@ -19,16 +17,23 @@ const initialState = window.__INITIAL_STATE__;
 const history = createBrowserHistory();
 const store = configureStore(initialState, history);
 
+interface Props {
+  location: Location;
+}
+interface State {
+  previousLocation: Location | null;
+  currentLocation: Location;
+}
 /**
  * Callback function handling frontend route changes.
  */
-class PendingNavDataLoader extends Component {
+class PendingNavDataLoader extends Component<Props, State> {
   state = {
     previousLocation: null,
     currentLocation: this.props.location,
   };
 
-  static getDerivedStateFromProps(props, state) {
+  static getDerivedStateFromProps(props: Props, state: State) {
     const currentLocation = props.location;
     const previousLocation = state.currentLocation;
 
@@ -44,12 +49,13 @@ class PendingNavDataLoader extends Component {
     return null;
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: Props) {
     const navigated = prevProps.location !== this.props.location;
 
     if (navigated) {
+      console.log('matchRoutes', this.props.location);
       // load data while the old screen remains
-      const branch = matchRoutes(routes, this.props.location);
+      const branch = matchRoutes(routes, this.props.location as any);
       console.log('branch', branch);
       this.setState({
         previousLocation: null,
@@ -72,7 +78,7 @@ class PendingNavDataLoader extends Component {
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <PendingNavDataLoader routes={routes}>
+      <PendingNavDataLoader location={history.location}>
         <App />
       </PendingNavDataLoader>
     </ConnectedRouter>

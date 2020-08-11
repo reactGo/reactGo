@@ -2,17 +2,28 @@ import { observable } from 'mobx';
 import { authService } from '../services';
 import { store } from '../Context';
 
-export default (initalState) => {
-  const userStore = observable({
+export interface UserStore {
+  isLogin: boolean,
+  isWaiting: boolean,
+  authenticated: boolean,
+  message: string,
+  toggleLoginMode(): void,
+  manualLogin(data: { email: string, password: string }): void,
+  signUp(data: { email: string, password: string }): void,
+  logOut(): void,
+}
+
+export default (initalState: UserStore): UserStore => {
+  const userStore: UserStore = observable({
+    ...initalState,
     isLogin: true,
     isWaiting: false,
     authenticated: false,
     message: '',
-    ...initalState,
     toggleLoginMode() {
       userStore.isLogin = !userStore.isLogin;
     },
-    manualLogin(data) {
+    manualLogin(data: { email: string, password: string }) {
       userStore.isWaiting = true;
       return authService().login(data)
         .then(() => {
@@ -30,7 +41,7 @@ export default (initalState) => {
           userStore.isWaiting = false;
         });
     },
-    signUp(data) {
+    signUp(data: { email: string, password: string }) {
       userStore.isWaiting = true;
       return authService().signUp(data)
         .then(() => {

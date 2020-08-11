@@ -27,14 +27,5 @@ export default function configureStore(initialState: any, history: History) {
     store = createStore(createRootReducer(history), initialState, compose(applyMiddleware(...middleware), (f: any) => f));
   }
 
-  if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
-    module.hot.accept('reducers', () => {
-      const nextReducer = require('../reducers');
-
-      store.replaceReducer(nextReducer);
-    });
-  }
-
   return store;
 }

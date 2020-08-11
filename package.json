@@ -5,7 +5,7 @@
   "repository": "https://github.com/reactGo/reactGo",
   "main": "compiled/server.js",
   "scripts": {
-    "prepublishOnly": "tsc",
+    "prepublishOnly": "tsc cli.ts --resolveJsonModule",
     "sequelize": "sequelize",
     "lint": "eslint --ext .js,.jsx app server",
     "lint:fix": "eslint --ext .js,.jsx app server --fix",
@@ -132,6 +132,9 @@
     "inquirer": "^7.3.3",
     "lodash": "^4.17.15",
     "method-override": "^3.0.0",
+    "mobx": "^5.15.5",
+    "mobx-react": "^6.2.5",
+    "mobx-react-router": "^4.1.0",
     "mongoose": "^5.9.27",
     "morgan": "^1.10.0",
     "mysql2": "^2.1.0",
