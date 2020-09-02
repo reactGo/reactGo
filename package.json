@@ -19,8 +19,12 @@
   },
   "author": "Choon Ken Ding",
   "contributors": [
-    { "name": "Zero Cho" },
-    { "name": "Heroyooi" }
+    {
+      "name": "Zero Cho"
+    },
+    {
+      "name": "Heroyooi"
+    }
   ],
   "license": "MIT",
   "devDependencies": {
