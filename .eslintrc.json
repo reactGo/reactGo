@@ -15,6 +15,7 @@
     }
   },
   "rules": {
+    "no-param-reassign": 0,
     "comma-dangle": 0,
     "indent": 0,
     "react/prop-types": 0,
