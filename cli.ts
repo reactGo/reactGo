@@ -40,10 +40,12 @@ let removeTargetModules: string[] = [];
 const mobxSpecificModules = ['mobx', 'mobx-react', 'mobx-react-router'];
 const reduxSpecificModules = ['redux', 'redux-logger', '@types/redux-logger', 'redux-devtools-extension'];
 const thunkSpecificModules = ['redux-thunk'];
+const toolkitSpecificModules = ['@reduxjs/toolkit'];
 const sagaSpecificModules = ['redux-saga'];
 const mongoSpecificModules = ['@types/mongodb', 'mongoose', '@types/mongoose', 'connect-mongo'];
-const pgSpecificModules = ['sequelize', 'sequelize-cli', '@types/pg', 'pg', 'pg-hstore', 'connect-pg-simple', '@types/connect-pg-simple'];
-const mysqlSpecificModules = ['sequelize', 'sequelize-cli', '@types/pg', 'mysql2', 'pg-hstore', 'express-mysql-session', '@types/express-mysql-session'];
+const sequelizeSpecificModules = ['sequelize', 'sequelize-cli'];
+const pgSpecificModules = ['@types/pg', 'pg', 'pg-hstore', 'connect-pg-simple', '@types/connect-pg-simple'];
+const mysqlSpecificModules = ['mysql2', 'express-mysql-session', '@types/express-mysql-session'];
 
 program
   .version(version)
@@ -62,22 +64,26 @@ if (program.dev) {
       name: 'front',
       message: 'Choose state management framework you want to use.',
       type: 'list',
-      choices: ['redux + thunk', 'redux + saga', 'mobx'],
+      choices: ['redux toolkit', 'redux + thunk', 'redux + saga', 'mobx'],
     }])
     .then((answers) => {
       let front;
       switch (answers.front) {
+        case 'redux toolkit':
+          front = 'app_toolkit';
+          removeTargetModules = removeTargetModules.concat(sagaSpecificModules).concat(mobxSpecificModules).concat(thunkSpecificModules);
+          break;
         case 'redux + saga':
           front = 'app_saga';
-          removeTargetModules = removeTargetModules.concat(mobxSpecificModules).concat(thunkSpecificModules);
+          removeTargetModules = removeTargetModules.concat(toolkitSpecificModules).concat(mobxSpecificModules).concat(thunkSpecificModules);
           break;
         case 'mobx':
           front = 'app_mobx';
-          removeTargetModules = removeTargetModules.concat(reduxSpecificModules).concat(sagaSpecificModules).concat(thunkSpecificModules);
+          removeTargetModules = removeTargetModules.concat(toolkitSpecificModules).concat(reduxSpecificModules).concat(sagaSpecificModules).concat(thunkSpecificModules);
           break;
         default: // thunk
           front = 'app_thunk';
-          removeTargetModules = removeTargetModules.concat(mobxSpecificModules).concat(sagaSpecificModules);
+          removeTargetModules = removeTargetModules.concat(toolkitSpecificModules).concat(mobxSpecificModules).concat(sagaSpecificModules);
           break;
       }
       let db;
@@ -92,11 +98,11 @@ if (program.dev) {
           break;
         case 'none':
           db = 'server_none';
-          removeTargetModules = removeTargetModules.concat(pgSpecificModules).concat(mongoSpecificModules).concat(mysqlSpecificModules);
+          removeTargetModules = removeTargetModules.concat(sequelizeSpecificModules).concat(pgSpecificModules).concat(mongoSpecificModules).concat(mysqlSpecificModules);
           break;
         default: // mongo
           db = 'server_mongo';
-          removeTargetModules = removeTargetModules.concat(pgSpecificModules).concat(mysqlSpecificModules);
+          removeTargetModules = removeTargetModules.concat(sequelizeSpecificModules).concat(pgSpecificModules).concat(mysqlSpecificModules);
           break;
       }
       let exists = fs.existsSync(path.join(__dirname, 'server'));
@@ -125,7 +131,7 @@ if (program.dev) {
       name: 'front',
       message: 'Choose state management framework you want to use.',
       type: 'list',
-      choices: ['redux + thunk', 'redux + saga', 'mobx'],
+      choices: ['redux toolkit', 'redux + thunk', 'redux + saga', 'mobx'],
     }])
     .then((answers) => {
       console.log(answers);
@@ -133,17 +139,21 @@ if (program.dev) {
       console.log(process.cwd());
       let front;
       switch (answers.front) {
+        case 'redux toolkit':
+          front = 'app_toolkit';
+          removeTargetModules = removeTargetModules.concat(sagaSpecificModules).concat(mobxSpecificModules).concat(thunkSpecificModules);
+          break;
         case 'redux + saga':
           front = 'app_saga';
-          removeTargetModules = removeTargetModules.concat(mobxSpecificModules).concat(thunkSpecificModules);
+          removeTargetModules = removeTargetModules.concat(toolkitSpecificModules).concat(mobxSpecificModules).concat(thunkSpecificModules);
           break;
         case 'mobx':
           front = 'app_mobx';
-          removeTargetModules = removeTargetModules.concat(reduxSpecificModules).concat(sagaSpecificModules).concat(thunkSpecificModules);
+          removeTargetModules = removeTargetModules.concat(toolkitSpecificModules).concat(reduxSpecificModules).concat(sagaSpecificModules).concat(thunkSpecificModules);
           break;
         default: // thunk
           front = 'app_thunk';
-          removeTargetModules = removeTargetModules.concat(mobxSpecificModules).concat(sagaSpecificModules);
+          removeTargetModules = removeTargetModules.concat(toolkitSpecificModules).concat(mobxSpecificModules).concat(sagaSpecificModules);
           break;
       }
       let db;
@@ -158,11 +168,11 @@ if (program.dev) {
           break;
         case 'none':
           db = 'server_none';
-          removeTargetModules = removeTargetModules.concat(pgSpecificModules).concat(mongoSpecificModules).concat(mysqlSpecificModules);
+          removeTargetModules = removeTargetModules.concat(sequelizeSpecificModules).concat(pgSpecificModules).concat(mongoSpecificModules).concat(mysqlSpecificModules);
           break;
         default: // mongo
           db = 'server_mongo';
-          removeTargetModules = removeTargetModules.concat(pgSpecificModules).concat(mysqlSpecificModules);
+          removeTargetModules = removeTargetModules.concat(sequelizeSpecificModules).concat(pgSpecificModules).concat(mysqlSpecificModules);
           break;
       }
       copyRecursiveSync(path.join(__dirname, db), path.join(process.cwd(), 'server'));
