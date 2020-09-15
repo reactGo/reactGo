@@ -1,4 +1,5 @@
 import express, { Application } from 'express';
+import hpp from 'hpp';
 import passport from 'passport';
 import session from 'express-session';
 import bodyParser from 'body-parser';
@@ -21,7 +22,8 @@ export default (app: Application) => {
   if (ENV === 'production') {
     app.use(gzip());
     // Secure your Express apps by setting various HTTP headers. Documentation: https://github.com/helmetjs/helmet
-    app.use(helmet());
+    app.use(helmet({ contentSecurityPolicy: false }));
+    app.use(hpp());
     app.use(morgan('combined'));
   } else {
     app.use(morgan('dev'));
