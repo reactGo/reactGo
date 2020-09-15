@@ -5,9 +5,9 @@ import { voteService } from '../services';
 
 interface Topic { id: string, count: number, text: string }
 
-const createTopic = createAsyncThunk(
+const createTopic = createAsyncThunk<any, string>(
   'topics/createTopic',
-  async ({ text }, { rejectWithValue }) => {
+  async (text, { rejectWithValue }) => {
     try {
       const id = md5.hash(text);
       // Redux thunk's middleware receives the store methods `dispatch`
@@ -53,7 +53,7 @@ const getTopics = createAsyncThunk(
   }
 );
 
-const incrementCount = createAsyncThunk(
+const incrementCount = createAsyncThunk<any, string>(
   'topics/incrementCount',
   async ({ id }, { rejectWithValue }) => {
     try {
@@ -71,7 +71,7 @@ const incrementCount = createAsyncThunk(
   }
 );
 
-const decrementCount = createAsyncThunk(
+const decrementCount = createAsyncThunk<any, string>(
   'topics/decrementCount',
   async ({ id }, { rejectWithValue }) => {
     try {
@@ -89,7 +89,7 @@ const decrementCount = createAsyncThunk(
   }
 );
 
-const destroyTopic = createAsyncThunk(
+const destroyTopic = createAsyncThunk<any, string>(
   'topics/destroyTopic',
   async ({ id }, { rejectWithValue }) => {
     try {
@@ -101,4 +101,5 @@ const destroyTopic = createAsyncThunk(
   }
 );
 
+export { createTopic, getTopics, incrementCount, decrementCount, destroyTopic };
 export default { createTopic, getTopics, incrementCount, decrementCount, destroyTopic };

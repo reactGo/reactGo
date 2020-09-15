@@ -9,8 +9,8 @@ import message from './message';
 // Combine reducers with connectRouter which keeps track of router state
 const createRootReducer = (history: History) => combineReducers({
   topic,
-  user,
-  message,
+  user: user.reducer,
+  message: message.reducer,
   router: connectRouter(history),
 });
 

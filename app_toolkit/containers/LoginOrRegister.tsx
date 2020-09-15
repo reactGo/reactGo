@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { logIn, signUp, toggleLoginMode } from '../actions/users';
+import { logIn, signUp } from '../actions/users';
 import {
   Alternative,
   AlternativeLink, Button,
@@ -12,6 +12,7 @@ import {
   LoginWrapper, Message,
 } from '../css/components/login';
 import { RootState } from '../reducers';
+import userSlice from '../reducers/user';
 
 const hourGlassSvg = require('../images/hourglass.svg');
 
@@ -23,7 +24,7 @@ const LoginOrRegister = () => {
 
   const dispatchManualLogin = (data: { email: string, password: string }) => dispatch(logIn(data));
   const dispatchSignUp = (data: { email: string, password: string }) => dispatch(signUp(data));
-  const dispatchToggleLoginMode = () => dispatch(toggleLoginMode());
+  const dispatchToggleLoginMode = () => dispatch(userSlice.actions.toggleLoginMode());
 
   const onChangeEmail = useCallback((event) => {
     setEmail(event.currentTarget.value);

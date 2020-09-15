@@ -1,82 +1,67 @@
-import { AnyAction, combineReducers } from 'redux';
-import * as types from '../types';
+import { createSlice } from '@reduxjs/toolkit';
+import { logIn, signUp, logOut } from '../actions/users';
 
-const isLogin = (
-  state = true,
-  action: AnyAction
-) => {
-  switch (action.type) {
-    case types.TOGGLE_LOGIN_MODE:
-      return !state;
-    default:
-      return state;
+const userSlice = createSlice({
+  name: 'user',
+  initialState: {
+    isLogin: true,
+    isWaiting: false,
+    authenticated: false,
+    message: '',
+  },
+  reducers: {
+    toggleLoginMode(state) {
+      state.isLogin = !state.isLogin;
+    }
+  },
+  extraReducers: {
+    [logIn.pending]: (state) => {
+      state.message = '';
+      state.isWaiting = true;
+      state.authenticated = false;
+    },
+    [logIn.fulfilled]: (state) => {
+      state.message = '';
+      state.isWaiting = false;
+      state.authenticated = true;
+    },
+    [logIn.rejected]: (state, action) => {
+      state.message = action.payload;
+      state.isWaiting = false;
+      state.authenticated = false;
+    },
+    [signUp.pending]: (state) => {
+      state.message = '';
+      state.isWaiting = true;
+      state.authenticated = false;
+    },
+    [signUp.fulfilled]: (state) => {
+      state.message = '';
+      state.isWaiting = false;
+      state.authenticated = true;
+      state.isLogin = true;
+    },
+    [signUp.rejected]: (state, action) => {
+      state.message = action.payload;
+      state.isWaiting = false;
+      state.authenticated = false;
+    },
+    [logOut.pending]: (state) => {
+      state.message = '';
+      state.isWaiting = true;
+      state.authenticated = false;
+    },
+    [logOut.fulfilled]: (state) => {
+      state.message = '';
+      state.isWaiting = false;
+      state.authenticated = true;
+    },
+    [logOut.rejected]: (state, action) => {
+      state.message = action.payload;
+      state.isWaiting = false;
+      state.authenticated = false;
+    },
   }
-};
-
-const message = (
-  state = '',
-  action: AnyAction
-) => {
-  switch (action.type) {
-    case types.TOGGLE_LOGIN_MODE:
-    case types.MANUAL_LOGIN_USER:
-    case types.SIGNUP_USER:
-    case types.LOGOUT_USER:
-    case types.LOGIN_SUCCESS_USER:
-    case types.SIGNUP_SUCCESS_USER:
-      return '';
-    case types.LOGIN_ERROR_USER:
-    case types.SIGNUP_ERROR_USER:
-      return action.message;
-    default:
-      return state;
-  }
-};
-
-const isWaiting = (
-  state = false,
-  action: AnyAction
-) => {
-  switch (action.type) {
-    case types.MANUAL_LOGIN_USER:
-    case types.SIGNUP_USER:
-    case types.LOGOUT_USER:
-      return true;
-    case types.LOGIN_SUCCESS_USER:
-    case types.SIGNUP_SUCCESS_USER:
-    case types.LOGOUT_SUCCESS_USER:
-    case types.LOGIN_ERROR_USER:
-    case types.SIGNUP_ERROR_USER:
-    case types.LOGOUT_ERROR_USER:
-      return false;
-    default:
-      return state;
-  }
-};
-
-const authenticated = (
-  state = false,
-  action: AnyAction
-) => {
-  switch (action.type) {
-    case types.LOGIN_SUCCESS_USER:
-    case types.SIGNUP_SUCCESS_USER:
-    case types.LOGOUT_ERROR_USER:
-      return true;
-    case types.LOGIN_ERROR_USER:
-    case types.SIGNUP_ERROR_USER:
-    case types.LOGOUT_SUCCESS_USER:
-      return false;
-    default:
-      return state;
-  }
-};
-
-const userReducer = combineReducers({
-  isLogin,
-  isWaiting,
-  authenticated,
-  message
 });
 
-export default userReducer;
+export default userSlice;

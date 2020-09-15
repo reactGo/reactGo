@@ -17,7 +17,7 @@ const LoginOrRegister = () => {
     if (authenticated) {
       dispatch(replace({ pathname: '/' }));
     }
-  }, []);
+  }, [authenticated]);
 
   const pageTitle = () => {
     return 'LoginOrRegister | reactGo';

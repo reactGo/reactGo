@@ -16,7 +16,7 @@ const routes: RouteConfig[] = [{
     exact: true,
     component: Vote,
     fetchData: (store: Store) => {
-      return store.dispatch(getTopics();
+      return store.dispatch(getTopics());
     },
   }, {
     path: '/login',

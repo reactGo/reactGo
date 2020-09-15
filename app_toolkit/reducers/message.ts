@@ -30,4 +30,4 @@ const messageSlice = createSlice({
   },
 });
 
-export default messageSlice.reducer;
+export default messageSlice;

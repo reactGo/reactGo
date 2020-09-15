@@ -1,10 +1,7 @@
-import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { push } from 'connected-react-router';
 import { authService } from '../services';
-import * as types from '../types';
 import { getTopics } from './topics';
-
-export const toggleLoginMode = createAction(types.TOGGLE_LOGIN_MODE);
 
 const logIn = createAsyncThunk<any, { email: string, password: string }>(
   'users/logIn',
@@ -45,4 +42,5 @@ const logOut = createAsyncThunk(
   }
 );
 
+export { logOut, logIn, signUp };
 export default { logOut, logIn, signUp };
