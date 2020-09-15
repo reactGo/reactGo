@@ -5,13 +5,11 @@ import { dbType } from './index';
 // Other oauthtypes to be added
 
 /* eslint-disable no-param-reassign */
-function hashPassword(user: User) {
-  if (!user.changed('password')) return undefined;
-  return bcrypt.genSalt(5, (saltError, salt) => {
-    bcrypt.hash(user.password, salt, (hashError, hash) => {
-      user.password = hash;
-    });
-  });
+async function hashPassword(user: User) {
+  if (!user.changed('password')) return;
+  const salt = await bcrypt.genSalt(5);
+  const hash = await bcrypt.hash(user.getDataValue('password'), salt);
+  user.setDataValue('password', hash);
 }
 
 class User extends Model {
@@ -97,16 +95,8 @@ class User extends Model {
     return this.setTokens(option, sequelizeOption);
   }
 
-  comparePassword(this: User, candidatePassword: string): Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      bcrypt.compare(candidatePassword, this.password, (error, result) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(result);
-        }
-      });
-    });
+  async comparePassword(this: User, candidatePassword: string): Promise<boolean> {
+    return bcrypt.compare(candidatePassword, this.getDataValue('password'));
   }
 
   toJSON(this: User): any {

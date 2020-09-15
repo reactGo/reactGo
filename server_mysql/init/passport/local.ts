@@ -19,6 +19,7 @@ export default () => {
   options are available to change the defaults.
   */
   passport.use(new LocalStrategy({
-    usernameField: 'email'
+    usernameField: 'email',
+    passwordField: 'password',
   }, dbPassport.local));
 };

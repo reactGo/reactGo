@@ -45,7 +45,7 @@ const sagaSpecificModules = ['redux-saga'];
 const mongoSpecificModules = ['@types/mongodb', 'mongoose', '@types/mongoose', 'connect-mongo'];
 const sequelizeSpecificModules = ['sequelize', 'sequelize-cli'];
 const pgSpecificModules = ['@types/pg', 'pg', 'pg-hstore', 'connect-pg-simple', '@types/connect-pg-simple'];
-const mysqlSpecificModules = ['mysql2', 'express-mysql-session', '@types/express-mysql-session'];
+const mysqlSpecificModules = ['mysql2', 'connect-session-sequelize'];
 
 program
   .version(version)
@@ -117,6 +117,7 @@ if (program.dev) {
       fs.symlinkSync(path.join(__dirname, front), path.join(__dirname, 'app'), 'dir');
       console.log('installing node modules...');
       shell.exec('npm install');
+      console.log('removing these modules...', removeTargetModules.join(', '));
       shell.exec(`npm rm ${removeTargetModules.join(' ')}`);
       console.log('done');
     });

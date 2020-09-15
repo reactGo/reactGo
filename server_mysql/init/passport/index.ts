@@ -3,6 +3,7 @@ import passport from 'passport';
 import local from './local';
 import google from './google';
 import { passport as dbPassport } from '../../db';
+import User from '../../db/sequelize/models/users';
 import unsupportedMessage from '../../db/unsupportedMessage';
 
 export default () => {
@@ -15,8 +16,8 @@ export default () => {
   // deserializing.
 
   if (dbPassport && dbPassport.deserializeUser) {
-    passport.serializeUser((user: { id: string }, done) => {
-      done(null, user.id);
+    passport.serializeUser((user: User, done) => {
+      done(null, user.getDataValue('id'));
     });
 
     passport.deserializeUser(dbPassport.deserializeUser);

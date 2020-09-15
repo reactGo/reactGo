@@ -1,13 +1,9 @@
 import * as session from 'express-session';
-import connectMySQL from 'express-mysql-session';
-import { ENV } from '../../config/env';
-import config from './sequelize/sequelize_config';
+import sessionSequelize from 'connect-session-sequelize';
+import { sequelize } from './sequelize/models';
 
-const MySQLStore = connectMySQL(session);
+const SequelizeStore = sessionSequelize(session.Store);
 
-export default () => new MySQLStore({
-  host: config[ENV].host,
-  user: config[ENV].username,
-  password: config[ENV].password,
-  database: config[ENV].database
+export default () => new SequelizeStore({
+  db: sequelize,
 });
