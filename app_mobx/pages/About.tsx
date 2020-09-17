@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Page from './Page';
 import AboutContainer from '../containers/About';
 
-const About = (props) => {
+const About: FC = (props) => {
   const pageTitle = () => {
     return 'About | reactGo';
   };

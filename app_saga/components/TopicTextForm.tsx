@@ -1,9 +1,16 @@
-import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
+import React, { FC, useCallback } from 'react';
 
-const TopicTextForm = ({
-  onEntrySave, onEntryChange, value, className, placeholder,
-}) => {
+interface Props {
+  onEntrySave: (value: string) => void,
+  onEntryChange: (value: string) => void,
+  value: string,
+  className?: string,
+  placeholder: string,
+}
+
+const TopicTextForm: FC<Props> = ({
+                                    onEntrySave, onEntryChange, value, className, placeholder,
+                                  }) => {
   /*
    * Invokes the callback passed in as onSave, allowing this component to be
    * used in different ways. I personally think this makes it more reusable.
@@ -41,21 +48,6 @@ const TopicTextForm = ({
       />
     </form>
   );
-};
-
-TopicTextForm.propTypes = {
-  className: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-  value: PropTypes.string,
-  onEntrySave: PropTypes.func,
-  onEntryChange: PropTypes.func,
-};
-
-TopicTextForm.defaultProps = {
-  placeholder: '',
-  value: '',
-  onEntrySave: () => {},
-  onEntryChange: () => {},
 };
 
 export default TopicTextForm;

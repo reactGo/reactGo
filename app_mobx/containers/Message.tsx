@@ -10,7 +10,7 @@ const Message = () => {
   return useObserver(() => (
     <MessageWrapper
       role="presentation"
-      show={message && message.length > 0}
+      show={message ? message.length > 0 : false}
       success={type === 'SUCCESS'}
       onClick={dismissMessage}>
       {message}

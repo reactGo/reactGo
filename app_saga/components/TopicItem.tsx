@@ -1,11 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 
 import { Decrement, Destroy, Increment, Topic, TopicItemWrapper } from '../css/components/topicItem';
 
-const TopicItem = ({
- text, id, incrementCount, decrementCount, destroyTopic
-}) => {
+interface Props {
+  text: string,
+  id: string,
+  incrementCount: (id: string) => void,
+  decrementCount: (id: string) => void,
+  destroyTopic: (id: string) => void,
+}
+
+const TopicItem: FC<Props> = ({
+                                text, id, incrementCount, decrementCount, destroyTopic,
+                              }) => {
   const onIncrement = () => {
     incrementCount(id);
   };
@@ -36,14 +43,6 @@ const TopicItem = ({
       </Destroy>
     </TopicItemWrapper>
   );
-};
-
-TopicItem.propTypes = {
-  text: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  incrementCount: PropTypes.func.isRequired,
-  decrementCount: PropTypes.func.isRequired,
-  destroyTopic: PropTypes.func.isRequired
 };
 
 export default TopicItem;

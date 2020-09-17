@@ -1,8 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import { Count, Item, Topic, ScoreboardWrapper, Header, List } from '../css/components/scoreboard';
+import { Topic as ITopic } from '../reducers/topic';
 
-const Scoreboard = ({topics}) => {
+interface Props {
+  topics: ITopic[];
+}
+const Scoreboard: FC<Props> = ({topics}) => {
   const topicListItems = topics.map((topic, key) => {
     return (
       <Item key={key}>
@@ -19,10 +22,6 @@ const Scoreboard = ({topics}) => {
       </List>
     </ScoreboardWrapper>
   );
-};
-
-Scoreboard.propTypes = {
-  topics: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default Scoreboard;

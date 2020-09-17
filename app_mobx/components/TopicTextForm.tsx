@@ -1,18 +1,30 @@
-import React, { useCallback } from 'react';
-import PropTypes from 'prop-types';
-import { useObserver } from 'mobx-react';
+import React, { FC, useCallback } from 'react';
 
-import useStore from '../useStore';
+interface Props {
+  onEntrySave: (value: string) => void,
+  onEntryChange: (value: string) => void,
+  value: string,
+  className?: string,
+  placeholder: string,
+}
+const TopicTextForm: FC<Props> = ({
+                                    onEntrySave, onEntryChange, value, className, placeholder,
+                                  }) => {
+  /*
+   * Invokes the callback passed in as onSave, allowing this component to be
+   * used in different ways. I personally think this makes it more reusable.
+   */
+  const onSave = useCallback(() => {
+    onEntrySave(value);
+  }, [value]);
 
-const TopicTextForm = ({ className, placeholder }) => {
-  const { topicStore } = useStore();
   /*
    * Invokes the callback passed in as onSave, allowing this component to be
    * used in different ways. I personally think this makes it more reusable.
    * @param  {object} event
    */
   const onChange = useCallback((event) => {
-    topicStore.typing(event.currentTarget.value);
+    onEntryChange(event.currentTarget.value);
   }, []);
 
   /*
@@ -21,29 +33,20 @@ const TopicTextForm = ({ className, placeholder }) => {
    */
   const onSubmit = useCallback((event) => {
     event.preventDefault();
-    topicStore.createTopic(topicStore.newTopic);
-  }, [topicStore.newTopic]);
+    onSave();
+  }, [value]);
 
-  return useObserver(() => (
+  return (
     <form onSubmit={onSubmit}>
       <input
         className={className}
         placeholder={placeholder}
         onChange={onChange}
-        value={topicStore.newTopic}
+        value={value}
         autoFocus
       />
     </form>
-  ));
-};
-
-TopicTextForm.propTypes = {
-  className: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-};
-
-TopicTextForm.defaultProps = {
-  placeholder: '',
+  );
 };
 
 export default TopicTextForm;

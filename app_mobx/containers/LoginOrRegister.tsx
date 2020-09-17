@@ -93,7 +93,7 @@ const LoginOrRegister = () => {
               <div>Hint</div>
               <div>email: example@ninja.com password: ninja</div>
             </Hint>
-            <Message show={userStore.message && userStore.message.length > 0}>
+            <Message show={userStore.message ? userStore.message.length > 0 : false}>
               {userStore.message}
             </Message>
             <Button

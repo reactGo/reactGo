@@ -1,27 +1,27 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { useObserver } from 'mobx-react';
-
+import React, { FC } from 'react';
 import { Count, Item, Topic, ScoreboardWrapper, Header, List } from '../css/components/scoreboard';
+import { Topic as ITopic } from '../store/topic';
 
-const Scoreboard = ({topics}) => {
-  return useObserver(() => (
+interface Props {
+  topics: ITopic[];
+}
+const Scoreboard: FC<Props> = ({topics}) => {
+  const topicListItems = topics.map((topic, key) => {
+    return (
+      <Item key={key}>
+        <Topic>{topic.text}</Topic>
+        <Count>{topic.count}</Count>
+      </Item>
+    );
+  });
+  return (
     <ScoreboardWrapper>
       <Header>Vote count</Header>
       <List>
-        {topics.map((topic, key) => (
-          <Item key={key}>
-            <Topic>{topic.text}</Topic>
-            <Count>{topic.count}</Count>
-          </Item>
-        ))}
+        {topicListItems}
       </List>
     </ScoreboardWrapper>
-  ));
-};
-
-Scoreboard.propTypes = {
-  topics: PropTypes.arrayOf(PropTypes.object).isRequired
+  );
 };
 
 export default Scoreboard;

@@ -5,7 +5,7 @@ import { useObserver } from 'mobx-react';
 import { NavigationWrapper, Item, Logo } from '../css/components/navigation';
 import useStore from '../useStore';
 
-const LogOut = Item.withComponent('button');
+const LogOut = Item.withComponent<'button'>('button');
 
 const Navigation = () => {
   const { userStore } = useStore();
