@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteConfig } from 'react-router-config';
-import { Store } from 'redux';
 
+import { store } from './client';
 import App from './containers/App';
 import Vote from './pages/Vote';
 import LoginOrRegister from './pages/LoginOrRegister';
@@ -15,8 +15,8 @@ const routes: RouteConfig[] = [{
     path: '/',
     exact: true,
     component: Vote,
-    fetchData: (store: Store) => {
-      return store.dispatch(getTopics());
+    fetchData: (s: typeof store) => {
+      return s.dispatch(getTopics());
     },
   }, {
     path: '/login',
