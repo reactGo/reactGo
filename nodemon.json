@@ -1,10 +1,11 @@
 {
-    "verbose": false,
-    "watch": [
-      "app/utils",
-      "app/routes.jsx",
-      "server",
-      "webpack"
-    ],
-    "exec": "npm run build:dev && node compiled/server.dev.js"
+  "verbose": false,
+  "watch": [
+    "app/utils",
+    "app/routes.jsx",
+    "server",
+    "webpack"
+  ],
+  "exec": "npm run build:dev && node compiled/server.dev.js",
+  "ignore": ["**/*.js"]
 }
