@@ -33,7 +33,7 @@ _Formerly known as choonkending/react-webpack-node_
 - Server side authentication + Redirecting for components
 - Hot reloading using [**hot-loader/react-dom**](https://github.com/hot-loader/react-dom)
 - Time travel using [**Redux-Devtools Chrome Extension**](https://github.com/zalmoxisus/redux-devtools-extension)
-- [**Webpack 4**](https://github.com/webpack/webpack) for both development and production bundles. It's (in my opinion) the best bundler for JS, CSS, LESS, images, and lots more!
+- [**Webpack 5**](https://github.com/webpack/webpack) for both development and production bundles. It's (in my opinion) the best bundler for JS, CSS, LESS, images, and lots more!
 - [**emotion**](https://emotion.sh/docs/introduction) allows for CSS-in-JS. Say goodbye to conflicts (most of them) and global scope
 
 - **Unit Testing** with jsdom, mocha, sinon & enzyme
@@ -43,7 +43,7 @@ _Formerly known as choonkending/react-webpack-node_
 
 - Express 4.x server with a ton of middleware
 - Mongoose for MongoDB
-- Sequelize for Postgres and MySQL
+- Sequelize for Postgres or MySQL
 - Procfile to enable deployment to Heroku & Docs on Salt configurations + Deployment for Digital Ocean
 
 
@@ -88,10 +88,6 @@ Express app.use() receives a request
 
 More TBD
 
-#### Redux DevTools
-
-You will have to install redux devtools extension from [here](https://github.com/zalmoxisus/redux-devtools-extension) and then everything should just work!
-
 ## Instructions
 
 #### Database
@@ -100,7 +96,19 @@ We currently support MongoDB, MySQL and Postgres, as well as the ability to not 
 
 #### Development
 
-Development is a breeze. Once you have installed all your dependencies all the configuration is done for you. The process is outlined [here](docs/development.md).
+You have to install ReactGo CLI to set up development environment.
+
+```bash
+# Install ReactGo CLI first
+# Your terminal have to be located at reactGo project.
+npm i -g
+# After installation, move to the directory you wanna clone ReactGo
+cd /somewhere/you/want/to/clone
+# Run CLI and choose which stack you wanna use
+reactgo
+``` 
+
+The next process is outlined [here](docs/development.md).
 
 #### Building the application
 
@@ -163,12 +171,24 @@ Best way to keep up to date is check the [issues](https://github.com/reactGo/rea
 2. Coding guidelines:
  - [Airbnb's Style Guide](https://github.com/airbnb/javascript)
  - [bendc's frontend guidelines](https://github.com/bendc/frontend-guidelines)
+3. If you wanna change codes and make some PR, you have to follow following steps.
+```bash
+# Install ReactGo CLI
+# Your terminal have to be located at reactGo project.
+npm i -g
+# Run CLI and choose which stack you wanna change
+reactgo -d
+# Then app and server folders will be symlinked from original ones that you chose.
+# Change whatever you want, but don't touch app and server folders. Those are just symlinks.
+# Commit and push after done.
+``` 
 
 **Easter Eggs** :egg:
 
 This boilerplate has gone through an evolution
 ```
-React.js -> Facebook Flux -> Alt -> Redux(thunk -> saga) -> MobX(in mobx branch)
+React.js -> Facebook Flux -> Alt -> Redux(thunk -> saga -> toolkit)
+                                 -> MobX(in mobx branch)
 ```
 
 License

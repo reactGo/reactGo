@@ -2,7 +2,6 @@
 
 > If you wish to run this app **without installing/running a database**, you can easily do so. Read more [here](https://github.com/choonkending/react-webpack-node/blob/master/docs/databases.md).
 
-
 ## MongoDB
 
 #### Install MongoDB as your database
@@ -52,7 +51,6 @@ npm install
 # Starts the server with Hot Reloading
 # Run webpack through webpack.config.dev-client.js and webpack.config.dev-server.js
 npm run dev
-
 ```
 
 #### Production

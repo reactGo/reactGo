@@ -41,7 +41,7 @@
 
 - 수십 개의 미들웨어를 사용한 Express4.x 서버
 - 몽고DB를 위한 몽구스 ODM
-- 포스트그레SQL과 MySQL을 위한 시퀄라이즈 ORM
+- 포스트그레SQL또는 MySQL을 위한 시퀄라이즈 ORM
 - Heroku에 배포하기 위한 Procfile & Salt 설정에 대한 문서 + Digital Ocean에 배포하기
 
 
@@ -96,7 +96,19 @@ Express의 app.use()가 요청을 받습니다.
 
 #### 개발하기
 
-개발은 매우 쉽습니다. Dependencies만 다 설치하면 모든 설정은 알아서 다 됩니다. 전체 프로세스는 [여기](docs/development.md)에 나와 있습니다.
+개발 환경을 구축하기 위해선 ReactGo CLI를 먼저 설치해야 합니다.
+
+```bash
+# ReactGo CLI를 먼저 설치합니다.
+# 터미널 경로가 ReactGo 폴더에 있어야 합니다.
+npm i -g
+# 설치 완료 후 ReactGo를 복사할 폴더로 이동해주세요.
+cd /당신이/복사하고자/하는/어딘가
+# CLI를 실행하고 원하는 개발 스택을 선택하세요.
+reactgo
+``` 
+
+향후 프로세스는 [여기](docs/development.md)에 나와 있습니다.
 
 #### 앱 빌드하기
 
@@ -158,12 +170,24 @@ npm test:watch
 2. 코딩 가이드라인:
  - [Airbnb 스타일 가이드](https://github.com/airbnb/javascript)
  - [bendc의 프런트엔드 가이드라인](https://github.com/bendc/frontend-guidelines)
+3. 코드를 변경하고 PR를 하려면, 다음 명령어대로 프로젝트를 설정해야 합니다.
+```bash
+# ReactGo CLI를 먼저 설치합니다.
+# 터미널 경로가 ReactGo 폴더에 있어야 합니다.
+npm i -g
+# CLI를 실행하고 수정하길 원하는 스택을 선택하세요.
+reactgo -d
+# app과 server 폴더가 당신이 선택한 스택으로부터 바로가기로 생성됩니다.
+# 원하는 모든 것을 바꿔도 됩니다. 하지만 app과 server 폴더는 건드리지 마세요. 걔네들은 그냥 바로가기일 뿐이니까요.
+# 다 한 후에는 commit 후 push하세요.
+``` 
 
 **이스터에그** :egg:
 
 이 보일러플레이트는 다음과 같은 진화 과정을 거쳤습니다.
 ```
-React.js -> Facebook Flux -> Alt -> Redux(thunk -> saga) -> MobX(mobx 브랜치에 있음)
+React.js -> Facebook Flux -> Alt -> Redux(thunk -> saga -> toolkit)
+                                 -> MobX(mobx 브랜치에 있음)
 ```
 
 라이선스
