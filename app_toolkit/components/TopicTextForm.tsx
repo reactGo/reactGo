@@ -15,7 +15,9 @@ const TopicTextForm: FC<Props> = ({
    * used in different ways. I personally think this makes it more reusable.
    */
   const onSave = useCallback(() => {
-    onEntrySave(value);
+    if (value?.trim()) {
+      onEntrySave(value);
+    }
   }, [value]);
 
   /*

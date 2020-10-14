@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import md5 from 'spark-md5';
-import { RootState } from '../reducers';
+import * as md5 from 'spark-md5';
 import { voteService } from '../services';
 
 interface Topic {
@@ -9,13 +8,10 @@ interface Topic {
   text: string
 }
 
-const createTopic = createAsyncThunk<string, string, { state: { topic: Topic[] } }>(
+const createTopic = createAsyncThunk<string, string, { state: { topic: { topics: Topic[] } } }>(
   'topics/createTopic',
-  async (text, { rejectWithValue, getState }) => {
+  async (text, { rejectWithValue }) => {
     try {
-      console.log(text);
-      if (text.trim().length <= 0) return;
-      const { topic } = getState();
       const id = md5.hash(text);
       // Redux thunk's middleware receives the store methods `dispatch`
       // and `getState` as parameters
@@ -24,14 +20,6 @@ const createTopic = createAsyncThunk<string, string, { state: { topic: Topic[] }
         id,
         text,
       };
-      // Conditional dispatch
-      // If the topic already exists, make sure we emit a dispatch event
-      if (topic.topics.filter((topicItem: Topic) => topicItem.id === id)?.length > 0) {
-        // Currently there is no reducer that changes state for this
-        // For production you would ideally have a message reducer that
-        // notifies the user of a duplicate topic
-        return;
-      }
       const response = await voteService().createTopic({ id, data });
       return response.data;
     } catch (err) {

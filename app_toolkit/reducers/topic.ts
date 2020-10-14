@@ -43,7 +43,8 @@ export const topicsSlice = createSlice({
         if (topic) {
           topic.count++;
         }
-      }),
+      })
+      .addDefaultCase(() => {}),
 });
 
 export const newTopicSlice = createSlice({
@@ -51,11 +52,13 @@ export const newTopicSlice = createSlice({
   initialState: '',
   reducers: {
     typing(state, action) {
-      return state = action.payload;
+      state = action.payload;
+      return state;
     },
   },
   extraReducers: (builder) => builder.addCase(createTopic.pending, (state) => {
-    return state = '';
+    state = '';
+    return state;
   }),
 });
 
