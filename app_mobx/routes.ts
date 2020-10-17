@@ -1,6 +1,7 @@
 import React from 'react';
 import { RouteConfig } from 'react-router-config';
 import App from './containers/App';
+import NotFound from './pages/NotFound';
 import Vote from './pages/Vote';
 import LoginOrRegister from './pages/LoginOrRegister';
 import Dashboard from './pages/Dashboard';
@@ -25,6 +26,9 @@ const routes : RouteConfig[] = [{
   }, {
     path: '/about',
     component: About,
+  }, {
+    path: '*',
+    component: NotFound,
   }],
 }];
 

@@ -8,6 +8,7 @@ import Vote from './pages/Vote';
 import LoginOrRegister from './pages/LoginOrRegister';
 import Dashboard from './pages/Dashboard';
 import About from './pages/About';
+import NotFound from './pages/NotFound';
 import { getTopics } from './actions/topics';
 
 const routes: RouteConfig[] = [{
@@ -28,6 +29,9 @@ const routes: RouteConfig[] = [{
   }, {
     path: '/about',
     component: About,
+  }, {
+    path: '*',
+    component: NotFound,
   }],
 }];
 
