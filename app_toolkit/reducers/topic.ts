@@ -17,32 +17,38 @@ export const topicsSlice = createSlice({
     .addCase(getTopics.fulfilled, (state, action) => {
       if (action.payload) {
         state = action.payload;
+        return state;
       }
     })
-    .addCase(createTopic.pending, (state, action) => {
-      state.push({ id: md5.hash(action.payload), count: 0, text: action.payload });
+    .addCase(createTopic.fulfilled, (state, action) => {
+      state.push({ id: md5.hash(action.meta.arg), count: 0, text: action.meta.arg });
+      return state;
     })
     .addCase(createTopic.rejected,
       (state, action) => {
         state = state.filter((t) => t.id !== action.payload);
+        return state;
       })
     .addCase(destroyTopic.fulfilled,
       (state, action) => {
         state = state.filter((t) => t.id !== action.payload);
+        return state;
       })
     .addCase(incrementCount.fulfilled,
       (state, action) => {
         const topic = state.find((t) => t.id === action.payload);
         if (topic) {
-          topic.count--;
+          topic.count++;
         }
+        return state;
       })
     .addCase(decrementCount.fulfilled,
       (state, action) => {
         const topic = state.find((t) => t.id === action.payload);
         if (topic) {
-          topic.count++;
+          topic.count--;
         }
+        return state;
       })
       .addDefaultCase(() => {}),
 });

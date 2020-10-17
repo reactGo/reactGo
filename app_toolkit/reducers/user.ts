@@ -14,54 +14,52 @@ const userSlice = createSlice({
       state.isLogin = !state.isLogin;
     }
   },
-  extraReducers: {
-    [logIn.pending]: (state) => {
+  extraReducers: (builder) => builder
+    .addCase(logIn.pending, (state) => {
       state.message = '';
       state.isWaiting = true;
       state.authenticated = false;
-    },
-    [logIn.fulfilled]: (state) => {
+    })
+    .addCase(logIn.fulfilled, (state) => {
       state.message = '';
       state.isWaiting = false;
       state.authenticated = true;
-    },
-    [logIn.rejected]: (state, action) => {
-      state.message = action.payload;
+    })
+    .addCase(logIn.rejected, (state, action) => {
+      state.message = action.payload as string;
       state.isWaiting = false;
       state.authenticated = false;
-    },
-    [signUp.pending]: (state) => {
+    })
+    .addCase(signUp.pending, (state) => {
       state.message = '';
       state.isWaiting = true;
       state.authenticated = false;
-    },
-    [signUp.fulfilled]: (state) => {
+    })
+    .addCase(signUp.fulfilled, (state) => {
       state.message = '';
       state.isWaiting = false;
       state.authenticated = true;
       state.isLogin = true;
-    },
-    [signUp.rejected]: (state, action) => {
-      state.message = action.payload;
+    })
+    .addCase(signUp.rejected, (state, action) => {
+      state.message = action.payload as string;
       state.isWaiting = false;
       state.authenticated = false;
-    },
-    [logOut.pending]: (state) => {
+    })
+    .addCase(logOut.pending, (state) => {
       state.message = '';
       state.isWaiting = true;
-      state.authenticated = false;
-    },
-    [logOut.fulfilled]: (state) => {
+    })
+    .addCase(logOut.fulfilled, (state) => {
       state.message = '';
       state.isWaiting = false;
-      state.authenticated = true;
-    },
-    [logOut.rejected]: (state, action) => {
-      state.message = action.payload;
-      state.isWaiting = false;
       state.authenticated = false;
-    },
-  }
+    })
+    .addCase(logOut.rejected, (state, action) => {
+      state.message = action.payload as string;
+      state.isWaiting = false;
+    })
+    .addDefaultCase(() => {})
 });
 
 export default userSlice;

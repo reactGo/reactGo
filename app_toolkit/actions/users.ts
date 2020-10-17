@@ -3,7 +3,7 @@ import { push } from 'connected-react-router';
 import { authService } from '../services';
 import { getTopics } from './topics';
 
-const logIn = createAsyncThunk<any, { email: string, password: string }>(
+const logIn = createAsyncThunk<any, { email: string, password: string }, { rejectValue: string }>(
   'users/logIn',
   async (data, { dispatch, rejectWithValue }) => {
     try {
@@ -17,7 +17,7 @@ const logIn = createAsyncThunk<any, { email: string, password: string }>(
   }
 );
 
-const signUp = createAsyncThunk<any, { email: string, password: string }>(
+const signUp = createAsyncThunk<string, { email: string, password: string }, { rejectValue: string }>(
   'users/signUp',
   async (data, { dispatch, rejectWithValue }) => {
     try {
@@ -30,7 +30,7 @@ const signUp = createAsyncThunk<any, { email: string, password: string }>(
   }
 );
 
-const logOut = createAsyncThunk(
+const logOut = createAsyncThunk<string, {}, { rejectValue: string }>(
   'users/logOut',
   async (data, { rejectWithValue }) => {
     try {

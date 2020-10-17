@@ -7,7 +7,6 @@ import userModel from './users';
 
 const config = sequelizeConfig[ENV];
 
-const db = {};
 const dbUrl = process.env[config.use_env_variable];
 
 const sequelize = dbUrl ? new Sequelize(dbUrl) : new Sequelize(config.database, config.username, config.password, config);

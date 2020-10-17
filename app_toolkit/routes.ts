@@ -1,3 +1,4 @@
+import { ThunkDispatch } from '@reduxjs/toolkit';
 import React from 'react';
 import { RouteConfig } from 'react-router-config';
 
@@ -17,7 +18,7 @@ const routes: RouteConfig[] = [{
     exact: true,
     component: Vote,
     fetchData: (s: typeof store) => {
-      return s.dispatch(getTopics());
+      return (s.dispatch as ThunkDispatch<any, any, any>)(getTopics());
     },
   }, {
     path: '/login',

@@ -8,10 +8,11 @@ interface Topic {
   text: string
 }
 
-const createTopic = createAsyncThunk<string, string, { state: { topic: { topics: Topic[] } } }>(
+const createTopic = createAsyncThunk<string, string, { state: { topic: { topics: Topic[] }, rejectValue: string } }>(
   'topics/createTopic',
   async (text, { rejectWithValue }) => {
     try {
+      console.log(text);
       const id = md5.hash(text);
       // Redux thunk's middleware receives the store methods `dispatch`
       // and `getState` as parameters
@@ -23,12 +24,13 @@ const createTopic = createAsyncThunk<string, string, { state: { topic: { topics:
       const response = await voteService().createTopic({ id, data });
       return response.data;
     } catch (err) {
-      rejectWithValue('Oops! Something went wrong and we couldn\'t create your topic');
+      console.error(err);
+      return rejectWithValue('Oops! Something went wrong and we couldn\'t create your topic');
     }
   },
 );
 
-const getTopics = createAsyncThunk(
+const getTopics = createAsyncThunk<Topic[], void, { rejectValue: string }>(
   'topics/getTopics',
   async (data, { rejectWithValue }) => {
     try {
@@ -40,48 +42,48 @@ const getTopics = createAsyncThunk(
   },
 );
 
-const incrementCount = createAsyncThunk<any, string>(
+const incrementCount = createAsyncThunk<string, string, { rejectValue: string }>(
   'topics/incrementCount',
   async (id, { rejectWithValue }) => {
     try {
-      const response = await voteService().updateTopic({
+      await voteService().updateTopic({
         id,
         data: {
           isFull: false,
           isIncrement: true,
         },
       });
-      return response.data;
+      return id;
     } catch (err) {
       return rejectWithValue('Oops! Something went wrong and we couldn\'t increment count of your vote');
     }
   },
 );
 
-const decrementCount = createAsyncThunk<any, string>(
+const decrementCount = createAsyncThunk<string, string, { rejectValue: string }>(
   'topics/decrementCount',
   async (id, { rejectWithValue }) => {
     try {
-      const response = await voteService().updateTopic({
+      await voteService().updateTopic({
         id,
         data: {
           isFull: false,
           isIncrement: false,
         },
       });
-      return response.data;
+      return id;
     } catch (err) {
       return rejectWithValue('Oops! Something went wrong and we couldn\'t decrement count of your vote');
     }
   },
 );
 
-const destroyTopic = createAsyncThunk<any, string>(
+const destroyTopic = createAsyncThunk<string, string, { rejectValue: string }>(
   'topics/destroyTopic',
   async (id, { rejectWithValue }) => {
     try {
-      const response = await voteService().deleteTopic({ id });
-      return response.data;
+      await voteService().deleteTopic({ id });
+      return id;
     } catch (err) {
       return rejectWithValue('Oops! Something went wrong and we couldn\'t delete your vote');
     }
