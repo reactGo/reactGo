@@ -31,7 +31,7 @@
 - 서버 사이드 인증 + 컴포넌트로 리다이렉트
 - [**hot-loader/react-dom**](https://github.com/hot-loader/react-dom) 을 사용해서 핫 리로딩
 - [**Redux-Devtools Chrome Extension**](https://github.com/zalmoxisus/redux-devtools-extension) 을 사용한 타임머신 기능
-- 개발 및 배포 시 [**Webpack 4**](https://github.com/webpack/webpack) 를 사용합니다. 개인적으로 JS, CSS, LESS, images 등등을 번들링할 때 최고라고 생각해요!
+- 개발 및 배포 시 [**Webpack 5**](https://github.com/webpack/webpack) 를 사용합니다. 개인적으로 JS, CSS, LESS, images 등등을 번들링할 때 최고라고 생각해요!
 - CSS-in-JS를 위한 [**emotion**](https://emotion.sh/docs/introduction) . (대부분의) CSS 충돌과 글로벌 스코프 문제는 이제 안녕~
 
 - jsdom, mocha, sinon & enzyme을 사용한 **유닛 테스트**
