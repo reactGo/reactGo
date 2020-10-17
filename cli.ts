@@ -38,7 +38,7 @@ const removeLines = (src: string, lines: number[] = []) => {
 
 let removeTargetModules: string[] = [];
 const mobxSpecificModules = ['mobx', 'mobx-react', 'mobx-react-router'];
-const reduxSpecificModules = ['redux', 'redux-logger', '@types/redux-logger', 'redux-devtools-extension'];
+const reduxSpecificModules = ['redux', 'redux-logger', '@types/redux-logger', 'redux-devtools-extension', 'connected-react-router', 'seamless-immutable', 'immutable'];
 const thunkSpecificModules = ['redux-thunk'];
 const toolkitSpecificModules = ['@reduxjs/toolkit'];
 const sagaSpecificModules = ['redux-saga'];
