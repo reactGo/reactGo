@@ -42,7 +42,7 @@ export default (env: { browser: boolean }) => {
 
   const prodBrowserRender = {
     mode: 'production',
-    devtool: 'cheap-module-source-map',
+    devtool: 'hidden-source-map',
     context: PATHS.app,
     entry: { app: ['./client'] },
     node,
@@ -90,7 +90,7 @@ export default (env: { browser: boolean }) => {
 
   const devBrowserRender = {
     mode: 'development',
-    devtool: 'eval',
+    devtool: 'inline-source-map',
     context: PATHS.app,
     entry: { app: ['./client', hotMiddlewareScript] },
     node,
@@ -100,7 +100,7 @@ export default (env: { browser: boolean }) => {
       publicPath: PATHS.public,
     },
     optimization: {
-      noEmitOnErrors: true,
+      emitOnErrors: false,
     },
     module: { rules: rules({ production: false, browser: true }) },
     resolve,
@@ -109,7 +109,7 @@ export default (env: { browser: boolean }) => {
 
   const devServerRender = {
     mode: 'development',
-    devtool: 'sourcemap',
+    devtool: 'inline-source-map',
     context: PATHS.app,
     entry: { server: '../server/index' },
     target: 'node',
@@ -128,8 +128,6 @@ export default (env: { browser: boolean }) => {
 
   const prodConfig = isBrowser ? prodBrowserRender : prodServerRender;
   const devConfig = isBrowser ? devBrowserRender : devServerRender;
-  const configuration = isProduction ? prodConfig : devConfig;
-
-  return configuration;
+  return isProduction ? prodConfig : devConfig;
 };
 
