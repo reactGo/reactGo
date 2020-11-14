@@ -29,7 +29,7 @@ Now it is time to create an instance. So make sure you are in the correct region
 
 Once that is ready click on the instance option in the side bar and then click launch instance.
 
-Pick the Ubuntu Server 14.04 that is free tier eligible, follow through the steps, but the defaults should all suffice. Tag your project with a name and then apply the security group you created earlier, review and launch.
+Pick the Ubuntu Server 18.04 LTS that is free tier eligible, follow through the steps, but the defaults should all suffice. Tag your project with a name and then apply the security group you created earlier, review and launch.
 
 The last step will be to create or use an existing key pair. do this and save it someplace safe.
 
@@ -52,12 +52,12 @@ Now that you are connected you are on the server. And the server is clean so we 
 ##### INSTALLING SOFTWARE
 
 First install [node](https://nodejs.org/en/download/package-manager/)
-then [mongoDB](https://docs.mongodb.com/v3.0/tutorial/install-mongodb-on-ubuntu/)
-Both of these have multiple versions so make sure you follow the instructions for Ubuntu 14.04.
+then [mongoDB](https://docs.mongodb.com/v4.0/tutorial/install-mongodb-on-ubuntu/)
+Both of these have multiple versions so make sure you follow the instructions for Ubuntu 18.04.
 
 If you want to start mongo temporarily you would use this command
 `sudo /usr/bin/mongod --dbpath /home/ubuntu/db/data`
-to keep if running forever you will need this command
+to keep running forever you will need this command
 `sudo /usr/bin/mongod --dbpath /home/ubuntu/db/data --fork --logpath /var/log/mongodb.log`
 
 ##### UPLOADING YOUR FILE
@@ -68,7 +68,7 @@ Now we will start uploading our files using [secure copy](https://en.wikipedia.o
 
 The KEYFILE is the same one you created and saved someplace safe earlier. The SOURCE is File containing everything you want to upload and DEST is the folder on the server you want to copy it into.
 
-I highly suggest that you do no use this method to copy over your dependencies, it is a much better plan to install those once you have uploaded your files.
+I highly suggest that you do no use this method to copy over your dependencies, it is a much better plan to install those by `npm install` once you have uploaded your files.
 
 ##### RUNNING THE PROJECT
 
@@ -76,10 +76,10 @@ Now that your files and dependencies are on the server a simple `npm start` will
 
 ##### KEEPING IT RUNNING
 
-To remedy this will will use [forever](https://www.npmjs.com/package/forever). We will need to install it globally `sudo npm install forever -g` and then add another script to our package.js. Just a modified version of the start stript. `"stayAlive": "cross-env NODE_ENV=production forever start compiled/index.js",`
+To remedy this will will use [pm2](https://pm2.keymetrics.io/docs/usage/quick-start/). We will need to install it globally `sudo npm install pm2 -g` and then start your server by `sudo pm2 start npm -- start`
 
-##### REMOVING THE PORT
+##### REDIRECTING THE PORT
 
-The simplest way to remove the port would be user IP Tables. Running `sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000` This solution is fine if you are just building a small side project and want a clean url, but don't care that much about security.
+The simplest way to redirect the port would be user IP Tables. Running `sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000` This solution is fine if you are just building a small side project and want a clean url(without :3000 in url), but don't care that much about security.
 
-A more production ready solution would be to use [NginX](https://www.nginx.com/resources/wiki/) and use the reverse proxy to allow the project to run on its own port, while the users access the using port 80. A simple tutorial can be found [here](https://eladnava.com/binding-nodejs-port-80-using-nginx/). NginX has the added benefits of being able to blocking ip's, detect some web attacks and  protecting your application.
+A more production ready solution would be to use [NginX](https://www.nginx.com/resources/wiki/) and use the reverse proxy to allow the project to run on its own port, while the users access the using port 80. A simple tutorial can be found [here](https://eladnava.com/binding-nodejs-port-80-using-nginx/). NginX has the added benefits of being able to do load-balancing, block ip's, detect some web attacks and protect your application.

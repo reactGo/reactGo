@@ -151,13 +151,6 @@ We have unit tests for async (redux) actions, reducers, and stateless components
 
 Currently we support [Heroku](docs/deployment/Heroku.md) and [Digital Ocean](docs/deployment/DigitalOcean.md) and [AWS](docs/deployment/aws.md)
 
-#### Roadmap
-We have an outline of our roadmap [here](https://github.com/reactGo/reactGo/blob/master/Roadmap.md)
-
-## FAQ
-
-We have assembled an FAQ [here](/docs/FAQ.md)
-
 ## Check out what people have done
 
 We have a [list](/docs/apps.md) of projects that have been created with this boilerplate. Check

@@ -149,14 +149,7 @@ npm test:watch
 
 #### 배포
 
-우리는 [Heroku](docs/deployment/Heroku.md)와 [Digital Ocean](docs/deployment/DigitalOcean.md)와 [AWS](docs/deployment/aws.md)를 지원합니다.
-
-#### 로드맵
-우리의 로드맵은 [여기](https://github.com/reactGo/reactGo/blob/master/Roadmap.md) 있습니다.
-
-## FAQ
-
-자주 물어보는 질문들을 [여기에](/docs/FAQ.md) 모아놨습니다.
+우리는 [Heroku](docs/deployment/Heroku_KO.md)와 [AWS](docs/deployment/aws_KO.md)를 지원합니다.
 
 ## reactGo로 만들어진 앱들
 
@@ -164,7 +157,7 @@ npm test:watch
 
 ## 기여하는 방법:
 
-최신 진행 사항을 파악하려면 [이슈](https://github.com/choonkending/react-webpack-node/issues) 들을 체크해보는 게 제일 좋습니다. 앱에 대해 **어떤 점이든 상관없이** 개선 사항이 있다면 환영합니다.
+최신 진행 사항을 파악하려면 [이슈](https://github.com/reactGo/reactGo/issues) 들을 체크해보는 게 제일 좋습니다. 앱에 대해 **어떤 점이든 상관없이** 개선 사항이 있다면 환영합니다.
 
 1. 어떠한 제안/개선사항/버그 제보도 괜찮으니 풀리퀘스트나 이슈로 알려주세요.
 2. 코딩 가이드라인:
