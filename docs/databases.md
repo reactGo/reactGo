@@ -14,8 +14,19 @@ sudo chown -R `id -u` /data/db
 mongod
 ```
 
+After installation, you have to set MongoDB DB configuration at .env
+```dotenv
+MONGODB_URI=mongodb://YOUR_ID:YOUR_PASSWORD@localhost:port/DB_NAME;
+```
+
 ##Setting Up MySQL
 Follow the steps [here](https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/installing.html)
+
+After installation, you have to set MySQL DB configuration at .env
+```dotenv
+MYSQLUSER=YOUR_ID
+MYSQLPASS=YOUR_PASSWORD
+```
 
 ##Setting up Postgres
 Follow the steps [here](https://www.postgresqltutorial.com/install-postgresql/)
@@ -30,6 +41,12 @@ postgres -D /usr/local/var/postgres
 createuser root
 createdb react_webpack_node_development # or test/production
 npm run sequelize db:migrate
+```
+
+After installation, you have to set Postgre DB configuration at .env
+```dotenv
+PGUSER=YOUR_ID
+PGPASS=YOUR_PASSWORD
 ```
 
 #### Installing on Heroku
