@@ -6,15 +6,15 @@ import * as types from '../types';
 import { voteService } from '../services';
 
 function increment(id: string) {
-  return { type: types.INCREMENT_COUNT, id };
+  return { type: types.INCREMENT_COUNT_REQUEST, id };
 }
 
 function decrement(id: string) {
-  return { type: types.DECREMENT_COUNT, id };
+  return { type: types.DECREMENT_COUNT_REQUEST, id };
 }
 
 function destroy(id: string) {
-  return { type: types.DESTROY_TOPIC, id };
+  return { type: types.DESTROY_TOPIC_REQUEST, id };
 }
 
 interface Topic { id: string, count: number, text: string }

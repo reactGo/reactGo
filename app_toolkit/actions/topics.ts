@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import * as md5 from 'spark-md5';
+import md5 from 'spark-md5';
 import { voteService } from '../services';
 
 interface Topic {

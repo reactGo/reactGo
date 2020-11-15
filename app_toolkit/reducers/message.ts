@@ -18,16 +18,15 @@ const messageSlice = createSlice({
       state.type = 'SUCCESS';
     },
   },
-  extraReducers: {
-    [logIn.fulfilled]: (state, action) => {
+  extraReducers: (builder) => builder
+    .addCase(logIn.fulfilled, (state, action) => {
       state.message = action.payload;
       state.type = 'SUCCESS';
-    },
-    [signUp.fulfilled]: (state, action) => {
+    })
+    .addCase(signUp.fulfilled, (state, action) => {
       state.message = action.payload;
       state.type = 'SUCCESS';
-    },
-  },
+    }),
 });
 
 export default messageSlice;

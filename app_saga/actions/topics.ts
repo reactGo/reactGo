@@ -1,27 +1,28 @@
 /* eslint consistent-return: 0, no-else-return: 0 */
+import { Topic } from '../reducers/topic';
 import * as types from '../types';
 
-export function incrementCountRequest(id) {
+export function incrementCountRequest(id: string) {
   return { type: types.INCREMENT_COUNT_REQUEST, id };
 }
 
-export function incrementCountSuccess(id) {
+export function incrementCountSuccess(id: string) {
   return { type: types.INCREMENT_COUNT_SUCCESS, id };
 }
 
-export function incrementCountFailure(id) {
+export function incrementCountFailure(id: string) {
   return { type: types.INCREMENT_COUNT_FAILURE, id };
 }
 
-export function decrementCountRequest(id) {
+export function decrementCountRequest(id: string) {
   return { type: types.DECREMENT_COUNT_REQUEST, id };
 }
 
-export function decrementCountSuccess(id) {
+export function decrementCountSuccess(id: string) {
   return { type: types.DECREMENT_COUNT_SUCCESS, id };
 }
 
-export function decrementCountFailure(id) {
+export function decrementCountFailure(id: string) {
   return { type: types.DECREMENT_COUNT_FAILURE, id };
 }
 
@@ -29,15 +30,15 @@ export function destroyTopicRequest() {
   return { type: types.DESTROY_TOPIC_REQUEST };
 }
 
-export function destroyTopicSuccess(id) {
+export function destroyTopicSuccess(id: string) {
   return { type: types.DESTROY_TOPIC_SUCCESS, id };
 }
 
-export function destroyTopicFailure(data) {
+export function destroyTopicFailure(data: { id: string, error: Error }) {
   return { type: types.DESTROY_TOPIC_FAILURE, id: data.id, error: data.error };
 }
 
-export function createTopicRequest(data) {
+export function createTopicRequest(data: { id: string, count: number, text: string }) {
   return {
     type: types.CREATE_TOPIC_REQUEST,
     id: data.id,
@@ -52,7 +53,7 @@ export function createTopicSuccess() {
   };
 }
 
-export function createTopicFailure(data) {
+export function createTopicFailure(data: { id: string, error: Error }) {
   return {
     type: types.CREATE_TOPIC_FAILURE,
     id: data.id,
@@ -66,7 +67,7 @@ export function createTopicDuplicate() {
   };
 }
 
-export function typing(text) {
+export function typing(text: string) {
   return {
     type: types.TYPING,
     newTopic: text
@@ -83,14 +84,14 @@ export function getTopicsRequest() {
   };
 }
 
-export function getTopicsSuccess(data) {
+export function getTopicsSuccess(data: Topic[]) {
   return {
     type: types.GET_TOPICS_SUCCESS,
     data,
   };
 }
 
-export function getTopicsFailure(error) {
+export function getTopicsFailure(error: Error) {
   return {
     type: types.GET_TOPICS_FAILURE,
     error,

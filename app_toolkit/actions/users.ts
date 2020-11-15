@@ -30,7 +30,7 @@ const signUp = createAsyncThunk<string, { email: string, password: string }, { r
   }
 );
 
-const logOut = createAsyncThunk<string, {}, { rejectValue: string }>(
+const logOut = createAsyncThunk<string, void, { rejectValue: string }>(
   'users/logOut',
   async (data, { rejectWithValue }) => {
     try {
