@@ -190,6 +190,8 @@ if (program.dev) {
       shell.exec('npm install');
       console.log('removing these modules...', removeTargetModules.join(', '));
       shell.exec(`npm rm ${removeTargetModules.join(' ')}`);
+      console.log('creating .gitignore');
+      fs.renameSync(path.join(process.cwd(), 'gitignore'), path.join(process.cwd(), '.gitignore'));
       console.log('done, please change your package name');
     });
 }
