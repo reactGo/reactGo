@@ -5,8 +5,6 @@
 
 [한글 공식문서](https://github.com/reactGo/reactGo/blob/master/README_KO.md)
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
 > Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring universal Redux, Redux Thunk, React Router, Hot reloading, Emotion, Express 4.x, and multiple ORMs. :rocket:
 
 _Formerly known as choonkending/react-webpack-node_
@@ -18,7 +16,7 @@ _Formerly known as choonkending/react-webpack-node_
 [npm-badge]: https://badge.fury.io/js/%40reactgo%2Fcli.svg
 [npm-link]: http://badge.fury.io/js/%40reactgo%2Fcli
 
-#### Demo site: [**https://demo-reactgo.herokuapp.com/**](https://demo-reactgo.herokuapp.com/)
+#### Demo site: [**https://reactgo-cli.herokuapp.com/**](https://reactgo-cli.herokuapp.com/)
 
 ## Features:
 - ~~isomorphic~~ [**universal**](https://medium.com/@ghengeveld/isomorphism-vs-universal-javascript-4b47fb481beb#.4x2t3jlmx) Rendering

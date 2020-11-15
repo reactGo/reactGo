@@ -5,8 +5,6 @@
 
 [EN Doc](https://github.com/reactGo/reactGo/blob/master/README.md)
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
 > ES2015, React와 Redux, Redux Thunk, React Router, Hot reloading, Emotion, Express 4.x, 그리고 다양한 ORM과 함께 풀스택 앱을 개발하세요! :rocket:
 
 _(구)choonkending/react-webpack-node_
@@ -19,7 +17,7 @@ _(구)choonkending/react-webpack-node_
 [npm-link]: http://badge.fury.io/js/%40reactgo%2Fcli
 
 
-#### 데모 사이트: [**https://demo-reactgo.herokuapp.com/**](https://demo-reactgo.herokuapp.com/)
+#### 데모 사이트: [**https://reactgo-cli.herokuapp.com/**](https://reactgo-cli.herokuapp.com/)
 
 ## 주요 기능:
 - ~~isomorphic~~ [**유니버셜**](https://medium.com/@ghengeveld/isomorphism-vs-universal-javascript-4b47fb481beb#.4x2t3jlmx) 렌더링
