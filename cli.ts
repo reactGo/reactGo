@@ -182,7 +182,7 @@ if (program.dev) {
       }
       copyRecursiveSync(path.join(__dirname, db), path.join(process.cwd(), 'server'));
       copyRecursiveSync(path.join(__dirname, front), path.join(process.cwd(), 'app'));
-      const list = ['config', 'types', 'webpack', 'package.json', '.sequelizerc', 'nodemon.json', '.babelrc', '.gitignore', '.eslintrc.json', '.eslintignore', 'Procfile', 'tsconfig.json'];
+      const list = ['config', 'types', 'webpack', 'package.json', '.sequelizerc', 'nodemon.json', 'gitignore', '.babelrc', '.eslintrc.json', '.eslintignore', 'Procfile', 'tsconfig.json'];
       list.forEach((name) => {
         copyRecursiveSync(path.join(__dirname, name), path.join(process.cwd(), name));
       });
