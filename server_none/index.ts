@@ -33,7 +33,7 @@ if (isDebug) {
   const webpackHotMiddleware = require('webpack-hot-middleware');
   const devBrowserConfig = webpackConfig({ browser: true }) as Configuration;
   const compiler = webpack(devBrowserConfig);
-  app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: devBrowserConfig.output!.publicPath }));
+  app.use(webpackDevMiddleware(compiler, { publicPath: devBrowserConfig.output!.publicPath }));
   app.use(webpackHotMiddleware(compiler));
 }
 
