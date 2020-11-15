@@ -1,13 +1,24 @@
-##Setting up Postgres
+##Setting Up MongoDB
+Follow the steps [here](https://docs.mongodb.com/manual/installation/#mongodb-community-edition-installation-tutorials)
 
-#### Install Postgres as your database:
+#### Setup your mongoDB directory
 
+Note: Make sure you have the directory and its permissions setup (i.e. `/data/db`):
 ```bash
-# Update brew formulae
-brew update
-# Install Postgres
-brew install postgres
+sudo mkdir -p /data/db
+sudo chown -R `id -u` /data/db
 ```
+
+#### Run your mongoDB server
+```bash
+mongod
+```
+
+##Setting Up MySQL
+Follow the steps [here](https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/installing.html)
+
+##Setting up Postgres
+Follow the steps [here](https://www.postgresqltutorial.com/install-postgresql/)
 
 #### Run your Postgres server
 ```bash

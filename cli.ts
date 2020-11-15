@@ -162,14 +162,23 @@ if (program.dev) {
         case 'MySQL':
           db = 'server_mysql';
           removeTargetModules = removeTargetModules.concat(pgSpecificModules).concat(mongoSpecificModules);
+          fs.writeFile(path.join(process.cwd(), '.env'), 'DB_TYPE=MYSQL', () => {
+            console.log('.env created');
+          });
           break;
         case 'PostgreSQL':
           db = 'server_pg';
           removeTargetModules = removeTargetModules.concat(mysqlSpecificModules).concat(mongoSpecificModules);
+          fs.writeFile(path.join(process.cwd(), '.env'), 'DB_TYPE=PG', () => {
+            console.log('.env created');
+          });
           break;
         case 'none':
           db = 'server_none';
           removeTargetModules = removeTargetModules.concat(sequelizeSpecificModules).concat(pgSpecificModules).concat(mongoSpecificModules).concat(mysqlSpecificModules);
+          fs.writeFile(path.join(process.cwd(), '.env'), 'DB_TYPE=NONE', () => {
+            console.log('.env created');
+          });
           break;
         default: // mongo
           db = 'server_mongo';
@@ -184,6 +193,7 @@ if (program.dev) {
       });
       console.log('installing node modules...');
       shell.exec('npm install');
+      console.log('removing these modules...', removeTargetModules.join(', '));
       shell.exec(`npm rm ${removeTargetModules.join(' ')}`);
       console.log('done');
     });
