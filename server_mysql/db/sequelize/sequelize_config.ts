@@ -12,7 +12,7 @@ const exportedConfig: SequelizeConfig = {
   development: {
     username: process.env.MYSQLUSER || 'root',
     password: process.env.MYSQLPASS || null,
-    database: 'reactgo_development',
+    database: process.env.MYSQLDB || 'reactgo_development',
     host: '127.0.0.1',
     dialect: 'mysql'
   },
@@ -26,8 +26,8 @@ const exportedConfig: SequelizeConfig = {
   production: {
     username: process.env.MYSQLUSER || 'root',
     password: process.env.MYSQLPASS || null,
-    database: 'reactgo_production',
-    host: '127.0.0.1',
+    database: process.env.MYSQLDB || 'reactgo_production',
+    host: process.env.MYSQLHOST || '127.0.0.1',
     dialect: 'mysql'
   }
 } as const;
