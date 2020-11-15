@@ -1,6 +1,6 @@
 # reactGo
 
-[![Dependency Status][dep-status-img]][dep-status-link] [![devDependency Status][dev-dep-status-img]][dev-dep-status-link]
+[![Dependency Status][dep-status-img]][dep-status-link]
 [![Gitter][gitter-img]][gitter-link] [![npm version][npm-badge]][npm-link]
 
 [한글 공식문서](https://github.com/reactGo/reactGo/blob/master/README_KO.md)
@@ -11,15 +11,12 @@
 
 _Formerly known as choonkending/react-webpack-node_
 
-[dep-status-img]: https://david-dm.org/choonkending/react-webpack-node.svg
-[dep-status-link]: https://david-dm.org/choonkending/react-webpack-node
-[dev-dep-status-img]: https://david-dm.org/choonkending/react-webpack-node/dev-status.svg
-[dev-dep-status-link]: https://david-dm.org/choonkending/react-webpack-node#info=devDependencies
+[dep-status-img]: https://img.shields.io/librariesio/release/npm/@reactgo/cli
+[dep-status-link]: https://david-dm.org/@reactgo/cli
 [gitter-img]: https://badges.gitter.im/Join%20Chat.svg
 [gitter-link]: https://gitter.im/choonkending/react-webpack-node?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
-[npm-badge]: https://badge.fury.io/js/react-webpack-node.svg
-[npm-link]: http://badge.fury.io/js/react-webpack-node
-
+[npm-badge]: https://badge.fury.io/js/%40reactgo%2Fcli.svg
+[npm-link]: http://badge.fury.io/js/%40reactgo%2Fcli
 
 #### Demo site: [**https://demo-reactgo.herokuapp.com/**](https://demo-reactgo.herokuapp.com/)
 

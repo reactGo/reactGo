@@ -1,6 +1,6 @@
 # reactGo
 
-[![Dependency Status][dep-status-img]][dep-status-link] [![devDependency Status][dev-dep-status-img]][dev-dep-status-link]
+[![Dependency Status][dep-status-img]][dep-status-link]
 [![Gitter][gitter-img]][gitter-link] [![npm version][npm-badge]][npm-link]
 
 [EN Doc](https://github.com/reactGo/reactGo/blob/master/README.md)
@@ -9,14 +9,14 @@
 
 > ES2015, React와 Redux, Redux Thunk, React Router, Hot reloading, Emotion, Express 4.x, 그리고 다양한 ORM과 함께 풀스택 앱을 개발하세요! :rocket:
 
-[dep-status-img]: https://david-dm.org/reactgo/reactgo.svg
-[dep-status-link]: https://david-dm.org/reactgo/reactgo
-[dev-dep-status-img]: https://david-dm.org/reactgo/reactgo/dev-status.svg
-[dev-dep-status-link]: https://david-dm.org/reactgo/reactgo#info=devDependencies
+_(구)choonkending/react-webpack-node_
+
+[dep-status-img]: https://img.shields.io/librariesio/release/npm/@reactgo/cli
+[dep-status-link]: https://david-dm.org/@reactgo/cli
 [gitter-img]: https://badges.gitter.im/Join%20Chat.svg
 [gitter-link]: https://gitter.im/choonkending/react-webpack-node?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
-[npm-badge]: https://badge.fury.io/js/reactgo.svg
-[npm-link]: http://badge.fury.io/js/reactgo
+[npm-badge]: https://badge.fury.io/js/%40reactgo%2Fcli.svg
+[npm-link]: http://badge.fury.io/js/%40reactgo%2Fcli
 
 
 #### 데모 사이트: [**https://demo-reactgo.herokuapp.com/**](https://demo-reactgo.herokuapp.com/)
