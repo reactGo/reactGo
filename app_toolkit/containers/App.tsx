@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Switch } from 'react-router-dom';
 import { renderRoutes, RouteConfig } from 'react-router-config';
-import { Global } from '@emotion/core';
+import { Global } from '@emotion/react';
 
 import { AppWrapper, global } from '../css/main';
 import Navigation from './Navigation';
