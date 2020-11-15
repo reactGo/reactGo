@@ -5,51 +5,51 @@ import * as types from '../types';
 import { getTopics } from './topics';
 
 function beginLogin() {
-  return { type: types.MANUAL_LOGIN_USER };
+  return { type: types.LOGIN_USER_REQUEST };
 }
 
 function loginSuccess(message: string) {
   return {
-    type: types.LOGIN_SUCCESS_USER,
+    type: types.LOGIN_USER_SUCCESS,
     message
   };
 }
 
 function loginError(message: string) {
   return {
-    type: types.LOGIN_ERROR_USER,
+    type: types.LOGIN_USER_FAILURE,
     message
   };
 }
 
 function signUpError(message: string) {
   return {
-    type: types.SIGNUP_ERROR_USER,
+    type: types.SIGNUP_USER_FAILURE,
     message
   };
 }
 
 function beginSignUp() {
-  return { type: types.SIGNUP_USER };
+  return { type: types.SIGNUP_USER_REQUEST };
 }
 
 function signUpSuccess(message: string) {
   return {
-    type: types.SIGNUP_SUCCESS_USER,
+    type: types.SIGNUP_USER_SUCCESS,
     message
   };
 }
 
 function beginLogout() {
-  return { type: types.LOGOUT_USER};
+  return { type: types.LOGOUT_USER_REQUEST};
 }
 
 function logoutSuccess() {
-  return { type: types.LOGOUT_SUCCESS_USER };
+  return { type: types.LOGOUT_USER_SUCCESS };
 }
 
 function logoutError() {
-  return { type: types.LOGOUT_ERROR_USER };
+  return { type: types.LOGOUT_USER_FAILURE };
 }
 
 export function toggleLoginMode() {
