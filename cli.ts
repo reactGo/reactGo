@@ -98,11 +98,13 @@ if (program.dev) {
           break;
       }
       let exists = fs.existsSync(path.join(__dirname, 'server'));
+      console.log(exists);
       if (exists) {
         console.log('removing existing server directory...');
         fs.unlinkSync(path.join(__dirname, 'server'));
       }
       exists = fs.existsSync(path.join(__dirname, 'app'));
+      console.log(exists);
       if (exists) {
         console.log('removing existing app directory...');
         fs.unlinkSync(path.join(__dirname, 'app'));
