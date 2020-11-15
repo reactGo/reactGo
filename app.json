@@ -1,10 +1,10 @@
 {
   "name": "React Node Express Mongo",
-  "description": "A barebones Node.js app using Express 4 with MongoDB, and ReactJS in Flux, using Webpack as a module bundler",
-  "repository": "https://github.com/choonkending/react-webpack-node",
+  "description": "A barebones Node.js app using Express 4 with Postgre, and ReactJS in Redux, using Webpack as a module bundler",
+  "repository": "https://github.com/reactgo/reactgo",
   "logo": "https://node-js-sample.herokuapp.com/node.svg",
-  "keywords": ["node", "express", "static", "react", "webpack", "mongodb"],
+  "keywords": ["node", "express", "static", "react", "redux", "webpack", "postgre"],
   "addons" : [
-  	"mongolab"
+  	"heroku-postgresql"
   ]
 }

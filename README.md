@@ -98,7 +98,7 @@ You have to install ReactGo CLI to set up development environment.
 ```bash
 # Install ReactGo CLI first
 # Your terminal have to be located at reactGo project.
-npm i -g
+npm i -g @reactgo/cli
 # After installation, move to the directory you wanna clone ReactGo
 cd /somewhere/you/want/to/clone
 # Run CLI and choose which stack you wanna use

@@ -101,7 +101,7 @@ Express의 app.use()가 요청을 받습니다.
 ```bash
 # ReactGo CLI를 먼저 설치합니다.
 # 터미널 경로가 ReactGo 폴더에 있어야 합니다.
-npm i -g
+npm i -g @reactgo/cli
 # 설치 완료 후 ReactGo를 복사할 폴더로 이동해주세요.
 cd /당신이/복사하고자/하는/어딘가
 # CLI를 실행하고 원하는 개발 스택을 선택하세요.
