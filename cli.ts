@@ -71,54 +71,48 @@ if (program.dev) {
       switch (answers.front) {
         case 'redux toolkit':
           front = 'app_toolkit';
-          removeTargetModules = removeTargetModules.concat(sagaSpecificModules).concat(mobxSpecificModules).concat(thunkSpecificModules);
           break;
         case 'redux + saga':
           front = 'app_saga';
-          removeTargetModules = removeTargetModules.concat(toolkitSpecificModules).concat(mobxSpecificModules).concat(thunkSpecificModules);
           break;
         case 'mobx':
           front = 'app_mobx';
-          removeTargetModules = removeTargetModules.concat(toolkitSpecificModules).concat(reduxSpecificModules).concat(sagaSpecificModules).concat(thunkSpecificModules);
           break;
         default: // thunk
           front = 'app_thunk';
-          removeTargetModules = removeTargetModules.concat(toolkitSpecificModules).concat(mobxSpecificModules).concat(sagaSpecificModules);
           break;
       }
       let db;
       switch (answers.db) {
         case 'MySQL':
           db = 'server_mysql';
-          removeTargetModules = removeTargetModules.concat(pgSpecificModules).concat(mongoSpecificModules);
           break;
         case 'PostgreSQL':
           db = 'server_pg';
-          removeTargetModules = removeTargetModules.concat(mysqlSpecificModules).concat(mongoSpecificModules);
           break;
         case 'none':
           db = 'server_none';
-          removeTargetModules = removeTargetModules.concat(sequelizeSpecificModules).concat(pgSpecificModules).concat(mongoSpecificModules).concat(mysqlSpecificModules);
           break;
         default: // mongo
           db = 'server_mongo';
-          removeTargetModules = removeTargetModules.concat(sequelizeSpecificModules).concat(pgSpecificModules).concat(mysqlSpecificModules);
           break;
       }
       let exists = fs.existsSync(path.join(__dirname, 'server'));
       if (exists) {
+        console.log('removing existing server directory...');
         fs.unlinkSync(path.join(__dirname, 'server'));
       }
       exists = fs.existsSync(path.join(__dirname, 'app'));
       if (exists) {
+        console.log('removing existing app directory...');
         fs.unlinkSync(path.join(__dirname, 'app'));
       }
+      console.log('copying existing server directory...');
+      console.log('copying existing app directory...');
       fs.symlinkSync(path.join(__dirname, db), path.join(__dirname, 'server'), 'dir');
       fs.symlinkSync(path.join(__dirname, front), path.join(__dirname, 'app'), 'dir');
       console.log('installing node modules...');
       shell.exec('npm install');
-      console.log('removing these modules...', removeTargetModules.join(', '));
-      shell.exec(`npm rm ${removeTargetModules.join(' ')}`);
       console.log('done');
     });
 } else {
@@ -136,7 +130,6 @@ if (program.dev) {
     }])
     .then((answers) => {
       console.log(answers);
-      console.log(answers.db);
       console.log(process.cwd());
       let front;
       switch (answers.front) {
