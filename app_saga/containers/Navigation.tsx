@@ -4,11 +4,12 @@ import { useHistory } from 'react-router-dom';
 
 import { NavigationWrapper, Item, Logo } from '../css/components/navigation';
 import { beginLogout } from '../actions/users';
+import { RootState } from '../reducers';
 
 const LogOut = Item.withComponent('button');
 
 const Navigation = () => {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -22,7 +23,7 @@ const Navigation = () => {
     <NavigationWrapper role="navigation">
       <Logo to="/" activeClassName="active">Ninja Ocean</Logo>
       {user.authenticated ? (
-        <LogOut onClick={dispatchLogOut}>Logout</LogOut>
+        <LogOut to="" onClick={dispatchLogOut}>Logout</LogOut>
       ) : (
         <Item to="/login" activeClassName="active">Log in</Item>
       )}

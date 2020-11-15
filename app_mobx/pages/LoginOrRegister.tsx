@@ -5,7 +5,7 @@ import Page from './Page';
 import LoginOrRegisterContainer from '../containers/LoginOrRegister';
 import useStore from '../useStore';
 
-const LoginOrRegister = (props) => {
+const LoginOrRegister = () => {
   const { userStore: { authenticated }} = useStore();
   const history = useHistory();
   /*
@@ -39,7 +39,7 @@ const LoginOrRegister = (props) => {
 
   return (
     <Page {...getMetaData()}>
-      <LoginOrRegisterContainer {...props} />
+      <LoginOrRegisterContainer />
     </Page>
   );
 };

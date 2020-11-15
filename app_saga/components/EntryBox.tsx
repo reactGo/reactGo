@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { EntryBoxWrapper, Header, Input } from '../css/components/entrybox';
 
 interface Props {
-  onEntryChange: (value: string) => void;
+  onEntryChange: (value: { id: string, text: string, count: number }) => void;
   onEntrySave: (value: string) => void;
   topic: string;
 }

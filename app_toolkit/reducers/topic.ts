@@ -19,6 +19,7 @@ export const topicsSlice = createSlice({
         state = action.payload;
         return state;
       }
+      return state;
     })
     .addCase(createTopic.fulfilled, (state, action) => {
       state.push({ id: md5.hash(action.meta.arg), count: 0, text: action.meta.arg });

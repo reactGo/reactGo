@@ -2,7 +2,7 @@ import React from 'react';
 import Page from './Page';
 import AboutContainer from '../containers/About';
 
-const About = (props) => {
+const About = () => {
   const pageTitle = () => {
     return 'About | reactGo';
   };
@@ -25,7 +25,7 @@ const About = (props) => {
 
   return (
     <Page {...getMetaData()}>
-      <AboutContainer {...props} />
+      <AboutContainer />
     </Page>
   );
 };

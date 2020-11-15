@@ -61,9 +61,6 @@ export default (env: { browser: boolean }) => {
               comments: false,
               ascii_only: true,
             },
-            compress: {
-              warnings: false,
-            },
           },
         }),
       ],

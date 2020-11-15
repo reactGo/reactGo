@@ -12,9 +12,10 @@ import {
   Heading, Hint, Input, Loading,
   LoginWrapper, Message,
 } from '../css/components/login';
+import { RootState } from '../reducers';
 
 const LoginOrRegister = () => {
-  const { isWaiting, message, isLogin } = useSelector((state) => state.user);
+  const { isWaiting, message, isLogin } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

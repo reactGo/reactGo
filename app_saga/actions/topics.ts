@@ -10,8 +10,8 @@ export function incrementCountSuccess(id: string) {
   return { type: types.INCREMENT_COUNT_SUCCESS, id };
 }
 
-export function incrementCountFailure(id: string) {
-  return { type: types.INCREMENT_COUNT_FAILURE, id };
+export function incrementCountFailure(data: { id: string, error: string }) {
+  return { type: types.INCREMENT_COUNT_FAILURE, id: data.id, error: data.error };
 }
 
 export function decrementCountRequest(id: string) {
@@ -22,19 +22,19 @@ export function decrementCountSuccess(id: string) {
   return { type: types.DECREMENT_COUNT_SUCCESS, id };
 }
 
-export function decrementCountFailure(id: string) {
-  return { type: types.DECREMENT_COUNT_FAILURE, id };
+export function decrementCountFailure(data: { id: string, error: string }) {
+  return { type: types.DECREMENT_COUNT_FAILURE, id: data.id, error: data.error };
 }
 
-export function destroyTopicRequest() {
-  return { type: types.DESTROY_TOPIC_REQUEST };
+export function destroyTopicRequest(id: string) {
+  return { type: types.DESTROY_TOPIC_REQUEST, id };
 }
 
 export function destroyTopicSuccess(id: string) {
   return { type: types.DESTROY_TOPIC_SUCCESS, id };
 }
 
-export function destroyTopicFailure(data: { id: string, error: Error }) {
+export function destroyTopicFailure(data: { id: string, error: string }) {
   return { type: types.DESTROY_TOPIC_FAILURE, id: data.id, error: data.error };
 }
 
@@ -53,7 +53,7 @@ export function createTopicSuccess() {
   };
 }
 
-export function createTopicFailure(data: { id: string, error: Error }) {
+export function createTopicFailure(data: { id: string, error: string }) {
   return {
     type: types.CREATE_TOPIC_FAILURE,
     id: data.id,

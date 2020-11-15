@@ -1,4 +1,4 @@
-import bcrypt from 'bcryptjs';
+import * as bcrypt from 'bcryptjs';
 import { Model, Sequelize, DataTypes, Transaction } from 'sequelize';
 import { dbType } from './index';
 

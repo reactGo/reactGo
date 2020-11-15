@@ -42,7 +42,7 @@
     "no-plusplus": 0,
     "prefer-promise-reject-errors": 0,
     "jsx-a11y/no-autofocus": 0,
-    "object-curly-newline": 0,
+    "no-use-before-define": 0,
     "@typescript-eslint/no-unused-vars": [2, {
       "args": "none"
     }]

@@ -1,5 +1,6 @@
 import { all, call, fork, put, takeLatest, select } from 'redux-saga/effects';
 import md5 from 'spark-md5';
+import { RootState } from '../reducers';
 import { Topic } from '../reducers/topic';
 
 import { voteService } from '../services';
@@ -31,7 +32,7 @@ function* watchGetTopics() {
   yield takeLatest(GET_TOPICS_REQUEST, getTopics);
 }
 
-function* destroyTopic(action) {
+function* destroyTopic(action: { type: string, id: string }) {
   try {
     yield call(voteService().deleteTopic, { id: action.id });
     yield put(destroyTopicSuccess(action.id));
@@ -47,13 +48,13 @@ function* watchDestroyTopic() {
   yield takeLatest(DESTROY_TOPIC_REQUEST, destroyTopic);
 }
 
-function* createTopic({ text }) {
+function* createTopic({ text }: { type: string, text: string }) {
   const id = md5.hash(text);
   try {
     if (text.trim().length <= 0) return Promise.reject('text box is empty');
     // Redux thunk's middleware receives the store methods `dispatch`
     // and `getState` as parameters
-    const { topic } = select();
+    const { topic } = yield select((state: RootState) => state);
     const data = {
       count: 1,
       id,
@@ -85,7 +86,7 @@ function* watchCreateTopic() {
   yield takeLatest(CREATE_TOPIC_REQUEST, createTopic);
 }
 
-function* incrementCount(action) {
+function* incrementCount(action: { type: string, id: string }) {
   try {
     yield call(voteService().updateTopic, {
       id: action.id,
@@ -107,7 +108,7 @@ function* watchIncrementCount() {
   yield takeLatest(INCREMENT_COUNT_REQUEST, incrementCount);
 }
 
-function* decrementCount(action) {
+function* decrementCount(action: { type: string, id: string }) {
   try {
     yield call(voteService().updateTopic, {
       id: action.id,

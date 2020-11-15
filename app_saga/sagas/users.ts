@@ -6,7 +6,7 @@ import { authService } from '../services';
 import { loginError, loginSuccess, logoutError, logoutSuccess, signUpError, signUpSuccess } from '../actions/users';
 import { getTopicsRequest } from '../actions/topics';
 
-function* login(action) {
+function* login(action: { type: string, data: { email: string, password: string }}) {
   try {
     yield call(authService().login, action.data);
     yield put(loginSuccess('You have been successfully logged in'));
@@ -21,7 +21,7 @@ function* watchLogin() {
   yield takeLatest(LOGIN_USER_REQUEST, login);
 }
 
-function* signUp(action) {
+function* signUp(action: { type: string, data: { email: string, password: string }}) {
   try {
     yield call(authService().signUp, action.data);
     yield put(signUpSuccess('You have successfully registered an account!'));

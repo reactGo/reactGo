@@ -1,3 +1,4 @@
+import { History } from 'history';
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 
@@ -6,11 +7,13 @@ import topic from './topic';
 import message from './message';
 
 // Combine reducers with connectRouter which keeps track of router state
-const createRootReducer = (history) => combineReducers({
+const createRootReducer = (history: History) => combineReducers({
   topic,
   user,
   message,
   router: connectRouter(history),
 });
+
+export type RootState = ReturnType<ReturnType<typeof createRootReducer>>;
 
 export default createRootReducer;

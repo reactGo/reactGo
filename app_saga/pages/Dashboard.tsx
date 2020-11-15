@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { replace } from 'connected-react-router';
 import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../reducers';
 
 import Page from './Page';
 import DashboardContainer from '../containers/Dashboard';
 
-const Dashboard = (props) => {
-  const { authenticated } = useSelector((state) => state.user);
+const Dashboard = () => {
+  const { authenticated } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
 
   /*
@@ -40,7 +41,7 @@ const Dashboard = (props) => {
 
   return (
     <Page {...getMetaData()}>
-      <DashboardContainer {...props} />
+      <DashboardContainer />
     </Page>
   );
 };

@@ -19,4 +19,10 @@ const Page: FC<Props> = ({
   );
 };
 
+Page.defaultProps = {
+  title: '',
+  link: [],
+  meta: [],
+};
+
 export default Page;

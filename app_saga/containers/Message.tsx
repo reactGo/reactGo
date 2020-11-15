@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { dismissMessage } from '../actions/messages';
 import { MessageWrapper } from '../css/components/message';
+import { RootState } from '../reducers';
 
 const Message = () => {
-  const { message, type } = useSelector((state) => state.message);
+  const { message, type } = useSelector((state: RootState) => state.message);
   const dispatch = useDispatch();
   const dispatchDismissMessage = () => dispatch(dismissMessage());
 

@@ -5,7 +5,7 @@ import Page from './Page';
 import DashboardContainer from '../containers/Dashboard';
 import useStore from '../useStore';
 
-const Dashboard = (props) => {
+const Dashboard = () => {
   const { userStore: { authenticated } } = useStore();
   const history = useHistory();
   /*
@@ -39,7 +39,7 @@ const Dashboard = (props) => {
 
   return (
     <Page {...getMetaData()}>
-      <DashboardContainer {...props} />
+      <DashboardContainer />
     </Page>
   );
 };

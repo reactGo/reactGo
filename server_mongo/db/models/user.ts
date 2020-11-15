@@ -3,7 +3,7 @@
  * Code modified from https://github.com/sahat/hackathon-starter
  */
 
-import bcrypt from 'bcrypt-nodejs';
+import * as bcrypt from 'bcryptjs';
 import mongoose, { Document, HookNextFunction } from 'mongoose';
 
 // Other oauthtypes to be added
@@ -45,17 +45,13 @@ const UserSchema = new mongoose.Schema<UserDocument>({
   google: {}
 });
 
-function encryptPassword(this: UserDocument, next: HookNextFunction) {
+async function encryptPassword(this: UserDocument, next: HookNextFunction) {
   const user = this;
   if (!user.isModified('password')) return next();
-  return bcrypt.genSalt(5, (saltErr, salt) => {
-    if (saltErr) return next(saltErr);
-    return bcrypt.hash(user.password, salt, null, (hashErr, hash) => {
-      if (hashErr) return next(hashErr);
-      user.password = hash;
-      return next();
-    });
-  });
+  const salt = await bcrypt.genSalt(5);
+  const hash = await bcrypt.hash(user.password, salt);
+  user.password = hash;
+  return user;
 }
 
 /**
@@ -66,7 +62,7 @@ UserSchema.pre('save', encryptPassword);
 /*
  Defining our own custom document instance method
  */
-UserSchema.methods.comparePassword = function(candidatePassword, cb) {
+UserSchema.methods.comparePassword = function comparePassword(this: UserDocument, candidatePassword, cb) {
   bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
     if (err) return cb(err);
     return cb(null, isMatch);

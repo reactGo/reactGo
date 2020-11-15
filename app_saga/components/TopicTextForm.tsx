@@ -2,7 +2,7 @@ import React, { FC, useCallback } from 'react';
 
 interface Props {
   onEntrySave: (value: string) => void,
-  onEntryChange: (value: string) => void,
+  onEntryChange: (value: { id: string, text: string, count: number }) => void,
   value: string,
   className?: string,
   placeholder: string,

@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { replace } from 'connected-react-router';
+import { RootState } from '../reducers';
 
 import Page from './Page';
 import LoginOrRegisterContainer from '../containers/LoginOrRegister';
 
-const LoginOrRegister = (props) => {
-  const { authenticated } = useSelector((state) => state.user);
+const LoginOrRegister = () => {
+  const { authenticated } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
 
   /*
@@ -40,7 +41,7 @@ const LoginOrRegister = (props) => {
 
   return (
     <Page {...getMetaData()}>
-      <LoginOrRegisterContainer {...props} />
+      <LoginOrRegisterContainer />
     </Page>
   );
 };

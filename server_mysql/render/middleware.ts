@@ -41,7 +41,7 @@ export default function render(req: Request, res: Response) {
   // If redirection exists, context object is going to have a url property.
   const context: { url?: string } = {};
   loadBranchData(req.url, store)
-    .then((data) => {
+    .then(() => {
       const html = pageRenderer(req, store, context);
       if (context.url) {
         // If context has a url property, then we need to handle a redirection

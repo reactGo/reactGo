@@ -13,7 +13,7 @@
     "start": "npm run build && cross-env NODE_ENV=production node compiled/server.js",
     "dev": "cross-env NODE_ENV=development nodemon",
     "build:dev": "cross-env NODE_ENV=development npm run webpack -- --env server",
-    "build": "npm run clean && tsc && cross-env NODE_ENV=production npm run webpack -- --env.browser && cross-env NODE_ENV=production npm run webpack -- --env server",
+    "build": "npm run clean && tsc && cross-env NODE_ENV=production npm run webpack -- --env browser && cross-env NODE_ENV=production npm run webpack -- --env server",
     "webpack": "webpack --config ./webpack/webpack.config.ts",
     "test": "mocha ./app/tests/setup.js --compilers css:./app/tests/compilers/css ./app/**/*-test.js",
     "test:watch": "mocha ./app/tests/setup.js --watch --compilers css:./app/tests/compilers/css ./app/**/*-test.js"
