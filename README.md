@@ -17,6 +17,7 @@ _Formerly known as choonkending/react-webpack-node_
 [npm-link]: http://badge.fury.io/js/%40reactgo%2Fcli
 
 #### Demo site: [**https://reactgo-cli.herokuapp.com/**](https://reactgo-cli.herokuapp.com/)
+![2020-11-15 14-39-12](https://user-images.githubusercontent.com/10962668/99179817-646cd900-2764-11eb-8fd4-c3591b6dce61.gif)
 
 ## Features:
 - ~~isomorphic~~ [**universal**](https://medium.com/@ghengeveld/isomorphism-vs-universal-javascript-4b47fb481beb#.4x2t3jlmx) Rendering

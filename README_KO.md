@@ -18,6 +18,7 @@ _(구)choonkending/react-webpack-node_
 
 
 #### 데모 사이트: [**https://reactgo-cli.herokuapp.com/**](https://reactgo-cli.herokuapp.com/)
+![2020-11-15 14-39-12](https://user-images.githubusercontent.com/10962668/99179817-646cd900-2764-11eb-8fd4-c3591b6dce61.gif)
 
 ## 주요 기능:
 - ~~isomorphic~~ [**유니버셜**](https://medium.com/@ghengeveld/isomorphism-vs-universal-javascript-4b47fb481beb#.4x2t3jlmx) 렌더링
