@@ -190,6 +190,6 @@ if (program.dev) {
       shell.exec('npm install');
       console.log('removing these modules...', removeTargetModules.join(', '));
       shell.exec(`npm rm ${removeTargetModules.join(' ')}`);
-      console.log('done');
+      console.log('done, please change your package name');
     });
 }
