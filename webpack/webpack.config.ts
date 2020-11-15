@@ -100,7 +100,7 @@ export default (env: { browser: boolean }) => {
       publicPath: PATHS.public,
     },
     optimization: {
-      emitOnErrors: false,
+      // emitOnErrors: false,
     },
     module: { rules: rules({ production: false, browser: true }) },
     resolve,
