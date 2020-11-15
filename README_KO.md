@@ -9,14 +9,14 @@
 
 > ES2015, React와 Redux, Redux Thunk, React Router, Hot reloading, Emotion, Express 4.x, 그리고 다양한 ORM과 함께 풀스택 앱을 개발하세요! :rocket:
 
-[dep-status-img]: https://david-dm.org/choonkending/react-webpack-node.svg
-[dep-status-link]: https://david-dm.org/choonkending/react-webpack-node
-[dev-dep-status-img]: https://david-dm.org/choonkending/react-webpack-node/dev-status.svg
-[dev-dep-status-link]: https://david-dm.org/choonkending/react-webpack-node#info=devDependencies
+[dep-status-img]: https://david-dm.org/reactgo/reactgo.svg
+[dep-status-link]: https://david-dm.org/reactgo/reactgo
+[dev-dep-status-img]: https://david-dm.org/reactgo/reactgo/dev-status.svg
+[dev-dep-status-link]: https://david-dm.org/reactgo/reactgo#info=devDependencies
 [gitter-img]: https://badges.gitter.im/Join%20Chat.svg
 [gitter-link]: https://gitter.im/choonkending/react-webpack-node?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
-[npm-badge]: https://badge.fury.io/js/react-webpack-node.svg
-[npm-link]: http://badge.fury.io/js/react-webpack-node
+[npm-badge]: https://badge.fury.io/js/reactgo.svg
+[npm-link]: http://badge.fury.io/js/reactgo
 
 
 #### 데모 사이트: [**https://demo-reactgo.herokuapp.com/**](https://demo-reactgo.herokuapp.com/)
@@ -92,7 +92,7 @@ Express의 app.use()가 요청을 받습니다.
 
 #### 데이터베이스
 
-우리는 현재 몽고DB와 MySQL, 포스트그레SQL을 지원합니다. 아무 데이터베이스를 안 써도 됩니다. 설정하는 방법에 대해 [알아보세요](docs/databases.md).
+우리는 현재 몽고DB와 MySQL, 포스트그레SQL을 지원합니다. 데이터베이스를 아무것도 안 써도 됩니다.
 
 #### 개발하기
 
@@ -107,8 +107,6 @@ cd /당신이/복사하고자/하는/어딘가
 # CLI를 실행하고 원하는 개발 스택을 선택하세요.
 reactgo
 ``` 
-
-향후 프로세스는 [여기](docs/development.md)에 나와 있습니다.
 
 #### 앱 빌드하기
 
