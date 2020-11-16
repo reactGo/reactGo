@@ -13,7 +13,7 @@ const topic = (
   action: AnyAction
 ) => {
   switch (action.type) {
-    case types.CREATE_TOPIC_REQUEST:
+    case types.CREATE_TOPIC_SUCCESS:
       return {
         id: action.id,
         count: action.count,
