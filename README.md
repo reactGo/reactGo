@@ -10,13 +10,14 @@
 _Formerly known as choonkending/react-webpack-node_
 
 [dep-status-img]: https://img.shields.io/librariesio/release/npm/@reactgo/cli
-[dep-status-link]: https://david-dm.org/@reactgo/cli
+[dep-status-link]: https://libraries.io/npm/@reactgo%2Fcli
 [gitter-img]: https://badges.gitter.im/Join%20Chat.svg
 [gitter-link]: https://gitter.im/choonkending/react-webpack-node?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 [npm-badge]: https://badge.fury.io/js/%40reactgo%2Fcli.svg
 [npm-link]: http://badge.fury.io/js/%40reactgo%2Fcli
 
-#### Demo site: [**https://reactgo-cli.herokuapp.com/**](https://reactgo-cli.herokuapp.com/)
+![Cap 2020-11-16 12-51-16-569](https://user-images.githubusercontent.com/10962668/99211114-f29b9a80-280a-11eb-804c-2cdc26180d3d.png)
+
 ![2020-11-15 14-39-12](https://user-images.githubusercontent.com/10962668/99179817-646cd900-2764-11eb-8fd4-c3591b6dce61.gif)
 
 ## Features:

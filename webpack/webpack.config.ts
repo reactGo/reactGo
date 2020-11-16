@@ -33,7 +33,6 @@ export default (env: { browser: boolean }) => {
       path: PATHS.compiled,
       filename: '[name].js',
       publicPath: PATHS.public,
-      libraryTarget: 'commonjs2',
     },
     module: { rules: rules({ production: true, browser: false }) },
     resolve,
