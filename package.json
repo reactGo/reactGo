@@ -1,6 +1,6 @@
 {
   "name": "@reactgo/cli",
-  "version": "3.5.11",
+  "version": "3.5.12",
   "description": "Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring universal Redux, React Router, React Router Redux Hot reloading, CSS modules, Express 4.x, and multiple ORMs.",
   "repository": "https://github.com/reactGo/reactGo",
   "main": "compiled/server.js",
