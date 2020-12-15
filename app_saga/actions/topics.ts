@@ -38,12 +38,10 @@ export function destroyTopicFailure(data: { id: string, error: string }) {
   return { type: types.DESTROY_TOPIC_FAILURE, id: data.id, error: data.error };
 }
 
-export function createTopicRequest(data: { id: string, count: number, text: string }) {
+export function createTopicRequest(data: string) {
   return {
     type: types.CREATE_TOPIC_REQUEST,
-    id: data.id,
-    count: data.count,
-    text: data.text
+    text: data
   };
 }
 

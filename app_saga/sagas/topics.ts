@@ -69,10 +69,6 @@ function* createTopic({ text }: { type: string, text: string }) {
       // notifies the user of a duplicate topic
       return yield put(createTopicDuplicate());
     }
-
-    // First dispatch an optimistic update
-    yield put(createTopicRequest(data));
-
     return yield call(voteService().createTopic, { id, data });
   } catch (error) {
     return yield put(createTopicFailure({

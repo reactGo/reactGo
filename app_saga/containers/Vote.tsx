@@ -10,11 +10,12 @@ import {
 } from '../actions/topics';
 import { VoteWrapper } from '../css/components/vote';
 import { RootState } from '../reducers';
+import { Topic } from '../reducers/topic';
 
 const Vote = () => {
   const { topics, newTopic } = useSelector((state: RootState) => state.topic);
   const dispatch = useDispatch();
-  const dispatchCreateTopic = (data: { id: string, text: string, count: number }) => dispatch(createTopicRequest(data));
+  const dispatchCreateTopic = (data: string) => dispatch(createTopicRequest(data));
   const dispatchTyping = (data: string) => dispatch(typing(data));
   const dispatchIncrementCount = (data: string) => dispatch(incrementCountRequest(data));
   const dispatchDecrementCount = (data: string) => dispatch(decrementCountRequest(data));
