@@ -1,4 +1,5 @@
 # reactGo
+Shakti id Editing
 
 [![Dependency Status][dep-status-img]][dep-status-link]
 [![Gitter][gitter-img]][gitter-link] [![npm version][npm-badge]][npm-link]
@@ -184,3 +185,5 @@ React.js -> Facebook Flux -> Alt -> Redux(thunk -> saga -> toolkit)
 License
 ===============
 MIT
+
+Shakti Is Editing 
