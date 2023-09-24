@@ -6,7 +6,9 @@ Shakti id Editing
 
 [한글 공식문서](https://github.com/reactGo/reactGo/blob/master/README_KO.md)
 
-> Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring universal Redux, Redux Thunk, React Router, Hot reloading, Emotion, Express 4.x, and multiple ORMs. :rocket:
+
+
+\\\\\\\\\\ \> Your One-Stop solution for a full-stack app with ES6/ES2015 React.js featuring universal Redux, Redux Thunk, React Router, Hot reloading, Emotion, Express 4.x, and multiple ORMs. :rocket:
 
 _Formerly known as choonkending/react-webpack-node_
 
@@ -29,7 +31,7 @@ _Formerly known as choonkending/react-webpack-node_
 - Integrating Redux with React Router with [**Connected React Router**](https://github.com/supasate/connected-react-router)
 - Asynchronous Data Fetching on server-side rendering(SSR)
 - Server side authentication + Redirecting for components
-- Hot reloading using [**hot-loader/react-dom**](https://github.com/hot-loader/react-dom)
+- Hot relioading using [**hot-loader/react-dom**](https://github.com/hot-loader/react-dom)
 - Time travel using [**Redux-Devtools Chrome Extension**](https://github.com/zalmoxisus/redux-devtools-extension)
 - [**Webpack 5**](https://github.com/webpack/webpack) for both development and production bundles. It's (in my opinion) the best bundler for JS, CSS, LESS, images, and lots more!
 - [**emotion**](https://emotion.sh/docs/introduction) allows for CSS-in-JS. Say goodbye to conflicts (most of them) and global scope
@@ -186,4 +188,5 @@ License
 ===============
 MIT
 
-Shakti Is Editing 
+Shakti Is 
+AGAIN! ^-^ Editing 
